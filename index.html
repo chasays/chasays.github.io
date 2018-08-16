@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>爱你哟瓊瓊&#10084么么哒</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		@font-face {
+			font-family: digit;
+			src: url('digital-7_mono.ttf') format("truetype");
+		}
+	</style>
+	<link href="css/default.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/garden.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+</head>
+
+<body>
+	<div id="mainDiv">
+		<div id="content">
+			<div id="code">
+				<span class="comments">/**</span><br />
+				<span class="space"/><span class="comments">* We are both Renshouese,</span><br />
+				<span class="space"/><span class="comments">* this is the fate.</span><br />
+				<span class="space"/><span class="comments">*/</span><br />
+				Boy i = <span class="keyword">new</span> Boy(<span class="string">"XXD"</span>);<br />
+				Girl u = <span class="keyword">new</span> Girl(<span class="string">"TQ"</span>);<br />
+				<span class="comments">// On the day almost 10 years ago, we have been together. </span><br />
+				i.love(u);<br />
+				u.love(me);<br />
+				<span class="comments">// Since then, miss each other every day.</span><br />
+				i.miss(u);<br />
+				<span class="comments">// Experienced the days without money, even though still poor.</span><br />
+				<span class="comments">// however, have quarrels, have fun, and have a little son.</span><br />
+				<span class="keyword">boolean</span> isBingo = <span class="keyword">true</span>;<br />
+				<span class="keyword">while</span> (isBingo) {<br />
+				<span class="placeholder"/><span class="comments">// take the opportunity and wanna say to you </span><br />
+				<span class="placeholder"/>i.say(Sweet, happy Qixi day!);<br />
+				}<br />
+			</div>
+			<div id="loveHeart">
+				<canvas id="garden"></canvas>
+				<div id="words">
+					<div id="messages">
+						瓊瓊, I have fallen in love with you for
+						<div id="elapseClock"></div>
+					</div>
+					<div id="loveu">
+						In this road, with you.<br/>
+						<div class="signature">&#10173 love you</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var offsetX = $("#loveHeart").width() / 2;
+		var offsetY = $("#loveHeart").height() / 2 - 55;
+		var together = new Date();
+		together.setFullYear(2009, 2, 1);
+		together.setHours(20);
+		together.setMinutes(20);
+		together.setSeconds(20);
+		together.setMilliseconds(520);
+		
+		if (!document.createElement('canvas').getContext) {
+			var msg = document.createElement("div");
+			msg.id = "errorMsg";
+			msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+			document.body.appendChild(msg);
+			$("#code").css("display", "none")
+			$("#copyright").css("position", "absolute");
+			$("#copyright").css("bottom", "10px");
+		    document.execCommand("stop");
+		} else {
+			setTimeout(function () {
+				startHeartAnimation();
+			}, 5000);
+
+			timeElapse(together);
+			setInterval(function () {
+				timeElapse(together);
+			}, 500);
+
+			adjustCodePosition();
+			$("#code").typewriter();
+		}
+	</script>
+</body>
+</html>
