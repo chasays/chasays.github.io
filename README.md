@@ -4,6 +4,5 @@
 
 [叉叉敌的博客](http://rikiesxiao.github.io)
 
-
-Fork from Huxpro
+Thank HuxPro demo.
 
