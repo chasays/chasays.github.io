@@ -12,11 +12,11 @@ baseurl: ""            # for example, '/blog' if your blog hosted on 'host/blog'
 
 # SNS settings
 RSS: false
-weibo_username:     叉叉敌
-zhihu_username:     叉叉敌
-github_username:    叉叉敌
-#twitter_username:  叉叉敌
-facebook_username:  叉叉敌
+weibo_username:     333255512
+zhihu_username:     rikxiao
+github_username:    rikiesxiao
+twitter_username:   troubleisfff
+# facebook_username:  叉叉敌
 
 
 
@@ -68,8 +68,8 @@ ga_domain: rikiesxiao.github.io
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，多玩玩看看。"
-sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "人生就是干！"
+sidebar-avatar: /img/avatar-xxd.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -83,15 +83,6 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 friends: [
     {
         title: "叉叉敌 Blog",
-        href: "bank"
-    },{
-        title: "Bar",
-        href: "#"
-    },{
-        title: "Example Friends",
-        href: "#"
-    },{
-        title: "It helps SEO",
-        href: "#"
+        href: "https://rikiesxiao.github.io/"
     }
 ]
