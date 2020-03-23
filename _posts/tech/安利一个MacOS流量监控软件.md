@@ -2,7 +2,33 @@
 
 如果是喜欢，直接去作者的网站下载。
 
-下载之后是这样的，是一个偏好设置的扩展。
+下载之后是这样的，是一个偏好设置的扩展 `MenuMeters`。
 
 ![Peixqq](https://gitee.com/stormzhang/mdPic/raw/master/uPic/Peixqq.png)
 
+安装好之后，在系统的偏好设置里面可以找到
+
+![4faFgb](https://gitee.com/stormzhang/mdPic/raw/master/uPic/4faFgb.png)
+
+打开之后可以看到，分为4个监控的功能块，里面分别有一些具体的设置。
+
+
+![zlhPLB](https://gitee.com/stormzhang/mdPic/raw/master/uPic/zlhPLB.png)
+
+
+设置好了，最好的显示效果是这样的
+
+![pt4ECB](https://gitee.com/stormzhang/mdPic/raw/master/uPic/pt4ECB.png)
+
+
+内存：
+![JfLnnC](https://gitee.com/stormzhang/mdPic/raw/master/uPic/JfLnnC.png)
+
+网络：
+![adBe47](https://gitee.com/stormzhang/mdPic/raw/master/uPic/adBe47.png)
+
+
+CPU：
+![LPlhcu](https://gitee.com/stormzhang/mdPic/raw/master/uPic/LPlhcu.png)
+
+磁盘监控感觉意义不大，如果感兴趣的话，可以下载试试。个人觉得比一些付费的软件好多了。
