@@ -9,13 +9,13 @@
 }
 ```
 
-![Qqbp0d](https://gitee.com/stormzhang/mdPic/raw/master/uPic/Qqbp0d.png)
+![Qqbp0d](https://gitee.com/chasays/mdPic/raw/master/uPic/Qqbp0d.png)
 
 设置成功后，点击右下角保存重启
 
-![1vW7UM](https://gitee.com/stormzhang/mdPic/raw/master/uPic/1vW7UM.png)
+![1vW7UM](https://gitee.com/chasays/mdPic/raw/master/uPic/1vW7UM.png)
 
 
 在网上搜到的都是下面这种，不过是对于老版本。macOS Docker新版本设置镜像
-![56cfpp](https://gitee.com/stormzhang/mdPic/raw/master/uPic/56cfpp.png)
+![56cfpp](https://gitee.com/chasays/mdPic/raw/master/uPic/56cfpp.png)
 

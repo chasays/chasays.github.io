@@ -1,5 +1,5 @@
 ## 问题
-![5hcLZc](https://gitee.com/stormzhang/mdPic/raw/master/uPic/5hcLZc.png)
+![5hcLZc](https://gitee.com/chasays/mdPic/raw/master/uPic/5hcLZc.png)
 
 如上面，git status 看到自己修改的内容是编码后的内容。也不方便阅读和查看。
 ```shell
@@ -48,4 +48,4 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-![fEL7NX](https://gitee.com/stormzhang/mdPic/raw/master/uPic/fEL7NX.png)
+![fEL7NX](https://gitee.com/chasays/mdPic/raw/master/uPic/fEL7NX.png)
