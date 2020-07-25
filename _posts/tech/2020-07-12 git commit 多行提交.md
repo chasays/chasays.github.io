@@ -52,4 +52,8 @@ git commit --file=msg
 效果图
 ![NQY3Ap](https://gitee.com/chasays/mdPic/raw/master/uPic/NQY3Ap.png)
 
+如果你看到这里了，那我就放一个彩蛋，这是网上对一个get合并的一个分支漫画图。
+
+![tqPFLc](https://gitee.com/chasays/mdPic/raw/master/uPic/tqPFLc.png)
+
 今天的学习就到这里。希望对你有所帮忙。
