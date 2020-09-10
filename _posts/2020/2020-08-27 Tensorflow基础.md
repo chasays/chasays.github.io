@@ -65,3 +65,34 @@ tf.Tensor(6.0, shape=(), dtype=float32)
 
 ```
 上面 `x` 是用 `tf.Variable()` 声明的一个变量。与普通张量一样，变量同样具有形状、类型和值三种属性。
+```py
+
+X = tf.constant([[1., 2.], [3., 4.]])
+y = tf.constant([[1.], [2.]])
+w = tf.Variable(initial_value=[[1.], [2.]])
+b = tf.Variable(initial_value=1.)
+with tf.GradientTape() as tape:
+    L = tf.reduce_sum(tf.square(tf.matmul(X, w) + b - y))
+w_grad, b_grad = tape.gradient(L, [w, b])        # 计算L(w, b)关于w, b的偏导数
+print(L, w_grad, b_grad)
+```
+
+输出
+```
+tf.Tensor(125.0, shape=(), dtype=float32)
+tf.Tensor(
+[[ 70.]
+[100.]], shape=(2, 1), dtype=float32)
+tf.Tensor(30.0, shape=(), dtype=float32)
+```
+
+`tf.square() `操作代表对输入张量的每一个元素求平方，不改变张量形状。 `tf.reduce_sum()` 操作代表对输入张量的所有元素求和，输出一个形状为空的纯量张量（可以通过 `axis` 参数来指定求和的维度，不指定则默认对所有元素求和）
+
+## 主要API
+
+https://www.tensorflow.org/versions/r1.9/api_guides/python/array_ops
+
+https://www.tensorflow.org/versions/r1.9/api_guides/python/math_ops
+
+
+## 模型建立与训练 
