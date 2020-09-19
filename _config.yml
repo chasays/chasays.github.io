@@ -84,7 +84,27 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends	
 friends: [	
     {	
-        title: "叉叉敌 Blog",	
+        title: "自己Blog",	
         href: "https://rikiesxiao.github.io/"	
-    }	
+    },
+    {
+        title: "Testhome",
+        href: "https://testerhome.com/"
+    },
+    {
+      title: "测试开发技术",
+      href: "https://www.cnblogs.com/jinjiangongzuoshi/"
+    },
+    {
+      title: "Google测试博客",
+      href: "https://testing.googleblog.com/"
+    },
+    {
+      title: "科技爱好者周刊",
+      href: "https://github.com/ruanyf/weekly"
+    },
+    {
+      title: "infoQ 读书笔记",
+      href: "https://xie.infoq.cn/tag/201"
+    }
 ]
