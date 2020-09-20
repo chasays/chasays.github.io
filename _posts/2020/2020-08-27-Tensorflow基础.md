@@ -1,3 +1,14 @@
+---
+layout: post
+title: "TensorFlow 基础"
+subtitle: '从简单的开始来'
+author: "叉叉敌"
+header-style: text
+tags:
+  - TensorFlow
+  - 基础
+  - 求导
+---
 # 基本单位
 张量 `tensor` 是TensorFlow的基本单位，这两天就是数学里面的一个速度啊，没有，一位侍者二位数得，还有就是标量。
 ```python
@@ -95,4 +106,3 @@ https://www.tensorflow.org/versions/r1.9/api_guides/python/array_ops
 https://www.tensorflow.org/versions/r1.9/api_guides/python/math_ops
 
 
-## 模型建立与训练 
