@@ -120,4 +120,5 @@ remove的时间负责度是O(n)。
 
 ## readmore
 https://docs.python.org/3/c-api/list.html
+
 http://www.laurentluce.com/posts/python-list-implementation/
