@@ -16,10 +16,10 @@ multilingual: true
 </div>
 
 <!-- English Version -->
-<div class="en post-container">
-    {% capture about_en %}{% include about/zh.md %}{% endcapture %}
+{% comment %} <div class="en post-container">
+    {% capture about_en %}{% include about/.md %}{% endcapture %}
     {{ about_en | markdownify }}
-</div>
+</div> {% endcomment %}
 
 {% if site.disqus_username %}
 <!-- disqus 评论框 start -->
