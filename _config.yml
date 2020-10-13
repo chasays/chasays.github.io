@@ -49,7 +49,7 @@ kramdown:
 
 
 # Disqus settings	
-disqus_username: rikies
+disqus_username: chasays
 # Share component is depend on Comment so we can NOT use share only.	
 # duoshuo_share: true                     
 # set to false if you want to use Comment without Sharing	
@@ -83,7 +83,7 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 friends: [	
     {	
         title: "自己Blog",	
-        href: "https://rikiesxiao.github.io/"	
+        href: "https://chasays.github.io/"	
     },
     {
         title: "Testhome",
