@@ -5,8 +5,7 @@ subtitle: '特点是浏览器的控制脚本用 Python 来写'
 author: "叉叉敌"
 header-style: text
 tags:
-  - 浏览器
-  - playwright
+  - 压力测试
   - 工具
 ---
 

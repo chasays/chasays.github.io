@@ -6,8 +6,7 @@ author: "叉叉敌"
 header-style: text
 tags:
   - vscode
-  - Maven
-  - Spring
+  - mysql
 ---
 Mysql 8+ 修改密码好多命令都不太对。看了官方文档终于奏效了。
 
