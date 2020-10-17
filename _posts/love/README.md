@@ -1,2 +1,2 @@
-# rikxiao.github.io
+# chasays.github.io
 my blogger
