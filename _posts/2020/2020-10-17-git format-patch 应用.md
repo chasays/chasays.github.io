@@ -24,7 +24,7 @@ tags:
 $ git format-patch -1 # 
 0001-update-missing-error.patch
 git checkout master
-git am 0001-update-missing-error.patch
+git am < 0001-update-missing-error.patch
 ```
 
 # git diff
