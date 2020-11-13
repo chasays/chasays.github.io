@@ -1,13 +1,14 @@
 ---
 layout: post
-title: " git format-patch 应用"
-subtitle: '把A分支上的一个commit，merge到B分支'
+title: " A分支上的一个commit，merge到B分支"
+subtitle: '有三种方法，diff,format-patch, cherry-pick'
 author: "叉叉敌"
 header-style: text
 tags:
   - git
   - format-patch
   - 工具
+  - cherry-pick
 ---
 
 场景就是要解决的问题，就是把B分支的一个commit，单独merge到A分支上面去。
@@ -38,3 +39,22 @@ git apply 1.patch
 ```
 
 第一种比较好，简单，直接就生成对应的patch名字。在实际生成环境中去解决问题。
+
+# git cherry-pick
+
+
+`28c4904` 在 dev 上，如何把这个提交直接应用到其他分支上去， 
+1. 首先切换到要应用的分支上，这里用master举例 `git checkout master`
+2. 然后应用这个 commit， `git cherry-pick 28c4904`
+3. 这个时候还没有完， 还需要 `git push origin master`
+4. 然后看下这个，这个时候就完成了应用了。
+
+![1](https://gitee.com/chasays/mdPic/raw/master/uPic/tktmXp.png)
+
+
+![2](https://gitee.com/chasays/mdPic/raw/master/uPic/VAgzAf.png)
+
+![3](https://gitee.com/chasays/mdPic/raw/master/uPic/TYagLM.png)
+
+# 总结
+把一个commit应用到其他分支上，有好几种方法，最简单的就是最后一种，其他2种，就用对应的`git am `或者  `git apply` 方法即可。
