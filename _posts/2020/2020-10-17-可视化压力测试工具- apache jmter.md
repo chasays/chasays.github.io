@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 可视化压力测试工具- apache jmter"
-subtitle: '特点是浏览器的控制脚本用 Python 来写'
+subtitle: ' 开源工具'
 author: "叉叉敌"
 header-style: text
 tags:
