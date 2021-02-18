@@ -275,3 +275,6 @@ docker run 命令还可用于在 Docker 容器中运行命令。`Docker run 和 
 https://docs.docker.com/docker-for-mac/install/
 https://github.com/sickcodes/Docker-OSX
 https://www.robertcooper.me/docker-guide
+
+>[github博客](https://chasays.github.io/)
+>微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xxd_0225」互吹。

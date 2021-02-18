@@ -83,3 +83,6 @@ MQ 中的`关键配置是设置队列管理器`。
 https://kknews.cc/zh-tw/tech/rja48lo.html
 
 https://www.cnblogs.com/insane-Mr-Li/p/10684536.html
+
+>[github博客](https://chasays.github.io/)
+>微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xxd_0225」互吹。

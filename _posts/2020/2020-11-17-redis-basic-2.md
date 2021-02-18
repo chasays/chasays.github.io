@@ -222,3 +222,6 @@ value2
 ```
 
 这次命令有点多， 主要是特殊的场景用什么样的redis功能，比如`publish和stream，以及事务`。这几个是比较实用。
+
+>[github博客](https://chasays.github.io/)
+>微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xxd_0225」互吹。

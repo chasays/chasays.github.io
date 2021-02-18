@@ -111,3 +111,6 @@ https://en.wikipedia.org/wiki/Intercepting_filter_pattern
 https://softwareengineering.stackexchange.com/questions/355423/how-to-make-complex-business-logic-with-lots-of-dependencies-better-testable
 
 https://www.softwaretestinghelp.com/decision-table-test-case-design-technique/
+
+>[github博客](https://chasays.github.io/)
+>微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xxd_0225」互吹。
