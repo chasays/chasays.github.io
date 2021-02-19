@@ -212,4 +212,28 @@ model=tuner.hypermodel.build(best_hps)
 model.summary()
 ```
 
-![](https://gitee.com/chasays/mdPic/raw/master/uPic/xyO2Xd.png)
+
+![](https://gitee.com/chasays/mdPic/raw/master/uPic/jujd5w.png)
+
+输出结果
+`{'num_filters_top_layer': 64, 'num_conv_layers': 1, 'num_filters_layer0': 64, 'hidden_units': 416, 'num_filters_layer1': 16, 'tuner/epochs': 10, 'tuner/initial_epoch': 4, 'tuner/bracket': 2, 'tuner/round': 2, 'tuner/trial_id': '8ff467e614054422fe02d14833c0deea'}
+Model: "sequential"`
+
+
+然后再来找出最优的训练次数。
+```py
+model = tuner.hypermodel.build(best_hps)
+history = model.fit(img_train, label_train, epochs=50, validation_split=0.2)
+
+val_acc_per_epoch = history.history['val_accuracy']
+best_epoch = val_acc_per_epoch.index(max(val_acc_per_epoch)) + 1
+print('Best epoch: %d' % (best_epoch,))
+```
+
+最后重新初始化model，然后再次训练
+```py
+hypermodel = tuner.hypermodel.build(best_hps)
+
+# Retrain the model
+hypermodel.fit(img_test, label_test, epochs=best_epoch)
+```
