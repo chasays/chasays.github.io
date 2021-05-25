@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "TensorFlow 基础学习 - 4"
-subtitle: '对一个真实项目的训练，重点是调参'
-author:"叉叉敌"
+subtitle: "对一个真实项目的训练，重点是调参"
+author: "叉叉敌"
 header-style: text
 tags:
   - TensorFlow

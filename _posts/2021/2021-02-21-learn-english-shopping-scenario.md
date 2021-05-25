@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Shopping 购物常用的英语词汇"
-subtitle: 'cash back,coupon,limited-time offer, special offer, steal, worth'
-author:"叉叉敌"
+subtitle: "cash back,coupon,limited-time offer, special offer, steal, worth"
+author: "叉叉敌"
 header-style: text
 tags:
   - 英语
