@@ -6,7 +6,7 @@ author: "叉叉敌"
 header-style: text
 tags:
   - TensorFlow
-  -CNN
+  - CNN
 ---
 
 
