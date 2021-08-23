@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "如何选择意外险"
-subtitle: '更多的技术交流'
+subtitle: '提高抗风险的能力'
 author: "叉叉敌"
 header-style: text
 tags:
