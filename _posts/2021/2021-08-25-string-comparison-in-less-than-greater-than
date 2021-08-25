@@ -1,0 +1,16 @@
+---
+layout: post
+title: "在Python里面字符串比较大小"
+subtitle: '本质就是 ASCII码 的大小比较'
+author: "叉叉敌"
+header-style: text
+tags:
+  - 比较
+  - 字符串
+  - python
+  - ASCII码
+---
+
+
+
+
