@@ -1,11 +1,10 @@
 ---
 layout: post
-title: "走去区域和其他地方人对话，多读书和过去人的交流，走出自己的偏执"
-subtitle: '偏执不是一个好东西'
+title: "走出偏见"
+subtitle: '偏见不是一个好东西'
 author: "叉叉敌"
 header-style: text
 tags:
-  - 偏执
   - 偏见
   - 交流
 ---
