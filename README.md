@@ -11,3 +11,9 @@
 
 Thank HuxPro demo.
 
+# How to install
+
+1. install ruby and bundle `brew install ruby`  and `gem install bundler`
+2. bundle install 
+3. `bundle exec jekyll serve`  # alternatively, npm start
+
