@@ -1,7 +1,8 @@
 # Site settings	
 title: Chasays	
 SEOTitle: 叉叉敌的博客 | XXD Blog	|chasays |测试博客
-header-img: img/home-bg.jpg	
+header-img: https://source.unsplash.com/random/1800x400	
+# header-img: img/home-bg.jpg	
 email: xxd0225@gmail.com	
 description: "人生就是干"	
 keyword: "叉叉敌|测试|开发|音视频|自动化"	
