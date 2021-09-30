@@ -1,7 +1,7 @@
----
+
 ---
 layout: post
-title: "02-接受自己和多写作"
+title: "02 - 接受自己和多写作"
 subtitle: ''
 author: "叉叉敌"
 header-style: text

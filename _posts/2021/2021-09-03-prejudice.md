@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "走出偏见"
+title: "01 - 走出偏见"
 subtitle: '偏见不是一个好东西'
 author: "叉叉敌"
 header-style: text
