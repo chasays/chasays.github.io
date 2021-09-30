@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: "02 - 接受自己和多写作"
