@@ -7,6 +7,7 @@ header-style: text
 tags:
   - 沟通
   - 写作
+  - Newsletter
 ---
 
 ![](https://gitee.com/chasays/mdPic/raw/master/uPic/lI7heh.jpg)

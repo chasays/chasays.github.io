@@ -7,6 +7,7 @@ header-style: text
 tags:
   - 快乐
   - 电影
+  - Newsletter
 ---
 
 > 国庆快乐。

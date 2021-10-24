@@ -7,6 +7,7 @@ header-style: text
 tags:
   - 偏见
   - 交流
+  - Newsletter
 ---
 
 > 后面争取每周一写一篇记录和分享。

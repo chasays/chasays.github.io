@@ -9,6 +9,7 @@ tags:
   - 坚持
   - 投资
   - 读书
+  - Newsletter
 ---
 
 # 坚持
