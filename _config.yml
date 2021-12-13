@@ -1,6 +1,6 @@
 # Site settings	
 title: Chasays	
-SEOTitle: 叉叉敌的博客 | XXD Blog	|chasays |测试博客
+SEOTitle: 叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序
 header-img: https://source.unsplash.com/random/1800x400	
 # header-img: img/home-bg.jpg	
 email: xxd0225@gmail.com	
@@ -83,12 +83,8 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends	
 friends: [	
     {	
-        title: "自己Blog",	
-        href: "https://chasays.github.io/"	
-    },
-    {
-        title: "Testhome",
-        href: "https://testerhome.com/"
+        title: "newsletter清单",	
+        href: "https://github.com/chasays/newsletter-list"	
     },
     {
       title: "测试开发技术",
@@ -105,5 +101,9 @@ friends: [
     {
       title: "infoQ 读书笔记",
       href: "https://xie.infoq.cn/tag/201"
-    }
+    },
+    {
+        title: "Testerhome",
+        href: "https://testerhome.com/"
+    },
 ]
