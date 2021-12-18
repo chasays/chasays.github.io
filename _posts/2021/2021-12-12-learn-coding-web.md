@@ -37,7 +37,7 @@ tags:
 
 >https://www.microsoft.com/en-us/makecode?rtc=1
 
-![yjn89i](https://gitee.com/chasays/mdPic/raw/master/uPic/yjn89i.png)
+![](https://gitee.com/chasays/mdPic/raw/master/uPic/yjn89i.png)
 
 
 ## CodeGuppy
@@ -47,7 +47,7 @@ tags:
 
 >https://codeguppy.com
 
-![igaLoZ](https://gitee.com/chasays/mdPic/raw/master/uPic/igaLoZ.png)
+![](https://gitee.com/chasays/mdPic/raw/master/uPic/igaLoZ.png)
 
 
 
@@ -57,7 +57,7 @@ tags:
 
 >https://code.org/educate/curriculum/csf
 
-![zuj0ZG](https://gitee.com/chasays/mdPic/raw/master/uPic/zuj0ZG.png)
+![](https://gitee.com/chasays/mdPic/raw/master/uPic/zuj0ZG.png)
 
 
 ## 树莓派编程
