@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "17 - 学习一门终身有益的知识"
-subtitle: ''
+subtitle: '买入 亏死 没事'
 author: "叉叉敌"
 header-style: text
 tags:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "13 - 过度工程"
-subtitle: ''
+subtitle: '一个好的工程师不好找，至少我不是'
 author: "叉叉敌"
 header-style: text
 tags:

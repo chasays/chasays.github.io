@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "14 - 做一个长期主义者"
-subtitle: ''
+subtitle: '利他就是利己'
 author: "叉叉敌"
 header-style: text
 tags:

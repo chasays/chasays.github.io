@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "如何让自己的简历不石沉大海"
-subtitle: ''
+subtitle: '似乎也没有什么技巧'
 author: "叉叉敌"
 header-style: text
 tags:

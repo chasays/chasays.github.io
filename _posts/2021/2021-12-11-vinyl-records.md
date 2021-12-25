@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "15 - 关于黑胶唱片的事儿"
-subtitle: ''
+subtitle: '同事的黑胶5000一张'
 author: "叉叉敌"
 header-style: text
 tags:
