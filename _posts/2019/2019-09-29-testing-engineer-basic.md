@@ -141,6 +141,12 @@ li2 = copy.copy(li1)
 # using deepcopy for deepcopy   
 li3 = copy.deepcopy(li1)  
 ```
+直接赋值：其实就是对象的引用（别名）。
+
+浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象。
+
+深拷贝(deepcopy)： copy 模块的 deepcopy 方法，完全拷贝了父对象及其子对象。
+
 - 都开辟一个新空间
 - 对于浅拷贝来说，可变不可变都是引用之前的原始
 - 深拷贝来说，只有不可变才是引用之前的。
