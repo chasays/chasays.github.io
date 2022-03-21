@@ -8,9 +8,11 @@ tags:
   - Newsletter
 ---
 
-朋友，您好 ~ 
+朋友，您好 ~
 
-![](https://gitee.com/chasays/mdPic/raw/master/uPic/20220312131332.png)
+给你分享下，成都这个时候的春天。成都处于盆地，一般在冬日基本上很难见到太阳，但是春天到了，天空特别的晴朗，特别是最近几周。郊区到处可见黄色菜籽花，市区道路两旁红色的海棠，红叶李开满了"满天星"，随处可见的嫩绿色。心情也愉快，欢迎来成都赏春。
+
+![](https://gitee.com/chasays/mdPic/raw/master/uPic/20220312140909.png)
 
 如果您喜欢这份Newsletter，请转发给您朋友，[点这里免费订阅按钮](https://chasays.zhubai.love/)，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
 
