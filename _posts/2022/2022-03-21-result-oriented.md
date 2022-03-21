@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "29 - 你收到情书么？"
-subtitle: '这世界没有什么坏人，只有好人、笨蛋和病人'
+title: "29 - 差点把客服骂一顿"
+subtitle: '以结果为导向'
 author: "叉叉敌"
 header-style: text
 tags:
