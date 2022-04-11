@@ -50,11 +50,18 @@ kramdown:
 
 
 # Disqus settings	
-disqus_username: chasays
+# disqus_username: chasays
 # Share component is depend on Comment so we can NOT use share only.	
 # duoshuo_share: true                     
 # set to false if you want to use Comment without Sharing	
 netease_comment: false
+
+# utteranc settings
+utteranc:
+  enable: true   
+  repo: chasays/mdPicGo
+  issue-term: pathname
+  theme: github-light
 
 
 
