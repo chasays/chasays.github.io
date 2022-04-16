@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="TensorFlow 基础学习 - 2 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="让我们来看这样一个场景，让计算机识别不同的服装用品（有提包、鞋子、裤子等10类物品）。我们将用包含10种不同类型的物品图片的数据集来训练一个神经元网络，实现分类。
+
+">
+    
+    <meta property="article:published_time" content="2021-02-18T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="TensorFlow">
+    
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/2021/02/18/learn-tensorflow-basic-2/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>TensorFlow 基础学习 - 2 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pages/chasays/github-actions/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/pages/chasays/github-actions/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/pages/chasays/github-actions/2021/02/18/learn-tensorflow-basic-2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/pages/chasays/github-actions/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/pages/chasays/github-actions/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/pages/chasays/github-actions/https://source.unsplash.com/random/1800x400" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/pages/chasays/github-actions/archive/?tag=TensorFlow" title="TensorFlow">TensorFlow</a>
+                        
+                    </div>
+                    <h1>TensorFlow 基础学习 - 2</h1>
+                    
+                    <h2 class="subheading">物品图片如何训练</h2>
+                    <span class="meta">Posted by 叉叉敌 on February 18, 2021</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>让我们来看这样一个场景，让计算机识别不同的服装用品（有提包、鞋子、裤子等10类物品）。我们将用包含10种不同类型的<code class="language-plaintext highlighter-rouge">物品图片的数据集来训练一个神经元网络，实现分类</code>。</p>
+
+<h2 id="数据导入">数据导入</h2>
+
+<p>首先通过<code class="language-plaintext highlighter-rouge">tf.keras</code>的API可以直接获得Fashion MNIST数据集。</p>
+
+<p>在mnist对象上调用l<code class="language-plaintext highlighter-rouge">oad_data</code>方法会得到两个元组，各自包含两个列表。这些列表存储了服装用品的训练与测试图像数据及标签值。</p>
+
+<p>为什么会有2组数据？
+我们可能在想为什么有2组数据-训练集和测试集。记得在介绍中说过的吗？基本想法是<code class="language-plaintext highlighter-rouge">将1组数据用于训练</code>，然后用<code class="language-plaintext highlighter-rouge">另一组数据评估模型在分类值方面的表现会有多好</code>。测试数据必须是模型还没有看到过的。毕竟，当完成模型的训练后，必定想用它之前没有见过的数据来试一试!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="n">fashion_mnist</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">fashion_mnist</span>
+<span class="p">(</span><span class="n">train_iamges</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">),</span> <span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span> <span class="o">=</span> <span class="n">fashion_mnist</span><span class="p">.</span><span class="n">load_data</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>获取到了4个变量，一个训练集一个测试集。
+来看看具体的内容。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">training_images</span><span class="p">[</span><span class="mi">42</span><span class="p">])</span>
+
+</code></pre></div></div>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/qorHkT.png" alt="" /></p>
+
+<h2 id="归一化处理">归一化处理</h2>
+
+<p>我们会注意到，数字中的所有值都在0和255之间。如果我们要训练一个神经网络，出于多种原因，如果把所有的值都<code class="language-plaintext highlighter-rouge">处理成0和1之间</code>，那就更容易得到较好的训练效果。这个过程叫做 “<strong>归一化</strong>“……幸运的是，在Python中，很容易对这样的列表进行归一化，而不需要循环。可以这样做：
+其实就是把矩阵里面的每一个数都除以255即可。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">training_images</span>  <span class="o">=</span> <span class="n">training_images</span> <span class="o">/</span> <span class="mf">255.0</span>
+<span class="n">test_images</span> <span class="o">=</span> <span class="n">test_images</span> <span class="o">/</span> <span class="mf">255.0</span>
+</code></pre></div></div>
+
+<h2 id="模型设计">模型设计</h2>
+
+<p>我们可能在想为什么有2组数据-训练集和测试集。记得在介绍中说过的吗？基本想法是将1组数据用于训练，然后用另一组数据评估模型在分类值方面的表现会有多好。测试数据必须是模型还没有看到过的。毕竟，当完成模型的训练后，必定想用它之前没有见过的数据来试一试!</p>
+
+<p>现在我们来设计Fashion MNIST分类模型。这里有不少新的概念，不过别担心，我们会掌握它们的窍门。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">(),</span> 
+                                    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">),</span> 
+                                    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">softmax</span><span class="p">)])</span>
+</code></pre></div></div>
+
+<p>或者用下面的方法设计模型，效果一样</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">)))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">softmax</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Sequential ：这定义了神经网络中的层数序列。一开始学习神经元网络总是使用序列模型。</li>
+  <li>Flatten : 还记得上面将图像打印出来的时候是一个正方形吗？扁平化只是把这个正方形变成了一个一维的集合。<code class="language-plaintext highlighter-rouge">把二维数组变成一维数组</code>。</li>
+  <li>Dense : 增加一层神经元。每一层神经元都需要一个激活函数 <code class="language-plaintext highlighter-rouge">activation</code> 来告诉它们输出什么。有很多选项，但目前只用这些（relu和softmax）</li>
+</ul>
+
+<p>Relu的意思是 “如果X&gt;0返回X，否则返回0”–所以它的作用是它只把大于0的值传递给网络中的下一层，小于0的也当作0。</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/a6vrqo.png" alt="" /></p>
+
+<p>Softmax激活函数接收到一组值后，选择其中最大的一个输出。例如，上一层的输出为[0.1, 0.1, 0.05, 0.1, 9.5, 0.1, 0.05, 0.05, 0.05]，Softmax就省去了我们在其中寻找最大的值，并把它变成[0,0,0,0,0,1,0,0,0,0,0] Softmax的意思是 “如果X&gt;0，则返回X，否则返回0” – 所以它的作用是只把0或更大的值传给下一层的网络。–其目的是节省大量的编码！
+<img src="https://gitee.com/chasays/mdPic/raw/master/uPic/zLEMQI.png" alt="" /></p>
+
+<p>现在模型已经定义好了，下一步要做的事情就是实际建立它。可以像之前一样用优化器和损失函数编译它–然后通过调用<code class="language-plaintext highlighter-rouge">model.fit</code>来训练它，要求它将训练数据与标签拟合–即让模型找出训练数据和标签之间的关系。训练好之后，它将能对格式与训练数据相同，但从未“见过”的新数据做出预测。</p>
+
+<h2 id="训练">训练</h2>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="n">Adam</span><span class="p">(),</span>
+              <span class="n">loss</span> <span class="o">=</span> <span class="s">'sparse_categorical_crossentropy'</span><span class="p">,</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">training_images</span><span class="p">,</span> <span class="n">training_labels</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/xqxele.png" alt="" /></p>
+
+<p>一旦模型完成了训练 – 能在最后一个epoch结束时看到一个准确率值。这告诉我们，神经网络对训练数据的分类准确率约为81%。即，它找出了图像和标签之间的模式匹配，81%的分类结果都正确。考虑到只训练了5个epochs，而且做得相当快，所以结果还不错。</p>
+
+<blockquote>
+  <p>这里要注意的是：<code class="language-plaintext highlighter-rouge">损失值下减小的，精确度是提高的，才是正常的。</code></p>
+</blockquote>
+
+<p>但对于未见过的数据，它的分类准确度有多高？这就是为什么我们需要测试图像的原因。我们可以调用model.evaluation，并将用于测试的图像和标签数据传入，它会报告测试数据的损失。让我们试一试。</p>
+
+<h2 id="ama">AMA</h2>
+
+<ol>
+  <li>
+    <p>数据没有做归一化处理？
+归一化的目的就是消除奇异样本数据，导致的不良影响。数据归一化后，最优解的寻优过程明显会变得平缓，更容易正确的收敛到最优解。
+归一化可以参考这篇文章：https://www.cnblogs.com/silence-tommy/p/7113498.html</p>
+  </li>
+  <li>
+    <p>模型设计的时候，数据没有做Flatten扁平化处理会这样？
+没有做扁平化处理，就是28层神经元。</p>
+  </li>
+  <li>
+    <p>模型设计的时候，中间层的神经元用更大的数字来替代，结果是什么？</p>
+  </li>
+</ol>
+
+<p><code class="language-plaintext highlighter-rouge">训练时间更长，但更准确</code>。通过增加更多的神经元，计算机必须做更多的计算，减慢了训练过程。但对于本案例，增加神经元数量有积极的影响–确实得到了更好的准确度。但这并不意味着总是 “越多越好”，因为很快就会遇到收益递减的定律。</p>
+
+<ol>
+  <li>
+    <p>考虑最后（产出）层。为什么有10个神经元？如果数量少于10会发生什么？例如，尝试改作5个来训练网络
+一旦模型发现一个意外的值，就会产生一个错误。规则是–最后一层的神经元数量应该与你要分类的类数相匹配。在这种情况下，是数字0-9，所以有10个，因此你的最后一层应该有10个神经元。</p>
+  </li>
+  <li>
+    <p>考虑网络中增加层数的影响。如果在512层和10层之间再加一层会发生什么？</p>
+  </li>
+</ol>
+
+<p>答案：<code class="language-plaintext highlighter-rouge">没有显著影响</code>–因为这是相对简单的数据。对于复杂得多的数据，通常要增加额外的层。</p>
+
+<ol>
+  <li>请考虑改变训练epochs次数，为有什么影响？</li>
+</ol>
+
+<p>试试15个epochs–可能会得到一个比5个epochs更好的模型,损失更小。 试试30个epochs–可能会看到损失值停止下降，有时还会增加。这是被称为 “过拟合 “的副作用，在训练神经网络时，需要一直注意这个问题。如果损失没有改善，那么浪费时间继续训练是没有意义的</p>
+
+<ol>
+  <li>之前在训练模型的时候，你可能会想’如果可以在达到一个期望值的时候停止训练不是很好吗？</li>
+</ol>
+
+<p>–即95%的准确率对你来说可能已经足够了，如果你在3个epochs后达到了这个值，为什么还要坐等它完成更多的训练次数呢….，那么如何解决这个问题？就像其他很多类似程序一样……运用回调函数！让我们来看看它的实际作用。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">__version__</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">myCallback</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="n">Callback</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">on_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">logs</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'loss'</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.4</span><span class="p">):</span>
+      <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Reached 60% accuracy so cancelling training!"</span><span class="p">)</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">stop_training</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">callbacks</span> <span class="o">=</span> <span class="n">myCallback</span><span class="p">()</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">fashion_mnist</span>
+<span class="p">(</span><span class="n">training_images</span><span class="p">,</span> <span class="n">training_labels</span><span class="p">),</span> <span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="p">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">training_images</span><span class="o">=</span><span class="n">training_images</span><span class="o">/</span><span class="mf">255.0</span>
+<span class="n">test_images</span><span class="o">=</span><span class="n">test_images</span><span class="o">/</span><span class="mf">255.0</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="n">Sequential</span><span class="p">([</span>
+  <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Flatten</span><span class="p">(),</span>
+  <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">relu</span><span class="p">),</span>
+  <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">softmax</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s">'adam'</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s">'sparse_categorical_crossentropy'</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">training_images</span><span class="p">,</span> <span class="n">training_labels</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">callbacks</span><span class="p">])</span>
+</code></pre></div></div>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/pages/chasays/github-actions/2021/02/18/learn-tensorflow-basic-1/" data-toggle="tooltip" data-placement="top" title="TensorFlow 基础学习 - 1">
+                        Previous<br>
+                        <span>TensorFlow 基础学习 - 1</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/pages/chasays/github-actions/2021/02/18/learn-tensorflow-basic-4/" data-toggle="tooltip" data-placement="top" title="TensorFlow 基础学习 - 4">
+                        Next<br>
+                        <span>TensorFlow 基础学习 - 4</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/pages/chasays/github-actions/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0174" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/pages/chasays/github-actions/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="31">Newsletter</a>
+        
+                <a data-sort="0173" 
+                    href="/pages/chasays/github-actions/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0176" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0177" 
+                    href="/pages/chasays/github-actions/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0178" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/pages/chasays/github-actions/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/pages/chasays/github-actions/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/pages/chasays/github-actions/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/pages/chasays/github-actions/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/pages/chasays/github-actions/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/pages/chasays/github-actions/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

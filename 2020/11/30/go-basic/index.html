@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="学习go基础 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="安装
+
+">
+    
+    <meta property="article:published_time" content="2020-11-30T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="go">
+    
+    <meta property="article:tag" content="基础">
+    
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/2020/11/30/go-basic/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>学习go基础 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pages/chasays/github-actions/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/pages/chasays/github-actions/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/pages/chasays/github-actions/2020/11/30/go-basic/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/pages/chasays/github-actions/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/pages/chasays/github-actions/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/pages/chasays/github-actions/https://source.unsplash.com/random/1800x400" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/pages/chasays/github-actions/archive/?tag=go" title="go">go</a>
+                        
+                        <a class="tag" href="/pages/chasays/github-actions/archive/?tag=%E5%9F%BA%E7%A1%80" title="基础">基础</a>
+                        
+                    </div>
+                    <h1>学习go基础</h1>
+                    
+                    <h2 class="subheading">未来迟早得学</h2>
+                    <span class="meta">Posted by 叉叉敌 on November 30, 2020</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h2 id="安装">安装</h2>
+
+<p>https://golang.google.cn/dl/</p>
+
+<p>测试安装成功<code class="language-plaintext highlighter-rouge">go version</code>， 查看当前安装的版本</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">base</span><span class="p">)</span> <span class="err">➜</span>  <span class="n">Golang</span> <span class="k">go</span> <span class="n">version</span>
+<span class="k">go</span> <span class="n">version</span> <span class="n">go1</span><span class="m">.15.6</span> <span class="n">darwin</span><span class="o">/</span><span class="n">amd64</span>
+</code></pre></div></div>
+
+<h2 id="hello-world">Hello World</h2>
+<p><code class="language-plaintext highlighter-rouge">vi hello.go</code>创建一个后缀为go的文件， 内容如下</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>  <span class="c">//包名 </span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>  <span class="c">// go常见的一个包，实现了格式化IO， 输入和输出函数</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span> <span class="c">// {不能换行</span>
+  <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"hello, world!"</span><span class="p">)</span> <span class="c">//打印一条hello world!</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>注意：</p>
+<ul>
+  <li>源文件中非注释的<code class="language-plaintext highlighter-rouge">第一行指明这个文件属于哪个包</code></li>
+  <li>main 函数是每一个可执行程序所必须包含的</li>
+  <li>注释和Java类似，<code class="language-plaintext highlighter-rouge"> /*...*/ 和 //</code></li>
+  <li>当标识符（包括常量、变量、类型、函数名、结构字段等等）以<code class="language-plaintext highlighter-rouge">一个大写字母开头</code>可以被外部代码所用， 如果是小写是对外不可见，但是内部可用。</li>
+  <li><code class="language-plaintext highlighter-rouge">{ 不能单独放在一行</code></li>
+</ul>
+
+<p>运行<code class="language-plaintext highlighter-rouge">go run hello.go</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hello, world!
+
+</code></pre></div></div>
+
+<p>编译成二进制文件<code class="language-plaintext highlighter-rouge">go build hello.go</code></p>
+
+<h2 id="基础语法">基础语法</h2>
+
+<p><code class="language-plaintext highlighter-rouge">标识符</code>： 和python类似。用来命名变量、类型等程序实体。一个标识符实际上就是一个或是多个字母(A~Z和a~z)数字(0~9)、下划线_组成的序列，但是<code class="language-plaintext highlighter-rouge">第一个字符必须是字母或下划线而不能是数字</code>。</p>
+
+<h2 id="数据类型">数据类型</h2>
+
+<ul>
+  <li>布尔类型 true 和false</li>
+  <li>数字类型 int float32 float64</li>
+  <li>字符串 Go 的字符串是由单个字节连接起来的。Go 语言的字符串的字节使用 UTF-8 编码标识 Unicode 文本。</li>
+  <li>派生类型： 
+(a) 指针类型（Pointer）
+(b) 数组类型
+(c) 结构化类型(struct)
+(d) Channel 类型
+(e) 函数类型
+(f) 切片类型
+(g) 接口类型（interface）
+(h) Map 类型
+—
+    <h2 id="变量">变量</h2>
+    <p>声明的用法是
+<code class="language-plaintext highlighter-rouge">var variable type</code>.</p>
+  </li>
+  <li>如果没有指定， 默认值为0， <code class="language-plaintext highlighter-rouge">var zero_1 int</code>, 这里的zero_1就是0</li>
+  <li>第二种，根据值自行判定变量类型。<code class="language-plaintext highlighter-rouge">var string_1 = "this is string"</code>, 这里的string_1就是string类型</li>
+  <li>第三种，省略 var, 注意 := 左侧如果没有声明<code class="language-plaintext highlighter-rouge">新的变量</code>，就产生编译错误，格式：<code class="language-plaintext highlighter-rouge">v_name := value</code></li>
+</ul>
+
+<p>多个变量声明和单个类似。<code class="language-plaintext highlighter-rouge">一般用于声明全局变量</code></p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">var</span> <span class="p">(</span>
+  <span class="n">a</span> <span class="kt">int</span>
+  <span class="n">b</span> <span class="kt">bool</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<p>交互值： <code class="language-plaintext highlighter-rouge">a, b = b, a，两个变量的类型必须是相同。</code></p>
+
+<p>空白标识符 <code class="language-plaintext highlighter-rouge">_ 也被用于抛弃值</code>，如值 5 在：_, b = 5, 7 中被抛弃。</p>
+
+<p>## 常量</p>
+
+<p>常量中的数据类型只可以是布尔型、数字型（整数型、浮点型和复数）和字符串型。定义格式
+<code class="language-plaintext highlighter-rouge">const identifier [type] = value</code></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">显式</code>类型定义： const b string = “abc”</li>
+  <li><code class="language-plaintext highlighter-rouge">隐式</code>类型定义： const b = “abc”</li>
+</ul>
+
+<p>常量可以用<code class="language-plaintext highlighter-rouge">len(), cap(), unsafe.Sizeof()</code>函数计算表达式的值。</p>
+
+<p><code class="language-plaintext highlighter-rouge">iota</code>，特殊常量，可以认为是一个可以被编译器修改的常量。</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">const</span> <span class="p">(</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="no">iota</span>
+    <span class="n">b</span> <span class="c">//1</span>
+    <span class="n">c</span> <span class="c">//2</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="运算符">运算符</h2>
+<p>运算符用于在程序运行时执行数学或逻辑运算。</p>
+
+<ul>
+  <li>算术运算符 + - * / % ++ –</li>
+  <li>关系运算符 == != &gt; &lt;  &lt;= &gt;=</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>逻辑运算符 &amp;&amp;</td>
+          <td> </td>
+          <td>!</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>位运算符  &amp;</td>
+          <td>^ «  »</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>赋值运算符 = += -= *= /= %= «= »= &amp;= ^=</td>
+          <td>=</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>其他运算符 &amp; 返回地址 * 指针变量</li>
+</ul>
+
+<h2 id="条件语句">条件语句</h2>
+
+<ul>
+  <li>if else (else if)</li>
+  <li>switch</li>
+  <li>select select 语句类似于 switch 语句，但是select会<code class="language-plaintext highlighter-rouge">随机执行</code>一个可运行的case。</li>
+</ul>
+
+<blockquote>
+  <p>注意：Go 没有三目运算符，所以不支持 ?: 形式的条件判断。</p>
+</blockquote>
+
+<h2 id="环循">环循</h2>
+
+<p>for 循环</p>
+<ul>
+  <li>break 语句	经常用于中断当前 for 循环或跳出 switch 语句</li>
+  <li>continue 语句	跳过当前循环的剩余语句，然后继续进行下一轮循环。</li>
+  <li>goto 语句	将控制转移到被标记的语句。</li>
+</ul>
+
+<hr />
+<h2 id="函数">函数</h2>
+<p>Go 语言<code class="language-plaintext highlighter-rouge">最少有个 main() </code>函数。函数声明告诉了编译器函数的名称，返回类型，和参数。</p>
+
+<p>如何定义</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">function_name</span><span class="p">(</span> <span class="p">[</span><span class="n">parameter</span> <span class="n">list</span><span class="p">]</span> <span class="p">)</span> <span class="p">[</span><span class="n">return_types</span><span class="p">]</span> <span class="p">{</span>
+   <span class="n">函数体</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>调用方式和Python的一致。</p>
+
+<p>## 数组和指针</p>
+
+<p>数组如何定义和声明，
+<code class="language-plaintext highlighter-rouge">var variable_name [SIZE] variable_type</code>
+。初始化一个数组，<code class="language-plaintext highlighter-rouge">var list_1 = [4]int{1,23,4,5}</code></p>
+
+<p>有不指定大小来初始化一个list，<code class="language-plaintext highlighter-rouge">var list_1 = [...]int{1,23,4,5}</code></p>
+
+<p>Go 语言中使用<code class="language-plaintext highlighter-rouge">指针可以更简单的执行一些任务</code>。变量是一种使用方便的占位符，用于引<code class="language-plaintext highlighter-rouge">用计算机内存地址.</code> 声明方式
+<code class="language-plaintext highlighter-rouge">var var_name *var-type</code>，在指针类型前面加上<code class="language-plaintext highlighter-rouge"> * 号（前缀）来获取指针所指向的内容</code>。</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">var</span> <span class="n">a</span> <span class="kt">int</span> <span class="o">=</span> <span class="m">10</span> <span class="c">//声明实际变量</span>
+	<span class="k">var</span> <span class="n">ip</span> <span class="o">*</span><span class="kt">int</span> <span class="c">// 声明指针变量</span>
+	<span class="n">ip</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span> <span class="c">// 指针变量的存储地址</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="o">*</span><span class="n">ip</span><span class="p">)</span> <span class="c">// 用指针访问值</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/qH9Glo.png" alt="" /></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/UlLRp5.jpg" alt="" /></p>
+
+<h2 id="结构体">结构体</h2>
+
+<p>如何定义个结构体，</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">struct_variable_type</span> <span class="k">struct</span> <span class="p">{</span>
+   <span class="n">member</span> <span class="n">definition</span>
+   <span class="n">member</span> <span class="n">definition</span>
+   <span class="o">...</span>
+   <span class="n">member</span> <span class="n">definition</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>一旦定义了结构体类型，它就能用于变量的声明，语法格式如下：</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">variable_name</span> <span class="o">:=</span> <span class="n">structure_variable_type</span> <span class="p">{</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="o">...</span><span class="n">valuen</span><span class="p">}</span>
+<span class="n">或</span>
+<span class="n">variable_name</span> <span class="o">:=</span> <span class="n">structure_variable_type</span> <span class="p">{</span> <span class="n">key1</span><span class="o">:</span> <span class="n">value1</span><span class="p">,</span> <span class="n">key2</span><span class="o">:</span> <span class="n">value2</span><span class="o">...</span><span class="p">,</span> <span class="n">keyn</span><span class="o">:</span> <span class="n">valuen</span><span class="p">}</span>
+</code></pre></div></div>
+<p>比如下面的列子</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
+
+<span class="k">import</span> <span class="s">"fmt"</span>
+
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">type</span> <span class="n">books</span> <span class="k">struct</span> <span class="p">{</span>
+	<span class="n">title</span> 	<span class="kt">string</span>
+	<span class="n">author</span> 	<span class="kt">string</span>
+	<span class="n">price</span> 	<span class="kt">float32</span>
+	<span class="n">id</span>	<span class="kt">int</span>
+	<span class="p">}</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">books</span><span class="p">{</span><span class="s">"title"</span><span class="p">,</span> <span class="s">"author"</span><span class="p">,</span> <span class="m">12.22</span><span class="p">,</span> <span class="m">1</span><span class="p">})</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">books</span><span class="p">{</span><span class="n">title</span><span class="o">:</span> <span class="s">"书名"</span><span class="p">,</span> <span class="n">price</span><span class="o">:</span><span class="m">12.44</span><span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/YZ7Jww.png" alt="" /></p>
+<h2 id="readmore">readmore</h2>
+
+<p>https://play-with-go.dev/guides.html</p>
+
+<p>https://www.runoob.com/go/go-basic-syntax.html</p>
+
+<blockquote>
+  <p><a href="https://chasays.github.io/">github博客</a>
+微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xxd_0225」互吹。</p>
+</blockquote>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/pages/chasays/github-actions/2020/11/29/zhihu-goods/" data-toggle="tooltip" data-placement="top" title="知乎好物">
+                        Previous<br>
+                        <span>知乎好物</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/pages/chasays/github-actions/2020/12/01/Docker-software-developer/" data-toggle="tooltip" data-placement="top" title="Docker - 软件开发">
+                        Next<br>
+                        <span>Docker - 软件开发</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/pages/chasays/github-actions/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0174" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/pages/chasays/github-actions/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="31">Newsletter</a>
+        
+                <a data-sort="0173" 
+                    href="/pages/chasays/github-actions/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0176" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0177" 
+                    href="/pages/chasays/github-actions/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0178" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/pages/chasays/github-actions/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/pages/chasays/github-actions/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/pages/chasays/github-actions/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/pages/chasays/github-actions/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/pages/chasays/github-actions/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/pages/chasays/github-actions/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

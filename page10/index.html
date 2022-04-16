@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="不浮躁、不轻浮。">
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/page10/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pages/chasays/github-actions/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/pages/chasays/github-actions/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/pages/chasays/github-actions/page10/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/pages/chasays/github-actions/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/pages/chasays/github-actions/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Page Header -->
+
+
+
+
+
+
+
+<header class="intro-header" style="background-image: url('https://source.unsplash.com/random/1800x400')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="site-heading">
+        
+          <h1>察说花园</h1>
+          <span class="subheading">不浮躁、不轻浮。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+    			
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/11/15/gRPC-K8s-API/">
+        <h2 class="post-title">
+            学习gRPC - 3.深入学习一个成熟的gRPC应用
+        </h2>
+        
+        <h3 class="post-subtitle">
+            只要你肯坚持，才会体会到放弃的快乐
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                前面2篇介绍了 gRPC 的关键概念以及演示程序。了解工作的基础知识后， 将了解 k8s 在其容器运行时接口技术。
+
+gRPC的应用范围
+
+自从2015年作为开源项目发布以来，gRPC 在大大小小的企业中都取得了成长。然而，尽管 gRPC 作为一种服务器端技术很受欢迎，但它在面向公众的 api 中几乎没有出现。这主要有两个原因。首先，gRPC 依赖 HTTP/2作为其传输协议。虽然主要的客户...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on November 15, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/11/08/gRPC-build-stream-and-proto/">
+        <h2 class="post-title">
+            学习gRPC - 2.如何构建一个流和序列化
+        </h2>
+        
+        <h3 class="post-subtitle">
+            用python构建gRPC
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                构建流
+
+gRPC 利用 HTTP/2的双向通信特性实现了连续的消息交换，实现了双向流。
+
+
+数据流是什么？
+
+流数据有各种各样的场景用法。一种是，当事件发生时，有一种方法可以不断发出描述事件的消息。例如，当数据被添加到数据库中时，数据库希望将“数据添加”事件通知相关方。或者当股票价格发生变化时，证券交易所希望向订阅“价格变化”事件的所有服务公布新价格。
+
+另一个是有一种以异步方式高效传输非...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on November 8, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/11/06/study-gRPC-principle/">
+        <h2 class="post-title">
+            学习gRPC - 1.工作原理是什么
+        </h2>
+        
+        <h3 class="post-subtitle">
+            只要你肯坚持，才会体会到放弃的快乐
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                什么是gRPC
+
+gRPC 已经成为实现需要大规模快速运行的分布式软件系统的一项重要技术。简而言之，gRPC 是一个 API 框架，它允许一个程序在互联网上的一个位置传递数据到另一个位置的另一个程序中的独特函数进行处理。
+
+其他 API 框架(如 REST)通常使用基于文本的格式(如 JSON 或 XML)在客户机和服务器之间传递数据，而在 gRPC 下，数据是以二进制格式在客户机和服务器端...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on November 6, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/10/20/MongoDB-basic/">
+        <h2 class="post-title">
+            MongoDB 入门学习
+        </h2>
+        
+        <h3 class="post-subtitle">
+            从入门到放弃
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                
+  MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。
+MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。
+
+
+
+
+分布式计算的优点
+
+
+  可靠性（容错） ：
+
+
+分布式计算系统中的一个重要的优点是可靠性。一台服务器的系统崩溃并不影响到其余的服务器。
+...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 20, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/10/19/git-format-patch-apply/">
+        <h2 class="post-title">
+             A分支上的一个commit，merge到B分支
+        </h2>
+        
+        <h3 class="post-subtitle">
+            有三种方法，diff,format-patch, cherry-pick
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                场景就是要解决的问题，就是把B分支的一个commit，单独merge到A分支上面去。
+
+思路是生成一个patch，然后把这个patch应用到要merge的分支。
+
+有2种方式，一种是git format-patch，然后用 git am 应用。还有一种就是git diff, 切换分支后，git apply.推荐前一种，前一种是包含了邮件格式。
+
+git format-patch
+
+用法， g...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 19, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/10/17/visualition-apache-jmter/">
+        <h2 class="post-title">
+             可视化压力测试工具- apache jmter
+        </h2>
+        
+        <h3 class="post-subtitle">
+             开源工具
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                
+  Apache JMeter ™是开源软件，是一个 100% 纯 Java 应用程序，旨在加载测试功能行为和测量性能。它最初设计用于测试 Web 应用程序，但后来扩展到其他测试函数。
+
+
+功能预览
+
+能够加载和性能测试许多不同的应用程序/服务器/协议类型：
+
+  Web - HTTP、HTTPS（Java、NodeJS、PHP、ASP.NET，…）
+  REST Web 服务
+  Ftp...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 17, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/10/17/microsoft-automation-tool-playwright/">
+        <h2 class="post-title">
+            微软推出的浏览器自动化工具 playwright
+        </h2>
+        
+        <h3 class="post-subtitle">
+            特点是浏览器的控制脚本用 Python 来写
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                github
+playwright Guide
+
+API
+提供同步（阻塞）API 和异步 API。它们在功能方面是相同的，并且仅在使用 API 的方式上有所不同。
+
+from playwright import sync_playwright
+
+with sync_playwright() as p:
+    for browser_type in [p.chromium, p.firefo...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 17, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/10/16/how-to-test-big-data/">
+        <h2 class="post-title">
+            怎么测试大数据
+        </h2>
+        
+        <h3 class="post-subtitle">
+            大数据
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                先抛出个问题
+
+  我们为什么要测试大数据
+
+
+什么大数据测试
+
+大数据测试可以定义为涉及检查和验证大数据应用程序功能的过程。大数据是传统存储系统无法处理的大量数据的集合。
+
+
+
+策略
+
+测试处理数 TB 数据的应用程序将从一个全新的级别和开箱即用思维中学习技能。质量保证团队关注的核心和重要测试基于三种方案。即
+
+批处理数据处理测试
+
+批处理数据处理测试涉及在批处理模式下使用批处理存储单元（...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 16, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/10/12/challenge-disadvantage/">
+        <h2 class="post-title">
+            正视自己的不足
+        </h2>
+        
+        <h3 class="post-subtitle">
+            更大的挑战
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                Audio
+PESQ
+NR 无参考
+FR 全参考
+
+Video
+POLQA PS 像素
+
+  
+    PSNR（峰值信噪比）：用得最多，但是其值不能很好地反映人眼主观感受。一般取值范围：20-40.值越大，视频质量越好。
+  
+  
+    SSIM（结构相似性）：计算稍复杂，其值可以较好地反映人眼主观感受。一般取值范围：0-1.值越大，视频质量越好。
+  
+
+
+ECNR
+布局 混响
+延时...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 12, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/pages/chasays/github-actions/2020/10/07/Python-List-complement/">
+        <h2 class="post-title">
+            Python list 实现
+        </h2>
+        
+        <h3 class="post-subtitle">
+            看看底层是怎么实现的
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                List 对象的C结构
+CPython 中的列表对象由以下 C 结构表示。ob_item是指向列表元素的指针列表。分配的是内存中分配的插槽数。
+typedef struct {
+    PyObject_VAR_HEAD
+    PyObject **ob_item;
+    Py_ssize_t allocated;
+} PyListObject;
+
+
+初始化list
+比如初始化一个空的数...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 7, 2020
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/pages/chasays/github-actions/page9">&larr; Newer Posts</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="/pages/chasays/github-actions/page11">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+    <h5><a href="/pages/chasays/github-actions/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0174" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/pages/chasays/github-actions/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="31">Newsletter</a>
+        
+                <a data-sort="0173" 
+                    href="/pages/chasays/github-actions/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0176" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0177" 
+                    href="/pages/chasays/github-actions/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0178" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+  <hr>
+  <h5><a href="/pages/chasays/github-actions/about/">ABOUT ME</a></h5>
+  <div class="short-about">
+    
+    <img src="/img/avatar-xxd.jpg" />
+    
+    
+    <p>人生就是干！</p>
+    
+    <!-- SNS Link -->
+    
+
+
+<ul class="list-inline">
+
+
+  
+  <li>
+    <a href="/pages/chasays/github-actions/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+  </div>
+</section>
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+    		</div>
+        
+	</div>
+</div>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/pages/chasays/github-actions/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/pages/chasays/github-actions/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/pages/chasays/github-actions/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/pages/chasays/github-actions/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/pages/chasays/github-actions/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/pages/chasays/github-actions/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

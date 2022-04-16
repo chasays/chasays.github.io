@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="从基础开始 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="http和https的区别
+
+">
+    
+    <meta property="article:published_time" content="2019-09-29T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="基础">
+    
+    <meta property="article:tag" content="计算机">
+    
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/2019/09/29/testing-engineer-basic/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>从基础开始 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pages/chasays/github-actions/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/pages/chasays/github-actions/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/pages/chasays/github-actions/2019/09/29/testing-engineer-basic/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/pages/chasays/github-actions/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/pages/chasays/github-actions/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/pages/chasays/github-actions/https://source.unsplash.com/random/1800x400" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/pages/chasays/github-actions/archive/?tag=%E5%9F%BA%E7%A1%80" title="基础">基础</a>
+                        
+                        <a class="tag" href="/pages/chasays/github-actions/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA" title="计算机">计算机</a>
+                        
+                    </div>
+                    <h1>从基础开始</h1>
+                    
+                    <h2 class="subheading">不是科班出身，所有这方面还是要下功夫</h2>
+                    <span class="meta">Posted by 叉叉敌 on September 29, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h2 id="http和https的区别">http和https的区别</h2>
+
+<ul>
+  <li>概念，区别（信息是否加密涉及到安全性，端口）</li>
+  <li>工作原理
+<img src="https://gitee.com/chasays/mdPic/raw/master/uPic/m310cl.png" alt="1" /></li>
+</ul>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/mbIsT2.png" alt="2" /></p>
+
+<ul>
+  <li>https的优点和缺点
+优点就是安全
+缺点就是安全的太复杂了，因此加载时间增加，数据开销大，要收费，不过有免费的有时间限制。</li>
+</ul>
+
+<h2 id="cookie-和session-的区别">cookie 和session 的区别</h2>
+<ul>
+  <li>前者在本地， 后者在服务器</li>
+  <li>cookie不安全，拿到这个可以欺骗服务器。比如说爬虫</li>
+  <li>session保存在服务器，占用服务器的性能</li>
+  <li>较为重要的放在session， 不重要的用cookie</li>
+</ul>
+
+<h2 id="http状态码">http状态码</h2>
+<ul>
+  <li>有1x是消息</li>
+  <li>2是响应正确 200</li>
+  <li>3 是重定向类 如单个页面、表单或者整个 Web 应用被迁移到新的 URL 下的时候，保持（原有）链接可用的技术。HTTP 协议提供了一种特殊形式的响应—— HTTP 重定向（HTTP redirects）来执行此类操作， 其实这种操作对用户来说是基本上没有感知的。</li>
+  <li>4 是错误码 一般是404 403 access denied</li>
+  <li>5 一般是服务器错误码，500， 503
+http劫持， https可以避免这个问题，</li>
+</ul>
+
+<h2 id="osi七层协议和tcpip四层协议">OSI七层协议和TCP/IP四层协议</h2>
+<p><a href="https://blog.csdn.net/yaopeng_2005/article/details/7064869">7层</a></p>
+<ul>
+  <li>应用  http</li>
+  <li>表示 格式转化和加密数据</li>
+  <li>会话 开始建立链接会话</li>
+  <li>传输 tcp udp（维护会话）</li>
+  <li>网络 ip地址 （这个主要是不同子网间的）</li>
+  <li>数据链路 比如arp （这个是同一个子网间的）</li>
+  <li>物理  就是硬件 （网卡网线等硬件类的）</li>
+</ul>
+
+<p>4层</p>
+<ul>
+  <li>应用层  http</li>
+  <li>传输层 tcp or udp</li>
+  <li>IP层 ip （第2层有可能是数据链路层）</li>
+  <li>网络接口 接口1
+<a href="https://www.cnblogs.com/aspirant/p/10813139.html">OSI七层协议和TCP</a></li>
+</ul>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/oNMEjl.jpg" alt="7" /></p>
+
+<h2 id="tcpip">TCP、IP</h2>
+<p>为什么不是2次握手</p>
+
+<ul>
+  <li>为了实现可靠数据传输， TCP 协议的通信双方， 都必须维护一个序列号， 以标识发送出去的数据包中， 哪些是已经被对方收到的。 三次握手的过程即是<code class="language-plaintext highlighter-rouge">通信双方相互告知序列号起始值</code>， 并<code class="language-plaintext highlighter-rouge">确认对方已经收到了序列号起始值</code>的必经步骤</li>
+  <li>如果只是两次握手， 至多只有连接发起方的起始序列号能被确认， 另一方选择的序列号则得不到确认</li>
+</ul>
+
+<p>序号（sequence number）、确认号（acknowledgement number）、同步( SYNchronize )</p>
+
+<h4 id="为什么不是4次握手">为什么不是4次握手</h4>
+<p>简单说来是 “先关读，后关写”，一共需要四个阶段。以客户机发起关闭连接为例：</p>
+<ul>
+  <li>1.服务器读通道关闭</li>
+  <li>2.客户机写通道关闭</li>
+  <li>3.客户机读通道关闭</li>
+  <li>4.服务器写通道关闭</li>
+</ul>
+
+<p>关闭行为是在发起方数据发送完毕之后，给对方发出一个<code class="language-plaintext highlighter-rouge">FIN</code>（finish）数据段。直到接收到对方发送的 <code class="language-plaintext highlighter-rouge">FIN</code> ，且对方收到了<code class="language-plaintext highlighter-rouge">接收确认ACK</code>之后，双方的数据通信完全结束，过程中每次接收都需要返回确认数据段ACK。
+详细过程：</p>
+
+<ul>
+  <li>第一阶段 客户机发送完数据之后，向服务器发送一个FIN数据段，序列号为i；</li>
+</ul>
+
+<p>1.服务器收到FIN(i)后，返回确认段ACK，序列号为i+1，<code class="language-plaintext highlighter-rouge">关闭服务器读</code>通道；</p>
+
+<p>2.客户机收到ACK(i+1)后，<code class="language-plaintext highlighter-rouge">关闭客户机写</code>通道；</p>
+
+<p>（此时，客户机仍能通过读通道读取服务器的数据，服务器仍能通过写通道写数据）</p>
+<ul>
+  <li>第二阶段 服务器发送完数据之后，向客户机发送一个FIN数据段，序列号为j；</li>
+</ul>
+
+<p>3.客户机收到FIN(j)后，返回确认段ACK，序列号为j+1，<code class="language-plaintext highlighter-rouge">关闭客户机读</code>通道；</p>
+
+<p>4.服务器收到ACK(j+1)后，<code class="language-plaintext highlighter-rouge">关闭服务器写</code>通道。</p>
+
+<p><a href="https://blog.csdn.net/smileiam/article/details/78226816">4次挥手</a>
+第二次握手的时候，还发送了自己的SYN和</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/wX3Fwc.png" alt="wX3Fwc" /></p>
+
+<p><a href="https://blog.csdn.net/lengxiao1993/article/details/82771768">为什么不是2次握手</a></p>
+
+<h2 id="冒泡">冒泡</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># bubble
+</span><span class="k">def</span> <span class="nf">bubble</span><span class="p">(</span><span class="n">list1</span><span class="p">):</span>
+    <span class="n">tmpLen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">list1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmpLen</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tmpLen</span> <span class="o">-</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">list1</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">list1</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">list1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">list1</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">list1</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">list1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">list1</span>
+
+
+<span class="c1"># 找出字符串中第一个不重复的字符
+</span><span class="k">def</span> <span class="nf">findFirstAlpha</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">tmps</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">tmps</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">s</span><span class="p">[:</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">tmps</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tmps</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">tmps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmps</span><span class="p">)</span> <span class="k">else</span> <span class="bp">None</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span>
+</code></pre></div></div>
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/rDlc82.png" alt="2" /></p>
+
+<h2 id="python-深拷贝和钱拷贝">python 深拷贝和钱拷贝</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># importing copy module 
+</span><span class="kn">import</span> <span class="nn">copy</span> 
+  
+<span class="c1"># initializing list 1  
+</span><span class="n">li1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="mi">4</span><span class="p">]</span> 
+  
+  
+<span class="c1"># using copy for shallow copy   
+</span><span class="n">li2</span> <span class="o">=</span> <span class="n">copy</span><span class="p">.</span><span class="n">copy</span><span class="p">(</span><span class="n">li1</span><span class="p">)</span>  
+  
+<span class="c1"># using deepcopy for deepcopy   
+</span><span class="n">li3</span> <span class="o">=</span> <span class="n">copy</span><span class="p">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">li1</span><span class="p">)</span>  
+</code></pre></div></div>
+<p>直接赋值：其实就是对象的引用（别名）。</p>
+
+<p>浅拷贝(copy)：拷贝父对象，不会拷贝对象的内部的子对象。</p>
+
+<p>深拷贝(deepcopy)： copy 模块的 deepcopy 方法，完全拷贝了父对象及其子对象。</p>
+
+<ul>
+  <li>都开辟一个新空间</li>
+  <li>对于浅拷贝来说，可变不可变都是引用之前的原始</li>
+  <li>深拷贝来说，只有不可变才是引用之前的。</li>
+  <li>对于赋值来说， 就只是引用，都不开辟空间</li>
+</ul>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/gqj4aD.png" alt="gqj4aD" /></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/ewJkRx.png" alt="ewJkRx" /></p>
+
+<h2 id="python-装饰器">python 装饰器</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">printRunTime</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="o">@</span><span class="n">functools</span><span class="p">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">())</span>
+        <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="o">@</span><span class="n">printRunTime</span>
+<span class="k">def</span> <span class="nf">testDeco</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+<span class="n">testDeco</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>staticmethod和classmethod</p>
+<ul>
+  <li>前者是静态，调用的时候需要实例化。</li>
+  <li>后者是类方法， 也不需要实例化，用cls来表示当前类</li>
+</ul>
+
+<h2 id="python内存管理">python内存管理</h2>
+<ul>
+  <li>引用计数， 没有引用就不用了就回收</li>
+  <li>垃圾回收</li>
+  <li><a href="https://nodefe.com/implement-of-pymalloc-from-source/">内存池机制</a></li>
+</ul>
+
+<p>主要是为了提高效率， 比如申请小内存后，在运行的时候在用户态和核心态之间转化，影响效率。
+<code class="language-plaintext highlighter-rouge">不用的内存，放到内存池</code>，而不是返回给系统。</p>
+
+<ul>
+  <li>
+    <p>内核态：cpu可以访问内存的所有数据，包括外围设备，例如硬盘，网卡，cpu也可以将自己从一个程序切换到另一个程序。</p>
+  </li>
+  <li>
+    <p>用户态：只能受限的访问内存，且不允许访问外围设备，占用cpu的能力被剥夺，cpu资源可以被其他程序获取。</p>
+  </li>
+</ul>
+
+<p>最大的区别就是权限不同，在运行在用户态下的程序不能直接访问操作系统内核数据结构和程序。</p>
+
+<p>Python中所有小于512kb的对象都使用pymalloc实现的分配器，而大的对象则使用系统的 malloc。<code class="language-plaintext highlighter-rouge">另外Python对象，如整数，浮点数和List，都有其独立的私有内存池</code>，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。</p>
+
+<h2 id="python">python</h2>
+<ul>
+  <li>生成器 yiled</li>
+  <li>迭代器  iter()</li>
+</ul>
+
+<p><strong>new</strong>:创建对象时调用，会返回当前对象的一个实例</p>
+
+<p><strong>init</strong>:创建完对象后调用，对当前对象的一些实例初始化，无返回值</p>
+
+<p>调用顺序：先调用__new__生成一个实例再调用__init__方法对实例进行初始化，比如添加属性。</p>
+
+<h2 id="浏览器中输入一个url后按下回车后发生了什么">浏览器中输入一个URL后，按下回车后发生了什么</h2>
+<p>URL，统一资源定位符，l简单点就是网址=ip或域名 + 端口号 + 资源位置 + 参数 + 锚点</p>
+
+<p>1．输入一个网址之后，首先浏览器通过查询DNS，查找这个URL的IP地址，（通过层层向上级DNS服务器查找直到找到对应URL的IP地址）</p>
+
+<p>2．得到目标服务器的IP地址及端口号（http 80端口，https 443端口），会调用系统库函数socket，请求一个TCP流套接字。客户端向服务器发送HTTP请求报文</p>
+
+<p>（1）应用层：客户端发送HTTP请求报文。</p>
+
+<p>（2）传输层：（加入源端口、目的端口）建立连接。实际发送数据之前，三次握手客户端和服务器建立起一个TCP连接。</p>
+
+<p>（3）网络层：（加入IP头）路由寻址。</p>
+
+<p>（4）数据链路层：（加入frame头）传输数据。</p>
+
+<p>（5）物理层：物理传输bit。</p>
+
+<p>3．服务器端经过物理层→数据链路层→网络层→传输层→应用层，解析请求报文，发送HTTP响应报文。</p>
+
+<p>4．关闭连接，TCP四次挥手。</p>
+
+<p>5．客户端解析HTTP响应报文，浏览器开始显示HTML</p>
+
+<ul>
+  <li>网页卡顿原因
+    <blockquote>
+      <p>有2个原因，一个是硬件，一个是软件</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>网速慢、带宽不足、硬件配置低、内存被占满。</p>
+
+<p>JS脚本过大，阻塞了页面的加载。</p>
+
+<p>网页资源过多、接受数据时间长、加载某个资源慢。</p>
+
+<p>DNS解析速度。</p>
+
+<ul>
+  <li>一般怎么检查
+硬件问题：检查网线或者无限网卡有没有插好，有没有连上路由器，就是底层是不是联通状态；</li>
+</ul>
+
+<p>软件问题：查看是否有对应的驱动，服务器好不好，DNS对不对，或者可能是代理没关</p>
+
+<ul>
+  <li>当网页加载很慢的时候，应如何分析其原因并解决问题？
+http请求次数太多</li>
+</ul>
+
+<p>资源过大，资源过多</p>
+
+<p>JS脚本过大</p>
+
+<p>网速慢</p>
+
+<h2 id="测试知识">测试知识</h2>
+<ul>
+  <li>白盒 内部逻辑是否ok， 语句，条件，路径、判断，组合 不能验证需求</li>
+  <li>黑盒 按照需求规格说明书使用 等价，边界、因果、场景、错误推测，功能图。 覆盖低</li>
+  <li>单元</li>
+  <li>性能测试  指标有哪些；  响应时间、单位时间的响应数、CPU利用率、内存、带宽、手机app还有耗电情况 （<code class="language-plaintext highlighter-rouge">不同场景，压力下、网络环境、硬件环境</code>）</li>
+  <li>压力测试 <code class="language-plaintext highlighter-rouge">并发</code>、和<code class="language-plaintext highlighter-rouge">保持同时最</code>大业务量</li>
+</ul>
+
+<h3 id="软件生命周期">软件生命周期</h3>
+<p>计划阶段 - 需求分析 - 设计阶段 - 编码 - 测试 - 运行与维护</p>
+
+<p>产品的生命周期</p>
+<ul>
+  <li>开发， 成长，成熟， 衰退</li>
+</ul>
+
+<h4 id="测试生命周期">测试生命周期</h4>
+<p>从测试<code class="language-plaintext highlighter-rouge">项目计划建立</code>到<code class="language-plaintext highlighter-rouge">BUG提交</code>的整个测试过程。</p>
+
+<p>包括软件项目<code class="language-plaintext highlighter-rouge">测试计划，测试需求分析，测试用例设计，测试用例执行，BUG提交</code>五个阶段。 软件测试周期并行与软件生命周期，存在于软件生命周期的各个阶段。</p>
+<ul>
+  <li>测试用例的组成元素
+用例编号、用例标题、功能模块名称、前置条件、输入数据、操作步骤、预期结果、优先级、执行结果、编写人、执行人、其他补充、</li>
+</ul>
+
+<h3 id="僵尸进程和孤儿进程">僵尸进程和孤儿进程</h3>
+<p>[孤儿进程与僵尸进程<a href="https://www.cnblogs.com/anker/p/3271773.html">总结</a>
+孤儿就是， 父进程挂了了。
+僵尸就是, 子进程退出了， 父进程不知道，然还保存在系统中</p>
+
+<h2 id="高并发">高并发</h2>
+
+<ul>
+  <li>
+    <p>响应时间、吞吐量、并发用户数…</p>
+  </li>
+  <li>
+    <p>测试多用户同时访问，访问量的缓慢增加/迅速增加…</p>
+  </li>
+  <li>
+    <p>大量相同类型访问，大量不同类型的访问</p>
+  </li>
+  <li>
+    <p>服务器角度，能够承受多大的压力（？），客户端角度，数据能否成功得到需要的信息，响应时间怎么样</p>
+  </li>
+  <li>
+    <p>实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息</p>
+  </li>
+  <li>
+    <p>一方面保证数据不丢失、一方面保证性能</p>
+  </li>
+</ul>
+
+<h4 id="web和app测试的区别">Web和app测试的区别</h4>
+<ol>
+  <li>
+    <p>首先是web和app的区别：web是b/s架构的，基于浏览器；app是c/s架构的，必须要有客户端。Web测试中只要更新了服务器，客户端就会同步更新，保证每个用户用的客户端一样；app就不能保证完全一致，因为app客户端需要用户主动更新，如果app测试中修改了服务器，就意味着客户端用户使用的所有核心版本都要进行回归测试</p>
+  </li>
+  <li>
+    <p>性能方面：web主要看响应速度；app还看电量、流量、CPU、内存…</p>
+  </li>
+  <li>
+    <p>兼容方面：web基于浏览器，主要看电脑硬件、电脑系统；app依赖于手机或平板，关注的系统主要是安卓和ios，还要关心分辨率、屏幕尺寸</p>
+  </li>
+  <li>
+    <p>App比web测试多一些专项测试：弱网测试，安装、卸载、更新，界面操作、触摸手势等</p>
+  </li>
+</ol>
+
+<h2 id="测试例子">测试例子</h2>
+<p>比如微信的搜索功能</p>
+<ul>
+  <li>
+    <p>基础功能 <br />
+输入内容，点击搜索是否调到对应页面
+空内容点搜索
+搜索长度，
+不同语言
+对应内容的连接和点击后是否正确
+返回是否可用
+没有结果是否有提示</p>
+  </li>
+  <li>性能测试
+响应时间 符合？
+弱网是否ok
+在压力下，搜索正常？
+不同硬件 带宽 内存等，是否正常</li>
+  <li>
+    <p>易用性测试
+操作是否简单
+有没有搜索建议
+搜索结果是否高亮
+保存最近记录？</p>
+  </li>
+  <li>
+    <p>兼容性
+ios和安卓
+不同屏幕分辨率
+同步手机语言</p>
+  </li>
+  <li>
+    <p>安全性
+有没有数据库sql注入
+URL没有加sign标识</p>
+  </li>
+  <li>UI
+交互设计符合用户审美
+图标是否显示
+没有错别字</li>
+</ul>
+
+<p>btw， 还有上传文件， 微信扫码点餐， 点赞，发图片，聊天</p>
+
+<h2 id="软件开发模型">软件开发模型</h2>
+<ul>
+  <li>瀑布模型
+<img src="https://gitee.com/chasays/mdPic/raw/master/uPic/fnZ4O1.png" alt="fnZ4O1" /></li>
+  <li>
+    <p>敏捷模型
+<img src="https://gitee.com/chasays/mdPic/raw/master/uPic/vP3hBV.png" alt="vP3hBV" /></p>
+  </li>
+  <li>
+    <p>V模型：
+把测试过程作为在需求分析、系统设计及编码之后的一个阶段，忽视了测试对需求分析，系统设计的验证，需求的满足情况一直到后期的验收测试才被验证。（应该比较多包括系统测试和验收测试）</p>
+  </li>
+  <li>W模型：
+测试的活动与软件开发同步进行，测试的对象不仅仅是程序，还包括需求和设计。因为在需求阶段测试就已经介入了，后面每一阶段的开发都需要经过测试，能够尽早发现软件的缺陷，降低debug的成本</li>
+</ul>
+
+<h2 id="多线程">多线程</h2>
+<ul>
+  <li>线程与进程的区别</li>
+</ul>
+
+<p>线程和进程
+进程是操作系统进行资源分配和调度的最小单位，多个进程之间相互独立，如果一个进程崩溃，不会影响其他进程；</p>
+
+<p>线程是CPU进行分配和调度的最小单位（或者说是进程的最小单位，进程的一部分），一个进程下可以有很多个线程共享该进程的所有资源，如果一个线程崩溃，整个进程就会崩溃。</p>
+
+<p>进程和线程的区别
+进程是操作系统进行资源分配和调度的最小单位，每个进程有自己的一部分独立的资源，如果一个进程崩溃，不会影响其他进程；线程是CPU进行分配和调度的最小单位，一个进程下可以有很多个线程共享该进程的所有资源，如果一个线程崩溃，整个进程就会崩溃。</p>
+
+<p>线程一般是共享资源，在创建、或是进行调度的时候开销比进程小很多，通信同步也比较方便</p>
+
+<p>通信方面进程间通讯需要同步或互斥手段的辅助，来保证数据的一致性，线程间可以直接读/写进程数据段（如全局变量）来进行通信。</p>
+
+<p><code class="language-plaintext highlighter-rouge">线程间通讯和进程间通讯的方法</code></p>
+
+<p>线程间：互斥锁、信号量、临界区…</p>
+
+<ul>
+  <li>
+    <p>互斥量（<code class="language-plaintext highlighter-rouge">全局变量</code>）：采用互斥对象机制，只有拥有互斥对象的线程才有访问公共资源的权限。因为互斥对象只有一个，所以<code class="language-plaintext highlighter-rouge">可以保证公共资源不会被多个线程同时访问</code>。</p>
+  </li>
+  <li>
+    <p>信号量：它允许同一时刻多个线程访问同一资源，但是需要控制<code class="language-plaintext highlighter-rouge">同一时刻访问此资源的最大线程数量</code>。</p>
+  </li>
+  <li>
+    <p>临界区：是一个访问共用资源的程序片段，而这些共用资源又无法同时被多个线程访问的特性。当有线程进入临界区段时，其他线程或是进程必须等待，有一些同步的机制必须在临界区段的进入点与离开点实现，以<code class="language-plaintext highlighter-rouge">确保这些共用资源是被互斥获得使用</code>。</p>
+  </li>
+</ul>
+
+<p>进程间：共享内存、信号量、管道、消息队列…</p>
+
+<p>共享内存就是映射一段能被其它进程访问的内存，这段共享内存由一个进程创建，但是多个进程可以访问。读写操作时需要用同步互斥的工具，保证在一个进程对这段内存进行访问的时候其他进程不能同时来</p>
+
+<p>信号量是一个计数器，用来控制多个进程对资源的访问，它通常作为一种锁机制。</p>
+
+<p>管道是一种半双工的通信方式，数据只能单项流动，并且只能在具有亲缘关系的进程间流动，进程的亲缘关系通常是父子进程。Pipe（管道），FIFO（有名管道）。调用管道，在内核里开辟一块缓冲区（一个共享文件）来进行进程间通信，有一个读端和一个写端（单向通信）</p>
+
+<p>消息队列是消息的链表，存放在内核中并由消息队列标识符标识。</p>
+
+<ul>
+  <li>线程状态（5）
+创建：new Thread(r)创建，有了相应的内存空间和其他资源，但还未开始执行
+就绪：start()方法启动，进入线程队列排队，等待CPU服务
+运行：获得处理器资源
+阻塞：需要进行耗时的输入输出操作时，要等阻塞清除才能进入队列排队
+终止：stop()、destory()或run()结束后，不在具有继续运行的能力</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">LifoQueue</span>
+
+<span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="n">Lock</span><span class="p">()</span>
+<span class="n">workQueue</span> <span class="o">=</span> <span class="n">LifoQueue</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">print_time</span><span class="p">(</span><span class="n">threadName</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">counter</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">counter</span><span class="p">:</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">threadName</span><span class="si">}</span><span class="s">, </span><span class="si">{</span><span class="n">time</span><span class="p">.</span><span class="n">ctime</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">())</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">counter</span> <span class="o">-=</span> <span class="mi">1</span>
+
+<span class="k">class</span> <span class="nc">TestThread</span><span class="p">(</span><span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threadID</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">threadID</span> <span class="o">=</span> <span class="n">threadID</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lock</span> <span class="o">=</span> <span class="n">lock</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'starting </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">， </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">lock</span><span class="p">)</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">process_data</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">q</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'exiting </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">queue</span><span class="p">):</span>
+    <span class="n">lock</span><span class="p">.</span><span class="n">acquire</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">workQueue</span><span class="p">.</span><span class="n">empty</span><span class="p">():</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">, </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s">. </span><span class="si">{</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">lock</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lock</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">'__main__'</span><span class="p">:</span> 
+    <span class="n">threadNames</span> <span class="o">=</span> <span class="p">[</span><span class="s">'thread_1'</span><span class="p">,</span> <span class="s">'thread_2'</span><span class="p">,</span> <span class="s">'thread_3'</span><span class="p">,</span> <span class="s">'thread_4'</span><span class="p">,</span> <span class="s">'thread_5'</span><span class="p">]</span>
+    <span class="n">willData</span> <span class="o">=</span> <span class="p">[</span><span class="s">'_data:'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+    <span class="c1"># create
+</span>    <span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">lock</span><span class="p">.</span><span class="n">acquire</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">willData</span><span class="p">:</span>
+        <span class="n">workQueue</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">lock</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
+
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">threadNames</span><span class="p">):</span>
+        <span class="n">thread</span> <span class="o">=</span> <span class="n">TestThread</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">workQueue</span><span class="p">)</span>
+        <span class="n">thread</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="n">threads</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+        
+    <span class="c1"># wait queue is empty
+</span>    <span class="c1"># while not workQueue.empty():
+</span>    <span class="c1">#     time.sleep(1)
+</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"exiting main thread"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>多进程， 通过使用子进程而非线程有效地绕过了 全局解释器锁。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span><span class="p">,</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">name</span>
+<span class="kn">from</span> <span class="nn">queue</span> <span class="kn">import</span> <span class="n">LifoQueue</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">random</span>
+
+<span class="k">def</span> <span class="nf">process_test</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">, </span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">getpid</span><span class="p">()</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'engding: </span><span class="si">{</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">start</span><span class="si">}</span><span class="s"> sec'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">'__main__'</span><span class="p">:</span>
+    <span class="c1">## 多进程
+</span>    <span class="n">pro</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">process_test</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s">'Thread_1'</span><span class="p">,))</span>
+    <span class="n">pro</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">pro</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="c1">## 大量的子进程
+</span>    <span class="n">p</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">()</span> <span class="c1"># default is CPU core number
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">process_test</span><span class="p">,</span> <span class="p">(</span><span class="sa">f</span><span class="s">'Process_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">'</span><span class="p">,))</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'ending'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>线程间通信方式
+可以用多multiprocessing来规避GIL这个。
+GIL 全局解释锁）能确保一次执行一个线程，线程轮流保存GIL并且在把他传给下一个线程之前执行一些操作，以达到多个进程在CPU上轮流运行，但是这个转换速度很快，让我们觉得他是并行的。
+用Queue来实现，这个在multiprocessing和threading里面都有，或者是queue里面的Queue和LifoQueue。一个是FIFO，一个是LIFO
+还可以用对应的threading.Lock, acquire和release来实现有序。</p>
+  </li>
+  <li>实现多线程的方式</li>
+  <li>这个需要用代码来实现</li>
+</ul>
+
+<h2 id="服务器出问题了怎么排查">服务器出问题了，怎么排查</h2>
+<p>考察的是服务器错误码的分析。</p>
+<ul>
+  <li>500 internal server error就是程序内部错误，一般是出现空指针，或者数组访问越界等</li>
+  <li>501 not implemented这个就是 服务器不支持这个请求</li>
+  <li>502 bad gateway 网关错误，这个就有很多问题了， 有网络问题、请求人太多、带宽太小，服务器交互太大，优化协议</li>
+  <li>503 service unavailable  这个一般是暂时的，比如超载等</li>
+  <li>504 gateway timeout 这个就是比如服务器这个请求需要40s， 但是其他类似nginx的配置是30s超时，这个时候就会提示504</li>
+</ul>
+
+<p>遇到问题怎么去解决</p>
+<ul>
+  <li>查看错误码</li>
+  <li>查看对应的log 或者 带宽和服务器负载问题</li>
+  <li>然后修复对于的问题，然后看看问题时候重现</li>
+</ul>
+
+<h2 id="内存溢出和内存泄漏">内存溢出和内存泄漏</h2>
+<p>测试内存可以考虑的2个点，以及原理是什么。
+溢出就是超出了， 申请的空间超出了。 空间不足
+泄露，就是信息泄露给别人了，就是临时变量没有回收。使用空间过多，导致没有空间可以用。</p>
+<ul>
+  <li>对于android 可以用dumpsys meminfo packagename 来查看对于的views和activity</li>
+  <li>使用第三方工具来分析内存泄漏。比如LeakCanary</li>
+</ul>
+
+<blockquote>
+  <p>内存溢出：简单地说内存溢出就是指程序运行过程中申请的内存大于系统能够提供的内存，导致无法申请到足够的内存，于是就发生了内存溢出。</p>
+</blockquote>
+
+<p>内存泄漏：内存泄漏指程序运行过程中分配内存给临时变量，用完之后却没有被GC回收，始终占用着内存，既不能被使用也不能分配给其他程序，于是就发生了内存泄漏。</p>
+
+<p>内存溢出 out of memory，是指程序在申请内存时，没有足够的内存空间供其使用，出现out of memory；</p>
+
+<p>内存泄露 memory leak，是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄露危害可以忽略，但内存泄露堆积后果很严重，无论多少内存，迟早会被占光。</p>
+
+<p>memory leak会最终会导致out of memory！</p>
+
+<p>内存泄露是指无用对象（不再使用的对象）持续占有内存或无用对象的内存得不到及时释放，从而造成的内存空间的浪费称为内存泄露。内存泄露有时不严重且不易察觉，这样开发者就不知道存在内存泄露，但有时也会很严重，会提示你Out of memory。</p>
+
+<h2 id="linux里sourceshbash有什么区别">linux里source、sh、bash、./有什么区别</h2>
+<p>考察对Linux的熟悉程度。
+这里可以看一下GNU是什么。
+source sh bash都是执行文件，后2个是在一个subshell里面执行的， 都不需要被执行文件有执行权限。
+./就是需要文件有权限。</p>
+<ul>
+  <li>source 不会建立一个subshell， 因此设置后的环境变量就会当前生效。用处就是设置环境变量，或者执行一个文件，里面有一些命令</li>
+  <li>sh和bash都是在一个subshell里面执行，这个shell继承了父类的环境变量，但是执行完了后不会待会到父类。不影响父类，可以用于有些脚本的执行等。</li>
+</ul>
+
+<h2 id="7升水和11升水怎么倒出2升">7升水和11升水怎么倒出2升</h2>
+<p>以任一一个为参照物， 另一个为获得差值。然后把差值放入到参照物。然后差值继续转。。。</p>
+
+<h2 id="sql">SQL</h2>
+
+<p>sql语句，简单的，显示姓“王”和按年龄倒序输出</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="k">user</span> <span class="k">where</span> <span class="n">firstName</span><span class="o">=</span><span class="s1">'王'</span> <span class="k">order</span> <span class="k">by</span> <span class="n">age</span> <span class="k">desc</span><span class="p">;</span>
+
+<span class="o">##</span> <span class="k">and</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Persons</span> <span class="k">WHERE</span> <span class="n">FirstName</span><span class="o">=</span><span class="s1">'Thomas'</span> <span class="k">AND</span> <span class="n">LastName</span><span class="o">=</span><span class="s1">'Carter'</span>
+
+<span class="o">##</span> <span class="k">like</span> 
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Persons</span> <span class="k">WHERE</span> <span class="n">City</span> <span class="k">LIKE</span> <span class="s1">'N%'</span><span class="p">;</span>
+
+<span class="o">#</span> <span class="err">顺序很重要</span>
+<span class="k">FROM</span> <span class="o">&gt;</span> <span class="k">WHERE</span> <span class="o">&gt;</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="o">&gt;</span> <span class="k">HAVING</span> <span class="o">&gt;</span> <span class="k">SELECT</span> <span class="err">的字段</span> <span class="o">&gt;</span> <span class="k">DISTINCT</span> <span class="o">&gt;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="o">&gt;</span> <span class="k">LIMIT</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">player_id</span><span class="p">,</span> <span class="n">player_name</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">num</span> <span class="o">#</span> <span class="err">顺序</span> <span class="mi">5</span>
+<span class="k">FROM</span> <span class="n">player</span> <span class="k">JOIN</span> <span class="n">team</span> <span class="k">ON</span> <span class="n">player</span><span class="p">.</span><span class="n">team_id</span> <span class="o">=</span> <span class="n">team</span><span class="p">.</span><span class="n">team_id</span> <span class="o">#</span> <span class="err">顺序</span> <span class="mi">1</span>
+<span class="k">WHERE</span> <span class="n">height</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">.</span><span class="mi">80</span> <span class="o">#</span> <span class="err">顺序</span> <span class="mi">2</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">player</span><span class="p">.</span><span class="n">team_id</span> <span class="o">#</span> <span class="err">顺序</span> <span class="mi">3</span>
+<span class="k">HAVING</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">#</span> <span class="err">顺序</span> <span class="mi">4</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">num</span> <span class="k">DESC</span> <span class="o">#</span> <span class="err">顺序</span> <span class="mi">6</span>
+<span class="k">LIMIT</span> <span class="mi">2</span> <span class="o">#</span> <span class="err">顺序</span> <span class="mi">7</span>
+</code></pre></div></div>
+
+<h2 id="user-age--5-10-hubs-逆序">user age &gt; 5 10 hubs 逆序</h2>
+
+<p>select * from user where age &gt; 5 having sum(hub_number)&gt;10 order by desc;</p>
+
+<h2 id="开放性题">开放性题</h2>
+<p>为什么投测试
+对测试开发的理解
+为什么做测试而不是去做开发
+如何处理矛盾
+职业规划
+你认为测试人员需要具备哪些素质
+你的优点和缺点</p>
+
+<p>app登录和网页登录的区别</p>
+
+<p>估计美团外卖一天内的全国订单量</p>
+
+<p>淘宝页面价格显示不出来，该怎么测</p>
+
+<p>如果有一部分用户反馈APP的视频加载不出来，你会从哪里方面去定位问题</p>
+
+<p>在一个产品的周期中，你会怎么安排测试工作</p>
+
+<h3 id="思维题"><a href="https://www.codenong.com/cs107020500/">思维题</a></h3>
+
+<h2 id="总结了一些面试过程中遇到的智力题及其解法">总结了一些面试过程中遇到的智力题及其解法</h2>
+
+<blockquote>
+  <p>两个水桶，一个水桶可以盛6L水，一个水桶可以盛5L水，盛出来3L水</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>5L水桶盛满，倒入6L空水桶中，6L水桶还余1L空间</p>
+  </li>
+  <li>
+    <p>5L水桶盛满，倒入6L水桶中，5L水桶剩下4L水</p>
+  </li>
+  <li>
+    <p>将6L水桶中的水倒掉，5L水桶中的水倒入6L水桶中，6L水桶还余2L空间</p>
+  </li>
+  <li>
+    <p>5L水桶盛满，2L倒入6L水桶中，则5L水桶剩下3L水</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>2、一个4分钟沙漏，一个7分钟沙漏，计算出9分钟</p>
+</blockquote>
+
+<p>简单的方法（没有从头计时）：</p>
+
+<ul>
+  <li>
+    <p>4分钟沙漏和7分钟沙漏同时流，4分钟沙漏流完时，7分钟沙漏还有3分钟，将4分钟的沙漏翻转</p>
+  </li>
+  <li>
+    <p>7分钟沙漏流完时，4分钟沙漏还有1分钟，从此刻开始计时</p>
+  </li>
+  <li>
+    <p>当4分钟沙漏流完时，再次翻转两次4分钟的沙漏，即1+4+4=9分钟</p>
+  </li>
+</ul>
+
+<p>从头计时的方法：</p>
+
+<ul>
+  <li>
+    <p>4分钟和7分钟的两个沙漏开始同时计时，4分钟后，4分钟的沙漏漏完了，7分钟沙漏还余3分钟</p>
+  </li>
+  <li>
+    <p>把4分钟的沙漏倒过来，继续计时，3分钟后，7分钟的沙漏也漏完了，4分钟沙漏还余1分钟</p>
+  </li>
+  <li>
+    <p>把7分钟的倒过来，当4分钟的沙漏又漏完时，这时正好过去8分钟，七分钟的沙漏这时计时正好过去1分钟</p>
+  </li>
+  <li>
+    <p>然后再次把7分钟的沙漏倒过来，当它漏完之后，刚好9分钟</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>3、八个球，其中有一个是其余球重量的1.5倍，只称两次，如何找出来</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>在这八个球中，随机抽取两组，每组的球的数量是3个，对这两组称重</p>
+  </li>
+  <li>
+    <p>如果天平平衡，则重的球在剩下的两个球中。将剩下的两个球放入天平的两端即可找出重的球</p>
+  </li>
+  <li>
+    <p>如果天平不平衡，在重的那一组的3个球中，再取出两个放到天平两端进行比较</p>
+  </li>
+  <li>
+    <p>如果天平平衡，则重的球是最后剩下的球，否则天平较低那一端的则为重的球</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>4、一圈蚊香烧完要用1个小时,用两圈蚊香识别45分钟</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>同时点燃第一圈的一头和第二圈的两头，第二圈烧完时过去了30分钟</p>
+  </li>
+  <li>
+    <p>立即点燃第一圈的另一头，第一圈烧完时又过去了15分钟，共计45分钟</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>5、10堆苹果，每堆10个，9堆里每个重50g，还有一堆每个重40g，只能称一次，找不一样的那一堆
+给每堆苹果编号</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>第一堆里取一个苹果，第二堆里取两个苹果，第三堆里取三个苹果，…，以此类推</p>
+  </li>
+  <li>
+    <p>共取了55个苹果，如果每堆都是50g，应该共2750g</p>
+  </li>
+  <li>
+    <p>称一次，看差的斤数是10的多少倍，就知道是十堆苹果里第几堆斤数不够</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>6、现在有25匹马，赛马场每次只能让5匹马赛跑，没有计时仪器，只能看它们每次的排名顺序,用尽量少的次数选出前3匹</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>25匹马分成A、B、C、D、E五组进行比赛，得出每组第一名A1、B1、C1、D1、E1</p>
+  </li>
+  <li>
+    <p>让A1、B1、C1、D1、E1进行比赛，得出第一名，共比赛了6轮</p>
+  </li>
+  <li>
+    <p>假设名次按照A1、B1、C1、D1、E1这样排，那么第二名在A2，B1中产生，第三名在A2，A3，B1，B2，C1中产生</p>
+  </li>
+  <li>
+    <p>让A2，A3，B1，B2，C1进行比赛，得出第二名和第三名，共需7轮比赛</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>7、有1000瓶水，其中有1瓶水有毒，现有10只小白鼠，中毒反应在第七天显示出来，请问如何在第七天测试出哪一瓶水有毒</p>
+</blockquote>
+
+<p>利用二进制的思想</p>
+
+<ul>
+  <li>
+    <p>我们将1000瓶液体编号1-1000，然后将编号转化为10位二进制，如1号就是0000000001</p>
+  </li>
+  <li>
+    <p>将十只小白鼠编号1-10</p>
+  </li>
+  <li>
+    <p>将液体的二进制编号上为1的位数给对应的小白鼠喝，如液体编号为 1111100000，那就是1-5号小白鼠不喝这瓶液体，6-10号小白鼠喝这瓶液体</p>
+  </li>
+  <li>
+    <p>一星期后观察小白鼠的死亡情况，如果1-5号小白鼠死亡，6-10号小白鼠存活，那么有毒的那瓶液体对应的二进制编码为 0000011111</p>
+  </li>
+  <li>
+    <p>将第四步得到的二进制编码转化为十进制，这里是31号，因此我们可以推断出编号为31的液体是被污染的</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>8、有10个石头，你和对手两人轮流拿，每人每次可以拿1-2个，最后一个拿的人算输，有什么必赢的方案
+假设自己先拿，从只有1个石头的情况开始考虑：</p>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">剩余硬币</span>	<span class="err">（</span><span class="n">必</span><span class="err">）</span><span class="n">输赢</span>	<span class="n">解释</span>
+<span class="mi">1</span>	<span class="n">输</span>	<span class="n">必须拿走</span>
+<span class="mi">2</span>	<span class="n">赢</span>	<span class="n">拿一个</span>
+<span class="mi">3</span>	<span class="n">赢</span>	<span class="n">拿两个</span>
+<span class="mi">4</span>	<span class="n">输</span>	<span class="n">我无论拿一个还是两个</span><span class="err">，</span><span class="n">都剩3个或2个</span><span class="err">，</span><span class="n">该对方拿</span><span class="err">，</span><span class="n">此时他必赢</span>
+<span class="mi">5</span>	<span class="n">赢</span>	<span class="n">拿一个</span>
+<span class="mi">6</span>	<span class="n">赢</span>	<span class="n">拿两个</span>
+<span class="mi">7</span>	<span class="n">输</span>	<span class="n">我无论拿一个还是两个</span><span class="err">，</span><span class="n">都剩6个或5个</span><span class="err">，</span><span class="n">该对方拿</span><span class="err">，</span><span class="n">此时他必赢</span>
+<span class="mi">8</span>	<span class="n">赢</span>	<span class="n">拿一个</span>
+<span class="mi">9</span>	<span class="n">赢</span>	<span class="n">拿两个</span>
+<span class="mi">10</span>	<span class="n">输</span>	<span class="n">我无论拿一个还是两个</span><span class="err">，</span><span class="n">都剩9个或8个</span><span class="err">，</span><span class="n">该对方拿</span><span class="err">，</span><span class="n">此时他必赢</span>
+</code></pre></div>  </div>
+  <p>结果：谁先拿，谁必输。所以想必赢，让对手先拿。</p>
+</blockquote>
+
+<p>规律：硬币的数量，对3求余后余1时 3n+1，则此时谁先取，谁必输。</p>
+
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/pages/chasays/github-actions/2019/03/30/macOS-common-application-list/" data-toggle="tooltip" data-placement="top" title="Macos Common Application List">
+                        Previous<br>
+                        <span>Macos Common Application List</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/pages/chasays/github-actions/2020/02/02/book-list-1/" data-toggle="tooltip" data-placement="top" title="2020 书单1">
+                        Next<br>
+                        <span>2020 书单1</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/pages/chasays/github-actions/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0174" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/pages/chasays/github-actions/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="31">Newsletter</a>
+        
+                <a data-sort="0173" 
+                    href="/pages/chasays/github-actions/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0176" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0177" 
+                    href="/pages/chasays/github-actions/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0178" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/pages/chasays/github-actions/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/pages/chasays/github-actions/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/pages/chasays/github-actions/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/pages/chasays/github-actions/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/pages/chasays/github-actions/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/pages/chasays/github-actions/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

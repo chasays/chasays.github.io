@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Python Communicate - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="
+">
+    
+    <meta property="article:published_time" content="2020-06-09T00:00:00Z">
+    
+    
+    
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/2020/06/09/Python-communicate/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>Python Communicate - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pages/chasays/github-actions/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/pages/chasays/github-actions/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/pages/chasays/github-actions/2020/06/09/Python-communicate/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/pages/chasays/github-actions/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/pages/chasays/github-actions/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/pages/chasays/github-actions/https://source.unsplash.com/random/1800x400" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header">
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>Python Communicate</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by 察说花园 on June 9, 2020</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				
+<p>Python <code class="language-plaintext highlighter-rouge">subprocess</code> 模块是一个功能强大的库，用于启动和与子流程交互。 它附带了一些高级 api，比如调用、检查输出和运行，这些都集中在的程序运行和等待完成的子进程上。
+可以用 <code class="language-plaintext highlighter-rouge">run</code> 来完成调用子进程的方式，但是对于 底层的进程创建与管理， <code class="language-plaintext highlighter-rouge">Popen</code>提供了很大的灵活性，以及处理未被常见函数覆盖的场景。</p>
+<blockquote>
+  <p>最新源代码： https://github.com/python/cpython/tree/3.8/Lib/subprocess.py</p>
+</blockquote>
+
+<p>下面谈论不直接涉及一个长时间运行的子进程。 考虑测试一些服务器——例如 HTTP、ping 服务器。 将它作为一个子进程启动，然后将客户机连接到它，并运行一些测试序列。 当完成后，希望以一种有序的方式关闭子程序。 这对于同步运行子进程的 <code class="language-plaintext highlighter-rouge">api</code> 来说是很难实现的，因此必须查看一些底层级别的 api。</p>
+
+<p>最近做的项目安卓 shell 里面有些就需要这个。需要用 <code class="language-plaintext highlighter-rouge">adb shell xxx</code> 和安卓设备交互。</p>
+
+<p>虽然可以使用 <code class="language-plaintext highlighter-rouge">subprocess.run </code>在一个线程中启动一个子进程，并在另一个线程中与其交互。 但是，当完成了子进程之后，要完全终止它将变得非常棘手。 如果子进程有一个有序的终止序列，那么这是可行的。 但是大多数服务器不这样做，只会等到他自己结束，或者手动结束。</p>
+
+<h2 id="获得所有输出时完成">获得所有输出时完成</h2>
+
+<p>第一个最简单的用例是启动一个 HTTP 服务器，与它交互，干净利落地终止它，并在完成后获取所有服务器的 stdout 和 stderr。  ，用 Python 3.7进行了测试:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'ping'</span><span class="p">,</span> <span class="s">'-c'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">,</span> <span class="s">'127.0.0.1'</span><span class="p">],</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span>
+                            <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">STDOUT</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">proc</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">outs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">proc</span><span class="p">.</span><span class="n">communicate</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'== subprocess exited with rc ='</span><span class="p">,</span> <span class="n">proc</span><span class="p">.</span><span class="n">returncode</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">outs</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">TimeoutExpired</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'subprocess did not terminate in time'</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p>子进程是一个 <code class="language-plaintext highlighter-rouge">HTTP</code> 服务器，使用 <code class="language-plaintext highlighter-rouge">Python</code> 自己的<code class="language-plaintext highlighter-rouge"> HTTP.server</code> 模块，从启动它的目录中提供内容。 使用底层的 <code class="language-plaintext highlighter-rouge">Popen API</code> 异步启动进程(意味着 <code class="language-plaintext highlighter-rouge">Popen</code> 立即返回，子进程在后台运行)。</p>
+
+<p>请注意在调用时传递给 Python 的 -u: 这对于避免标准输出缓冲并在进程被终止时尽可能多地查看标准输出非常关键。 在与子进程交互时，缓冲是一个严重的问题，稍后将看到更多这方面的示例。</p>
+
+<p>样品的肉发生在最后一块。 <code class="language-plaintext highlighter-rouge">terminate</code>()向子进程发送一个 <code class="language-plaintext highlighter-rouge">SIGTERM</code> 信号。 然后，<code class="language-plaintext highlighter-rouge">proc.communicate </code>等待子进程退出并捕获所有的标准输出。 Communicate 有一个非常方便的超时参数，让知道子进程是否由于某种原因没有退出。 一个更复杂的技术是，如果子程序由于 <code class="language-plaintext highlighter-rouge">SIGTERM</code> 而没有退出，那么可以给子程序发送一个 <code class="language-plaintext highlighter-rouge">SIGKILL</code> (带有 <code class="language-plaintext highlighter-rouge">proc.kill</code>)。</p>
+
+<p>如果你运行这个脚本，你会看到输出:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==</span> subprocess exited with rc <span class="o">=</span> <span class="nt">-15</span>
+PING 127.0.0.1 <span class="o">(</span>127.0.0.1<span class="o">)</span>: 56 data bytes
+64 bytes from 127.0.0.1: <span class="nv">icmp_seq</span><span class="o">=</span>0 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.049 ms
+</code></pre></div></div>
+<p>子进程的返回码是 -15(负的意思是以信号结束，仅 POSIX，15是 <code class="language-plaintext highlighter-rouge">SIGTERM</code> 的数字代码)。 标准输出被正确地捕获并打印出来。</p>
+
+<p>如果其中修改为暂停3s， <code class="language-plaintext highlighter-rouge">time.sleep(3) </code>，那么返回的结果就是 0.</p>
+
+<h2 id="启动交互实时输出终止">启动，交互，实时输出，终止</h2>
+
+<p>一个相关的用例是以“实时”方式获取子进程的标准输出，而不是在最后将所有内容放在一起。 在这里，必须非常小心缓冲，因为它很容易导致程序崩溃和死锁。 Linux 进程通常在交互模式下进行行缓冲，否则进行全缓冲。 很少有进程是完全不缓冲的。 因此，在看来，不建议在小于一行的块中读取 stdout。 真的，千万别这么做。 标准 <code class="language-plaintext highlighter-rouge">i/o</code> 意味着可以按行使用(想想所有的 Unix 命令行工具是如何工作的) ; 如果需要子行粒度，stdout 不是正确的方法(使用套接字或其他方法)。</p>
+
+<p>举个例子:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">queue</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+
+<span class="k">def</span> <span class="nf">output_reader</span><span class="p">(</span><span class="n">proc</span><span class="p">,</span> <span class="n">outq</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">proc</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">readline</span><span class="p">,</span> <span class="sa">b</span><span class="s">''</span><span class="p">):</span>
+        <span class="n">outq</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Note the -u here: essential for not buffering the stdout of the subprocess
+</span>    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'ping'</span><span class="p">,</span> <span class="s">'-c'</span><span class="p">,</span> <span class="s">'3'</span><span class="p">,</span> <span class="s">'127.0.0.1'</span><span class="p">],</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span>
+                            <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">STDOUT</span><span class="p">)</span>
+
+    <span class="n">outq</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">Queue</span><span class="p">()</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">output_reader</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">proc</span><span class="p">,</span> <span class="n">outq</span><span class="p">))</span>
+    <span class="n">t</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">outq</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">'{0}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">queue</span><span class="p">.</span><span class="n">Empty</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">'got nothing'</span><span class="p">)</span>
+
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">proc</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">proc</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'== subprocess exited with rc ='</span><span class="p">,</span> <span class="n">proc</span><span class="p">.</span><span class="n">returncode</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">TimeoutExpired</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'subprocess did not terminate in time'</span><span class="p">)</span>
+
+    <span class="n">t</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>这个示例与之类似，除了标准输出的处理方式; 不再需要通信调用; 相反，<code class="language-plaintext highlighter-rouge">proc.wait</code> 只是等待子级退出(在发送 <code class="language-plaintext highlighter-rouge">SIGTERM</code> 之后)。 线程会轮询子标准输出属性，只要有新行可用，就会循环并立即打印它们。 如果运行这个示例，您将注意到子进程的 <code class="language-plaintext highlighter-rouge">stdout</code> 是实时报告的，而不是在最后报告一个错误。</p>
+
+<p><code class="language-plaintext highlighter-rouge">(proc.stdout. readline，b”)</code>代码片段继续调用 <code class="language-plaintext highlighter-rouge">proc.stdout.readline()</code> ，直到这个调用返回一个空的字节串。 只有当关闭 <code class="language-plaintext highlighter-rouge">proc.stdout</code> 时才会发生这种情况，这种情况发生在子节点退出时。 因此，尽管看起来读线程可能永远不会终止——但它总会终止！ 只要子进程在运行，线程就会忠实地阻塞该 readline; 只要子进程终止，readline 调用返回 b” ，线程就会退出。</p>
+
+<p>如果不想仅仅打印捕获的 stdout，而是要对其进行处理(比如寻找预期的模式) ，那么可以使用 Python 的线程安全队列进行组织。 读者的思路是:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PING 127.0.0.1 <span class="o">(</span>127.0.0.1<span class="o">)</span>: 56 data bytes
+64 bytes from 127.0.0.1: <span class="nv">icmp_seq</span><span class="o">=</span>0 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.052 ms
+got nothing
+got nothing
+64 bytes from 127.0.0.1: <span class="nv">icmp_seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.075 ms
+got nothing
+got nothing
+64 bytes from 127.0.0.1: <span class="nv">icmp_seq</span><span class="o">=</span>2 <span class="nv">ttl</span><span class="o">=</span>64 <span class="nb">time</span><span class="o">=</span>0.115 ms
+
+<span class="nt">---</span> 127.0.0.1 ping statistics <span class="nt">---</span>
+<span class="o">==</span> subprocess exited with rc <span class="o">=</span> 0
+</code></pre></div></div>
+
+<h2 id="向子进程输入数据">向子进程输入数据</h2>
+
+<p>子流程模块文档警告不要执行这里描述的事情，因为可能会出现死锁，但有时候根本就没有选择！ 有些程序喜欢使用它们的标准输入和标准输出进行交互。 或者，您可能有一个具有交互(解释器)模式的程序，您希望对它进行测试——类似于<code class="language-plaintext highlighter-rouge"> Python interepreter</code> 本身。 有时候可以一次提供这个程序的所有输入，然后检查它的输出; 这可以，也应该通过 <code class="language-plaintext highlighter-rouge">communicate</code> 来完成——这是完美的 API。 它正确地输入 stdin，完成后关闭它(这意味着许多交互式程序游戏结束) 等等。 但是，如果真的希望基于子进程以前的一些输出提供额外的输入，该怎么办呢。 下面是:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'python'</span><span class="p">,</span> <span class="s">'-i'</span><span class="p">],</span>
+                            <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span>
+                            <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">)</span>
+
+    <span class="c1"># To avoid deadlocks: careful to: add \n to output, flush output, use
+</span>    <span class="c1"># readline() rather than read()
+</span>    <span class="n">proc</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s">'2&lt;&lt;3</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span> <span class="c1">## 当将输入发送到行解释器时，不要忘记发送实际的换行符
+</span>    <span class="n">proc</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span> <span class="c1">## 将数据放入流后，始终刷新流，因为它可能会被缓冲
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">proc</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">readline</span><span class="p">())</span> <span class="c1">## 从行解释器获取输入
+</span>
+    <span class="n">proc</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s">'len("chachadi")</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+    <span class="n">proc</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">proc</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">readline</span><span class="p">())</span>
+
+    <span class="n">proc</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">proc</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
+    <span class="n">proc</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>结果</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+b<span class="s1">'16\n'</span>
+b<span class="s1">'8\n'</span>
+<span class="nt">-15</span>
+</code></pre></div></div>
+<p>将数据发送到子标准输入，但由于某些原因(缺少换行、缓冲等) ，它无法获得完整的输入
+ 然后调用 <code class="language-plaintext highlighter-rouge">readline</code> 等待回复，因为子进程仍然在等待输入完成(步骤1) ，所以的步骤2可能会永远挂起。 这是典型的僵局。</p>
+
+<p>在交互的最后，关闭子进程的 <code class="language-plaintext highlighter-rouge">stdin</code> (这是可选的，但对于某些类型的子进程很有用) ，调用 <code class="language-plaintext highlighter-rouge">terminate</code>，然后等待。 最好是向子进程发送某种类型的“ <code class="language-plaintext highlighter-rouge">exit</code>”命令(对于 Python 解释器而言是 quit()) ; 这里的 <code class="language-plaintext highlighter-rouge">terminate</code> 是为了演示在其他选项不可用时必须做什么。 注意，也可以在这里使用<code class="language-plaintext highlighter-rouge"> communicate</code>，而不是等待来捕获 stderr 输出。</p>
+
+<h2 id="使用非阻塞读线程和可阻塞线程进行交互">使用非阻塞读线程和可阻塞线程进行交互</h2>
+
+<p>最后的示例演示了一个稍微更高级的场景。 假设正在测试一个长期存在的套接字服务器，并且有兴趣编排与它的复杂交互，可能是与多个并发客户机进行交互。 还希望彻底关闭线程和子进程的整个设置。 完整的代码示例在下里;  关键的部分是这个插座读取功能，意味着在它自己的线程中运行:</p>
+<blockquote>
+  <p>https://github.com/python/cpython/blob/master/Lib/socketserver.py#215</p>
+</blockquote>
+
+<p>下面的实例来自：https://stackoverflow.com/questions/268629/how-to-stop-basehttpserver-serve-forever-in-a-basehttprequesthandler-subclass</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">http.server</span>
+
+<span class="k">class</span> <span class="nc">StoppableHTTPServer</span><span class="p">(</span><span class="n">http</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">HTTPServer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">serve_forever</span><span class="p">()</span>
+        <span class="k">except</span> <span class="nb">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Clean-up server (close socket, etc.)
+</span>            <span class="bp">self</span><span class="p">.</span><span class="n">server_close</span><span class="p">()</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">StoppableHTTPServer</span><span class="p">((</span><span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="mi">8080</span><span class="p">),</span>
+                             <span class="n">http</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">BaseHTTPRequestHandler</span><span class="p">)</span>
+<span class="n">server</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>在浏览器访问 <code class="language-plaintext highlighter-rouge">http://localhost:8080/</code>， 结果如下</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>127.0.0.1 - - <span class="o">[</span>10/Jun/2020 23:06:50] code 501, message Unsupported method <span class="o">(</span><span class="s1">'GET'</span><span class="o">)</span>
+127.0.0.1 - - <span class="o">[</span>10/Jun/2020 23:06:50] <span class="s2">"GET / HTTP/1.1"</span> 501 -
+127.0.0.1 - - <span class="o">[</span>10/Jun/2020 23:06:52] code 501, message Unsupported method <span class="o">(</span><span class="s1">'GET'</span><span class="o">)</span>
+127.0.0.1 - - <span class="o">[</span>10/Jun/2020 23:06:52] <span class="s2">"GET /favicon.ico HTTP/1.1"</span> 501 -
+</code></pre></div></div>
+
+<p>对于本文中描述的任务，没有一个万能的解决方案; 展示了一系列处理更常见情况的处理方法, Enjoy coding.</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/pages/chasays/github-actions/2020/06/07/in-Python-to-build-visualizer/" data-toggle="tooltip" data-placement="top" title="Python 构建可视化排序">
+                        Previous<br>
+                        <span>Python 构建可视化排序</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/pages/chasays/github-actions/2020/06/21/summary-TFUG-share-meeting/" data-toggle="tooltip" data-placement="top" title="Summary Tfug Share Meeting">
+                        Next<br>
+                        <span>Summary Tfug Share Meeting</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/pages/chasays/github-actions/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0174" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/pages/chasays/github-actions/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="31">Newsletter</a>
+        
+                <a data-sort="0173" 
+                    href="/pages/chasays/github-actions/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0176" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0177" 
+                    href="/pages/chasays/github-actions/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0178" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/pages/chasays/github-actions/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/pages/chasays/github-actions/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/pages/chasays/github-actions/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/pages/chasays/github-actions/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/pages/chasays/github-actions/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/pages/chasays/github-actions/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

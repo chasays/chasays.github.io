@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="2020年终总结 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="
+
+">
+    
+    <meta property="article:published_time" content="2020-12-28T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="总结">
+    
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/2020/12/28/2020-end-year-summary/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>2020年终总结 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pages/chasays/github-actions/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/pages/chasays/github-actions/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/pages/chasays/github-actions/2020/12/28/2020-end-year-summary/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/pages/chasays/github-actions/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/pages/chasays/github-actions/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/pages/chasays/github-actions/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/pages/chasays/github-actions/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/pages/chasays/github-actions/https://source.unsplash.com/random/1800x400" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/pages/chasays/github-actions/archive/?tag=%E6%80%BB%E7%BB%93" title="总结">总结</a>
+                        
+                    </div>
+                    <h1>2020年终总结</h1>
+                    
+                    <h2 class="subheading">从工作，个人成长，生活，未来期望</h2>
+                    <span class="meta">Posted by 叉叉敌 on December 28, 2020</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/Aa8VDm.png" alt="" /></p>
+
+<p>哦，不对下面才是正文。</p>
+
+<p>2012年没有几天就要到2021。借此机会，在这里做一个简单的总结。对过去的自己的工作、生活、以及个人成长的一个梳理。</p>
+
+<h1 id="工作">工作</h1>
+
+<p>在工作上的话，公司在组织架构重组，然后在这个情况下自己有了一个机遇，然后带领一个小团队。比较幸运的是领导给了我非常多的一些自由度，就是可以用自己的想法，去建设自己的团队和项目管理。主要是从业务目标导向、以及协作，还有就是目标统一出发，制定一系列的流程规范。为了个人成长，还组织了一些技术分享，技术培训。</p>
+
+<p>同时，在这个情况下，我有更多的责任和义务，带着团队往前走，来保证我们各个平台产品的质量。提高我们整个部门的一个价值，然后从而能得到公司的一个认可，得到客户的认可。让公司能获得更高的一个价值，这主要是我们的一个目标导向。</p>
+
+<h2 id="在技术建设方面">在技术建设方面</h2>
+
+<p>在技术方面，为了保证产品质量和效率提升。我们做了一些工作，有自动化、辅助工具开发等。我的一个想法就是做成一个TDD模型，那就是测试驱动开发。</p>
+
+<p>自动化这一块的话，主要是在执行时间上去提升，那之前我们是在谷歌原生的一个框架去执行，它的时间非常非常慢，相当于执行一条，他有log和报告都会同时输出，导致这个时间就非常大，相当于执行一个case的话大概要花平均下来大概要花10秒以上，但是我们改了这个方法之后呢，那执行这个相当于执行一个命令，那这个命令能执行多长时间 — 那这个case多长时间。相当于我们加上一些API的封装调用，等等，算下来的话也是非常快的，大概一两秒钟就可以完成。如果是一个测试集，那相当于我们一个case提升一点时间，那几百个case下来就相当于很长时间了。</p>
+
+<p>在开发工具这一块，主要是对<code class="language-plaintext highlighter-rouge">在过程中有些批量可以去执行的，重复去执行的</code>，那就把它做成自动化或是做成工具，那我记得就是同步时间，把本地时间和安卓时间同步一样，然后自动去替换，我们要测试的APK包，以及我们自动测试完了对Gerrit的一个批处理。这些看上去这些工具其实不起眼，也非常简单，但是你在日复一日年复一年的去做个动作，那其实组内每个人都会去做，但是每个人去单独去花这个时间可能就是几分钟，但是通过你这个脚本那几秒钟就可以搞定，相当于他在提升这个效率的过程中也是非常显见的，这里要说一点就是在。工作中就是把一点一点的小事做好，那是树立自己的一个自信心，那才能去做好更大的更好的一个项目。</p>
+
+<p>CI/CD这一部分，主要是针对当前安卓平台上有很多版本的迭代，周期也很快，在这个快速迭代的产品里，如何保证质量？测试策略改变非常重要，针对这部分的话我们会去做一些自动化和精简用例，来提示效率，满足当前的业务需求。如果在测试过程中发现有些问题确实在我们内部没有发现的，那我们可能会去完善我们这部分用例，从而用<code class="language-plaintext highlighter-rouge">最少的力量做出最大的事情</code>。</p>
+
+<p><code class="language-plaintext highlighter-rouge">在测试过程中进行测试策略是非常重要的</code>。比如说一个产品，可能是修复了某一个功能，让我们来一开始就他整个的功能测试，他可能是不太现实的，那有可能我们把这个优先级没有调整好，那测完了全部都发现你去做他这一部分修改的功能的时候，发现有问题，那相当于你前面的整个测试，这部分工作就相当于浪费了。所以说我觉得在测试过程中，测试策略是非常重要的。</p>
+
+<p>工作流程，公司主要是用了一个商业的工具链来保证我们从产品需求、需求分析、设计阶段、编码、测试、必须与维护整个软件生命周期，那我们在测试的过程中一开始就介入到其中，通过一个IBM的工具链ALM去管理我们整个的一个测试周期。在后面我们质量验证的时候，能通过这些文档，物料，那就可以非常清楚的知道我们这个产品有没有做到一个质量保证。</p>
+
+<h2 id="项目支撑方面">项目支撑方面</h2>
+
+<p>在项目支撑方面是做一个<code class="language-plaintext highlighter-rouge">定点定人</code>，相当于一个项目一个负责人，那这样的话我们就能做到及时的一个响应，这个产品有什么改动，那就及时相应的人去做对应的测试工作。还有就是我们是在项目一个Bring up阶段，我们去完善我们的文档，那以后任何人来处理这个项目，都通过我们的文档运行起来，不需要再去做一个培训和分享的重复性动作。那同时，我们也会收集从开发和外部系统的新需求，那我为我们以后的用例以及整个流程做一些优化。</p>
+
+<h2 id="工作小结">工作小结</h2>
+
+<p>再从上面看到，其实我们在这一年确实做了非常多的工作，有做的好的，也有不好的。<code class="language-plaintext highlighter-rouge">我个人其实还是不够聚焦。太分散了</code>，有些也没有运行起来。</p>
+
+<p>还有一个就是和组内其他组成员（同组不同项目），没有一起分享和提升，就是有些好的想法在其他组里产生和落地执行，我们应该<code class="language-plaintext highlighter-rouge">借鉴和参考</code>，从而运用到我们目前的项目中去。</p>
+
+<p>在之前面试字节跳动的时候，有一轮面试官问我一个问题，我们做这些动作的目的是什么？搭建自动化意义是什么？如果没有了，有什么影响？还是无法开展工作？就是说，我们目前做的东西能不能达到一个<code class="language-plaintext highlighter-rouge">不可或缺的东西</code>。其实这里给了我很多反思，那我们做这些东西的意义是什么？那真各种花拳绣腿，各种骚操作，一顿操作猛如虎，定睛一看原地杵，没什么真正的意义，那我们做的其实要把我们<code class="language-plaintext highlighter-rouge">自己本身的价值体现出来</code>。</p>
+
+<p><code class="language-plaintext highlighter-rouge">不足之处</code>这里我想的有几个点，第1个就是在项目进程的过程中和组员的沟通太少，没有及时了解到主要的一些想法，一些特长，然后利用他们的一些特长去做他们想做的事情，然后把整个<code class="language-plaintext highlighter-rouge">组内的气氛和利益最大化</code>。还有一个就是自己的能力不足，分为两个方面，第1个是技术，在技术上的话，尤其是有很多技术栈是不太懂的，比如说Jenkins，gTest等，以及其工具链这一块，通过在项目中真正去实战的时候才去学习，有点像赶鸭子上架。那管理这块的话，我去看了有关相关的书，然后通过一些培训，然后来做一些管理和调整。总之，<code class="language-plaintext highlighter-rouge">管理就是成就别人也是成就自己</code>。</p>
+
+<h1 id="个人成长">个人成长</h1>
+
+<p>个人成长方面，先说一下从工作的角度带来的一些<code class="language-plaintext highlighter-rouge">经济回报和个人成长</code>，公司有一个相对比较完善的performance考核机制。这个机制，通过年初的一个target-setting，类似一个年度计划，里面可以提现自己的个人额成长规划和项目计划。把你自己整年的计划实现了，基本上就可以达到一个比较好的performance。因为明年我就不在这家公司工作了，所以说对于这一块performance的考量，我觉得总体完成度是一个匹配的，就是期望的一个状态，也没说超出多少，总得说还行<code class="language-plaintext highlighter-rouge">及格</code>。</p>
+
+<p>由于疫情，然后在招聘团队成员的时候，都是在公司通过远程去面试。和另外一个同事一起，为了保证面试效率，就是时间的管理，就要<code class="language-plaintext highlighter-rouge">如何提问和识人的能力</code>，这方面也提到历练和提升。</p>
+
+<p>英语方面的话在听力上面有大幅提升，但是在对于口语的表达上面还有一些欠缺，目前是在一家外企那真正的想做一个流畅沟通的话，不仅能听懂英式的美式的，还有印度口音，以及日本的，德国的，都需要听懂。还会让对方去明白你在说什么，<code class="language-plaintext highlighter-rouge">学习英语也是一个长期的过程</code>，这个我觉得是还需要去继续提升的。</p>
+
+<p>在技术这一块主要是算法，那算法这块的话，其实在最开始没有做一个很好的计划安排，那导致到后面基本上就做了开头，然后后面基本上就没去做，导致在学习算法上面停滞不前。那真正的还是要去多补习一下技术方面的基础知识，包括<code class="language-plaintext highlighter-rouge">数据结构，算法经典</code>的都要去掌握。</p>
+
+<p>写作这一块，实在惭愧。原因， 借口。拖延症，如何摆脱拖延症「先行动，把任务拆分为一个小块」</p>
+
+<p>写作，这一块主要是公众号、博客，那这一块实在非常感到惭愧。然后其实有很多原因，但是那些原因都是一些借口而已，那最重要的是一个自己的拖延症，然后再解决拖延症的问题，然后看那篇文章，分享一下就是比较好的解决拖延症的一个方法，就是把<code class="language-plaintext highlighter-rouge">这个要解决的问题拆分成每个小块</code>，然后去解决每一小块里面的内容，那这样就很容易去完成。我举个例子，你要完成一百公里的跑步，那你肯定要计划，每天跑多少，每次跑之前你要去做什么，那肯定是先穿上鞋。这样拆分成100公里到拆分的最小单位就是穿上鞋走出家门。所以说，<code class="language-plaintext highlighter-rouge">万事开头难</code>，只要走出家门穿上鞋就很小的一个动作，你就能完成，那完成了就相当于100公里。写作亦是一样，先开电脑就完成了一半了。</p>
+
+<p>有了许多清晰的目标，不再是以前那么迷茫，知道自己想要什么，如何去实现。</p>
+
+<h1 id="生活">生活</h1>
+
+<p><code class="language-plaintext highlighter-rouge">锻炼身体，工作是长跑，讲的可持续发展。</code>之前有慢性咽炎的病，慢性咽炎是有过这个病的人是肯定知道的，在晚上很难入睡的。因为是慢性的，也是一个相当于是一个不治之症，那只能提高自己的免疫力，今年我前前后后应该连续运动了大概90天的样子，由于疫情的原因，下半年就开始参加了公司组织的每周羽毛球活动，同时也感谢小伙伴们能带领我这小菜鸟，交给我许多技能，<code class="language-plaintext highlighter-rouge">羽毛球其实对于老年人，尤其是程序员来说，玩这个项目是非常不错的</code>。</p>
+
+<p>在投资方面主要是两个，第1个是跟着一个「招财大牛猫」这个公众号，去学习一些A股的投资，主要是<code class="language-plaintext highlighter-rouge">做长线，还有ETF指数基金</code>，那么这个是非常轻松的，相当于看好了茅20里面的买就可以了，不需要天天都关注，这种交易风格，我也是非常喜欢的。第2个就是还有一个<code class="language-plaintext highlighter-rouge">打新转债</code>，这个确实可以吃到肉，一个账号大概两三千每年，那其实苍蝇也是肉。有机会的话可以到香港去办一张香港银行账号卡，然后可以打新股，那这样的话港股基本上对新的股民比较好，基本上中签率是非常高的，而且有可能中签了基本上就会翻倍，像今年上市的有百威，还有京东健康，等等都是不错的。没有香港银行卡，相当于你投资之后，要提现的话是提不出来的，必须有当地的银行卡才可以。</p>
+
+<p>在家人这方面，孩子慢慢的长大了，孩子长大后他有自己的想法，然后放学时间，周末可能会去找小伙伴，很少呆在家里。因此在一起的时间也越来越少。后面可能去上初中，高中可能就没在家里面，还在一起的时间就更越来越少了，那与之相对应的就是父母，那其实也要抽出时间去多陪陪长辈，多陪陪父母，<code class="language-plaintext highlighter-rouge">所以说要珍惜当下</code>。</p>
+
+<p>老婆也开始学习花艺，<code class="language-plaintext highlighter-rouge">把自己的爱好当成事业来做</code>，这一种想法是大家都非常向往的，做自己喜欢做的事情。她当时一说要报名花艺培训，我立马就支持了。有各种兼职锻炼的机会，都不放过。有一次去小县城，我都完全不能想象从晚上8：00到凌晨6:00才完成才结束，中间还下着小雨，都坚持下来了，所以说这是兴趣驱动的，还有她努力上进的样子美丽极了。</p>
+
+<h1 id="未来期许">未来期许</h1>
+
+<ol>
+  <li>
+    <p>元旦后，就去往互联网。众所周知，互联网加班厉害，自己的规划：固定时间加班来完成工作和个人技术提升。<code class="language-plaintext highlighter-rouge">周末多陪陪家人</code>。</p>
+  </li>
+  <li>
+    <p>明确工作的优先级和重要性，<code class="language-plaintext highlighter-rouge">微软的TODO</code>继续用起来。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">每个月总结</code>，年底总结发现很多问题。我就在想每个月都总结，快速发现问题，<code class="language-plaintext highlighter-rouge">及时止损</code>，做出调整。</p>
+  </li>
+  <li>
+    <p>勤思考，多输出。坚持写作，每个月3~4篇文章。</p>
+  </li>
+  <li>
+    <p>英语，完成自己定制的计划。听和说目前的情况，坚持下去。</p>
+  </li>
+  <li>
+    <p>锻炼，每周至少两次<code class="language-plaintext highlighter-rouge">30分钟</code>以上的锻炼。</p>
+  </li>
+</ol>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/pages/chasays/github-actions/2020/12/14/improve-english/" data-toggle="tooltip" data-placement="top" title="提高英语 - 口语和思维">
+                        Previous<br>
+                        <span>提高英语 - 口语和思维</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/pages/chasays/github-actions/2021/01/01/Impressions-stormzhang-living-stream/" data-toggle="tooltip" data-placement="top" title="观后感 - stormzhang 跨年直播">
+                        Next<br>
+                        <span>观后感 - stormzhang 跨年直播</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/pages/chasays/github-actions/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0174" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/pages/chasays/github-actions/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="31">Newsletter</a>
+        
+                <a data-sort="0173" 
+                    href="/pages/chasays/github-actions/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0175" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0176" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0177" 
+                    href="/pages/chasays/github-actions/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0178" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0179" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0180" 
+                    href="/pages/chasays/github-actions/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0181" 
+                    href="/pages/chasays/github-actions/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/pages/chasays/github-actions/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/pages/chasays/github-actions/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/pages/chasays/github-actions/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/pages/chasays/github-actions/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/pages/chasays/github-actions/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/pages/chasays/github-actions/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
