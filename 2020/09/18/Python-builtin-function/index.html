@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Python内建函数 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="是计算一个数的商和余数的时候，发现基础的内建函数还没有掌握，今天空了来补一下。以下的列子均是在Python3里面支持的。
+
+">
+    
+    <meta property="article:published_time" content="2020-09-18T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="python">
+    
+    <meta property="article:tag" content="内建函数">
+    
+    <meta property="article:tag" content="效率">
+    
+    <meta property="article:tag" content="基础">
+    
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/2020/09/18/Python-builtin-function/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>Python内建函数 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/2020/09/18/Python-builtin-function/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/https://source.unsplash.com/random/1800x400" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=python" title="python">python</a>
+                        
+                        <a class="tag" href="/archive/?tag=%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0" title="内建函数">内建函数</a>
+                        
+                        <a class="tag" href="/archive/?tag=%E6%95%88%E7%8E%87" title="效率">效率</a>
+                        
+                        <a class="tag" href="/archive/?tag=%E5%9F%BA%E7%A1%80" title="基础">基础</a>
+                        
+                    </div>
+                    <h1>Python内建函数</h1>
+                    
+                    <h2 class="subheading">学下下内建函数，事半功倍</h2>
+                    <span class="meta">Posted by 叉叉敌 on September 18, 2020</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>是计算一个数的商和余数的时候，发现基础的内建函数还没有掌握，今天空了来补一下。以下的列子均是在Python3里面支持的。</p>
+
+<p>那就从第一个开始求余数和商开始吧。</p>
+
+<h1 id="数字有关">数字有关</h1>
+
+<h3 id="数字计算">数字计算</h3>
+
+<ul>
+  <li>divmod
+python <code class="language-plaintext highlighter-rouge">divmod() </code>函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a // b, a % b)。</li>
+</ul>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/eHOw9Q.png" alt="1" /></p>
+
+<ul>
+  <li>abs
+提到数字计算还有用的最多的， <code class="language-plaintext highlighter-rouge">abs</code>，比如求任意一个数的x进制，如果是复数就可以用上这个 <code class="language-plaintext highlighter-rouge">abs，</code> 对应的加上一个 <code class="language-plaintext highlighter-rouge">signal -</code>。</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">digits</span> <span class="o">=</span> <span class="s">'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>
+<span class="k">if</span> <span class="n">base</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Bases greater than 36 not handled in base_repr."</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">base</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Bases less than 2 not handled in base_repr."</span><span class="p">)</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">while</span> <span class="n">num</span><span class="p">:</span>
+    <span class="n">num</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+    <span class="c1">#res.append(digits[num % base])
+</span>    <span class="c1">#num //= base
+</span>    <span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">digits</span><span class="p">[</span><span class="n">r</span><span class="p">])</span>
+
+<span class="k">if</span> <span class="n">padding</span><span class="p">:</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">'0'</span> <span class="o">*</span> <span class="n">padding</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">'-'</span><span class="p">)</span>
+<span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">res</span> <span class="ow">or</span> <span class="s">'0'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>但是还可以用切片的方式来处理这个算法，</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">numberToBase</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">digits</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">digits</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">b</span><span class="p">))</span>
+        <span class="n">n</span> <span class="o">//=</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">digits</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>round</p>
+  </li>
+  <li>
+    <p>pow
+和math.pow 有点差别就是，后者是返回的float，前者类似于 <code class="language-plaintext highlighter-rouge">**</code>的计算结果， 比如pow(2,2) = 2**2</p>
+  </li>
+  <li>sum
+有其他高级用法的可以参考numpy.sum这个求和</li>
+  <li>min</li>
+  <li>max
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">round</span><span class="p">(</span><span class="mf">2.456</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mf">2.26</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">27</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># 列表计算总和后再加 2
+</span><span class="mi">12</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="mi">4</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="mi">1</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="输入输出">输入输出</h3>
+
+<ul>
+  <li>input</li>
+  <li>print
+在python3的时候是一个函数， 不只是一个关键字了，
+    <blockquote>
+      <p>print(*objects, sep=’ ‘, end=’\n’, file=sys.stdout, flush=False)</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>下面就是每个0.5s间隔打一个点，就是类似<code class="language-plaintext highlighter-rouge">loading.......</code>的动态效果</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"Loading"</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="s">""</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"."</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="s">''</span><span class="p">,</span><span class="n">flush</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="数据类型">数据类型</h3>
+
+<ul>
+  <li>bool
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>  <span class="c1"># bool 是 int 子类
+</span><span class="bp">True</span>
+</code></pre></div>    </div>
+  </li>
+  <li>int
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="s">'0xa'</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span>  
+<span class="mi">10</span>  
+</code></pre></div>    </div>
+  </li>
+  <li>float</li>
+  <li>complex
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 注意：这个地方在"+"号两边不能有空格，也就是不能写成"1 + 2j"，应该是"1+2j"，否则会报错
+</span><span class="o">&gt;&gt;&gt;</span> <span class="nb">complex</span><span class="p">(</span><span class="s">"1+2j"</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">2j</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <h3 id="进制转换">进制转换</h3>
+  </li>
+  <li>
+    <p>bin</p>
+  </li>
+  <li>otc</li>
+  <li>hex
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="s">'0b1010'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">oct</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="s">'0o24'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">hex</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="s">'0xc'</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="数据结构">数据结构</h1>
+
+<h3 id="序列">序列</h3>
+
+<ul>
+  <li>list</li>
+  <li>tuple
+```py</li>
+</ul>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>tuple({1:2,3:4})    #针对字典 会返回字典的key组成的tuple</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>(1, 3)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+### 操作序列
+- reverse
+- slice
+其实和[::]类似，可以巧妙的用步长为-1就可以反转，看看下面的列子
+```py
+
+&gt;&gt;&gt; s.reverse()
+&gt;&gt;&gt; s
+[1, 4, 3, 2]
+
+&gt;&gt;&gt;myslice = slice(5)    # 设置截取5个元素的切片
+&gt;&gt;&gt; myslice
+slice(None, 5, None)
+&gt;&gt;&gt; arr = range(10)
+&gt;&gt;&gt; arr
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&gt;&gt;&gt; arr[myslice]         # 截取 5 个元素
+[0, 1, 2, 3, 4]
+&gt;&gt;&gt; s
+[1, 4, 3, 2]
+&gt;&gt;&gt; s[::-1]
+[2, 3, 4, 1] #可以有reverse的效果
+</code></pre></div></div>
+
+<h3 id="字符串">字符串</h3>
+
+<ul>
+  <li>str</li>
+  <li>bytes (only for python3)
+可以用于有些socket只接受byte类型的input</li>
+  <li>ord
+ord() 函数是 chr() 函数（对于8位的ASCII字符串）或 unichr() 函数（对于Unicode对象）的配对函数</li>
+  <li>
+    <p>chr</p>
+  </li>
+  <li>repr
+repr() 函数将对象转化为供解释器读取的形式。
+和str()效果类似</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="s">'[1, 4, 3, 2]'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">bytes</span><span class="p">(</span><span class="s">'xxd'</span><span class="p">,</span> <span class="s">'utf-8'</span><span class="p">)</span>
+<span class="sa">b</span><span class="s">'xxd'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">bytes</span><span class="p">(</span><span class="s">'叉叉敌'</span><span class="p">,</span> <span class="s">'utf-8'</span><span class="p">)</span>
+<span class="sa">b</span><span class="s">'</span><span class="se">\xe5\x8f\x89\xe5\x8f\x89\xe6\x95\x8c</span><span class="s">'</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)</span>
+<span class="mi">97</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'A'</span><span class="p">)</span>
+<span class="mi">65</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">97</span><span class="p">)</span>
+<span class="s">'a'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">repr</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="s">'[1, 4, 3, 2]'</span>
+</code></pre></div></div>
+
+<h3 id="数据集合">数据集合</h3>
+
+<ul>
+  <li>dict</li>
+  <li>set
+set() 函数创建一个无序不重复元素集，可进行关系测试，删除重复数据，还可以计算交集、差集、并集等。</li>
+  <li>frozenset
+返回一个冻结的集合，冻结后集合<code class="language-plaintext highlighter-rouge">不能再添加或删除任何元素</code>。对象可以list， dict，tuple等</li>
+  <li>getattr
+用于判断对象是否包含对应的属性</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="s">'a'</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="s">'b'</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="s">'t'</span><span class="p">)</span>     <span class="c1"># 传入关键字
+</span><span class="p">{</span><span class="s">'a'</span><span class="p">:</span> <span class="s">'a'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">:</span> <span class="s">'b'</span><span class="p">,</span> <span class="s">'t'</span><span class="p">:</span> <span class="s">'t'</span><span class="p">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ss</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+<span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">set1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">set2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">set1</span> <span class="o">|</span><span class="n">set2</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">set1</span> <span class="o">-</span> <span class="n">set2</span>
+<span class="p">{</span><span class="mi">5</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">set2</span> <span class="o">-</span> <span class="n">set1</span>
+<span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">adict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fs</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">adict</span><span class="p">[</span><span class="n">fs</span><span class="p">]</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">adict</span>
+<span class="p">{</span><span class="nb">frozenset</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}):</span> <span class="mi">123</span><span class="p">}</span>
+
+<span class="c1"># 获取对象属性后返回值可直接使用
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>        
+<span class="p">...</span>     <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="p">...</span>         <span class="n">x</span> <span class="o">=</span> <span class="n">a</span>        
+<span class="p">...</span>         <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>        
+<span class="p">...</span>         <span class="n">b</span> <span class="o">=</span> <span class="n">x</span>        
+<span class="p">...</span>         <span class="k">print</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>   
+<span class="p">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>                 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s">'set'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="s">'1'</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="s">'2'</span><span class="p">)</span>
+<span class="mi">2</span> <span class="mi">1</span>
+</code></pre></div></div>
+<h3 id="处理集合的函数">处理集合的函数</h3>
+<ul>
+  <li>
+    <p>len
+Python len() 方法返回对象（字符、列表、元组等）长度或项目个数。</p>
+  </li>
+  <li>
+    <p>sorted
+sorted() 函数对所有可迭代的对象进行排序操作。</p>
+  </li>
+  <li>
+    <p>enumerate
+enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。
+这样就不用再加一个参数来获取对于的位置，直接就可以获取到对于的index值。</p>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="mi">0</span> <span class="mi">1</span>
+<span class="mi">1</span> <span class="mi">4</span>
+<span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">3</span> <span class="mi">2</span>
+</code></pre></div></div>
+<ul>
+  <li>all
+可迭代对象中全部是True, 结果才是True
+比如用于 需要执行所有的操作， 但是要最后检查实际的结果其中有没有Fail。 先把结果保存到一个list，然后用all(list)。
+    <blockquote>
+      <p>元素除了是 0、空、None、False 外都算 True。 any下同。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>any
+any() 函数用于判断给定的可迭代参数 iterable 是否全部为 False，则返回 False，如果有一个为 True，则返回 True。</p>
+  </li>
+  <li>zip
+用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表。
+    <blockquote>
+      <p>在 Python 3.x 中为了减少内存，zip() 返回的是一个对象。如需展示列表，需手动 list() 转换。</p>
+    </blockquote>
+  </li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">zipped</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">ss</span><span class="p">))</span> <span class="c1"># 打包
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">zipped</span>
+<span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">zipped</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">zip</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x105c89190</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">zipped</span><span class="p">))</span> <span class="c1"># 与 zip 相反，*zipped 可理解为解压，返回二维矩阵式
+</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>filter
+filter() 函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的新列表。</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="k">def</span> <span class="nf">is_sqr</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span>
+ 
+<span class="n">newlist</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">is_sqr</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">newlist</span><span class="p">)</span>
+<span class="p">::</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+ 
+</code></pre></div></div>
+<ul>
+  <li>map
+map() 会根据提供的函数对指定序列做映射。用法和filter有点类似，<code class="language-plaintext highlighter-rouge"> 不过map要多个迭代参数</code></li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">:</span>            <span class="c1"># 计算平方数
+</span><span class="p">...</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="p">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">map</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>   <span class="c1"># 计算列表各个元素的平方
+</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>  <span class="c1"># 使用 lambda 匿名函数
+</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+ 
+<span class="c1"># 提供了两个列表，对相同位置的列表数据进行相加
+</span><span class="o">&gt;&gt;&gt;</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>locals
+locals() 函数会以字典类型返回当前位置的<code class="language-plaintext highlighter-rouge">全部局部变量</code>。</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">testlocals</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+<span class="p">...</span>     <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="nb">locals</span><span class="p">())</span>
+<span class="p">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">testlocals</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">{</span><span class="s">'arg'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s">'x'</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>globals
+globals() 函数会以字典类型返回当前位置的<code class="language-plaintext highlighter-rouge">全部全局变量</code>。</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">globals</span><span class="p">()</span>
+<span class="p">{</span><span class="s">'__name__'</span><span class="p">:</span> <span class="s">'__main__'</span><span class="p">,</span> <span class="s">'__doc__'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s">'__package__'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s">'__loader__'</span><span class="p">:</span> <span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">_frozen_importlib</span><span class="p">.</span><span class="n">BuiltinImporter</span><span class="s">'&gt;, '</span><span class="n">__spec__</span><span class="s">': None, '</span><span class="n">__annotations__</span><span class="s">': {}, '</span><span class="n">__builtins__</span><span class="s">': &lt;module '</span><span class="n">builtins</span><span class="s">' (built-in)&gt;, '</span><span class="n">s</span><span class="s">': [1, 4, 3, 2], '</span><span class="nb">slice</span><span class="s">': slice(None, 2, None), '</span><span class="n">ss</span><span class="s">': [2, 3, 4, 5], '</span><span class="n">set1</span><span class="s">': {2, 3, 4, 5}, '</span><span class="n">set2</span><span class="s">': {1, 2, 3, 4}, '</span><span class="n">i</span><span class="s">': 3, '</span><span class="n">v</span><span class="s">': 2, '</span><span class="n">list1</span><span class="s">': &lt;zip object at 0x105cd8410&gt;, '</span><span class="n">zipped</span><span class="s">': [(1, 2), (4, 3), (3, 4), (2, 5)], '</span><span class="n">testlocals</span><span class="s">': &lt;function testlocals at 0x105c497a0&gt;}
+</span></code></pre></div></div>
+
+<h3 id="迭代器和生成器">迭代器和生成器</h3>
+
+<ul>
+  <li>range
+用方法和切片参数类似</li>
+  <li>next</li>
+  <li>iter
+iter和next搭配使用， 这样就节约内存的加载，就用的时候才会价值。</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="p">...</span>     <span class="n">x</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="s">'s'</span><span class="p">)</span>
+<span class="p">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">...</span>     <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s">'s'</span><span class="p">:</span>
+<span class="p">...</span>             <span class="k">break</span>
+<span class="p">...</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="n">s</span>
+</code></pre></div></div>
+<h3 id="执行字符串代码">执行字符串代码</h3>
+<ul>
+  <li>compile
+compile() 函数将一个字符串编译为字节代码。</li>
+  <li>eval</li>
+  <li>exec
+可以动态的拼接字符串后，然后执行字符串语句。</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="nb">str</span> <span class="o">=</span> <span class="s">"for i in range(0,10): print(i)"</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="s">'exec'</span><span class="p">)</span>   <span class="c1"># 编译为字节代码对象 
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">c</span>
+<span class="o">&lt;</span><span class="n">code</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x10141e0b0</span><span class="p">,</span> <span class="nb">file</span> <span class="s">""</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">exec</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">str</span> <span class="o">=</span> <span class="s">"3 * 4 + 5"</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="s">'eval'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="mi">17</span>
+</code></pre></div></div>
+
+<h3 id="内存相关">内存相关</h3>
+<ul>
+  <li>hash
+hash() 用于获取取一个对象（字符串或者数值等）的哈希值。
+返回的 hash 值都是固定长度的，也用于校验程序在传输过程中是否被第三方（木马）修改，如果程序（字符）在传输过程中被修改hash值即发生变化，如果没有被修改，则 hash 值和原始的 hash 值吻合。 有点类似文件的md5，不过md5也有可能重复，实际应该是shanum。</li>
+</ul>
+
+<h3 id="其他">其他</h3>
+<ul>
+  <li>open
+```py
+with open(‘file’) as f:
+  f.write(‘ccd\n’)</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- __import__
+用于动态加载类和函数 。
+经常用于一个模块经常变化就可以使用 __import__() 来动态载入。
+
+- callable
+用于检查一个对象是否是可调用的。如果返回 True，object 仍然可能调用失败；但如果返回 False，调用对象 object 绝对不会成功。
+```py
+&gt;&gt;&gt; def add(a, b):
+...     return a + b
+... 
+&gt;&gt;&gt; callable(add)             # 函数返回 True
+True
+</code></pre></div></div>
+<ul>
+  <li>classmethod
+修饰符对应的函数<code class="language-plaintext highlighter-rouge">不需要实例化</code>，不需要 self 参数，但第一个参数需要是表示自身类的 cls 参数，可以来调用类的属性，类的方法，实例化对象等。
+```py
+class A(object):
+  bar = 1
+  def func1(self):<br />
+      print (‘foo’) 
+  @classmethod
+  def func2(cls):
+      print (‘func2’)
+      print (cls.bar)
+      cls().func1()   # 调用 foo 方法</li>
+</ul>
+
+<p>A.func2()               # 不需要实例化</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+
+还有一个比较常见的例子
+```py
+#创建一个类
+class Date(object):
+    def __init__(self, year, month, day):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    def print_date(self):
+        print(self.year, self.month, self.day)
+
+#实例化类
+data_object = Date('2018','10','31')
+#执行输出函数
+data_object.print_date()
+2018 10 31
+
+#在上面的例子中可以看到类的实例化需要传递‘年月日’三个参数。并且是要求分别传递。那么假设用户不按照要求填写，他填写的2018-10-31这样的一个参数呢？
+#我们需要先对参数进行分割处理，然后再实例化类。例如下面的代码：
+
+#分割函数
+def from_string(date_as_string):
+    return map(int, date_as_string.split('-'))
+
+#创建类
+class Date(object):
+    def __init__(self, year, month, day):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    def print_date(self):
+        print(self.year, self.month, self.day)
+
+#先执行分割函数对数据进行处理
+year, month, day = from_string('2018-10-31')
+
+#实例化类
+data_object = Date(year, month, day)
+#执行输出函数
+data_object.print_date()
+2018 10 31
+
+#这样做视乎可以解决这个问题，但是from_string方法应该是属于类的一部分，现在需要写在外部，就导致了类功能外散，后期不便于管理，以后增加功能的时候会出现问题，所以我们就必须将from_string迁移到类里面去，并且还要在类的实例化之前调用它，我们都知道，一般情况下，如果想调用类中的方法，必须先实例化类，而我们现在的需求是要在实例化之前。这时就需要使用@classmethod咯。代码如下：
+
+#创建一个类
+class Date(object):
+    def __init__(self, year, month, day):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    def print_date(self):
+        print(self.year, self.month, self.day)
+    
+    #声明类方法
+    @classmethod
+    def from_string(cls, date_as_string):
+        year, month, day = map(int, date_as_string.split('-'))
+        return cls(year, month, day) #实例化类并返回实例化对象
+
+data_object = Date.from_string('2018-10-31')
+#执行输出函数
+data_object.print_date()
+2018 10 31
+
+#这是一个比较经典的案例，来自于stackoverflow。我暂时没有想到更好的，就先对原案例进行了一些修改并且加上了一些注释。
+#使用@classmethod可以有效的防止类功能外散，可以将对属于当前类的功能集中起来，便于管理，并且对类的继承、重载、多态都是有一定的帮助，这个小例子只能算是一个用法说明，在实际的操作中会有更加复杂的用法，还需要以项目的实际业务逻辑来制定。
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>staticmethod
+与上面的classmethod对应还有这个方法。
+<code class="language-plaintext highlighter-rouge">最大的差别就是，在这个方法里面不涉及其他类成员的功能函数方法。</code>因为这个方法声明后始终调用的是基类的方法。而classmethod始终是当前类的。</p>
+  </li>
+  <li>
+    <p>super
+提到类，那不得不说下这个。<code class="language-plaintext highlighter-rouge"> super()有一个非常好的优势，就是可以隐式的调用父类的当前类重载掉的方法。</code></p>
+  </li>
+</ul>
+
+<p>https://www.zky.name/article/67.html</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#声明A类
+</span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'当前对象是 {} 来自 A类的plus方法'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">+=</span> <span class="n">m</span>
+
+<span class="c1">#声明B类，继承A类
+</span><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'当前对象是 {} 来自 B类的plus方法'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="c1">#调用C类的plus方法
+</span>        <span class="nb">super</span><span class="p">().</span><span class="n">plus</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">3</span>
+
+<span class="c1">#声明C类，继承A类。
+</span><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+
+    <span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'当前对象是 {} 来自 C类的plus方法'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="c1">#调用A类的plus方法
+</span>        <span class="nb">super</span><span class="p">().</span><span class="n">plus</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">4</span>
+
+<span class="c1">#声明D类，继承B和C类，这样D类就有2个父类咯。B和C就成为了兄弟类。
+#D类的MRO是[D,B,C,A,Object]
+</span><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'当前对象是 {} 来自 D类的plus方法'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="c1">#调用B类的plus方法
+</span>        <span class="c1">#一定要记住一点，在这个例子里，所有类中的super()函数都没有指定参数，所以从D类一直super()到A类，所有的self都是D类的self。
+</span>        <span class="nb">super</span><span class="p">().</span><span class="n">plus</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">5</span>
+
+<span class="c1">#实例化D类
+</span><span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">()</span>
+
+<span class="c1">#调用D类的plus()方法
+</span><span class="n">d</span><span class="p">.</span><span class="n">plus</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#输出D类的n属性
+</span><span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>out：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>当前对象是 &lt;__main__.D object at 0x000000000222DCF8&gt; 来自 D类的plus方法
+当前对象是 &lt;__main__.D object at 0x000000000222DCF8&gt; 来自 B类的plus方法
+当前对象是 &lt;__main__.D object at 0x000000000222DCF8&gt; 来自 C类的plus方法
+当前对象是 &lt;__main__.D object at 0x000000000222DCF8&gt; 来自 A类的plus方法
+19
+</code></pre></div></div>
+<p>如果是多重继承，就需要 <code class="language-plaintext highlighter-rouge">设置MRO并指定起始类</code></p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'当前对象是 {} 来自 D类的plus方法'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="bp">self</span><span class="p">).</span><span class="n">plus</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="c1">#super(C,D).plus(self,m) 和上一句效果相同。
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">5</span>
+
+<span class="c1">#实例化D类
+</span><span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">()</span>
+
+<span class="c1">#调用D类的plus()方法
+</span><span class="n">d</span><span class="p">.</span><span class="n">plus</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#输出D类的n属性
+</span><span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">n</span><span class="p">)</span>
+</code></pre></div></div>
+<p>输出结果：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>当前对象是 &lt;__main__.D object at 0x000000000280DCF8&gt; 来自 D类的plus方法
+当前对象是 &lt;__main__.D object at 0x000000000280DCF8&gt; 来自 A类的plus方法
+12
+</code></pre></div></div>
+
+<ul>
+  <li>dir
+不带参数时，返回当前范围内的变量、方法和定义的类型列表；带参数时，返回参数的属性、方法列表。如果参数包含方法__dir__()，该方法将被调用。如果参数不包含__dir__()，该方法将最大限度地收集参数信息。
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">()</span>
+<span class="p">[</span><span class="s">'__annotations__'</span><span class="p">,</span> <span class="s">'__builtins__'</span><span class="p">,</span> <span class="s">'__doc__'</span><span class="p">,</span> <span class="s">'__loader__'</span><span class="p">,</span> <span class="s">'__name__'</span><span class="p">,</span> <span class="s">'__package__'</span><span class="p">,</span> <span class="s">'__spec__'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">,</span> <span class="s">'i'</span><span class="p">,</span> <span class="s">'it'</span><span class="p">,</span> <span class="s">'list1'</span><span class="p">,</span> <span class="s">'s'</span><span class="p">,</span> <span class="s">'set1'</span><span class="p">,</span> <span class="s">'set2'</span><span class="p">,</span> <span class="s">'slice'</span><span class="p">,</span> <span class="s">'ss'</span><span class="p">,</span> <span class="s">'testlocals'</span><span class="p">,</span> <span class="s">'time'</span><span class="p">,</span> <span class="s">'v'</span><span class="p">,</span> <span class="s">'x'</span><span class="p">,</span> <span class="s">'zipped'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>help
+查看函数或模块用途的详细说明。
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span><span class="n">help</span><span class="p">(</span><span class="s">'sys'</span><span class="p">)</span>             <span class="c1"># 查看 sys 模块的帮助
+</span><span class="err">……</span><span class="n">显示帮助信息</span><span class="err">……</span>
+</code></pre></div>    </div>
+  </li>
+  <li>id
+或者内存地址
+比如查看list的是一个连续的地址。其实python的list不是一个连续的地址。</li>
+  <li>isinstance
+判断一个对象是否是一个已知的类型，类似 type()。
+如果要判断两个类型是否相同推荐使用 isinstance()。
+type有9中。
+    <blockquote>
+      <p>int，float，bool，complex，str(字符串)，list，dict(字典)，set，tuple</p>
+    </blockquote>
+  </li>
+  <li>issubclass
+2个参数，是否是后一个参数的子类</li>
+  <li>memoryview
+主要作用是获取对象的内存视图对象，即对象的引用。无论将对象的全部或者部分赋值给他们对象，都不会创建新的对象，修改被赋值对象也直接会影响原对象的值。
+    <blockquote>
+      <p>参数必须支持缓冲协议，一般常用的就是<code class="language-plaintext highlighter-rouge">bytes以及bytearray</code>，由bytes和bytearray生成的元素都是单字节的，而由其他类型（例如array.array）生成的可能包含更大的元素</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>可以看到d和z都是一个地址</p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">z</span>
+<span class="sa">b</span><span class="s">'a'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">memory</span> <span class="n">at</span> <span class="mh">0x105ee4a10</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">z</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">memory</span> <span class="n">at</span> <span class="mh">0x105ee4d50</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
+<span class="sa">b</span><span class="s">'a'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">z</span>
+<span class="sa">b</span><span class="s">'a'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">memory</span> <span class="n">at</span> <span class="mh">0x105ee4d50</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>property
+主要作用是设置类属性的方法，用于指定属性的获取、修改和删除的对应方法，可以增加对属性的限制，例如验证、过滤、二次处理等。也可以将这个函数理解为属性的“资源路由”，任何与这个属性有关的操作，都会被自动分配给对应的方法去处理。这个函数还可以用类的装饰器@property、@x.setter以及@x.deleter来替代（x为属性名）。
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">User</span><span class="p">:</span>
+<span class="p">...</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="p">...</span>         <span class="bp">self</span><span class="p">.</span><span class="n">_age</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">...</span>     <span class="o">@</span><span class="nb">property</span>
+<span class="p">...</span>     <span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="p">...</span>         <span class="s">'这是设置年龄的property属性'</span>
+<span class="p">...</span>         <span class="k">print</span><span class="p">(</span><span class="s">'正在获取年龄属性'</span><span class="p">)</span>
+<span class="p">...</span>         <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">_age</span>
+<span class="p">...</span>     <span class="o">@</span><span class="n">age</span><span class="p">.</span><span class="n">setter</span>
+<span class="p">...</span>     <span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="p">...</span>         <span class="k">print</span><span class="p">(</span><span class="s">'正在设置年龄属性'</span><span class="p">)</span>
+<span class="p">...</span>         <span class="bp">self</span><span class="p">.</span><span class="n">_age</span> <span class="o">=</span> <span class="n">value</span>
+<span class="p">...</span>     <span class="o">@</span><span class="n">age</span><span class="p">.</span><span class="n">deleter</span>
+<span class="p">...</span>     <span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="p">...</span>         <span class="k">print</span><span class="p">(</span><span class="s">'正在删除年龄属性'</span><span class="p">)</span>
+<span class="p">...</span>         <span class="k">del</span> <span class="bp">self</span><span class="p">.</span><span class="n">_age</span>
+<span class="p">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">u</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">正在设置年龄属性</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">u</span><span class="p">.</span><span class="n">age</span>
+<span class="n">正在获取年龄属性</span>
+<span class="mi">18</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">del</span> <span class="n">u</span><span class="p">.</span><span class="n">age</span>
+<span class="n">正在删除年龄属性</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="read-more">read more</h2>
+<p>https://docs.python.org/zh-cn/3/library/functions.html
+https://www.runoob.com/python/python-built-in-functions.html
+https://www.zky.name/article/19.html</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/09/12/bash-and-shell/" data-toggle="tooltip" data-placement="top" title="Bash和sh的区别">
+                        Previous<br>
+                        <span>Bash和sh的区别</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/09/19/automation-framework-in-cloud/" data-toggle="tooltip" data-placement="top" title="云测试自动化框架">
+                        Next<br>
+                        <span>云测试自动化框架</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="32">Newsletter</a>
+        
+                <a data-sort="0174" 
+                    href="/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0178" 
+                    href="/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0179" 
+                    href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

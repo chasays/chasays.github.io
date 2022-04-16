@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="商业增长也是不错的基础课程 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="学习笔记： 极客时间 - 从O开始做增长：从0到1的增长实战方法论 https://time.geekbang.org/column/intro/165
+
+">
+    
+    <meta property="article:published_time" content="2021-02-27T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="增长">
+    
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/2021/02/27/GrowingIO-basic/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>商业增长也是不错的基础课程 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/2021/02/27/GrowingIO-basic/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/https://source.unsplash.com/random/1800x400" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E5%A2%9E%E9%95%BF" title="增长">增长</a>
+                        
+                    </div>
+                    <h1>商业增长也是不错的基础课程</h1>
+                    
+                    <h2 class="subheading">学习下增长知识</h2>
+                    <span class="meta">Posted by 叉叉敌 on February 27, 2021</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>学习笔记： 极客时间 - 从O开始做增长：从0到1的增长实战方法论 https://time.geekbang.org/column/intro/165</p>
+
+<p>学习，真的不是一件容易的事情。</p>
+<h1 id="开篇">开篇</h1>
+
+<p>我想要分享给你的是一套可以成功复制的增长思路和实践技巧。</p>
+
+<h2 id="增长小白如何弯道超车">增长小白如何“弯道超车”</h2>
+
+<p>“最终为用户，简单却有效”。满足用户的<code class="language-plaintext highlighter-rouge">核心需求</code>，最终赢得了大量用户。</p>
+
+<p>1、刚开始做容易陷入把需求复杂化，输出自以为“最好的，最专业的”方案给用户，这样往往开发成本高而且效果差；上级说“要以用户想要什么为目标去发散思考，而不是以功能为目标去发散”，<code class="language-plaintext highlighter-rouge">洞察用户真实想法，便找准了功能的方向</code>，用杠杆以小撬动大，而不迷失在“专业”的功能实现层面上；</p>
+
+<p>2、奥卡姆剃刀原理；「如无必要，勿增实体」，工作中多次在简单优化文案后数据得到提升，小小的文案修改往往起到点石成金的作用；</p>
+
+<h2 id="如何理解增长">如何理解“增长”？</h2>
+
+<p>“增长”代表的是<code class="language-plaintext highlighter-rouge">产品的长期价值</code>，包括用户价值及商业价值，当然两者是相辅相成的。</p>
+
+<p>极客增长：比如抖音它只能验证现有的想法，永远无法探索未知的东西。
+产品极客：和增长黑客相反，产品极客鼓励<code class="language-plaintext highlighter-rouge">创新</code>、追求极致。比如微信</p>
+
+<p>“事情不会在出现问题的那个层面上得到解决，只有上升到更高的层面才会得到解决。”</p>
+
+<p>上面的2种思维合在一起：产品极客关注<code class="language-plaintext highlighter-rouge">创新、洞察力、思维、体验、传播</code>等等；增长黑客注重数据驱动及小成本快速实验；两者如能
+合二为一，这不正是我们上一讲中提到的<code class="language-plaintext highlighter-rouge">“最终为用户，简单却有效”</code>。</p>
+
+<p>我们一方面要<code class="language-plaintext highlighter-rouge">以用户为中心</code>，另一方面要找到其中最关键的可以影响到增长的爆破点。这个爆破点取决 于<code class="language-plaintext highlighter-rouge">“差异性洞察”</code>。只有当你捕捉到了别人没有发现的点，你才可能出奇制胜。</p>
+
+<h2 id="不同职能如何做好增长">不同职能如何做好增长？</h2>
+
+<ol>
+  <li>增长全景图包含北极星指标、<code class="language-plaintext highlighter-rouge">1级方向、2级机会、3级落地、4级成果</code>这几大部分。</li>
+  <li>北极星指标极其重要,贯穿增长始终;错误的北极星指标 也好过没有北极星指标。</li>
+  <li>增长是一个体系化的工程,在执行过程中大家各有侧重, 但围绕统一的大方向互相协同。</li>
+</ol>
+
+<p>道：用户为中心，简单却有效。
+术：增长全景图。
+器：产品极客、增长黑客、数据驱动。
+用：将增长落地，切实有效的分解到工作中。</p>
+
+<h2 id="做增长如何处理职能间的矛盾">做增长如何处理职能间的矛盾？</h2>
+
+<p>只要能满足核心需求，用户完全可以忽略其它的小瑕疵。</p>
+
+<p>在强调<code class="language-plaintext highlighter-rouge">抓大放小</code>，力求用<code class="language-plaintext highlighter-rouge">最小成本获取最大价值</code>。</p>
+
+<p>职业分工过细使得很多人只关注自己“份内”的工作，而<code class="language-plaintext highlighter-rouge">忽略了彼此协作获取终极价值</code>。</p>
+
+<h1 id="找对目标-7">找对目标 7</h1>
+
+<p>正确的增长目标：说到增长目标，就不得不提到一个非常棒的概念：<code class="language-plaintext highlighter-rouge">北极星指标</code>（North	Star	Metric），又叫OMTM（One
+Metric	That	Matters，<code class="language-plaintext highlighter-rouge">第一关键指标</code>）。</p>
+
+<p><code class="language-plaintext highlighter-rouge">电商的长期价值：快捷的网上购物，第一指标：GMV总销售额。京东的北极星指标里一定会包含对成本的考量，因为自营的利润很低，成本就是命脉。通过差异性洞察找到增长爆破点</code></p>
+
+<p>销售额=用户量X转化率(续费率就是我们要做的)</p>
+
+<p>企业长远价值确实不会轻易改变,但在产品的不同生命周期,关注点是不同的,聚焦的指标自然也是不同。- <code class="language-plaintext highlighter-rouge">挖掘多元化器求发现新的增长点</code></p>
+
+<p>既要具体到<code class="language-plaintext highlighter-rouge">清晰的指标</code>,又不要限制做事的方式。
+不断提升自己的眼界和格局,像CEO一样<code class="language-plaintext highlighter-rouge">高瞻远瞩</code>。</p>
+
+<p>OKR包含了KPI的功能，一个目标对应多个KR(关键成果)</p>
+
+<p><code class="language-plaintext highlighter-rouge">SMART是制定一个目标的原则</code>，具体(具体到数字)、可衡量(有数字来衡量)、可实现(有挑战可落地)、相关性(和目标有关)、时限性(类似双规)</p>
+
+<p>制度仅仅只是辅助工具,最重要的是你怎么看待和使用它
+做增长需要全局视角、价值导向,职能之间的配合和协同是关键</p>
+
+<h1 id="学会洞察-15">学会洞察 15</h1>
+<p>阿里巴巴、京东等电商平台的数据显示，中国绝大多数的电商流水产生于早上10点、下午3点和晚上9点这三个时段。通过这个时间数据，江南春发现中国人最核心的消费决策都发生在公寓楼和写字楼。 因此年轻人是用户体。</p>
+
+<p>“洞察”成功的结果就像是发现了一片<code class="language-plaintext highlighter-rouge">前所未见的新大陆</code>，激动人心。<code class="language-plaintext highlighter-rouge">洞察其实就是发现差异、发现未知的过程</code>，几个小技巧</p>
+
+<ol>
+  <li>通过百度指数分析 (我前面知乎好物的文章提到过这个)
+比如随意输入一个产品名称，在“需求图谱”一栏里，就可以看到相关的搜索热词，凭此我们可以判断该产
+品用户还对什么感兴趣。这对挖掘用户喜好以及潜在的商务合作机会都有很大帮助。
+    <blockquote>
+      <p>https://index.baidu.com/v2/main/index.html#/demand/%E4%BA%AC%E4%B8%9Cplus%E4%BC%9A%E5%91%98?words=%E4%BA%AC%E4%B8%9Cplus%E4%BC%9A%E5%91%98,88vip</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/q806xf.png" alt="" /></p>
+
+<p>数据获得只是一方面，更重要的是数据背后的<code class="language-plaintext highlighter-rouge">洞察——发现差异点，分析差异点</code>，你才能有可 能抓住增长爆破点。</p>
+
+<ol>
+  <li>分析用户留言和评论</li>
+</ol>
+
+<p>在App Store里或安卓的应用市场、论坛、微博等很多地方都可以看到用户对你产品的评论。按照正常情况 来说，大部分用户是不喜欢评价的，除非遇到让自己非常愤怒的事情。</p>
+
+<ol>
+  <li>访谈老板</li>
+</ol>
+
+<p>多跟老板聊聊天，借这个机会了解 产品的目标、方向、核心资源及优势、用户等等，完全可以起到事半功倍的效果。</p>
+
+<p>我自己一开始也不习惯问别人，认为独立思考、独立解决问题，不麻烦别人是一种美德。但后来我慢慢想通了，<code class="language-plaintext highlighter-rouge">如果能在10分钟内解决问题，为什么要花上好几天呢，而且还不一定能解决。好的人脉关系都是互相麻烦出来的”。</code></p>
+
+<ol>
+  <li>留意行业分析及用户行为报告</li>
+</ol>
+
+<p>搜索：关键字「所在垂直行业+报告」， 比如京东： 电商+报告</p>
+
+<blockquote>
+  <p>这个是中国电商报告：http://www.gov.cn/xinwen/2020-07/02/5523479/files/0a2c57d8ba6d4e26b83d96cdd764d6f0.pdf</p>
+</blockquote>
+
+<p>可以参考下内部工具：京东数聚汇， 需要通过ERP才能登陆。</p>
+
+<p>调研<code class="language-plaintext highlighter-rouge">目标</code>，再考虑看什么<code class="language-plaintext highlighter-rouge">数据</code>（包括数据分析和访谈信息），如何<code class="language-plaintext highlighter-rouge">分析</code>数据，结果如何<code class="language-plaintext highlighter-rouge">落地</code>，</p>
+
+<ul>
+  <li>要看现在主流的市场是什么,再和它差异化竞争。 <code class="language-plaintext highlighter-rouge">不清楚定位，那就去调研现有用户；增长瓶颈就调研潜在用户；</code>，从0开始就从定位目标人群开始；</li>
+  <li>“<code class="language-plaintext highlighter-rouge">铁人三项</code>”数据是最基础的数据，所有产品通用，而且<code class="language-plaintext highlighter-rouge">非常容易挖掘出差异点</code>。(性别、年龄、地域)</li>
+</ul>
+
+<p>花式比较：</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">同类比较</code>：比如淘宝88vip和京东plus比较，比如城市、用户占比、就可以看出有没有提升的空间， 提升空间在哪</li>
+</ul>
+
+<p>下面这个图说明，四线城市是一个增长点。
+<img src="https://gitee.com/chasays/mdPic/raw/master/uPic/MBslwF.png" alt="" /></p>
+
+<p>只要在对比中出现重大差异,都值得我们去研究,顺藤摸瓜很可能就会得出惊人的洞察。<code class="language-plaintext highlighter-rouge">主要对比，不同的地方都会增长的地方</code>。</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/wOy1fZ.png" alt="" /></p>
+<ul>
+  <li>一定要可以落地的分析才有意义。分析的在专业不能落地也是白搭。</li>
+  <li>
+    <p>RFM(最近一次消费 (Recency)、消费频率 (Frequency)、消费金额 (Monetary))模型是衡量客户价值和客户创利能力的重要工具和手段。在众多的客户关系管理(CRM)的分析模式中，RFM模型是被广泛提到的。该机械模型通过一个客户的近期购买行为、购买的总体频率以及花了多少钱3项指标来描述该客户的价值状况。
+<img src="https://gitee.com/chasays/mdPic/raw/master/uPic/W3wpcX.png" alt="" /></p>
+  </li>
+  <li>访谈内容，不要刻板，围绕下面的框架深挖。<code class="language-plaintext highlighter-rouge">访谈中得出的任何结论,都不可以作为最终定论</code>， 还有一定要<code class="language-plaintext highlighter-rouge">对比</code>。</li>
+</ul>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/n8EiWX.png" alt="" />
+<img src="https://gitee.com/chasays/mdPic/raw/master/uPic/xznOaU.png" alt="" /></p>
+
+<p>“洞察”一定不能停留在表面,而是要<code class="language-plaintext highlighter-rouge">挖掘用户背后潜在的诉求和细微的心理活动</code>。我有个做了多年用户研究的朋友听过我的理念后，说最近突然领悟到：这就好像淘金一样，你不冲到最后一 粒金就还是一堆沙，没用的。</p>
+
+<ul>
+  <li>用户量是越对的越好， 不是越多越好，也不是越细越好</li>
+</ul>
+
+<p>需要特别注意的是，要把<code class="language-plaintext highlighter-rouge">数据支撑及必要的相关性</code>说明附在后面。这是因为如果没有必要的数据支撑，调研结果将不具备说服力。</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/KZbibU.png" alt="" /></p>
+
+<p>提炼伣重于在差异对比中体现出关键信息。</p>
+
+<p>重点，要考的：<strong>总之，增长<code class="language-plaintext highlighter-rouge">强调少而精、一针见血</code>，这体现在我们工作的方方面面中：比如北极星指标（只有一个或一 组）、数据分析（基础三项）、用户分类（尽量单一维度）、用户画像（最关键的差异点）……你发现这个 规律了吗？</strong></p>
+
+<h1 id="发现增长机会-19"><strong>发现增长机会</strong> 19</h1>
+
+<h2 id="抢占先机-要蓝海不要红海">抢占先机， 要蓝海，不要红海</h2>
+
+<p>如果比拼商品数量和价格，那显然不是天猫的对手，因为这正是自营模式的缺陷。但相 应地，自营模式保证了产品品质和快递速度。
+所以在营销中，<code class="language-plaintext highlighter-rouge">不要和竞争对手正面较量</code>，而是拿自己的优势去对应它的软肋，笼络和它完全不同的一批新 用户，抢占空缺市场。</p>
+<ol>
+  <li>公司整体优势或独特的商业模式；</li>
+  <li>二是在此基础上发展出的核心产品优势；</li>
+  <li>三是对应的目标群体。</li>
+</ol>
+
+<p>产品人设、陈道明 我觉得比较符合PLUS。</p>
+
+<h2 id="找到增长爆点">找到增长爆点</h2>
+
+<p>如何落实到具体的纸面上去？</p>
+<ol>
+  <li>产品目前所处阶段及关注点（探索期/成长期/成熟期/新的探索期）；</li>
+  <li>当前阶段的北极星指标；</li>
+  <li>用户范围/分类/优先级（围绕北极星指标）；</li>
+  <li>用户画像（用户差异性洞察，需要数据支撑）；</li>
+  <li>定位（三级大炮）；</li>
+  <li>一级方向（围绕定位最高级的事项）。</li>
+</ol>
+
+<p>比如：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 产品目前所处阶段及关注点：成长期到成熟期，关注发展速度及商业价值；
+2. 当前阶段的北极星指标：低成本高贷款余额（包括业绩增幅）；
+3. 用户范围/分类/优先级：用户范围为近3个月放款成功的用户；初始分类为小微企业主（带来业绩）、工
+薪人群（降低风险成本），工薪人群优先级高；后经过调研，发现只有一类兼职创业人群；
+4. 用户画像：男性、25-35岁；二线城市多、兼职创业多、资金周转多（数据略）；
+5. 定位：二线城市用户大额首选；
+6. 一级方向：突出额度高。
+</code></pre></div></div>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/sb3OZD.png" alt="" /></p>
+
+<h2 id="b端如何调研">B端如何调研</h2>
+
+<p>需要深入了解特定行业差异；然后，是该产品和行业对比的差异性。
+<img src="https://gitee.com/chasays/mdPic/raw/master/uPic/LjTnYR.png" alt="" />
+另外,业务优先级也是非常重要的,如果说C端产品以用户为中心,那么B端产品很大程度上是以业务为中心的</p>
+
+<h2 id="全局规划增长机会">全局规划增长机会</h2>
+
+<p>能否<code class="language-plaintext highlighter-rouge">制定增长策略</code>，也是市场稀缺的增长产品经理和普通产品经理最大的区别。</p>
+
+<p>产品在任何阶段，都需要提升产品价值的“慢功”以及营销推广的“快功”同时运用，以发挥更大功效</p>
+
+<ol>
+  <li>获取用户</li>
+  <li>激发活跃</li>
+  <li>提高留存</li>
+  <li>获取收入</li>
+  <li>传播推荐</li>
+</ol>
+
+<h1 id="打造百发百中的增长闭环-26">打造百发百中的增长闭环 26</h1>
+
+<h2 id="统筹全局的用户增长地图">统筹全局的用户增长地图</h2>
+<p>体验是增长的基础,但并非直接相关。
+用户増长地图以增长为导向,帮助我们在全局中找到“四两拨干 斤”的关键环节并提出相应的增长策略。</p>
+
+<h2 id="定义关键增长指标">定义关键增长指标</h2>
+
+<p>举例：听歌，
+理想的总听歌时间=下载量×注册率×首次听歌比例×持续听歌比例×平均听歌时长。 这样，我们就<code class="language-plaintext highlighter-rouge">可以把这几个指标定为二级关键增长指标</code>，通过分别提升它们，来提升总的北极星指标。我们 也可以通过这个公式来判断要优先提升哪个指标，提升到什么程度最有利于提升北极星指标。</p>
+
+<h2 id="正负双向洞察找准切入点">正负双向洞察,找准切入点</h2>
+
+<p>在<code class="language-plaintext highlighter-rouge">一级洞察中</code>,我们发<code class="language-plaintext highlighter-rouge">现用户的差异点</code>,然后结合自身优势,扬长避短,差异化地满足用户。我曾经强调 过:产品差异化一定是要找最长板,而不是找短板。但是在<code class="language-plaintext highlighter-rouge">二级洞察中,我们既需要结合优势,也需要正视缺陷。</code></p>
+
+<p>3.惊喜时刻:用户体验时发现产<code class="language-plaintext highlighter-rouge">品核心价值、感到惊喜的时刻</code>
+4.魔法数字:用户行为与<code class="language-plaintext highlighter-rouge">最终留存或核心指标</code>的相关性。</p>
+
+<h2 id="常见问题">常见问题</h2>
+
+<p>数据也是这样，<code class="language-plaintext highlighter-rouge">拆分指标有助于我们落地执行</code>，但并不意味着是把整体工作完全割裂开，最终还是要 看整体指标的情况。</p>
+
+<p>正向帮助我们稳固核心优势脱颖 而出;负向帮助我们改进现有问题避免拖产品后腿。</p>
+
+<p>级机会确定后,还需要排列优先级。毕竟做增长是一种“四两援干斤”的能力,也就是要从干头万绪中找 到最关键的核心问题,通过解決核心问题创造最大价值。可以说<code class="language-plaintext highlighter-rouge">判断优先级的能力贯穿做增长的始终</code>。</p>
+<ol>
+  <li>通过增长公式计算</li>
+  <li>按重要程度细分</li>
+  <li>根据产品阶段判断</li>
+  <li>根据实验成本判断</li>
+</ol>
+
+<h2 id="为即将破产的公司做增长">为即将破产的公司做增长</h2>
+
+<p>开拓一个新领域需要大胆创新,结合自己的<code class="language-plaintext highlighter-rouge">优勢找对目标人群,提供差异化的服务</code>,也就是我们说的<code class="language-plaintext highlighter-rouge">一级方向</code>”。而稳定妥善地经营业务需要的是励精图治,既要秉承一级方向,又<code class="language-plaintext highlighter-rouge">要精细化运营,得出“二级机会”</code>。这两者缺一不可。无论是创新者还是经营者,其实都在为增长发挥巨大的作用。</p>
+
+<p><code class="language-plaintext highlighter-rouge">这20%的高价值用户可能贡献出的 是80%的收入</code>，  <strong><code class="language-plaintext highlighter-rouge">做增长要抓大放小，找到关键核心，把它做深做透</code></strong></p>
+
+<p>于AARRR的思路，即获客、激活、留存、变现、传播。</p>
+
+<p>这些具体策略怎么得出来的？换到我的产品里怎么办？</p>
+
+<p><code class="language-plaintext highlighter-rouge">即学即用、立竿见影的东西是不存在的。掌握底层方法和思路，才是“弯道超车”的唯一法门。</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 一级方向画布
+1. 目前阶段:成长期
+2. 北极星指标：用户量增长和盈利
+3. 用户范围、分类、优先级：赚钱的用户和不赚钱的用户 (多洞察，然后测试)
+4. 用户画像：增量需要提高用户的认可度(潜在中最需要的点)
+5. 定位：定位用三级大炮(公司优势、产品优势、目前群体) 比如京东：依次是自营质量保证物流快、免运费券、用户群体待定)
+6. 一级方向：围绕北极星指标、和定位部分中的人群，去制定增长策略。 因为方向是：突破和强调潮牌的定位
+# 增长地图
+7. 二级增长策略：
+ - 北极星指标和一级方向
+ - 用户旅程和增长目标(见下图)
+ - 二级洞察：可以依赖一级洞察的核心内容(用户是谁?它的差异特征么?如何差异化地满足?)，得出正负双向二级洞察。
+ - 二级机会：
+</code></pre></div></div>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/qAOM9A.png" alt="用户旅程" /></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/0QX7yd.png" alt="正向二级洞察" /></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/6Tp899.png" alt="负向二级洞察" /></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/d4yzed.png" alt="二级机会" /></p>
+
+<p>上面就是<code class="language-plaintext highlighter-rouge">一级方向画布和用户增长地图，那可以提供清晰的增长框架</code>。并在我们做决策的时候，不遗漏关键的内容。这就是我看这篇文章获取到最大的内容，那通过这个逻辑去梳理增长，那不是从别人的经验之谈区如何下手，比如说，苹果是如何增长，小米是如何增长的，网上有很多案例，但是他没有一个框架，其实我就比较喜欢这种有框架的东西，有框架的东西之后，你往里面去填充自己的内容，那就非常清晰了。</p>
+
+<p>就像在学习机器学习一样的，你只要把参数方法还是掌握了，就根据这套就可以了，不需要去掌握太多的理论知识就可以开始<code class="language-plaintext highlighter-rouge">入门</code>，如果真正的要做到精通，还是需要继续学习、实践。</p>
+
+<h1 id="让增长落地-32">让增长落地 32</h1>
+<h2 id="为什么数据怎么优化都不提升">为什么数据怎么优化都不提升?</h2>
+<p>打造百发百中的<code class="language-plaintext highlighter-rouge">增长闭环</code>。</p>
+
+<p><code class="language-plaintext highlighter-rouge">解决正向的问题，就是创新和增长</code>。解决负向是改进。
+通过<code class="language-plaintext highlighter-rouge">差异性洞察</code>，在千头万绪中找到最关键的足以影响到增长的爆破点。</p>
+
+<p><code class="language-plaintext highlighter-rouge">精益闭环分为四个步骤，分别是：指标、假设、分解、实验。</code></p>
+
+<ol>
+  <li>指标：指标主要是通过北极星指标分解得来的。具体可参考用户增长地图中的关键指标。有多个就排序优先级。</li>
+  <li>假设：假设是通过洞察得到的可能提升指标的方式。从指标到假设，可以帮助我们避免做太多无用功，而是专注在 与<code class="language-plaintext highlighter-rouge">增长相关的关键问题</code>上。</li>
+  <li>分解：每条假设都可以分解成若干个变量，有助于量化结果。曹冲称象。通过分解，我们验验证证的的结结果果可可以以被被不不断断复复用用</li>
+  <li>实验：在经过指标、假设、分解这三个步骤后，我们需要通过实验结果来验证每一个被测试的变量的效果。</li>
+</ol>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/09svSQ.png" alt="" /></p>
+
+<h2 id="闭环案列">闭环案列</h2>
+
+<p>验证落地效果数据是否有效。
+这也体现出无数一线工作者,比如设计販、开发人员的心声:我们做了这么多工作,最后该如何验证这些工 作的价值?</p>
+
+<p><code class="language-plaintext highlighter-rouge">分解、然后看每个变量的影响，就知道那个环节最重要。受业务因素影响较大的部分，可以进行AB测试。 其他的环比数据即可。</code></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/t7Gcz2.png" alt="" /></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/MCFkWv.png" alt="" /></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/gYkThv.png" alt="" /></p>
+
+<p>通过不同的维度，找到渠口。</p>
+
+<h1 id="巧妙的复制-35">巧妙的复制 35</h1>
+
+<h2 id="需求文档">需求文档</h2>
+
+<p>逻辑框架：包含需求背景、需求目标；功能特性列表、主要逻辑、特性功能点；性能需 求、数据情况等。</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/yiWuyi.png" alt="" /></p>
+
+<p>把有能力出策略的产品经理单独提出来，放到更上游的位置，为“普通”产品经理和设计师 提需求。</p>
+<ol>
+  <li>指标 ： 需求文档需要体现出的至少有四点：需求背景、用户群体、需求所在业务模块、量化指标/非量化目标。</li>
+  <li>假设： 这里分为3点：历史假设验证记录、本次数据洞察/用户 洞察、本次需求假设。</li>
+  <li>分解：  每一个分解点里要包含具体的内容、流程 图、页面及功能、后台系统交互等，<code class="language-plaintext highlighter-rouge">我们需要逐步分解假设，形成需求假设拆分列表。</code></li>
+  <li>实验： 面包含：上线时间、测试方案、数据统计报表/埋点文档等等。</li>
+</ol>
+
+<h2 id="无线场景应用">无线场景应用</h2>
+<p>小猪佩奇的案列</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/h3DXVc.png" alt="" /></p>
+<ul>
+  <li>指标：便宜的传播</li>
+  <li>假设：过大年、集体意识、小猪佩奇</li>
+  <li>分解：2+10， 2+6+7 。。。</li>
+</ul>
+
+<p>新手参加游戏比赛如何胜出</p>
+
+<ul>
+  <li>指标： 取胜 (规则：短时间表达出来有感染力，不能太复杂)</li>
+  <li>假设： 思路简答、有创意、好实现</li>
+  <li>分解：。。。。</li>
+</ul>
+
+<p>那么如何判断自己的工作是对公司、对老板有价值的呢?这确实不太容易直接量化。但是我有个朋友提出了很好的假设:<code class="language-plaintext highlighter-rouge">让你的工作成为老板年终汇报的一页PPT</code></p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">精益闭环以目标为导向,通过假设、分解、实验,帮助我 直达目标,少走弯路。</code></li>
+  <li><code class="language-plaintext highlighter-rouge">它可以解決各种各样的问题,你可以多多尝试、延展。</code></li>
+</ol>
+
+<h2 id="设计一次实验">设计一次实验</h2>
+
+<p>想做好一个实验,需要注意以下几点,分别是<code class="language-plaintext highlighter-rouge">分解实验变量、多维度排列优先级、可视化时间安排、量化结果并复盘</code>。为什么这几点这么重要呢?我想通过题外”的故事来为你解释。</p>
+
+<p>成功不仅需要清晰的目标，还要把目标化成一个个可量化、可实现的阶段性“待办事 项”。不仅知道要什么，还要知道怎么做，时刻关注自己的表现，时刻看到自己的进步，自然就不再迷茫。</p>
+
+<p>思考他希望看到什么、他想到了什么、希望听到什么、可能会说些什么……然后提炼出用户痛点和用 户诉求。</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/DD4vnl.png" alt="" /></p>
+
+<ul>
+  <li>然后分类</li>
+</ul>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/rSOCki.png" alt="" /></p>
+
+<ul>
+  <li>
+    <p>多维度排列优先级</p>
+  </li>
+  <li>首先,是看<code class="language-plaintext highlighter-rouge">指标</code>,即这些内容是否可以提升指标;如果比较确定,则保留进测试计划;如果认为不能(比如 根据过往实验则删除</li>
+  <li>其次,是看<code class="language-plaintext highlighter-rouge">提升指标的可能性</code>,可能性越大的排在前面,可能性小的排在后面</li>
+  <li>再次,是秉持“<code class="language-plaintext highlighter-rouge">从大到小</code>思路,先做大优化,再做小细节优化。</li>
+  <li>最后,是看<code class="language-plaintext highlighter-rouge">实现难度</code>。对于H5页面来说,这项几乎可以忽路不计
+<code class="language-plaintext highlighter-rouge">按照这几个维度去筛选并排列优先级,并标出序号</code>,比如a1，a2,a3 ….</li>
+</ul>
+
+<p>当然对于大神来说,也许并不需要这么麻烦,他可以很快地根据前期洞察想到提升指标的假设。但如果是一群普通人打増长持久战,那就需要这种成体系的方法了。</p>
+
+<p>为了谨慎,<code class="language-plaintext highlighter-rouge">一般我们不会五五分做AB測试,而是切出一个较小的果道,或较小的量级来进行测试,如果实 验效果不错再切出更多的流量测试</code>。比如,可以先保持90%的流量不变,剩下的10%流量里各切5%进行AB 測试。当然也得看总量,一般来说AB测试要保证每个样本量上千。如果想要更严谨的话,可以进行置信区 的计算,这个我们在下一讲会具体介绍至于什么情况用单变量測试,什么情况用多変量测试,我认为也是要综合来看。如果变量之间有强烈的关 联,那么就需要多变量测试。比如唤醒沉睡用户的案例,对什么样的人在什么样的时间用什么样的方式去唤醒,很明显这些大变量之间有极强的关联性,是无法独立测试的。另外就是看产品发展阶段,<code class="language-plaintext highlighter-rouge">越到成熟期越推荐单变量测试</code>,因为我们需要精细化的考量独立因素对最终指标的影响。</p>
+
+<ul>
+  <li>可视化时间安排</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">可视化时间安排,是为了让你可以更直观地接收时间计划</code>。包含了具体时间、实验目的、实验假设、设计内容、实验结果及 实验结论。</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/zGjjCr.png" alt="" /></p>
+
+<p>做实验必须保持一定的量级,否则结果不具有代表性。做实验需要考虑时间周期。</p>
+
+<ul>
+  <li>置信区间:评估AB測试结果的利器 (结果差不多的时候)</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">置信区间是用来表示实验的误差范围的。</code>可以接受的误差范围
+要知道，早期科学实验中科学家们是不承认实验有误差的。因为他们认为所有的测量都必须是精确的，只要 出现了误差，那一定是实验出现了错误。不过现在我们都知道了，其实误差是不可避免的。即使实验条件再 精确，也是无法完全避免随机干扰的影响。所以，做科学实验时往往需要实验能够复现，而且要测量多次， 再用取平均值之类的手段才能得出最终的结果。</p>
+
+<ul>
+  <li>置信区间的计算方式</li>
+</ul>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/A8bKNJ.png" alt="" /></p>
+
+<p>微信搜索「置信区间计算」</p>
+
+<h1 id="巧妙复制让增长遍地开花">巧妙复制让增长遍地开花</h1>
+
+<p>如果你养成了科学实验的习惯,每次増长一点点,坚持一段时间,就会<code class="language-plaintext highlighter-rouge">积累出巨大的成果</code>。</p>
+
+<p>增长的积 少成多有三个层级，分别是：<code class="language-plaintext highlighter-rouge">价值导向的创新迭代、成功经验的二次复制、实验结果的批量复用。</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">专业能 力只是基础，在实际操作中还要配合合理的方法，才有可能做到增长。</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">无论你用什么方式积少成多,増长都有一条内在的链路在运作,</code></p>
+
+<ul>
+  <li>增长组件库案例： 什么是GPL增长组件库
+Growth Pattern Library）增长组件库。
+下面的DPL是Design xxx</li>
+</ul>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/6wOr1j.png" alt="" /></p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/WVbOJh.png" alt="" /></p>
+
+<h1 id="总结-39">总结 39</h1>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/kzhU94.png" alt="" /></p>
+
+<p>越来越多的公司开始强调业务（增长）导向，也就是图中的1级和2级；产品经理和设计师更倾向于执行， 也就是图中的3级；并且职能融合的趋势越来越明显，复合型人才开始受到青睐，只有一技之长的人则感到 越来越困难。</p>
+
+<p>1.增长思维的要点:以价值为导向、系统性的思考、拆解式 的执行、组件化的复用。
+2.应该精益求精还是拿数据说话?取決于你如何看待价值。
+3.公司天然追求规模或利润;个人依附于公司,应该以公 价值为导向。
+4.专业是增长的基础,也是增长的限制。但专业完全0基础 也难以学会增长。
+5.增长思维最重要的作用是:可以改変我们人生的方向。</p>
+
+<p>我认为增长黑客是增长时代的开拓者，率先考虑用创意、营销、数据等方式来驱动增长。“黑客”从字面上理解，有点<code class="language-plaintext highlighter-rouge">不按常理出牌、无所不用其极</code>的感觉。它背后缺乏的是可以复用的方法体系，别人学习的时候往往学到的是表面上的“壳”，这样解决不了实际问题。</p>
+
+<p><code class="language-plaintext highlighter-rouge">更希望做出差异化，提供一套自成体系的方法论，甚至世 界观，我想这才是这个专栏最有价值的地方</code>。</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2021/02/26/referral-mosi-cn/" data-toggle="tooltip" data-placement="top" title="成都摩斯智联内推">
+                        Previous<br>
+                        <span>成都摩斯智联内推</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2021/02/28/GrowingIO-think/" data-toggle="tooltip" data-placement="top" title="好好的实践一下商业增长">
+                        Next<br>
+                        <span>好好的实践一下商业增长</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="32">Newsletter</a>
+        
+                <a data-sort="0174" 
+                    href="/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0178" 
+                    href="/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0179" 
+                    href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="学习gRPC - 3.深入学习一个成熟的gRPC应用 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="前面2篇介绍了 gRPC 的关键概念以及演示程序。了解工作的基础知识后， 将了解 k8s 在其容器运行时接口技术。
+
+">
+    
+    <meta property="article:published_time" content="2020-11-15T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="K8s">
+    
+    <meta property="article:tag" content="gRPC">
+    
+    
+    <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://chasays.github.io/2020/11/15/gRPC-K8s-API/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>学习gRPC - 3.深入学习一个成熟的gRPC应用 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chasays.github.io/2020/11/15/gRPC-K8s-API/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/https://source.unsplash.com/random/1800x400" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=K8s" title="K8s">K8s</a>
+                        
+                        <a class="tag" href="/archive/?tag=gRPC" title="gRPC">gRPC</a>
+                        
+                    </div>
+                    <h1>学习gRPC - 3.深入学习一个成熟的gRPC应用</h1>
+                    
+                    <h2 class="subheading">只要你肯坚持，才会体会到放弃的快乐</h2>
+                    <span class="meta">Posted by 叉叉敌 on November 15, 2020</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>前面2篇介绍了 gRPC 的关键概念以及演示程序。了解工作的基础知识后， 将了解 <code class="language-plaintext highlighter-rouge">k8s</code> 在其容器运行时接口技术。</p>
+
+<h2 id="grpc的应用范围">gRPC的应用范围</h2>
+
+<p>自从2015年作为开源项目发布以来，<code class="language-plaintext highlighter-rouge">gRPC</code> 在大大小小的企业中都取得了成长。然而，尽管 gRPC 作为一种服务器端技术很受欢迎，但它在面向公众的 api 中几乎没有出现。这主要有两个原因。首先，gRPC 依赖 HTTP/2作为其传输协议。虽然主要的客户端浏览器自2015年以来一直支持 HTTP/2，但截至2020年7月，互联网上只有不到一半的网站支持服务器端的协议。<code class="language-plaintext highlighter-rouge">在客户端和 web 服务器之间使用 gRPC 的认同还没有到来</code>。面向公众采用 gRPC 的进展缓慢的第二个原因是，使用特定的基于 gRPC 的 API 的<code class="language-plaintext highlighter-rouge">客户机需要访问服务器使用的相同模式定义</code>。</p>
+
+<p>与像 REST 这样使用 HTTP/1.1的 API 格式相比，必须共享一个共同的 protobuf 文件是一个重要的约束，并且需要客户端对 API 提供的数据结构没有预先知识。使用 REST，只需调用 URL，然后以自描述数据格式(如 JSON、 XML 或 YAML)返回一些数据。</p>
+
+<p>简而言之，gRPC 的复杂性使其难以适用于标准、商业网站和公共 api。然而，这项技术在服务器端正在蓬勃发展。</p>
+
+<blockquote>
+  <p>许多客户在 gRPC 上建立数据图。在一个典型的公司里，你现在已经有了上百个服务，而且 gRPC 是针对这些微服务的 api 的最佳技术，因为它是如此集中，如此高效。它是为“数据中心内部”的用例设计的，但它不是连接到应用程序的正确技术.</p>
+</blockquote>
+
+<p>现在你明白了吧。确实使用了很多，但是大部分是隐藏在公众视野之外的。它用于促进<code class="language-plaintext highlighter-rouge">服务器端后端服务之间闪电般的快速、高效的通信</code>，通常用于数据中心资源根据实时波动的负载自动伸缩的情况。</p>
+
+<p>而且，在现实世界中如何使用 gRPC 的一个主要例子是在 Kubernetes 容器运行时接口(K8S CRI)中，这项技术实际上就是这种自动缩放的同义词。K8s 的一个关键特性是容器编排。K8S CRI 是在 Kubernetes 下管理集装箱的关键组件。而且，gRPC 已经融入了编曲技术的结构中。让我们来看看。</p>
+
+<h2 id="在容器运行时接口中使用-grpc">在容器运行时接口中使用 gRPC</h2>
+
+<p>为了理解如何使用 gRPC 作为容器运行时接口的通信机制，需要对 Kubernetes 的工作方式有一个高层次的理解，特别是对容器在其体系结构中所扮演的角色。</p>
+
+<p>Kubernetes 是一种服务管理和容器编排技术，旨在支持以 web 规模运行的分布式应用程序。K8s系结构背后的基本逻辑是，应用程序或 API 的功能在 Kubernetes 通过一种称为service的资源来表示。service是网络上应用程序的抽象。给定服务表示的实际逻辑驻留在另一个称为 pod 的抽象资源中。</p>
+
+<h2 id="理解k8s的-service和pod">理解k8s的 service和pod</h2>
+
+<p>比如一个应用程序中存在的三个服务的示例。一个服务提供访问功能。另一个提供目录信息，第三个提供购买功能。这些服务都可以通过 IP 地址或 DNS 名称在网络上进行标识。因此，使用应用程序的使用者将相应地调用网络上的服务。然而，该服务没有自己的功能。相反，service的功能是由驻留在服务绑定到的一个或多个pod中的逻辑提供的。</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/fpXdzK.jpg" alt="1" /></p>
+
+<p>如上所述，pod 是一种抽象资源。Pod 是一个托管 Linux 容器的组织单元。容器是封装和隔离执行编程逻辑的进程的机制。(见下图2)</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/JIYSP6.jpg" alt="2" /></p>
+
+<p>在容器中运行的进程的示例有 web 服务器、消息代理、数据库和其他类型的可执行二进制文件。一个吊舱可以容纳一个或多个容器，其中每个容器的功能都是独一无二的。换句话说，同时拥有 web 服务器容器和数据库容器的 pod 是非常有可能的。然而，需要注意的是，配置一个 pod 并不仅仅是包含随机数量的容器来承载。定义具有多个容器的 pod 的结构是一项复杂的工作。</p>
+
+<p>需要知道的重要事情是: 在 Kubernetes，服务代表网络的功能。这种功能存在于POD中。给定 pod 中功能的实现是在 pod 中承载的容器中执行的。</p>
+
+<p>这就把我们带到了集装箱。集装箱在 Kubernetes 不是凭空出现的。它们需要被制造出来，而且需要以一种短暂的方式制造出来。K8s是一种动态技术。它可以上下调整资源规模以满足当前的需求。这包括根据需要创建和销毁容器。</p>
+
+<p>在 Kubernetes 有一种抽象的资源叫做部署（deployment）。部署的任务是保证在给定的 Kubernetes 部署中应该运行的所有容器确实正在运行。这一点很重要，因为 <code class="language-plaintext highlighter-rouge">Kubernetes 保证为集群定义的状态将始终得到维护</code>。</p>
+
+<h2 id="集装箱实现的机制">集装箱实现的机制</h2>
+
+<p>在进入容器运行时以及 gRPC 在容器实现过程中所扮演的角色之前，了解容器实现背后的机制是有用的。
+在 Kubernetes，虚拟机被称为节点。Kubernetes 集群由控制器节点组成，控制一组组成的工作者节点中的活动。简而言之，控制器节点是老板，工作节点是工作者。</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/BvIFKi.jpg" alt="BvIFKi" /></p>
+
+<p>集群中的每个工作者节点都有一个名为 kubelet 的代理。可以将 kubelet 视为节点的主管。它接受来自控制器平面的命令，在其节点上执行一些工作，然后确保完成工作。Kubelet 的一个任务是在其工作节点上创建和销毁容器。</p>
+
+<blockquote>
+  <p>为什么一个节点直接与容器一起工作? 我认为一个 pod 是容器的父节点</p>
+</blockquote>
+
+<ul>
+  <li>Pod 是绑定到服务的逻辑组织单元。服务表示网络上的应用程序逻辑。<code class="language-plaintext highlighter-rouge">Pod 为服务提供逻辑</code>。</li>
+  <li>虽然 pod 确实是组织单位，是容器的父级，但是创建和销毁容器的实际工作是由容器所在的工作节点完成的。</li>
+  <li>把一个节点想象成一个家具工厂。有许多劳动者(集装箱)在许多工作台(工作舱)上劳动。一个工作台可能正在做椅子，另一个桌子。在工厂的前门是一个执行订单的雇员。这个“订单填充器”知道每个工作台的位置以及它生成的产品。可以将订单<code class="language-plaintext highlighter-rouge">填充器看作是一个 Kubernetes 服务</code>。当客户来到工厂并请求一把椅子时，订单填充器调用生产椅子的工作台，并为客户拿到一把椅子。</li>
+  <li>虽然一个劳动者被分配到一个特定的工作台(一个吊舱) ，工作台并没有雇佣任何劳动者。相反，工厂的工头负责雇佣和分配工人到工作台上。你可以把工头想象成 K8S 的 kubelet。</li>
+</ul>
+
+<p>然而，kubelet 不做这项工作。(记住，kubelet 是一个包工头)相反，它告诉容器运行时接口(CRI)来完成这项工作。</p>
+
+<p>在每个 Kubernetes 工作节点中运行的 kubelet 实例告诉 CRI 创建容器，以响应来自运行在 Kubernetes Controller 节点上的 API 服务器的通知</p>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/g6Esjs.jpg" alt="4" /></p>
+
+<h2 id="grpc-和cri">gRPC 和CRI</h2>
+
+<p>Kubelet 告诉 CRI 要做什么的方式是通过与嵌入在 CRI 中的 grc 服务器进行交互。</p>
+
+<blockquote>
+  <p>kubelet 使用 gRPC 在工作节点上创建和销毁容器，与 Container Runtime Interface 进行交互</p>
+</blockquote>
+
+<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/tAk82U.jpg" alt="tAk82U" /></p>
+
+<p>当需要在一个节点上创建或者销毁一个容器时，kubelet 向运行在该节点 CRI 实例上的 gRPC 服务器发送一条消息来执行该操作，然后 CRI 与安装在工作节点上的容器运行时引擎进行交互，以执行必要的操作。</p>
+
+<p>例如，当 kubelet 想要创建一个容器时，它使用它的 gRPC 客户机将 CreateContainerRequest 消息发送到 CRI 组件上托管的 RPC (远程过程调用)函数 CreateContainer ()。CreateContainer 函数和 CreateContainerRequest.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//用于使用 Kubernetes Container Runtime Interface 创建容器的 gRPC 函数和消息类型
+// CreateContainer creates a new container <span class="k">in </span>specified PodSandbox
+rpc CreateContainer<span class="o">(</span>CreateContainerRequest<span class="o">)</span> returns <span class="o">(</span>CreateContainerResponse<span class="o">)</span> <span class="o">{}</span>
+
+message CreateContainerRequest <span class="o">{</span>
+    // ID of the PodSandbox <span class="k">in </span>which the container should be created.
+    string pod_sandbox_id <span class="o">=</span> 1<span class="p">;</span>
+    // Config of the container.
+    ContainerConfig config <span class="o">=</span> 2<span class="p">;</span>
+    // Config of the PodSandbox. This is the same config that was passed
+    // to RunPodSandboxRequest to create the PodSandbox. It is passed again
+    // here just <span class="k">for </span>easy reference. The PodSandboxConfig is immutable and
+    // remains the same throughout the lifetime of the pod.
+    PodSandboxConfig sandbox_config <span class="o">=</span> 3<span class="p">;</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>CRI 将创建请求发送到安装在节点上的实际容器运行时。容器运行时创建容器。
+允许从一个节点上的各种容器运行时中安装一个。可以安装可靠的 Docker 运行时，但也可以安装其他运行时，例如 containerd、 rkt 或 cri-o、 declared、 cree-oh。(在自定义集群时，选择最适合给定 Kubernetes 安装的容器运行时提供了额外的灵活性。)</p>
+
+<p>一旦容器创建完成，CRI 将返回 protobuf 文件中定义的 CreateContainerResponse 消息，该消息由 gRPC 客户机和服务器共享。CreateContainerResponse 的定义</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//CRI grc 服务器返回一个 CreateContainerResponse 消息，其中包含所创建容器的唯一标识符。
+message CreateContainerResponse <span class="o">{</span>
+    // ID of the created container.
+    string container_id <span class="o">=</span> 1<span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>创建和销毁容器只是从 Container Runtime Interface 执行的两个活动。还有其他一些方法，比如停止容器、重新启动容器、将容器列入 pod 中、更新容器的配置信息等等。</p>
+
+<p>gRPC 驱动了 kubelet 和 CRI 之间的所有消息交换。请记住，<code class="language-plaintext highlighter-rouge">kubelet 和 CRI 之间的信息交换需要以闪电般的速度进行</code>，有时甚至需要十亿分之一秒的时间。一个典型的以 web 规模运行的 Kubernetes 集群可能有成千上万个容器在数十个、甚至数百个节点中有效地运行。因此，在通信流水线中，速度和效率至关重要, <code class="language-plaintext highlighter-rouge">gRPC 就符合条件</code>。</p>
+
+<h2 id="readmore">readmore</h2>
+
+<p>https://kubernetes.io/docs/home/</p>
+
+<p><a href="https://www.programmableweb.com/news/grpc-real-world-kubernetes-container-runtime-interface/analysis/2020/10/26">K8s</a></p>
+
+<p>https://en.wikipedia.org/wiki/Kubernetes</p>
+
+<blockquote>
+  <p><a href="https://chasays.github.io/">github博客</a>
+微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xxd_0225」互吹。</p>
+</blockquote>
+
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/11/08/gRPC-build-stream-and-proto/" data-toggle="tooltip" data-placement="top" title="学习gRPC - 2.如何构建一个流和序列化">
+                        Previous<br>
+                        <span>学习gRPC - 2.如何构建一个流和序列化</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2020/11/16/redis-basic-1/" data-toggle="tooltip" data-placement="top" title="「大数据学习」1. 数据库Redis基础命令">
+                        Next<br>
+                        <span>「大数据学习」1. 数据库Redis基础命令</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0152" 
+                    href="/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="32">Newsletter</a>
+        
+                <a data-sort="0174" 
+                    href="/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0178" 
+                    href="/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0179" 
+                    href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0181" 
+                    href="/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=docker"
+                    title="docker"
+                    rel="2">docker</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=git"
+                    title="git"
+                    rel="2">git</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0182" 
+                    href="/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'chasays.github.io';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
