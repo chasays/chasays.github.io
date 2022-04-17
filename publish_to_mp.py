@@ -4,6 +4,7 @@ import os
 import json
 import hashlib
 import pickle
+from urllib.error import URLError
 import urllib.request
 import requests
 import markdown
@@ -118,8 +119,9 @@ def upload_image(img_url):
     """
     try:
         resource = urllib.request.urlopen(img_url)
-    except Exception as e:
+    except URLError as e:
         print(f'Fail to upload pic:{img_url}')
+        raise 'fail'
 
     name = img_url.split("/")[-1]
     f_name = "tmp_{}".format(name)
