@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "用 Github Action 构建自己的 Jekyll 博客",
+      "subtitle" : "github actions 工具太好了",
+      "tags"     : "github",
+      "url"      : "/2022/04/18/gihub-action-build-blog/",
+      "date"     : "2022-04-18 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "33 - 如何计划",
       "subtitle" : "计划固然重要，行动更为重要",
       "tags"     : "Newsletter",

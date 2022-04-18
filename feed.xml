@@ -5,9 +5,108 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 17 Apr 2022 06:39:54 +0000</pubDate>
-    <lastBuildDate>Sun, 17 Apr 2022 06:39:54 +0000</lastBuildDate>
+    <pubDate>Mon, 18 Apr 2022 14:25:36 +0000</pubDate>
+    <lastBuildDate>Mon, 18 Apr 2022 14:25:36 +0000</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>用 Github Action 构建自己的 Jekyll 博客</title>
+        <description>&lt;h1 id=&quot;思路&quot;&gt;思路&lt;/h1&gt;
+
+&lt;p&gt;对自己的提交的md文档，通过github action编译为静态文件，然后push到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt;仓库。从而可以浏览自己的博客。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建一个仓库，比如名字为A-repo，用来管理自己的md文件&lt;/li&gt;
+  &lt;li&gt;上传自己的Jekyll 网站文件，&lt;a href=&quot;https://jekyllrb.com/docs/&quot;&gt;可以参考这个创建的文章&lt;/a&gt;；,如果不会的可以参考&lt;a href=&quot;https://github.com/fastai/fastpages&quot;&gt;fastpage&lt;/a&gt;来生成也非常的方便。&lt;/li&gt;
+  &lt;li&gt;创建github actions来自动运行，见最下面的步骤、
+    &lt;ul&gt;
+      &lt;li&gt;先checkout A-repo的master分支。对于的action： actions/checkout@main&lt;/li&gt;
+      &lt;li&gt;构建为Jekyll静态文件 ：action：actions/jekyll-build-pages@v1&lt;/li&gt;
+      &lt;li&gt;把静态文件_site push到username.github.io仓库的master分支， s0/git-publish-subdir-action@develop&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;name: GitHub Actions Build and Deploy Demo
+on:
+  push
+&lt;span class=&quot;nb&quot;&gt;jobs&lt;/span&gt;:
+  jekyll:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copy repository contents
+      uses: actions/checkout@main
+      with:
+        persist-credentials: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+
+    - name: Jekyll build
+      uses: actions/jekyll-build-pages@v1
+      with:
+        &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;: &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+        destination: ./_site
+        future: &lt;span class=&quot;nb&quot;&gt;false
+        &lt;/span&gt;verbose: &lt;span class=&quot;nb&quot;&gt;true
+        &lt;/span&gt;token: &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
+
+    - name: Push to xx.github.io repo
+      uses: s0/git-publish-subdir-action@develop
+      &lt;span class=&quot;nb&quot;&gt;env&lt;/span&gt;:
+        REPO: git@github.com:&lt;span class=&quot;nv&quot;&gt;$/$.&lt;/span&gt;github.io.git
+        SQUASH_HISTORY: &lt;span class=&quot;s2&quot;&gt;&quot;false&quot;&lt;/span&gt;
+        BRANCH: master
+        FOLDER: ./_site
+        SSH_PRIVATE_KEY: &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;上面提到的有一个全局变量：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ACTION_DEPLOY_KEY： 这个是当前A-repo的里面设置的token&lt;/li&gt;
+  &lt;li&gt;repository_owner： 这个就是当前仓库的owner&lt;/li&gt;
+  &lt;li&gt;SSH_DEPLOY_KEY： 这个比较重要，就是相当于一个私钥&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;对于最后一个私钥特别说明下，我当时想光有一个私钥有什么用？没有公钥的哇。后来才发现，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;任何一对私钥和公钥都可以&lt;/code&gt;，公钥添加到sshkey里面，私钥配置在当前A-repo下面即可；&lt;/p&gt;
+
+&lt;h2 id=&quot;创建github-action&quot;&gt;创建github action&lt;/h2&gt;
+
+&lt;p&gt;关于github action的基础用法，参见文档，不要看网上的一些文档，就官方就是最好，也是最新的；我在这里拆了一个坑；之前的教程branch可以是master，但是始终运行不起来，我都快放弃了，看了官方文档后，发现后来改为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;了。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;注意触发的分支名称&lt;/li&gt;
+  &lt;li&gt;注意缩进&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://docs.github.com/en/actions/quickstart&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;下面这个例子：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;name: GitHub Actions Demo &lt;span class=&quot;c&quot;&gt;#名称&lt;/span&gt;
+on: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;push]   &lt;span class=&quot;c&quot;&gt;# 触发条件是push&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;jobs&lt;/span&gt;:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest &lt;span class=&quot;c&quot;&gt;# 运行依赖环境&lt;/span&gt;
+    steps: &lt;span class=&quot;c&quot;&gt;# 步骤&lt;/span&gt;
+      - name: Check out repository code &lt;span class=&quot;c&quot;&gt;# 步骤名称&lt;/span&gt;
+        uses: actions/checkout@v3  &lt;span class=&quot;c&quot;&gt;# 依赖已有的actions，可以market里面找到很多有用的&lt;/span&gt;
+      - run: &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;🖥️ The workflow is now ready to test your code on the runner.&quot;&lt;/span&gt;
+      - name: List files &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;the repository  &lt;span class=&quot;c&quot;&gt;# 步骤名称&lt;/span&gt;
+        run: | 
+          &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 运行bash脚本&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 18 Apr 2022 00:00:00 +0000</pubDate>
+        <link>https://chasays.github.io/2022/04/18/gihub-action-build-blog/</link>
+        <guid isPermaLink="true">https://chasays.github.io/2022/04/18/gihub-action-build-blog/</guid>
+        
+        <category>github</category>
+        
+        
+      </item>
     
       <item>
         <title>33 - 如何计划</title>
@@ -1016,162 +1115,6 @@
         <guid isPermaLink="true">https://chasays.github.io/2022/03/05/download-singleFile/</guid>
         
         <category>工具</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>26 - 健身的目的</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，请转发给您朋友，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;点这里免费订阅按钮&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226152646.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;如何长期的学习&quot;&gt;如何长期的学习&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226152753.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我之前有段时间尝试过，每天安排的满满当当，比如上午读书、下午做coding、晚上继续读书，这样发现你根本就没有时间去消化，而且很容易疲惫，疲惫之后，就导致你这个学习的过程不能长期做下去，从而半途而废。&lt;/p&gt;
-
-&lt;p&gt;后来实践了，相对最好的办法，就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;结合一些比较愉悦快乐的因素&lt;/code&gt;，加到学习中去，更好地激发自己的一个学习的动力，从而学习更久做一个长期学习者。&lt;/p&gt;
-
-&lt;h2 id=&quot;运动的目的是什么&quot;&gt;运动的目的是什么&lt;/h2&gt;
-
-&lt;p&gt;我曾经有一段时间，连续运动了100+天，就是在Keep上找一个适合自己的课程，这应该是除了高考那段时间以后，我的人生又一个高光点。大致就是每天早上7:00起床，运动30~40分钟，最开始非常难坚持，估计是运动强度太大了，10个波比跳。但是过了20天左右，慢慢地就习惯了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226152828.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;当哪一天你不运动的时候，你心里就不太舒服，然后想着前面的运动就付之东流了，有一种对情人的依恋不舍，就会继续坚持运动下去。&lt;/p&gt;
-
-&lt;p&gt;鸡汤来了，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;运动使我们自律&lt;/code&gt;。你说每天运动半个小时、一个小时，他能为我们带来多大的健康吗？这一个小时带来健康的价值，应该没有实际这件事情更好。&lt;/p&gt;
-
-&lt;p&gt;规定的时间、规定的地点去做一些事情，这样会让自己变得很自律。比如说看书、学习、刷题，这些都会照常的进行下去不会耽搁，我想运动给我带来最大的价值，就是自律，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;改掉了我的拖延症&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h2 id=&quot;不需要guide用户就可以立即上手的产品算好产品&quot;&gt;不需要Guide，用户就可以立即上手的产品，算好产品&lt;/h2&gt;
-
-&lt;p&gt;听了「三五环」播客，这个播客里面讲到一些做产品的观念做产品的话，需要从内心去做，做出来的东西用户去用，他能感觉到这个用户功能是什么东西，作者到底心里面想的是什么。因此说在做这个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;产品需要心向善&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226152903.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这个和我读莫言的一篇文章，讲蒲松林的聊斋志异里面的一些文章，如果你写的文章不能把自己感动，那就更不能说感动用户。&lt;/p&gt;
-
-&lt;p&gt;关于这个产品其实不需要用户协议、指导文档、说明文档，其实就是当用户打开这个软件，他就知道怎么去做，越符合自然规律就越好。&lt;/p&gt;
-
-&lt;h2 id=&quot;公司一个让交易成本更低的地方&quot;&gt;公司一个让交易成本更低的地方&lt;/h2&gt;
-
-&lt;p&gt;试想一下没有淘宝，我们买东西的是如何才能从全国各地买到心仪的东西，那肯定是相当的费劲。比如我之前在网上买一个机油，一般就去实体店、或者4S店就可以买到，但是现在只需要一部手机，就可以轻松的买到自己想要的东西。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226152943.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;你一个单身狗，非要说买一个伴侣，那我可没辙了。&lt;/p&gt;
-
-&lt;p&gt;公司的本质，其实就是让人和市场之间有一个枢纽点，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;让各种需求、各种交易更叫便捷&lt;/code&gt;。当然就是让人和市场之间的交易成本更低，如果你自己和市场有更好地去交易，那说明就不需要这家公司了，就需要自己出去创业。在公司里面打工，也非常的简单，只需要结果，不管公司收入，旱涝保收。比如创业，不是把事情做好解决问题，就一定有好结果。&lt;/p&gt;
-
-&lt;h2 id=&quot;看剧的洞察力&quot;&gt;看剧的洞察力&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;越早丧失看剧的乐趣，就有可能越早发现观察剧的乐趣。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226153010.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;思考剧情的发展、镜头的变换，以及剧情的预算。脱口秀编剧，自己要多尝试。当你尝试后，你才知道这个真的是不适合，有什么地方需要改进的，如果你没有迈出第一步，你始终不知道哪些地方做得不够好。&lt;/p&gt;
-
-&lt;p&gt;比如&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;写逐字稿&lt;/li&gt;
-  &lt;li&gt;不要用网络语，谐音梗 取法其上&lt;/li&gt;
-  &lt;li&gt;删减字&lt;/li&gt;
-  &lt;li&gt;找人帮你修改，观察别人的思路&lt;/li&gt;
-  &lt;li&gt;天天写&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;完成比完美更重要&lt;/code&gt;，不管是什么东西，我们首先去写，去干，不要再纠结，不要再犹豫。我不只在一本书上，大家都提这个关键词所有东西都去执行起来，不管结果。&lt;/p&gt;
-
-&lt;p&gt;人生不是打几把牌，应就能决定人生。人生反而是个牌局，想散都散不了的那种，输赢也不是一两把就能决定的。&lt;/p&gt;
-
-&lt;h2 id=&quot;脸红是因为自卑么&quot;&gt;脸红是因为自卑么&lt;/h2&gt;
-
-&lt;p&gt;我之前特别容易爱脸红，尤其是在人多的地方去说话，脸就会突然红。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226153112.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我就开始认为这是自卑，不过当时确实是自卑，也是不够自信的原因，最近我找到原因了。只有你内心强大，你才会真正的面对这种自卑，我不自信的想法，让自己变得更坚强。&lt;/p&gt;
-
-&lt;p&gt;你看那些长得漂亮的、身材很好、有钱的，他们一定就很自信，其实不然，他们也有不好的一面。正因为有不好的一面，他们是努力的锻炼身体，努力的赚钱。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;要找到自己的闪光点，让自己不要那么的自卑&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;再说了脸红又能怎么样，不要怕，只需要关注你需要表达的问题，或者要沟通的事情即可。&lt;/p&gt;
-
-&lt;p&gt;P.S. 最近看到大家都开始推广自己的Newsletter，但是我不知道如何提高自己的阅读量，让其自然的生长吧。如果你有好建议和意见，期待您的回复。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;p&gt;下面第一篇文章特别长，对于当前大家应该是非常实用。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://haseebq.com/my-ten-rules-for-negotiating-a-job-offer/&quot;&gt;十条求职谈判规则&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这个季节是换工作，谈涨薪资。大多数人不谈判，或者如果他们谈判了，他们这样做只是为了告诉自己他们谈判了。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;谈判是一项可以像任何其他技能一样学习的技能。&lt;/code&gt;本文讨论了谈判过程以及如何在工作谈判中取得成功。它教读者如何要求我们想要什么，这样我们才能拥有更成功的职业生涯，并赚取他们应得的。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.blog/2022-02-17-code-scanning-finds-vulnerabilities-using-machine-learning/&quot;&gt;代码扫描，使用机器学习发现漏洞&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226153148.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;GitHub推出了由机器学习驱动的新代码扫描分析功能。实验分析发现了更多最常见的漏洞类型。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/automerge/automerge&quot;&gt;automerge&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220226152208.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;类似于JSON的数据结构（CRDT），可以由不同用户并发修改，并自动再次合并。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;本周的思考时刻： 如何控制好自己的情绪？&lt;/p&gt;
-
-&lt;p&gt;如果不能控制好自己的情绪，能给别人留下一种不可靠的印象，我后面试着去理解、用其他方式来化解这个尴尬的问题，如果你有好的建议，谢谢你给回复，感谢。&lt;/p&gt;
-
-&lt;p&gt;下周思考：培养自己的洞察力，比如看电视等，发现不一样的视角。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;李诞「脱口秀工作手册」 - 400%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这本书不像一个纯脱口秀的，更像是一个指导建议，个人认为对每个行业都适用。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;福格行为模型 - 10%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;暂无进度，这本是讲习惯培养的，可以把这个模型用到其他地方。目前还没有开始，刚加入书单。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;待读的书还有：启示录(产品相关)、财富自由之路-李笑来&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今天是坚持周更分享：第 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;26/30&lt;/code&gt; 期。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 26 Feb 2022 00:00:00 +0000</pubDate>
-        <link>https://chasays.github.io/2022/02/26/Purpose-of-fitness/</link>
-        <guid isPermaLink="true">https://chasays.github.io/2022/02/26/Purpose-of-fitness/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>
