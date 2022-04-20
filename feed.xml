@@ -5,9 +5,28 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 18 Apr 2022 14:25:36 +0000</pubDate>
-    <lastBuildDate>Mon, 18 Apr 2022 14:25:36 +0000</lastBuildDate>
-    <generator>Jekyll v3.9.0</generator>
+    <pubDate>Wed, 20 Apr 2022 06:19:27 +0000</pubDate>
+    <lastBuildDate>Wed, 20 Apr 2022 06:19:27 +0000</lastBuildDate>
+    <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>LLVM 介绍</title>
+        <description>&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220420120945.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220420121024.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220420121048.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf&lt;/p&gt;
+</description>
+        <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
+        <link>https://chasays.github.io/2022/04/20/LLVM-introduce/</link>
+        <guid isPermaLink="true">https://chasays.github.io/2022/04/20/LLVM-introduce/</guid>
+        
+        <category>LLVM</category>
+        
+        
+      </item>
     
       <item>
         <title>用 Github Action 构建自己的 Jekyll 博客</title>
@@ -1081,40 +1100,6 @@ on: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;push]   &lt;span class=&quot;c
         <guid isPermaLink="true">https://chasays.github.io/2022/03/05/tell-story/</guid>
         
         <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>推荐一个工具 - SingleFile</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;https://github.com/gildas-lormeau/SingleFile&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我们经常保存一个网页的时候，要么只有文字信息，图片、样式、布局有可能没有保存下来。&lt;/p&gt;
-
-&lt;p&gt;导致发给别人的时候，对方看到的信息和自己的了解的到的完全不一样。&lt;/p&gt;
-
-&lt;p&gt;下载有网友制作一款工具，非常的方便，只需要点一下，就可以下载到一个文件里面，兼容市面上的大部分浏览器，甚至有些都没有见过的浏览器，不可为不强大。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;SingleFile是与Chrome、Firefox（台式机和移动设备）、Microsoft Edge、Vivaldi、Brave、Waterbox、Yandex浏览器和Opera兼容的Web扩展（和CLI工具）。它可以帮助您将完整的网页保存到单个HTML文件中。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;只需要3步就可以搞定&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;等待页面完全加载&lt;/li&gt;
-  &lt;li&gt;点击扩展工具栏上的SingleFile按钮保存页面处理页面&lt;/li&gt;
-  &lt;li&gt;再次点击SingleFile可以取消本次的正在处理的保存&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Sat, 05 Mar 2022 00:00:00 +0000</pubDate>
-        <link>https://chasays.github.io/2022/03/05/download-singleFile/</link>
-        <guid isPermaLink="true">https://chasays.github.io/2022/03/05/download-singleFile/</guid>
-        
-        <category>工具</category>
         
         
       </item>
