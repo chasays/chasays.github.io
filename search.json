@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "34 - 讲故事",
+      "subtitle" : "讲故事的说道理是容易接受的",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/04/23/how-to-talk-story/",
+      "date"     : "2022-04-23 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "LLVM 介绍",
       "subtitle" : "",
       "tags"     : "LLVM",
