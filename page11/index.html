@@ -271,6 +271,68 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2020/10/19/git-format-patch-apply/">
+        <h2 class="post-title">
+             A分支上的一个commit，merge到B分支
+        </h2>
+        
+        <h3 class="post-subtitle">
+            有三种方法，diff,format-patch, cherry-pick
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                场景就是要解决的问题，就是把B分支的一个commit，单独merge到A分支上面去。
+
+思路是生成一个patch，然后把这个patch应用到要merge的分支。
+
+有2种方式，一种是git format-patch，然后用 git am 应用。还有一种就是git diff, 切换分支后，git apply.推荐前一种，前一种是包含了邮件格式。
+
+git format-patch
+
+用法， g...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 19, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/10/17/visualition-apache-jmter/">
+        <h2 class="post-title">
+             可视化压力测试工具- apache jmter
+        </h2>
+        
+        <h3 class="post-subtitle">
+             开源工具
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                
+  Apache JMeter ™是开源软件，是一个 100% 纯 Java 应用程序，旨在加载测试功能行为和测量性能。它最初设计用于测试 Web 应用程序，但后来扩展到其他测试函数。
+
+
+功能预览
+
+能够加载和性能测试许多不同的应用程序/服务器/协议类型：
+
+  Web - HTTP、HTTPS（Java、NodeJS、PHP、ASP.NET，…）
+  REST Web 服务
+  Ftp...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 17, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2020/10/17/microsoft-automation-tool-playwright/">
         <h2 class="post-title">
             微软推出的浏览器自动化工具 playwright
@@ -535,84 +597,6 @@ ERROR 1045 (28000): Access denied ...
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2020/09/25/Vscode-bring-up-Java-Spring-project/">
-        <h2 class="post-title">
-            Vscode 安装Java Spring项目
-        </h2>
-        
-        <h3 class="post-subtitle">
-            配置Maven，Java，Spring
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                记一次二次开发Spring项目的，用vscode配置环境过程。因为vscode是用json文件保存的配置。好多都过时了。强行提笔记录一下
-
-安装组件
-一个java， 一个spring boot
-
-
-
-
-安装Maven和Java
-java这个简单
-
-  https://java.com/zh_CN/download/help/mac_install.xml
-
-
-maven
-配置环境变量，如果是...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 25, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/24/Python-advanced/">
-        <h2 class="post-title">
-            Python进阶
-        </h2>
-        
-        <h3 class="post-subtitle">
-            向高手学习学习
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                课程连接：
-
-  https://time.geekbang.org/column/intro/176
-
-
-开篇
-
-  从工程角度掌握Python高阶用法；
-  独立开发Python项目的能力；
-  硅谷一线工程师的独家经验分享；
-  完整的Python学习路径。
-
-
-基础
-
-IDE
-Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成本重现结果。
-
-元组和列表
-列表是动态的，长...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 24, 2020
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -653,187 +637,192 @@ Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成
         
         
         
-                <a data-sort="0178" 
+                <a data-sort="0180" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0154" 
+                <a data-sort="0156" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
                     rel="33">Newsletter</a>
         
-                <a data-sort="0177" 
+                <a data-sort="0179" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0181" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0181" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0181" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0181" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0180" 
+                <a data-sort="0182" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0183" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0184" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0183" 
+                <a data-sort="0185" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0183" 
+                <a data-sort="0185" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0186" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
+                    href="/archive/?tag=LLVM"
+                    title="LLVM"
+                    rel="2">LLVM</a>
+        
+                <a data-sort="0187" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="2">docker</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="2">git</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="2">github</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0185" 
+                <a data-sort="0187" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

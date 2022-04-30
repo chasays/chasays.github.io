@@ -16,8 +16,13 @@ from werobot import WeRoBot
 
 
 CACHE = {}
-WECHAT_APP_ID = 'wx90a82fb7b8e6861f'
-WECHAT_APP_SECRET = 'edbabaf47f8425102033bcc82e43c4bf'
+# TFUG-CD
+WECHAT_APP_ID = 'wx193da9cd52d2b703'
+WECHAT_APP_SECRET = '479a4ffce6bcce71119fe1d57936f200'
+
+# chasays
+# WECHAT_APP_ID = 'wx90a82fb7b8e6861f'
+# WECHAT_APP_SECRET = 'edbabaf47f8425102033bcc82e43c4bf'
 
 CACHE_STORE = "cache.bin"
 
