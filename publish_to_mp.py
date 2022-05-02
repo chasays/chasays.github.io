@@ -382,16 +382,16 @@ def run(string_date):
 
 if __name__ == '__main__':
     ## for debug
-    path_str = '_posts/2022/2022-05-02-LLVM-intrinsic_introduce.md'
-    debug_generate_html(path_str)
+    # path_str = '_posts/2022/2022-05-02-LLVM-intrinsic_introduce.md'
+    # debug_generate_html(path_str)
      
-    # init_cache()
-    # start_time = time.time()  # 开始时间
-    # times = [datetime.now(), datetime.now() - timedelta(days=1)]
-    # for x in times:
-    #     print("start time: {}".format(x.strftime("%m/%d/%Y, %H:%M:%S")))
-    #     string_date = x.strftime('%Y-%m-%d')
-    #     print(string_date)
-    #     run(string_date)
-    # end_time = time.time()  # 结束时间
-    # print("程序耗时%f秒." % (end_time - start_time))
+    init_cache()
+    start_time = time.time()  # 开始时间
+    times = [datetime.now(), datetime.now() - timedelta(days=1)]
+    for x in times:
+        print("start time: {}".format(x.strftime("%m/%d/%Y, %H:%M:%S")))
+        string_date = x.strftime('%Y-%m-%d')
+        print(string_date)
+        run(string_date)
+    end_time = time.time()  # 结束时间
+    print("程序耗时%f秒." % (end_time - start_time))
