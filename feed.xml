@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 02 May 2022 13:20:03 +0000</pubDate>
-    <lastBuildDate>Mon, 02 May 2022 13:20:03 +0000</lastBuildDate>
+    <pubDate>Mon, 02 May 2022 13:23:54 +0000</pubDate>
+    <lastBuildDate>Mon, 02 May 2022 13:23:54 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -88,9 +88,9 @@
 &lt;p&gt;https://llvm.org/docs/LangRef.html#intrinsic-functions&lt;/p&gt;
 
 </description>
-        <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
-        <link>https://chasays.github.io/2022/05/02/LLVM-intrinsic_introduce/</link>
-        <guid isPermaLink="true">https://chasays.github.io/2022/05/02/LLVM-intrinsic_introduce/</guid>
+        <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
+        <link>https://chasays.github.io/2022/05/01/LLVM-intrinsic_introduce/</link>
+        <guid isPermaLink="true">https://chasays.github.io/2022/05/01/LLVM-intrinsic_introduce/</guid>
         
         <category>LLVM</category>
         
