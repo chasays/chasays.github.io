@@ -5,19 +5,13 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 02 May 2022 14:12:32 +0000</pubDate>
-    <lastBuildDate>Mon, 02 May 2022 14:12:32 +0000</lastBuildDate>
+    <pubDate>Mon, 02 May 2022 14:26:18 +0000</pubDate>
+    <lastBuildDate>Mon, 02 May 2022 14:26:18 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
-        <title>LLVM Intrinsic 介绍</title>
+        <title>LLVM intrinsic 介绍</title>
         <description>&lt;h1 id=&quot;什么是-llvm-intrinsic&quot;&gt;什么是 LLVM intrinsic&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;112313&lt;/li&gt;
-  &lt;li&gt;23423&lt;/li&gt;
-  &lt;li&gt;2342&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;p&gt;LLVM 支持“intrinsic function”的概念。这些函数具有众所周知的名称和语义，并且需要遵循某些限制。总的来说，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这些 intrinsic 代表 LLVM 语言的扩展机制&lt;/code&gt;，在添加到语言(或者位码读取器/写入器、解析器等)时不需要更改 LLVM 中的所有转换。&lt;/p&gt;
 
