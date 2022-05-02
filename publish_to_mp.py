@@ -258,98 +258,20 @@ def format_fix(content):
     content = content.replace("<ol>\n<li>", "<ol><li>")
     content = content.replace("</li>\n</ol>", "</li></ol>")
     content = content.replace("class=\"codehilite\"",
-                              "class=\"codehilite\" style=\"\"")
+                              "class=\"codehilite\" style=\"background-color: beige;\"")
     return content
 
-def add_pygments():
-    pyg = """<style type="text/css">
-    .codehilite .hll { background-color: #49483e }
-    .codehilite  { background: #272822; color: #f8f8f2 }
-    .codehilite .c { color: #75715e } /* Comment */
-    .codehilite .err { color: #960050; background-color: #1e0010 } /* Error */
-    .codehilite .k { color: #66d9ef } /* Keyword */
-    .codehilite .l { color: #ae81ff } /* Literal */
-    .codehilite .n { color: #f8f8f2 } /* Name */
-    .codehilite .o { color: #f92672 } /* Operator */
-    .codehilite .p { color: #f8f8f2 } /* Punctuation */
-    .codehilite .ch { color: #75715e } /* Comment.Hashbang */
-    .codehilite .cm { color: #75715e } /* Comment.Multiline */
-    .codehilite .cp { color: #75715e } /* Comment.Preproc */
-    .codehilite .cpf { color: #75715e } /* Comment.PreprocFile */
-    .codehilite .c1 { color: #75715e } /* Comment.Single */
-    .codehilite .cs { color: #75715e } /* Comment.Special */
-    .codehilite .gd { color: #f92672 } /* Generic.Deleted */
-    .codehilite .ge { font-style: italic } /* Generic.Emph */
-    .codehilite .gi { color: #a6e22e } /* Generic.Inserted */
-    .codehilite .go { color: #66d9ef } /* Generic.Output */
-    .codehilite .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
-    .codehilite .gs { font-weight: bold } /* Generic.Strong */
-    .codehilite .gu { color: #75715e } /* Generic.Subheading */
-    .codehilite .kc { color: #66d9ef } /* Keyword.Constant */
-    .codehilite .kd { color: #66d9ef } /* Keyword.Declaration */
-    .codehilite .kn { color: #f92672 } /* Keyword.Namespace */
-    .codehilite .kp { color: #66d9ef } /* Keyword.Pseudo */
-    .codehilite .kr { color: #66d9ef } /* Keyword.Reserved */
-    .codehilite .kt { color: #66d9ef } /* Keyword.Type */
-    .codehilite .ld { color: #e6db74 } /* Literal.Date */
-    .codehilite .m { color: #ae81ff } /* Literal.Number */
-    .codehilite .s { color: #e6db74 } /* Literal.String */
-    .codehilite .na { color: #a6e22e } /* Name.Attribute */
-    .codehilite .nb { color: #f8f8f2 } /* Name.Builtin */
-    .codehilite .nc { color: #a6e22e } /* Name.Class */
-    .codehilite .no { color: #66d9ef } /* Name.Constant */
-    .codehilite .nd { color: #a6e22e } /* Name.Decorator */
-    .codehilite .ni { color: #f8f8f2 } /* Name.Entity */
-    .codehilite .ne { color: #a6e22e } /* Name.Exception */
-    .codehilite .nf { color: #a6e22e } /* Name.Function */
-    .codehilite .nl { color: #f8f8f2 } /* Name.Label */
-    .codehilite .nn { color: #f8f8f2 } /* Name.Namespace */
-    .codehilite .nx { color: #a6e22e } /* Name.Other */
-    .codehilite .py { color: #f8f8f2 } /* Name.Property */
-    .codehilite .nt { color: #f92672 } /* Name.Tag */
-    .codehilite .nv { color: #f8f8f2 } /* Name.Variable */
-    .codehilite .ow { color: #f92672 } /* Operator.Word */
-    .codehilite .w { color: #f8f8f2 } /* Text.Whitespace */
-    .codehilite .mb { color: #ae81ff } /* Literal.Number.Bin */
-    .codehilite .mf { color: #ae81ff } /* Literal.Number.Float */
-    .codehilite .mh { color: #ae81ff } /* Literal.Number.Hex */
-    .codehilite .mi { color: #ae81ff } /* Literal.Number.Integer */
-    .codehilite .mo { color: #ae81ff } /* Literal.Number.Oct */
-    .codehilite .sa { color: #e6db74 } /* Literal.String.Affix */
-    .codehilite .sb { color: #e6db74 } /* Literal.String.Backtick */
-    .codehilite .sc { color: #e6db74 } /* Literal.String.Char */
-    .codehilite .dl { color: #e6db74 } /* Literal.String.Delimiter */
-    .codehilite .sd { color: #e6db74 } /* Literal.String.Doc */
-    .codehilite .s2 { color: #e6db74 } /* Literal.String.Double */
-    .codehilite .se { color: #ae81ff } /* Literal.String.Escape */
-    .codehilite .sh { color: #e6db74 } /* Literal.String.Heredoc */
-    .codehilite .si { color: #e6db74 } /* Literal.String.Interpol */
-    .codehilite .sx { color: #e6db74 } /* Literal.String.Other */
-    .codehilite .sr { color: #e6db74 } /* Literal.String.Regex */
-    .codehilite .s1 { color: #e6db74 } /* Literal.String.Single */
-    .codehilite .ss { color: #e6db74 } /* Literal.String.Symbol */
-    .codehilite .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
-    .codehilite .fm { color: #a6e22e } /* Name.Function.Magic */
-    .codehilite .vc { color: #f8f8f2 } /* Name.Variable.Class */
-    .codehilite .vg { color: #f8f8f2 } /* Name.Variable.Global */
-    .codehilite .vi { color: #f8f8f2 } /* Name.Variable.Instance */
-    .codehilite .vm { color: #f8f8f2 } /* Name.Variable.Magic */
-    .codehilite .il { color: #ae81ff } /* Literal.Number.Integer.Long */
-    </style>
-    """
-    return pyg
 
 
 def css_beautify(content):
     header = """<section id="nice" style="font-size: 16px; color: black; padding: 0 10px; line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; font-xxx: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">"""
-    pygments = add_pygments()
     content = replace_para(content)
     content = replace_header(content)
     content = replace_links(content)
     content = format_code(content)
     content = format_fix(content)
     content = fix_image(content)
-    content = header + pygments + content + "</section>"
+    content = header + content + "</section>"
     return content
 
 
@@ -459,17 +381,17 @@ def run(string_date):
 
 
 if __name__ == '__main__':
-    # for debug
-    # path_str = '_posts/2022/2022-04-30-LLVM-intrinsic_introduce.md'
-    # debug_generate_html(path_str)
+    ## for debug
+    path_str = '_posts/2022/2022-05-02-LLVM-intrinsic_introduce.md'
+    debug_generate_html(path_str)
      
-    init_cache()
-    start_time = time.time()  # 开始时间
-    times = [datetime.now(), datetime.now() - timedelta(days=1)]
-    for x in times:
-        print("start time: {}".format(x.strftime("%m/%d/%Y, %H:%M:%S")))
-        string_date = x.strftime('%Y-%m-%d')
-        print(string_date)
-        run(string_date)
-    end_time = time.time()  # 结束时间
-    print("程序耗时%f秒." % (end_time - start_time))
+    # init_cache()
+    # start_time = time.time()  # 开始时间
+    # times = [datetime.now(), datetime.now() - timedelta(days=1)]
+    # for x in times:
+    #     print("start time: {}".format(x.strftime("%m/%d/%Y, %H:%M:%S")))
+    #     string_date = x.strftime('%Y-%m-%d')
+    #     print(string_date)
+    #     run(string_date)
+    # end_time = time.time()  # 结束时间
+    # print("程序耗时%f秒." % (end_time - start_time))

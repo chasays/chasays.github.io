@@ -1,8 +1,8 @@
 [
   
     {
-      "title"    : "LLVM Intrinsic 介绍 - ",
-      "subtitle" : "",
+      "title"    : "LLVM Intrinsic 介绍",
+      "subtitle" : "LLVM基础",
       "tags"     : "LLVM",
       "url"      : "/2022/05/02/LLVM-intrinsic_introduce/",
       "date"     : "2022-05-02 00:00:00 +0000"
