@@ -160,8 +160,9 @@ def fetch_attr(content, key):
 
 
 def render_markdown(content):
-    exts = ['markdown.extensions.extra', 'markdown.extensions.codehilite',
-            'markdown.extensions.tables', 'markdown.extensions.toc']
+    exts = ['markdown.extensions.extra', 'markdown.extensions.codehilite', # markdown.extensions.fenced_code codehilite
+            'markdown.extensions.tables', 'markdown.extensions.toc',
+            'markdown.extensions.sane_lists', 'markdown.extensions.nl2br']
     post = "".join(content.split("---\n")[2:])
     html = markdown.markdown(post, extensions=exts)
     open("origin.html", "w").write(html)
@@ -178,6 +179,7 @@ def update_images_urls(content, uploaded_images):
 
 def replace_para(content):
     new = """<p style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: rgb(89,89,89);">"""
+
     res = []
     for line in content.split("\n"):
         if line.startswith("<p>"):
@@ -225,7 +227,7 @@ def replace_links(content):
     index = 1
     for r in refs:
         l = r[2]
-        line = "<span id=\"fn1\" class=\"footnote-item\" style=\"display: flex;\"><span class=\"footnote-num\" style=\"display: inline; width: 10%; background: none; font-size: 80%; opacity: 0.6; line-height: 26px; font-family: ptima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;\">[{}] </span><p style=\"padding-top: 8px; padding-bottom: 8px; display: inline; font-size: 14px; width: 90%; padding: 0px; margin: 0; line-height: 26px; color: black; word-break: break-all; width: calc(100%-50);\">&nbsp{}: <em style=\"font-style: italic; color: black;\">{}</em></p>".format(index, r[
+        line = "<span id=\"fn1\" class=\"footnote-item\" style=\"display: flex;\"><span class=\"footnote-num\" style=\"display: inline; width: 10%; background: none; font-size: 80%; opacity: 0.6; line-height: 26px; font-xxx: ptima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;\">[{}] </span><p style=\"padding-top: 8px; padding-bottom: 8px; display: inline; font-size: 14px; width: 90%; padding: 0px; margin: 0; line-height: 26px; color: black; word-break: break-all; width: calc(100%-50);\">&nbsp{}: <em style=\"font-style: italic; color: black;\">{}</em></p>".format(index, r[
             1], r[0])
         index += 1
         content = content + line + "\n"
@@ -245,6 +247,9 @@ def fix_image(content):
         content = content.replace(link, figure)
     return content
 
+def format_code(content):
+    content = content.replace("<code>", '<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all; color: rgb(239, 112, 96);">')
+    return content
 
 def format_fix(content):
     content = content.replace("</li>\n<li>", "</li><li>")
@@ -253,18 +258,20 @@ def format_fix(content):
     content = content.replace("<ol>\n<li>", "<ol><li>")
     content = content.replace("</li>\n</ol>", "</li></ol>")
     content = content.replace("class=\"codehilite\"",
-                              "class=\"codehilite\" style=\"background-color:bisque;\"")
+                              "class=\"codehilite\" style=\"\"")
     return content
 
 
 def css_beautify(content):
-    header = """<section id="nice" style="font-size: 16px; color: black; padding: 0 10px; line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">"""
+    header = """<section id="nice" style="font-size: 16px; color: black; padding: 0 10px; line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; font-xxx: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">"""
+    pygments = """<link type="text/css" rel="styleSheet" href="./pygments.css" />"""
     content = replace_para(content)
     content = replace_header(content)
     content = replace_links(content)
+    content = format_code(content)
     content = format_fix(content)
     content = fix_image(content)
-    content = header + content + "</section>"
+    content = header + pygments + content + "</section>"
     return content
 
 
@@ -346,8 +353,15 @@ def free_publish(m_id):
     resp = json.loads(r.text)
     print(resp)
     media_id = resp['publish_id']
-    cache_update(post_path)
+    cache_update(media_id)
     return resp
+
+def debug_generate_html(post_path):
+    content = open(post_path, 'r').read()
+    RESULT = render_markdown(content)
+    with open('./result.html', 'w') as fp:
+        fp.write(RESULT)
+        fp.close()
 
 
 def run(string_date):
@@ -367,6 +381,10 @@ def run(string_date):
 
 
 if __name__ == '__main__':
+    # for debug
+    # path_str = '_posts/2022/2022-04-30-LLVM-intrinsic_introduce.md'
+    # debug_generate_html(path_str)
+     
     init_cache()
     start_time = time.time()  # 开始时间
     times = [datetime.now(), datetime.now() - timedelta(days=1)]

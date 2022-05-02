@@ -5,9 +5,97 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 30 Apr 2022 08:31:06 +0000</pubDate>
-    <lastBuildDate>Sat, 30 Apr 2022 08:31:06 +0000</lastBuildDate>
+    <pubDate>Mon, 02 May 2022 13:09:32 +0000</pubDate>
+    <lastBuildDate>Mon, 02 May 2022 13:09:32 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>LLVM Intrinsic 介绍</title>
+        <description>&lt;h1 id=&quot;什么是-llvm-intrinsic&quot;&gt;什么是 LLVM intrinsic&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;112313&lt;/li&gt;
+  &lt;li&gt;23423&lt;/li&gt;
+  &lt;li&gt;2342&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;LLVM 支持“intrinsic function”的概念。这些函数具有众所周知的名称和语义，并且需要遵循某些限制。总的来说，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这些 intrinsic 代表 LLVM 语言的扩展机制&lt;/code&gt;，在添加到语言(或者位码读取器/写入器、解析器等)时不需要更改 LLVM 中的所有转换。&lt;/p&gt;
+
+&lt;p&gt;Intrinsic函数是编译器内建的函数，由编译器提供，类似于内联函数。但与内联函数不同的是，因为Intrinsic函数是编译器提供，而编译器与硬件架构联系紧密，因此编译器知道如何利用硬件能力以最优的方式实现这些功能。&lt;/p&gt;
+
+&lt;h2 id=&quot;命名格式&quot;&gt;命名格式&lt;/h2&gt;
+
+&lt;p&gt;intrinsic名必须全部以“ llvm”开头前缀。这个前缀在 LLVM 中保留用于intrinsic名称; 因此，函数名称不能以这个前缀开头。intrinsic函数必须始终是外部函数: 你不能定义intrinsic函数体。intrinsic函数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;只能用于调用或调用指令&lt;/code&gt;: 获取intrinsic函数的地址是非法的。此外，由于intrinsic函数是 LLVM 语言的一部分，如果添加了intrinsic函数，则需要对其更新文档。&lt;/p&gt;
+
+&lt;h2 id=&quot;重载&quot;&gt;重载&lt;/h2&gt;
+
+&lt;p&gt;一些intrinsic函数可以被重载，例如，intrinsic函数表示一组在不同数据类型上执行相同操作的函数。由于 LLVM 可以表示超过800万种不同的整数类型，因此通常使用重载来允许intrinsic函数对任何整数类型进行操作。可以重载一个或多个参数类型或结果类型以接受任何整数类型。也可以将参数类型定义为与前一个参数的类型或结果类型完全匹配。这允许一个intrinsic函数接受多个参数，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;但是需要所有参数都是同一类型的，只能对一个参数或结果进行重载&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;重载 intrinsic 将把它重载的参数类型的名称编码到它的函数名中，每个参数类型的前面都有一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.点符号&lt;/code&gt;。只有那些重载的类型才会生成名称后缀。其类型与另一个类型匹配的参数则不会。例如，llvm.ctpop 函数可以获取任意宽度的整数，并返回完全相同整数宽度的整数。这导致了一系列函数，如 @llvm.ctpop.i8(i8 %val)和  i29 @llvm.ctpop.i29(i29 %val).只有一个类型(返回类型)被重载，并且只需要一个类型后缀。因为参数的类型与返回类型匹配，所以它不需要自己的名称后缀。&lt;/p&gt;
+
+&lt;p&gt;未命名类型被编码为 s_s。依赖于其重载参数类型中的未命名类型的重载 intrinsic 将获得一个额外的 .&lt;number&gt;后缀。这允许将不同的未命名类型作为参数来区分 intrinsic。(例如: llvm.ssa.copy.p0s_s.2(%42*)), 这个数字在 LLVM 模块中被跟踪，并确保模块中的唯一名称。在将两个模块链接在一起时，仍然有可能出现名称冲突。在这种情况下，其中一个名称将通过获得一个新numver来区分。&lt;/number&gt;&lt;/p&gt;
+
+&lt;p&gt;对于为后端codegen定义 intrinsic 的目标开发人员，不应该依赖任何仅基于整数或浮点类型之间区别的内部重载来生成代码。在这种情况下，开发人员在定义 intrinsic 时， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;推荐的方法是创建单独的整数和 浮点的 intrinsic，而不是依赖于重载&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;例如，如果 llvm.target.foo(&amp;lt;4 x i32&amp;gt;))和 llvm.target.foo(&amp;lt;4 x float&amp;gt;) 需要不同的 codegen，那么应该将它们分成不同的 intrinsic。&lt;/p&gt;
+
+&lt;h2 id=&quot;变量参数处理&quot;&gt;变量参数处理&lt;/h2&gt;
+
+&lt;p&gt;在 LLVM 中定义了变量参数支持，包括 va_arg 指令和三个内在函数。这些函数与 &lt;stdarg.h&gt; 头文件中定义的命名类似的宏相关。&lt;/stdarg.h&gt;&lt;/p&gt;
+
+&lt;p&gt;所有这些函数都对使用特定于目标的值类型“ va_list”的参数进行操作。LLVM 汇编语言参考手册没有定义此类型是什么，因此无论使用何种类型，都应该准备好处理这些函数。&lt;/p&gt;
+
+&lt;h2 id=&quot;举个例子&quot;&gt;举个例子&lt;/h2&gt;
+
+&lt;p&gt;这个例子展示了如何使用 va_arg 指令和intrinsic 函数处理变量参数。&lt;/p&gt;
+
+&lt;div class=&quot;language-armasm highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;; 定义一个test 函数，第一个i32是返回值， &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;; 后面括号里面的是操作数 i32 %X&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;; 分配一个地址空间给变量，初始化va_list&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;alloca&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;struct&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_list&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ap2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;bitcast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;struct&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;; va_arg= variable_argument &lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;; 这个指令用于访问传递的参数&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;va_arg&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i32&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;; 演示如何使用 llvm.va_copy 和 llvm.va_end&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;aq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;alloca&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;aq2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;bitcast&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aq&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aq2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aq2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;; 停止参数的处理&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tmp&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;; 声明方法，类似cpp里面的extern &lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;read-more&quot;&gt;Read more&lt;/h1&gt;
+
+&lt;p&gt;https://zhuanlan.zhihu.com/p/53659330&lt;/p&gt;
+
+&lt;p&gt;https://docs.microsoft.com/en-us/cpp/cpp/extern-cpp?view=msvc-170&lt;/p&gt;
+
+&lt;p&gt;https://llvm.org/docs/LangRef.html#intrinsic-functions&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
+        <link>https://chasays.github.io/2022/05/02/LLVM-intrinsic_introduce/</link>
+        <guid isPermaLink="true">https://chasays.github.io/2022/05/02/LLVM-intrinsic_introduce/</guid>
+        
+        <category>LLVM</category>
+        
+        
+      </item>
     
       <item>
         <title>Compare With Others</title>
@@ -139,88 +227,6 @@ tags:&lt;/p&gt;
         <pubDate>Sat, 30 Apr 2022 00:00:00 +0000</pubDate>
         <link>https://chasays.github.io/2022/04/30/compare-with-others/</link>
         <guid isPermaLink="true">https://chasays.github.io/2022/04/30/compare-with-others/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM Intrinsic 介绍</title>
-        <description>&lt;h1 id=&quot;什么是-llvm-intrinsic&quot;&gt;什么是 LLVM intrinsic&lt;/h1&gt;
-
-&lt;p&gt;LLVM 支持“intrinsic function”的概念。这些函数具有众所周知的名称和语义，并且需要遵循某些限制。总的来说，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这些 intrinsic 代表 LLVM 语言的扩展机制&lt;/code&gt;，在添加到语言(或者位码读取器/写入器、解析器等)时不需要更改 LLVM 中的所有转换。&lt;/p&gt;
-
-&lt;p&gt;Intrinsic函数是编译器内建的函数，由编译器提供，类似于内联函数。但与内联函数不同的是，因为Intrinsic函数是编译器提供，而编译器与硬件架构联系紧密，因此编译器知道如何利用硬件能力以最优的方式实现这些功能。&lt;/p&gt;
-
-&lt;h2 id=&quot;命名格式&quot;&gt;命名格式&lt;/h2&gt;
-
-&lt;p&gt;intrinsic名必须全部以“ llvm”开头前缀。这个前缀在 LLVM 中保留用于intrinsic名称; 因此，函数名称不能以这个前缀开头。intrinsic函数必须始终是外部函数: 你不能定义intrinsic函数体。intrinsic函数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;只能用于调用或调用指令&lt;/code&gt;: 获取intrinsic函数的地址是非法的。此外，由于intrinsic函数是 LLVM 语言的一部分，如果添加了intrinsic函数，则需要对其更新文档。&lt;/p&gt;
-
-&lt;h2 id=&quot;重载&quot;&gt;重载&lt;/h2&gt;
-
-&lt;p&gt;一些intrinsic函数可以被重载，例如，intrinsic函数表示一组在不同数据类型上执行相同操作的函数。由于 LLVM 可以表示超过800万种不同的整数类型，因此通常使用重载来允许intrinsic函数对任何整数类型进行操作。可以重载一个或多个参数类型或结果类型以接受任何整数类型。也可以将参数类型定义为与前一个参数的类型或结果类型完全匹配。这允许一个intrinsic函数接受多个参数，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;但是需要所有参数都是同一类型的，只能对一个参数或结果进行重载&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;重载 intrinsic 将把它重载的参数类型的名称编码到它的函数名中，每个参数类型的前面都有一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.点符号&lt;/code&gt;。只有那些重载的类型才会生成名称后缀。其类型与另一个类型匹配的参数则不会。例如，llvm.ctpop 函数可以获取任意宽度的整数，并返回完全相同整数宽度的整数。这导致了一系列函数，如 @llvm.ctpop.i8(i8 %val)和  i29 @llvm.ctpop.i29(i29 %val).只有一个类型(返回类型)被重载，并且只需要一个类型后缀。因为参数的类型与返回类型匹配，所以它不需要自己的名称后缀。&lt;/p&gt;
-
-&lt;p&gt;未命名类型被编码为 s_s。依赖于其重载参数类型中的未命名类型的重载 intrinsic 将获得一个额外的 .&lt;number&gt;后缀。这允许将不同的未命名类型作为参数来区分 intrinsic。(例如: llvm.ssa.copy.p0s_s.2(%42*)), 这个数字在 LLVM 模块中被跟踪，并确保模块中的唯一名称。在将两个模块链接在一起时，仍然有可能出现名称冲突。在这种情况下，其中一个名称将通过获得一个新numver来区分。&lt;/number&gt;&lt;/p&gt;
-
-&lt;p&gt;对于为后端codegen定义 intrinsic 的目标开发人员，不应该依赖任何仅基于整数或浮点类型之间区别的内部重载来生成代码。在这种情况下，开发人员在定义 intrinsic 时， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;推荐的方法是创建单独的整数和 浮点的 intrinsic，而不是依赖于重载&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;例如，如果 llvm.target.foo(&amp;lt;4 x i32&amp;gt;))和 llvm.target.foo(&amp;lt;4 x float&amp;gt;) 需要不同的 codegen，那么应该将它们分成不同的 intrinsic。&lt;/p&gt;
-
-&lt;h2 id=&quot;变量参数处理&quot;&gt;变量参数处理&lt;/h2&gt;
-
-&lt;p&gt;在 LLVM 中定义了变量参数支持，包括 va_arg 指令和三个内在函数。这些函数与 &lt;stdarg.h&gt; 头文件中定义的命名类似的宏相关。&lt;/stdarg.h&gt;&lt;/p&gt;
-
-&lt;p&gt;所有这些函数都对使用特定于目标的值类型“ va_list”的参数进行操作。LLVM 汇编语言参考手册没有定义此类型是什么，因此无论使用何种类型，都应该准备好处理这些函数。&lt;/p&gt;
-
-&lt;h2 id=&quot;举个例子&quot;&gt;举个例子&lt;/h2&gt;
-
-&lt;p&gt;这个例子展示了如何使用 va_arg 指令和intrinsic 函数处理变量参数。&lt;/p&gt;
-
-&lt;div class=&quot;language-armasm highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;; 定义一个test 函数，第一个i32是返回值， &lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;; 后面括号里面的是操作数 i32 %X&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;; 分配一个地址空间给变量，初始化va_list&lt;/span&gt;
-  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;alloca&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;struct&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_list&lt;/span&gt;
-  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ap2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;bitcast&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;struct&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;; va_arg= variable_argument &lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;; 这个指令用于访问传递的参数&lt;/span&gt;
-  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;va_arg&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i32&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;; 演示如何使用 llvm.va_copy 和 llvm.va_end&lt;/span&gt;
-  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;aq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;alloca&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
-  &lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;aq2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;bitcast&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aq&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aq2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aq2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;c&quot;&gt;; 停止参数的处理&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ap2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;ret&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tmp&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;; 声明方法，类似cpp里面的extern &lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;
-&lt;span class=&quot;nl&quot;&gt;declare&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;llvm&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;va_end&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h1 id=&quot;read-more&quot;&gt;Read more&lt;/h1&gt;
-
-&lt;p&gt;https://zhuanlan.zhihu.com/p/53659330&lt;/p&gt;
-
-&lt;p&gt;https://docs.microsoft.com/en-us/cpp/cpp/extern-cpp?view=msvc-170&lt;/p&gt;
-
-&lt;p&gt;https://llvm.org/docs/LangRef.html#intrinsic-functions&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 30 Apr 2022 00:00:00 +0000</pubDate>
-        <link>https://chasays.github.io/2022/04/30/LLVM-intrinsic_introduce/</link>
-        <guid isPermaLink="true">https://chasays.github.io/2022/04/30/LLVM-intrinsic_introduce/</guid>
-        
-        <category>LLVM</category>
         
         
       </item>
