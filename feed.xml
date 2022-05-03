@@ -5,9 +5,79 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 02 May 2022 14:39:08 +0000</pubDate>
-    <lastBuildDate>Mon, 02 May 2022 14:39:08 +0000</lastBuildDate>
+    <pubDate>Tue, 03 May 2022 12:34:46 +0000</pubDate>
+    <lastBuildDate>Tue, 03 May 2022 12:34:46 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>git 2 个 commit 压缩为一个 commit</title>
+        <description>&lt;h1 id=&quot;问题&quot;&gt;问题&lt;/h1&gt;
+&lt;p&gt;在使用 Git 作为版本控制的时候，我们可能会由于各种各样的原因提交了许多临时的 commit(git add -m “xx”, 不是追加的–amend)，而这些 commit 拼接起来才是完整的任务。那么我们为了避免太多的 commit 而造成版本控制的混乱，通常我们推荐将这些 commit 合并成一个。&lt;/p&gt;
+
+&lt;p&gt;这个情况下用rebase就可以登场了.&lt;/p&gt;
+
+&lt;h1 id=&quot;rebase&quot;&gt;Rebase&lt;/h1&gt;
+
+&lt;p&gt;Rebase 是在另一个基准提交之上重新应用提交的过程。它用于将不同分支的提交，合并到一个提交中。它是 git merge 命令的一种替代方法。&lt;/p&gt;
+
+&lt;p&gt;在 Git 中，术语 rebase 指的是将一系列提交移动或合并到一个新的基本提交的过程。rebase是非常有用，它可视化了分支工作流环境中的过程。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，最好在合并分支之前rebase。&lt;/p&gt;
+
+&lt;h1 id=&quot;实战&quot;&gt;实战&lt;/h1&gt;
+
+&lt;p&gt;比如首先用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git commit -m 'xx'&lt;/code&gt;来提交三次，然后把最佳的2次合并为一次.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421125024.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以看到有三次提交，分别如图.&lt;/p&gt;
+
+&lt;p&gt;现在需要把下面红色部分的，就是最近的提交的2次，合并为一条commit
+&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421125107.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;重点，首先执行&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git rebase -i HEAD~2&lt;/code&gt;, 这里这个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2就是最近的2次的commit&lt;/code&gt;的意思，也可以用其他的放-i commit_id.&lt;/p&gt;
+
+&lt;p&gt;执行后看到如下弹窗，commit前面默认是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pick&lt;/code&gt;，对应的解释在下面，可以用全称，也可以用首字母，比如&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;p&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421125336.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我这里保留3的comment，把2压缩到3， 修改如下，类似 r -2 ， p -3.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421125739.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;很多同学这里都会报错，理论上也是会报错.的， 因为s的原理是把当前的commit融合到前一个commit，3在2后面提交的，所以会报错.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;error: cannot 'squash' without a previous commit&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421130016.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;按照提示，执行&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git rebase --edit-todo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421133940.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后再次&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git rebase --continue&lt;/code&gt;, 修改comment即可 ，为了区分，我修改如下&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421134129.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后ctrl+X， 然后输入Y，可以看到已经rebase，合并为一条了.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421134207.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最后就可以提交到对于的分支上.&lt;/p&gt;
+
+&lt;h1 id=&quot;参考&quot;&gt;参考&lt;/h1&gt;
+
+&lt;p&gt;https://stackoverflow.com/questions/39595034/git-cannot-squash-without-a-previous-commit-error-while-rebase&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 03 May 2022 00:00:00 +0000</pubDate>
+        <link>https://chasays.github.io/2022/05/03/squash-2-commit-to-1/</link>
+        <guid isPermaLink="true">https://chasays.github.io/2022/05/03/squash-2-commit-to-1/</guid>
+        
+        <category>git</category>
+        
+        
+      </item>
     
       <item>
         <title>LLVM intrinsic 介绍</title>
@@ -975,134 +1045,6 @@ on: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;push]   &lt;span class=&quot;c
         <pubDate>Sat, 26 Mar 2022 00:00:00 +0000</pubDate>
         <link>https://chasays.github.io/2022/03/26/long-term/</link>
         <guid isPermaLink="true">https://chasays.github.io/2022/03/26/long-term/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>29 - 差点把客服骂一顿</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;成都天气急剧下降，温度环比降了15°左右，赶紧把外套找出来穿起。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220321230636.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，请转发给您朋友，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;点这里免费订阅按钮&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h2 id=&quot;怎么个活法&quot;&gt;怎么个活法&lt;/h2&gt;
-
-&lt;p&gt;最近又看了一个非常有意义的话题，世界上已经有1000多亿人死去了，目前留在世界上的还有60亿人，相当于6%的人还活在这世界上，有94%的人已经去世了。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;那我们每个人来到这个世界，能做什么？&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;从长远来看，我觉得我们一定不要为了钱去奔波。一定是留下自己有价值的东西或者是知识等等，我觉得一定要做有长远意义的事情。&lt;/p&gt;
-
-&lt;p&gt;比如早上一定要早起，做点有意义的事情，睡一个回笼觉。你觉得喃？&lt;/p&gt;
-
-&lt;p&gt;开玩笑的哈，个人觉得&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;凡是需要长期做的，希望不断提升的事情，都要做到闭环&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;即有出发点，有目标，有行动，有结果，有复盘。要做到这一点，需要基于一套相对稳定的、简单的架构去运行这件事 —— 读书也不例外。 比如读书，深入学习一门课程、知识。&lt;/p&gt;
-
-&lt;h2 id=&quot;投资&quot;&gt;投资&lt;/h2&gt;
-
-&lt;p&gt;最近不仅是A股， 连港股都热闹非凡，从未见过的下跌速度。你的看的是行程码(绿色的为安全)还是股市(绿色为跌)喃？&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;带着问题去阅读，践行认可的理念，最终从投资中受益。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;如果你对投资一无所知也没有一个良好的心态，总是亏，你就沉下心来看下理财的书籍。&lt;/p&gt;
-
-&lt;p&gt;如果你觉得这个项目赚钱你一定去学习，学习他的文档白皮书，这是非常重要的。&lt;/p&gt;
-
-&lt;h2 id=&quot;结果为导向&quot;&gt;结果为导向&lt;/h2&gt;
-
-&lt;p&gt;今天是周一，本来是准备在上周六更新Newsletter。中间发生点小的问题，导致我没有时间去完成这个东西，非常的抱歉。&lt;/p&gt;
-
-&lt;p&gt;时间来到上周一，我准备出行发现轮胎没气了，轮胎也用的比较久了，想着直接换吧。&lt;/p&gt;
-
-&lt;p&gt;在京东买了两个轮胎，周四的时候去把它给换了， 周五的时候我出门的时候发现胎压不足，把它手动消除了，我以为是可能是胎压有点小问题，就没有去管它。&lt;/p&gt;
-
-&lt;p&gt;到了周六的时候，我去用车发现又没气了。充分体现了能量守恒，车胎没气了，我当时就变得非常的气愤。&lt;/p&gt;
-
-&lt;p&gt;当时想的是骂一顿京东客服。后来一想，还是以结果为导向。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;先报保险的紧急救援，来把气给补上；&lt;/li&gt;
-  &lt;li&gt;去附近的维修点看看是什么情况；&lt;/li&gt;
-  &lt;li&gt;最后再监控下是否异常，避免影响出行&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;值得赞扬的是途虎的维修店，非常专业，也非常的认真。同时也比京车会更负责一点，轮胎有没有漏气的地方检查的非常的仔细，不是敷衍我。拧完螺丝之后，还找来另外一个同事再Double Check下螺丝是否到位，这个check把我震惊了，很少看到有店铺能做到这么仔细的。&lt;/p&gt;
-
-&lt;p&gt;从这个事情中，我觉得刚开始轮胎没气了，我心里是非常生气的，但是后来整理一下思绪发钱，结果为导向，先把问题解决，你不能对京东的客服发火，你不能对京车会的服务人员发火(是他们给我换的轮胎)，这根本不能解决问题，我最终就是先找人来把台换胎或者是加气，然后再去看这个问题导致什么引起的。&lt;/p&gt;
-
-&lt;p&gt;接受他人，接受自己，以结果为导向。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://devblogs.microsoft.com/oldnewthing/20220207-00/?p=106223&quot;&gt;找出2个无符整数的平均数&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;最近自己从事的工作是编译器相关的工作，所以对于编译器相关的内容比较感兴趣。&lt;/p&gt;
-
-&lt;p&gt;找出2个无符整数的平均数，并向下取整。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/withfig/autocomplete&quot;&gt;命令行自动补全 fig.io&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;命令行自动补全，前有 copilot，现有 fig.io。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://gitee.com/chasays/mdPic/raw/master/uPic/20220321230752.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这种工具极大的提高了程序员的编程体验，我就随便拍一个，应该后面还有更多更多这样的工具。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;本周的思考时刻： 如何更好的控制自己的情绪？&lt;/p&gt;
-
-&lt;p&gt;我不喜欢我有情绪失控的自己，失控了怕身边人害怕我，发现那一刻自己是很在乎这个问题，自己就必须的争论一下。完了之后，发现其实没有必要这样做。想想如何和幽默等，来化解这个情况？&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;失控的时候最好就是闭嘴&lt;/code&gt;，因为这个时候自己说话都是多余的，而且是不理智的，最好什么也不说，等自己冷静了再来沟通。避免发生一些不必要的冲突。&lt;/p&gt;
-
-&lt;p&gt;下周思考：健身的意义？&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;李笑来「韭菜的自我修养」 - 100%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;想要从什么项目赚到钱，自己就得为止付出比别人更多的努力。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;福格行为模型 - 10%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;已经开始。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;待读的书还有：启示录(产品相关)、财富自由之路-李笑来&lt;/li&gt;
-  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
-  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今天是坚持周更分享：第 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;29/30&lt;/code&gt; 期，不知不觉，快达成成就了。&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 21 Mar 2022 00:00:00 +0000</pubDate>
-        <link>https://chasays.github.io/2022/03/21/result-oriented/</link>
-        <guid isPermaLink="true">https://chasays.github.io/2022/03/21/result-oriented/</guid>
         
         <category>Newsletter</category>
         

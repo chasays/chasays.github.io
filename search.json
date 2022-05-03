@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "git 2 个 commit 压缩为一个 commit",
+      "subtitle" : "rebase特别有用",
+      "tags"     : "git",
+      "url"      : "/2022/05/03/squash-2-commit-to-1/",
+      "date"     : "2022-05-03 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "LLVM intrinsic 介绍",
       "subtitle" : "LLVM基础",
       "tags"     : "LLVM",
