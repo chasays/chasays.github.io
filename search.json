@@ -1,8 +1,8 @@
 [
   
     {
-      "title"    : "汇编基础指令",
-      "subtitle" : "SHL、add等",
+      "title"    : "汇编基础指令 ",
+      "subtitle" : "SHL、ADD等",
       "tags"     : "LLVM",
       "url"      : "/2022/05/04/assembly-basic-instruction/",
       "date"     : "2022-05-04 00:00:00 +0000"
