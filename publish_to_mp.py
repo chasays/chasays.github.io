@@ -285,7 +285,7 @@ def upload_media_news(post_path):
     print(TITLE)
     print(images)
     if len(images) == 0:
-        images.append('https://source.unsplash.com/random/600x400/?tech')
+        images.append('https://source.unsplash.com/random/600x400')
     uploaded_images = {}
     for image in images:
         media_id = ''

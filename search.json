@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "汇编基础指令",
+      "subtitle" : "SHL、add等",
+      "tags"     : "LLVM",
+      "url"      : "/2022/05/04/assembly-basic-instruction/",
+      "date"     : "2022-05-04 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "git 2 个 commit 压缩为一个 commit",
       "subtitle" : "rebase特别有用",
       "tags"     : "git",
