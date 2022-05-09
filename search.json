@@ -9,6 +9,14 @@
     } ,
   
     {
+      "title"    : "Git 常用命令 pull、cherry-pick、fetch 有什么区别？",
+      "subtitle" : "掌握了就非常的方便",
+      "tags"     : "git",
+      "url"      : "/2022/05/06/git-pull-cherrypick-fetch/",
+      "date"     : "2022-05-06 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "PicGo 图床工具配置 Github 等",
       "subtitle" : "免费图床",
       "tags"     : "github",

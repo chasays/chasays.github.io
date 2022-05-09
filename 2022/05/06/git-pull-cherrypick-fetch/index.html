@@ -12,28 +12,27 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="解决问题为主 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="Git 常用命令 pull、cherry-pick、fetch 有什么区别？ - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="福利
-我自己发现，我公众号下面的广告。因为这个是腾讯自己根据用户偏好去推送的广告，这个广告并不是我自己设定的，还有文中的一些广告我一直没开。
+    <meta property="og:description" content="Cherry-pick
 
 ">
     
-    <meta property="article:published_time" content="2021-02-10T00:00:00Z">
+    <meta property="article:published_time" content="2022-05-06T00:00:00Z">
     
     
     <meta property="article:author" content="叉叉敌">
     
     
-    <meta property="article:tag" content="总结">
+    <meta property="article:tag" content="git">
     
     
     <meta property="og:image" content="https://chasays.github.io/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://chasays.github.io/2021/02/10/resolved-question-is-mainly/">
+    <meta property="og:url" content="https://chasays.github.io/2022/05/06/git-pull-cherrypick-fetch/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <title>解决问题为主 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>Git 常用命令 pull、cherry-pick、fetch 有什么区别？ - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -42,7 +41,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://chasays.github.io/2021/02/10/resolved-question-is-mainly/">
+    <link rel="canonical" href="https://chasays.github.io/2022/05/06/git-pull-cherrypick-fetch/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -273,13 +272,13 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=%E6%80%BB%E7%BB%93" title="总结">总结</a>
+                        <a class="tag" href="/archive/?tag=git" title="git">git</a>
                         
                     </div>
-                    <h1>解决问题为主</h1>
+                    <h1>Git 常用命令 pull、cherry-pick、fetch 有什么区别？</h1>
                     
-                    <h2 class="subheading">总结</h2>
-                    <span class="meta">Posted by 叉叉敌 on February 10, 2021</span>
+                    <h2 class="subheading">掌握了就非常的方便</h2>
+                    <span class="meta">Posted by 叉叉敌 on May 6, 2022</span>
                 </div>
             </div>
         </div>
@@ -305,99 +304,103 @@
                 <!-- Multi-Lingual -->
                 
 
-				<h2 id="福利">福利</h2>
-<p>我自己发现，我公众号下面的广告。因为这个是腾讯自己根据用户偏好去推送的广告，这个广告并不是我自己设定的，还有文中的一些广告我一直没开。</p>
+				<h1 id="cherry-pick">Cherry-pick</h1>
 
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/WX20210209-192120.png" alt="" /></p>
+<p>使用场景：假设您正在与一组开发人员一起开发一个中型到大型的项目。由另一个团队成员提出的一些更改，您希望将其中的一些更改应用于您的主项目，而不是全部。因为管理几个 Git 分支之间的更改可能成为一项复杂的任务，您不希望将整个分支合并到另一个分支中。你只需要<code class="language-plaintext highlighter-rouge">选择一个或两个特定的commit。从其他分支中挑选一些变更到您的主项目分支中</code>，这被称为“cherry-pick”。</p>
 
-<p>我今天发现我在公众号广告这块赚了几百块，那几百块对我说，也没有太多钱。但是影响用户的一个阅读体验，从今天开始，我<code class="language-plaintext highlighter-rouge">关闭广告文中和文末的广告</code>。如果后面可能我再开的话，有可能我真的是需要这部分钱，或者是其他的原因吧，目前先把这个广告关掉。说不定后面哪天我缺钱了，我会再打开，那就先关着吧。</p>
+<p><img src="/uploads/photo/chasays/5a7c74fa-a714-4c90-bf56-6e59c0691e20.png!large" alt="" /></p>
 
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/WX20210209-192303.png" alt="" /></p>
+<p>语法 <code class="language-plaintext highlighter-rouge">git cherry-pick commit_id</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">在公众号里面回复「叉叉敌」</code>，不是这个文章底部哦，则按照提示参与活动。奖品如下：</p>
+<h1 id="fetch">Fetch</h1>
+
+<p>Git fetch 是一个命令，它告诉本地 git 从原始数据中检索最新的元数据信息(但不进行任何文件传输)，<code class="language-plaintext highlighter-rouge">这更像是检查是否有任何可用的更改)</code>。</p>
+
+<p><img src="/uploads/photo/chasays/0cfab5e2-3214-4c9f-adcb-799d59f814c3.png!large" alt="" /></p>
+
+<p>语法： <code class="language-plaintext highlighter-rouge">git fetch&lt; repository Url&gt;</code></p>
+<ul>
+  <li>也可以指定分支名称<code class="language-plaintext highlighter-rouge">git fetch &lt;branch URL&gt;&lt;branch name&gt;</code></li>
+  <li>或者是所有的分支<code class="language-plaintext highlighter-rouge">git fetch -all</code></li>
+</ul>
+
+<h1 id="pull">Pull</h1>
+
+<p>先fetch，更改并将它们merge到同名的本地分支中。</p>
+
+<p>git pull可以实现并从远程存储库中复制那些更改,有一个merge的动作.
+实际<code class="language-plaintext highlighter-rouge"> git pull = git fetch + git merge</code>.</p>
+
+<p>用法最也简单<code class="language-plaintext highlighter-rouge">git pull &lt;option&gt; [&lt;repository URL&gt;&lt;refspec&gt;...]l</code></p>
+
+<h1 id="小结">小结</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>git fetch</th>
+      <th>git pull</th>
+      <th>cherry-pick</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>只从远程存储库中下载新数据</td>
+      <td>用于使用来自远程最新更改更新本地当前的 HEAD 分支</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>用于获取远程存储库中发生的所有事情的新的信息</td>
+      <td>下载新的数据，并直接集成到您当前的工作，merge文件</td>
+      <td>拉取并把改commit置位第一个</td>
+    </tr>
+    <tr>
+      <td>从不操纵或破坏数据</td>
+      <td>拉下载数据并将其与当前工作文件merge</td>
+      <td>会merge文件</td>
+    </tr>
+    <tr>
+      <td>代码不受合并冲突的影响</td>
+      <td>有代码冲突，肯定会受到merge conflict</td>
+      <td>有代码冲突，肯定会受到merge conflict</td>
+    </tr>
+    <tr>
+      <td>最好使用 git fetch 命令和 git merge 命令对一个已pull的存储库进行操作</td>
+      <td>有了仓库，建议不要这么用</td>
+      <td>有了仓库，建议不要这么用</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这个网站的介绍非常好，也写的非常的详细，包括一些常见的使用场景都提到了.</p>
+
 <blockquote>
-  <ol>
-    <li>2个「乐扣季度90会员，价值198元。」</li>
-    <li>若干红包</li>
-  </ol>
+  <p>https://w3cschoool.com/git-fetch</p>
 </blockquote>
 
-<p>中奖后来公众号回复的中奖信息，或者添加我个人微信(菜单栏-商务合作)</p>
+<h1 id="read-more">read more</h1>
 
-<hr />
+<p>https://blog.osteele.com/2008/05/my-git-workflow/</p>
 
-<p>开始最近的学习分享</p>
+<p>https://w3cschoool.com/git-cherry-pick</p>
 
-<h2 id="解决问题为主">解决问题为主</h2>
-
-<p>今天就从老板的总结开始吧，先看看原话是什么。</p>
-<blockquote>
-  <p>不在意做了多少，而是：是否解决了问题，解决了多少问题，解决了多少复杂 且 影响面很大的问题；用数据来展示效果</p>
-</blockquote>
-
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/MNiZSd.jpg" alt="" /></p>
-
-<p>用了三个「解决」，道出了工作存在的问题和需要改进的地方。</p>
-
-<p>第一个解决，就是不要搞一些花里胡哨的东西，重点是要解决问题，有句话说的话，<code class="language-plaintext highlighter-rouge">一顿操作猛如虎，定睛一看原地杵</code>。
-第二个解决，就是说我们的付出和回报关系，一定是<code class="language-plaintext highlighter-rouge">回报大于付出</code>的，如果我们在一年时间内付出了很多，但是回报很少，那就没有什么意义。最后一个解决了多少复杂的问题，这个就说我们。我们做这个东西有一定的技术含量，有一定的门槛，不是任何人都可以做，不是任何人花时间都可以去解决的问题，这就是我们自己的价值。</p>
-
-<hr />
-
-<h2 id="要有自己的决定">要有自己的决定</h2>
-
-<p>前几天我们出去聚餐的时候，当时是正在吃烤肉，然后我就问同事需不需要放油，或者是不要放什么东西。当时同事就出于不耐烦的说了句「你没做过饭吗？」</p>
-
-<p>说实话，我心里当时是不太高兴的，「没有公主命还有公主病了」，因为我是从农村来的，农村来的孩子没那么娇气，我肯定是做饭的，不信算了，那天给做番茄炒蛋看看。</p>
-
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/Y4u0iz.jpg" alt="" /></p>
-
-<p>其实我是想的是，毕竟我是新人，要尽快的融入到这个组的氛围里面，考虑一下大家，尽可能的满足组员，比较在乎别人的感受。<code class="language-plaintext highlighter-rouge">在小的事情上面，就自己去做决定</code>，不要和其他人商量，因为这个结果，基本上地球人都知道该怎么去做，或者是大部分人知道，只要去做是正确的，那我们就这样去做，自己去做判断，自己去执行，增加自己的判断力。</p>
-
-<hr />
-
-<h2 id="不要急于表达自己">不要急于表达自己</h2>
-
-<p>像上面这个事情，如果当时同事说我，我该硬顶回去，那但是可能又是另外一番话，另外一个场景。</p>
-
-<p>还有些事情我们自己不太清楚，不太明白的，<code class="language-plaintext highlighter-rouge">不要急于去表达自己</code>，因为这个时候有可能我们内心里面可能就是想炫耀，或者是想让别人知道我们才会去说。所以说在这个时候我们没有必要去解释，我们做好自己就可以了，没必要去解释，反而我们去解释的时候就表现的时候，可能会弄巧成拙，达不到我们想要的结果。</p>
-
-<p>这里面引用过的，看了一篇明白老师文章里面的话。<code class="language-plaintext highlighter-rouge">不被别人理解是一个常态，因为别人不理解自己，这是一个复杂的问题</code>。人们听到一个观点，第一反应不是去想，这个观点对不对，对我有什么帮助，这是人的天性。</p>
-
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/l9SLc5.jpg" alt="" /></p>
-
-<p>像我前些年思想浅薄的时候，特别珍惜那些内心微小的想法，能迫不及待的，想找个机会把自己这个想法讲出来，讲给别人听，但是别人也没有必要理解自己。</p>
-
-<hr />
-
-<h2 id="分享输出">分享输出</h2>
-
-<p>前几天还发生了一件小事在自己身上。在第一个月完成的时候，做了一些分享，在分享的 slide 上面，有几点需要改进和学习。</p>
-
-<p>第一个是PPT太素了，<code class="language-plaintext highlighter-rouge">没有把重点内容突出来</code>，就是听的人要知道我们在讲什么，重点是什么。</p>
-
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/0Uvsw5.jpg" alt="" /></p>
-
-<p>第二个不懂的一定要多问，问一些专家，架构师，找内部空间的一些资料，都是一些渠道。有些东西就是不怕自己不懂，就是怕这个东西我们不懂，我们是要去硬讲，这个时候反而却是非常尴尬的，因为可能是为了我们每一个技术细节自己都不太清楚，业务流程也不太懂。所以<code class="language-plaintext highlighter-rouge">知之为知之，不知为不知是智也</code>。</p>
-
-<p>可以帮忙点个赞、点个好看么？谢谢</p>
 
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2021/02/09/wechat-red-packet/" data-toggle="tooltip" data-placement="top" title="非认证用户如何定制自己的视频号">
+                        <a href="/2022/05/05/picgo-picbed-config/" data-toggle="tooltip" data-placement="top" title="PicGo 图床工具配置 Github 等">
                         Previous<br>
-                        <span>非认证用户如何定制自己的视频号</span>
+                        <span>PicGo 图床工具配置 Github 等</span>
                         </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2021/02/12/how-to-install-altStore/" data-toggle="tooltip" data-placement="top" title="可能提到Cydia的东西">
+                        <a href="/2022/05/07/35-old-year-for-programmer/" data-toggle="tooltip" data-placement="top" title="36 - 35岁，程序员在做什么">
                         Next<br>
-                        <span>可能提到Cydia的东西</span>
+                        <span>36 - 35岁，程序员在做什么</span>
                         </a>
                     </li>
                     

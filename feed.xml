@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 09 May 2022 15:42:40 +0000</pubDate>
-    <lastBuildDate>Mon, 09 May 2022 15:42:40 +0000</lastBuildDate>
+    <pubDate>Mon, 09 May 2022 15:47:53 +0000</pubDate>
+    <lastBuildDate>Mon, 09 May 2022 15:47:53 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -135,6 +135,98 @@
         <guid isPermaLink="true">https://chasays.github.io/2022/05/07/35-old-year-for-programmer/</guid>
         
         <category>Newsletter</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Git 常用命令 pull、cherry-pick、fetch 有什么区别？</title>
+        <description>&lt;h1 id=&quot;cherry-pick&quot;&gt;Cherry-pick&lt;/h1&gt;
+
+&lt;p&gt;使用场景：假设您正在与一组开发人员一起开发一个中型到大型的项目。由另一个团队成员提出的一些更改，您希望将其中的一些更改应用于您的主项目，而不是全部。因为管理几个 Git 分支之间的更改可能成为一项复杂的任务，您不希望将整个分支合并到另一个分支中。你只需要&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;选择一个或两个特定的commit。从其他分支中挑选一些变更到您的主项目分支中&lt;/code&gt;，这被称为“cherry-pick”。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/uploads/photo/chasays/5a7c74fa-a714-4c90-bf56-6e59c0691e20.png!large&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;语法 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git cherry-pick commit_id&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;fetch&quot;&gt;Fetch&lt;/h1&gt;
+
+&lt;p&gt;Git fetch 是一个命令，它告诉本地 git 从原始数据中检索最新的元数据信息(但不进行任何文件传输)，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这更像是检查是否有任何可用的更改)&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/uploads/photo/chasays/0cfab5e2-3214-4c9f-adcb-799d59f814c3.png!large&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;语法： &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git fetch&amp;lt; repository Url&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;也可以指定分支名称&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git fetch &amp;lt;branch URL&amp;gt;&amp;lt;branch name&amp;gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;或者是所有的分支&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git fetch -all&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;pull&quot;&gt;Pull&lt;/h1&gt;
+
+&lt;p&gt;先fetch，更改并将它们merge到同名的本地分支中。&lt;/p&gt;
+
+&lt;p&gt;git pull可以实现并从远程存储库中复制那些更改,有一个merge的动作.
+实际&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; git pull = git fetch + git merge&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;用法最也简单&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git pull &amp;lt;option&amp;gt; [&amp;lt;repository URL&amp;gt;&amp;lt;refspec&amp;gt;...]l&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;小结&quot;&gt;小结&lt;/h1&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;git fetch&lt;/th&gt;
+      &lt;th&gt;git pull&lt;/th&gt;
+      &lt;th&gt;cherry-pick&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;只从远程存储库中下载新数据&lt;/td&gt;
+      &lt;td&gt;用于使用来自远程最新更改更新本地当前的 HEAD 分支&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;用于获取远程存储库中发生的所有事情的新的信息&lt;/td&gt;
+      &lt;td&gt;下载新的数据，并直接集成到您当前的工作，merge文件&lt;/td&gt;
+      &lt;td&gt;拉取并把改commit置位第一个&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;从不操纵或破坏数据&lt;/td&gt;
+      &lt;td&gt;拉下载数据并将其与当前工作文件merge&lt;/td&gt;
+      &lt;td&gt;会merge文件&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;代码不受合并冲突的影响&lt;/td&gt;
+      &lt;td&gt;有代码冲突，肯定会受到merge conflict&lt;/td&gt;
+      &lt;td&gt;有代码冲突，肯定会受到merge conflict&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;最好使用 git fetch 命令和 git merge 命令对一个已pull的存储库进行操作&lt;/td&gt;
+      &lt;td&gt;有了仓库，建议不要这么用&lt;/td&gt;
+      &lt;td&gt;有了仓库，建议不要这么用&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;这个网站的介绍非常好，也写的非常的详细，包括一些常见的使用场景都提到了.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://w3cschoool.com/git-fetch&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
+
+&lt;p&gt;https://blog.osteele.com/2008/05/my-git-workflow/&lt;/p&gt;
+
+&lt;p&gt;https://w3cschoool.com/git-cherry-pick&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+        <link>https://chasays.github.io/2022/05/06/git-pull-cherrypick-fetch/</link>
+        <guid isPermaLink="true">https://chasays.github.io/2022/05/06/git-pull-cherrypick-fetch/</guid>
+        
+        <category>git</category>
         
         
       </item>
@@ -825,129 +917,6 @@ on: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;push]   &lt;span class=&quot;c
         <guid isPermaLink="true">https://chasays.github.io/2022/04/18/gihub-action-build-blog/</guid>
         
         <category>github</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>33 - 如何计划</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;成都天气转凉，今天晚上只有12°，光说一个数字，估计大部分人没有什么概念，就是12°可以穿薄款羽绒服了。&lt;/p&gt;
-
-&lt;p&gt;成都不只是一个来了就不想走的城市，还是一个天气多变的城市，如果你是外地人，来成都游玩，类似春天或者秋天，多准备几件厚衣服 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/6374f516ly1h1cpfnmxw6j20jq09ut95.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，请转发给您朋友，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;点这里免费订阅按钮&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h2 id=&quot;计划&quot;&gt;计划&lt;/h2&gt;
-
-&lt;p&gt;估计没有人不知道计划是什么，我自己之前也是这么了解的。&lt;/p&gt;
-
-&lt;p&gt;计划出游、计划这么花钱、计划这么看书……&lt;/p&gt;
-
-&lt;p&gt;每一个计划都会，但是最近看了一本书，发现自己不会计划了。一般对一个计划来说就是这么去完成&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;预期结果是什么&lt;/li&gt;
-  &lt;li&gt;把目标分解为多个小计划&lt;/li&gt;
-  &lt;li&gt;坚持去做&lt;/li&gt;
-  &lt;li&gt;……&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;大部分人大概也是这么开始一个计划，但是我们忽略了一个细节的地方，就是进度如何把控。&lt;/p&gt;
-
-&lt;p&gt;建议在每天或者每周来看自己的计划，或者小计划有没有完成 ，没有完成就想办法来完成，多总结。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;例行回顾自己的计划&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;循序渐进&quot;&gt;循序渐进&lt;/h2&gt;
-
-&lt;p&gt;不会为开始制定计划的时候，都是一年一年去制定计划，时间长了，对于这个没有把控力度，也发现没有这方面的天赋。&lt;/p&gt;
-
-&lt;p&gt;除了时间时间维度，还有就是难易程度。&lt;/p&gt;
-
-&lt;p&gt;最近看到李笑来，写的书，其实我们计划的时候，可以把时间先放短一点，先试着一周一周的去计划，这样不仅保证完成质量很高，而且你是个可控的范围，一般人都可以做到；第二个等我们熟悉了一周一周的计划之后，再用一个月一个季度一年两年的长期计划，循序渐进。&lt;/p&gt;
-
-&lt;h2 id=&quot;行动&quot;&gt;行动&lt;/h2&gt;
-
-&lt;p&gt;计划固然重要，行动更为重要。&lt;/p&gt;
-
-&lt;p&gt;无论是学习、工作还是生活，我们面临的任务大都是重复性的。要想加快执行重复性任务的速度，只需在遇到重复性任务时先将其做完一次，然后马上总结、整理，搞清流程，再靠进一步的实践把它变成“闭着眼睛也能做好”的事。这是提高效率、减少失误的根本手段。&lt;/p&gt;
-
-&lt;p&gt;准备充分的人，常常会有出色的表现，最终能够顺利地完成任务，而这样的经验会使他更加坚信提前准备的重要。准备不充分的人，执行任务时必然表现欠佳，但不管表现多差，他也提前做了一点准备（或者自认为做了一点准备），但这样的经验却会让他觉得准备是没什么用的，至少是没什么大用的，于是下一次他还会采取同样的行动，还会面临相同甚至更为严重的尴尬…&lt;/p&gt;
-
-&lt;p&gt;在倾听的过程中，我们可以利用多余的脑力处理两个方向的信息：“回顾”与“预期”。所谓“回顾”，即使说复杂了听起来也很简单：说者刚刚都讲了些什么？&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.ruanyifeng.com/blog/2022/04/weekly-issue-202.html?utm_source=bestxtools.com&quot;&gt;科技爱好者周刊（第 202 期）：三个有启发的学习方法&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;看似最笨的学习方法—-笔记和记忆力—-偏偏造就了最高的开发效率。和自己学习英语有点类似，有时候自己对各种方法和资料，非常的感兴趣，其实不然，英语是一门语言，是用的，不是用来看的，也不是收藏的。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/AykutSarac/jsonvisio.com&quot;&gt;jsonvisio.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;JSON Visio是json数据可视化工具，可以无缝地显示在图表上的数据，而无需重组任何内容、直接粘贴或导入文件。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/GenieFramework/Genie.jl&quot;&gt;Genie.jl&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://ws1.sinaimg.cn/large/6374f516ly1h1cpgj0kinj20k408rwen.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Genie是一个用于开发现代web应用程序的全栈web框架。它具有强大的路由器、WebSocket、模板、插件、ORM支持等功能。使用精灵制作的软件包和应用程序的示例可用。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;本周的思考时刻： 如何更好的输出的看书的内容信息？&lt;/p&gt;
-
-&lt;p&gt;书本上的都是信息，不是知识。只有自己内化为自己的信息，才是知识。&lt;/p&gt;
-
-&lt;p&gt;下周思考：如何更真诚？&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如睡前20分钟(之前有人推荐最好不要在早上，早上不容易集中精力)，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;李笑来「把时间当做朋友」 - 60%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;接受自己，接受懒惰的事实。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;福格行为模型 - 20%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;已经开始。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;待读的书还有：启示录(产品相关)、财富自由之路-李笑来&lt;/li&gt;
-  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
-  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今天是坚持周更分享：第 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;33/60&lt;/code&gt; 期。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 16 Apr 2022 00:00:00 +0000</pubDate>
-        <link>https://chasays.github.io/2022/04/16/how-to-plan/</link>
-        <guid isPermaLink="true">https://chasays.github.io/2022/04/16/how-to-plan/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>
