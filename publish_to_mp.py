@@ -1,6 +1,7 @@
 import time
 import urllib
 import os
+import sys
 import json
 import hashlib
 import pickle
@@ -13,6 +14,12 @@ from datetime import timedelta
 from pyquery import PyQuery
 from pathlib import Path
 from werobot import WeRoBot
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-t', '--type', help='please input wechat\'s type')
+parser.add_argument('-f', '--file', help='please specifiled filename')
+args = parser.parse_args()
 
 
 CACHE = {}
@@ -27,6 +34,15 @@ WECHAT_APP_SECRET = '479a4ffce6bcce71119fe1d57936f200'
 # 叉哥说险
 # WECHAT_APP_ID = 'wx3ff6a703f848d4f3'
 # WECHAT_APP_SECRET = '55585b112cea70fc9818d66a74a26e92'
+
+WECHAT_DICT = {
+    'tfug' : {'WECHAT_APP_ID' :'wx193da9cd52d2b703',
+            'WECHAT_APP_SECRET' : '479a4ffce6bcce71119fe1d57936f200'},
+    'cgsx': {'WECHAT_APP_ID' :'wx3ff6a703f848d4f3',
+            'WECHAT_APP_SECRET' : '55585b112cea70fc9818d66a74a26e92'},
+    'chasays': {'WECHAT_APP_ID' :'wx90a82fb7b8e6861f',
+                'WECHAT_APP_SECRET' : 'edbabaf47f8425102033bcc82e43c4bf'}
+}
 
 CACHE_STORE = "cache.bin"
 
@@ -367,6 +383,11 @@ def debug_generate_html(post_path):
         fp.write(RESULT)
         fp.close()
 
+def run_file(filename: str):
+    print(filename)
+    news_json = upload_media_news(filename)
+    print(news_json)
+
 
 def run(string_date):
     #string_date = "2022-02-04"
@@ -375,7 +396,7 @@ def run(string_date):
     for path in pathlist:
         path_str = str(path)
         if file_processed(path_str):
-            print("{} has been processed".format(path_str))
+            print("{} has been processed, skip....".format(path_str))
             continue
         if string_date in path.name:
             print(path_str)
@@ -383,12 +404,19 @@ def run(string_date):
             print(news_json)
             print('successful')
 
-
 if __name__ == '__main__':
     ## for debug
     # path_str = '_posts/2022/2022-05-02-LLVM-intrinsic_introduce.md'
     # debug_generate_html(path_str)
-     
+    w_type = args.type
+    filename = args.file
+    if w_type in WECHAT_DICT:
+        WECHAT_APP_ID = WECHAT_DICT[w_type]['WECHAT_APP_ID']
+        WECHAT_APP_SECRET = WECHAT_DICT[w_type]['WECHAT_APP_SECRET']
+    if filename:
+        print(WECHAT_APP_ID, WECHAT_APP_SECRET)
+        run_file(filename)
+        sys.exit()
     init_cache()
     start_time = time.time()  # 开始时间
     times = [datetime.now(), datetime.now() - timedelta(days=1)]
@@ -399,5 +427,3 @@ if __name__ == '__main__':
         run(string_date)
     end_time = time.time()  # 结束时间
     print("程序耗时%f秒." % (end_time - start_time))
-
-
