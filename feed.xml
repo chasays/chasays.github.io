@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 09 May 2022 15:47:53 +0000</pubDate>
-    <lastBuildDate>Mon, 09 May 2022 15:47:53 +0000</lastBuildDate>
+    <pubDate>Mon, 09 May 2022 15:49:38 +0000</pubDate>
+    <lastBuildDate>Mon, 09 May 2022 15:49:38 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -145,7 +145,7 @@
 
 &lt;p&gt;使用场景：假设您正在与一组开发人员一起开发一个中型到大型的项目。由另一个团队成员提出的一些更改，您希望将其中的一些更改应用于您的主项目，而不是全部。因为管理几个 Git 分支之间的更改可能成为一项复杂的任务，您不希望将整个分支合并到另一个分支中。你只需要&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;选择一个或两个特定的commit。从其他分支中挑选一些变更到您的主项目分支中&lt;/code&gt;，这被称为“cherry-pick”。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/uploads/photo/chasays/5a7c74fa-a714-4c90-bf56-6e59c0691e20.png!large&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/qj4c4O.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;语法 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git cherry-pick commit_id&lt;/code&gt;&lt;/p&gt;
 
@@ -153,7 +153,7 @@
 
 &lt;p&gt;Git fetch 是一个命令，它告诉本地 git 从原始数据中检索最新的元数据信息(但不进行任何文件传输)，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这更像是检查是否有任何可用的更改)&lt;/code&gt;。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/uploads/photo/chasays/0cfab5e2-3214-4c9f-adcb-799d59f814c3.png!large&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/XA15iz.png&quot; alt=&quot;XA15iz&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;语法： &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git fetch&amp;lt; repository Url&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
