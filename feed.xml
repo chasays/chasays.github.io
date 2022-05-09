@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 09 May 2022 15:13:10 +0000</pubDate>
-    <lastBuildDate>Mon, 09 May 2022 15:13:10 +0000</lastBuildDate>
+    <pubDate>Mon, 09 May 2022 15:42:40 +0000</pubDate>
+    <lastBuildDate>Mon, 09 May 2022 15:42:40 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -135,6 +135,53 @@
         <guid isPermaLink="true">https://chasays.github.io/2022/05/07/35-old-year-for-programmer/</guid>
         
         <category>Newsletter</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>PicGo 图床工具配置 Github 等</title>
+        <description>&lt;h1 id=&quot;场景&quot;&gt;场景&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;程序员写博客、文章等，然后发现图上传和管理都不是特别的方便，还有就是服务器保存图片就很繁琐，建议使用PicGo、uPic等工具，支持把图片传到github、gitee、微信小程序云等机器&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;最近使用gitee的时候发现，上传失败了，又换到了github上.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://cdn.jsdelivr.net/gh/user/repo&lt;/code&gt;来替代官方的域名，访问也很快.&lt;/p&gt;
+
+&lt;h1 id=&quot;配置&quot;&gt;配置&lt;/h1&gt;
+
+&lt;p&gt;这本身是一个方便图床上传的GUI工具，但是我这里推荐使用它的vs code 插件版本。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在VS Code 当中，搜寻PicGo外挂并安装。&lt;/li&gt;
+  &lt;li&gt;开启VS Code的设定介面，搜寻picGo。&lt;/li&gt;
+  &lt;li&gt;只需要把 current 这里的下拉选项改为 github&lt;/li&gt;
+  &lt;li&gt;把 Github:branch 这里改成 master&lt;/li&gt;
+  &lt;li&gt;把 Github: Custom Url 这里改成使用 jsDelivr 分发的仓库地址。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;即https://cdn.jsdelivr.net/gh/你的github使用者名称/刚刚建的仓库名&lt;/code&gt;，这样子我们以后访问图片就可以加快啦！&lt;/li&gt;
+  &lt;li&gt;把 Github: Repo 改为 github使用者名称/仓库名&lt;/li&gt;
+  &lt;li&gt;把 Github: Token 改为刚刚在 Github 记录下来的 token&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220418141638.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;token-生成&quot;&gt;token 生成&lt;/h1&gt;
+
+&lt;p&gt;登录github的情况下， 访问这个网址&lt;a href=&quot;https://github.com/settings/tokens/new&quot;&gt;https://github.com/settings/tokens/new&lt;/a&gt;， 输入名称，勾选如下配合，然后其他要求，就点击底部的生成token即可.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220418141900.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+        <link>https://chasays.github.io/2022/05/05/picgo-picbed-config/</link>
+        <guid isPermaLink="true">https://chasays.github.io/2022/05/05/picgo-picbed-config/</guid>
+        
+        <category>github</category>
         
         
       </item>
@@ -899,144 +946,6 @@ on: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;push]   &lt;span class=&quot;c
         <pubDate>Sat, 16 Apr 2022 00:00:00 +0000</pubDate>
         <link>https://chasays.github.io/2022/04/16/how-to-plan/</link>
         <guid isPermaLink="true">https://chasays.github.io/2022/04/16/how-to-plan/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>32 - 时间就是朋友</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;上海确实疫情非常的严重，但是致死率官方报道的至少还是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;零&lt;/code&gt;，这个0给了我们很多信心，坚持下去一定会成功的。&lt;/p&gt;
-
-&lt;p&gt;对于在上海的同事们来说，定闹钟抢购是家常便饭了。有个同事在隔离在酒店，每天有饭菜送上门，不用担心没有吃的问题，反而还是因祸得福。&lt;/p&gt;
-
-&lt;p&gt;顺便祝大家有菜吃，有了菜吃，才能更好的防御疫情。&lt;/p&gt;
-
-&lt;p&gt;加油，上海！&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，请转发给您朋友，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;点这里免费订阅按钮&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2022/04/09/bx1kQ7lqTh3owWB.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;玩耍&quot;&gt;玩耍&lt;/h2&gt;
-
-&lt;p&gt;我们家小孩，我能明显感觉到他是贪玩的，同时也不是别人家口中的孩子。&lt;/p&gt;
-
-&lt;p&gt;也和网上的段子相似，辅导作业的就能看出来，一会儿东、一会儿西。沉下心来做作业，基本上是很难作到，但是我们作为家长就可以时刻批评小孩并指出他的不对的地方。&lt;/p&gt;
-
-&lt;p&gt;反而，我们自己上时间玩耍手机，不由自主的就是几个小时过去了……&lt;/p&gt;
-
-&lt;p&gt;都说小孩的本质是最纯粹的，就能大概看出来我们人的本性是什么样子。&lt;/p&gt;
-
-&lt;p&gt;贪玩。&lt;/p&gt;
-
-&lt;p&gt;玩耍我都不知道怎么定义，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;一系列为了娱乐和享受而进行的内在驱动的活动。&lt;/code&gt;注意有个内在驱动的，就是不由自主。&lt;/p&gt;
-
-&lt;h2 id=&quot;把时间当做朋友&quot;&gt;把时间当做朋友&lt;/h2&gt;
-
-&lt;p&gt;这本书不是什么鸡汤，也不是什么励志成功的书籍。反而就是告诉我们学习这个是反人类的活动，没有人喜欢读书和学习，要接受这种心态和现状。&lt;/p&gt;
-
-&lt;p&gt;作为程序员，明显能感觉到有些人擅长修复bug，有些擅长写bug。&lt;/p&gt;
-
-&lt;p&gt;是什么原因导致的喃？我个人觉得是一个人的积累有关，擅长总结的人，在一个问题上不会出现3~4次同样的错误，但是差的程序员就会在同样的问题上出现多次失误。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;解决问题的核心思想只有一个——一切都靠积累&lt;/code&gt;。深信积累的力量，时间就是你的朋友，否则，它就是你的敌人。&lt;/p&gt;
-
-&lt;p&gt;早一点意识到这个问题，摆脱自己的局限，需要心智的力量。&lt;/p&gt;
-
-&lt;p&gt;出了积累，还有就是学自己感兴趣的东西，有机会就学，在自己的职业生涯，说不定有时候就会用上。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;没有什么东西可以速成，不是一蹴而就。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;相反，但是可以用这个理论来做营销，怎么讲喃。比如英语这个学习就是不是速成的，如果营销上面就写21天就学会英语，有些人就会相信，效果反而还不错。&lt;/p&gt;
-
-&lt;h2 id=&quot;三思而行&quot;&gt;三思而行&lt;/h2&gt;
-
-&lt;p&gt;所谓“三思而行”在我看来就是指做任何事情之前都要考虑相关的3个方面：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;内容（What）&lt;/li&gt;
-  &lt;li&gt;原因（Why）&lt;/li&gt;
-  &lt;li&gt;方法（How）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;为了严谨，应该是大部分事物都有这三部分，清楚了解一个任务的这些属性，对最终能否完成该任务起着决定性的作用，其中最重要的就是应该多花一点时间去“三思”，也就是how，为什么会这样。把这个事情迁移到其他环境上，有利于快速的内化这个信息。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;每个人都应该是自己的项目经理——自主、独立，是心智成熟的人必有的素质。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://dkb.io/post/the-next-google&quot;&gt;下一代谷歌&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2022/04/09/WP1L2nGjovwMZr5.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;下一个谷歌必须不仅仅是一个返回链接的输入框。新一代搜索引擎正在开发中，将搜索引擎的想法带到了新的方向。本文研究了新的搜索引擎，并展示了它们提供了什么。它谈到了Kagi、Neeva、You.com、Andi、Brave和Goggles，并解释了这些公司如何在该领域进行创新。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.uml.org.cn/jmshj/2022031544.asp&quot;&gt;关于人群画像&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2022/04/09/3Qx9l8aLgmMAsqH.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;本文将介绍用户画像概述、构建用户画像、用户画像评估和使用等。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/direnv/direnv&quot;&gt;direnv&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2022/04/09/TP7ucl8iewrjNaR.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Direnv是shell的扩展，它增加了根据当前目录加载和卸载环境变量的能力。它支持所有常见外壳的钩子。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;本周的思考时刻： 如何快速学习一个新知识？&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/Am5LDAuvjbmbcqJ-J1UcPg&quot;&gt;日拱一卒。&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;下周思考：如何更好的输出的看书的内容信息？&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;李笑来「把时间当做朋友」 - 20%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;接受自己，接受懒惰的事实。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;福格行为模型 - 20%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;已经开始。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;待读的书还有：启示录(产品相关)、财富自由之路-李笑来&lt;/li&gt;
-  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
-  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今天是坚持周更分享：第 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;32/60&lt;/code&gt; 期。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 09 Apr 2022 00:00:00 +0000</pubDate>
-        <link>https://chasays.github.io/2022/04/09/time-as-a-friend/</link>
-        <guid isPermaLink="true">https://chasays.github.io/2022/04/09/time-as-a-friend/</guid>
         
         <category>Newsletter</category>
         
