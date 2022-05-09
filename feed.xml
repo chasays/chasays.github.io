@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://chasays.github.io/</link>
     <atom:link href="https://chasays.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 09 May 2022 15:49:38 +0000</pubDate>
-    <lastBuildDate>Mon, 09 May 2022 15:49:38 +0000</lastBuildDate>
+    <pubDate>Mon, 09 May 2022 15:52:57 +0000</pubDate>
+    <lastBuildDate>Mon, 09 May 2022 15:52:57 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -227,6 +227,39 @@
         <guid isPermaLink="true">https://chasays.github.io/2022/05/06/git-pull-cherrypick-fetch/</guid>
         
         <category>git</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>2022 5月重疾推荐</title>
+        <description>&lt;h2 id=&quot;线上&quot;&gt;线上&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;重疾：以达尔文6号为单次重疾主推，慧馨安2022作为少儿重疾主推。中荷超越1号作为非标人群推荐，人保i无忧作为大品牌大保司重疾补充&lt;/li&gt;
+  &lt;li&gt;储蓄：增额以长城司马台作为推荐，养老年金以金盈年年为主推，太平e养添年为大保司品牌产品推荐&lt;/li&gt;
+  &lt;li&gt;定寿医疗及其他短险：大麦2022及定海柱2号作为定寿主推，e享护-医享无忧维持独家销售作为百万医疗主推，小蜜蜂2号超越版作为综合意外险主推，小医仙2号作为小额医疗主推&lt;/li&gt;
+  &lt;li&gt;铁甲小保独家迭代重磅上线，责任费率都有大升级，跟慧馨安2022搭配为少儿方案&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;线下&quot;&gt;线下&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;重疾：单次重疾中复联的达尔文5号荣耀版，信泰的达尔文5号焕新版均已对接线下出单；昆仑的健康保普惠多倍版也已可以出单，补充不分组重疾；信泰的如意久久可做分组多次重疾主推，御护无忧补充不分组多次重疾；少儿重疾维持妈咪保贝（新生版）主推&lt;/li&gt;
+  &lt;li&gt;储蓄：光明慧选及金满意足臻享转线下依旧作为主推储蓄，信泰如意尊系列也可出单（市场高声量增额寿）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;5月需要重点注意的事项&quot;&gt;5月需要重点注意的事项&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;金满意足臻享版计划在5月31日下架&lt;/li&gt;
+  &lt;li&gt;全新定制重疾及定制教育金上线请关注&lt;/li&gt;
+  &lt;li&gt;铁甲小保2号升级/定制百万医疗/中端医疗陆续上架将丰富医疗产品线&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+        <link>https://chasays.github.io/2022/05/06/cgsx/</link>
+        <guid isPermaLink="true">https://chasays.github.io/2022/05/06/cgsx/</guid>
+        
+        <category>保险</category>
         
         
       </item>
@@ -818,105 +851,6 @@ tags:&lt;/p&gt;
         <guid isPermaLink="true">https://chasays.github.io/2022/04/20/LLVM-introduce/</guid>
         
         <category>LLVM</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>用 Github Action 构建自己的 Jekyll 博客</title>
-        <description>&lt;h1 id=&quot;思路&quot;&gt;思路&lt;/h1&gt;
-
-&lt;p&gt;对自己的提交的md文档，通过github action编译为静态文件，然后push到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;username.github.io&lt;/code&gt;仓库。从而可以浏览自己的博客。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;创建一个仓库，比如名字为A-repo，用来管理自己的md文件&lt;/li&gt;
-  &lt;li&gt;上传自己的Jekyll 网站文件，&lt;a href=&quot;https://jekyllrb.com/docs/&quot;&gt;可以参考这个创建的文章&lt;/a&gt;；,如果不会的可以参考&lt;a href=&quot;https://github.com/fastai/fastpages&quot;&gt;fastpage&lt;/a&gt;来生成也非常的方便。&lt;/li&gt;
-  &lt;li&gt;创建github actions来自动运行，见最下面的步骤、
-    &lt;ul&gt;
-      &lt;li&gt;先checkout A-repo的master分支。对于的action： actions/checkout@main&lt;/li&gt;
-      &lt;li&gt;构建为Jekyll静态文件 ：action：actions/jekyll-build-pages@v1&lt;/li&gt;
-      &lt;li&gt;把静态文件_site push到username.github.io仓库的master分支， s0/git-publish-subdir-action@develop&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;name: GitHub Actions Build and Deploy Demo
-on:
-  push
-&lt;span class=&quot;nb&quot;&gt;jobs&lt;/span&gt;:
-  jekyll:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Copy repository contents
-      uses: actions/checkout@main
-      with:
-        persist-credentials: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
-
-    - name: Jekyll build
-      uses: actions/jekyll-build-pages@v1
-      with:
-        &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;: &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-        destination: ./_site
-        future: &lt;span class=&quot;nb&quot;&gt;false
-        &lt;/span&gt;verbose: &lt;span class=&quot;nb&quot;&gt;true
-        &lt;/span&gt;token: &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
-
-    - name: Push to xx.github.io repo
-      uses: s0/git-publish-subdir-action@develop
-      &lt;span class=&quot;nb&quot;&gt;env&lt;/span&gt;:
-        REPO: git@github.com:&lt;span class=&quot;nv&quot;&gt;$/$.&lt;/span&gt;github.io.git
-        SQUASH_HISTORY: &lt;span class=&quot;s2&quot;&gt;&quot;false&quot;&lt;/span&gt;
-        BRANCH: master
-        FOLDER: ./_site
-        SSH_PRIVATE_KEY: &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;上面提到的有一个全局变量：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;ACTION_DEPLOY_KEY： 这个是当前A-repo的里面设置的token&lt;/li&gt;
-  &lt;li&gt;repository_owner： 这个就是当前仓库的owner&lt;/li&gt;
-  &lt;li&gt;SSH_DEPLOY_KEY： 这个比较重要，就是相当于一个私钥&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;对于最后一个私钥特别说明下，我当时想光有一个私钥有什么用？没有公钥的哇。后来才发现，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;任何一对私钥和公钥都可以&lt;/code&gt;，公钥添加到sshkey里面，私钥配置在当前A-repo下面即可；&lt;/p&gt;
-
-&lt;h2 id=&quot;创建github-action&quot;&gt;创建github action&lt;/h2&gt;
-
-&lt;p&gt;关于github action的基础用法，参见文档，不要看网上的一些文档，就官方就是最好，也是最新的；我在这里拆了一个坑；之前的教程branch可以是master，但是始终运行不起来，我都快放弃了，看了官方文档后，发现后来改为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;了。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;注意触发的分支名称&lt;/li&gt;
-  &lt;li&gt;注意缩进&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://docs.github.com/en/actions/quickstart&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;下面这个例子：&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;name: GitHub Actions Demo &lt;span class=&quot;c&quot;&gt;#名称&lt;/span&gt;
-on: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;push]   &lt;span class=&quot;c&quot;&gt;# 触发条件是push&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;jobs&lt;/span&gt;:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest &lt;span class=&quot;c&quot;&gt;# 运行依赖环境&lt;/span&gt;
-    steps: &lt;span class=&quot;c&quot;&gt;# 步骤&lt;/span&gt;
-      - name: Check out repository code &lt;span class=&quot;c&quot;&gt;# 步骤名称&lt;/span&gt;
-        uses: actions/checkout@v3  &lt;span class=&quot;c&quot;&gt;# 依赖已有的actions，可以market里面找到很多有用的&lt;/span&gt;
-      - run: &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;🖥️ The workflow is now ready to test your code on the runner.&quot;&lt;/span&gt;
-      - name: List files &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;the repository  &lt;span class=&quot;c&quot;&gt;# 步骤名称&lt;/span&gt;
-        run: | 
-          &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 运行bash脚本&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</description>
-        <pubDate>Mon, 18 Apr 2022 00:00:00 +0000</pubDate>
-        <link>https://chasays.github.io/2022/04/18/gihub-action-build-blog/</link>
-        <guid isPermaLink="true">https://chasays.github.io/2022/04/18/gihub-action-build-blog/</guid>
-        
-        <category>github</category>
         
         
       </item>
