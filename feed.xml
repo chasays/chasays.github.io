@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 11 May 2022 15:06:31 +0000</pubDate>
-    <lastBuildDate>Wed, 11 May 2022 15:06:31 +0000</lastBuildDate>
+    <pubDate>Wed, 11 May 2022 15:08:41 +0000</pubDate>
+    <lastBuildDate>Wed, 11 May 2022 15:08:41 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -111,6 +111,82 @@
         <category>github</category>
         
         <category>cloudflare</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>向 Docker 容器复制文件和从 Docker 容器复制文件</title>
+        <description>&lt;p&gt;在处理 Docker 项目时，可能需要在 Docker 容器和本地计算机之间复制文件。&lt;/p&gt;
+
+&lt;p&gt;Docker 为我们提供了非常有用的复制命令，使我们能够无缝地从 Docker 容器和本地机器复制文件。在本文中，我们将使用实例讨论如何使用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; docker cp&lt;/code&gt; 命令。除了用到cp命令外， 还有一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker exec&lt;/code&gt;常见的命令.&lt;/p&gt;
+
+&lt;p&gt;下面是已经有启动docker镜像的情况下，docker镜像的名字为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_copy&lt;/code&gt;，容器id为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;123456&lt;/code&gt;，一般情况取前6位即可，不用取全， 这里名字随便取的，根据实际情况为准.&lt;/p&gt;
+
+&lt;h2 id=&quot;将文件从-docker-容器复制到本地计算机&quot;&gt;将文件从 Docker 容器复制到本地计算机&lt;/h2&gt;
+
+&lt;p&gt;按照下面的步骤将文件从 docker 容器复制到本地机器:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;进入到docker容器里面&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; test_copy  /bin/bash 
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;执行后，可以看到已经进入到容器里面.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在容器里面创建一个文件&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test.file&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;touch &lt;/span&gt;test.file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt;可以看到当前目录下有一个， test.file的文件名.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;复制到本地机器&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker &lt;span class=&quot;nb&quot;&gt;cp &lt;/span&gt;123456:/test.file ~/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;复制容器id为123456，根目录下面的test.file，到本机的家目录下面.
+退出容器，可以在当前机器家目录看到test.file这个文件.&lt;/p&gt;
+
+&lt;h2 id=&quot;将文件从本地系统复制到-docker-容器&quot;&gt;将文件从本地系统复制到 Docker 容器&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;本地创建一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;local.file&lt;/code&gt;文件名，然后传到容器里面去
+    &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;touch &lt;/span&gt;local.file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt;可以看到当前目录下有一个， local.file的文件名.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;复制到容器里面&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker &lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; ~/local.file 123456:/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;复制容器id为123456，根目录下面的local.file，到容器的家目录下面.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;验证是否存在&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; test_copy /bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;进入容器，执行&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls&lt;/code&gt;, 可以在机器根目录看到local.file这个文件.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;
+微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」互吹。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 11 May 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/05/11/dokcer-copy-files/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/11/dokcer-copy-files/</guid>
+        
+        <category>docker</category>
         
         
       </item>
@@ -788,154 +864,6 @@ tags:&lt;/p&gt;
         <pubDate>Sat, 30 Apr 2022 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2022/04/30/compare-with-others/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2022/04/30/compare-with-others/</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>34 - 讲故事</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;今天是五一前的一个周末，由于明天要继续上班，所以只有一天的时间短暂休息下。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/Ldh217.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我记得早些年的时候，五一长假四7天，后来由于春节、国庆太多假期了，调整了下，五一法定的只有一天假期了。那么实际五一只有1天的法定假期，但是要调休集中到一起休息5天喃？&lt;/p&gt;
-
-&lt;p&gt;我想大部分人应该也知道了，就是为了促进消费，促进旅游，这不就是拉动内循环和经济么？&lt;/p&gt;
-
-&lt;p&gt;不过疫情猖獗的情况下，还是在省内找到小地方，住上几天，也特别的惬意。&lt;/p&gt;
-
-&lt;p&gt;亦或是学习点知识，安装好Honor of King，加班加点上个星耀，弯道超车，哈哈。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h2 id=&quot;先来一个问题&quot;&gt;先来一个问题&lt;/h2&gt;
-
-&lt;p&gt;准备了和大家互动一个问题，在下一期和大家分享下一些有趣的回复，如果不同意的话，记得回复的时候备注下哦。&lt;/p&gt;
-
-&lt;p&gt;五一假期临近，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;你有什么计划需要分享的么？&lt;/code&gt;包括不限于&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;出游&lt;/li&gt;
-  &lt;li&gt;学习一门技术&lt;/li&gt;
-  &lt;li&gt;看几部电影(电影推荐)&lt;/li&gt;
-  &lt;li&gt;加班&lt;/li&gt;
-  &lt;li&gt;隔离？&lt;/li&gt;
-  &lt;li&gt;……&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;接受自己的懒惰&quot;&gt;接受自己的懒惰&lt;/h2&gt;
-
-&lt;p&gt;我经常周末的时候，停下来偶尔会打开微信视频号，打开之前想的就是看几分钟，娱乐一下，放松一下。&lt;/p&gt;
-
-&lt;p&gt;因为我关注了几个练习英语口语的博主，刚开始的时候给我推送的是英语相关的视频，刷着刷着就给我推荐一堆美女……&lt;/p&gt;
-
-&lt;p&gt;这个时候过得特别快，本来计划的是刷10来分钟就来完事了，哪知道估计都是30~60分钟，才发现「我次奥」，时间过得太快了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/FvVWUT.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我自己是不爱学习的，也非常的贪玩，我想这是我的本性，我就以为大部分人都是这样的。&lt;/p&gt;
-
-&lt;p&gt;最近看了前东家的VP蔡磊的经历，才发现每个人的追求是不一样的，人家大佬就是追求自己的人生。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/RFpp9Q.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;能成为大佬，也不是努努力就可以的，是要非常的努力。&lt;/p&gt;
-
-&lt;h2 id=&quot;讲故事&quot;&gt;讲故事&lt;/h2&gt;
-
-&lt;p&gt;看了一个本书，对于演讲、写作等，都可以用上这个知识点，只有讲好故事，这个故事最好是自己经历过的，这样才能流露真实情感。&lt;/p&gt;
-
-&lt;p&gt;大概有这么积累，以下4种方式可以打动听众：&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;改变他们掌握的信息。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;我们在他们已经掌握的信息的基础上，提供全新的数据。 这个相对来说有点难，一般如果没有很多知识和信息的摄入，那就更难写出一些有全新的信息。&lt;/p&gt;
-
-&lt;p&gt;还有一个关键点就是这个信息不能太有专业性，我讲一个我自己专业相关的，那就很少有人感兴趣了。&lt;/p&gt;
-
-&lt;p&gt;￼2.改变他们的知识或能力。&lt;/p&gt;
-
-&lt;p&gt;我们把自己的新洞见分享给他们，或向他们展示颇为实用的做事方法。&lt;/p&gt;
-
-&lt;p&gt;看了王刚美食家的视频，学会做饭了。看了吉他教学，学会了吉他等等&lt;/p&gt;
-
-&lt;p&gt;￼3.改变他们的行为。&lt;/p&gt;
-
-&lt;p&gt;我们说服他们去尝试新事物、使用或者购买新产品。&lt;/p&gt;
-
-&lt;p&gt;目前KOL不就是这个意思么？&lt;/p&gt;
-
-&lt;p&gt;￼4.改变他们的信念。&lt;/p&gt;
-
-&lt;p&gt;我们启发他们用全新的视角去看自己和世界。这个比较难，我喜欢异性的，看了之后我更喜欢异性了，亦或其他？&lt;/p&gt;
-
-&lt;p&gt;重点是让用户看完之后有一种「原来是这样的啊」，就达成目标了。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://developer.nvidia.com/blog/multi-gpu-programming-with-standard-parallel-c-part-1&quot;&gt;GPU编程标准&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/uBRjVE.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在本文中，讨论了使用C++标准并行编程编写GPU应用程序所涉及的基本技术。还提供了我们在案例研究中使用的Boltzmann方法和Palabos应用程序的背景信息。最后，讨论了两种方法，可以重构源代码，使其更适合在GPU上运行。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/replicate/cog&quot;&gt;机器学习容器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/VHduA4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Cog是一种将机器学习模型打包到标准的、可用于生产的容器中的工具。它的开发目的是通过使Docker的设置更加简单，使研究人员更容易将机器学习模型交付生产。Cog使用所有最佳实践生成Docker映像，并自动设置正确的CUDA/cuDNN/PyTorch/Tensorflow/Python组合。它可以使用模型类型动态生成RESTful HTTP API。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;本周的思考时刻： 如何快速学习一个新知识？&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/Am5LDAuvjbmbcqJ-J1UcPg&quot;&gt;日拱一卒。&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;下周思考：如何更好的输出的看书的内容信息？&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;李笑来「把时间当做朋友」 - 75%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;看了很多人本性的东西，学会接受自己的弱点。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;福格行为模型 - 20%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;已经开始。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;待读的书还有：启示录(产品相关)、财富自由之路-李笑来&lt;/li&gt;
-  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
-  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今天是坚持周更分享：第 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;34/60&lt;/code&gt; 期。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 23 Apr 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/04/23/how-to-talk-story/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/04/23/how-to-talk-story/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>

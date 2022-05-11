@@ -12,31 +12,27 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="07 - 年轻人，如何能成长更快 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="向 Docker 容器复制文件和从 Docker 容器复制文件 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="
+    <meta property="og:description" content="在处理 Docker 项目时，可能需要在 Docker 容器和本地计算机之间复制文件。
 
 ">
     
-    <meta property="article:published_time" content="2021-10-15T00:00:00Z">
+    <meta property="article:published_time" content="2022-05-11T00:00:00Z">
     
     
     <meta property="article:author" content="叉叉敌">
     
     
-    <meta property="article:tag" content="面试">
-    
-    <meta property="article:tag" content="投资">
-    
-    <meta property="article:tag" content="Newsletter">
+    <meta property="article:tag" content="docker">
     
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2021/10/15/Newsletter-interview/">
+    <meta property="og:url" content="https://blog.chiphub.top/2022/05/11/dokcer-copy-files/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <title>07 - 年轻人，如何能成长更快 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>向 Docker 容器复制文件和从 Docker 容器复制文件 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -45,7 +41,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2021/10/15/Newsletter-interview/">
+    <link rel="canonical" href="https://blog.chiphub.top/2022/05/11/dokcer-copy-files/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -276,17 +272,13 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=%E9%9D%A2%E8%AF%95" title="面试">面试</a>
-                        
-                        <a class="tag" href="/archive/?tag=%E6%8A%95%E8%B5%84" title="投资">投资</a>
-                        
-                        <a class="tag" href="/archive/?tag=Newsletter" title="Newsletter">Newsletter</a>
+                        <a class="tag" href="/archive/?tag=docker" title="docker">docker</a>
                         
                     </div>
-                    <h1>07 - 年轻人，如何能成长更快</h1>
+                    <h1>向 Docker 容器复制文件和从 Docker 容器复制文件</h1>
                     
-                    <h2 class="subheading"></h2>
-                    <span class="meta">Posted by 叉叉敌 on October 15, 2021</span>
+                    <h2 class="subheading">‘太方便了'</h2>
+                    <span class="meta">Posted by 叉叉敌 on May 11, 2022</span>
                 </div>
             </div>
         </div>
@@ -312,83 +304,87 @@
                 <!-- Multi-Lingual -->
                 
 
-				<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/GbcHrU.jpg" alt="充电" /></p>
+				<p>在处理 Docker 项目时，可能需要在 Docker 容器和本地计算机之间复制文件。</p>
+
+<p>Docker 为我们提供了非常有用的复制命令，使我们能够无缝地从 Docker 容器和本地机器复制文件。在本文中，我们将使用实例讨论如何使用<code class="language-plaintext highlighter-rouge"> docker cp</code> 命令。除了用到cp命令外， 还有一个<code class="language-plaintext highlighter-rouge">docker exec</code>常见的命令.</p>
+
+<p>下面是已经有启动docker镜像的情况下，docker镜像的名字为<code class="language-plaintext highlighter-rouge">test_copy</code>，容器id为<code class="language-plaintext highlighter-rouge">123456</code>，一般情况取前6位即可，不用取全， 这里名字随便取的，根据实际情况为准.</p>
+
+<h2 id="将文件从-docker-容器复制到本地计算机">将文件从 Docker 容器复制到本地计算机</h2>
+
+<p>按照下面的步骤将文件从 docker 容器复制到本地机器:</p>
 
 <ol>
-  <li><a href="https://xiao.do/issues/26-newsletter-577662">如何轻松的写一份 Newsletter</a></li>
+  <li>进入到docker容器里面</li>
 </ol>
 
-<p>互联网上的信息成指数级的增长，目前来看大部分，乃至90%都是重复的内容。如何在这些重复的信息中找到自己想要的，而且有用信息，降低信息噪音就非常的关键。</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> test_copy  /bin/bash 
 
-<p>Newsletter 就是让志同道合的人，把信息在他们之间传递，减少噪音。</p>
+</code></pre></div></div>
+
+<p>执行后，可以看到已经进入到容器里面.</p>
 
 <ol>
-  <li><a href="https://mp.weixin.qq.com/s/1AR2VdQaVKfVWaj1Fvi_NA">十年创业者，万字长文分享我是怎么招人的</a></li>
+  <li>在容器里面创建一个文件<code class="language-plaintext highlighter-rouge">test.file</code></li>
 </ol>
 
-<p>本文主要讲了如何找到一个合适的人，人才分不同的等级，根据不同的维度来定义，这个几个维度分别是：ASK，分别代表的含义是 Ability、Skill、Knowledge。</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>test.file
+</code></pre></div></div>
 
-<p>其中 Skill 和 Knowledge 是可以培养的，特别是 Ability 分数高，等级就越高，一般来说很难培养。</p>
+<p>用<code class="language-plaintext highlighter-rouge">ls</code>可以看到当前目录下有一个， test.file的文件名.</p>
+<ol>
+  <li>复制到本地机器</li>
+</ol>
 
-<p>提到了如何接近(Close)优秀的人、如何找到优秀的人、认知广的人来指点？</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">cp </span>123456:/test.file ~/
+</code></pre></div></div>
+<p>复制容器id为123456，根目录下面的test.file，到本机的家目录下面.
+退出容器，可以在当前机器家目录看到test.file这个文件.</p>
 
-<p>多一点诚意，一次、二次、三次，多约几次。保持一个上进的心，没有人不愿意和有上进的年轻人聊天。这可不是我说的，诺贝尔文学奖莫言老说。</p>
-
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/Cn28Rb.jpg" alt="莫言" /></p>
-
-<p>根据我自己的经验，对面试者问一个问题「讲一个最有挑战的事情」，然后从描述中深挖。一般来说，如果亲子实践过的面试者，会对细节比较清楚。没有实践过的，总是先讲整个过程。</p>
-
-<p>还有一点需要补充，多思考「人生的意义是什么，人生的使命是什么？」。在工作后多总结复盘，这一点特别重要，因为这样能让自己成长更快。</p>
+<h2 id="将文件从本地系统复制到-docker-容器">将文件从本地系统复制到 Docker 容器</h2>
 
 <ol>
-  <li><a href="https://www.youtube.com/watch?v=5axNR8R7XI8&amp;ab_channel=CNETHighlights">特斯拉2021股东大会</a></li>
+  <li>本地创建一个<code class="language-plaintext highlighter-rouge">local.file</code>文件名，然后传到容器里面去
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>local.file
+</code></pre></div>    </div>
+    <p>用<code class="language-plaintext highlighter-rouge">ls</code>可以看到当前目录下有一个， local.file的文件名.</p>
+  </li>
+  <li>复制到容器里面</li>
 </ol>
 
-<p>提到芯片是一个瓶颈，我从一些了解到，目前芯片、半导体的赛道普遍工资都高于互联网。目前互联网处于一个相对饱和的状态，但是半导体是国战战略，大家如果有机会，可以试试半导体、芯片赛道。</p>
-
-<p>都是打工，找一个收入更高，有可能还有更早退休的机会，为何不试试喃？</p>
-
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/p05pMh.jpg" alt="打工人" /></p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">cp</span> ~/local.file 123456:/
+</code></pre></div></div>
+<p>复制容器id为123456，根目录下面的local.file，到容器的家目录下面.</p>
 
 <ol>
-  <li><a href="https://www.xiaoyuzhoufm.com/episode/6136b83861a8d8b3ba9c5df1">跟也谈钱聊聊财务自由：人生要多做可逆的选择</a></li>
+  <li>验证是否存在</li>
 </ol>
 
-<p>最近自己抽时间把有知有行的<a href="https://youzhiyouxing.cn/curriculum">投资第一课</a>，再次过了一遍。有了新的认知，之前就是看完了，只是有认知，没有行动。</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> test_copy /bin/bash
+</code></pre></div></div>
+<p>进入容器，执行<code class="language-plaintext highlighter-rouge">ls</code>, 可以在机器根目录看到local.file这个文件.</p>
 
-<p>自己花了很长一段时间，来修改，并找到合适的投资组合。下面是截图，主要也是参考的也大的财务自由理念，目前的股票占比是45%，在未来一段时间会慢慢的变为0%。</p>
-
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/7jSgJD.png" alt="组合" /></p>
-
-<p>关于<a href="https://xueqiu.com/2174146488/142403953">投资组合-哈利布朗的永久投资组合</a>，参考了这篇文章，对标的国内资产投资组合，主要设置现金、黄金、股票(宽指数：类似沪深300，中证500和创业板)、长期债券，这个是组合。对于还有调整策略，每一年平衡一次，保证比例是1：1：1：1.</p>
-
-<ol>
-  <li><a href="https://book.douban.com/subject/35473807/">脱不花 - 沟通的方法</a></li>
-</ol>
-
-<p>提到一个沟通的方法，就是好好的静听，之前在聚会、聚餐，我非常担心冷场，现在看来，只要自己静静的聆听也是好的沟通。</p>
-
-<p>还提高一个沟通技巧，对于非常着急的沟通者，需要3步走。先安抚情绪、然后确定事实、最后给你自己的解决方案。</p>
-
-<p>今天是坚持分享：第 <code class="language-plaintext highlighter-rouge">7/30</code> 天。</p>
-
+<blockquote>
+  <p><a href="https://chasays.github.io/">github博客</a>
+微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」互吹。</p>
+</blockquote>
 
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2021/10/10/provide-valuable-thing/" data-toggle="tooltip" data-placement="top" title="06 - 提供有价值的事情">
+                        <a href="/2022/05/07/35-old-year-for-programmer/" data-toggle="tooltip" data-placement="top" title="36 - 35岁，程序员在做什么">
                         Previous<br>
-                        <span>06 - 提供有价值的事情</span>
+                        <span>36 - 35岁，程序员在做什么</span>
                         </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2021/10/18/dota_2/" data-toggle="tooltip" data-placement="top" title="为什么不 BAN 猛犸">
+                        <a href="/2022/05/11/tencent-cloud-subdomain-config-githubpages/" data-toggle="tooltip" data-placement="top" title="腾讯云配置二级域名到Github pages，并用 cloudflare 加速">
                         Next<br>
-                        <span>为什么不 BAN 猛犸</span>
+                        <span>腾讯云配置二级域名到Github pages，并用 cloudflare 加速</span>
                         </a>
                     </li>
                     
