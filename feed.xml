@@ -5,9 +5,115 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 11 May 2022 14:29:33 +0000</pubDate>
-    <lastBuildDate>Wed, 11 May 2022 14:29:33 +0000</lastBuildDate>
+    <pubDate>Wed, 11 May 2022 15:06:31 +0000</pubDate>
+    <lastBuildDate>Wed, 11 May 2022 15:06:31 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>腾讯云配置二级域名到Github pages，并用 cloudflare 加速</title>
+        <description>&lt;h2 id=&quot;背景&quot;&gt;背景&lt;/h2&gt;
+
+&lt;p&gt;为什么要使用独立的域名，第一个，首先是独立的域名可以使用提高自己的权重以及引用，那能使提高&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;自己网站的流量&lt;/code&gt;；第2个是自己&lt;a href=&quot;https://chiphub.top/&quot;&gt;注册了一个域名&lt;/a&gt;，然后没有使用二级域域名，这个时候开通，那使用起来也非常方便，而且还是免费的。&lt;/p&gt;
+
+&lt;p&gt;本人也是第一次走完整个流程，github pages当然一直有使用，创建也很简单，并且网上教程也比较多；然后是关于自定义域名的问题，自己以前使用过国外的免费域名，然后是直接修改就ok了，然后这次使用了从腾讯云注册的域名，中间会麻烦一些，然后网上也没看到能够特别匹配的教程；最后就是cloudflare的免费CDN加速了，对于github pages的访问来说，CDN加速是非常必要的了。&lt;/p&gt;
+
+&lt;h2 id=&quot;一创建github-pages&quot;&gt;一、创建GitHub pages&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;这里网上教程很多，就不过多介绍了&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;现在的GitHub pages和以前有一点不太一样，现在是在setting里面单独有一个pages的设置界面，然后可以在里面设置静态页面要访问的文件目录，创建过程比较简单，而且像我使用pages是用于个人博客的搭建。&lt;/p&gt;
+
+&lt;p&gt;我采用的是 jekyll。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/cMlxMb.png&quot; alt=&quot;cMlxMb&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;完成创建后，你会得到一个GitHub pages默认的域名，就像这样：用户名.github.io，像我的就是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chasays.github.io&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;二自定义域名&quot;&gt;二、自定义域名&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-域名注册&quot;&gt;1. 域名注册&lt;/h3&gt;
+
+&lt;p&gt;这里我选择的是腾讯云注册的域名，就10几块钱买了一年，还挺不错的，如果同样选择腾讯的域名注册的话可以和我进行一样的操作。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/mq03JC.png&quot; alt=&quot;mq03JC&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里直接按照要求购买就可以，不过要提前进行实名后才可以进行购买，这里要注意一下。买完后它应该会提示你进行域名解析啥的，可以先不用管，之后再搞。&lt;/p&gt;
+
+&lt;h3 id=&quot;2-github-pages绑定自定义域名&quot;&gt;2. GitHub pages绑定自定义域名&lt;/h3&gt;
+
+&lt;p&gt;现在可以到GitHub去绑定自己的域名，像下面这样。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/wfQ1WK.png&quot; alt=&quot;wfQ1WK&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;进入https://console.dnspod.cn/dns，在这个界面里可以选择你的域名，DNS解析&amp;gt;我的域名，然后选择快速添加解析，添加一个二级域名, 解析到对应的github.io 地址。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/VIvbbo.png&quot; alt=&quot;VIvbbo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;完成以上的步骤后，过1分钟左右，就&lt;strong&gt;已经可以通过你自己的域名去访问&lt;/strong&gt;你的静态网站了，像现在就可以通过 &lt;a href=&quot;http://blog.chiphub.top&quot;&gt;http://blog.chiphub.top&lt;/a&gt; 去访问我的个人博客了，不过此时&lt;strong&gt;还只能使用http进行访问，还不能够通过https进行访问&lt;/strong&gt;，不过不急，我们在完成cloudflare的CDN加速的步骤中就可以完成https的设置。&lt;/p&gt;
+
+&lt;h2 id=&quot;三cloudflare进行cdn加速&quot;&gt;三、cloudflare进行CDN加速&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-注册cloudflare账号&quot;&gt;1. 注册cloudflare账号&lt;/h3&gt;
+
+&lt;p&gt;点击 https://dash.cloudflare.com/ 进行账号注册或登录&lt;/p&gt;
+
+&lt;p&gt;然后就会马上出现一个输入你自己域名的界面，输入完成域名后就会看到一个选择计划的界面，当然，这里果断免费，反正是自己用，而且白嫖就是爽。（ps：这里的过程忘记截图了）&lt;/p&gt;
+
+&lt;p&gt;会自动扫描所有的DNS配置。&lt;/p&gt;
+
+&lt;h3 id=&quot;2-更改dns服务器至cloudflare&quot;&gt;2. 更改DNS服务器至cloudflare&lt;/h3&gt;
+
+&lt;p&gt;这里就需要回到腾讯云，将原来的DNS服务器（指向DNSPOD的）改为cloudflare。&lt;/p&gt;
+
+&lt;p&gt;进入你的域名管理，如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/SxlgG7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后在域名信息里面就可以看到修改你的DNS服务器，这里直接把原来的两个替换掉就好了，替换的内容在cloudflare的步骤里面其实有详细的说明（至于为什么没有截图，当然又是忘记截图了😢，绝望，好在cloudflare是有详细的步骤过程的。）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/IMG_7959.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;至此，就完成了到 cloudflare 的绑定，后面cloudflare就会提示你要不要使用ssl证书，开启http跳转https之类的，直接按照提示下一步下一步就完事了。&lt;/p&gt;
+
+&lt;p&gt;然后回到GitHub pages的设置界面：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/tJVNfA.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;就可以顺利的开启你的enforece https了，愉快而且快速地访问你的网站了，这里贴一下我自己的：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.chiphub.top/&quot;&gt;https://blog.chiphub.top/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;目前还没什么笔记，以前很早就打算弄的，但最后都没搞下来，这一次一定坚持下来，都搞了这么多准备工作，不坚持下来着实说不太过去了。&lt;/p&gt;
+
+&lt;h2 id=&quot;四总结&quot;&gt;四、总结&lt;/h2&gt;
+
+&lt;p&gt;不是很复杂，就是访问 cloudflare，提示链接被reset，关了梯子也不行，后来用手机操作搞定了。&lt;/p&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;p&gt;https://monkeywie.cn/2020/08/20/fast-github-page-with-cloudflare/&lt;/p&gt;
+
+&lt;p&gt;https://www.pianshen.com/article/8089379345/&lt;/p&gt;
+
+&lt;p&gt;https://www.yixuebiancheng.com/article/90005.html&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;
+微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」互吹。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 11 May 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/05/11/tencent-cloud-subdomain-config-githubpages/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/11/tencent-cloud-subdomain-config-githubpages/</guid>
+        
+        <category>github</category>
+        
+        <category>cloudflare</category>
+        
+        
+      </item>
     
       <item>
         <title>36 - 35岁，程序员在做什么</title>
@@ -830,27 +936,6 @@ tags:&lt;/p&gt;
         <guid isPermaLink="true">https://blog.chiphub.top/2022/04/23/how-to-talk-story/</guid>
         
         <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 介绍</title>
-        <description>&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220420120945.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220426105452.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220420121024.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220420121048.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf&lt;/p&gt;
-</description>
-        <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/04/20/LLVM-introduce/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/04/20/LLVM-introduce/</guid>
-        
-        <category>LLVM</category>
         
         
       </item>
