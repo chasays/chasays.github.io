@@ -1,1 +1,1 @@
-Sitemap: https://chasays.github.io/sitemap.xml
+Sitemap: https://blog.chiphub.top/sitemap.xml
