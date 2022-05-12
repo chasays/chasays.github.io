@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "使用 GDB 进行调试",
+      "subtitle" : "习惯了比GUI的还爽",
+      "tags"     : "gdb",
+      "url"      : "/2022/05/12/gdb-user-guide/",
+      "date"     : "2022-05-12 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "腾讯云配置二级域名到Github pages，并用 cloudflare 加速",
       "subtitle" : "这样访问速度还不错",
       "tags"     : "github, cloudflare",

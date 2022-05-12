@@ -5,9 +5,161 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 11 May 2022 15:08:41 +0000</pubDate>
-    <lastBuildDate>Wed, 11 May 2022 15:08:41 +0000</lastBuildDate>
+    <pubDate>Thu, 12 May 2022 14:34:43 +0000</pubDate>
+    <lastBuildDate>Thu, 12 May 2022 14:34:43 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>使用 GDB 进行调试</title>
+        <description>&lt;p&gt;经常我们使用的vscode、pycharm等等ide，都带有断点设置，参数检查等，但是GDB就没有这些，那我们能不能通过设置，把gdb用起来更简单喃？
+比如，如果你知道这些的话，可以跳过了.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;gdb 脚本配合–batch&lt;/li&gt;
+  &lt;li&gt;gdb .gdbinit  文件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;使用-gdb-进行调试&quot;&gt;使用 GDB 进行调试&lt;/h2&gt;
+
+&lt;p&gt;在过去的几年里，我大部分时间都在用 Python 工作，而且我非常喜欢用 Python 进行调试。您只需将断点()函数调用放入代码中的某个位置，然后将其重新放入程序。我想看看在 c 语言中，我能接近到什么程度。由于 c 语言不是直译语言，我的期望不是很高，但是结果证明用 c 语言调试是相当舒服的。作为奖励，您可以使用 GDB 不仅调试 c 和 c + + ，还可以调试 Rust、 Nim，可能还有任何 C-ABI 的语言。&lt;/p&gt;
+
+&lt;h2 id=&quot;gdb-基础&quot;&gt;GDB 基础&lt;/h2&gt;
+
+&lt;p&gt;首先，我们需要一个程序来调试:&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// program.c&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;time.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Product: %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;print_arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;srand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;print_product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;要调试程序，包含调试符号非常重要。使用 gcc 编译时添加调试符号，请添加 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-g&lt;/code&gt; 标志。所以让我们编译这个程序:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc -g -o program program.c
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;现在我们可以通过运行以下命令来调试这个程序:&lt;/p&gt;
+
+&lt;h2 id=&quot;使用-gdb-脚本&quot;&gt;使用 gdb 脚本&lt;/h2&gt;
+
+&lt;p&gt;了解GDB脚本功能&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;https://www.adacore.com/gems/gem-119-gdb-scripting-part-1&lt;/p&gt;
+
+  &lt;p&gt;https://www.adacore.com/gems/gem-120-gdb-scripting-part-2&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;但这仍然不是很好，现在我们必须在重新启动调试会话时反复输入所有断点。但是有一种方法可以解决这个问题: gdb 脚本。如果使用-x 选项调用 gdb，则可以传递一个包含 gdb 命令的文件给它，它应该执行这个文件。&lt;/p&gt;
+
+&lt;p&gt;现在我们可以将断点写入脚本，例如。&lt;/p&gt;
+
+&lt;p&gt;现在，我们的断点被存储了。但是还有更多的原因。通常我想检查一些变量。目前希望看到所有循环的乘积变量的值，而不关心其余的:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# gdbscript
+b 6
+commands
+    p product
+    c
+end
+
+run
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后用这样的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--batch&lt;/code&gt;运行 gdb:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gdb -x gdbscript program --batch
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;现在，gdb 将快速打印出所有迭代的产品值，然后再次退出。断点后的命令语句将在命中断点后执行所有包含的命令。最后一个命令 c 表示 continue 并将继续程序流，直到命中下一个断点，一旦上次命中了断点，gdb 将通过 – batch 参数结束执行。&lt;/p&gt;
+
+&lt;p&gt;另一个很酷的例子: 让我们假设，不管出于什么原因，我们只对 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;print_ product() &lt;/code&gt;的第三次调用中的product的值感兴趣。(这当然很傻，因为程序无论如何都会打印它，但在现实调试中，可能会出现这种情况)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set $n = 0
+
+b 6
+commands
+    set $n = $n + 1
+    if $n == 3
+        printf &quot;Product is: %d\n&quot;, product
+    else
+        c
+    end
+end
+
+run
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;正如您所看到的，我们定义了一个变量 $n，并使用它来计数，然后在第三轮中打印所需的信息。第三轮之后，gdb 会自动退出，退出的原因是 – batch。&lt;/p&gt;
+
+&lt;h2 id=&quot;gdbinit--文件&quot;&gt;.gdbinit  文件&lt;/h2&gt;
+
+&lt;p&gt;有一个脚本，如果它存在，gdb 将始终隐式加载它: ~/.gdbinit ，你可以把你经常使用的函数放在那里，或者配置。我的是这样的:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set width 0
+set height 0
+set print pretty on
+set confirm off
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;设置 width 和 height 为0，将防止 gdb 分页长输出，第三行使 gdb 美化输出，最后一行防止它询问我们是否真的想退出。&lt;/p&gt;
+
+&lt;h2 id=&quot;总结&quot;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;经常我们使用的vscode、pycharm等等ide，都带有断点设置，参数检查等，但是对于gdb来说就没有GUI来设置这些东西了，难免有点不习惯，但是对于经常使用linux开发者的用户来说，掌握gdb是一个必须的技能。下面这个命令，可以简单地将它们附加到调试器调用中:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gdb -x gdbscript --batch --args program --flags and some args
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;此外，如果您需要更复杂的调试设置，例如，因为您还必须启动其他程序，那么可以将所有这些组合在一个 shell 脚本中。&lt;/p&gt;
+
+&lt;p&gt;当然，还有很多关于 gdb 的内容需要了解，而这仅仅是一个介绍。&lt;/p&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+
+&lt;p&gt;https://www.adacore.com/gems/gem-119-gdb-scripting-part-1&lt;/p&gt;
+
+&lt;p&gt;https://felix-knorr.net/posts/2022-02-27-direct-gdb.html&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;
+微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」互吹。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Thu, 12 May 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/05/12/gdb-user-guide/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/12/gdb-user-guide/</guid>
+        
+        <category>gdb</category>
+        
+        
+      </item>
     
       <item>
         <title>腾讯云配置二级域名到Github pages，并用 cloudflare 加速</title>
@@ -730,140 +882,6 @@ After AND -&amp;gt; Operand1:	0001
         <guid isPermaLink="true">https://blog.chiphub.top/2022/05/02/LLVM-intrinsic_introduce/</guid>
         
         <category>LLVM</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Compare With Others</title>
-        <description>
-&lt;hr /&gt;
-&lt;p&gt;layout: post
-title: “35 - 和别人比较”
-subtitle: ‘痛苦就是来源于此’ 
-author: “叉叉敌”
-header-style: text
-tags:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;h2 id=&quot;newsletter&quot;&gt;Newsletter&lt;/h2&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;长假开始了，你准备好了么？&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/OROSIV.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;p&gt;上周留了一个问题和大家一起交流，比较尴尬的是没有人回复，或者是我漏掉了……&lt;/p&gt;
-
-&lt;p&gt;五一假期临近，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;你有什么计划需要分享的么？&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;我来分享一部美剧，没有剧透，题材属于科幻、悬疑片，我看的时候采用的是1.5~2倍速度观看，不影响体验。&lt;/p&gt;
-
-&lt;p&gt;片源的话，国内普通用户，基本上看不到，不过好在现在互联网的发达，网上基本上都能搜到免费的资源。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/nGiGro.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我最近才发现一个多年的秘密，就是运动减肥的时候，大部分人运动一般就在20分钟左右。但是实际上前20分钟，是大量消耗我们体内的糖，后面的20-30分钟才是消耗我们的脂肪，建议减肥运动的时候，时间控制在40-50分钟是比较理想的。&lt;/p&gt;
-
-&lt;h2 id=&quot;比较&quot;&gt;比较&lt;/h2&gt;
-
-&lt;p&gt;人生的大部分痛苦来自比较。&lt;/p&gt;
-
-&lt;p&gt;其实，比成功更重要的是成长。如果“成功”是与他人比较的话，那么“成长”则是与自己比较——今天的我和昨天的我、明天的我和今天的我之间的比较。&lt;/p&gt;
-
-&lt;p&gt;后一种比较显然比前一种对个体来说意义更大，也能够带来更加踏实的幸福感。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/9dkMzTjQhcu2VT-CsgyZwA&quot;&gt;我们终会找到意义。&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;效率&quot;&gt;效率&lt;/h2&gt;
-
-&lt;p&gt;每个人都想提高效率，可奇怪的是，那么多所谓的“专家”怎么会常常忽略一个很简单又很明显的事实：没有任何机器可以一直用100%的功率运转，人也一样。
-记住，任何人都不可能100%地有效率，至少不可能总是100%地有效率。&lt;/p&gt;
-
-&lt;p&gt;请再次拿出纸和笔，罗列一下那些尽管无趣，但实际上对你来说非常重要的事情吧！&lt;/p&gt;
-
-&lt;p&gt;如果你是一名学生，那件事情可能是背英语单词；
-如果你是一名教师，那件事情可能是给学生批改作文；
-如果你是一名程序员，那件事情可能是给你的代码写详尽的注释；
-如果你是一名业务经理，那件事情可能是给你那挑剔的上司写下一年度的预算…&lt;/p&gt;
-
-&lt;p&gt;最初的时候，你可以参考“时间分割法”。比如，你需要专注于这件事情2小时，即120分钟，那你就应该把当天的任务分解成6块，每一块用20分钟去完成，再把20分钟当作专注的基本时间单位，在每个时间单位过后休息5分钟，想办法犒劳一下自己——喝杯咖啡或者牛奶。休息时间的最后1分钟，重新振作，试着恢复状态，进入下一个基本时间单位——另一个20分钟。&lt;/p&gt;
-
-&lt;h2 id=&quot;奇怪的知识&quot;&gt;奇怪的知识&lt;/h2&gt;
-
-&lt;p&gt;男人所谓的性能力，与其心肺功能紧密相关。&lt;/p&gt;
-
-&lt;p&gt;如果一个男人在二十五六岁的时候不管从什么渠道得知了这一点的话，那么他就应该坚持每周至少3次有氧运动。几年之后，他就会发现，在他的朋友、同事都被工作压垮了身体、了无生活乐趣的时候，他竟然可以通过积累做到一枝独秀。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://xiongyingfei.github.io/papers/FSE21a.pdf&quot;&gt;Probabilistic Delta Debugging&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这篇文章的作者是北大教授熊教授。介绍了他们创建比当前流行选择（ddmin算法）更有效的增量调试（通过尝试和错误发现错误的行为）算法的工作。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://github.com/Amocy-Wang/ProbDD&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;除了paper之外，还有这里实现的工具等。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.gradio.app/&quot;&gt;gradio&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/LKd4mo.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Gradio使得用Python为机器学习模型创建用户界面变得很容易。它可以生成可共享的链接，并获得有关模型性能的反馈。Gradio具有用于调试的内置操作和解释工具。有一个GIF演示。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;本周的思考时刻：如何更好的输出的看书的内容信息？&lt;/p&gt;
-
-&lt;p&gt;在空闲的时间来思考问题，比如浴室沉思等，然后带着问题去看书，把书上的信息内化为自己的知识。&lt;/p&gt;
-
-&lt;p&gt;下周思考：放松一下~&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;李笑来「把时间当做朋友」 - 100%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;其中我收益最多的章节就是管理、交流、以及思考。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;福格行为模型 - 20%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;已经开始。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;待读的书还有：启示录(产品相关)、财富自由之路-李笑来&lt;/li&gt;
-  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
-  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今天是坚持周更分享：第 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;35/60&lt;/code&gt; 期。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 30 Apr 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/04/30/compare-with-others/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/04/30/compare-with-others/</guid>
         
         
       </item>
