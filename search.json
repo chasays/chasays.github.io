@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "37 - 产品是什么",
+      "subtitle" : "产品需要有交易和商品的属性，才有可能变为商业",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/05/14/what-is-product/",
+      "date"     : "2022-05-14 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "使用 GDB 进行调试",
       "subtitle" : "习惯了比GUI的还爽",
       "tags"     : "gdb",

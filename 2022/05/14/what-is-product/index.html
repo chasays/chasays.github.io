@@ -12,23 +12,27 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Linux Common Command Append Text - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="37 - 产品是什么 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="在 Bash 中，有多种将文本附加到文件的方法。
+    <meta property="og:description" content="朋友，您好 ~
 
 ">
     
-    <meta property="article:published_time" content="2020-03-20T00:00:00Z">
+    <meta property="article:published_time" content="2022-05-14T00:00:00Z">
     
     
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="Newsletter">
     
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2020/03/20/linux-common-command-append-text/">
+    <meta property="og:url" content="https://blog.chiphub.top/2022/05/14/what-is-product/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <title>Linux Common Command Append Text - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>37 - 产品是什么 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -37,7 +41,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2020/03/20/linux-common-command-append-text/">
+    <link rel="canonical" href="https://blog.chiphub.top/2022/05/14/what-is-product/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -68,8 +72,8 @@
 
     <!-- Navigation -->
 
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -258,7 +262,7 @@
     
 </style>
 
-<header class="intro-header">
+<header class="intro-header style-text" >
 
     <div class="header-mask"></div>
     
@@ -268,11 +272,13 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                        <a class="tag" href="/archive/?tag=Newsletter" title="Newsletter">Newsletter</a>
+                        
                     </div>
-                    <h1>Linux Common Command Append Text</h1>
+                    <h1>37 - 产品是什么</h1>
                     
-                    <h2 class="subheading"></h2>
-                    <span class="meta">Posted by 察说花园 on March 20, 2020</span>
+                    <h2 class="subheading">产品需要有交易和商品的属性，才有可能变为商业</h2>
+                    <span class="meta">Posted by 叉叉敌 on May 14, 2022</span>
                 </div>
             </div>
         </div>
@@ -298,76 +304,129 @@
                 <!-- Multi-Lingual -->
                 
 
-				<p>在 <code class="language-plaintext highlighter-rouge">Bash</code> 中，有多种将文本附加到文件的方法。</p>
+				<p>朋友，您好 ~</p>
 
-<p>要将文本附加到文件，您需要对其具有写权限。 否则，您将收到一个被拒绝的权限错误。</p>
+<p>成都的天气确实有点异常，前几天都快 30+ 度了，短裤、短袖都搞起了，从昨天开始突然降温，真的是满减活动不落伍，随时搞起来 ~</p>
 
-<h2 id="-使用重定向操作符">( 使用重定向操作符(»)</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/TYfe8H.png" alt="" /></p>
 
-<p>重定向允许您捕获命令的输出，并将其作为输入发送到另一个命令或文件。 重定向运算符将输出追加到给定文件。</p>
+<p>如果您喜欢这份Newsletter，<a href="https://chasays.zhubai.love/">请转发给您朋友，</a>，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。</p>
 
-<p>您可以使用许多命令将文本打印到标准输出并将其重定向到文件，其中 <code class="language-plaintext highlighter-rouge">echo</code> 和 <code class="language-plaintext highlighter-rouge">printf</code> 是最常用的命令。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/SOoFSj.jpg" alt="" /></p>
 
-<p>若要将文本附加到文件，请在重定向操作符后指定文件名:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "this is a new line" &gt;&gt; file.txt
-</code></pre></div></div>
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/RRU1LT.png" alt="RRU1LT" />
-当与 <code class="language-plaintext highlighter-rouge">-e</code> 选项一起使用时，<code class="language-plaintext highlighter-rouge">echo </code>命令解释反斜杠转义字符，如换行 <code class="language-plaintext highlighter-rouge">\n</code>:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo -e "this is a new line \nthis is another new line" &gt;&gt; file.txt
-</code></pre></div></div>
+<h2 id="改变">改变</h2>
 
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/TFLfuC.png" alt="TFLfuC" /></p>
+<p>有人说减肥、运动、锻炼是非常愉悦的，我想大部分人是感受不到的这份愉快的。</p>
 
-<p>如果你想生成更复杂的输出，可以使用 <code class="language-plaintext highlighter-rouge">printf</code> 命令来指定输出的格式:</p>
+<p>我自己也经常跑步，跑步的时候，特别是开始到15分钟左右的时候，那段时间，乳酸上来之后，有点痛苦，我想这个痛苦至少不是愉快的。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>printf "Hello, I'm %s.\n" $USER &gt;&gt; file.txt
-</code></pre></div></div>
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/jogmpf.png" alt="jogmpf" /></p>
+<p>我在沙发上，吃着薯片，看着电影，不是更爽么，更愉悦吗？</p>
 
-<p>另一种将文本附加到文件的方法是使用 Here 文档(Heredoc)。 它是一种重定向类型，允许您将多行输入传递给命令。</p>
+<p><code class="language-plaintext highlighter-rouge">所以只有在感觉良好的状态下进行改变，效果最佳。</code></p>
 
-<p>例如，您可以将内容传递给 <code class="language-plaintext highlighter-rouge">cat</code> 命令，并将其附加到文件中:</p>
+<p>如何改进这个习惯，看了一本书，书上大概提到了这么一个步骤和练习：</p>
 
-<p>cat « EOF » file.txt The current working directory is: $PWD You are logged in as: $(whoami) EOF</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat filename &gt; file.txt 
-</code></pre></div></div>
+<p>1， 写下3个你想要停止的习惯。尽量写得具体一些。比如，要写“终止午餐时买汽水”，而不是“终止喝汽水”。
+2， 对每一个习惯，想出3种可以消除（或避免）提示的方法。如果什么都想不出来也没关系，继续下一步即可。
+3， 对每一个习惯，思考可以增加难度（能力）的方法。
+4， 对每一个习惯，思考可以削弱动机的方法。
+5， 对每一个习惯，从步骤2到步骤4里选出你的最佳解决方案。</p>
 
-<p>你可以将任何命令的输出附加到文件中:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>date +"Year: %Y, Month: %m, Day: %d" &gt;&gt; file.txt
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/GwKx2D.png" alt="" /></p>
 
-</code></pre></div></div>
+<p>我之前特别爱看Dota2的比赛视频，为了戒掉这个爱好，我给自己家的路由器设置了这个限制，任何时段都不能访问斗鱼网站了，这下好了，反正已经很久没有打开够斗鱼了 ~</p>
 
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/MDiTEX.png" alt="MDiTEX" />
-当使用重定向附加到文件时，请注意不要使用操作符覆盖重要的现有文件。</p>
-<h2 id="方法附加到文件中tee-command-命令">方法附加到文件中tee Command 命令</h2>
+<p>你有没有看到一部电视剧，特别想看到结局是什么？如果有机会能能完一次就看完，我想没有人会拒绝这个机会。</p>
 
-<p><code class="language-plaintext highlighter-rouge">tee</code> 是 Linux 中的命令行实用程序，它从标准输入读取数据，并同时写入标准输出和一个或多个文件。</p>
+<p>一个电视剧一般长的有50多集，短的有9~10来集，基本上1.5倍速度，也要好几个小时才能看完，专注到一个事情上，还是几个小时，这个也算困难的事情了。</p>
 
-<p>默认情况下，tee 命令覆盖指定的文件。 要将输出附加到文件中，可以使用 tee 和 -a (–append)选项:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "this is a new line"  | tee -a file.txt
-</code></pre></div></div>
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/J3UYRm.png" alt="J3UYRm" /></p>
+<p><code class="language-plaintext highlighter-rouge">这个就是强烈的动机。</code></p>
 
-<p>如果您不希望 <code class="language-plaintext highlighter-rouge">tee</code> 写入标准输出，可以将其重定向到 /dev/null:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "this is a new line"  | tee -a file.txt &gt;/dev/null
-</code></pre></div></div>
+<p>强烈的动机非常适合去做一次就能完成的真正困难的事情，再比如，在危急时刻救孩子、辞职、扔掉家里的所有垃圾食品、踩点冲到机场搭飞机、首次参加匿名戒酒会、给编辑写信、一天内履行10项新年计划。</p>
 
-<p>使用 tee 命令优于操作符的优点是，tee 允许您将文本一次追加到多个文件，并将其他用户拥有的文件与 sudo 一起写入。</p>
+<p>……</p>
 
-<p>要将文本附加到没有写权限的文件，请在 tee 之前预置 sudo，如下所示:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "this is a new line" | sudo tee -a file.txt
-</code></pre></div></div>
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/VzQBPs.png" alt="VzQBPs" /></p>
+<h2 id="产品">产品</h2>
 
-<p>tee 接收 echo 命令的输出，提高 sudo 权限，并写入文件。</p>
+<p>作为一个程序员，非常有必要了解产品是什么。最近看到<a href="https://mp.weixin.qq.com/s/L1EMRae-16nTDeV43O2DIQ">池老师的公众号</a>的写的这篇文章，关于产品的说法，看完之后，自己非常的认同。</p>
 
-<p>要将文本附加到多个文件，请将这些文件指定为 tee 命令的参数:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "this is a new line"  | tee -a file1.txt file2.txt file3.txt
-</code></pre></div></div>
-<p><img src="https://gitee.com/chasays/mdPic/raw/master/uPic/EFeqzz.png" alt="EFeqzz" /></p>
-<h2 id="小结">小结</h2>
+<p>如果你也在学习产品，建议可以看看。</p>
 
-<p>在 Linux 中，要将文本附加到文件中，可以使用重定向操作符「&gt;」或 tee 命令。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/269E4A39-74DB-488B-A9FA-C3264D1AF2F6.png" alt="" /></p>
+
+<p>01好的产品富有创意，必须是一个创新的东西 
+02好的产品是有用的 
+03好的产品是美的 
+04好的产品是容易使用的
+05好的产品是很含蓄不招摇的 
+06好的产品是诚实的 
+07好的产品经久不衰，不会随着时间而过时 
+08好的产品不会放过任何细节 
+09好产品是环保的，不浪费任何资源的 
+10好产品遵循少即是多</p>
+
+<p>产品需要有交易和商品的属性，才有可能变为商业。</p>
+
+<p>……</p>
+
+<p>今天就到这里吧。</p>
+
+<h1 id="文章推荐">文章推荐</h1>
+
+<ul>
+  <li><a href="https://12101111.github.io/xbox-security/">xbox安全介绍</a></li>
+</ul>
+
+<p>本文将翻译Xbox Live团队Xbox One安全系统架构师Tony Chen在2019年平台安全峰会(Platform Security Summit 2019, PSEC 2019)上的演讲</p>
+
+<ul>
+  <li><a href="https://developer.nvidia.com/blog/nvidia-releases-open-source-gpu-kernel-modules/">地表最强的GPU公司开源了,他们的GPU内核</a></li>
+</ul>
+
+<p>为Linux社区首次开源版本的GPU内核模块有助于提高 NVIDIA GPU驱动程序的质量和安全性。</p>
+
+<h1 id="工具资源推荐">工具、资源推荐</h1>
+
+<ul>
+  <li><a href="http://www.menuetos.net">纯汇编写的操作系统</a></li>
+</ul>
+
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/eKLRhC.jpg" alt="" /></p>
+
+<p>MenuetOS是一个PC操作系统，完全用汇编语言（64位和32位）编写。功能包括先发制人和实时多任务处理，支持多处理器和图形用户界面。Menuet64根据许可证发布，Menuet32根据GPL发布。Menuet支持64位和32位x86汇编编程，适用于更小、更快、资源消耗更少的应用程序。</p>
+
+<hr />
+
+<h1 id="过去一周">过去一周</h1>
+
+<p>本周的思考时刻：如何计划自己的行动？</p>
+
+<ul>
+  <li>写下自己要完成的计划</li>
+  <li>在自己放松的时候就嫩刚看到的这个提醒(比如设置为屏保，当玩耍手机的是就可以看到)</li>
+  <li>然后每天进步一点，给自己一个反馈，有多巴胺更能坚持下去</li>
+</ul>
+
+<p>下周思考：NA</p>
+
+<hr />
+
+<blockquote>
+  <p>看书最重要的就是定好<code class="language-plaintext highlighter-rouge">固定的时间</code>，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。</p>
+</blockquote>
+
+<ul>
+  <li>福格行为模型 - 20%</li>
+</ul>
+
+<p>已经开始。</p>
+
+<ul>
+  <li>技术相关的书，大部分是电子书，因为可以随时的show me code。</li>
+  <li>方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。</li>
+</ul>
+
+<p>今天是坚持周更分享：第 <code class="language-plaintext highlighter-rouge">37/60</code> 期。</p>
 
 
 
@@ -375,19 +434,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/03/19/Git-status-abnormal-chinese/" data-toggle="tooltip" data-placement="top" title="Git Status Abnormal Chinese">
+                        <a href="/2022/05/12/gdb-user-guide/" data-toggle="tooltip" data-placement="top" title="使用 GDB 进行调试">
                         Previous<br>
-                        <span>Git Status Abnormal Chinese</span>
+                        <span>使用 GDB 进行调试</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2020/03/23/linux-common-command-ps/" data-toggle="tooltip" data-placement="top" title="Linux Common Command Ps">
-                        Next<br>
-                        <span>Linux Common Command Ps</span>
-                        </a>
-                    </li>
                     
                 </ul>
                 <hr style="visibility: hidden;">
