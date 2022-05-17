@@ -797,6 +797,18 @@
 <lastmod>2022-05-14T00:00:00+00:00</lastmod>
 </url>
 <url>
+<loc>https://blog.chiphub.top/2022/05/17/LLVM-IR-transform/</loc>
+<lastmod>2022-05-17T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://blog.chiphub.top/2022/05/17/LLVM-install-and-compiler/</loc>
+<lastmod>2022-05-17T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://blog.chiphub.top/2022/05/17/external-project/</loc>
+<lastmod>2022-05-17T00:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>https://blog.chiphub.top/about/</loc>
 </url>
 <url>
@@ -864,5 +876,8 @@
 </url>
 <url>
 <loc>https://blog.chiphub.top/page20/</loc>
+</url>
+<url>
+<loc>https://blog.chiphub.top/page21/</loc>
 </url>
 </urlset>
