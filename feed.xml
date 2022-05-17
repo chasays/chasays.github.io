@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 17 May 2022 09:09:39 +0000</pubDate>
-    <lastBuildDate>Tue, 17 May 2022 09:09:39 +0000</lastBuildDate>
+    <pubDate>Tue, 17 May 2022 13:46:07 +0000</pubDate>
+    <lastBuildDate>Tue, 17 May 2022 13:46:07 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -19,7 +19,7 @@
 
 &lt;p&gt;Clang不仅将C和C++转换为LLVM IR，而且能够监督整个编译过程，作为一个灵活的编译器驱动器，努力与GCC兼容共处。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517123317.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/ZcAYPM.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Clang看作一个前端编译器，而不是一个编译器驱动器，它负责将C和C++程序翻译为LLVM IR。&lt;/p&gt;
 
@@ -147,13 +147,13 @@ wget https://apt.llvm.org/llvm.sh
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bash -c &quot;$(wget -O - https://apt.llvm.org/llvm.sh)&quot;&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517095823.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/bFevQC.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;除了用二进制包安装之外，还可以用&lt;a href=&quot;https://github.com/llvm/llvm-project&quot;&gt;源代码编译安装&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;安装好了之后，可以查看版本：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ clang-12 --version&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517112453.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/MipMAY.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;也可以用一个cpp文件验证一下编译.&lt;/p&gt;
 
@@ -168,7 +168,7 @@ wget https://apt.llvm.org/llvm.sh
 
 &lt;p&gt;用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++-12 test.cpp&lt;/code&gt; 来编译文件, 编译之后执行&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./a.out&lt;/code&gt;，就可以看到结果了.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517112929.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/zGAFTH.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
 
@@ -215,8 +215,9 @@ wget https://apt.llvm.org/llvm.sh
 %a &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; add i32 %a, 1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;用llc编译的时候，看到会报错的，
-&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517145721.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;用llc编译的时候，看到会报错的，&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/7oBE4O.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;error: multiple definition of &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;value named ’a’
 %a &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; add i32 %a, 1
@@ -303,8 +304,9 @@ br 是branch，lable是跳转到这个命名的块.分别为then和end&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;加入φ之后，就成了这样了.
-&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517153916.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;加入φ之后，就成了这样了.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/5YsuxP.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;简化后的CFG， 就一个select指令.&lt;/p&gt;
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;entry:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -339,8 +341,6 @@ br 是branch，lable是跳转到这个命名的块.分别为then和end&lt;/p&gt;
 &lt;h3 id=&quot;mc-streamer&quot;&gt;MC Streamer&lt;/h3&gt;
 
 &lt;h2 id=&quot;llvm重要的几个类&quot;&gt;LLVM重要的几个类&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517154925.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;module&quot;&gt;Module&lt;/h3&gt;
 

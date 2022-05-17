@@ -331,8 +331,9 @@
 %a <span class="o">=</span> add i32 %a, 1
 </code></pre></div></div>
 
-<p>用llc编译的时候，看到会报错的，
-<img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517145721.png" alt="" /></p>
+<p>用llc编译的时候，看到会报错的，</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/7oBE4O.png" alt="" /></p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error: multiple definition of <span class="nb">local </span>value named ’a’
 %a <span class="o">=</span> add i32 %a, 1
@@ -419,8 +420,9 @@ br 是branch，lable是跳转到这个命名的块.分别为then和end</p>
 </span><span class="err">%</span><span class="mi">3</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">load</span><span class="w"> </span><span class="err">i</span><span class="mi">32</span><span class="w"> </span><span class="err">*</span><span class="w"> </span><span class="err">%b</span><span class="w">
 </span><span class="err">ret</span><span class="w"> </span><span class="err">i</span><span class="mi">32</span><span class="w"> </span><span class="err">%</span><span class="mi">3</span><span class="w">
 </span></code></pre></div></div>
-<p>加入φ之后，就成了这样了.
-<img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517153916.png" alt="" /></p>
+<p>加入φ之后，就成了这样了.</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/5YsuxP.png" alt="" /></p>
 
 <p>简化后的CFG， 就一个select指令.</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">entry:</span><span class="w">
@@ -455,8 +457,6 @@ br 是branch，lable是跳转到这个命名的块.分别为then和end</p>
 <h3 id="mc-streamer">MC Streamer</h3>
 
 <h2 id="llvm重要的几个类">LLVM重要的几个类</h2>
-
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220517154925.png" alt="" /></p>
 
 <h3 id="module">Module</h3>
 
