@@ -328,7 +328,7 @@
 
 <p>这是日志文件的样子:</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/N2xs7R.png" alt="N2xs7R" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/N2xs7R.png" alt="N2xs7R" /></p>
 
 <p>对于301,327行，我不太可能手动查看。让我们自动化一点。</p>
 
@@ -400,13 +400,13 @@ Cities 城市
 Subdivisions of Cities 城市细分
 </code></pre></div></div>
 <p>我想知道这些攻击来自哪里，并分享这些信息。 所以我运行了我构建的程序，现在有了一些有用的位置信息列表:
-<img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/fvDM6l.jpg" alt="fvDM6l" /></p>
+<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/fvDM6l.jpg" alt="fvDM6l" /></p>
 
 <h2 id="大陆">大陆</h2>
 
 <p>现在我想看一下 
 那就有问题了，有一些副本。
-<img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/kVI0ts.jpg" alt="kVI0ts" />
+<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/kVI0ts.jpg" alt="kVI0ts" />
 我可以运行一个快速命令，得到唯一的值:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat continents | sort | uniq
 </code></pre></div></div>
@@ -418,25 +418,25 @@ Subdivisions of Cities 城市细分
 
 </code></pre></div></div>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/jK8ErF.jpg" alt="jK8ErF" />
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/jK8ErF.jpg" alt="jK8ErF" />
 很不错，对吧？ 因此，我将删除前导空格，在计数之后插入一个逗号，并将其放入一个文本文件中。</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>awk -F '\n' '{print $0}' continents.txt | sort | uniq -c | awk '{$1=$1};1' | sed -r 's/\s+/,/'  &gt; contintent-totals.txt
 
 </code></pre></div></div>
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/PoFKyk.jpg" alt="PoFKyk" />
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/PoFKyk.jpg" alt="PoFKyk" />
 现在我可以把它放到谷歌表格里了。</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/OlOmD6.jpg" alt="OlOmD6" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/OlOmD6.jpg" alt="OlOmD6" /></p>
 
 <p>看看这个漂亮的图表:
-<img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/RBwUWT.jpg" alt="RBwUWT" /></p>
+<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/RBwUWT.jpg" alt="RBwUWT" /></p>
 
 <p>这是我在其他地点(国家、城市、地区)重复的过程，所以我不会重复。 以下是我的研究结果:</p>
 
 <h2 id="国家">国家</h2>
 
 <p>以下是排名前十的攻击者来自的国家:
-<img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/GUPp9B.jpg" alt="GUPp9B" /></p>
+<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/GUPp9B.jpg" alt="GUPp9B" /></p>
 
 <p>China (304) 中国(304)
 United States (138) 美国(138个)
@@ -451,7 +451,7 @@ United Kingdom (29) 英国(29)</p>
 
 <h2 id="城市">城市</h2>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/3WMC2a.jpg" alt="3WMC2a" />
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/3WMC2a.jpg" alt="3WMC2a" />
 每个城市的攻击更加集中。</p>
 
 <p>Beijing (57) 北京(57)
@@ -469,7 +469,7 @@ But still pretty interesting.</p>
 
 <h2 id="分区">分区</h2>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/D94Lwy.jpg" alt="D94Lwy" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/D94Lwy.jpg" alt="D94Lwy" /></p>
 
 <p>这一点更加重要。 但是它更深入一些。 以下是排名前10的细分攻击者:</p>
 

@@ -326,7 +326,7 @@
 
 <p>我采用的是 jekyll。</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/cMlxMb.png" alt="cMlxMb" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/cMlxMb.png" alt="cMlxMb" /></p>
 
 <p>完成创建后，你会得到一个GitHub pages默认的域名，就像这样：用户名.github.io，像我的就是 <code class="language-plaintext highlighter-rouge">chasays.github.io</code></p>
 
@@ -336,7 +336,7 @@
 
 <p>这里我选择的是腾讯云注册的域名，就10几块钱买了一年，还挺不错的，如果同样选择腾讯的域名注册的话可以和我进行一样的操作。</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/mq03JC.png" alt="mq03JC" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/mq03JC.png" alt="mq03JC" /></p>
 
 <p>这里直接按照要求购买就可以，不过要提前进行实名后才可以进行购买，这里要注意一下。买完后它应该会提示你进行域名解析啥的，可以先不用管，之后再搞。</p>
 
@@ -344,11 +344,11 @@
 
 <p>现在可以到GitHub去绑定自己的域名，像下面这样。</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/wfQ1WK.png" alt="wfQ1WK" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/wfQ1WK.png" alt="wfQ1WK" /></p>
 
 <p>进入https://console.dnspod.cn/dns，在这个界面里可以选择你的域名，DNS解析&gt;我的域名，然后选择快速添加解析，添加一个二级域名, 解析到对应的github.io 地址。</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/VIvbbo.png" alt="VIvbbo" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/VIvbbo.png" alt="VIvbbo" /></p>
 
 <p>完成以上的步骤后，过1分钟左右，就<strong>已经可以通过你自己的域名去访问</strong>你的静态网站了，像现在就可以通过 <a href="http://blog.chiphub.top">http://blog.chiphub.top</a> 去访问我的个人博客了，不过此时<strong>还只能使用http进行访问，还不能够通过https进行访问</strong>，不过不急，我们在完成cloudflare的CDN加速的步骤中就可以完成https的设置。</p>
 
@@ -368,17 +368,17 @@
 
 <p>进入你的域名管理，如下图：</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/SxlgG7.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/SxlgG7.png" alt="" /></p>
 
 <p>然后在域名信息里面就可以看到修改你的DNS服务器，这里直接把原来的两个替换掉就好了，替换的内容在cloudflare的步骤里面其实有详细的说明（至于为什么没有截图，当然又是忘记截图了😢，绝望，好在cloudflare是有详细的步骤过程的。）</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/IMG_7959.PNG" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/IMG_7959.PNG" alt="" /></p>
 
 <p>至此，就完成了到 cloudflare 的绑定，后面cloudflare就会提示你要不要使用ssl证书，开启http跳转https之类的，直接按照提示下一步下一步就完事了。</p>
 
 <p>然后回到GitHub pages的设置界面：</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/tJVNfA.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/tJVNfA.png" alt="" /></p>
 
 <p>就可以顺利的开启你的enforece https了，愉快而且快速地访问你的网站了，这里贴一下我自己的：</p>
 
