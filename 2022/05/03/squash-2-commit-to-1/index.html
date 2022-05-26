@@ -324,40 +324,40 @@
 
 <p>比如首先用<code class="language-plaintext highlighter-rouge">git commit -m 'xx'</code>来提交三次，然后把最佳的2次合并为一次.</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421125024.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421125024.png" alt="" /></p>
 
 <p>可以看到有三次提交，分别如图.</p>
 
 <p>现在需要把下面红色部分的，就是最近的提交的2次，合并为一条commit
-<img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421125107.png" alt="" /></p>
+<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421125107.png" alt="" /></p>
 
 <p>重点，首先执行<code class="language-plaintext highlighter-rouge">git rebase -i HEAD~2</code>, 这里这个<code class="language-plaintext highlighter-rouge">2就是最近的2次的commit</code>的意思，也可以用其他的放-i commit_id.</p>
 
 <p>执行后看到如下弹窗，commit前面默认是<code class="language-plaintext highlighter-rouge">pick</code>，对应的解释在下面，可以用全称，也可以用首字母，比如<code class="language-plaintext highlighter-rouge">p</code></p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421125336.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421125336.png" alt="" /></p>
 
 <p>我这里保留3的comment，把2压缩到3， 修改如下，类似 r -2 ， p -3.</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421125739.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421125739.png" alt="" /></p>
 
 <p>很多同学这里都会报错，理论上也是会报错.的， 因为s的原理是把当前的commit融合到前一个commit，3在2后面提交的，所以会报错.</p>
 
 <p><code class="language-plaintext highlighter-rouge">error: cannot 'squash' without a previous commit</code></p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421130016.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421130016.png" alt="" /></p>
 
 <p>按照提示，执行<code class="language-plaintext highlighter-rouge">git rebase --edit-todo</code></p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421133940.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421133940.png" alt="" /></p>
 
 <p>然后再次<code class="language-plaintext highlighter-rouge">git rebase --continue</code>, 修改comment即可 ，为了区分，我修改如下</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421134129.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421134129.png" alt="" /></p>
 
 <p>然后ctrl+X， 然后输入Y，可以看到已经rebase，合并为一条了.</p>
 
-<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo/20220421134207.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421134207.png" alt="" /></p>
 
 <p>最后就可以提交到对于的分支上.</p>
 
@@ -447,202 +447,202 @@
         
         
         
-                <a data-sort="0194" 
+                <a data-sort="0196" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0167" 
+                <a data-sort="0168" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
-                    rel="36">Newsletter</a>
+                    rel="37">Newsletter</a>
         
-                <a data-sort="0193" 
+                <a data-sort="0195" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0195" 
+                <a data-sort="0197" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0195" 
+                <a data-sort="0197" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0195" 
+                <a data-sort="0197" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0195" 
+                <a data-sort="0197" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0196" 
+                <a data-sort="0198" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0197" 
+                <a data-sort="0199" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0198" 
+                <a data-sort="0200" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0199" 
+                <a data-sort="0201" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0199" 
+                <a data-sort="0201" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0199" 
+                <a data-sort="0201" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0199" 
+                <a data-sort="0201" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
                     rel="3">LLVM</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0202" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0203" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>
