@@ -142,18 +142,20 @@ def upload_image(img_url):
     * 2、媒体文件在微信后台保存时间为3天，即3天后media_id失效。
     * 3、上传临时素材的格式、大小限制与公众平台官网一致。
     """
+    f_name = ''
     try:
-        resource = urllib.request.urlopen(img_url)
+        # resource = urllib.request.urlopen(img_url) #github not work
+        name = img_url.split("/")[-1]
+        f_name = "tmp_{}".format(name)
+        if "." not in f_name:
+            f_name = f_name + ".png"
+        with open(f_name, 'wb') as f:
+            # f.write(resource.read())
+            f.write(requests.get(img_url).content)
     except URLError as e:
         print(f'Fail to upload pic:{img_url}')
         raise 'fail'
 
-    name = img_url.split("/")[-1]
-    f_name = "tmp_{}".format(name)
-    if "." not in f_name:
-        f_name = f_name + ".png"
-    with open(f_name, 'wb') as f:
-        f.write(resource.read())
     return upload_image_from_path(f_name)
 
 
