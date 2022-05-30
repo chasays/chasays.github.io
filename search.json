@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "安装WSL错误0x80072f7d，解决办法",
+      "subtitle" : "",
+      "tags"     : "wsl",
+      "url"      : "/2022/05/30/wsl-install-error-0x80072f7d/",
+      "date"     : "2022-05-30 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "Linux 配置 xx search history",
+      "subtitle" : "",
+      "tags"     : "linux",
+      "url"      : "/2022/05/30/config-linux-forward-history-search/",
+      "date"     : "2022-05-30 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "Keep Health",
       "subtitle" : "",
       "tags"     : "",
