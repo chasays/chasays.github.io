@@ -12,28 +12,27 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="git 2 个 commit 压缩为一个 commit - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="LLVM 测试 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="问题
-在使用 Git 作为版本控制的时候，我们可能会由于各种各样的原因提交了许多临时的 commit(git add -m “xx”, 不是追加的–amend)，而这些 commit 拼接起来才是完整的任务。那么我们为了避免太多的 commit 而造成版本控制的混乱，通常我们推荐将这些 commit 合并成一个。
+    <meta property="og:description" content="LLVM 测试基础设施包含三大类测试: 单元测试、回归测试和整个程序。单元测试和回归测试分别包含在 LLVM 存储在 LLVM/unittest 和 LLVM/test 之下，并且应该始终通过，一般情况作为checkin，即它们应该在每次提交之前运行。
 
 ">
     
-    <meta property="article:published_time" content="2022-05-03T00:00:00Z">
+    <meta property="article:published_time" content="2022-05-19T00:00:00Z">
     
     
     <meta property="article:author" content="叉叉敌">
     
     
-    <meta property="article:tag" content="git">
+    <meta property="article:tag" content="cuda">
     
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2022/05/03/squash-2-commit-to-1/">
+    <meta property="og:url" content="https://blog.chiphub.top/2022/05/19/LLVM-GPU-Compiler/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <title>git 2 个 commit 压缩为一个 commit - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>LLVM 测试 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -42,7 +41,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2022/05/03/squash-2-commit-to-1/">
+    <link rel="canonical" href="https://blog.chiphub.top/2022/05/19/LLVM-GPU-Compiler/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -275,13 +274,13 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=git" title="git">git</a>
+                        <a class="tag" href="/archive/?tag=cuda" title="cuda">cuda</a>
                         
                     </div>
-                    <h1>git 2 个 commit 压缩为一个 commit</h1>
+                    <h1>LLVM 测试</h1>
                     
-                    <h2 class="subheading">rebase特别有用</h2>
-                    <span class="meta">Posted by 叉叉敌 on May 3, 2022</span>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by 叉叉敌 on May 19, 2022</span>
                 </div>
             </div>
         </div>
@@ -307,81 +306,210 @@
                 <!-- Multi-Lingual -->
                 
 
-				<h1 id="问题">问题</h1>
-<p>在使用 Git 作为版本控制的时候，我们可能会由于各种各样的原因提交了许多临时的 commit(git add -m “xx”, 不是追加的–amend)，而这些 commit 拼接起来才是完整的任务。那么我们为了避免太多的 commit 而造成版本控制的混乱，通常我们推荐将这些 commit 合并成一个。</p>
+				<p>LLVM 测试基础设施包含三大类测试: <code class="language-plaintext highlighter-rouge">单元测试、回归测试和整个程序</code>。单元测试和回归测试分别包含在 LLVM 存储在 LLVM/unittest 和 LLVM/test 之下，并且应该始终通过，一般情况作为checkin，即它们应该在每次提交之前运行。</p>
 
-<p>这个情况下用rebase就可以登场了.</p>
+<p>单元测试是使用 Google Test 和 Google Mock 编写的，位于 llvm/unittest 目录中。在一般情况下，单元测试用于针对支持库和其他通用数据结构，我们倾向于依赖回归测试来测试 IR 上的转换和分析。</p>
 
-<h1 id="rebase">Rebase</h1>
+<p>回归测试是测试 LLVM 特定特性或在 LLVM 中触发特定 bug 的小段代码。它们使用的语言取决于测试的 LLVM 部分。这些测试由 Lit 测试工具(LLVM 的一部分)驱动，位于 LLVM/test 目录中。</p>
 
-<p>Rebase 是在另一个基准提交之上重新应用提交的过程。它用于将不同分支的提交，合并到一个提交中。它是 git merge 命令的一种替代方法。</p>
+<p>通常，当在 LLVM 中发现 bug 时，应该编写一个回归测试，其中包含足够的代码来重现问题，并将该测试放置在这个目录的某个位置。例如，它可以是从实际应用程序或基准中提取的一小段 LLVM IR。</p>
 
-<p>在 Git 中，术语 rebase 指的是将一系列提交移动或合并到一个新的基本提交的过程。rebase是非常有用，它可视化了分支工作流环境中的过程。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/mxmvRb.png" alt="mxmvRb" /></p>
 
-<p>需要注意的是，最好在合并分支之前rebase。</p>
+<h2 id="快速入门">快速入门</h2>
 
-<h1 id="实战">实战</h1>
+<p>测试位于两个独立的存储库中。单元测试和回归测试位于主“ LLVM”目录下的 LLVM/unittest 和 LLVM/test 目录下，(因此您可以通过主 LLVM-project 免费获得这些测试)。在构建 LLVM 之后，使用 <code class="language-plaintext highlighter-rouge">make check-all</code> 运行单元测试和回归测试。</p>
 
-<p>比如首先用<code class="language-plaintext highlighter-rouge">git commit -m 'xx'</code>来提交三次，然后把最佳的2次合并为一次.</p>
+<p>测试套件模块包含更全面的测试，包括整个 C 和 C++ 程序。</p>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421125024.png" alt="" /></p>
+<h3 id="如何运行单元测试和回归测试">如何运行单元测试和回归测试</h3>
 
-<p>可以看到有三次提交，分别如图.</p>
+<p>要运行所有 LLVM 单元测试，请使用 check-LLVM-unit 目标:</p>
 
-<p>现在需要把下面红色部分的，就是最近的提交的2次，合并为一条commit
-<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421125107.png" alt="" /></p>
+<p>` make check-llvm-unit`</p>
 
-<p>重点，首先执行<code class="language-plaintext highlighter-rouge">git rebase -i HEAD~2</code>, 这里这个<code class="language-plaintext highlighter-rouge">2就是最近的2次的commit</code>的意思，也可以用其他的放-i commit_id.</p>
+<p>要运行所有 LLVM 回归测试，请使用 check-LLVM 目标:</p>
 
-<p>执行后看到如下弹窗，commit前面默认是<code class="language-plaintext highlighter-rouge">pick</code>，对应的解释在下面，可以用全称，也可以用首字母，比如<code class="language-plaintext highlighter-rouge">p</code></p>
+<p>` make check-llvm`</p>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421125336.png" alt="" /></p>
+<p>为了获得合理的<code class="language-plaintext highlighter-rouge">测试性能</code>，在编译的时候，应该是-release模式下构建 LLVM-project，编译命令</p>
 
-<p>我这里保留3的comment，把2压缩到3， 修改如下，类似 r -2 ， p -3.</p>
+<p><code class="language-plaintext highlighter-rouge">cmake -DCMAKE_BUILD_TYPE="Release" -DLLVM_ENABLE_ASSERTIONS=On</code></p>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421125739.png" alt="" /></p>
+<p>如果您已经构建了 <code class="language-plaintext highlighter-rouge">Clang</code> ，那么您可以使用以下方法同时运行 LLVM 和 Clang 测试:</p>
 
-<p>很多同学这里都会报错，理论上也是会报错.的， 因为s的原理是把当前的commit融合到前一个commit，3在2后面提交的，所以会报错.</p>
+<p><code class="language-plaintext highlighter-rouge">make check-all</code></p>
 
-<p><code class="language-plaintext highlighter-rouge">error: cannot 'squash' without a previous commit</code></p>
+<p>同时还可以给运行测试的用例传递参数， 请使用 <code class="language-plaintext highlighter-rouge">LIT_ARGS</code>  变量将所需的选项传递给 LIT。例如，您可以使用:</p>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421130016.png" alt="" /></p>
+<p><code class="language-plaintext highlighter-rouge">make check LIT_ARGS="-v --vg --vg-leak"</code></p>
 
-<p>按照提示，执行<code class="language-plaintext highlighter-rouge">git rebase --edit-todo</code></p>
+<p>其他可以参考<a href="https://llvm.org/docs/CommandGuide/lit.html">lit的用法</a>，比如单个ll文件或者整个目录。</p>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421133940.png" alt="" /></p>
+<h2 id="回归测试的架构">回归测试的架构</h2>
 
-<p>然后再次<code class="language-plaintext highlighter-rouge">git rebase --continue</code>, 修改comment即可 ，为了区分，我修改如下</p>
+<p>LLVM 回归测试由 lit 驱动，位于 llvm/test 目录中。</p>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421134129.png" alt="" /></p>
+<p>这个目录包含大量的小型测试，这些测试使用 LLVM 的各种特性，并确保不会发生回归。这个目录被分成几个子目录，每个子目录都关注 LLVM 的一个特定区域。</p>
 
-<p>然后ctrl+X， 然后输入Y，可以看到已经rebase，合并为一条了.</p>
+<h3 id="如何编译一个新的测试用例">如何编译一个新的测试用例</h3>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/20220421134207.png" alt="" /></p>
+<p>回归测试结构非常简单，但是需要设置一些信息。这些信息通过 cmake 收集并写入构建目录中的文件 <code class="language-plaintext highlighter-rouge">test/lit.site.cfg</code>。Llvm/test Makefile文件 为您完成这项工作。</p>
 
-<p>最后就可以提交到对于的分支上.</p>
+<p>为了使回归测试工作，每个测试目录必须有一个 <code class="language-plaintext highlighter-rouge">lit.local.cfg </code>文件。Lit 查找此文件以确定如何运行测试。这个文件只是 Python 代码，因此非常灵活，但是我们已经为 LLVM 回归测试对它进行了标准化。如果要添加一个测试目录，只需从<code class="language-plaintext highlighter-rouge">另一个目录复制 lit.local.cfg 即可</code>。标准的 lit.local.cfg 只是指定要查找哪些文件以进行测试。任何只包含目录的目录都不需要 lit.local.cfg 文件。</p>
 
-<h1 id="参考">参考</h1>
+<p>每个测试文件必须包含以“ <code class="language-plaintext highlighter-rouge">RUN:</code>”开头的行，告诉 lit 如何运行它。如果没有 RUN 行，lit 将在运行测试时发出错误。</p>
 
-<p>https://stackoverflow.com/questions/39595034/git-cannot-squash-without-a-previous-commit-error-while-rebase</p>
+<p>同时还可以有多个<code class="language-plaintext highlighter-rouge">RUN</code>行。RUN 行在测试程序的注释中使用关键字 RUN 后跟冒号和要执行的命令(管道)来指定。这些行组成了 lit 执行以运行测试用例的“脚本”。RUN 行的语法类似于 shell 管道的语法，包括 I/O 重定向和变量替换。但是，即使这些行看起来像 shell 脚本，它们也不是。RUN 行由 lit 解释。因此，语法与 shell 在几个方面有所不同。您可以根据需要指定<code class="language-plaintext highlighter-rouge">尽可能多的 RUN 行。</code></p>
 
+<p>Lit 对每个 RUN 行执行替换操作，以替换 LLVM 工具名，使用为每个工具构建的可执行文件的完整路径(在 $(LLVM_OBJ_ROOT)/$(BuildMode)/bin 中)。这样可以确保 lit 在测试期间不会调用用户路径中的任何其他 LLVM 工具。</p>
+
+<p>每个 RUN 行都是独立执行的，与其他行不同，除非它的最后一个字符是<code class="language-plaintext highlighter-rouge">\</code>,和python的换行有点类似。这个延续字符将使 RUN 行与下一行连接起来。通过这种方式，您可以构建长长的命令管道，而不需要制造巨大的行长度。以该行结尾的行被连接起来，直到找到一个不以该行结尾的 RUN 行。然后，这组连接的 RUN 行构成一个执行。Lit 将替换变量并安排管道的执行。如果管道中的任何进程失败，则整个行(和测试用例)也会失败。</p>
+
+<p>下面是.ll 文件中合法的 RUN 行的示例:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>; RUN: llvm-as &lt; %s | llvm-dis &gt; %t1
+; RUN: llvm-dis &lt; %s.bc-13 &gt; %t2
+; RUN: diff %t1 %t2
+
+</code></pre></div></div>
+
+<p>测试的时候，不会修改文件的内容信息，一般来说，您应该尽量保持您的<code class="language-plaintext highlighter-rouge"> RUN 行尽可能简单</code>，只使用它们来运行生成文本输出的工具，然后您可以检查这些工具。检查输出以判断测试是否通过的推荐方法是使用 FileCheck 工具。[不推荐在 RUN 行中使用 grep-请不要发送或提交使用它的补丁程序。]</p>
+
+<h3 id="自动生成断言">自动生成断言</h3>
+
+<p>有些回归测试用例非常大，手工编写/更新非常复杂。在这种情况下，为了减少人工工作，我们可以使用 llvm/utils/中提供的脚本来生成断言。</p>
+
+<p>例如，要在基于 llc 的测试中生成断言，请运行:</p>
+
+<p><code class="language-plaintext highlighter-rouge">llvm/utils/update_llc_test_checks.py --llc-binary build/bin/llc test.ll</code></p>
+
+<p>除了生成，还可以更新断言信息<code class="language-plaintext highlighter-rouge">-u</code>。</p>
+
+<p>以下是生成断言时最常见的脚本及其用途/应用程序:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>update_analyze_test_checks.py
+opt <span class="nt">-passes</span><span class="o">=</span><span class="s1">'print&lt;cost-model&gt;'</span>
+
+update_cc_test_checks.py
+C/C++, or clang/clang++ <span class="o">(</span>IR checks<span class="o">)</span>
+
+update_llc_test_checks.py
+llc <span class="o">(</span>assembly checks<span class="o">)</span>
+
+update_mca_test_checks.py
+llvm-mca
+
+update_mir_test_checks.py
+llc <span class="o">(</span>MIR checks<span class="o">)</span>
+
+update_test_checks.py
+opt
+
+</code></pre></div></div>
+
+<h3 id="高级用法">高级用法</h3>
+
+<p>如果您的测试需要除了包含 RUN: 行的文件之外的其他文件，并且额外的文件很小，那么可以考虑在同一个文件中指定它们，并使用 split-file 来获取它们。比如说,</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">;</span> RUN: split-file %s %t
+<span class="p">;</span> RUN: llvm-link <span class="nt">-S</span> %t/a.ll %t/b.ll | FileCheck %s
+
+<span class="p">;</span> CHECK: ...
+
+<span class="p">;</span><span class="nt">---</span> a.ll
+...
+<span class="p">;</span><span class="nt">---</span> b.ll
+...
+</code></pre></div></div>
+
+<p>上面分隔的用的<code class="language-plaintext highlighter-rouge">;--- a.ll</code>，符合这个即可<code class="language-plaintext highlighter-rouge">^(.|//)--- &lt;part&gt;.</code></p>
+
+<p>如果您想要测试像 [[#@LINE+1]] 这样的相对行号，那么指定 <code class="language-plaintext highlighter-rouge">--leading-lines</code> 以添加前导空行来保留行号。</p>
+
+<p>期望匹配和不期望匹配，</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>;CHECK: xx 这个是期望匹配
+；CHECK-NOT:期望不匹配
+</code></pre></div></div>
+<p>为了保持健壮性，始终在 RUN 行中使用 <code class="language-plaintext highlighter-rouge">xxx .. &lt; %s</code>。</p>
+
+<h3 id="平台测试">平台测试</h3>
+
+<p>比如有nvidia、adm、x86、metax等等，此外，如果测试依赖于在任何后端中编码的任何行为，那么它必须放在自己的目录中。</p>
+
+<p>因此，例如，ARM 的代码生成器测试进入 test/CodeGen/ARM 等。这些目录包含一个特殊的指定配置文件，确保该目录中的所有测试只有在特定的后端已编译并可用时才会运行。</p>
+
+<p>在 test/CodeGen/ARM 中，这个文件lit.local.cfg 是内容是:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>config.suffixes = ['.ll', '.c', '.cpp', '.test']
+if not 'MetaX' in config.root.targets:
+  config.unsupported = True
+</code></pre></div></div>
+
+<h3 id="测试约束">测试约束</h3>
+
+<p>有些测试只能在特定的配置中运行，例如使用调试构建或在特定的平台上运行。使用 REQUIRES 和 UNSUPPORTED 控制何时启用测试。</p>
+
+<p>比如：一些测试预计会失败。例如，测试可能检测到一个已知的 bug。使用 XFAIL 将测试标记为预期失败。如果执行失败，XFAIL 测试将成功; 如果执行成功，XFAIL 测试将失败。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>; This test will be only enabled in the build with asserts.
+; REQUIRES: asserts
+; This test is disabled on Linux.
+; UNSUPPORTED: -linux-
+; This test is expected to fail on PowerPC.
+; XFAIL: powerpc
+
+</code></pre></div></div>
+
+<p>REQUIRES、 UNSUPPORTED 和 XFAIL 都接受以逗号分隔的布尔表达式列表</p>
+
+<ul>
+  <li>REQUIRES 如果所有表达式都为 true，则启用测试</li>
+  <li>UNSUPPORTED 如果任何表达式都为 true，则禁用测试</li>
+  <li>XFAIL 如果任何表达式都为 true，则预期测试失败</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>还有检查点可以使用正则表达，比如<code class="language-plaintext highlighter-rouge">;CHECK: load heo</code>, 期望匹配的是 load helo</td>
+      <td>hello</td>
+      <td>hellllo等。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="read-more">Read more</h2>
+
+<p>https://www.youtube.com/watch?v=VFHYaH5Vr4I&amp;ab_channel=LLVM</p>
+
+<p>https://llvm.org/docs/TestingGuide.html#extra-files</p>
+
+<blockquote>
+  <p><a href="https://chasays.github.io/">github博客</a></p>
+</blockquote>
+
+<blockquote>
+  <p>微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+</blockquote>
 
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2022/05/02/LLVM-intrinsic_introduce/" data-toggle="tooltip" data-placement="top" title="LLVM intrinsic 介绍">
+                        <a href="/2022/05/19/CUDA-beginner-guider/" data-toggle="tooltip" data-placement="top" title="CUDA 入门教程">
                         Previous<br>
-                        <span>LLVM intrinsic 介绍</span>
+                        <span>CUDA 入门教程</span>
                         </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2022/05/04/assembly-basic-instruction/" data-toggle="tooltip" data-placement="top" title="汇编基础指令 ">
+                        <a href="/2022/05/21/small-behavior/" data-toggle="tooltip" data-placement="top" title="38 - 小习惯">
                         Next<br>
-                        <span>汇编基础指令 </span>
+                        <span>38 - 小习惯</span>
                         </a>
                     </li>
                     

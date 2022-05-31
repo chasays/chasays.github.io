@@ -33,6 +33,14 @@
     } ,
   
     {
+      "title"    : "LLVM 测试",
+      "subtitle" : "",
+      "tags"     : "cuda",
+      "url"      : "/2022/05/19/LLVM-GPU-Compiler/",
+      "date"     : "2022-05-19 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "CUDA 入门教程",
       "subtitle" : "",
       "tags"     : "cuda",

@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 30 May 2022 13:26:49 +0000</pubDate>
-    <lastBuildDate>Mon, 30 May 2022 13:26:49 +0000</lastBuildDate>
+    <pubDate>Tue, 31 May 2022 01:51:09 +0000</pubDate>
+    <lastBuildDate>Tue, 31 May 2022 01:51:09 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -390,6 +390,205 @@ tags:&lt;/p&gt;
       </item>
     
       <item>
+        <title>LLVM 测试</title>
+        <description>&lt;p&gt;LLVM 测试基础设施包含三大类测试: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;单元测试、回归测试和整个程序&lt;/code&gt;。单元测试和回归测试分别包含在 LLVM 存储在 LLVM/unittest 和 LLVM/test 之下，并且应该始终通过，一般情况作为checkin，即它们应该在每次提交之前运行。&lt;/p&gt;
+
+&lt;p&gt;单元测试是使用 Google Test 和 Google Mock 编写的，位于 llvm/unittest 目录中。在一般情况下，单元测试用于针对支持库和其他通用数据结构，我们倾向于依赖回归测试来测试 IR 上的转换和分析。&lt;/p&gt;
+
+&lt;p&gt;回归测试是测试 LLVM 特定特性或在 LLVM 中触发特定 bug 的小段代码。它们使用的语言取决于测试的 LLVM 部分。这些测试由 Lit 测试工具(LLVM 的一部分)驱动，位于 LLVM/test 目录中。&lt;/p&gt;
+
+&lt;p&gt;通常，当在 LLVM 中发现 bug 时，应该编写一个回归测试，其中包含足够的代码来重现问题，并将该测试放置在这个目录的某个位置。例如，它可以是从实际应用程序或基准中提取的一小段 LLVM IR。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/mxmvRb.png&quot; alt=&quot;mxmvRb&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;快速入门&quot;&gt;快速入门&lt;/h2&gt;
+
+&lt;p&gt;测试位于两个独立的存储库中。单元测试和回归测试位于主“ LLVM”目录下的 LLVM/unittest 和 LLVM/test 目录下，(因此您可以通过主 LLVM-project 免费获得这些测试)。在构建 LLVM 之后，使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make check-all&lt;/code&gt; 运行单元测试和回归测试。&lt;/p&gt;
+
+&lt;p&gt;测试套件模块包含更全面的测试，包括整个 C 和 C++ 程序。&lt;/p&gt;
+
+&lt;h3 id=&quot;如何运行单元测试和回归测试&quot;&gt;如何运行单元测试和回归测试&lt;/h3&gt;
+
+&lt;p&gt;要运行所有 LLVM 单元测试，请使用 check-LLVM-unit 目标:&lt;/p&gt;
+
+&lt;p&gt;` make check-llvm-unit`&lt;/p&gt;
+
+&lt;p&gt;要运行所有 LLVM 回归测试，请使用 check-LLVM 目标:&lt;/p&gt;
+
+&lt;p&gt;` make check-llvm`&lt;/p&gt;
+
+&lt;p&gt;为了获得合理的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;测试性能&lt;/code&gt;，在编译的时候，应该是-release模式下构建 LLVM-project，编译命令&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cmake -DCMAKE_BUILD_TYPE=&quot;Release&quot; -DLLVM_ENABLE_ASSERTIONS=On&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;如果您已经构建了 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Clang&lt;/code&gt; ，那么您可以使用以下方法同时运行 LLVM 和 Clang 测试:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make check-all&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;同时还可以给运行测试的用例传递参数， 请使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LIT_ARGS&lt;/code&gt;  变量将所需的选项传递给 LIT。例如，您可以使用:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make check LIT_ARGS=&quot;-v --vg --vg-leak&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;其他可以参考&lt;a href=&quot;https://llvm.org/docs/CommandGuide/lit.html&quot;&gt;lit的用法&lt;/a&gt;，比如单个ll文件或者整个目录。&lt;/p&gt;
+
+&lt;h2 id=&quot;回归测试的架构&quot;&gt;回归测试的架构&lt;/h2&gt;
+
+&lt;p&gt;LLVM 回归测试由 lit 驱动，位于 llvm/test 目录中。&lt;/p&gt;
+
+&lt;p&gt;这个目录包含大量的小型测试，这些测试使用 LLVM 的各种特性，并确保不会发生回归。这个目录被分成几个子目录，每个子目录都关注 LLVM 的一个特定区域。&lt;/p&gt;
+
+&lt;h3 id=&quot;如何编译一个新的测试用例&quot;&gt;如何编译一个新的测试用例&lt;/h3&gt;
+
+&lt;p&gt;回归测试结构非常简单，但是需要设置一些信息。这些信息通过 cmake 收集并写入构建目录中的文件 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test/lit.site.cfg&lt;/code&gt;。Llvm/test Makefile文件 为您完成这项工作。&lt;/p&gt;
+
+&lt;p&gt;为了使回归测试工作，每个测试目录必须有一个 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lit.local.cfg &lt;/code&gt;文件。Lit 查找此文件以确定如何运行测试。这个文件只是 Python 代码，因此非常灵活，但是我们已经为 LLVM 回归测试对它进行了标准化。如果要添加一个测试目录，只需从&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;另一个目录复制 lit.local.cfg 即可&lt;/code&gt;。标准的 lit.local.cfg 只是指定要查找哪些文件以进行测试。任何只包含目录的目录都不需要 lit.local.cfg 文件。&lt;/p&gt;
+
+&lt;p&gt;每个测试文件必须包含以“ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RUN:&lt;/code&gt;”开头的行，告诉 lit 如何运行它。如果没有 RUN 行，lit 将在运行测试时发出错误。&lt;/p&gt;
+
+&lt;p&gt;同时还可以有多个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RUN&lt;/code&gt;行。RUN 行在测试程序的注释中使用关键字 RUN 后跟冒号和要执行的命令(管道)来指定。这些行组成了 lit 执行以运行测试用例的“脚本”。RUN 行的语法类似于 shell 管道的语法，包括 I/O 重定向和变量替换。但是，即使这些行看起来像 shell 脚本，它们也不是。RUN 行由 lit 解释。因此，语法与 shell 在几个方面有所不同。您可以根据需要指定&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;尽可能多的 RUN 行。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Lit 对每个 RUN 行执行替换操作，以替换 LLVM 工具名，使用为每个工具构建的可执行文件的完整路径(在 $(LLVM_OBJ_ROOT)/$(BuildMode)/bin 中)。这样可以确保 lit 在测试期间不会调用用户路径中的任何其他 LLVM 工具。&lt;/p&gt;
+
+&lt;p&gt;每个 RUN 行都是独立执行的，与其他行不同，除非它的最后一个字符是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\&lt;/code&gt;,和python的换行有点类似。这个延续字符将使 RUN 行与下一行连接起来。通过这种方式，您可以构建长长的命令管道，而不需要制造巨大的行长度。以该行结尾的行被连接起来，直到找到一个不以该行结尾的 RUN 行。然后，这组连接的 RUN 行构成一个执行。Lit 将替换变量并安排管道的执行。如果管道中的任何进程失败，则整个行(和测试用例)也会失败。&lt;/p&gt;
+
+&lt;p&gt;下面是.ll 文件中合法的 RUN 行的示例:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;; RUN: llvm-as &amp;lt; %s | llvm-dis &amp;gt; %t1
+; RUN: llvm-dis &amp;lt; %s.bc-13 &amp;gt; %t2
+; RUN: diff %t1 %t2
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;测试的时候，不会修改文件的内容信息，一般来说，您应该尽量保持您的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; RUN 行尽可能简单&lt;/code&gt;，只使用它们来运行生成文本输出的工具，然后您可以检查这些工具。检查输出以判断测试是否通过的推荐方法是使用 FileCheck 工具。[不推荐在 RUN 行中使用 grep-请不要发送或提交使用它的补丁程序。]&lt;/p&gt;
+
+&lt;h3 id=&quot;自动生成断言&quot;&gt;自动生成断言&lt;/h3&gt;
+
+&lt;p&gt;有些回归测试用例非常大，手工编写/更新非常复杂。在这种情况下，为了减少人工工作，我们可以使用 llvm/utils/中提供的脚本来生成断言。&lt;/p&gt;
+
+&lt;p&gt;例如，要在基于 llc 的测试中生成断言，请运行:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;llvm/utils/update_llc_test_checks.py --llc-binary build/bin/llc test.ll&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;除了生成，还可以更新断言信息&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-u&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;以下是生成断言时最常见的脚本及其用途/应用程序:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;update_analyze_test_checks.py
+opt &lt;span class=&quot;nt&quot;&gt;-passes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'print&amp;lt;cost-model&amp;gt;'&lt;/span&gt;
+
+update_cc_test_checks.py
+C/C++, or clang/clang++ &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;IR checks&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+update_llc_test_checks.py
+llc &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;assembly checks&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+update_mca_test_checks.py
+llvm-mca
+
+update_mir_test_checks.py
+llc &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;MIR checks&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+update_test_checks.py
+opt
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;高级用法&quot;&gt;高级用法&lt;/h3&gt;
+
+&lt;p&gt;如果您的测试需要除了包含 RUN: 行的文件之外的其他文件，并且额外的文件很小，那么可以考虑在同一个文件中指定它们，并使用 split-file 来获取它们。比如说,&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; RUN: split-file %s %t
+&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; RUN: llvm-link &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; %t/a.ll %t/b.ll | FileCheck %s
+
+&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; CHECK: ...
+
+&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; a.ll
+...
+&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt; b.ll
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;上面分隔的用的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;;--- a.ll&lt;/code&gt;，符合这个即可&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;^(.|//)--- &amp;lt;part&amp;gt;.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;如果您想要测试像 [[#@LINE+1]] 这样的相对行号，那么指定 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--leading-lines&lt;/code&gt; 以添加前导空行来保留行号。&lt;/p&gt;
+
+&lt;p&gt;期望匹配和不期望匹配，&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;;CHECK: xx 这个是期望匹配
+；CHECK-NOT:期望不匹配
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;为了保持健壮性，始终在 RUN 行中使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xxx .. &amp;lt; %s&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;平台测试&quot;&gt;平台测试&lt;/h3&gt;
+
+&lt;p&gt;比如有nvidia、adm、x86、metax等等，此外，如果测试依赖于在任何后端中编码的任何行为，那么它必须放在自己的目录中。&lt;/p&gt;
+
+&lt;p&gt;因此，例如，ARM 的代码生成器测试进入 test/CodeGen/ARM 等。这些目录包含一个特殊的指定配置文件，确保该目录中的所有测试只有在特定的后端已编译并可用时才会运行。&lt;/p&gt;
+
+&lt;p&gt;在 test/CodeGen/ARM 中，这个文件lit.local.cfg 是内容是:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;config.suffixes = ['.ll', '.c', '.cpp', '.test']
+if not 'MetaX' in config.root.targets:
+  config.unsupported = True
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;测试约束&quot;&gt;测试约束&lt;/h3&gt;
+
+&lt;p&gt;有些测试只能在特定的配置中运行，例如使用调试构建或在特定的平台上运行。使用 REQUIRES 和 UNSUPPORTED 控制何时启用测试。&lt;/p&gt;
+
+&lt;p&gt;比如：一些测试预计会失败。例如，测试可能检测到一个已知的 bug。使用 XFAIL 将测试标记为预期失败。如果执行失败，XFAIL 测试将成功; 如果执行成功，XFAIL 测试将失败。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;; This test will be only enabled in the build with asserts.
+; REQUIRES: asserts
+; This test is disabled on Linux.
+; UNSUPPORTED: -linux-
+; This test is expected to fail on PowerPC.
+; XFAIL: powerpc
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;REQUIRES、 UNSUPPORTED 和 XFAIL 都接受以逗号分隔的布尔表达式列表&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;REQUIRES 如果所有表达式都为 true，则启用测试&lt;/li&gt;
+  &lt;li&gt;UNSUPPORTED 如果任何表达式都为 true，则禁用测试&lt;/li&gt;
+  &lt;li&gt;XFAIL 如果任何表达式都为 true，则预期测试失败&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;还有检查点可以使用正则表达，比如&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;;CHECK: load heo&lt;/code&gt;, 期望匹配的是 load helo&lt;/td&gt;
+      &lt;td&gt;hello&lt;/td&gt;
+      &lt;td&gt;hellllo等。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+
+&lt;p&gt;https://www.youtube.com/watch?v=VFHYaH5Vr4I&amp;amp;ab_channel=LLVM&lt;/p&gt;
+
+&lt;p&gt;https://llvm.org/docs/TestingGuide.html#extra-files&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Thu, 19 May 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/05/19/LLVM-GPU-Compiler/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/19/LLVM-GPU-Compiler/</guid>
+        
+        <category>cuda</category>
+        
+        
+      </item>
+    
+      <item>
         <title>CUDA 入门教程</title>
         <description>&lt;p&gt;可以用 CUDA 创建大规模并行处理机应用程序的方法之一。它允许您使用强大的 c++ 编程语言来开发高性能算法，这些算法由运行在 GPU 上的数千个并行线程加速。&lt;/p&gt;
 
@@ -468,11 +667,7 @@ cuda 还提供了用&lt;code class=&quot;language-plaintext highlighter-rouge&qu
 
 &lt;p&gt;比如下面就是求第三个黄色区域值的index.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/20220519193219.png&quot; alt=&quot;&quot; /&gt;
-&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/20220519193219.png&quot; alt=&quot;&quot; /&gt;
-&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/20220519193219.png&quot; alt=&quot;&quot; /&gt;
-&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win202220220526112647.png&quot; alt=&quot;&quot; /&gt;
-&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220526112725.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/20220519193219.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;分配主机内存和初始化的主机数据&lt;/li&gt;
@@ -481,6 +676,8 @@ cuda 还提供了用&lt;code class=&quot;language-plaintext highlighter-rouge&qu
   &lt;li&gt;执行内核&lt;/li&gt;
   &lt;li&gt;将输出从设备存储器传输到主机&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;p&gt;如果没有NVIDIA的显卡，下一个介绍下如何使用google colab提供的免费GPU来测试下。&lt;/p&gt;
 
 &lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
 
@@ -1035,158 +1232,6 @@ br 是branch，lable是跳转到这个命名的块.分别为then和end&lt;/p&gt;
         <guid isPermaLink="true">https://blog.chiphub.top/2022/05/14/what-is-product/</guid>
         
         <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>使用 GDB 进行调试</title>
-        <description>&lt;p&gt;经常我们使用的vscode、pycharm等等ide，都带有断点设置，参数检查等，但是GDB就没有这些，那我们能不能通过设置，把gdb用起来更简单喃？
-比如，如果你知道这些的话，可以跳过了.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;gdb 脚本配合–batch&lt;/li&gt;
-  &lt;li&gt;gdb .gdbinit  文件&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;使用-gdb-进行调试&quot;&gt;使用 GDB 进行调试&lt;/h2&gt;
-
-&lt;p&gt;在过去的几年里，我大部分时间都在用 Python 工作，而且我非常喜欢用 Python 进行调试。您只需将断点()函数调用放入代码中的某个位置，然后将其重新放入程序。我想看看在 c 语言中，我能接近到什么程度。由于 c 语言不是直译语言，我的期望不是很高，但是结果证明用 c 语言调试是相当舒服的。作为奖励，您可以使用 GDB 不仅调试 c 和 c + + ，还可以调试 Rust、 Nim，可能还有任何 C-ABI 的语言。&lt;/p&gt;
-
-&lt;h2 id=&quot;gdb-基础&quot;&gt;GDB 基础&lt;/h2&gt;
-
-&lt;p&gt;首先，我们需要一个程序来调试:&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// program.c&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-#include &amp;lt;stdlib.h&amp;gt;
-#include &amp;lt;time.h&amp;gt;
-&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Product: %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;print_arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;srand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;print_product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;要调试程序，包含调试符号非常重要。使用 gcc 编译时添加调试符号，请添加 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-g&lt;/code&gt; 标志。所以让我们编译这个程序:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc -g -o program program.c
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;现在我们可以通过运行以下命令来调试这个程序:&lt;/p&gt;
-
-&lt;h2 id=&quot;使用-gdb-脚本&quot;&gt;使用 gdb 脚本&lt;/h2&gt;
-
-&lt;p&gt;了解GDB脚本功能&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;https://www.adacore.com/gems/gem-119-gdb-scripting-part-1&lt;/p&gt;
-
-  &lt;p&gt;https://www.adacore.com/gems/gem-120-gdb-scripting-part-2&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;但这仍然不是很好，现在我们必须在重新启动调试会话时反复输入所有断点。但是有一种方法可以解决这个问题: gdb 脚本。如果使用-x 选项调用 gdb，则可以传递一个包含 gdb 命令的文件给它，它应该执行这个文件。&lt;/p&gt;
-
-&lt;p&gt;现在我们可以将断点写入脚本，例如。&lt;/p&gt;
-
-&lt;p&gt;现在，我们的断点被存储了。但是还有更多的原因。通常我想检查一些变量。目前希望看到所有循环的乘积变量的值，而不关心其余的:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# gdbscript
-b 6
-commands
-    p product
-    c
-end
-
-run
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后用这样的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--batch&lt;/code&gt;运行 gdb:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gdb -x gdbscript program --batch
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;现在，gdb 将快速打印出所有迭代的产品值，然后再次退出。断点后的命令语句将在命中断点后执行所有包含的命令。最后一个命令 c 表示 continue 并将继续程序流，直到命中下一个断点，一旦上次命中了断点，gdb 将通过 – batch 参数结束执行。&lt;/p&gt;
-
-&lt;p&gt;另一个很酷的例子: 让我们假设，不管出于什么原因，我们只对 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;print_ product() &lt;/code&gt;的第三次调用中的product的值感兴趣。(这当然很傻，因为程序无论如何都会打印它，但在现实调试中，可能会出现这种情况)&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set $n = 0
-
-b 6
-commands
-    set $n = $n + 1
-    if $n == 3
-        printf &quot;Product is: %d\n&quot;, product
-    else
-        c
-    end
-end
-
-run
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;正如您所看到的，我们定义了一个变量 $n，并使用它来计数，然后在第三轮中打印所需的信息。第三轮之后，gdb 会自动退出，退出的原因是 – batch。&lt;/p&gt;
-
-&lt;h2 id=&quot;gdbinit--文件&quot;&gt;.gdbinit  文件&lt;/h2&gt;
-
-&lt;p&gt;有一个脚本，如果它存在，gdb 将始终隐式加载它: ~/.gdbinit ，你可以把你经常使用的函数放在那里，或者配置。我的是这样的:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set width 0
-set height 0
-set print pretty on
-set confirm off
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;设置 width 和 height 为0，将防止 gdb 分页长输出，第三行使 gdb 美化输出，最后一行防止它询问我们是否真的想退出。&lt;/p&gt;
-
-&lt;h2 id=&quot;总结&quot;&gt;总结&lt;/h2&gt;
-
-&lt;p&gt;经常我们使用的vscode、pycharm等等ide，都带有断点设置，参数检查等，但是对于gdb来说就没有GUI来设置这些东西了，难免有点不习惯，但是对于经常使用linux开发者的用户来说，掌握gdb是一个必须的技能。下面这个命令，可以简单地将它们附加到调试器调用中:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gdb -x gdbscript --batch --args program --flags and some args
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;此外，如果您需要更复杂的调试设置，例如，因为您还必须启动其他程序，那么可以将所有这些组合在一个 shell 脚本中。&lt;/p&gt;
-
-&lt;p&gt;当然，还有很多关于 gdb 的内容需要了解，而这仅仅是一个介绍。&lt;/p&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;https://www.adacore.com/gems/gem-119-gdb-scripting-part-1&lt;/p&gt;
-
-&lt;p&gt;https://felix-knorr.net/posts/2022-02-27-direct-gdb.html&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;
-微信公众号：chasays， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」互吹。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Thu, 12 May 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/05/12/gdb-user-guide/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/12/gdb-user-guide/</guid>
-        
-        <category>gdb</category>
         
         
       </item>
