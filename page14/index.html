@@ -151,6 +151,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                SEARCH <i class="fa fa-search"></i>
@@ -274,6 +276,107 @@
                 postlist-container
             ">
     			
+<div class="post-preview">
+    <a href="/2020/09/25/macOS-mysql8-reset-password/">
+        <h2 class="post-title">
+            macOS Mysql8 重置用户密码
+        </h2>
+        
+        <h3 class="post-subtitle">
+            配置Maven，Java，Spring
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                Mysql 8+ 修改密码好多命令都不太对。看了官方文档终于奏效了。
+
+版本：
+mysql -V
+mysql  Ver 8.0.17 for macos10.14 on x86_64 (MySQL Community Server - GPL)
+
+
+登录提示：
+mysql -uuser -p
+Enter password:
+ERROR 1045 (28000): Access denied ...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on September 25, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/09/25/how-to-muck-data-in-mini-program-wechat/">
+        <h2 class="post-title">
+            如何用浏览器或者微信小程序开发Mock数据
+        </h2>
+        
+        <h3 class="post-subtitle">
+            微信小程序mock数据
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                获取原始数据
+点开IDE的调试窗口，然后和chrome一样，点开network，可以看到request。如果是数据太少，就自己可以生成一个手动写一个JSON格式的结果。
+
+
+
+设置mock
+获取到数据之后，就可以模拟了，
+
+首先点击mock， 然后点击Mock右边有一个+ plus符号。
+对应填写API接口类型，有request等还有可以mock支付相关的信息。
+接着就是参数，url，后面的...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on September 25, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/09/25/Vscode-bring-up-Java-Spring-project/">
+        <h2 class="post-title">
+            Vscode 安装Java Spring项目
+        </h2>
+        
+        <h3 class="post-subtitle">
+            配置Maven，Java，Spring
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                记一次二次开发Spring项目的，用vscode配置环境过程。因为vscode是用json文件保存的配置。好多都过时了。强行提笔记录一下
+
+安装组件
+一个java， 一个spring boot
+
+
+
+
+安装Maven和Java
+java这个简单
+
+  https://java.com/zh_CN/download/help/mac_install.xml
+
+
+maven
+配置环境变量，如果是...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on September 25, 2020
+    </p>
+</div>
+<hr>
+
 <div class="post-preview">
     <a href="/2020/09/24/Python-advanced/">
         <h2 class="post-title">
@@ -514,84 +617,6 @@ bash 开始时是sh兼容的实现（尽管它比POSIX标准早了几年），�
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2020/09/12/Python-communication-between-threadings/">
-        <h2 class="post-title">
-            Python线程间如何通信
-        </h2>
-        
-        <h3 class="post-subtitle">
-            多线程是个复杂的问题
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                我对于线程这部分知识比较薄弱，并发是一个复杂的问题，在测试过程中很少用到这个知识点。
-由于全局解释器锁 （GIL），CPU 绑定任务不适合 Python 线程。Python 中的并行计算应在多个进程（而不是线程）中完成。
-
-实例：
-工作线程从队列中获取目录名称， 然后递归查找其中的所有文件并返回结果
-import os, time
-import threading, Queue
-
-class...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 12, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/10/what-happen-while-entering-address-in-broswer/">
-        <h2 class="post-title">
-             浏览器输一个网址发生了什么
-        </h2>
-        
-        <h3 class="post-subtitle">
-            从DNS到浏览器渲染
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                正文
-转自：https://www.cnblogs.com/chenshengkai/p/13626669.html
-
-总结一下：
-在浏览器输一个网址时候发生什么？共有7部
-第1步不是从本地dns中去读取地址，如果没有他的地址就从他的域名服务器去取IP, 他没如果有的话就去上一级，直到根域名，反正就是要找到IP为止。
-第2步。与服务端建立TCP IP连接。是客户端发送一个请求。三次握手，我有...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 网文 on September 10, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/08/31/Photography-photo/">
-        <h2 class="post-title">
-            Photography Photo
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                iPhone
-
-  自2007年以来，iPhone摄影大赛™（IPPAWARDS）是第一届也是历时最长的iPhone摄影大赛。自第一部iPhone启发，激动并吸引了全球用户以来，IPPAWARDS一直在庆祝iPhone用户的创造力。从那以后，IPPAWARDS每年从来自全球140多个国家的iPhone摄影师提交的数千张图像中选择最佳照片。评审委员会成员分几步选出优胜者，并颁发年度摄影师和类别...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on August 31, 2020
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -632,212 +657,212 @@ class...
         
         
         
-                <a data-sort="0199" 
+                <a data-sort="0202" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0172" 
+                <a data-sort="0174" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
-                    rel="36">Newsletter</a>
+                    rel="37">Newsletter</a>
         
-                <a data-sort="0198" 
+                <a data-sort="0201" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0200" 
+                <a data-sort="0203" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0201" 
+                <a data-sort="0204" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0202" 
+                <a data-sort="0205" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0203" 
+                <a data-sort="0206" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0204" 
+                <a data-sort="0207" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0204" 
+                <a data-sort="0207" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0204" 
+                <a data-sort="0207" 
+                    href="/archive/?tag=LLVM"
+                    title="LLVM"
+                    rel="4">LLVM</a>
+        
+                <a data-sort="0207" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0204" 
+                <a data-sort="0207" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0205" 
-                    href="/archive/?tag=LLVM"
-                    title="LLVM"
-                    rel="3">LLVM</a>
-        
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="3">cuda</a>
+        
+                <a data-sort="0208" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0205" 
+                <a data-sort="0208" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0206" 
-                    href="/archive/?tag=cuda"
-                    title="cuda"
-                    rel="2">cuda</a>
-        
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0209" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

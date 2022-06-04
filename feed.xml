@@ -5,9 +5,457 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 31 May 2022 15:18:12 +0000</pubDate>
-    <lastBuildDate>Tue, 31 May 2022 15:18:12 +0000</lastBuildDate>
+    <pubDate>Sat, 04 Jun 2022 03:42:25 +0000</pubDate>
+    <lastBuildDate>Sat, 04 Jun 2022 03:42:25 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>40 - 朋友多好，还是少好？</title>
+        <description>&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h2 id=&quot;本周话题&quot;&gt;本周话题&lt;/h2&gt;
+
+&lt;p&gt;朋友，别看我平时像个逗比一样，其实我是很内向的。&lt;/p&gt;
+
+&lt;p&gt;我的朋友很少，我个人感觉不超过一桌人，一年吃饭的话就更少了，不超过10次。&lt;/p&gt;
+
+&lt;p&gt;我老婆经常说我没什么朋友，确实我身边朋友比较少，然后能约出来一起吃饭的，那就更少了。&lt;/p&gt;
+
+&lt;p&gt;我是这么看待的，如果你要维持这个朋友关系，那可能要经常去维系这个关系，花时间去打点，然后这个时间我觉得花的不是很值，有那么几个知己已经足以。&lt;/p&gt;
+
+&lt;p&gt;不过我和我老婆就形成鲜明的对比，他身边就有非常多的朋友。从我个人感觉来，这种人应该是比较寂寞的，因为他如果没有那样热闹的氛围，他可能很难沉浸下来去做某些东西。&lt;/p&gt;
+
+&lt;p&gt;反而我感觉我更耐得住寂寞，也没有什么个人的生日宴会，个人的宝宝宴会……，我不喜欢和不熟的人一起吃饭，一起出去玩。这就是我的社交恐惧症。&lt;/p&gt;
+
+&lt;p&gt;也有可能是个人的性格决定的。&lt;/p&gt;
+
+&lt;h2 id=&quot;心胸宽广&quot;&gt;心胸宽广&lt;/h2&gt;
+
+&lt;p&gt;我刚毕业出来工作的时候，老是跟老板对着干，想到能活到现在也是命大呀&lt;/p&gt;
+
+&lt;p&gt;小领导叫我做什么，心想这还用你教我，我知道怎么做。&lt;/p&gt;
+
+&lt;p&gt;当有人指出我的问题或者批判我，我当时第一反应可能会是怎么去对立的去反驳这个问题不去接纳，还有可能是更严重的是报复他。&lt;/p&gt;
+
+&lt;p&gt;经过这些年的一个成长，对某人有益和无益的提出这个问题，我在心里面不可能是之前那种想法了，而是我有没有这种问题，然后如何去改变这个问题。&lt;/p&gt;
+
+&lt;p&gt;我想想之前自己真的好low，不仅命大，而且命硬&lt;/p&gt;
+
+&lt;h2 id=&quot;感悟&quot;&gt;感悟&lt;/h2&gt;
+
+&lt;p&gt;喜剧是什么？&lt;/p&gt;
+
+&lt;p&gt;包括旨在通过引发笑声来表现幽默或有趣的话语或作品，尤其是在戏剧、电影、单口喜剧、电视、广播、书籍或任何其他娱乐媒介中。&lt;/p&gt;
+
+&lt;p&gt;来自维基百科，喜剧是一种作品，意思就是作者用劳动换来的，所以我看到的舞台上，演员的表演都是一种呈现的结果。所以喜剧和幽默，以及这个人在线下的表现是不一样的。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/SQ5xa6gPtYqCfaHLJikTCA&quot;&gt;给女儿的投资计划&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;首先，投资到底是投什么？&lt;/p&gt;
+
+&lt;p&gt;买一家公司的股票，就是买入它的一部分所有权，成为了小股东，这家公司赚钱了，你也就能分到相应的一部分。&lt;/p&gt;
+
+&lt;p&gt;最重要的我觉得是找到好的公司，然后有足够的耐心来等待。后面这一步我能做到，前面哪一步说实话是挺难的。&lt;/p&gt;
+
+&lt;p&gt;股票的价值是这家公司未来现金流的折现，这个现金流跟公司的利润正相关。买股票最终能不能赚到钱，本质上是看这家公司在你买入之后余下的生命里能不能持续地赚钱。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kristerw.github.io/2022/05/24/branchless/&quot;&gt;编译器里面的move和branch指令的解释&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;作者是做GPU编译器的，可以关注一下。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.shalerb.org/&quot;&gt;Shale&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Shale 是用于 JSON、 YAML 和 XML 的 Ruby 对象映射器和序列化器。允许您解析 JSON、 YAML 和 XML 数据，并将其转换为 Ruby 数据结构，以及将数据结构序列化为 JSON、 YAML 或 XML。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mazzo.li/posts/fast-pipes.html&quot;&gt;Linux 管道的速度优势&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本文探讨了Linux如何实现Unix管道。它首先使用吞吐量约为3.5GiB/s的程序，然后对其进行优化，直到其性能提高二十倍。需要具备C语言的基本知识。链接了包含文章代码的GitHub存储库。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
+
+&lt;p&gt;本周的思考时刻：如何计划自己的行动？&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;写下自己要完成的计划&lt;/li&gt;
+  &lt;li&gt;在自己放松的时候就嫩刚看到的这个提醒(比如设置为屏保，当玩耍手机的是就可以看到)&lt;/li&gt;
+  &lt;li&gt;然后每天进步一点，给自己一个反馈，有多巴胺更能坚持下去&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下周思考：NA&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;莫言 - 奇奇怪怪的那些事 - 5%&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;主要是培养孩子的读书习惯，一种以故事的方式来培养习惯，我个人觉得是一种不错的方式。&lt;/p&gt;
+
+&lt;p&gt;如果有你有好的方式，可以给我回信分享一下么？谢谢~&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
+  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/06/04/what-is-friend/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/04/what-is-friend/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>用谷歌云服务器免费跑 cuda 代码</title>
+        <description>&lt;h2 id=&quot;什么是-cuda&quot;&gt;什么是 CUDA？&lt;/h2&gt;
+
+&lt;p&gt;CUDA 是 Nvidia 为并行计算平台和应用程序编程接口创建的一个模型。CUDA 是 NVIDIA 的并行计算架构，通过利用 GPU 的能力，可以大幅度提高计算性能。&lt;/p&gt;
+
+&lt;p&gt;CUDA 代码不会在 AMD CPU 或者 Intel HD Graphics 上运行，除非你的机器里有 NVIDIA 的硬件。在 Colab 上，你可以利用 NVIDIA 的 GPU，以及一个预装了 Tensorflow 和其他 ML/DL 工具的功能齐全的 Jupyter note。&lt;/p&gt;
+
+&lt;h3 id=&quot;第1-打开colab&quot;&gt;第1: 打开colab&lt;/h3&gt;
+
+&lt;p&gt;然后在runtime-&amp;gt; change type里面修改硬件加速为GPU。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://colab.research.google.com&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/OXy9Wi.png&quot; alt=&quot;OXy9Wi&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;第二检测nvcc版本&quot;&gt;第二：检测nvcc版本&lt;/h3&gt;
+
+&lt;p&gt;一般都是安装了cuda的，直接执行nvcc来查看版本。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/SzsWT1.png&quot; alt=&quot;SzsWT1&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-安装插件&quot;&gt;3. 安装插件&lt;/h3&gt;
+
+&lt;p&gt;为了nvcc能运行，需要安装一个插件，识别为cuda代码&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/5pgVlU.png&quot; alt=&quot;5pgVlU&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;!pip install git+https://github.com/andreinechaev/nvcc4jupyter.git
+%load_ext nvcc_plugin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;4-运行cuda&quot;&gt;4. 运行cuda&lt;/h3&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cu&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;iostream&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__global__&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;cuda_hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World from GPU!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cuda_hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;cudaDeviceSynchronize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/VGzSId.png&quot; alt=&quot;VGzSId&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+
+&lt;p&gt;https://gist.github.com/chasays/81994504fe154f6cd9f799323e331ca8&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/06/02/run-cuda-with-free-cloud/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/02/run-cuda-with-free-cloud/</guid>
+        
+        <category>cuda</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LLVM LibFuzzer介绍和实践</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;下面是自己学习libFuzzer过程中，记录的文档，欢迎交流和指正。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Fuzzing 是一种软件测试方法，包括将格式不正确的数据作为输入传递给程序，并监视其是否存在不正确的行为。今天 fuzzing 是发现软件安全问题的最有效的方法之一。2014年第一个覆盖引导模糊器Fuzzy Lop。这开创了现代市场上的模糊解决方案和技术。&lt;/p&gt;
+
+&lt;h2 id=&quot;什么是libfuzzer&quot;&gt;什么是LibFuzzer&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;LibFuzzer is in-process, coverage-guided, evolutionary fuzzing engine.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;LibFuzzer与被测库链接，并通过特定的模糊化入口点（又称“目标函数 target function”）将模糊化输入提供给库；然后，模糊器跟踪到达的代码区域，并在输入数据的主体上生成不同的参数组合，以最大限度地提高代码覆盖率。libFuzzer的代码覆盖率信息由LLVM的SanitizerCoverage工具提供。&lt;/p&gt;
+
+&lt;p&gt;提供：&lt;/p&gt;
+
+&lt;p&gt;简单来说就是通过与要进行fuzz的库连接，并将libfuzzer生成的输入通过模糊测试进入点(fuzz target)喂给要fuzz的库进行fuzz testing。同时fuzzer会跟踪哪些区域的代码已经被测试过的，并且根据种料库的输入进行变异来使得代码覆盖率最大化。代码覆盖率的信息是由LLVM’s SanitizerCoverage插桩提供的&lt;/p&gt;
+
+&lt;p&gt;需要注意的是这几个libfuzzer的特性：in-process指进程内。即libfuzzer在fuzz时并不是产生出多个进程来分别处理不同的输入，而是将所有的测试数据放入进程的内存空间中。coverage-guided指覆盖率指导的。即会进行代码覆盖率的计算，正如定义所说的使得不断增大代码覆盖率。evolutionary是指libfuzzer是进化型的fuzz，结合了产生和变异两种形式。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/5e2siO.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;举例-fuzzing-test&quot;&gt;举例 fuzzing-test&lt;/h2&gt;
+
+&lt;p&gt;创建一个文件，fuzz_target.cc, 这个内容如下，记得不要使用使用main等作为函数名。&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// fuzz_target.cc&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;C&quot;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;LLVMFuzzerTestOneInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint8_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;DoSomethingInterestingWithMyAPI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// Non-zero return values are reserved for future use.&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;需要注意的是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVMFuzzerTestOneInput&lt;/code&gt; 函数是我们要实现的接口函数，他的两个参数Data(libfuzzer的测试样本数据)，size(样本数据的大小)。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DoSomethingInterestingWithMyAPI&lt;/code&gt; 函数即我们实际要进行fuzz的函数。&lt;/p&gt;
+
+&lt;p&gt;编译这个文件，命令&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++ -g -O1 -fsanitize=fuzzer,address fuzz_target.cc -o fuzzer_target&lt;/code&gt; ，这里的clang是我们用llvm编译出来的，如果用的其他方式会报错。&lt;/p&gt;
+
+&lt;p&gt;参数的意思：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;-g 可选参数，保留调试符号。&lt;/li&gt;
+  &lt;li&gt;-O1 指定优化等级为1，对应的还有O0 (optimize 0,1,2)，以及OS(optimize size)使用后binary大小会变小。&lt;/li&gt;
+  &lt;li&gt;-fsanitize 指定sanitize， 值有几种：fuzzer,address，memory(单独使用，检查内存)，undefined(移除、未定义等)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这一步骤整体过程就是通过clang的-fsanitize=fuzzer选项可以启用libFuzzer，这个选项在编译和链接过程中生效，实现了条件判断语句和分支执行的记录，通过生成不同的测试样例然后能够获得代码的覆盖率情况，最终实现所谓的fuzz-testing。&lt;/p&gt;
+
+&lt;p&gt;注意：编译的选项会影响fuzzer的效率，比如下面就是一个点。我也不知道有哪些，遇到问题就在网上搜吧，一定会有结果的。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;clang编译的时候，参数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-fno-omit-frame-pointer &lt;/code&gt;对于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不需要栈指针的函数就不在寄存器中保存指针&lt;/code&gt;，因此可以忽略存储和检索地址的代码，同时对许多函数提供一个额外的寄存器。所有”-O”级别都打开它，但仅在调试器可以不依靠栈指针运行时才有效。在AMD64平台上此选项默认打开，但是在x86平台上则默认关闭。建议显式的设置它。&lt;/li&gt;
+  &lt;li&gt;gline-tables-only:表示使用采样分析器， 在应用程序执行时，抽样探查器用于收集运行时信息(如硬件计数器)。它们通常非常有效，并且不会引起大量的运行时开销。分析器收集的示例数据可用于编译期间，以确定代码中执行最多的区域是什么，在编译器可以使用分析信息之前，代码需要在分析器下执行。这也对提高我们fuzz效率很重要。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;比如常用的编译命令：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++ -g -O2 -fno-omit-frame-pointer -gline-tables-only -fsanitize=address,fuzzer-no-link test.cc -o test&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;写一个fuzz-测试函数&quot;&gt;写一个fuzz 测试函数&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;准备被测文件&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;比如有一个头文件， test.h, 里面有一个FuzzFunction1的函数&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;FuzzFunction1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint8_t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'F'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+             &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'U'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+             &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'Z'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+             &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'Z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;写测试函数&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;现在要对着头里面里面的FuzzFunction1函数进行测试，编一个测试接口,test.cc，&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;test.h&quot;
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;C&quot;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;LLVMFuzzerTestOneInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint8_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;FuzzFunction1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;需要注意的是，data和size和头文件里面的类型是一致的。如果是bool类型的，记得false和true，都要遍历&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bool bool_flag[] = {true, false}&lt;/code&gt;。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;编译测试函数&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;只有就完成了，然后编译下面的测试接口函数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++ -g -std=c++11 -fsanitize=fuzzer,address test.cc  -o test&lt;/code&gt;.,生成一个test的执行文件&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;创建一个corpus(语料库，可以想象为一个函数的参数，各种参数的组合)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在未使用语料库的情况下就得到了crash实属意料之外，如果我们在使用字典的下情况仍然暂时未得到crash，另一个方法可以去寻找一些有效的输入语料库。因为libfuzzer是进化型的fuzz，结合了产生和变异两个发面。如果我们可以提供一些好的seed，虽然它本身没法造成程序crash，但libfuzzer会在此基础上进行变异，就有可能变异出更好的语料，从而增大程序crash的概率。具体的变异策略需要我们去阅读libfuzzer的源码或者些相关的论文。&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;corpus
+./test corpus
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;corpus 是我们提供的语料库。理想情况下，该语料库应该为被测代码提供各种有效和无效的输入，模糊器基于当前语料库中的样本输入生成随机组合。&lt;/p&gt;
+
+&lt;p&gt;如果组合触发了测试代码中先前未覆盖的路径的执行，则该组合参数将保存到语料库中以供将来变更。&lt;/p&gt;
+
+&lt;p&gt;当然LibFuzzer也可以没有任何初始seed的情况下工作，但如果受测试的库接受复杂的结构化输入，则会因为随机产生的样例不易符合导致效率降低。&lt;/p&gt;
+
+&lt;p&gt;合并corpus，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./test -merge=1 corpus_min corpus&lt;/code&gt;, 这样，corpus_min和corpus将会存放到新的corpus精简后的输入样例。&lt;/p&gt;
+
+&lt;p&gt;执行的时候，我们一般会看到如下信息&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  04 Rik:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ ./test corpus
+INFO: Seed: 2222548757
+INFO: Loaded 1 modules   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;35 inline 8-bit counters&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 35 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0x7f7120, 0x7f7143&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 
+INFO: Loaded 1 PC tables &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;35 PCs&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 35 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0x5b7a68,0x5b7c98&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 
+INFO:        0 files found &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;corpus1
+INFO: &lt;span class=&quot;nt&quot;&gt;-max_len&lt;/span&gt; is not provided&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+&lt;span class=&quot;c&quot;&gt;#2    INITED cov: 3 ft: 3 corp: 1/1b exec/s: 0 rss: 27Mb&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#3    NEW    cov: 4 ft: 4 corp: 2/4b lim: 4 exec/s: 0 rss: 27Mb L: 3/3 MS: 1 CMP- DE: &quot;\x00\x00&quot;-&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#1190    NEW    cov: 5 ft: 5 corp: 3/7b lim: 14 exec/s: 0 rss: 27Mb L: 3/3 MS: 2 ChangeBinInt-CMP- DE: &quot;F\x00&quot;-&lt;/span&gt;
+……………………
+&lt;span class=&quot;nv&quot;&gt;artifact_prefix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; Test unit written to ./crash-0eb8e4ed029b774d80f2b66408203801cb982a60
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;Seed 这个seed，就是./test -seed=xxx可以指定的随机seed&lt;/li&gt;
+  &lt;li&gt;max_len  测试输入的最大长度&lt;/li&gt;
+  &lt;li&gt;cov  代码覆盖率，我们的语料库达到的代码块总数&lt;/li&gt;
+  &lt;li&gt;corp   语料库中的文件数量及其总大小&lt;/li&gt;
+  &lt;li&gt;exec/s  每秒模糊迭代次数(在运行时间长于 &amp;lt; = 1秒的情况下有用)&lt;/li&gt;
+  &lt;li&gt;rss  存储在物理内存中的进程内存量&lt;/li&gt;
+  &lt;li&gt;./crash-xxx 这个就是用来复现问题的文件，方便吧&lt;/li&gt;
+  &lt;li&gt;INITED fuzzer已完成初始化，其中包括通过被测代码运行每个初始输入样本。&lt;/li&gt;
+  &lt;li&gt;READ fuzzer已从语料库目录中读取了所有提供的输入样本。&lt;/li&gt;
+  &lt;li&gt;NEW fuzzer创建了一个测试输入，该输入涵盖了被测代码的新区域。此输入将保存到主要语料库目录。&lt;/li&gt;
+  &lt;li&gt;pulse fuzzer已生成 2的n次方个输入（定期生成以使用户确信fuzzer仍在工作）。&lt;/li&gt;
+  &lt;li&gt;REDUCE fuzzer发现了一个更好（更小）的输入，可以触发先前发现的特征（设置-reduce_inputs=0以禁用）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;最后的一个crash文件， 这样我们就可以有针对性的对程序进行动态调试，利用造成crash的输入回溯出漏洞的细节。&lt;/p&gt;
+
+&lt;h3 id=&quot;如何理解fuzzer的输出结果&quot;&gt;如何理解fuzzer的输出结果&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#17458 REDUCE cov: 7 ft: 7 corp: 5/14b lim: 170 exec/s: 0 rss: 29Mb L: 4/4 MS: 1 EraseBytes-&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;指尝试了17458个输入，成功发现了5个样本（放入语料库）大小为14b，共覆盖了7个代码块，占用内存29mb，变异操作为EraseBytes-&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/dgLG09.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;要使用libfuzzer的功能&quot;&gt;要使用libfuzzer的功能&lt;/h2&gt;
+&lt;p&gt;就需要再llvm里面变异compiler-rt，然后可以使用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++ -fsanitizer=Address xx.cc&lt;/code&gt; 在compiler-rt目录下有一些example cc的文件&lt;/p&gt;
+
+&lt;h2 id=&quot;编译llvm-mc-assemble-fuzzer&quot;&gt;编译llvm-mc-assemble-fuzzer&lt;/h2&gt;
+
+&lt;p&gt;这个是汇编器的，还有其他的，
+编译这个用之前的编译的llvm里面的clang，就需要替换为这个，用flag=cmake_c_compiler=xxx/clang
+而且目录不能是同一个，不然cmake会失败。&lt;/p&gt;
+
+&lt;h2 id=&quot;fuzzer的dict&quot;&gt;fuzzer的dict&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;提高我们fuzz的效率&lt;/code&gt;，这其中一个办法就是使用字典。&lt;/p&gt;
+
+&lt;p&gt;我们知道基本上所有的程序都是处理的数据其格式是不同的，比如 xml文档， png图片等等。这些数据中会有一些特殊字符序列 （或者说关键字）， 比如在xml文档中就有CDATA，&amp;lt;!ATTLIST等，png图片就有png 图片头。如果我们事先就把这些字符序列列举出来吗，fuzz直接使用这些关键字去组合，就会就可以减少很多没有意义的尝试，同时还有可能会走到更深的程序分支中去。&lt;/p&gt;
+
+&lt;p&gt;比如下面就是xml.dict里面的内容，xml一般有encoding、version、href等，用这些来组合，比其他的组合更高效，用例少，速度快，更精准。&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;attr_encoding=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; encoding=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;attr_generic=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; a=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;attr_href=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; href=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;attr_standalone=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; standalone=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;no&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;attr_version=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; version=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;执行的时候指定dict，用参数-dict &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./test -max_total_time=60 -print_final_stats=1 -dict=./xml.dict corpus&lt;/code&gt;,如果corpus太多，可以用merge来精简为一个。&lt;/p&gt;
+
+&lt;p&gt;文章太长了。主要是这个工具太强大了。&lt;/p&gt;
+
+&lt;h2 id=&quot;最后的进阶&quot;&gt;最后的进阶&lt;/h2&gt;
+
+&lt;p&gt;下面是关于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;一些链接库的选择以及插桩编译时的一些参数的设置，还有max_len的设置对我们最后fuzz结果的影响&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;编译的插桩参数&quot;&gt;编译的插桩参数&lt;/h3&gt;
+
+&lt;p&gt;插桩的参数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-fno-omit-frame-pointer -gline-tables-only&lt;/code&gt;，这2个前面提到过了，再来介绍一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fuzzer-no-link&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果修改大型项目的CFLAGS，它也需要编译自己的主符号的可执行文件，则可能需要在不链接的情况下仅请求检测，即fuzzer-no-link强制在链接阶段不生效。&lt;/p&gt;
+
+&lt;p&gt;介绍一些新的参数，是关于ld的。&lt;/p&gt;
+
+&lt;p&gt;比如编译命令：&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;clang -O2 -fno-omit-frame-pointer -gline-tables-only \
+-fsanitize=address,fuzzer-no-link -fsanitize-address-use-after-scope test.cc \
+ -Wl,--whole-archive xxx/.libs/libpcre2-8.a xx/.libs/libpcre2-posix.a \
+ -Wl,-no-whole-archive -fsanitize=fuzzer -o test
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;参数：–whole-archive和–no-whole-archive是ld专有的命令行参数，clang++并不认识，要通过clang++传递到ld，需要在他们前面加-Wl。–whole-archive可以把 在其后面出现的静态库包含的函数和变量输出到动态库，–no-whole-archive则关掉这个特性。&lt;/p&gt;
+
+&lt;h3 id=&quot;执行的max_len的参数&quot;&gt;执行的max_len的参数&lt;/h3&gt;
+
+&lt;p&gt;max_len一般情况下，越大获得的corpus就越多，就越容易挖掘出bug。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./test ./corpus1 -print_final_stats=1 -max_len=500 -max_total_time=100&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;解释，运行test，长度为500，并打印最后的结果，执行事假哪位100s，执行的corpus保存到corpus1里面。&lt;/p&gt;
+
+&lt;p&gt;编译llvm fuzz参考：https://github.com/google/oss-fuzz/blob/master/projects/llvm/build.sh&lt;/p&gt;
+
+&lt;p&gt;cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_ASSERTIONS=On -DLLVM_ENABLE_WERROR=On -DLLVM_USE_SANITIZER=Address -DLLVM_USE_SANITIZE_COVERAGE=On -DCMAKE_C_COMPILER=/usr/local/bin/clang ../llvm&lt;/p&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmake &lt;span class=&quot;nt&quot;&gt;-GNinja&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-DCMAKE_BUILD_TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Release ../&lt;span class=&quot;nv&quot;&gt;$LLVM&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DLLVM_ENABLE_PROJECTS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;clang;libcxx;libcxxabi;compiler-rt;lld;clang-tools-extra&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DLLVM_ENABLE_ASSERTIONS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ON &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DCMAKE_C_COMPILER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CC&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DCMAKE_CXX_COMPILER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CXX&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DCMAKE_C_FLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CFLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DCMAKE_CXX_FLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CXXFLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_FUZZING_CONFIG&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DLLVM_NO_DEAD_STRIP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ON &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DLLVM_USE_SANITIZER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LLVM_SANITIZER&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;WebAssembly &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-DCOMPILER_RT_INCLUDE_TESTS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;OFF
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+
+&lt;p&gt;https://llvm.org/docs/LibFuzzer.html&lt;/p&gt;
+
+&lt;p&gt;https://blog.haboob.sa/blog/applying-fuzzing-techniques-against-pdftron-part-2&lt;/p&gt;
+
+&lt;p&gt;https://www.moritz.systems/blog/an-introduction-to-llvm-libfuzzer/&lt;/p&gt;
+
+&lt;p&gt;https://github.com/Dor1s/libfuzzer-workshop&lt;/p&gt;
+
+&lt;p&gt;https://www.anquanke.com/post/id/224823&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 01 Jun 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/06/01/llvm-fuzz/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/01/llvm-fuzz/</guid>
+        
+        <category>LLVM</category>
+        
+        
+      </item>
     
       <item>
         <title>安装WSL错误0x80072f7d，解决办法</title>
@@ -814,424 +1262,6 @@ main:
         <guid isPermaLink="true">https://blog.chiphub.top/2022/05/17/external-project/</guid>
         
         <category>llvm</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 安装和编译 1</title>
-        <description>&lt;p&gt;LLVM基础设施适用于若干 Unix 系统（GNU/Linux，FreeBSD ，Mac OS）和 Windows 系统。我们一步一步地说明如何让LLVM在这些系统上工作。某些系统可获得LLVM和Clang的预编译安装包，但是也可以从源代码编译得到它们。&lt;/p&gt;
-
-&lt;p&gt;获取LLVM预编译安装包有两种通常的方法；你可以从官方网站获取二进制文件，也可以从第三方获取GNU/Linux发布的安装包和Windows的安装文件。&lt;/p&gt;
-
-&lt;p&gt;目前最新的版本是LLVM 14.0.0，&lt;a href=&quot;https://releases.llvm.org/download.html&quot;&gt;LLVM Download Page&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;ubuntu安装llvm&quot;&gt;Ubuntu安装LLVM&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://apt.llvm.org/&quot;&gt;参考这个 LLVM Debian/Ubuntu nightly packages&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;1， 自动安装脚本， 有3种方式，人选一种即可&lt;/p&gt;
-
-&lt;p&gt;首先是下载shell脚本，然后执行&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-wget https://apt.llvm.org/llvm.sh
-&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x llvm.sh
-&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt; ./llvm.s 12
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bash -c &quot;$(wget -O - https://apt.llvm.org/llvm.sh)&quot;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/bFevQC.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;除了用二进制包安装之外，还可以用&lt;a href=&quot;https://github.com/llvm/llvm-project&quot;&gt;源代码编译安装&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;安装好了之后，可以查看版本：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ clang-12 --version&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/MipMAY.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;也可以用一个cpp文件验证一下编译.&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;iostream&amp;gt;
-#include &amp;lt;string&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello World&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++-12 test.cpp&lt;/code&gt; 来编译文件, 编译之后执行&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./a.out&lt;/code&gt;，就可以看到结果了.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/zGAFTH.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/4LLVMIRandTransformPipeline.pdf&quot;&gt;4LLVMIRandTransformPipeline.pdf&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;
-微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Tue, 17 May 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/05/17/LLVM-install-and-compiler/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/17/LLVM-install-and-compiler/</guid>
-        
-        <category>llvm</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM IR转换</title>
-        <description>&lt;h2 id=&quot;什么是-llvm--ir&quot;&gt;什么是 LLVM  IR&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;⽆限制的单分配寄存器机器指令集&lt;/li&gt;
-  &lt;li&gt;强类型&lt;/li&gt;
-  &lt;li&gt;三种常⻅表⽰形式：
-1， ⼈类可读的 LLVM 程序集（.ll ⽂件） 
-2， 密集的 bitcode ⼆进制表⽰（.bc ⽂件） 
-3,  C++ 类&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;ssa&quot;&gt;SSA&lt;/h2&gt;
-
-&lt;p&gt;Static Single Assignment, 我理解的是单一静态赋值，寄存器可能只分配一次.&lt;/p&gt;
-
-&lt;p&gt;与之对应的就是多赋值，下面就是一个变量a，被赋值2次.&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;somefunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;既然是2次，那下面的%a 用这样表示.&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;%a &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; call i32 @somefunction&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-%a &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; add i32 %a, 1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;用llc编译的时候，看到会报错的，&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/7oBE4O.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;error: multiple definition of &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;value named ’a’
-%a &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; add i32 %a, 1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;正确的应该是，2个不同的变量，或者标识，不一定是%a&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;%a &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; call i32 @somefunction&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-%a2 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; add i32 %a, 1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;前端必须跟踪哪个寄存器在代码的任何一位置保存的值.&lt;/p&gt;
-
-&lt;p&gt;上面的代码是如何跟踪到新的值， 分号是注释， 下面的%0,1,2必须是连续的，中间少了一个会提示不连续.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alloca&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;align&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;somefunction&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;somefunction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;store&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i32&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;load&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;store&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i32&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i32&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;寄存器的值是自动分配，上面的表达式是自动llc等翻译的，不过也可以手动写， 可以看出在llvm内存中，不是SSA.&lt;/p&gt;
-
-&lt;p&gt;上面看出来有2次store，实际中好像有点冗余，&lt;a href=&quot;https://docs.hdoc.io/hdoc/llvm-project/r50EDE61A175ADB39.html&quot;&gt;SROA&lt;/a&gt;或者寄存器会自动清除这些冗余的步骤，&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;SROA：scalar replacement of aggregates 如果可能的话，这个转换将聚合类型(结构或数组)的 alloca 指令分解为每个成员的单个 alloca 指令。然后，如果可能的话，它将单个 alloca 指令转换为简洁的纯标量 SSA 形式.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;就是下面的样子.&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@someFunction()&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;控制流&quot;&gt;控制流&lt;/h2&gt;
-
-&lt;p&gt;IR的控制流通过jump、branches来实现. 分支为条件和无条件分支，&lt;/p&gt;
-
-&lt;h3 id=&quot;条件&quot;&gt;条件&lt;/h3&gt;
-
-&lt;p&gt;先来看看条件&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;控制流请求一个基础的块，每一次循环路径， 当循环路径指定的时候，就执行条件分支.&lt;/p&gt;
-
-&lt;p&gt;φ -phi， 念/fi/， φ 节点是SSA构造中使⽤的特殊指令.&lt;/p&gt;
-
-&lt;p&gt;IR的入口大概是下面这个样子，可以看到最后一行有2个标识符，
-br 是branch，lable是跳转到这个命名的块.分别为then和end&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;entry:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;alloca&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(a)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%a&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%cond&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;icmp&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ne&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;br&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%cond&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%then&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;then块的内容如下，调用了end块，负责b++&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;then:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;b++&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;store&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;br&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%end&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;end块的内容如下，return b&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;end:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%b&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;加入φ之后，就成了这样了.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/5YsuxP.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;简化后的CFG， 就一个select指令.&lt;/p&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;entry:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%tobool&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;icmp&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ne&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%a,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%tobool&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;函数&quot;&gt;函数&lt;/h2&gt;
-
-&lt;p&gt;LLVM函数包含至少一个基础块，&lt;/p&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;@hello&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;private&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;constant&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello world!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;0&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@main(i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%argc&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%argv)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;entry:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;getelementptr&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@hello&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@puts(i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;ir如何转化为本地code&quot;&gt;IR如何转化为本地code&lt;/h2&gt;
-&lt;h3 id=&quot;selection-dag&quot;&gt;Selection DAG&lt;/h3&gt;
-&lt;p&gt;1, 转换&lt;a href=&quot;https://llvm.org/doxygen/classllvm_1_1SelectionDAG.html&quot;&gt;(SelectionDAG)&lt;/a&gt;
-2, 映射到指令(Machine IR)
-3, 流到汇编&lt;/p&gt;
-
-&lt;h3 id=&quot;instruction-selection&quot;&gt;Instruction Selection&lt;/h3&gt;
-
-&lt;h3 id=&quot;register-allocation&quot;&gt;Register allocation&lt;/h3&gt;
-
-&lt;h3 id=&quot;mc-streamer&quot;&gt;MC Streamer&lt;/h3&gt;
-
-&lt;h2 id=&quot;llvm重要的几个类&quot;&gt;LLVM重要的几个类&lt;/h2&gt;
-
-&lt;h3 id=&quot;module&quot;&gt;Module&lt;/h3&gt;
-
-&lt;p&gt;是所有其他 LLVM 中间表示(IR)对象的顶级容器。每个模块直接包含全局变量列表、函数列表、该模块所依赖的库(或其他模块)列表、符号表以及关于目标特征的各种数据。&lt;/p&gt;
-
-&lt;h3 id=&quot;function&quot;&gt;Function&lt;/h3&gt;
-
-&lt;p&gt;函数基本上由一个基本块列表、一个参数列表,和一个符号表。&lt;/p&gt;
-
-&lt;h3 id=&quot;basicblock&quot;&gt;BasicBlock&lt;/h3&gt;
-
-&lt;p&gt;这表示 LLVM 中的一个基本块。基本块仅仅是一个指令的容器，这些指令按顺序执行。基本块是Value，因为它们被诸如branch和switch表之类的指令引用。BasicBlock 的类型是“ Type::Label_type”，因为基本块表示分支可以跳转到的标签。&lt;/p&gt;
-
-&lt;h3 id=&quot;globalvariable&quot;&gt;GlobalVariable&lt;/h3&gt;
-
-&lt;p&gt;全局变量是常量指针，指向一个大空间，由 VM 或静态编译器中的链接器分配一个全局variable 可能有一个初始值，这个初始值被复制到 executables. dataarea. 需要全局常量才能有初始化器。&lt;/p&gt;
-
-&lt;h3 id=&quot;irbuilder&quot;&gt;IRBuilder&lt;/h3&gt;
-
-&lt;p&gt;这提供了一个统一的 API，用于创建指令并将它们插入到基本块中: 或者在 BasicBlock 的末尾，或者在块中的特定迭代器位置。&lt;/p&gt;
-
-&lt;h3 id=&quot;type&quot;&gt;Type&lt;/h3&gt;
-
-&lt;p&gt;Type 类的实例是不可变的: 它们一旦被创建，就不会被更改。&lt;/p&gt;
-
-&lt;h3 id=&quot;constantexpr&quot;&gt;ConstantExpr&lt;/h3&gt;
-
-&lt;p&gt;用表达式使用其他常量值初始化的常量值。&lt;/p&gt;
-
-&lt;h3 id=&quot;passmanagerbuilder&quot;&gt;PassManagerBuilder&lt;/h3&gt;
-
-&lt;p&gt;这个类用于为 c 和 c++ 等语言建立一个标准的优化序列，允许一些 api 以各种方式自定义传递序列&lt;/p&gt;
-
-&lt;h3 id=&quot;executionengine&quot;&gt;ExecutionEngine&lt;/h3&gt;
-
-&lt;p&gt;用于执行 LLVM 模块的抽象接口，设计用于支持解释器和实时(JIT)编译器实现。&lt;/p&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;https://llvm.org/doxygen/classllvm_1_1Module.html&lt;/p&gt;
-
-&lt;p&gt;https://www.cnblogs.com/Five100Miles/p/12824942.html&lt;/p&gt;
-
-&lt;p&gt;https://zhuanlan.zhihu.com/p/52724656&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/4LLVMIRandTransformPipeline.pdf&quot;&gt;4LLVMIRandTransformPipeline.pdf&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Tue, 17 May 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/05/17/LLVM-IR-transform/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/17/LLVM-IR-transform/</guid>
-        
-        <category>llvm</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>37 - 产品是什么</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;成都的天气确实有点异常，前几天都快 30+ 度了，短裤、短袖都搞起了，从昨天开始突然降温，真的是满减活动不落伍，随时搞起来 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/TYfe8H.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/SOoFSj.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;改变&quot;&gt;改变&lt;/h2&gt;
-
-&lt;p&gt;有人说减肥、运动、锻炼是非常愉悦的，我想大部分人是感受不到的这份愉快的。&lt;/p&gt;
-
-&lt;p&gt;我自己也经常跑步，跑步的时候，特别是开始到15分钟左右的时候，那段时间，乳酸上来之后，有点痛苦，我想这个痛苦至少不是愉快的。&lt;/p&gt;
-
-&lt;p&gt;我在沙发上，吃着薯片，看着电影，不是更爽么，更愉悦吗？&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;所以只有在感觉良好的状态下进行改变，效果最佳。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;如何改进这个习惯，看了一本书，书上大概提到了这么一个步骤和练习：&lt;/p&gt;
-
-&lt;p&gt;1， 写下3个你想要停止的习惯。尽量写得具体一些。比如，要写“终止午餐时买汽水”，而不是“终止喝汽水”。
-2， 对每一个习惯，想出3种可以消除（或避免）提示的方法。如果什么都想不出来也没关系，继续下一步即可。
-3， 对每一个习惯，思考可以增加难度（能力）的方法。
-4， 对每一个习惯，思考可以削弱动机的方法。
-5， 对每一个习惯，从步骤2到步骤4里选出你的最佳解决方案。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/GwKx2D.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我之前特别爱看Dota2的比赛视频，为了戒掉这个爱好，我给自己家的路由器设置了这个限制，任何时段都不能访问斗鱼网站了，这下好了，反正已经很久没有打开够斗鱼了 ~&lt;/p&gt;
-
-&lt;p&gt;你有没有看到一部电视剧，特别想看到结局是什么？如果有机会能能完一次就看完，我想没有人会拒绝这个机会。&lt;/p&gt;
-
-&lt;p&gt;一个电视剧一般长的有50多集，短的有9~10来集，基本上1.5倍速度，也要好几个小时才能看完，专注到一个事情上，还是几个小时，这个也算困难的事情了。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这个就是强烈的动机。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;强烈的动机非常适合去做一次就能完成的真正困难的事情，再比如，在危急时刻救孩子、辞职、扔掉家里的所有垃圾食品、踩点冲到机场搭飞机、首次参加匿名戒酒会、给编辑写信、一天内履行10项新年计划。&lt;/p&gt;
-
-&lt;p&gt;……&lt;/p&gt;
-
-&lt;h2 id=&quot;产品&quot;&gt;产品&lt;/h2&gt;
-
-&lt;p&gt;作为一个程序员，非常有必要了解产品是什么。最近看到&lt;a href=&quot;https://mp.weixin.qq.com/s/L1EMRae-16nTDeV43O2DIQ&quot;&gt;池老师的公众号&lt;/a&gt;的写的这篇文章，关于产品的说法，看完之后，自己非常的认同。&lt;/p&gt;
-
-&lt;p&gt;如果你也在学习产品，建议可以看看。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/269E4A39-74DB-488B-A9FA-C3264D1AF2F6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;01好的产品富有创意，必须是一个创新的东西 
-02好的产品是有用的 
-03好的产品是美的 
-04好的产品是容易使用的
-05好的产品是很含蓄不招摇的 
-06好的产品是诚实的 
-07好的产品经久不衰，不会随着时间而过时 
-08好的产品不会放过任何细节 
-09好产品是环保的，不浪费任何资源的 
-10好产品遵循少即是多&lt;/p&gt;
-
-&lt;p&gt;产品需要有交易和商品的属性，才有可能变为商业。&lt;/p&gt;
-
-&lt;p&gt;……&lt;/p&gt;
-
-&lt;p&gt;今天就到这里吧。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://12101111.github.io/xbox-security/&quot;&gt;xbox安全介绍&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本文将翻译Xbox Live团队Xbox One安全系统架构师Tony Chen在2019年平台安全峰会(Platform Security Summit 2019, PSEC 2019)上的演讲&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://developer.nvidia.com/blog/nvidia-releases-open-source-gpu-kernel-modules/&quot;&gt;地表最强的GPU公司开源了,他们的GPU内核&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;为Linux社区首次开源版本的GPU内核模块有助于提高 NVIDIA GPU驱动程序的质量和安全性。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.menuetos.net&quot;&gt;纯汇编写的操作系统&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/eKLRhC.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;MenuetOS是一个PC操作系统，完全用汇编语言（64位和32位）编写。功能包括先发制人和实时多任务处理，支持多处理器和图形用户界面。Menuet64根据许可证发布，Menuet32根据GPL发布。Menuet支持64位和32位x86汇编编程，适用于更小、更快、资源消耗更少的应用程序。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;本周的思考时刻：如何计划自己的行动？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;写下自己要完成的计划&lt;/li&gt;
-  &lt;li&gt;在自己放松的时候就嫩刚看到的这个提醒(比如设置为屏保，当玩耍手机的是就可以看到)&lt;/li&gt;
-  &lt;li&gt;然后每天进步一点，给自己一个反馈，有多巴胺更能坚持下去&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;下周思考：NA&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;福格行为模型 - 20%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;已经开始。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
-  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今天是坚持周更分享：第 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;37/60&lt;/code&gt; 期。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 14 May 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/05/14/what-is-product/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/14/what-is-product/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>

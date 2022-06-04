@@ -1,6 +1,30 @@
 [
   
     {
+      "title"    : "40 - 朋友多好，还是少好？",
+      "subtitle" : "2022-06-04",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/06/04/what-is-friend/",
+      "date"     : "2022-06-04 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "用谷歌云服务器免费跑 cuda 代码",
+      "subtitle" : "免费",
+      "tags"     : "cuda",
+      "url"      : "/2022/06/02/run-cuda-with-free-cloud/",
+      "date"     : "2022-06-02 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "LLVM LibFuzzer介绍和实践",
+      "subtitle" : "浅谈",
+      "tags"     : "LLVM",
+      "url"      : "/2022/06/01/llvm-fuzz/",
+      "date"     : "2022-06-01 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "安装WSL错误0x80072f7d，解决办法",
       "subtitle" : "",
       "tags"     : "wsl",
