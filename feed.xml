@@ -5,9 +5,81 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 05 Jul 2022 14:24:33 +0000</pubDate>
-    <lastBuildDate>Tue, 05 Jul 2022 14:24:33 +0000</lastBuildDate>
+    <pubDate>Sat, 09 Jul 2022 10:56:31 +0000</pubDate>
+    <lastBuildDate>Sat, 09 Jul 2022 10:56:31 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>45 - 流行歌曲</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/2CIW3_XoV4oIKZaYICd1kg&quot;&gt;采访了49个自由职业者，发现这跟我想的也太不一样了&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其实我在换当下工作之前，是考虑从事远程工作的，搬到云南，或者是沿海的地方。我为什么这么痴迷赤道附近的城市，或者是找一个比较温和和舒适的城市？&lt;/p&gt;
+
+&lt;p&gt;主要是个人的皮肤，冬天冷的时候，皮肤就会瘙痒，特别难受。我是一个怕冷不怕热。&lt;/p&gt;
+
+&lt;p&gt;之前调研的远程工作，大部分是加密货币，或者是海外的公司，这部分公司大部分是互联网前端(我在从事芯片之前，前端就只有类似 html 这种，发现还有编译器 llvm 这种前端。)这种岗位以及 app 开发。&lt;/p&gt;
+
+&lt;p&gt;由于疫情，国外的上班效率低，成本还高，有远见或者预算不足的老板们，就找东亚，比如我们和隔壁的印度，作为远程员工。推荐一个网站「电鸭社区」。&lt;/p&gt;
+
+&lt;p&gt;想从事自由职业者，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;最好是找一个你想做的那个职业的前辈，很深入地聊一下&lt;/code&gt;，除了聊你这个职业哪些让你很开心之外，你要更注意去问哪些让他不开心的地方，最痛苦的地方是什么，然后去衡量一下这个事情你能不能接受。对，我们一定是看到了一个职业的 AB 面之后，再做选择会更好一些。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/3PbQ8PBefWesa8tvIk8exQ&quot;&gt;小孩子为啥集体痴迷《孤勇者》&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/OuUGNT.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你是一个爱刷视频的爱好者，应该看过这样的视频，一群小孩唱「孤勇者」。连所长都很吃惊，发现自己居然有一首儿歌。&lt;/p&gt;
+
+&lt;p&gt;一个人的喜欢，渐渐发展为更多人的喜欢。加上词、曲与这个年龄段的小孩子相贴合，「孤勇者」在儿童世界里实现了现象级的传播。在湖北黄冈，一个常住人口近600万的普通的中部城市里，我想你应该也真切感受到了这种传播的力量。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/faster-cpython/ideas/blob/main/main-vs-310.rst&quot;&gt;Python 3.11和 3.10的性能比较&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在空和变量分配的循环中，Py311比Py38、Py39和Py310#，慢10-20%。如果是做重复和对时间有要求的，这时间还是有影响的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://musicforprogramming.net/latest/&quot;&gt;程序员音乐网站&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/2beZ5N.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我上班的时候喜欢听音乐，主要是自己不太 Focus，我试了一下，大部分是纯音乐，没有太多的人声，这样就不会太打搅自己。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/NiAxnNMNJ5bWtlS3C_U3vw&quot;&gt;把写作和写程序结合起来&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/CcMqP7.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;腾讯的 TK 教主把写作和程序结合起来，大家可以试试。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/4JHd_FG-xzyruPawxFdP6w&quot;&gt;亦仁：生财有术背后的运营逻辑&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;我理解的生财有术，是一个互联网创业聚集地，身边好多人在里面找到的 side project。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;值得细读，里面提到了好几个点。当我觉得一个事情特别困难的时候，会把复杂的事情简单化，立刻开始去干这个事情。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/07/09/song-is-popular/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/07/09/song-is-popular/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>44 - 经痛喝热水有用么？</title>
@@ -974,157 +1046,6 @@ The requested operation is successful. Changes will not be effective &lt;span cl
         <guid isPermaLink="true">https://blog.chiphub.top/2022/05/30/config-linux-forward-history-search/</guid>
         
         <category>linux</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Keep Health</title>
-        <description>
-&lt;hr /&gt;
-&lt;p&gt;layout: post
-title: “39 - 保持健康”
-subtitle: ‘2022-05-20’ 
-author: “叉叉敌”
-header-style: text
-tags:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;h2 id=&quot;newsletter&quot;&gt;Newsletter&lt;/h2&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;我经常不知道如何写newsletter的开头，有时候就写最近的天气，或者最近的热点。&lt;/p&gt;
-
-&lt;p&gt;你没看错，都是最近相关的。但是有个问题，我们大部分国人都没有养成看邮件的习惯，所以一般不是每天都会去看邮箱里面的邮件，就会导致看到这一篇newsletter，有可能已经是过了一段时间了，有可能是一个月，有可能是几个礼拜。&lt;/p&gt;
-
-&lt;p&gt;没用太大的意义，除了字数。&lt;/p&gt;
-
-&lt;p&gt;我后面就不写最近相关的，或者是就写自己的一些感悟。&lt;/p&gt;
-
-&lt;p&gt;为了排版，这里本来应该有一张tech相关的图片，由于我的文章会通过github-actions，自动推送到微信公众号平台。图片用的github的图床，cdn用的是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cdn.jsdelivr.net&lt;/code&gt;，但是国内最近屏蔽了这个网址，导致获取图片内容失败了，所以没有图片，抱歉，就是这么一段话了，后续钱足够的话，准备用其他云服务器的图床 。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h2 id=&quot;保持健康&quot;&gt;保持健康&lt;/h2&gt;
-
-&lt;p&gt;上周老婆诊断胆结石，做了手术，就等着恢复吧。&lt;/p&gt;
-
-&lt;p&gt;看了网上的介绍，胆结石大概有2个成因，一个是遗传，这个也是我们没法改变的，还有大概率原因一个是摄入高蛋白、高脂肪，缺乏运动。&lt;/p&gt;
-
-&lt;p&gt;所以身体要紧，锻炼最好时机是几年前，还有就是现在 ~， 跟着刘畊宏跳起来。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;胆囊结石形成的原因目前大家没有一个定论，其中最主要的还是一个叫胆固醇过多的一个理论。大家知道胆囊胆汁里头有三个主要的成分，当然最主要的还是水，其次就是胆固醇、胆汁酸和卵磷脂。那么当这三种物质的配比达到一定配比的时候，胆固醇的这个溶解度是相对是最大的。当然胆固醇增多或者其它的配置失衡，会导致胆固醇从这个液态变成小的结晶体，然后慢慢形成一个胆囊结石的状态。那么这个是大家现在比较公认的一个理论。另外呢，还有一个就是说咱们的这个胆囊功能的问题，比如说胆囊排空功能的有问题了，胆囊长期处于这种淤胀状态，胆囊内的胆汁没法排出，这种状态下淤滞的胆汁也容易形成结石，这是目前比较常见的一些原因。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;给我有2个启发&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;第一个是健康，尽早、多做对身体有好处的运动，保持健康&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;第二个是有病，尽早去能力范围内，医资力量好一点的地方&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;最开始在我们小县城，也是三甲医院，那边的医生诊断就是胆囊炎，没有结石，就是输消炎的药，结果输了就是完全效果。&lt;/p&gt;
-
-&lt;p&gt;来成都这边之后，重新检查之后，发现是结石掉到胆管里面了，已经堵塞胆管了……&lt;/p&gt;
-
-&lt;h2 id=&quot;搞钱的目的&quot;&gt;搞钱的目的&lt;/h2&gt;
-
-&lt;p&gt;你心中或者是你的经历中，有没有用钱非常愉快的时刻，可以分享一下么？&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;钱只是我们改善生活的一种桥梁，一种途径，如果是钱是合理合法的，那我们就尽情的去搞，但是千万不要做违法的事情。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;首先我来分享一次，最近用钱用的非常爽的时刻。&lt;/p&gt;
-
-&lt;p&gt;记得我用钱最愉快的时刻，就是前段时间(快一年了吧)去广西涠洲岛，那里的海鲜。&lt;/p&gt;
-
-&lt;p&gt;我们当时去还不是丰收期，就是说海鲜和内地比起来，价格差不了多少，也不便宜。&lt;/p&gt;
-
-&lt;p&gt;吹着温热的海风，听着海水拍打海岸的声音，偶尔也听到几声海鸥的叫声，同时也闻到椒盐味的那种鲜香，能大快朵颐，不像平时在家，海鲜的量不太多，也没那么好。&lt;/p&gt;
-
-&lt;p&gt;而且它的海鲜非常的新鲜而且非常饱满，个头也非常大，特别是皮皮虾，总体下来就是吃的爽，吃的非常的痛快&lt;/p&gt;
-
-&lt;h2 id=&quot;旅行的目的&quot;&gt;旅行的目的&lt;/h2&gt;
-
-&lt;p&gt;做一次长途旅行。这种旅行的目的不是为了玩，而是为了增加认知。&lt;strong&gt;最好的旅行会让你领悟到，世界之外还有世界，生活总是有其他可能，人类社会长期中总是服从熵增原理。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;我之前大部分旅行都是国内。&lt;/p&gt;
-
-&lt;p&gt;如果只考虑开拓见闻、增广心灵，国外旅行要比国内旅行的收获更大，更能让你感受世界的多样性。&lt;/p&gt;
-
-&lt;p&gt;穷国比富国有意思，我去过东南亚小国家，城里的交通工具大部分都是吐吐车&lt;/p&gt;
-
-&lt;h2 id=&quot;感悟&quot;&gt;感悟&lt;/h2&gt;
-
-&lt;p&gt;摆脱坏习惯之后省下来的时间，可以用来做你喜欢的事，也可以用来提升工作效率，还可以用来加深人际关系，或是拓展一个新身份。&lt;/p&gt;
-
-&lt;p&gt;具体如何做，一部分取决于你自己的选择，一部分则取决于你身边的人。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/-jtyEYul-d1PIfrrJBUqRg&quot;&gt;经济高速公路上，突然经过的鸭子&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;假设一条高速公路上，所有车都维持在 100 公里每小时的速度，稳定运行。&lt;/p&gt;
-
-&lt;p&gt;忽然一只鸭子冲到路上，吓得司机拼命踩刹车，停了下来。后面的第二辆车也急刹车，后面一辆一辆车都急刹车，还好都没有追尾。之后，鸭子仓皇逃窜，离开高速公路。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://alt-tab-macos.netlify.app/&quot;&gt;https://alt-tab-macos.netlify.app&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;实现跟 Windows 窗口管理器一样的窗口切换，同时在窗口里显示该窗口的名字，如果一个 App 有多个窗口，那就全都展示出来&lt;/p&gt;
-
-&lt;p&gt;相见恨晚呐！&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://tomverbeure.github.io/2022/02/20/GDBWave-Post-Simulation-RISCV-SW-Debugging.html&quot;&gt;调试FPGA&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Tom Verbeure深入将GDB服务器与RISC-V CPU连接起来，使调试FPGA变得更容易。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://0xax.gitbooks.io/linux-insides/content&quot;&gt;关于Linux内核&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这本书是关于Linux内核及其内部的。它涵盖了Linux内核的工作原理和其他低级主题。主题包括启动、初始化、中断、系统调用、同步原语和内存管理。这本书仍在进行中。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;写了篇关于llvm和cuda 的基础知识，但是图床用的cdn，被禁用了，还没有推上去。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;福格行为模型 - 100%&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;最近买了一本 莫言的书 那些奇奇怪怪的故事&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;喜欢作家这种风趣幽默的风格，同时有可能幽默和风趣不是你这个人本身的特质，但一定是作者的劳动成果。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
-  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Sat, 28 May 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/05/28/keep-health/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/28/keep-health/</guid>
         
         
       </item>
