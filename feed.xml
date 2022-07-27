@@ -5,9 +5,70 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 17 Jul 2022 12:51:57 +0000</pubDate>
-    <lastBuildDate>Sun, 17 Jul 2022 12:51:57 +0000</lastBuildDate>
+    <pubDate>Wed, 27 Jul 2022 11:47:47 +0000</pubDate>
+    <lastBuildDate>Wed, 27 Jul 2022 11:47:47 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>47 - </title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/_IWs1uqa2b2n8U0Ucnr3MA&quot;&gt;全面开放后的美国疫情现状&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/T9oLu0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;除个别国家外，所有国家都放弃了公共强制干预措施，这意味着规避风险、保护自己的责任落到了每个人自己头上，谁的健康谁负责。&lt;/p&gt;
+
+&lt;p&gt;我们并不知道附近的人是否感染或者携带病毒，但是，我们还是可以做一些事来降低风险，保护高危人群&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MjM5ODQwMjA4MA==&amp;amp;idx=1&amp;amp;mid=2649293557&amp;amp;scene=21&amp;amp;sn=98f34bb53a54331887cb99972c89e1bc&quot;&gt;别开发 app 了&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;iOS、 Android app 开发成本居高不下，推广难度巨大，站在精益创业的角度，优先开发微信公众号是一种合理的选择。&lt;/p&gt;
+
+&lt;p&gt;渐进式网页应用技术的出现，让网页应用与原生应用的体验越来越接近，web app 也可以快速加载、可以实现离线。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.xiaoyuzhoufm.com/episode/62d2930f64f141ad81501383?s=eyJ1IjogIjYwZGU4ZDZlZTBmNWU3MjNiYmI0MzlhZCJ9&quot;&gt;我们二本学生这些年&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第1个就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;多输出，多写作&lt;/code&gt;，输出的话是你读了或者是看了以及听了的东西一定要输出，这样才能把看到的知识一些信息，内化为自己的知识，吸收并了解你的才能，在日后的读书中去沉淀，更有深度的思考 .&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;还有一个就是利用杠杆&lt;/code&gt;，把你自己的优点放大去做。你擅长什么？&lt;/p&gt;
+
+&lt;p&gt;然后就把你擅长东西和你身边信息相关的东西连接起来，这样你更有热情去做，可能坚持得更久,这样更能做出色。&lt;/p&gt;
+
+&lt;p&gt;什么是好领导，你不知道好的领导是什么，但是你一定知道坏的领导的标准是什么。像pua,给你穿小鞋等等这些三观不正的都是一个不好的领导，相反的那就是一个好的领导。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/superfly/litefs&quot;&gt;LiteFS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;LiteFS是一个文件系统，可以跨计算机集群复制SQLite数据库。它具有FUSE文件系统、领导者选举和HTTP服务器，该服务器为副本节点提供API以接收更改。LiteFS旨在跨集群中的临时节点提供简单、实时、异步的复制。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/losfair/blueboat&quot;&gt;blueboat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Blueboat是一个多租户无服务器的多合一JavaScript运行时。它的JavaScript-API具有Web-API兼容性，它抽象了本地资源，并用分布式系统中的等价物替换它们。第三方框架可用于更复杂的需求，如服务器端渲染。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 21 Jul 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/07/21/passion/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/07/21/passion/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>Demand</title>
@@ -1012,88 +1073,6 @@ INFO: A corpus is not provided, starting from an empty corpus
         <guid isPermaLink="true">https://blog.chiphub.top/2022/06/01/llvm-fuzz/</guid>
         
         <category>LLVM</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>安装WSL错误0x80072f7d，解决办法</title>
-        <description>&lt;h2 id=&quot;现象&quot;&gt;现象&lt;/h2&gt;
-
-&lt;p&gt;wsl2安装ubuntu的时候，提示错误0x80072f7d&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:&lt;span class=&quot;se&quot;&gt;\W&lt;/span&gt;indows&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ystem32&amp;gt;wsl &lt;span class=&quot;nt&quot;&gt;--install&lt;/span&gt;
-Installing: Windows Subsystem &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Linux
-Windows Subsystem &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;Linux has been installed.
-Downloading: WSL Kernel
-A error was encountered during installation, but installation may &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; Component: &lt;span class=&quot;s1&quot;&gt;'WSL Kernel'&lt;/span&gt; Error Code: 0x80072f7d
-Downloading: Ubuntu
-The requested operation is successful. Changes will not be effective &lt;span class=&quot;k&quot;&gt;until &lt;/span&gt;the system is rebooted.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;解决&quot;&gt;解决&lt;/h2&gt;
-
-&lt;p&gt;网上找到的解决方案都是先安装wsl linux kernel，就可以解决，我安装之后，还是提示错误，进度条卡在某一个点50%+，网上看一了下，有卡在不同位置的.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;首先是安装 wsl2 linux-kernel，下面是x86的安装包，
-    &lt;blockquote&gt;
-      &lt;p&gt;https://docs.microsoft.com/en-us/windows/wsl/install-manual#step-4—download-the-linux-kernel-update-package&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;然后是开启虚拟化&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;直接在powershell 执行下面的命令&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All&lt;/code&gt;，记得启动完了，之后会提示重启.&lt;/p&gt;
-
-&lt;p&gt;也可以通过windows 功能里面来手动安装和启动，参考下面的页面&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;下载wsl安装包&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;在某些情况下，你可能无法（或不想）使用 Microsoft Store 安装 WSL Linux 发行版。 你可能正在运行不支持 Microsoft Store 的 Windows Server 或长期服务 (LTSC) 桌面操作系统 SKU，或者你的公司网络策略和/或管理员不允许在你的环境中使用 Microsoft Store。 在这些情况下，虽然 WSL 本身可用，但你可能需要直接下载 Linux 发行版。&lt;/p&gt;
-
-&lt;p&gt;下面是Ubuntu18.04的发行包&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;https://aka.ms/wsl-ubuntu-1804&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;安装发行包&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;下载了发行版后，导航到包含下载内容的文件夹，并在该目录中运行以下命令，其中 app-name 是 Linux 发行版 .appx 文件的名称。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add-AppxPackage .\app_name.appx&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;或者是Appx 包下载完成后，可以通过双击 appx 文件开始运行新发行版。 （命令 wsl -l 不会在此步骤完成之前显示发行版已安装）。&lt;/p&gt;
-
-&lt;p&gt;祝你使用wsl愉快，有时候GPU driver等，导致你的cuda代码在wsl跑步起来，也有可能是这个导致的.&lt;/p&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;https://superuser.com/questions/1678737/component-wsl-kernel-error-code-0x80072f7d-on-wsl-install&lt;/p&gt;
-
-&lt;p&gt;https://docs.microsoft.com/zh-cn/windows/wsl/install-manual#downloading-distributions&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/05/30/wsl-install-error-0x80072f7d/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/05/30/wsl-install-error-0x80072f7d/</guid>
-        
-        <category>wsl</category>
         
         
       </item>
