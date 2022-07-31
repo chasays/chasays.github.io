@@ -5,9 +5,76 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 31 Jul 2022 14:06:31 +0000</pubDate>
-    <lastBuildDate>Sun, 31 Jul 2022 14:06:31 +0000</lastBuildDate>
+    <pubDate>Sun, 31 Jul 2022 14:10:46 +0000</pubDate>
+    <lastBuildDate>Sun, 31 Jul 2022 14:10:46 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>48 -  值得去做</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;看到&lt;a href=&quot;https://happyxiao.com/&quot;&gt;订阅可乐周报，和我一起进步&lt;/a&gt;的作者 happyxiao 发了一个推特，说自己在写文章的时候，很想写完之后去润化一下自己的文章，包括文章变得更幽默等等，但是在写完newsletter之后，发现自己已经精疲力尽了，那很难再去抽出时间去修改自己的一些错别字之类的小问题。&lt;/p&gt;
+
+&lt;p&gt;在错别字方面大佬都是如此，更别说我这种小人物了……&lt;/p&gt;
+
+&lt;p&gt;我在这方面是发出文章的，第一时间我先去浏览文章，包括语句通顺不，内容是不是我想要表达的内容，这样发现问题可以及时的去更改，后面有读者第2次点击进来的链接，看到的内容是比较新的。&lt;/p&gt;
+
+&lt;p&gt;除了在竹白上周更之外，同时还同步到微信公众号「chasays」上面。&lt;/p&gt;
+
+&lt;p&gt;大家在看到发了很多期的 newsletter 的作者的时候，建议就多点赞，那说明这个作者是非常的花了大量的时间去更新，我们程序员中有一个大佬的 newsletter &lt;a href=&quot;https://github.com/ruanyf/weekly&quot;&gt;科技爱好者周刊，每周五发布&lt;/a&gt;，我基本上是每周五必看的内容。&lt;/p&gt;
+
+&lt;p&gt;目前已经 200 多期了，我大概算一下，每期花费的时间大概是  4 个小时，200*4=800小时，这个可是业余时间抽出来做的，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;所以不要说自己没有时间了&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;对自己有意义&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;，有长期价值的事情，要毫不犹豫的去做&lt;/code&gt;。有更深远的影响的价值，那就会值得花时间去做。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/XJStDD_DOeBVcOV09t2mHQ&quot;&gt;有用和无用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;人生中遇到的问题不太可能比小行星撞地球更大更困难更不顺利。任何问题，无非一种是你认为可以解决的，一种是你认为不可能解决的。认为可以解决，就努力解决。认为不可能解决，就平静接受。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;从功利角度看，这两种选择都可能是对自己有利的&lt;/code&gt;。唯独沉浸在恐惧或是愤怒中对自己是不利的。这就是曾国藩讲的“既往不恋”。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/fyK0gp8rcaDnOJqfSAJFrw&quot;&gt;翻译练习：如何损失金钱和时间&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;用控制时间来避免逸乐，正如用控制金钱来避免逸乐一样，远避逸乐不再足以保护你。在史前的狩猎采集时代，在所有的前工业社会，它也许足以保护人们。天性和教养相结合，使得我们避免自我放纵。但今天的世界已经变得更为复杂：现在最危险的陷阱是一些新的行为，这些行为会通过模仿更具德行的行为来绕过针对自我放纵的报警器。最糟糕的是，它们甚至都不好玩。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mathspp.com/blog/how-to-create-a-python-package-in-2022&quot;&gt;2022年，最近如何创建一个 Python 包&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如何从本地的代码传到仓库，让自己的工具或者解决方案成为一个 Python 的第三方库。通过这一篇文章，可以从 0 到提交到仓库的全过程，非常的详细。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://t0.vc/7&quot;&gt;用电子狗来看家&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;作者通过编程把树莓派和音箱结合起来，当家里没有人的时候，有人靠近门检测到物体移动，然后就发出狗的犬叫声，然后和狗走不得来回的声音，这样避免小偷靠近房间。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.xiaoyuzhoufm.com/episode/62e3c79e62be3538947138ca&quot;&gt;疫情前夕，家里没矿的我决定创业开咖啡店&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;大家都知道，最近的就业形势很不好。有不少人提到被裁员后找不到工作，也有想过有没有可能自己租个店面，做点小生意什么的。&lt;/p&gt;
+
+&lt;p&gt;我非常佩服阿芙拉，这个创业故事里没有惊人的数字和事实，充满了妥协、权衡、放手一搏和无可奈何，但是在面对复杂之后，还是选择去解决问题，就非常厉害。
+这就是故事FM最棒的地方就是，去讲述平凡生活中了不起的普通人。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 30 Jul 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/07/30/worth-to-do/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/07/30/worth-to-do/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>47 - 激情</title>
@@ -812,267 +879,6 @@ tags:&lt;/p&gt;
         <guid isPermaLink="true">https://blog.chiphub.top/2022/06/02/run-cuda-with-free-cloud/</guid>
         
         <category>cuda</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM LibFuzzer介绍和实践</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;下面是自己学习libFuzzer过程中，记录的文档，欢迎交流和指正。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Fuzzing 是一种软件测试方法，包括将格式不正确的数据作为输入传递给程序，并监视其是否存在不正确的行为。今天 fuzzing 是发现软件安全问题的最有效的方法之一。2014年第一个覆盖引导模糊器Fuzzy Lop。这开创了现代市场上的模糊解决方案和技术。&lt;/p&gt;
-
-&lt;h2 id=&quot;什么是libfuzzer&quot;&gt;什么是LibFuzzer&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;LibFuzzer is in-process, coverage-guided, evolutionary fuzzing engine.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;LibFuzzer与被测库链接，并通过特定的模糊化入口点（又称“目标函数 target function”）将模糊化输入提供给库；然后，模糊器跟踪到达的代码区域，并在输入数据的主体上生成不同的参数组合，以最大限度地提高代码覆盖率。libFuzzer的代码覆盖率信息由LLVM的SanitizerCoverage工具提供。&lt;/p&gt;
-
-&lt;p&gt;提供：&lt;/p&gt;
-
-&lt;p&gt;简单来说就是通过与要进行fuzz的库连接，并将libfuzzer生成的输入通过模糊测试进入点(fuzz target)喂给要fuzz的库进行fuzz testing。同时fuzzer会跟踪哪些区域的代码已经被测试过的，并且根据种料库的输入进行变异来使得代码覆盖率最大化。代码覆盖率的信息是由LLVM’s SanitizerCoverage插桩提供的&lt;/p&gt;
-
-&lt;p&gt;需要注意的是这几个libfuzzer的特性：in-process指进程内。即libfuzzer在fuzz时并不是产生出多个进程来分别处理不同的输入，而是将所有的测试数据放入进程的内存空间中。coverage-guided指覆盖率指导的。即会进行代码覆盖率的计算，正如定义所说的使得不断增大代码覆盖率。evolutionary是指libfuzzer是进化型的fuzz，结合了产生和变异两种形式。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/5e2siO.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;举例-fuzzing-test&quot;&gt;举例 fuzzing-test&lt;/h2&gt;
-
-&lt;p&gt;创建一个文件，fuzz_target.cc, 这个内容如下，记得不要使用使用main等作为函数名。&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// fuzz_target.cc&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;C&quot;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;LLVMFuzzerTestOneInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint8_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;DoSomethingInterestingWithMyAPI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// Non-zero return values are reserved for future use.&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;需要注意的是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVMFuzzerTestOneInput&lt;/code&gt; 函数是我们要实现的接口函数，他的两个参数Data(libfuzzer的测试样本数据)，size(样本数据的大小)。
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DoSomethingInterestingWithMyAPI&lt;/code&gt; 函数即我们实际要进行fuzz的函数。&lt;/p&gt;
-
-&lt;p&gt;编译这个文件，命令&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++ -g -O1 -fsanitize=fuzzer,address fuzz_target.cc -o fuzzer_target&lt;/code&gt; ，这里的clang是我们用llvm编译出来的，如果用的其他方式会报错。&lt;/p&gt;
-
-&lt;p&gt;参数的意思：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;-g 可选参数，保留调试符号。&lt;/li&gt;
-  &lt;li&gt;-O1 指定优化等级为1，对应的还有O0 (optimize 0,1,2)，以及OS(optimize size)使用后binary大小会变小。&lt;/li&gt;
-  &lt;li&gt;-fsanitize 指定sanitize， 值有几种：fuzzer,address，memory(单独使用，检查内存)，undefined(移除、未定义等)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这一步骤整体过程就是通过clang的-fsanitize=fuzzer选项可以启用libFuzzer，这个选项在编译和链接过程中生效，实现了条件判断语句和分支执行的记录，通过生成不同的测试样例然后能够获得代码的覆盖率情况，最终实现所谓的fuzz-testing。&lt;/p&gt;
-
-&lt;p&gt;注意：编译的选项会影响fuzzer的效率，比如下面就是一个点。我也不知道有哪些，遇到问题就在网上搜吧，一定会有结果的。&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;clang编译的时候，参数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-fno-omit-frame-pointer &lt;/code&gt;对于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不需要栈指针的函数就不在寄存器中保存指针&lt;/code&gt;，因此可以忽略存储和检索地址的代码，同时对许多函数提供一个额外的寄存器。所有”-O”级别都打开它，但仅在调试器可以不依靠栈指针运行时才有效。在AMD64平台上此选项默认打开，但是在x86平台上则默认关闭。建议显式的设置它。&lt;/li&gt;
-  &lt;li&gt;gline-tables-only:表示使用采样分析器， 在应用程序执行时，抽样探查器用于收集运行时信息(如硬件计数器)。它们通常非常有效，并且不会引起大量的运行时开销。分析器收集的示例数据可用于编译期间，以确定代码中执行最多的区域是什么，在编译器可以使用分析信息之前，代码需要在分析器下执行。这也对提高我们fuzz效率很重要。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;比如常用的编译命令：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++ -g -O2 -fno-omit-frame-pointer -gline-tables-only -fsanitize=address,fuzzer-no-link test.cc -o test&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;写一个fuzz-测试函数&quot;&gt;写一个fuzz 测试函数&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;准备被测文件&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;比如有一个头文件， test.h, 里面有一个FuzzFunction1的函数&lt;/p&gt;
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;FuzzFunction1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint8_t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'F'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
-             &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'U'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
-             &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'Z'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
-             &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'Z'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;写测试函数&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;现在要对着头里面里面的FuzzFunction1函数进行测试，编一个测试接口,test.cc，&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &quot;test.h&quot;
-&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;C&quot;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;LLVMFuzzerTestOneInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;uint8_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;FuzzFunction1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;需要注意的是，data和size和头文件里面的类型是一致的。如果是bool类型的，记得false和true，都要遍历&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bool bool_flag[] = {true, false}&lt;/code&gt;。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;编译测试函数&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;只有就完成了，然后编译下面的测试接口函数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++ -g -std=c++11 -fsanitize=fuzzer,address test.cc  -o test&lt;/code&gt;.,生成一个test的执行文件&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;创建一个corpus(语料库，可以想象为一个函数的参数，各种参数的组合)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;在未使用语料库的情况下就得到了crash实属意料之外，如果我们在使用字典的下情况仍然暂时未得到crash，另一个方法可以去寻找一些有效的输入语料库。因为libfuzzer是进化型的fuzz，结合了产生和变异两个发面。如果我们可以提供一些好的seed，虽然它本身没法造成程序crash，但libfuzzer会在此基础上进行变异，就有可能变异出更好的语料，从而增大程序crash的概率。具体的变异策略需要我们去阅读libfuzzer的源码或者些相关的论文。&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;corpus
-./test corpus
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;corpus 是我们提供的语料库。理想情况下，该语料库应该为被测代码提供各种有效和无效的输入，模糊器基于当前语料库中的样本输入生成随机组合。&lt;/p&gt;
-
-&lt;p&gt;如果组合触发了测试代码中先前未覆盖的路径的执行，则该组合参数将保存到语料库中以供将来变更。&lt;/p&gt;
-
-&lt;p&gt;当然LibFuzzer也可以没有任何初始seed的情况下工作，但如果受测试的库接受复杂的结构化输入，则会因为随机产生的样例不易符合导致效率降低。&lt;/p&gt;
-
-&lt;p&gt;合并corpus，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./test -merge=1 corpus_min corpus&lt;/code&gt;, 这样，corpus_min和corpus将会存放到新的corpus精简后的输入样例。&lt;/p&gt;
-
-&lt;p&gt;执行的时候，我们一般会看到如下信息&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  04 Rik:&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;master&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; ✗ ./test corpus
-INFO: Seed: 2222548757
-INFO: Loaded 1 modules   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;35 inline 8-bit counters&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 35 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0x7f7120, 0x7f7143&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 
-INFO: Loaded 1 PC tables &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;35 PCs&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 35 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0x5b7a68,0x5b7c98&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, 
-INFO:        0 files found &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;corpus1
-INFO: &lt;span class=&quot;nt&quot;&gt;-max_len&lt;/span&gt; is not provided&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; libFuzzer will not generate inputs larger than 4096 bytes
-INFO: A corpus is not provided, starting from an empty corpus
-&lt;span class=&quot;c&quot;&gt;#2    INITED cov: 3 ft: 3 corp: 1/1b exec/s: 0 rss: 27Mb&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#3    NEW    cov: 4 ft: 4 corp: 2/4b lim: 4 exec/s: 0 rss: 27Mb L: 3/3 MS: 1 CMP- DE: &quot;\x00\x00&quot;-&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#1190    NEW    cov: 5 ft: 5 corp: 3/7b lim: 14 exec/s: 0 rss: 27Mb L: 3/3 MS: 2 ChangeBinInt-CMP- DE: &quot;F\x00&quot;-&lt;/span&gt;
-……………………
-&lt;span class=&quot;nv&quot;&gt;artifact_prefix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'./'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; Test unit written to ./crash-0eb8e4ed029b774d80f2b66408203801cb982a60
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;Seed 这个seed，就是./test -seed=xxx可以指定的随机seed&lt;/li&gt;
-  &lt;li&gt;max_len  测试输入的最大长度&lt;/li&gt;
-  &lt;li&gt;cov  代码覆盖率，我们的语料库达到的代码块总数&lt;/li&gt;
-  &lt;li&gt;corp   语料库中的文件数量及其总大小&lt;/li&gt;
-  &lt;li&gt;exec/s  每秒模糊迭代次数(在运行时间长于 &amp;lt; = 1秒的情况下有用)&lt;/li&gt;
-  &lt;li&gt;rss  存储在物理内存中的进程内存量&lt;/li&gt;
-  &lt;li&gt;./crash-xxx 这个就是用来复现问题的文件，方便吧&lt;/li&gt;
-  &lt;li&gt;INITED fuzzer已完成初始化，其中包括通过被测代码运行每个初始输入样本。&lt;/li&gt;
-  &lt;li&gt;READ fuzzer已从语料库目录中读取了所有提供的输入样本。&lt;/li&gt;
-  &lt;li&gt;NEW fuzzer创建了一个测试输入，该输入涵盖了被测代码的新区域。此输入将保存到主要语料库目录。&lt;/li&gt;
-  &lt;li&gt;pulse fuzzer已生成 2的n次方个输入（定期生成以使用户确信fuzzer仍在工作）。&lt;/li&gt;
-  &lt;li&gt;REDUCE fuzzer发现了一个更好（更小）的输入，可以触发先前发现的特征（设置-reduce_inputs=0以禁用）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;最后的一个crash文件， 这样我们就可以有针对性的对程序进行动态调试，利用造成crash的输入回溯出漏洞的细节。&lt;/p&gt;
-
-&lt;h3 id=&quot;如何理解fuzzer的输出结果&quot;&gt;如何理解fuzzer的输出结果&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#17458 REDUCE cov: 7 ft: 7 corp: 5/14b lim: 170 exec/s: 0 rss: 29Mb L: 4/4 MS: 1 EraseBytes-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;指尝试了17458个输入，成功发现了5个样本（放入语料库）大小为14b，共覆盖了7个代码块，占用内存29mb，变异操作为EraseBytes-&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/dgLG09.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;要使用libfuzzer的功能&quot;&gt;要使用libfuzzer的功能&lt;/h2&gt;
-&lt;p&gt;就需要再llvm里面变异compiler-rt，然后可以使用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++ -fsanitizer=Address xx.cc&lt;/code&gt; 在compiler-rt目录下有一些example cc的文件&lt;/p&gt;
-
-&lt;h2 id=&quot;编译llvm-mc-assemble-fuzzer&quot;&gt;编译llvm-mc-assemble-fuzzer&lt;/h2&gt;
-
-&lt;p&gt;这个是汇编器的，还有其他的，
-编译这个用之前的编译的llvm里面的clang，就需要替换为这个，用flag=cmake_c_compiler=xxx/clang
-而且目录不能是同一个，不然cmake会失败。&lt;/p&gt;
-
-&lt;h2 id=&quot;fuzzer的dict&quot;&gt;fuzzer的dict&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;提高我们fuzz的效率&lt;/code&gt;，这其中一个办法就是使用字典。&lt;/p&gt;
-
-&lt;p&gt;我们知道基本上所有的程序都是处理的数据其格式是不同的，比如 xml文档， png图片等等。这些数据中会有一些特殊字符序列 （或者说关键字）， 比如在xml文档中就有CDATA，&amp;lt;!ATTLIST等，png图片就有png 图片头。如果我们事先就把这些字符序列列举出来吗，fuzz直接使用这些关键字去组合，就会就可以减少很多没有意义的尝试，同时还有可能会走到更深的程序分支中去。&lt;/p&gt;
-
-&lt;p&gt;比如下面就是xml.dict里面的内容，xml一般有encoding、version、href等，用这些来组合，比其他的组合更高效，用例少，速度快，更精准。&lt;/p&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;attr_encoding=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; encoding=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;attr_generic=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; a=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;attr_href=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; href=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;attr_standalone=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; standalone=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;no&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;attr_version=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot; version=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;执行的时候指定dict，用参数-dict &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./test -max_total_time=60 -print_final_stats=1 -dict=./xml.dict corpus&lt;/code&gt;,如果corpus太多，可以用merge来精简为一个。&lt;/p&gt;
-
-&lt;p&gt;文章太长了。主要是这个工具太强大了。&lt;/p&gt;
-
-&lt;h2 id=&quot;最后的进阶&quot;&gt;最后的进阶&lt;/h2&gt;
-
-&lt;p&gt;下面是关于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;一些链接库的选择以及插桩编译时的一些参数的设置，还有max_len的设置对我们最后fuzz结果的影响&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h3 id=&quot;编译的插桩参数&quot;&gt;编译的插桩参数&lt;/h3&gt;
-
-&lt;p&gt;插桩的参数&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-fno-omit-frame-pointer -gline-tables-only&lt;/code&gt;，这2个前面提到过了，再来介绍一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fuzzer-no-link&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;如果修改大型项目的CFLAGS，它也需要编译自己的主符号的可执行文件，则可能需要在不链接的情况下仅请求检测，即fuzzer-no-link强制在链接阶段不生效。&lt;/p&gt;
-
-&lt;p&gt;介绍一些新的参数，是关于ld的。&lt;/p&gt;
-
-&lt;p&gt;比如编译命令：&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;clang -O2 -fno-omit-frame-pointer -gline-tables-only \
--fsanitize=address,fuzzer-no-link -fsanitize-address-use-after-scope test.cc \
- -Wl,--whole-archive xxx/.libs/libpcre2-8.a xx/.libs/libpcre2-posix.a \
- -Wl,-no-whole-archive -fsanitize=fuzzer -o test
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;参数：–whole-archive和–no-whole-archive是ld专有的命令行参数，clang++并不认识，要通过clang++传递到ld，需要在他们前面加-Wl。–whole-archive可以把 在其后面出现的静态库包含的函数和变量输出到动态库，–no-whole-archive则关掉这个特性。&lt;/p&gt;
-
-&lt;h3 id=&quot;执行的max_len的参数&quot;&gt;执行的max_len的参数&lt;/h3&gt;
-
-&lt;p&gt;max_len一般情况下，越大获得的corpus就越多，就越容易挖掘出bug。
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./test ./corpus1 -print_final_stats=1 -max_len=500 -max_total_time=100&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;解释，运行test，长度为500，并打印最后的结果，执行事假哪位100s，执行的corpus保存到corpus1里面。&lt;/p&gt;
-
-&lt;p&gt;编译llvm fuzz参考：https://github.com/google/oss-fuzz/blob/master/projects/llvm/build.sh&lt;/p&gt;
-
-&lt;p&gt;cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_ASSERTIONS=On -DLLVM_ENABLE_WERROR=On -DLLVM_USE_SANITIZER=Address -DLLVM_USE_SANITIZE_COVERAGE=On -DCMAKE_C_COMPILER=/usr/local/bin/clang ../llvm&lt;/p&gt;
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmake &lt;span class=&quot;nt&quot;&gt;-GNinja&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-DCMAKE_BUILD_TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Release ../&lt;span class=&quot;nv&quot;&gt;$LLVM&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DLLVM_ENABLE_PROJECTS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;clang;libcxx;libcxxabi;compiler-rt;lld;clang-tools-extra&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DLLVM_ENABLE_ASSERTIONS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ON &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DCMAKE_C_COMPILER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CC&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DCMAKE_CXX_COMPILER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CXX&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DCMAKE_C_FLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CFLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DCMAKE_CXX_FLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CXXFLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_FUZZING_CONFIG&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DLLVM_NO_DEAD_STRIP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ON &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DLLVM_USE_SANITIZER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;LLVM_SANITIZER&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;WebAssembly &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;-DCOMPILER_RT_INCLUDE_TESTS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;OFF
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;https://llvm.org/docs/LibFuzzer.html&lt;/p&gt;
-
-&lt;p&gt;https://blog.haboob.sa/blog/applying-fuzzing-techniques-against-pdftron-part-2&lt;/p&gt;
-
-&lt;p&gt;https://www.moritz.systems/blog/an-introduction-to-llvm-libfuzzer/&lt;/p&gt;
-
-&lt;p&gt;https://github.com/Dor1s/libfuzzer-workshop&lt;/p&gt;
-
-&lt;p&gt;https://www.anquanke.com/post/id/224823&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Wed, 01 Jun 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/06/01/llvm-fuzz/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/01/llvm-fuzz/</guid>
-        
-        <category>LLVM</category>
         
         
       </item>
