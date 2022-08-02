@@ -155,6 +155,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                SEARCH <i class="fa fa-search"></i>
@@ -278,6 +280,92 @@
                 postlist-container
             ">
     			
+<div class="post-preview">
+    <a href="/2022/06/07/llvm-fuzz-2/">
+        <h2 class="post-title">
+            LLVM LibFuzzer介绍和实践 -2
+        </h2>
+        
+        <h3 class="post-subtitle">
+            浅谈
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                
+  什么是Fuzzer Testing
+  libFuzzer是什么
+  环境准备
+  编译clang/compiler-rt/lld/ fuzzer/ flag
+  example1: harness里面的target fcuntion 如何写？编译命令
+5.1 运行的命令 max_len= run= -dict=xx corpus max_total_time print_total_...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on June 7, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/06/04/what-is-friend/">
+        <h2 class="post-title">
+            40 - 朋友多好，还是少好？
+        </h2>
+        
+        <h3 class="post-subtitle">
+            2022-06-04
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                如果您喜欢这份Newsletter，请转发给您朋友，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
+
+本周话题
+
+朋友，别看我平时像个逗比一样，其实我是很内向的。
+
+我的朋友很少，我个人感觉不超过一桌人，一年吃饭的话就更少了，不超过10次。
+
+我老婆经常说我没什么朋友，确实我身边朋友比较少，然后能约出来一起吃饭的，那就更少了。
+
+我是这么看待的，如果你要维持这个朋友关系，那可能要...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on June 4, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/06/02/run-cuda-with-free-cloud/">
+        <h2 class="post-title">
+            用谷歌云服务器免费跑 cuda 代码
+        </h2>
+        
+        <h3 class="post-subtitle">
+            免费
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                什么是 CUDA？
+
+CUDA 是 Nvidia 为并行计算平台和应用程序编程接口创建的一个模型。CUDA 是 NVIDIA 的并行计算架构，通过利用 GPU 的能力，可以大幅度提高计算性能。
+
+CUDA 代码不会在 AMD CPU 或者 Intel HD Graphics 上运行，除非你的机器里有 NVIDIA 的硬件。在 Colab 上，你可以利用 NVIDIA 的 GPU，以及一个预装...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on June 2, 2022
+    </p>
+</div>
+<hr>
+
 <div class="post-preview">
     <a href="/2022/06/01/llvm-fuzz/">
         <h2 class="post-title">
@@ -494,99 +582,6 @@ tags:
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2022/05/17/external-project/">
-        <h2 class="post-title">
-            LLVM 外部项目 2
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                最近在github上发现一个不错的翻译文档，关于llvm的，虽然文档是2014.08年，但是对于用来了解llvm也是足够了.
-
-对于英文文档，可以下载这里.
-
-关于 Clang
-
-Clang不仅将C和C++转换为LLVM IR，而且能够监督整个编译过程，作为一个灵活的编译器驱动器，努力与GCC兼容共处。
-
-
-
-Clang看作一个前端编译器，而不是一个编译器驱动器，它负责将C和C++程序翻译为...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 17, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/17/LLVM-install-and-compiler/">
-        <h2 class="post-title">
-            LLVM 安装和编译 1
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                LLVM基础设施适用于若干 Unix 系统（GNU/Linux，FreeBSD ，Mac OS）和 Windows 系统。我们一步一步地说明如何让LLVM在这些系统上工作。某些系统可获得LLVM和Clang的预编译安装包，但是也可以从源代码编译得到它们。
-
-获取LLVM预编译安装包有两种通常的方法；你可以从官方网站获取二进制文件，也可以从第三方获取GNU/Linux发布的安装包和Window...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 17, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/17/LLVM-IR-transform/">
-        <h2 class="post-title">
-            LLVM IR转换
-        </h2>
-        
-        <h3 class="post-subtitle">
-            强大的现代编译器设计
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                什么是 LLVM  IR
-
-
-  ⽆限制的单分配寄存器机器指令集
-  强类型
-  三种常⻅表⽰形式：
-1， ⼈类可读的 LLVM 程序集（.ll ⽂件） 
-2， 密集的 bitcode ⼆进制表⽰（.bc ⽂件） 
-3,  C++ 类
-
-
-SSA
-
-Static Single Assignment, 我理解的是单一静态赋值，寄存器可能只分配一次.
-
-与之对应的就是多赋值，下面就是一个变量a，...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 17, 2022
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -627,212 +622,217 @@ Static Single Assignment, 我理解的是单一静态赋值，寄存器可能只
         
         
         
-                <a data-sort="0210" 
+                <a data-sort="0213" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0176" 
+                <a data-sort="0179" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
                     rel="43">Newsletter</a>
         
-                <a data-sort="0209" 
+                <a data-sort="0212" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0211" 
+                <a data-sort="0214" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0211" 
+                <a data-sort="0214" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0211" 
+                <a data-sort="0214" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0211" 
+                <a data-sort="0214" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0212" 
+                <a data-sort="0215" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0213" 
+                <a data-sort="0216" 
+                    href="/archive/?tag=LLVM"
+                    title="LLVM"
+                    rel="6">LLVM</a>
+        
+                <a data-sort="0216" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0214" 
+                <a data-sort="0217" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0215" 
+                <a data-sort="0218" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0215" 
+                <a data-sort="0218" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0215" 
-                    href="/archive/?tag=LLVM"
-                    title="LLVM"
-                    rel="4">LLVM</a>
-        
-                <a data-sort="0215" 
+                <a data-sort="0218" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0215" 
+                <a data-sort="0218" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=cuda"
                     title="cuda"
                     rel="3">cuda</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0216" 
+                <a data-sort="0219" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
+                    title="计算机"
+                    rel="2">计算机</a>
+        
+                <a data-sort="0220" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0217" 
+                <a data-sort="0220" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

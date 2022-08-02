@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="LLVM LibFuzzer介绍和实践 -2 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="
+  什么是Fuzzer Testing
+  libFuzzer是什么
+  环境准备
+  编译clang/compiler-rt/lld/ fuzzer/ flag
+  example1: harness里面的target fcuntion 如何写？编译命令
+5.1 运行的命令 max_len= run= -dict=xx corpus max_total_time print_total_...">
+    
+    <meta property="article:published_time" content="2022-06-07T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="LLVM">
+    
+    
+    <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://blog.chiphub.top/2022/06/07/llvm-fuzz-2/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>LLVM LibFuzzer介绍和实践 -2 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://blog.chiphub.top/2022/06/07/llvm-fuzz-2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/https://source.unsplash.com/random/1800x400/?tech" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400/?tech');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=LLVM" title="LLVM">LLVM</a>
+                        
+                    </div>
+                    <h1>LLVM LibFuzzer介绍和实践 -2</h1>
+                    
+                    <h2 class="subheading">浅谈</h2>
+                    <span class="meta">Posted by 叉叉敌 on June 7, 2022</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<ol>
+  <li>什么是Fuzzer Testing</li>
+  <li>libFuzzer是什么</li>
+  <li>环境准备</li>
+  <li>编译clang/compiler-rt/lld/ fuzzer/ flag</li>
+  <li>example1: harness里面的target fcuntion 如何写？编译命令
+5.1 运行的命令 max_len= run= -dict=xx corpus max_total_time print_total_stats</li>
+  <li>
+    <p>example2: llvm-mc-fuzzer、isel-fuzzer -mtriple mcpu500 –fuzzer-args -max_len=1
+6.1 clang-fuzzer-dictionary 可以生成一个字典</p>
+  </li>
+  <li>提高效率， 主要代码覆盖率和代码单元
+7.1 第一个是用字典， 字典是什么？暴力破解，常用的字符组成一个密码集合，
+输入数据更具有针对性，当然也提高了触发更多代码单元和获得crash的可能。</li>
+</ol>
+
+<h3 id="recommand-dictionary">Recommand Dictionary</h3>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220608095203.png" alt="" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>###### Recommended dictionary. ######
+"generic" # Uses: 231
+"define" # Uses: 22
+…………
+###### End of recommended dictionary. ######
+</code></pre></div></div>
+<p>7.2 用corpus，每次跑完之后，用-merge=1 target source
+<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220608095659.png" alt="" />
+精简之后的corpus是754，减少了90%，用更少的时间做更多的事情</p>
+
+<blockquote>
+  <p>下面是自己学习libFuzzer过程中，记录的文档，欢迎交流和指正。</p>
+</blockquote>
+
+<p>Fuzzing 是一种软件测试方法，包括将格式不正确的数据作为输入传递给程序，并监视其是否存在不正确的行为。今天 fuzzing 是发现软件安全问题的最有效的方法之一。2014年第一个覆盖引导模糊器Fuzzy Lop。这开创了现代市场上的模糊解决方案和技术。</p>
+
+<h2 id="什么是libfuzzer">什么是LibFuzzer</h2>
+
+<blockquote>
+  <p>LibFuzzer is in-process, coverage-guided, evolutionary fuzzing engine.</p>
+</blockquote>
+
+<p>LibFuzzer与被测库链接，并通过特定的模糊化入口点（又称“目标函数 target function”）将模糊化输入提供给库；然后，模糊器跟踪到达的代码区域，并在输入数据的主体上生成不同的参数组合，以最大限度地提高代码覆盖率。libFuzzer的代码覆盖率信息由LLVM的SanitizerCoverage工具提供。</p>
+
+<p>提供：</p>
+
+<p>简单来说就是通过与要进行fuzz的库连接，并将libfuzzer生成的输入通过模糊测试进入点(fuzz target)喂给要fuzz的库进行fuzz testing。同时fuzzer会跟踪哪些区域的代码已经被测试过的，并且根据种料库的输入进行变异来使得代码覆盖率最大化。代码覆盖率的信息是由LLVM’s SanitizerCoverage插桩提供的</p>
+
+<p>需要注意的是这几个libfuzzer的特性：in-process指进程内。即libfuzzer在fuzz时并不是产生出多个进程来分别处理不同的输入，而是将所有的测试数据放入进程的内存空间中。coverage-guided指覆盖率指导的。即会进行代码覆盖率的计算，正如定义所说的使得不断增大代码覆盖率。evolutionary是指libfuzzer是进化型的fuzz，结合了产生和变异两种形式。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/5e2siO.png" alt="" /></p>
+
+<h2 id="举例-fuzzing-test">举例 fuzzing-test</h2>
+
+<p>创建一个文件，fuzz_target.cc, 这个内容如下，记得不要使用使用main等作为函数名。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// fuzz_target.cc</span>
+<span class="k">extern</span> <span class="s">"C"</span> <span class="kt">int</span> <span class="nf">LLVMFuzzerTestOneInput</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">Data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">Size</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">DoSomethingInterestingWithMyAPI</span><span class="p">(</span><span class="n">Data</span><span class="p">,</span> <span class="n">Size</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// Non-zero return values are reserved for future use.</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>需要注意的是 <code class="language-plaintext highlighter-rouge">LLVMFuzzerTestOneInput</code> 函数是我们要实现的接口函数，他的两个参数Data(libfuzzer的测试样本数据)，size(样本数据的大小)。
+<code class="language-plaintext highlighter-rouge">DoSomethingInterestingWithMyAPI</code> 函数即我们实际要进行fuzz的函数。</p>
+
+<p>编译这个文件，命令<code class="language-plaintext highlighter-rouge">clang++ -g -O1 -fsanitize=fuzzer,address fuzz_target.cc -o fuzzer_target</code> ，这里的clang是我们用llvm编译出来的，如果用的其他方式会报错。</p>
+
+<p>参数的意思：</p>
+<ul>
+  <li>-g 可选参数，保留调试符号。</li>
+  <li>-O1 指定优化等级为1，对应的还有O0 (optimize 0,1,2)，以及OS(optimize size)使用后binary大小会变小。</li>
+  <li>-fsanitize 指定sanitize， 值有几种：fuzzer,address，memory(单独使用，检查内存)，undefined(移除、未定义等)</li>
+</ul>
+
+<p>这一步骤整体过程就是通过clang的-fsanitize=fuzzer选项可以启用libFuzzer，这个选项在编译和链接过程中生效，实现了条件判断语句和分支执行的记录，通过生成不同的测试样例然后能够获得代码的覆盖率情况，最终实现所谓的fuzz-testing。</p>
+
+<p>注意：编译的选项会影响fuzzer的效率，比如下面就是一个点。我也不知道有哪些，遇到问题就在网上搜吧，一定会有结果的。</p>
+<ul>
+  <li>clang编译的时候，参数<code class="language-plaintext highlighter-rouge">-fno-omit-frame-pointer </code>对于<code class="language-plaintext highlighter-rouge">不需要栈指针的函数就不在寄存器中保存指针</code>，因此可以忽略存储和检索地址的代码，同时对许多函数提供一个额外的寄存器。所有”-O”级别都打开它，但仅在调试器可以不依靠栈指针运行时才有效。在AMD64平台上此选项默认打开，但是在x86平台上则默认关闭。建议显式的设置它。</li>
+  <li>gline-tables-only:表示使用采样分析器， 在应用程序执行时，抽样探查器用于收集运行时信息(如硬件计数器)。它们通常非常有效，并且不会引起大量的运行时开销。分析器收集的示例数据可用于编译期间，以确定代码中执行最多的区域是什么，在编译器可以使用分析信息之前，代码需要在分析器下执行。这也对提高我们fuzz效率很重要。</li>
+</ul>
+
+<p>比如常用的编译命令：<code class="language-plaintext highlighter-rouge">clang++ -g -O2 -fno-omit-frame-pointer -gline-tables-only -fsanitize=address,fuzzer-no-link test.cc -o test</code></p>
+
+<h3 id="写一个fuzz-测试函数">写一个fuzz 测试函数</h3>
+
+<ol>
+  <li>准备被测文件</li>
+</ol>
+
+<p>比如有一个头文件， test.h, 里面有一个FuzzFunction1的函数</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bool</span> <span class="nf">FuzzFunction1</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">bool</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'F'</span> <span class="o">&amp;&amp;</span>
+             <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'U'</span> <span class="o">&amp;&amp;</span>
+             <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'Z'</span> <span class="o">&amp;&amp;</span>
+             <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'Z'</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ol>
+  <li>写测试函数</li>
+</ol>
+
+<p>现在要对着头里面里面的FuzzFunction1函数进行测试，编一个测试接口,test.cc，</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "test.h"
+</span>
+<span class="k">extern</span> <span class="s">"C"</span> <span class="kt">int</span> <span class="nf">LLVMFuzzerTestOneInput</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FuzzFunction1</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>需要注意的是，data和size和头文件里面的类型是一致的。如果是bool类型的，记得false和true，都要遍历<code class="language-plaintext highlighter-rouge">bool bool_flag[] = {true, false}</code>。</p>
+
+<ol>
+  <li>编译测试函数</li>
+</ol>
+
+<p>只有就完成了，然后编译下面的测试接口函数<code class="language-plaintext highlighter-rouge">clang++ -g -std=c++11 -fsanitize=fuzzer,address test.cc  -o test</code>.,生成一个test的执行文件</p>
+
+<ol>
+  <li>创建一个corpus(语料库，可以想象为一个函数的参数，各种参数的组合)</li>
+</ol>
+
+<p>在未使用语料库的情况下就得到了crash实属意料之外，如果我们在使用字典的下情况仍然暂时未得到crash，另一个方法可以去寻找一些有效的输入语料库。因为libfuzzer是进化型的fuzz，结合了产生和变异两个发面。如果我们可以提供一些好的seed，虽然它本身没法造成程序crash，但libfuzzer会在此基础上进行变异，就有可能变异出更好的语料，从而增大程序crash的概率。具体的变异策略需要我们去阅读libfuzzer的源码或者些相关的论文。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>corpus
+./test corpus
+</code></pre></div></div>
+
+<p>corpus 是我们提供的语料库。理想情况下，该语料库应该为被测代码提供各种有效和无效的输入，模糊器基于当前语料库中的样本输入生成随机组合。</p>
+
+<p>如果组合触发了测试代码中先前未覆盖的路径的执行，则该组合参数将保存到语料库中以供将来变更。</p>
+
+<p>当然LibFuzzer也可以没有任何初始seed的情况下工作，但如果受测试的库接受复杂的结构化输入，则会因为随机产生的样例不易符合导致效率降低。</p>
+
+<p>合并corpus，<code class="language-plaintext highlighter-rouge">./test -merge=1 corpus_min corpus</code>, 这样，corpus_min和corpus将会存放到新的corpus精简后的输入样例。</p>
+
+<p>执行的时候，我们一般会看到如下信息</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  04 Rik:<span class="o">(</span>master<span class="o">)</span> ✗ ./test corpus
+INFO: Seed: 2222548757
+INFO: Loaded 1 modules   <span class="o">(</span>35 inline 8-bit counters<span class="o">)</span>: 35 <span class="o">[</span>0x7f7120, 0x7f7143<span class="o">)</span>, 
+INFO: Loaded 1 PC tables <span class="o">(</span>35 PCs<span class="o">)</span>: 35 <span class="o">[</span>0x5b7a68,0x5b7c98<span class="o">)</span>, 
+INFO:        0 files found <span class="k">in </span>corpus1
+INFO: <span class="nt">-max_len</span> is not provided<span class="p">;</span> libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+<span class="c">#2    INITED cov: 3 ft: 3 corp: 1/1b exec/s: 0 rss: 27Mb</span>
+<span class="c">#3    NEW    cov: 4 ft: 4 corp: 2/4b lim: 4 exec/s: 0 rss: 27Mb L: 3/3 MS: 1 CMP- DE: "\x00\x00"-</span>
+<span class="c">#1190    NEW    cov: 5 ft: 5 corp: 3/7b lim: 14 exec/s: 0 rss: 27Mb L: 3/3 MS: 2 ChangeBinInt-CMP- DE: "F\x00"-</span>
+……………………
+<span class="nv">artifact_prefix</span><span class="o">=</span><span class="s1">'./'</span><span class="p">;</span> Test unit written to ./crash-0eb8e4ed029b774d80f2b66408203801cb982a60
+
+</code></pre></div></div>
+<ul>
+  <li>Seed 这个seed，就是./test -seed=xxx可以指定的随机seed</li>
+  <li>max_len  测试输入的最大长度</li>
+  <li>cov  代码覆盖率，我们的语料库达到的代码块总数</li>
+  <li>corp   语料库中的文件数量及其总大小</li>
+  <li>exec/s  每秒模糊迭代次数(在运行时间长于 &lt; = 1秒的情况下有用)</li>
+  <li>rss  存储在物理内存中的进程内存量</li>
+  <li>./crash-xxx 这个就是用来复现问题的文件，方便吧</li>
+  <li>INITED fuzzer已完成初始化，其中包括通过被测代码运行每个初始输入样本。</li>
+  <li>READ fuzzer已从语料库目录中读取了所有提供的输入样本。</li>
+  <li>NEW fuzzer创建了一个测试输入，该输入涵盖了被测代码的新区域。此输入将保存到主要语料库目录。</li>
+  <li>pulse fuzzer已生成 2的n次方个输入（定期生成以使用户确信fuzzer仍在工作）。</li>
+  <li>REDUCE fuzzer发现了一个更好（更小）的输入，可以触发先前发现的特征（设置-reduce_inputs=0以禁用）</li>
+</ul>
+
+<p>最后的一个crash文件， 这样我们就可以有针对性的对程序进行动态调试，利用造成crash的输入回溯出漏洞的细节。</p>
+
+<h3 id="如何理解fuzzer的输出结果">如何理解fuzzer的输出结果</h3>
+
+<p><code class="language-plaintext highlighter-rouge">#17458 REDUCE cov: 7 ft: 7 corp: 5/14b lim: 170 exec/s: 0 rss: 29Mb L: 4/4 MS: 1 EraseBytes-</code></p>
+
+<p>指尝试了17458个输入，成功发现了5个样本（放入语料库）大小为14b，共覆盖了7个代码块，占用内存29mb，变异操作为EraseBytes-</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/dgLG09.png" alt="" /></p>
+
+<h2 id="要使用libfuzzer的功能">要使用libfuzzer的功能</h2>
+<p>就需要再llvm里面变异compiler-rt，然后可以使用<code class="language-plaintext highlighter-rouge">clang++ -fsanitizer=Address xx.cc</code> 在compiler-rt目录下有一些example cc的文件</p>
+
+<h2 id="编译llvm-mc-assemble-fuzzer">编译llvm-mc-assemble-fuzzer</h2>
+
+<p>这个是汇编器的，还有其他的，
+编译这个用之前的编译的llvm里面的clang，就需要替换为这个，用flag=cmake_c_compiler=xxx/clang
+而且目录不能是同一个，不然cmake会失败。</p>
+
+<h2 id="fuzzer的dict">fuzzer的dict</h2>
+
+<p><code class="language-plaintext highlighter-rouge">提高我们fuzz的效率</code>，这其中一个办法就是使用字典。</p>
+
+<p>我们知道基本上所有的程序都是处理的数据其格式是不同的，比如 xml文档， png图片等等。这些数据中会有一些特殊字符序列 （或者说关键字）， 比如在xml文档中就有CDATA，&lt;!ATTLIST等，png图片就有png 图片头。如果我们事先就把这些字符序列列举出来吗，fuzz直接使用这些关键字去组合，就会就可以减少很多没有意义的尝试，同时还有可能会走到更深的程序分支中去。</p>
+
+<p>比如下面就是xml.dict里面的内容，xml一般有encoding、version、href等，用这些来组合，比其他的组合更高效，用例少，速度快，更精准。</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">attr_encoding=</span><span class="s2">" encoding=</span><span class="se">\"</span><span class="s2">1</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+</span><span class="err">attr_generic=</span><span class="s2">" a=</span><span class="se">\"</span><span class="s2">1</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+</span><span class="err">attr_href=</span><span class="s2">" href=</span><span class="se">\"</span><span class="s2">1</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+</span><span class="err">attr_standalone=</span><span class="s2">" standalone=</span><span class="se">\"</span><span class="s2">no</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+</span><span class="err">attr_version=</span><span class="s2">" version=</span><span class="se">\"</span><span class="s2">1</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>执行的时候指定dict，用参数-dict <code class="language-plaintext highlighter-rouge">./test -max_total_time=60 -print_final_stats=1 -dict=./xml.dict corpus</code>,如果corpus太多，可以用merge来精简为一个。</p>
+
+<p>文章太长了。主要是这个工具太强大了。</p>
+
+<h2 id="最后的进阶">最后的进阶</h2>
+
+<p>下面是关于<code class="language-plaintext highlighter-rouge">一些链接库的选择以及插桩编译时的一些参数的设置，还有max_len的设置对我们最后fuzz结果的影响</code>。</p>
+
+<h3 id="编译的插桩参数">编译的插桩参数</h3>
+
+<p>插桩的参数<code class="language-plaintext highlighter-rouge">-fno-omit-frame-pointer -gline-tables-only</code>，这2个前面提到过了，再来介绍一个<code class="language-plaintext highlighter-rouge">fuzzer-no-link</code>。</p>
+
+<p>如果修改大型项目的CFLAGS，它也需要编译自己的主符号的可执行文件，则可能需要在不链接的情况下仅请求检测，即fuzzer-no-link强制在链接阶段不生效。</p>
+
+<p>介绍一些新的参数，是关于ld的。</p>
+
+<p>比如编译命令：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clang -O2 -fno-omit-frame-pointer -gline-tables-only \
+-fsanitize=address,fuzzer-no-link -fsanitize-address-use-after-scope test.cc \
+ -Wl,--whole-archive xxx/.libs/libpcre2-8.a xx/.libs/libpcre2-posix.a \
+ -Wl,-no-whole-archive -fsanitize=fuzzer -o test
+</code></pre></div></div>
+
+<p>参数：–whole-archive和–no-whole-archive是ld专有的命令行参数，clang++并不认识，要通过clang++传递到ld，需要在他们前面加-Wl。–whole-archive可以把 在其后面出现的静态库包含的函数和变量输出到动态库，–no-whole-archive则关掉这个特性。</p>
+
+<h3 id="执行的max_len的参数">执行的max_len的参数</h3>
+
+<p>max_len一般情况下，越大获得的corpus就越多，就越容易挖掘出bug。
+<code class="language-plaintext highlighter-rouge">./test ./corpus1 -print_final_stats=1 -max_len=500 -max_total_time=100</code></p>
+
+<p>解释，运行test，长度为500，并打印最后的结果，执行事假哪位100s，执行的corpus保存到corpus1里面。</p>
+
+<p>编译llvm fuzz参考：https://github.com/google/oss-fuzz/blob/master/projects/llvm/build.sh</p>
+
+<p>cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_ASSERTIONS=On -DLLVM_ENABLE_WERROR=On -DLLVM_USE_SANITIZER=Address -DLLVM_USE_SANITIZE_COVERAGE=On -DCMAKE_C_COMPILER=/usr/local/bin/clang ../llvm</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake <span class="nt">-GNinja</span> <span class="nt">-DCMAKE_BUILD_TYPE</span><span class="o">=</span>Release ../<span class="nv">$LLVM</span> <span class="se">\</span>
+    <span class="nt">-DLLVM_ENABLE_PROJECTS</span><span class="o">=</span><span class="s2">"clang;libcxx;libcxxabi;compiler-rt;lld;clang-tools-extra"</span> <span class="se">\</span>
+    <span class="nt">-DLLVM_ENABLE_ASSERTIONS</span><span class="o">=</span>ON <span class="se">\</span>
+    <span class="nt">-DCMAKE_C_COMPILER</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">CC</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">-DCMAKE_CXX_COMPILER</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">CXX</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">-DCMAKE_C_FLAGS</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">CFLAGS</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">-DCMAKE_CXX_FLAGS</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">CXXFLAGS</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="s2">"</span><span class="k">${</span><span class="nv">CMAKE_FUZZING_CONFIG</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">-DLLVM_NO_DEAD_STRIP</span><span class="o">=</span>ON <span class="se">\</span>
+    <span class="nt">-DLLVM_USE_SANITIZER</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">LLVM_SANITIZER</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD</span><span class="o">=</span>WebAssembly <span class="se">\</span>
+    <span class="nt">-DCOMPILER_RT_INCLUDE_TESTS</span><span class="o">=</span>OFF
+</code></pre></div></div>
+
+<h2 id="read-more">Read more</h2>
+
+<p>https://llvm.org/docs/LibFuzzer.html</p>
+
+<p>https://blog.haboob.sa/blog/applying-fuzzing-techniques-against-pdftron-part-2</p>
+
+<p>https://www.moritz.systems/blog/an-introduction-to-llvm-libfuzzer/</p>
+
+<p>https://github.com/Dor1s/libfuzzer-workshop</p>
+
+<p>https://www.anquanke.com/post/id/224823</p>
+
+<blockquote>
+  <p><a href="https://chasays.github.io/">github博客</a></p>
+</blockquote>
+
+<blockquote>
+  <p>微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+</blockquote>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/06/04/what-is-friend/" data-toggle="tooltip" data-placement="top" title="40 - 朋友多好，还是少好？">
+                        Previous<br>
+                        <span>40 - 朋友多好，还是少好？</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/06/08/llvm-c-compiler-static-analyzer/" data-toggle="tooltip" data-placement="top" title="LLVM LibFuzzer介绍和实践 -2">
+                        Next<br>
+                        <span>LLVM LibFuzzer介绍和实践 -2</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0213" 
+                    href="/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0179" 
+                    href="/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="43">Newsletter</a>
+        
+                <a data-sort="0212" 
+                    href="/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0214" 
+                    href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0214" 
+                    href="/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0214" 
+                    href="/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0214" 
+                    href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0215" 
+                    href="/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0216" 
+                    href="/archive/?tag=LLVM"
+                    title="LLVM"
+                    rel="6">LLVM</a>
+        
+                <a data-sort="0216" 
+                    href="/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0217" 
+                    href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0218" 
+                    href="/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0218" 
+                    href="/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0218" 
+                    href="/archive/?tag=git"
+                    title="git"
+                    rel="4">git</a>
+        
+                <a data-sort="0218" 
+                    href="/archive/?tag=github"
+                    title="github"
+                    rel="4">github</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="3">cuda</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=docker"
+                    title="docker"
+                    rel="3">docker</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=llvm"
+                    title="llvm"
+                    rel="3">llvm</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E4%BF%9D%E9%99%A9"
+                    title="保险"
+                    rel="2">保险</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
+                    title="计算机"
+                    rel="2">计算机</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=linux"
+                    title="linux"
+                    rel="2">linux</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0220" 
+                    href="/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'blog.chiphub.top';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

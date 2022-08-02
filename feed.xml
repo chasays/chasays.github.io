@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 31 Jul 2022 14:10:46 +0000</pubDate>
-    <lastBuildDate>Sun, 31 Jul 2022 14:10:46 +0000</lastBuildDate>
+    <pubDate>Tue, 02 Aug 2022 11:45:22 +0000</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2022 11:45:22 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
     
       <item>
@@ -590,6 +590,88 @@ tags:&lt;/p&gt;
       </item>
     
       <item>
+        <title>高位和低位</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;学习过程中的总结，有什么不对的地方望指出，谢谢~&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;为什么会有高位和低位&quot;&gt;为什么会有高位和低位&lt;/h2&gt;
+
+&lt;p&gt;比如：一个1位数，一个数字占一位，1位数就占1位，2位数就占2位；那么个1位数相加，6+7=13， 结果就是一个2位数，就需要2个位来存储，（大端模式下）高于1位的就是高，剩余的就是低位， 这里的1是高位，3是低位. 这里的位不是bit的意思.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Little-Endian就是低位字节排放在内存的低地址端，高位字节排放在内存的高地址端。&lt;/li&gt;
+  &lt;li&gt;Big-Endian就是高位字节排放在内存的低地址端，低位字节排放在内存的高地址端。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;小段模式：1是低位，3是高位&lt;/p&gt;
+
+&lt;h2 id=&quot;低位在前高位在后&quot;&gt;低位在前高位在后&lt;/h2&gt;
+
+&lt;p&gt;一般情况（除了相机.dvd等），计算机中存储的基本单位是字节，一字节为8个bit，一个存储单元只能存储八位字节，比如‘两个8位二进制无符号数相加，其和可能超过8位’。存储这个超过8位的‘和’就不能用一个存储单元了，需要两个，有两个就有前后之分了，把‘和’的高于8位的高低位分开存储，低位在前高位在后就是这个意思。&lt;/p&gt;
+
+&lt;h2 id=&quot;是什么高位什么是低位&quot;&gt;是什么高位，什么是低位&lt;/h2&gt;
+&lt;p&gt;用内存中的两个字节表示一个16位的数，那么其中的一个字节将存放最低的8位有效位，而另一个字节将存放最高的8位有效位，见图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220616143411.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;存放&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;最低&lt;/code&gt;的8位有效位的字节被称为最低有效位字节或&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;低位字节&lt;/code&gt;，而存放&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;最高&lt;/code&gt;的8位有效位的字节被称为最高有效位字节或&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;高位字节&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;一个16位的数占两个字节的存储空间，即高位字节和低位字节(见上图)。如果是在纸上书写一个16位的数，你总是会把高位字节写在前面，而把低位字节写在后面。然而，当这个数被存储到内存中时，并没有固定的存储顺序。&lt;/p&gt;
+
+&lt;p&gt;如果用H和L分别表示高位字节和低位字节，那么可以有两种方式把这两个字节存储到内存中，即H在前L在后或者L在前H在后。把H存储在前的顺序被称为“正向(forward)”或“高位优先顺序；把L存储在前的顺序被称为“逆向”或“低位优先”顺序。&lt;/p&gt;
+
+&lt;p&gt;大多数计算机按正向顺序存储一个数，Intel CPU按逆向顺序存储一个数，因此，如果试图将基于Intel CPU的计算机连到其它类型的计算机上，就可能会引起混乱。&lt;/p&gt;
+
+&lt;h2 id=&quot;举个例子&quot;&gt;举个例子&lt;/h2&gt;
+
+&lt;p&gt;1) Little-Endian就是低位字节排放在内存的低地址端，高位字节排放在内存的高地址端。
+2) Big-Endian就是高位字节排放在内存的低地址端，低位字节排放在内存的高地址端。
+举一个例子，比如数字0x12 34 56 78在内存中的表示形式为：
+1)大端模式：
+低地址 —————–&amp;gt; 高地址
+0x12  |  0x34  |  0x56  |  0x78
+2)小端模式：
+低地址 ——————&amp;gt; 高地址
+0x78  |  0x56  |  0x34  |  0x12
+可见，大端模式和字符串的存储模式类似。
+3)下面是两个具体例子：
+16bit宽的数0x1234在Little-endian模式（以及Big-endian模式）CPU内存中的存放方式（假设从地址0x4000开始存放）为：&lt;/p&gt;
+
+&lt;p&gt;内存地址	小端模式存放内容	大端模式存放内容
+0x4000	0x34	0x12
+0x4001	0x12	0x34
+32bit宽的数0x12345678在Little-endian模式以及Big-endian模式）CPU内存中的存放方式（假设从地址0x4000开始存放）为：
+内存地址	小端模式存放内容	大端模式存放内容
+0x4000	0x78	0x12
+0x4001	0x56	0x34
+0x4002	0x34	0x56
+0x4003	0x12	0x78&lt;/p&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+
+&lt;p&gt;https://gist.github.com/4u1kto/44b9fed92f9b3aed5e6d&lt;/p&gt;
+
+&lt;p&gt;https://www.cnblogs.com/cuijl/p/8005741.html&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/06/16/compiler_high-low/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/16/compiler_high-low/</guid>
+        
+        <category>计算机</category>
+        
+        
+      </item>
+    
+      <item>
         <title>41 - 保命重要</title>
         <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
 
@@ -697,174 +779,21 @@ tags:&lt;/p&gt;
       </item>
     
       <item>
-        <title>40 - 朋友多好，还是少好？</title>
-        <description>&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+        <title>LLVM LibFuzzer介绍和实践 -2</title>
+        <description>&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
 
-&lt;h2 id=&quot;本周话题&quot;&gt;本周话题&lt;/h2&gt;
+&lt;p&gt;https://gist.github.com/MattPD/00573ee14bf85ccac6bed3c0678ddbef#program-analysis-resources&lt;/p&gt;
 
-&lt;p&gt;朋友，别看我平时像个逗比一样，其实我是很内向的。&lt;/p&gt;
+&lt;p&gt;https://github.com/MattPD/cpplinks/blob/master/analysis.static.md&lt;/p&gt;
 
-&lt;p&gt;我的朋友很少，我个人感觉不超过一桌人，一年吃饭的话就更少了，不超过10次。&lt;/p&gt;
+&lt;p&gt;https://blog.regehr.org/archives/1737&lt;/p&gt;
 
-&lt;p&gt;我老婆经常说我没什么朋友，确实我身边朋友比较少，然后能约出来一起吃饭的，那就更少了。&lt;/p&gt;
+&lt;p&gt;https://www.cs.utah.edu/~regehr/papers/pldi11-preprint.pdf&lt;/p&gt;
 
-&lt;p&gt;我是这么看待的，如果你要维持这个朋友关系，那可能要经常去维系这个关系，花时间去打点，然后这个时间我觉得花的不是很值，有那么几个知己已经足以。&lt;/p&gt;
+&lt;p&gt;https://web.ist.utl.pt/nuno.lopes/alive2/&lt;/p&gt;
 
-&lt;p&gt;不过我和我老婆就形成鲜明的对比，他身边就有非常多的朋友。从我个人感觉来，这种人应该是比较寂寞的，因为他如果没有那样热闹的氛围，他可能很难沉浸下来去做某些东西。&lt;/p&gt;
-
-&lt;p&gt;反而我感觉我更耐得住寂寞，也没有什么个人的生日宴会，个人的宝宝宴会……，我不喜欢和不熟的人一起吃饭，一起出去玩。这就是我的社交恐惧症。&lt;/p&gt;
-
-&lt;p&gt;也有可能是个人的性格决定的。&lt;/p&gt;
-
-&lt;h2 id=&quot;心胸宽广&quot;&gt;心胸宽广&lt;/h2&gt;
-
-&lt;p&gt;我刚毕业出来工作的时候，老是跟老板对着干，想到能活到现在也是命大呀&lt;/p&gt;
-
-&lt;p&gt;小领导叫我做什么，心想这还用你教我，我知道怎么做。&lt;/p&gt;
-
-&lt;p&gt;当有人指出我的问题或者批判我，我当时第一反应可能会是怎么去对立的去反驳这个问题不去接纳，还有可能是更严重的是报复他。&lt;/p&gt;
-
-&lt;p&gt;经过这些年的一个成长，对某人有益和无益的提出这个问题，我在心里面不可能是之前那种想法了，而是我有没有这种问题，然后如何去改变这个问题。&lt;/p&gt;
-
-&lt;p&gt;我想想之前自己真的好low，不仅命大，而且命硬&lt;/p&gt;
-
-&lt;h2 id=&quot;感悟&quot;&gt;感悟&lt;/h2&gt;
-
-&lt;p&gt;喜剧是什么？&lt;/p&gt;
-
-&lt;p&gt;包括旨在通过引发笑声来表现幽默或有趣的话语或作品，尤其是在戏剧、电影、单口喜剧、电视、广播、书籍或任何其他娱乐媒介中。&lt;/p&gt;
-
-&lt;p&gt;来自维基百科，喜剧是一种作品，意思就是作者用劳动换来的，所以我看到的舞台上，演员的表演都是一种呈现的结果。所以喜剧和幽默，以及这个人在线下的表现是不一样的。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/SQ5xa6gPtYqCfaHLJikTCA&quot;&gt;给女儿的投资计划&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;首先，投资到底是投什么？&lt;/p&gt;
-
-&lt;p&gt;买一家公司的股票，就是买入它的一部分所有权，成为了小股东，这家公司赚钱了，你也就能分到相应的一部分。&lt;/p&gt;
-
-&lt;p&gt;最重要的我觉得是找到好的公司，然后有足够的耐心来等待。后面这一步我能做到，前面哪一步说实话是挺难的。&lt;/p&gt;
-
-&lt;p&gt;股票的价值是这家公司未来现金流的折现，这个现金流跟公司的利润正相关。买股票最终能不能赚到钱，本质上是看这家公司在你买入之后余下的生命里能不能持续地赚钱。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://kristerw.github.io/2022/05/24/branchless/&quot;&gt;编译器里面的move和branch指令的解释&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;作者是做GPU编译器的，可以关注一下。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.shalerb.org/&quot;&gt;Shale&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Shale 是用于 JSON、 YAML 和 XML 的 Ruby 对象映射器和序列化器。允许您解析 JSON、 YAML 和 XML 数据，并将其转换为 Ruby 数据结构，以及将数据结构序列化为 JSON、 YAML 或 XML。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mazzo.li/posts/fast-pipes.html&quot;&gt;Linux 管道的速度优势&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本文探讨了Linux如何实现Unix管道。它首先使用吞吐量约为3.5GiB/s的程序，然后对其进行优化，直到其性能提高二十倍。需要具备C语言的基本知识。链接了包含文章代码的GitHub存储库。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;过去一周&quot;&gt;过去一周&lt;/h1&gt;
-
-&lt;p&gt;本周的思考时刻：如何计划自己的行动？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;写下自己要完成的计划&lt;/li&gt;
-  &lt;li&gt;在自己放松的时候就嫩刚看到的这个提醒(比如设置为屏保，当玩耍手机的是就可以看到)&lt;/li&gt;
-  &lt;li&gt;然后每天进步一点，给自己一个反馈，有多巴胺更能坚持下去&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;下周思考：NA&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;看书最重要的就是定好&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;固定的时间&lt;/code&gt;，比如每天早起20分钟，那这个时间就可以用阅读，可以做自己喜欢事情，就可以避免日后每天纠结到底啥时候读。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;莫言 - 奇奇怪怪的那些事 - 5%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;主要是培养孩子的读书习惯，一种以故事的方式来培养习惯，我个人觉得是一种不错的方式。&lt;/p&gt;
-
-&lt;p&gt;如果有你有好的方式，可以给我回信分享一下么？谢谢~&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;技术相关的书，大部分是电子书，因为可以随时的show me code。&lt;/li&gt;
-  &lt;li&gt;方法、理论类的书籍，一般会停下来思考，提出问题、或者沉淀为自己的知识。&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Sat, 04 Jun 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/06/04/what-is-friend/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/04/what-is-friend/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>用谷歌云服务器免费跑 cuda 代码</title>
-        <description>&lt;h2 id=&quot;什么是-cuda&quot;&gt;什么是 CUDA？&lt;/h2&gt;
-
-&lt;p&gt;CUDA 是 Nvidia 为并行计算平台和应用程序编程接口创建的一个模型。CUDA 是 NVIDIA 的并行计算架构，通过利用 GPU 的能力，可以大幅度提高计算性能。&lt;/p&gt;
-
-&lt;p&gt;CUDA 代码不会在 AMD CPU 或者 Intel HD Graphics 上运行，除非你的机器里有 NVIDIA 的硬件。在 Colab 上，你可以利用 NVIDIA 的 GPU，以及一个预装了 Tensorflow 和其他 ML/DL 工具的功能齐全的 Jupyter note。&lt;/p&gt;
-
-&lt;h3 id=&quot;第1-打开colab&quot;&gt;第1: 打开colab&lt;/h3&gt;
-
-&lt;p&gt;然后在runtime-&amp;gt; change type里面修改硬件加速为GPU。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://colab.research.google.com&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/OXy9Wi.png&quot; alt=&quot;OXy9Wi&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;第二检测nvcc版本&quot;&gt;第二：检测nvcc版本&lt;/h3&gt;
-
-&lt;p&gt;一般都是安装了cuda的，直接执行nvcc来查看版本。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/SzsWT1.png&quot; alt=&quot;SzsWT1&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;3-安装插件&quot;&gt;3. 安装插件&lt;/h3&gt;
-
-&lt;p&gt;为了nvcc能运行，需要安装一个插件，识别为cuda代码&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/5pgVlU.png&quot; alt=&quot;5pgVlU&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;!pip install git+https://github.com/andreinechaev/nvcc4jupyter.git
-%load_ext nvcc_plugin
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;4-运行cuda&quot;&gt;4. 运行cuda&lt;/h3&gt;
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cu&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;iostream&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__global__&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;cuda_hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World from GPU!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cuda_hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;cudaDeviceSynchronize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/chasays/mdPicGo@master/uPic/VGzSId.png&quot; alt=&quot;VGzSId&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;https://gist.github.com/chasays/81994504fe154f6cd9f799323e331ca8&lt;/p&gt;
+&lt;p&gt;https://discourse.llvm.org/t/beginner-resources-documentation/5872
+https://llvm.org/docs/MIRLangRef.html&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
@@ -874,11 +803,11 @@ tags:&lt;/p&gt;
   &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/06/02/run-cuda-with-free-cloud/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/02/run-cuda-with-free-cloud/</guid>
+        <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/06/08/llvm-c-compiler-static-analyzer/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/08/llvm-c-compiler-static-analyzer/</guid>
         
-        <category>cuda</category>
+        <category>LLVM</category>
         
         
       </item>
