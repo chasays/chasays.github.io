@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "在C++里面使用内联汇编语法",
+      "subtitle" : "非常的简单",
+      "tags"     : "asm",
+      "url"      : "/2022/08/04/inline-asm-syntax/",
+      "date"     : "2022-08-04 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "48 -  值得去做",
       "subtitle" : "2022-07-30",
       "tags"     : "Newsletter",

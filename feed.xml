@@ -5,9 +5,139 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 03 Aug 2022 02:56:09 +0000</pubDate>
-    <lastBuildDate>Wed, 03 Aug 2022 02:56:09 +0000</lastBuildDate>
+    <pubDate>Thu, 04 Aug 2022 02:49:34 +0000</pubDate>
+    <lastBuildDate>Thu, 04 Aug 2022 02:49:34 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>在C++里面使用内联汇编语法</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;学习过程中的总结，有什么不对的地方望指出，谢谢~&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Asm 语句允许直接在 C 代码中包含汇编指令。特别是对于代码的性能，或者访问 C 程序不易获得的汇编指令，这可以帮助我们最大限度地提高时间时间.&lt;/p&gt;
+
+&lt;p&gt;来看看下面的C代码，汇编语法一般情况下，第一个操作数是dst，就是下面我们看到的%1，是输出，%0是输入，也是source.&lt;/p&gt;
+
+&lt;p&gt;下面代码的意思就是：把src拷贝给dst，然后给dst加1. 所以如果你的cpu或者GPU支持这个指令，打印出来的结果就是2.&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   
+
+&lt;span class=&quot;n&quot;&gt;asm&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mov %1, %0&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;add $1, %0&quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;=r&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;r&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;上面这个实例里面的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;r&lt;/code&gt;的意思是register寄存器的意思，除了r还有其他关键字&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;r 操作数指定一个通用的寄存器 register&lt;/li&gt;
+  &lt;li&gt;m 操作数指定一个内存地址 memory&lt;/li&gt;
+  &lt;li&gt;i 操作数指定一个整数常量 integer&lt;/li&gt;
+  &lt;li&gt;g 操作数必须是通用寄存器、内存地址或整数常量中的一个.也可以用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rmi&lt;/code&gt;来表示&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;需要注意有简单的几点，可以下面的一个格式：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;扩展的 asm 语句必须位于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;函数内部&lt;/code&gt;。只有基本的空间可以是函数之外的。&lt;/li&gt;
+  &lt;li&gt;用 asm 关键字作为开头，也可以用__asm__，用前者的时候比较多&lt;/li&gt;
+  &lt;li&gt;optional stuff可以为空、volatile、goto其中一个&lt;/li&gt;
+  &lt;li&gt;assembler template 就是你想用的汇编指令&lt;/li&gt;
+  &lt;li&gt;每一个asm块，长度不超过30个inputs&lt;/li&gt;
+  &lt;li&gt;输出、输入、lable都是可选的&lt;/li&gt;
+  &lt;li&gt;冒号只需要到您希望使用的参数为止，如果希望跳过参数，则冒号之间没有任何内容是有效的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;语法格式：&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;asm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;optional&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stuff&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+	    &lt;span class=&quot;s&quot;&gt;&quot;assembler template&quot;&lt;/span&gt;
+	    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;outputs&lt;/span&gt;
+	    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inputs&lt;/span&gt;
+	    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clobbers&lt;/span&gt;
+	    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;输入和输出&quot;&gt;输入和输出&lt;/h1&gt;
+
+&lt;p&gt;输出和输入是汇编程序模板“格式字符串”的参数。它们是以逗号分隔的。他们都使用以下两种模式中的一种:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;       &quot;constraint&quot; (expression)
+[Name] &quot;constraint&quot; (expression)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;限制&quot;&gt;限制&lt;/h2&gt;
+
+&lt;p&gt;比如这个乘法指令&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;imul %0, %1, %2&lt;/code&gt;，按照上面提到的%0是dst，后面2个是src.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于x86指令架构，乘法指令有三个操作数的时候：此种形式需要一个目标操作数%0（第一个操作数）与两个源操作数（第二个与第三个操作数）。这里，第一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;源操作数&lt;/code&gt;%1（可以是通用寄存器或内存位置）乘以第二个源操作数%2（立即数）。乘积随后存储到目标操作数%0（通用寄存器）。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;第一个%0 一定就是寄存器，不能是const&lt;/li&gt;
+  &lt;li&gt;第二个操作数%1，可能是regist或者是memory地址&lt;/li&gt;
+  &lt;li&gt;第三个操作数%2，一定就是const integer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(ARM 只支持寄存器上的运算，所以所有的操作数都是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;寄存器&lt;/code&gt;操作数。)&lt;/p&gt;
+
+&lt;h2 id=&quot;输出&quot;&gt;输出&lt;/h2&gt;
+
+&lt;p&gt;输出指定左值，结果应该存储在操作结束的位置。可赋值的通常是 lvalue (变量、取消引用的指针、数组下标、结构字段等)。只要遵守约束，大多数左值都被接受为操作数: 例如，可以使用 r (register)传递位字段，但不能使用 m (memory) ，因为不能获取位字段的地址。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;输出的约束字符串必须以 = 或 + 作为前缀&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+&lt;/code&gt; 表示输出实际上是一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;读写值&lt;/code&gt;。操作数最初具有表达式包含的值。可以在程序集字符串中的任何位置读取此输出操作数。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=&amp;amp;&lt;/code&gt; 意味着输出是一个提前完成的输出。它的初始值未指定。一旦给 =&amp;amp; 操作数赋值，就不会出现从该操作数读取的错误。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=&lt;/code&gt; 意味着输出是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;只写&lt;/code&gt;的。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=@ccCOND&lt;/code&gt; 是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=&lt;/code&gt; 的特殊情况，它允许您在汇编语句的末尾查询条件代码的结果。不能在程序集模板中引用条件输出。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;比如x86指令集是这样的&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;asm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;addl %1, %0&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;+rm&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;g&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;在arm就是下面这样的，arm只有寄存器&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;asm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;add %0, %1, %2&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;=r&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;r&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;r&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;输入&quot;&gt;输入&lt;/h2&gt;
+
+&lt;p&gt;输入可以是任何值，只要它对约束有意义。例如，要使用 i 约束，编译器必须能够发现该值是一个常量。它们没有任何前缀。&lt;/p&gt;
+
+&lt;p&gt;如果语法中使用了&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asm volatile&lt;/code&gt;，代码有可能被优化掉，比如没有用到的无效语句.&lt;/p&gt;
+
+&lt;p&gt;还有其他的goto、labels等高级用法，可以在实战用多练习，这样更容易掌握，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;学习的新的只是用起来才是关键.&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+
+&lt;p&gt;https://gcc.gnu.org/onlinedocs/gcc/Extended-Asm.html&lt;/p&gt;
+
+&lt;p&gt;https://llvm.org/docs/LangRef.html#inline-assembler-expressions&lt;/p&gt;
+
+&lt;p&gt;https://www.felixcloutier.com/documents/gcc-asm.html&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Thu, 04 Aug 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/08/04/inline-asm-syntax/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/08/04/inline-asm-syntax/</guid>
+        
+        <category>asm</category>
+        
+        
+      </item>
     
       <item>
         <title>48 -  值得去做</title>
@@ -774,40 +904,6 @@ tags:&lt;/p&gt;
         <guid isPermaLink="true">https://blog.chiphub.top/2022/06/11/life-is-important/</guid>
         
         <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM LibFuzzer介绍和实践 -2</title>
-        <description>&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;https://gist.github.com/MattPD/00573ee14bf85ccac6bed3c0678ddbef#program-analysis-resources&lt;/p&gt;
-
-&lt;p&gt;https://github.com/MattPD/cpplinks/blob/master/analysis.static.md&lt;/p&gt;
-
-&lt;p&gt;https://blog.regehr.org/archives/1737&lt;/p&gt;
-
-&lt;p&gt;https://www.cs.utah.edu/~regehr/papers/pldi11-preprint.pdf&lt;/p&gt;
-
-&lt;p&gt;https://web.ist.utl.pt/nuno.lopes/alive2/&lt;/p&gt;
-
-&lt;p&gt;https://discourse.llvm.org/t/beginner-resources-documentation/5872
-https://llvm.org/docs/MIRLangRef.html&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/06/08/llvm-c-compiler-static-analyzer/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/06/08/llvm-c-compiler-static-analyzer/</guid>
-        
-        <category>LLVM</category>
         
         
       </item>
