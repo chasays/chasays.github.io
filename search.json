@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "49 -  聚焦",
+      "subtitle" : "不要为了爱发电",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/08/06/focus/",
+      "date"     : "2022-08-06 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "在C++里面使用内联汇编语法",
       "subtitle" : "非常的简单",
       "tags"     : "asm",
@@ -25,9 +33,9 @@
     } ,
   
     {
-      "title"    : "Demand",
-      "subtitle" : "",
-      "tags"     : "",
+      "title"    : "46 - 刚需",
+      "subtitle" : "这个方法不错，可以很好的判断自己是否需要这个东西",
+      "tags"     : "Newsletter",
       "url"      : "/2022/07/15/demand/",
       "date"     : "2022-07-15 00:00:00 +0000"
     } ,
