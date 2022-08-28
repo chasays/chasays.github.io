@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "52 -  热",
+      "subtitle" : "命都是空调给的",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/08/27/life-is-given-by-air-conditioner/",
+      "date"     : "2022-08-27 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "51 -  不要只担心代码",
+      "subtitle" : "数据结构更重要",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/08/21/bad-code/",
+      "date"     : "2022-08-21 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "50 -  成不了是常态",
       "subtitle" : "不成就继续",
       "tags"     : "Newsletter",
