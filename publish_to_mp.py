@@ -151,10 +151,11 @@ def upload_image(img_url):
             f_name = f_name + ".png"
         with open(f_name, 'wb') as f:
             # f.write(resource.read())
-            f.write(requests.get(img_url).content)
+            time.sleep(1)
+            f.write(requests.get(img_url,timeout=30).content)
     except URLError as e:
         print(f'Fail to upload pic:{img_url}')
-        raise 'fail'
+        # raise 'fail'
 
     return upload_image_from_path(f_name)
 
@@ -410,6 +411,9 @@ if __name__ == '__main__':
     ## for debug
     # path_str = '_posts/2022/2022-05-02-LLVM-intrinsic_introduce.md'
     # debug_generate_html(path_str)
+    # url = 'https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220903164132.png'
+    # upload_image(url)
+    # sys.exit()
     w_type = args.type
     filename = args.file
     if w_type in WECHAT_DICT:
