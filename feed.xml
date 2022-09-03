@@ -5,9 +5,114 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 28 Aug 2022 06:54:13 +0000</pubDate>
-    <lastBuildDate>Sun, 28 Aug 2022 06:54:13 +0000</lastBuildDate>
+    <pubDate>Sat, 03 Sep 2022 09:33:01 +0000</pubDate>
+    <lastBuildDate>Sat, 03 Sep 2022 09:33:01 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>53 - no AD</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220903173033.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今天把公众号底部的广告关闭了，因为底部的广告看上去不是很好，它是根据你个人在网上的identity来推送的，比如说你在同一个局域网，然后这个局域网里面有其他人去访问了，带给这个网络标签就会有多种标签，它推送的可能不是你喜欢的内容，也不是你想看的内容。广告目前根本是没什么收入的，一个月就几十块，摊手~。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;目前内容载体是视频，要赚钱的还是要走视频内容，比文字更容易些。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我打算开个赞赏不定时的更新文章，如果你看到比较有感兴趣的，那你就随手赞赏，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;最低一元，只要头像出现即可，不用赞赏太多&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;看来有好多在写 newsletter 的时候，中途已经放弃（停更）了。 我也在坚持啊，因为每次写一篇文章，加上平时积累的时间，大概是2到5个小时一篇文章。&lt;/p&gt;
+
+&lt;p&gt;收获肯定是有的，比如说自己思维更清晰，去描述一个东西，很有条理的给他说出来（上次去孩子的学校&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;脱稿&lt;/code&gt;演说，完全是写作的功劳呀），还有一个就是提升了自己，及时的去总结自己过失，同时也对这个互联网以及相关领域的知识保持着不断的更新。&lt;/p&gt;
+
+&lt;p&gt;说到更新，已经是快35的人了，因为有人生的一个焦虑。前段时间听一个播客，其实在美国大家不是躺平的一个状态，像一些硅谷的程序员也是很卷的，除了一些欧洲、日韩他们才属于一个躺平的状态。&lt;/p&gt;
+
+&lt;p&gt;还有一个原因，我更有一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;自私的想法&lt;/code&gt;，就是通过写这个，然后结识一些有趣的大佬，能不能抓住一个机会暴富？&lt;/p&gt;
+
+&lt;p&gt;这种心态是非常幼稚的，暴富肯定是不能暴富的。&lt;/p&gt;
+
+&lt;p&gt;看到其他人通过收费然后变现，其实自己也非常的羡慕，我自己的想法就是坚持更新下去，至少从我现在看来还不会收费，内容也不允许收费呀。&lt;/p&gt;
+
+&lt;p&gt;一个好的产品，一个好的商业，肯定是要通过变现，这个地方没有套现。我觉得我收获的知识也是有价值的，同时你们给我带来一些转发、点赞、以及打赏也是给我的一种动力，同时也是对我的一种付费，我觉得这种付费更是一种无价的。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://exafunction.com/blog/are-gpus-worth-it&quot;&gt;机器学习一定要用GPU么？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220903164132.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;某些情况下是可以成立的.&lt;/p&gt;
+
+&lt;p&gt;从理论上讲，这听起来像是一个愚蠢的问题。机器学习模型，特别是深度学习模型，（主要是）是一堆算术运算，特别是矩阵乘法等可并行操作。通过设计，GPU针对可并行化的算术操作进行了优化, 这是天作之合。&lt;/p&gt;
+
+&lt;p&gt;正如作者在前面的文章中所讨论的，希望消除机器学习从业者在部署他们的工作负载时所感受到的所有痛苦和担忧。成本和延迟可以说是最重要的，因此解决这个动态多路复用问题。在数字方面，我们已经成功地将30个客户机复用到一个单一的 GPU 上，以满足客户的工作负载.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/ID-z70BsYOdWPlwFiVojPw&quot;&gt;英伟达挖矿史：“把这一代最优秀的工程师聚在一起，然后研究挖比特币”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220903164544.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果问各大科技公司，英伟达这家公司最让人羡慕的地方是什么，“不受周期限制”可能是最多的答案。&lt;/p&gt;
+
+&lt;p&gt;如果套用Facebook早期工程师杰夫·汉默巴彻批评互联网公司的那句话：“我们这一代人中最优秀的头脑，都在思考如何让人们点击广告，这太糟糕了”，那么沉迷挖矿的英伟达，同样聚集了最棒的工程师们，但如果这些工程师们聚在一起最终就是为了研究挖矿，那同样要说一句：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这也太糟糕了&lt;/code&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/iZ925nJoT8021bDBQmNjig&quot;&gt;有多少年轻人在山姆会员店装中产&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如今，沉默地逛山姆已成为了一种美德。
+在某问答社区，如果你说山姆贵，会有人质疑你经济能力.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://neverworkintheory.org/2022/08/30/software-engineering-research-questions.html&quot;&gt;软件工程研究的问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本文包含64个软件工程研究问题。这些问题没有任何具体的顺序，它们涵盖了广泛的主题。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://webkit.org/blog/13140/webkit-on-github/&quot;&gt;WebKit 终于宣布放弃SVN管理代码&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220903164859.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2022年6月23日，WebKit 项目冻结了 SVN仓库，并将管理和与源代码的交互过渡到 GitHub 上。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/rui314/chibicc&quot;&gt;chibicc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一个C语言编译器项目。为了让读者可以从头到尾清晰地理解项目演进的过程，作者非常用心地编排每一次的commit。虽然这是一个挺“玩具”的编译器，但是已经可以对一些项目进行编译了，这些项目包括Git、SQLite、libpng，它甚至也已经实现了自举。
+挺有意思的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.chrome.com/en/blog/devtools-modern-web-debugging/&quot;&gt;devtools&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;许多开发人员利用框架、构建工具和编译器从更高级别的角度编写Web应用程序。然而，开发人员只有在Chrome DevTools中调试或分析Web应用程序时才能看到其代码的编译版本。本文讨论了Chrome DevTools中的新功能，这些功能可以帮助开发人员在编写代码时查看代码。这些更改旨在改善调试体验。Chrome DevTools团队计划在未来的更新中改善DevTools分析体验。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/StaZhu/enable-chromium-hevc-hardware-decoding/blob/main/README.zh_CN.md&quot;&gt;Chrome / Edge 启用 HEVC 硬解&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一个教你为 Chrome / Edge 启用 HEVC 硬解，或编译 Chromium / Electron 使其支持 Windows / macOS 平台 HEVC 硬 &amp;amp; 软解功能的教程&lt;/p&gt;
+</description>
+        <pubDate>Sat, 03 Sep 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/09/03/no-ad/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/09/03/no-ad/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>52 -  热</title>
@@ -758,74 +863,6 @@
         <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2022/07/09/song-is-popular/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2022/07/09/song-is-popular/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>44 - 经痛喝热水有用么？</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/66ZAIFRK3QWdyEVtczy60g&quot;&gt;高考志愿，谁的志愿&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;年轻人可以向年长者咨询，年长者也可以提供视野，经验和教训上的分享，可以给与一定的建议，警示和引导。但是！尊重年轻人的兴趣和热爱，不要越俎代庖，更不要自以为自己就一定知道什么是对的。还有，以“我这样都是为了你好”剥夺年轻人的选择，无视年轻人的喜好，是非常他妈的腐朽的思想。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/k5VxvM.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;评论区非常热闹，我个人也是觉得，每个人的经历和内心的爱好不一样，自己的路只有自己选，真正选择去做自己喜欢做的事情。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://markgreville.ie/2022/06/22/book-summary-how-to-know-everything-by-elke-wiss/&quot;&gt;书：如何了解一切&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/ob93zO.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这本书是关于什么的？——最简单的是，这本书涉及提问的艺术。实际上，这是关于苏格拉底哲学的。这是我们愿意敞开心扉，闭上嘴听。这个概念超级地简单，但时最深的从那以后我提问的时候基本上都问自己几个问题，这个问题互联网能找到吗？你找这个问题你是想知道什么东西？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://wiki.woodpecker.org.cn/moin/AskForHelp&quot;&gt;提问的智慧&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;同样推荐下，在自己学习 Python 的是时候，无意之间在啄木鸟社区发现了这一篇文章。在你打算向某个论坛或者某个maillist请教时，请好好看看下面这张图谱，呵呵。尽快提高自己的能力是也。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/QtZ2Kv.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.theverge.com/2022/7/1/23191634/nvidia-amd-gpu-shortage-over-3080-3070-3060-radeon-rx-6900-6800&quot;&gt;GPU短缺暂时不短缺&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/YojXuN.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;本文研究了不同市场的GPU价格，影响这些价格的因素，以及当前市场上是否值得购买GPU。近两年来，显卡一直难以获得。他们现在又上架了，经销商价格已经达到了MSRP。价格下跌的原因之一是，这些GPU上的芯片现在已经用了两年了。由于崩溃，许多加密矿工正在出售他们的二手卡。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/78IKOnN2IItBC3TpI4EDKA&quot;&gt;中文排版&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/hBKzFh.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;中文和数字之间，比如中文和 123 混排的时候，数字左右也应该留有空白。数字和单位之间，比如「20 元」，也应该留有空白。看完这篇文章之后，我去设置了下 Sogou 的输入法，瞬间就好多了。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/Zi0xZMgpXGLyPLRDB8MBEQ&quot;&gt;原来来大姨妈多喝热水是有科学依据的&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/JsbzsG.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;痛经一来，热水袋和暖贴简直就是救命神器，先不说能不能止痛，只是抱着热水袋，就能舒服一点。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 02 Jul 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/07/02/keep-good-health/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/07/02/keep-good-health/</guid>
         
         <category>Newsletter</category>
         
