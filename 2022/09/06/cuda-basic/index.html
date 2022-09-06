@@ -12,16 +12,27 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="CUDA 基础 01 - 概念 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="人生就是干">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。
+
+">
+    
+    <meta property="article:published_time" content="2022-09-06T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="cuda">
+    
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2022-07-02/">
+    <meta property="og:url" content="https://blog.chiphub.top/2022/09/06/cuda-basic/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <title>察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>CUDA 基础 01 - 概念 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -30,7 +41,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2022-07-02/">
+    <link rel="canonical" href="https://blog.chiphub.top/2022/09/06/cuda-basic/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -61,8 +72,8 @@
 
     <!-- Navigation -->
 
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -95,8 +106,6 @@
                         <li>
                             <a href="/archive/">Archive</a>
                         </li>
-                        
-                        
                         
                         
                         
@@ -241,60 +250,273 @@
   </div>
 </div>
 
-    <!-- Page Header -->
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/https://source.unsplash.com/random/1800x400/?tech" width="0" height="0"> -->
+
+<!-- Post Header -->
 
 
 
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400/?tech');
+        background: ;
+    }
 
+    
+</style>
 
+<header class="intro-header style-text" >
 
-
-<header class="intro-header" style="background-image: url('https://source.unsplash.com/random/1800x400/?tech')">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        
-        <div class="site-heading">
-        
-          <h1>察说花园</h1>
-          <span class="subheading"></span>
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=cuda" title="cuda">cuda</a>
+                        
+                    </div>
+                    <h1>CUDA 基础 01 - 概念</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by 叉叉敌 on September 6, 2022</span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </header>
 
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。</p>
+
+<p>warp/sm/index/grid等。</p>
+
+<h2 id="cpu--vs-gpu">CPU  VS GPU</h2>
+
+<blockquote>
+  <p>GPU最重要的一点是可以并行的实现数据处理。</p>
+</blockquote>
+
+<p>这一点在数据量大、运算复杂度不高的条件下极为适用。可以简单地把一块GPU想象成一个超多核的CPU运算部件。这些CPU有自己的寄存器，还有供数据交换用的共享内存、缓存，同时周围还有取指部件和相应的调度机制，保证指令能够在之上执行。</p>
+
+<p>这里有一张典型的CPU和GPU的对比图片，CPU和GPU就呈现出非常不同的架构</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906212741.png" alt="" /></p>
+
+<ul>
+  <li>鲜绿色：计算单元ALU(Arithmetic Logic Unit）</li>
+  <li>橙红色：存储单元（cache）</li>
+  <li>橙黄色：控制单元（control）</li>
+</ul>
+
+<p>GPU：数量众多的计算单元和超长的流水线，只有简单的控制逻辑并省去了Cache
+CPU：被Cache占据了大量空间，而且还有有复杂的控制逻辑和诸多优化电路。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906213009.png" alt="" /></p>
+
+<p>这个比喻就很恰当：</p>
+<blockquote>
+  <p>GPU的工作大部分就是这样，计算量大，而且要重复很多很多次。就像你有个工作需要算几亿次一百以内加减乘除一样，最好的办法就是雇上几十个小学生一起算，一人算一部分</p>
+
+  <p>CPU就像老教授，积分微分都会算，就是工资高，一个老教授资顶二十个小学生，你要是富士康你雇哪个</p>
+
+  <p>CPU和GPU因为最初用来处理的任务就不同，所以设计上有不小的区别，而某些任务和GPU最初用来解决的问题比较相似，所以用GPU来算了。</p>
+</blockquote>
+
+<h1 id="软件">软件</h1>
+
+<h2 id="grid-概念">grid 概念</h2>
+
+<p>CUDA 采用异构编程模型，用于运行主机设备应用程序。它有一个类似于 OpenCL 的执行模型。在这个模型中，我们开始在主机设备上执行一个应用程序，这个设备通常是 CPU 核心。该设备是一个面向吞吐量的设备，也就是说，一个 GPU 核心执行并行计算。内核函数用于执行这些并行执行。一旦执行了这些内核函数，控制就被传递回继续执行串行操作的主机设备。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906232554.png" alt="" /></p>
+
+<p>为了方便定位threadidx等，用多维数据来表示，就有了维度。</p>
+
+<p>由于许多并行应用程序涉及多维数据，因此可以<code class="language-plaintext highlighter-rouge">很方便地将线程块组织成一维、二维或三维线程数组。</code>grid中的块必须能够独立执行，因为grid中的块之间不可能进行通信或合作。当启动一个内核时，每个线程块的线程数量，并且指定了线程块的数量，这反过来又定义了所启动的 CUDA 线程的总数。</p>
+
+<p>块的最大 x、 y 和 z 维分别为1024、1024和64，其分配应使 x × y × z ≤1024，即每个块的最大线程数。</p>
+
+<blockquote>
+  <p>扩展理解：float4， int4， long4 又是什么？有什么好处？</p>
+</blockquote>
+
+<h2 id="index-索引">index 索引</h2>
+
+<p>CUDA 中的每个线程都与一个特定的索引相关联，因此它可以计算和访问数组中的内存位置。</p>
+
+<p>举个例子：</p>
+
+<p>其中有一个512个元素的数组。其中一种组织结构是使用一个包含512个线程的单个块的grid。假设有一个由512个元素组成的数组 C，它由两个数组 A 和 B 的元素相乘构成，这两个数组都是512个元素。每个线程都有一个索引 i，它执行 A 和 B 的第 i 个元素的乘法运算，然后将结果存储在 C 的第 i 个元素中。 i 是通过使用 blockIdx  (在这种情况下是0，因为只有一个块)、 blockDim (在这种情况下是512，因为块有512个元素)和 threadIdx 计算得到的，每个块的值从0到511不等。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906224450.png" alt="" /></p>
+
+<p>线程索引 i 按以下公式计算:</p>
+
+<p>int i = blockIdx.x * blockDim.x + threadIdx.x;</p>
+
+<p>因此，i的值范围从0到511，覆盖整个数组。但是不一定是连续的，3，4,1,2。。。。</p>
+
+<p>再来：</p>
+
+<p>考虑一个大于1024的数组的计算，我们可以有多个块，每个块有1024个线程。考虑一个包含2048个数组元素的示例。在这种情况下，我们有2个线程块，每个线程有1024个线程。因此线程标识符的值将从0到1023不等，块标识符将从0到1不等，块维度将为1024。因此，第一个块将获得从0到1023的索引值，最后一个块将获得从1024到2047的索引值。</p>
+
+<p>每个线程将首先计算它必须访问的内存索引，然后继续进行计算。举个实际的例子，其中数组 A 和 B 的元素通过使用线程并行添加，结果存储在数组 C 中。线程中相应的代码如下所示</p>
+
+<pre><code class="language-C">__global__ void vectorAdd (float *A , float *B , float * C , int n)
+{
+    int index = blockIdx.x * blockDim.x + threadIdx.x;
+    if (index &lt; n)
+    {
+        C[index] = A[index] + B[index] ;
+    }
+}
+</code></pre>
+
+<p>除了一维还有2/3维度，计算index可以参考公式，也是一样不一定连续， 234,235,200,201……</p>
+
+<h1 id="硬件">硬件</h1>
+
+<h2 id="sm-stream-multiprocessor-流多处理器">SM stream Multiprocessor： 流多处理器</h2>
+
+<p>每个SM内又包括了多个SP（streaming processor）。而SP正是实现算数功能的核心部件，可以类比CPU之中的ALU单元，只不过其计算能力要差很多。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906215236.png" alt="" /></p>
+
+<p>可以看到，每个SM内部的SP之间，可以共享一块shared memory。</p>
+
+<p>以及一块指令缓存用于存放指令、一块常量缓存（c-cache）用来存放常量数据，两个SFU（特殊运算单元，special function unit）用来做三角函数等较复杂运算，MT issue用来实现多线程下的取指，以及DP（Double Precision Unit）用来做双精度数。 除去一些运算单元之外，最重要的就是c-cache与shared memory两块数据存储区。<code class="language-plaintext highlighter-rouge">注意这两个位置的数据只能由SM内部的SP进行访问</code>，SM之间也有用于数据交换的区域。最主要的是global memory。</p>
+
+<p>硬件将线程块调度到一个 SM。一般来说，SM 可以同时处理多个线程块。一个 SM 可能总共包含多达8个线程块。线程 ID 由其各自的 SM 分配给线程。</p>
+
+<p>每当 SM 执行一个线程块时，线程块中的所有线程都同时执行。因此，为了释放 SM 内部线程块的内存，关键是该块中的整个线程集都已结束执行。每个线程块被划分为预定的单元，称为warp。</p>
+
+<h2 id="warp-wavewavefront">warp （wave、wavefront）</h2>
+
+<p>不同GPU vendor叫法不一样，A卡叫wave，N卡叫warp/卧铺/，我司的也叫wave。我个人理解的就是一波波的相同指令的线程执行，wave好记。</p>
+
+<p>Warp：warp是SM调度和执行的基础概念，通常一个SM中的SP(thread)会分成几个warp(也就是SP在SM中是进行分组的，物理上进行的分组)，一般每一个WARP中有32个thread.这个WARP中的32个thread(sp)是一起工作的，执行相同的指令，如果没有这么多thread需要工作，那么这个WARP中的一些thread(sp)是不工作的，叫inactive。</p>
+
+<p>我们应该注意，<code class="language-plaintext highlighter-rouge">线程、线程块和grid本质上是编程的视角</code>。为了得到一个完整的线程块要点，从硬件的角度了解它是至关重要的。硬件将执行相同指令的线程分组为 <code class="language-plaintext highlighter-rouge">warps</code> 。几个warps组成一个线程块。几个线程块被分配给一个流式多处理器(SM)。几个 SM 组成了整个 GPU 单元(执行整个内核grid)。</p>
+
+<p>编程的视角与 GPU 中线程块的硬件视角之间的图形关联。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906221155.png" alt="" /></p>
+
+<p>在硬件方面，线程块由“warp”组成。warp是一个线程块中的32个线程的集合，使得warp中的所有线程执行相同的指令。这些线程由 SM 连续选择。</p>
+
+<p>假设有32个执行指令的线程。如果其中一个或两个操作数都没有准备好(例如还没有从全局内存中获取) ，就会发生一个称为“上下文切换”的过程，将控制权转移到另一个指定的操作数上。</p>
+
+<p>当从一个特定的warp切换时，warp的所有数据都保留在寄存器文件中，以便在其操作数准备就绪时能够迅速恢复。当一条指令没有突出的数据依赖关系时，也就是说，它的两个操作数都准备好了，就认为各自的偏差已经准备好可以执行了。如果有多个warp符合执行条件，则父 SM 使用一个warp调度策略来决定哪个warp获取下一个提取指令。</p>
+
+<blockquote>
+  <p>warp调度有不同的策略，这个有点深入，先不看，加个#TODO。比如RR、LRF、FAIR、CAWS。</p>
+</blockquote>
+
+<h2 id="read-more">Read more</h2>
+
+<p>https://en.wikipedia.org/wiki/Thread_block_(CUDA_programming)</p>
+
+<p>https://www.nvidia.com/content/PDF/fermi_white_papers/NVIDIA_Fermi_Compute_Architecture_Whitepaper.pdf</p>
+
+<p>http://www.uml.org.cn/embeded/201809034.asp?artid=21130</p>
+
+<p>https://www.cnblogs.com/maomaozi/p/15939275.html</p>
+
+<blockquote>
+  <p><a href="https://chasays.github.io/">github博客</a></p>
+
+  <p>微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+</blockquote>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/09/03/no-ad/" data-toggle="tooltip" data-placement="top" title="53 - no AD">
+                        Previous<br>
+                        <span>53 - no AD</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			
-
-    		</div>
     <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
 
 
 <section>
+    
+        <hr class="hidden-sm hidden-xs">
     
     <h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
@@ -304,307 +526,223 @@
         
         
         
-                <a data-sort="0219" 
+                <a data-sort="0220" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0180" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
                     rel="49">Newsletter</a>
         
-                <a data-sort="0218" 
+                <a data-sort="0219" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0220" 
+                <a data-sort="0221" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0220" 
+                <a data-sort="0221" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0220" 
+                <a data-sort="0221" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0220" 
+                <a data-sort="0221" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0221" 
+                <a data-sort="0222" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0222" 
+                <a data-sort="0223" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
                     rel="6">LLVM</a>
         
-                <a data-sort="0222" 
+                <a data-sort="0223" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0224" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0225" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0225" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0225" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="4">cuda</a>
+        
+                <a data-sort="0225" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0225" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0225" 
-                    href="/archive/?tag=cuda"
-                    title="cuda"
-                    rel="3">cuda</a>
-        
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0226" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0227" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>
     </div>
 </section>
 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-  <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-    
-    <img src="/img/avatar-xxd.jpg" />
-    
-    
-    <p>人生就是干！</p>
-    
-    <!-- SNS Link -->
-    
-
-
-<ul class="list-inline">
-
-
-  
-  <li>
-    <a href="/feed.xml">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-  </li>
-  
-  
-  <li>
-    <a href="https://twitter.com/troubleisfff">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-  </li>
-  
-  
-  <li>
-    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa  fa-stack-1x fa-inverse">知</i>
-      </span>
-    </a>
-  </li>
-  
-  
-  <li>
-    <a target="_blank" href="http://weibo.com/333255512">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-  </li>
-  
-  
-  <li>
-    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
-      </span>
-    </a>
-  </li>
-  
-  
-  <li>
-    <a target="_blank" href="https://github.com/chasays">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-  </li>
-  
-  
-</ul>
-
-  </div>
-</section>
 
                 <!-- Friends Blog -->
                 
@@ -626,10 +764,54 @@
   
 </ul>
 
-    		</div>
-        
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
 
 
