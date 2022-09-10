@@ -5,9 +5,280 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 06 Sep 2022 15:52:20 +0000</pubDate>
-    <lastBuildDate>Tue, 06 Sep 2022 15:52:20 +0000</lastBuildDate>
+    <pubDate>Sat, 10 Sep 2022 12:15:48 +0000</pubDate>
+    <lastBuildDate>Sat, 10 Sep 2022 12:15:48 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>Mid Autumn</title>
+        <description>
+&lt;hr /&gt;
+&lt;p&gt;layout: post
+title: “54 - 节日快乐”
+subtitle: ‘’ 
+author: “叉叉敌”
+header-style: text
+tags:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h2 id=&quot;newsletter&quot;&gt;Newsletter&lt;/h2&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;圆魄上寒空，皆言四海同。
+安知千里外，不有雨兼风？&lt;/p&gt;
+
+&lt;p&gt;同一片月光之下，你此时此刻在做什么喃？&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.apple.com/iphone/&quot;&gt;苹果发布会&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220910193404.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;苹果在 Far Out 发布会上发布了新款 iPhone、 Apple Watch 和 AirPods。届时将会推出四款新 iPhone: iPhone 14、 iPhone 14 Plus、 iPhone 14 Pro 和 iPhone 14 Pro Max。除了10月7日开始发售的 iPhone14 Plus 之外，这款手机还将提供两年的免费卫星连接服务，并于9月16日开始发售。新的苹果手表超功能的物理按钮和新的 AirPods Pro 有更有效的噪音消除。Apple Watch Ultra 和 AirPods Pro Series 2都将于9月23日开始发货。果粉们冲呀~ 灵动岛不就是软件的作用么？&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.wilfred.me.uk/blog/2022/09/06/difftastic-the-fantastic-diff/&quot;&gt;Difftastic&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220910194112.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Difftastic 是一个结构差异工具，根据语法比较文件。这篇文章介绍了如何构建 Difftastic，开发人员在构建它时的实现，构建工具时遇到的问题以及如何克服这些问题，以及工具的未来。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/FHJwUL5l064HG4AiXPoxAw&quot;&gt;一枚5万，天价“空气月饼”真相&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/f9670009397081b5922b8726ad2f1f5e.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今年，随着月饼新政出台，四部委发出公告，要求对单价超过500元的月饼重点监管，并对月饼包装做出要求，如减少层数、不得使用贵重材料包装、禁止月饼与其他产品混装等。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/pKyQZ_HEdYSZh7YRrW3YHA&quot;&gt;CUDA 基础 01 - 概念&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;软件和硬件对应的说法，比如SM调度和执行的基础概念，不同GPU vendor叫法不一样，A卡叫wave，N卡叫warp/卧铺/，我司的也叫wave。我个人理解的就是一波波的相同指令的线程执行，wave好记。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/ZrP-LIIttphl19jJBzW6KA&quot;&gt;又死一个主角？这部剧你永远猜不到下一秒！《权力的游戏》第7期&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;推荐一个我比较喜欢的博主，优秀电源解说，马上国庆就要来了，7天，如果是隔离在家，或者是酒店，看看电源解说，蛮有趣的。&lt;/p&gt;
+
+&lt;p&gt;如果你平时也有不错的公众号，也欢迎自荐或者给我推荐，谢谢~&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/wakatime/wakaq&quot;&gt;WakaQ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;WakaQ 是由 Redis 支持的 Python 分布式后台任务队列。它具有队列优先级、延迟任务、定期任务、向所有工作者广播任务、硬超时和软超时限制以及在软超时上重试任务。不支持速率限制和任务重复数据删除等特性。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/vmware-tanzu/kubeapps&quot;&gt;Kubeapps&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Kubeapps是一个集群内网络应用程序，用于在 Kubernetes 集群上部署、管理和升级应用程序。它可以浏览、升级、部署和删除包和应用程序、自定义部署、浏览和部署 Kubernetes Operators、安全授权等等。最新版本只支持 Helm3，但大多数为 Helm2制作的图表仍然可以工作。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.collabora.com/news-and-blog/blog/2022/09/07/improving-vulkan-graphics-state-tracking-in-mesa/&quot;&gt;link&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Vulkan 是一个低开销、跨平台的 API，是一个可以在 GPU 和 CPU 上运行的3D 图形和计算的开放标准。在这篇文章中，Jason Ekstrand 描述了 Vulkan 如何工作的理论心理模型，然后继续强调现实世界引入的问题以及它们是如何被解决的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.taichi-lang.org/blog/accelerate-python-code-100x&quot;&gt;Python加速代码 Taichi&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;总而言之，没有所有优化问题的通用解决方案。这就是Python引人入胜的部分原因。您始终可以找到/创建一个易于使用的工具，可以精确解决您手头的问题。在科学计算方面，Taichi是Python中的理想选择，可以帮助您实现与C/C++相当的性能。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 10 Sep 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/09/10/mid-autumn/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/09/10/mid-autumn/</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>CUDA 基础 02 - helloworld</title>
+        <description>&lt;p&gt;最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。&lt;/p&gt;
+
+&lt;p&gt;之前写了一篇关于cuda的kernel函数调用相关的知识，今天再来从一个hello world入手学习。&lt;/p&gt;
+
+&lt;h2 id=&quot;cuda-kernel定义&quot;&gt;cuda kernel定义&lt;/h2&gt;
+
+&lt;p&gt;普通函数和CUDA程序的区别。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;
+void CPUFunction()
+{
+  printf(&quot;This function is defined to run on the CPU.\n&quot;);
+}
+
+__global__ void GPUFunction()
+{
+  printf(&quot;This function is defined to run on the GPU.\n&quot;);
+}
+
+int main()
+{
+  CPUFunction();
+  GPUFunction&amp;lt;&amp;lt;&amp;lt;1, 1&amp;gt;&amp;gt;&amp;gt;();
+  cudaDeviceSynchronize();
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__global__ void GPUFunction() &lt;/code&gt;被称作核函数（kernel function），是cuda核心程序的入口部分。程序执行至这里时，将代码段交由GPU执行。&lt;/p&gt;
+
+&lt;p&gt;注意要加上 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__global__&lt;/code&gt; 关键字，表示这是运行在GPU上的函数。
+核函数在调用时，使用三对尖括号，里面的两个变量分别对应block数量与thread数量，引出下面的内容。&lt;/p&gt;
+
+&lt;p&gt;kernel对应就是在device运行，CPU侧就是在host上运行，还有一个就device上调用，device上执行。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906232455.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;cuda-编程&quot;&gt;cuda 编程&lt;/h2&gt;
+
+&lt;p&gt;一个异构环境，通常有多个CPU多个GPU，他们都通过PCIe总线相互通信，也是通过PCIe总线分隔开的。所以我们要区分一下两种设备的内存：&lt;/p&gt;
+
+&lt;p&gt;主机：CPU及其内存
+设备：GPU及其内存&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906232640.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;内存管理&quot;&gt;内存管理&lt;/h2&gt;
+
+&lt;p&gt;内存管理在传统串行程序是非常常见的，寄存器空间，栈空间内的内存由机器自己管理，堆空间由用户控制分配和释放，CUDA程序同样，只是CUDA提供的API可以分配管理设备上的内存，当然也可以用CDUA管理主机上的内存，主机上的传统标准库也能完成主机内存管理。
+下面表格有一些主机API和CUDA C的API的对比：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906232906.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;除了nv的，还有amd的hip也了解下。似乎就是吧cuda换成hip，你看这多方便开发者，基本上无缝切换~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906233229.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;其他参考这个页面：https://sep5.readthedocs.io/en/latest/Programming_Guides/CUDAAPIHIPTEXTURE.html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这个函数是内存拷贝过程，可以完成以下几种过程（cudaMemcpyKind kind），右边是对比的amd hip编程。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906233605.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;就是字面意思，memory copy xx to yy。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906233642.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我自己有几点经验或者是自己踩坑的总结；&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;内存拷贝： 分配的大小一定要一致&lt;/li&gt;
+  &lt;li&gt;初始化：要cpy到device值&lt;/li&gt;
+  &lt;li&gt;指针，和这个太基础了，但是我经常犯错&lt;/li&gt;
+  &lt;li&gt;数据大小，根据thread和元素大小来决定，避免数据安全问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;#include &amp;lt;cuda_runtime.h&amp;gt;
+
+__global__ void kernel(float*dst,float*src)
+{
+  ……
+}
+int main()
+{
+  ……
+  CHECK(cudaMalloc((float**)&amp;amp;d_out,nByte));
+  CHECK(cudaMalloc((float**)&amp;amp;d_in,nByte));
+  ……
+  cudaMemcpy(d_in,h_in,nByte,cudaMemcpyHostToDevice);
+
+  kernel&amp;lt;&amp;lt;&amp;lt;grid,block&amp;gt;&amp;gt;&amp;gt;(d_out,d_in);
+
+  cudaMemcpy(h_out,d_out,nByte,cudaMemcpyDeviceToHost);
+
+  // use h_out from GPU
+
+  cudaFree(d_out);
+  cudaFree(d_in);
+  return 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;block和thread的配置&quot;&gt;block和thread的配置&lt;/h2&gt;
+
+&lt;p&gt;一个BLOCK不能分到多个SM上执行，但是不同的Block有可能会分到相同的SM（这个是调度器控制的，对用户不可见）。既然sharedmemory在sm上，这样就解释了为什么Block之间没有办法共享shared memory，也不能够进行同步，否则会产生死锁。&lt;/p&gt;
+
+&lt;p&gt;上面的helloworld程度段只包含了一个核函数，运行的时候&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;GPUFunction«&amp;lt;1, 1»&amp;gt;();&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这个核函数内只有一个block，每个block内1个thread。运行一次就完成了。&lt;/p&gt;
+
+&lt;p&gt;GPUFunction«&amp;lt;10, 1»() 配置为在 10 个线程块（每个均具有单线程）中运行后，将运行 10 次。
+GPUFunction«&amp;lt;1, 10»() 配置为在具有 10 线程的单个线程块中运行后，将运行 10 次。
+GPUFunction«&amp;lt;10, 10»() 配置为在 10 个线程块（每个均具有 10 线程）中运行后，将运行 100 次。&lt;/p&gt;
+
+&lt;p&gt;基可以用threadIdx.x 和blockIdx.x 来组合获得对应的线程的唯一标识，hreadIdx和blockIdx能组合出很多不一样的效果。&lt;/p&gt;
+
+&lt;h2 id=&quot;compiler&quot;&gt;compiler&lt;/h2&gt;
+
+&lt;p&gt;CUDA在编译时使用编译器nvcc，作为一个C的扩展，nvcc的编译方法和gcc/g++类似。&lt;/p&gt;
+
+&lt;p&gt;NvCC 将这两部分分开, 并将主机代码(将在 CPU 上运行的代码部分)发送给像 gcc 或者 Intel C++编译器(ICC)或者微软 Visual c++ Compiler 这样的 C 编译器, 然后将 device 代码(将在 GPU 上运行的部分)发送给 GPU。device代码由 NVCC 进一步编译。NVCC 是基于 LLVM 的。根据 Nvidia 提供的文档，7.0版本中的 nvcc 支持许多由 C++ 11标准定义的语言结构和一些 C99特性。在版本9.0中，支持来自 C++ 14标准的多个构造。&lt;/p&gt;
+
+&lt;p&gt;CUDA 语言扩展的源文件(.cu)必须用 nvcc 编译。NVCC 是一个编译器驱动程序，它通过调用所有必要的工具和编译器来工作，比如 cudacc、 g++ 、 cl 等。NVCC 可以输出 C 代码(CPU 代码) ，然后必须使用另一个工具或 PTX 或对象代码直接与应用程序的其余部分一起编译。一个具有 CUDA 代码的可执行文件需要: CUDA 核心库和 CUDA 运行库。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220906231324.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;类似cudacc编译这部分目前就是我们正在做的，可以参考llvm编译器框架。&lt;/p&gt;
+
+&lt;h2 id=&quot;调用&quot;&gt;调用&lt;/h2&gt;
+
+&lt;p&gt;除了用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;&amp;lt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt;来调用kernel函数，这个三个尖括号&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;&amp;lt;grid,block&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt;内是对设备代码执行的线程结构的配置（或者简称为对内核进行配置），也就是我们上一篇中提到的线程结构中的grid，块还可以使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cudaLaunchKernel ( const void* func, dim3 gridDim, dim3 blockDim, void** args, size_t sharedMem, cudaStream_t stream )&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;上面的等于cudaLaunchKernel(GPUFunction, 1, 1, 0, 0)。&lt;/p&gt;
+
+&lt;p&gt;CPU和GPU是异步执行的，所以执行完了要看到print打印信息，需要sync才可以看到。&lt;/p&gt;
+
+&lt;p&gt;要注意的地方就是gridDim、blockDim、以及shareMem，比如在访问shareMemory的时候，一定要指定这个大小，不然同步回来的结果可能是0.&lt;/p&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+
+&lt;p&gt;https://sep5.readthedocs.io/en/latest/Programming_Guides/CUDAAPIHIPTEXTURE.html&lt;/p&gt;
+
+&lt;p&gt;https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__EXECUTION.html&lt;/p&gt;
+
+&lt;p&gt;https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html&lt;/p&gt;
+
+&lt;p&gt;https://www.cnblogs.com/maomaozi/p/15939275.html&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 07 Sep 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/09/07/cuda-helloworld/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/09/07/cuda-helloworld/</guid>
+        
+        <category>cuda</category>
+        
+        
+      </item>
     
       <item>
         <title>CUDA 基础 01 - 概念</title>
@@ -796,154 +1067,6 @@ CPU：被Cache占据了大量空间，而且还有有复杂的控制逻辑和诸
         <pubDate>Sat, 30 Jul 2022 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2022/07/30/worth-to-do/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2022/07/30/worth-to-do/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>47 - 激情</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/_IWs1uqa2b2n8U0Ucnr3MA&quot;&gt;全面开放后的美国疫情现状&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/T9oLu0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;除个别国家外，所有国家都放弃了公共强制干预措施，这意味着规避风险、保护自己的责任落到了每个人自己头上，谁的健康谁负责。&lt;/p&gt;
-
-&lt;p&gt;我们并不知道附近的人是否感染或者携带病毒，但是，我们还是可以做一些事来降低风险，保护高危人群&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MjM5ODQwMjA4MA==&amp;amp;idx=1&amp;amp;mid=2649293557&amp;amp;scene=21&amp;amp;sn=98f34bb53a54331887cb99972c89e1bc&quot;&gt;别开发 app 了&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;iOS、 Android app 开发成本居高不下，推广难度巨大，站在精益创业的角度，优先开发微信公众号是一种合理的选择。&lt;/p&gt;
-
-&lt;p&gt;渐进式网页应用技术的出现，让网页应用与原生应用的体验越来越接近，web app 也可以快速加载、可以实现离线。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.xiaoyuzhoufm.com/episode/62d2930f64f141ad81501383?s=eyJ1IjogIjYwZGU4ZDZlZTBmNWU3MjNiYmI0MzlhZCJ9&quot;&gt;我们二本学生这些年&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;第1个就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;多输出，多写作&lt;/code&gt;，输出的话是你读了或者是看了以及听了的东西一定要输出，这样才能把看到的知识一些信息，内化为自己的知识，吸收并了解你的才能，在日后的读书中去沉淀，更有深度的思考 .&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;还有一个就是利用杠杆&lt;/code&gt;，把你自己的优点放大去做。你擅长什么？&lt;/p&gt;
-
-&lt;p&gt;然后就把你擅长东西和你身边信息相关的东西连接起来，这样你更有热情去做，可能坚持得更久,这样更能做出色。&lt;/p&gt;
-
-&lt;p&gt;什么是好领导，你不知道好的领导是什么，但是你一定知道坏的领导的标准是什么。像pua,给你穿小鞋等等这些三观不正的都是一个不好的领导，相反的那就是一个好的领导。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/superfly/litefs&quot;&gt;LiteFS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;LiteFS是一个文件系统，可以跨计算机集群复制SQLite数据库。它具有FUSE文件系统、领导者选举和HTTP服务器，该服务器为副本节点提供API以接收更改。LiteFS旨在跨集群中的临时节点提供简单、实时、异步的复制。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/losfair/blueboat&quot;&gt;blueboat&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Blueboat是一个多租户无服务器的多合一JavaScript运行时。它的JavaScript-API具有Web-API兼容性，它抽象了本地资源，并用分布式系统中的等价物替换它们。第三方框架可用于更复杂的需求，如服务器端渲染。&lt;/p&gt;
-</description>
-        <pubDate>Thu, 21 Jul 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/07/21/passion/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/07/21/passion/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>46 - 刚需</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/zOXVKb1oB5QDS91-regKNg&quot;&gt;2元现金和一瓶矿水你会选什么？&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;两元钱的现金和一瓶矿泉水，如果是在沙漠里，你会选什么？我想大部分人会选择矿泉水。如果只是在现实生活中，比如在你身边城市里面，那大部分人可能会选择两元的现金。&lt;/p&gt;
-
-&lt;p&gt;这个是我最近看到的一篇文章，意思就是说你在有钱的时候选择买什么东西的时候，最好考虑一下这个场，如果这个场景你更愿意选择现金的话，说明你对这个东西不是刚需没有那么的急切的需要，建议就可以缓一缓。&lt;/p&gt;
-
-&lt;p&gt;还有一种方式就是把你想要的东西放在你购物车里面或者是购物清单里面，多放一段时间，过一段时间之后，如果你的这个东西还有那么迫切的愿望和购买的意愿，那就购买，若是没有，那就可以放弃了。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;p&gt;之前有个网友建议我在每篇文章注明是英文，还是中文，这个信息时代，确实文字没有视频、图片表现力好。&lt;/p&gt;
-
-&lt;p&gt;我后来想了下，如果你自己对这个文章感兴趣，不管他是什么语言，都难不住你的，是吧？&lt;/p&gt;
-
-&lt;p&gt;没有加图片的原因是没有自己的图床，之前用的 github 来存的图片，后来 js_cdn 被墙了。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/uxktt5ZpNo03FpQQX-aG7g&quot;&gt;波段策略.网格交易&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如果想要转到小钱，那一定是要在这个上面花费一定时间才行的，没有大量的时间投入，赚到的都是运气，未来一定会输回去。&lt;/p&gt;
-
-&lt;p&gt;这一个系列的文章会分为3-4篇。第一篇很重要，会讨论投资体系的构建，各种投资策略互相搭配的重要性以及应该注意的问题。这一篇虽然还未涉及网格策略，但真的很重要，希望你能认真看一看。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.jgc.org/2022/07/guest-wifi-using-qr-code.html&quot;&gt;把 WIFI 用二维码的方式打印出来&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这篇文章教读者如何创建WiFi二维码。如果你是程序员就非常好理解，如果你是不是这个行业的，那可以像个上面的网页的指导，可以轻松的创建一个二维码，用于WiFi连接适用于安卓和苹果。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.macrumors.com/2022/07/11/apple-car-design-rumors/&quot;&gt;苹果汽车设计谣言&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/NiHzL6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;最近发布的一份报告包含有关苹果汽车外观的详细信息。最新设计包括四个朝内的座位和一个弯曲的天花板。苹果的设计师正在试验一个后备箱隔间，该后备箱可以方便访问和大型座椅靠背屏幕。苹果前设计主管Jony Ive一直作为顾问参与该项目。该车辆距离发布还有几年时间，但苹果目前正在讨论如何在公开测试期间伪装车辆原型。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.computerenhance.com/p/the-problem-with-risc-v-v-mask-bits&quot;&gt;RISC-V V-掩码的问题&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如果您愿意继续，作者将本文中描述的问题提交到RISC-V github上。作者还亲自将这一担忧传达给了RISC-V社区联络人，作者将在未来发布一篇后续文章，附上作者收到的任何回复。&lt;/p&gt;
-
-&lt;p&gt;虽然作者对芯片设计的知识还不够丰富，不知道最好的解决方案是什么，但这基本上是他们必须要做的。作者可以想象，大多数高性能设计都会诉诸某种阴影，在这种阴影中，它们试图保存存储的位，就像它们从掩码指令中出来时是掩码寄存器一样，就像它们从向量指令中出来时是向量寄存器一样，然后有一些黑客在那里工作的情况下，指令流做了一些意想不到的事情，位不在正确的位置。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/readme/guides/publishing-your-work&quot;&gt;发布你的工作，增加你的运气&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;你做的事情越多，你告诉的人越多，你的运气表面积就越大。你的运气表面积越大，你就越有可能在运气流逝时抓住运气。&lt;/p&gt;
-
-&lt;p&gt;无论你多么努力工作，还是需要一点点运气才能有所收获。这可能令人沮丧，因为运气感觉像是一种超出我们控制的力量。但好消息是，我们可以增加遇到好运的机会。听起来像是魔法，但不是超自然现象。诀窍在于增加我们获得好运的机会的数量。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;发布你的作品这个简单的行为是给你的生活带来更多运气的最好方法之一&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;就是多输出的自己的知识到互联网。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://simonwillison.net/2022/Jul/9/gpt-3-explain-code/&quot;&gt;GPT3解释代码&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;作者用GPT-3 AI语言模型的用途之一是解释代码的工作原理。它在这方面非常有效：其培训集显然包含大量的源代码。&lt;/p&gt;
-
-&lt;p&gt;不过 Openai 提供的接口只有 18 美刀的免费额度。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.i996.me/#howtouse&quot;&gt;i996内网穿透&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;目前是免费用，代码还没有开源，需要部署一个 8080 端口 http 服务即可。但是在国内，私自搭建 http 服务是违法的，可以用于调试等其他业务。&lt;/p&gt;
-</description>
-        <pubDate>Fri, 15 Jul 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/07/15/demand/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/07/15/demand/</guid>
         
         <category>Newsletter</category>
         

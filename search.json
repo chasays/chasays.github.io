@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "Mid Autumn",
+      "subtitle" : "",
+      "tags"     : "",
+      "url"      : "/2022/09/10/mid-autumn/",
+      "date"     : "2022-09-10 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "CUDA 基础 02 - helloworld",
+      "subtitle" : "",
+      "tags"     : "cuda",
+      "url"      : "/2022/09/07/cuda-helloworld/",
+      "date"     : "2022-09-07 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "CUDA 基础 01 - 概念",
       "subtitle" : "",
       "tags"     : "cuda",
