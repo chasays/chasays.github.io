@@ -157,6 +157,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                SEARCH <i class="fa fa-search"></i>
@@ -281,9 +283,9 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2021/10/09/learn-japanese-06/">
+    <a href="/2021/11/13/python-style-rule/">
         <h2 class="post-title">
-            日语学习 - 06 は行
+            Python 风格规范
         </h2>
         
         <h3 class="post-subtitle">
@@ -293,41 +295,68 @@
         <div class="post-content-preview">
             
                 
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
 
+缩进
+用4个空格来缩进代码。
 
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
+绝对不要用tab, 也不要tab和空格混用. 对于行连接的情况, 你应该要么垂直对齐换行的元素, 或者使用4空格的悬挂式缩进(这时第一行不应该有参数):
 
-は(ha)行 - (はひふへほ)
+注释
 
-
-
-は - ha - 哈
-
-哈，还打口水仗，很八婆耶。
-
-解释： 哈是发音，仗形似平假名，八形似片假名。
+确保对模块, 函数, 方法和行内注释使用正确的风格
 
 
 
-ひ- hi - 嘿
+标点符号,拼写和语法
 
-袋子里掏出了匕首，嘿!扎过去了!
+注意标点符号,拼写和语法
 
-解释： 这个比较好记，没有太大的难度。袋子形...
+注释应有适当的大写和标点,句子应该尽量完整.对于诸如在行尾上的较短注释,可以不那么正...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on October 9, 2021
+        Posted by 叉叉敌 on November 13, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/10/08/learn-japanese-05/">
+    <a href="/2021/11/13/pomodoro_technique/">
         <h2 class="post-title">
-            日语学习 - 05 な行
+            11 - 番茄工作法能提高效率？
+        </h2>
+        
+        <h3 class="post-subtitle">
+            建议试用下
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                
+
+番茄工作法，就是把工作时间分为每 25 分钟一个片，然后休息 5 分钟。在这个 25 分钟内完成一个任务，只需要完成，心无旁骛。然后就是中间的 5 分钟一个小时间段的休息。
+
+完成优先级高的任务，这样可以让自己在一天开始的时候就列出必须要完成的所有任务，并且排好优先级。
+
+使用时间久了，也教会自己设置任务的优先级。
+
+休息的时间，大家可能和我开始一样有误解。
+
+有这样的疑问，就是休息的时...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on November 13, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2021/11/08/build-clis-in-one-line-code-by-python/">
+        <h2 class="post-title">
+            构建 Python CLI参数，还在用 argparse ?
         </h2>
         
         <h3 class="post-subtitle">
@@ -337,42 +366,29 @@
         <div class="post-content-preview">
             
                 
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
 
+构建 CLI 参数 –name
+Python argparse 库可以方便我们添加命令行界面，但是有点复杂，代码有点多，且长。
 
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
+https://docs.python.org/3/library/argparse.html#module-argparse
 
-な(na)行 - (なにぬねの)
+import argparse
 
-
-
-な - na - 拿
-
-な： 交完卷子，只拿十分!
-
-解释： 交是形似片假名，十是片假名，拿是发音。
-
-
-
-に- ni - 粗
-
-に： 仁者爱 (er) 人孔仲尼。
-
-
-  孔子，子仲尼。孔子思想的核心是仁和礼...
+def greeting(name: str):
+    print(f'Hello {name...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on October 8, 2021
+        Posted by 叉叉敌 on November 8, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/10/07/learn-japanese-04/">
+    <a href="/2021/11/07/summary/">
         <h2 class="post-title">
-            日语学习 - 04 た行
+            一次线下大会总结
         </h2>
         
         <h3 class="post-subtitle">
@@ -382,41 +398,34 @@
         <div class="post-content-preview">
             
                 
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
 
+找到自己的方向和链接
 
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-た(ta)行 - (たちつてと)
-
-
-
-た - ta - 塌
-
-第一个 た：十二点还有夕阳，天塌了吧。
-
-解释：平假名的形似十二，片假名形似夕阳的夕，读音是塌。
+参加这次参加线下大会，最主要的一个目的，就是张哥说的，要找到自己的方向，赚钱的方法是非常非常多的，还有就是要看你去执行自己，要结合自己身边的资源，自己自己的资源，自己自己的优势，找好自己方向。
 
 
 
-ち - chi - 吸
+链接链接，每一位优秀的球友以及他们的资源和你的资源一起共享，然后达到一个最大化。
 
-ち： 饼干出炉，跑着来吃!
 
-解释： 平假名有点类似一个...
+
+新品牌 新渠道 新消费 新用户
+如何找到好的种子，好的方向。
+
+用户需求，为用...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on October 7, 2021
+        Posted by 叉叉敌 on November 7, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/10/06/learn-japanese-03/">
+    <a href="/2021/11/06/tech-docs/">
         <h2 class="post-title">
-            日语学习 - 03 さ行
+            10 - 互联网公司如何沉淀技术文档
         </h2>
         
         <h3 class="post-subtitle">
@@ -426,41 +435,23 @@
         <div class="post-content-preview">
             
                 
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
 
+毕业之后在一家台企上班，属于制造业，当时候内部没有什么文档管理网站，都是用比较古老的方式来管理。比如 ppt、word，或者 svn 来管理文档，这个缺点就是没有索引，不利于搜索，找一个东西只有全凭记忆，甚至是运气才能找到自己要的资料，更别说是更新文档。甚至有时候找到的文档里面的解决方案十分落后，不能解决当前的问题。
 
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-さ(撒)行 - (さしすせそ)
-
-
-
-さ - sa - 洒
-
-第一个 さ：跪在了草地上，傻(sa)不傻(sa) 啊。
-
-解释：平假名类似一个人跪在草地上，无缘无故跪在哪里干嘛，傻呗。
-
-
-
-し - shi - 吸
-
-し： 用吸管吸出了三点水。
-
-解释...
+后面进入互联网方面，比起上一家公司，文档沉淀方面是一个质的飞跃。也有...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on October 6, 2021
+        Posted by 叉叉敌 on November 6, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/10/05/learn-japanese-02/">
+    <a href="/2021/10/30/invest/">
         <h2 class="post-title">
-            日语学习 - 02 か行
+            09 - 投资约定
         </h2>
         
         <h3 class="post-subtitle">
@@ -470,41 +461,81 @@
         <div class="post-content-preview">
             
                 
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
 
+整理了一份关于 Newsletter 清单，关于科技、互联网、工具、效率、思考、读书以及其他， 有个困惑就是没有联系上作者，都是自己的主观判断来分类的，分类因此不一定对。但是从订阅者来说，先订阅，如果后面发现推送的没有实际意义，或者自己不喜欢，取消订阅就可以了。
 
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
+https://github.com/chasays/newsletter-list
 
-か(卡)行 - (かきくけこ)
-
-
-
-か - ka - 卡
-
-第一个 か：车卡住了!加一点力!
-
-解释：加和力字分别是平和片假名的写法，卡是发音。
-
-
-
-き - ki - key
-
-き： 给琵琶调一下key。
-
-解释： 平和片假名外形类似琵琶，对于乐...
+同时大家有喜欢的 Newslette...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on October 5, 2021
+        Posted by 叉叉敌 on October 30, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/10/05/learn-japanese-01/">
+    <a href="/2021/10/23/communication-writing/">
         <h2 class="post-title">
-            日语学习 - 01 五十音
+            08 - 职场需要什么技能
+        </h2>
+        
+        <h3 class="post-subtitle">
+            沟通和写作特别重要
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                
+
+看了好多 newsletter，大多都有自己的大纲或者固定的内容。我自己恰好也想了 3 秒钟，定一个大纲，后面在慢慢的迭代。分为 4 部分。
+
+第 1 和 2 部分，主要写自己最近一周自己的感悟和比较有趣的文章，自己的一个体会，题材范围不限。第 3 部分，主要是工具，对当前或者未来，有可能用到的，同时自己圈子的人比较感兴趣的一款或者多款工具。最后一部分也是近期在看的或者即将要看的书、电影...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 23, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2021/10/18/dota_2/">
+        <h2 class="post-title">
+            为什么不 BAN 猛犸
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                昨晚看 TI10 比赛到凌晨 1 点过，在赛点，来自俄罗斯的Team Spirit猛犸选手，先后掏出了跳刀和BKB，就知道完了，直接关机睡觉去。
+
+所以就有了今天的「为什么不 ban 猛犸」的热点。
+
+Dota2 是由早期的一款多人在线对战竞技游戏(MOBA) Dota 演变而来，如今看到的 MOBA 类游戏，比较知名的有王者荣耀、英雄联盟、Dota2 等。
+
+
+
+TI (The Inter...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 18, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2021/10/15/Newsletter-interview/">
+        <h2 class="post-title">
+            07 - 年轻人，如何能成长更快
         </h2>
         
         <h3 class="post-subtitle">
@@ -514,37 +545,33 @@
         <div class="post-content-preview">
             
                 
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
 
 
-日语有五十音，最基本的三种符号：平假名、片假名、罗马音。
+  如何轻松的写一份 Newsletter
 
 
-  
-    平假名就是小写，主要用来标注发音等，还有就是构成单词。
-  
-  
-    片假名就是大写，主要用来书写外来语，以及一些特殊的动植物。
-  
-  
-    罗马音就是用来在键盘上打字用。
-  
+互联网上的信息成指数级的增长，目前来看大部分，乃至90%都是重复的内容。如何在这些重复的信息中找到自己想要的，而且有用信息，降低信息噪音就非常的关键。
+
+Newsletter 就是让志同道合的人，把信息在他们之间传递，减少噪音。
 
 
-通过超级想象力来记住平假名和片假名的写法，以及...
+  十年创业者，万字长文分享我是怎么招人的
+
+
+本文主要讲了如何找到一个合适的人，人才分不同的等级，根据不...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on October 5, 2021
+        Posted by 叉叉敌 on October 15, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/10/03/hunt-for-happiness/">
+    <a href="/2021/10/10/provide-valuable-thing/">
         <h2 class="post-title">
-            05 - 寻找快乐
+            06 - 提供有价值的事情
         </h2>
         
         <h3 class="post-subtitle">
@@ -553,120 +580,22 @@
         
         <div class="post-content-preview">
             
-                
-  国庆快乐。
+                订阅者减少了
 
+最近发现我的订阅者在减少，而且减少比以往快很多。
 
-寻找快乐
+根本原因就是我最近就是在公众号去记录自己去学习日语这个过程。我是想的把一个学习到的东西，然后用费曼学习方法把它表达出来，然后加深自己的记忆。
 
-我曾经看到文浩分享的一篇文章，没有找到具体的链接地址。感兴趣的可以订阅他本人的 newletters。
+没想到大家对日语这么反感。
 
-大意是在生活、工作的过程中，记录自己比较欢快、开心的时刻，把一些不好做的、难做的事情，和前面这些快乐的元素结合起来，去做的时候，可以带来 2 个方面，第一是提高我们的兴趣；其次是让一些枯燥的东西变得有趣。
+难怪会有人说，英语的文献数量就好比一碗水，那么中文相关文献大概就是里面一勺水，而日语只有一滴水，可见日语是非常少的。
 
-我自己在学习英语的过程中，学习口语、学习词汇等...
+对我的关注者来说大部分是通过爬虫...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on October 3, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/09/25/writing-reading/">
-        <h2 class="post-title">
-            04 - 坚持一件小事
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                坚持
-
-如何坚持做一件事情？
-
-我理解的坚持，不是坚持重复去做失败的事情，不撞南墙不回头。而是在失败的过程中去找到一些学习方法，把一些正确的方法总结、归纳，然后用到其他地方去，这不正就是迁移的能力么？
-
-这就好像我自己在一次一次的写作，写作的过程中会遇到很多问题，就像今天样不知道写什么？
-
-写作的过程中，如果你没有去提起笔的一瞬间，那你是不会感觉到你在写作过程中迸发出来的很多思想。
-
-当初我...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 25, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/09/19/invest-yourself/">
-        <h2 class="post-title">
-            03 - 投资自己
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  个人能力 = 认知力 + 管理力 + 见识
-
-
-控制消费
-
-先说观点，在买一个东西的时候，如果考虑下这个东西，不是为了给别人展示，而是为自己而买，那么这个东西就是自己真正需求的东西，对自己有有价值的东西。当我看到这个观点，有一种醍醐灌顶的感觉。
-
-在我上学的时候，就喜欢穿板鞋、帆布鞋，这个看起来就比较时尚，也很好搭配衣服。但是舒适度真的不好，个人感觉，板鞋鞋底太硬，帆布鞋还不适合脚，脚...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 19, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/09/12/accept-yourself/">
-        <h2 class="post-title">
-            02 - 接受自己和多写作
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  接受自己，说起来简单，实际做起来也没那么复杂，关键懂得放下。
-
-
-接受自己
-
-前段时间在公众号看到一篇文章，提到了樊登读书会 -「人生只有一件事」，作者提到自己对这本书了听了 35 遍，最后悟出来一个道理就是：接受自己。
-
-我看完之后，自己的收获就是三个接受，「接受失败」、「接受自己」、「接受他人」。
-
-
-  接受失败
-
-
-就是当前事情已经发生了，不能去回避，要面对。前面这句鸡汤是不是...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 12, 2021
+        Posted by 叉叉敌 on October 10, 2021
     </p>
 </div>
 <hr>
@@ -711,217 +640,217 @@
         
         
         
-                <a data-sort="0222" 
+                <a data-sort="0234" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
-                    rel="49">Newsletter</a>
+                    rel="56">Newsletter</a>
         
-                <a data-sort="0221" 
+                <a data-sort="0233" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0236" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
-                    rel="6">LLVM</a>
+                    rel="7">LLVM</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="7">cuda</a>
+        
+                <a data-sort="0237" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0238" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0226" 
-                    href="/archive/?tag=cuda"
-                    title="cuda"
-                    rel="5">cuda</a>
-        
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

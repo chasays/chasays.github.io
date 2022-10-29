@@ -157,6 +157,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                SEARCH <i class="fa fa-search"></i>
@@ -281,342 +283,324 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2020/09/25/macOS-mysql8-reset-password/">
+    <a href="/2020/11/15/gRPC-K8s-API/">
         <h2 class="post-title">
-            macOS Mysql8 重置用户密码
+            学习gRPC - 3.深入学习一个成熟的gRPC应用
         </h2>
         
         <h3 class="post-subtitle">
-            配置Maven，Java，Spring
+            只要你肯坚持，才会体会到放弃的快乐
         </h3>
         
         <div class="post-content-preview">
             
-                Mysql 8+ 修改密码好多命令都不太对。看了官方文档终于奏效了。
+                前面2篇介绍了 gRPC 的关键概念以及演示程序。了解工作的基础知识后， 将了解 k8s 在其容器运行时接口技术。
 
-版本：
-mysql -V
-mysql  Ver 8.0.17 for macos10.14 on x86_64 (MySQL Community Server - GPL)
+gRPC的应用范围
 
-
-登录提示：
-mysql -uuser -p
-Enter password:
-ERROR 1045 (28000): Access denied ...
+自从2015年作为开源项目发布以来，gRPC 在大大小小的企业中都取得了成长。然而，尽管 gRPC 作为一种服务器端技术很受欢迎，但它在面向公众的 api 中几乎没有出现。这主要有两个原因。首先，gRPC 依赖 HTTP/2作为其传输协议。虽然主要的客户...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on September 25, 2020
+        Posted by 叉叉敌 on November 15, 2020
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2020/09/25/how-to-muck-data-in-mini-program-wechat/">
+    <a href="/2020/11/08/gRPC-build-stream-and-proto/">
         <h2 class="post-title">
-            如何用浏览器或者微信小程序开发Mock数据
+            学习gRPC - 2.如何构建一个流和序列化
         </h2>
         
         <h3 class="post-subtitle">
-            微信小程序mock数据
+            用python构建gRPC
         </h3>
         
         <div class="post-content-preview">
             
-                获取原始数据
-点开IDE的调试窗口，然后和chrome一样，点开network，可以看到request。如果是数据太少，就自己可以生成一个手动写一个JSON格式的结果。
+                构建流
+
+gRPC 利用 HTTP/2的双向通信特性实现了连续的消息交换，实现了双向流。
 
 
+数据流是什么？
 
-设置mock
-获取到数据之后，就可以模拟了，
+流数据有各种各样的场景用法。一种是，当事件发生时，有一种方法可以不断发出描述事件的消息。例如，当数据被添加到数据库中时，数据库希望将“数据添加”事件通知相关方。或者当股票价格发生变化时，证券交易所希望向订阅“价格变化”事件的所有服务公布新价格。
 
-首先点击mock， 然后点击Mock右边有一个+ plus符号。
-对应填写API接口类型，有request等还有可以mock支付相关的信息。
-接着就是参数，url，后面的...
+另一个是有一种以异步方式高效传输非...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on September 25, 2020
+        Posted by 叉叉敌 on November 8, 2020
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2020/09/25/Vscode-bring-up-Java-Spring-project/">
+    <a href="/2020/11/06/study-gRPC-principle/">
         <h2 class="post-title">
-            Vscode 安装Java Spring项目
+            学习gRPC - 1.工作原理是什么
         </h2>
         
         <h3 class="post-subtitle">
-            配置Maven，Java，Spring
+            只要你肯坚持，才会体会到放弃的快乐
         </h3>
         
         <div class="post-content-preview">
             
-                记一次二次开发Spring项目的，用vscode配置环境过程。因为vscode是用json文件保存的配置。好多都过时了。强行提笔记录一下
+                什么是gRPC
 
-安装组件
-一个java， 一个spring boot
+gRPC 已经成为实现需要大规模快速运行的分布式软件系统的一项重要技术。简而言之，gRPC 是一个 API 框架，它允许一个程序在互联网上的一个位置传递数据到另一个位置的另一个程序中的独特函数进行处理。
 
-
-
-
-安装Maven和Java
-java这个简单
-
-  https://java.com/zh_CN/download/help/mac_install.xml
-
-
-maven
-配置环境变量，如果是...
+其他 API 框架(如 REST)通常使用基于文本的格式(如 JSON 或 XML)在客户机和服务器之间传递数据，而在 gRPC 下，数据是以二进制格式在客户机和服务器端...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on September 25, 2020
+        Posted by 叉叉敌 on November 6, 2020
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2020/09/24/Python-advanced/">
+    <a href="/2020/10/20/MongoDB-basic/">
         <h2 class="post-title">
-            Python进阶
+            MongoDB 入门学习
         </h2>
         
         <h3 class="post-subtitle">
-            向高手学习学习
+            从入门到放弃
         </h3>
         
         <div class="post-content-preview">
             
-                课程连接：
-
-  https://time.geekbang.org/column/intro/176
-
-
-开篇
-
-  从工程角度掌握Python高阶用法；
-  独立开发Python项目的能力；
-  硅谷一线工程师的独家经验分享；
-  完整的Python学习路径。
+                
+  MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。
+MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。
 
 
-基础
 
-IDE
-Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成本重现结果。
 
-元组和列表
-列表是动态的，长...
+分布式计算的优点
+
+
+  可靠性（容错） ：
+
+
+分布式计算系统中的一个重要的优点是可靠性。一台服务器的系统崩溃并不影响到其余的服务器。
+...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on September 24, 2020
+        Posted by 叉叉敌 on October 20, 2020
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2020/09/23/audio-quality-evaluation-1/">
+    <a href="/2020/10/19/git-format-patch-apply/">
         <h2 class="post-title">
-            音频质量评估-1
+             A分支上的一个commit，merge到B分支
         </h2>
         
         <h3 class="post-subtitle">
-            音频质量测试和评估
+            有三种方法，diff,format-patch, cherry-pick
         </h3>
         
         <div class="post-content-preview">
             
-                原理
-音频的原理
+                场景就是要解决的问题，就是把B分支的一个commit，单独merge到A分支上面去。
 
-把模拟信号转变成 数字信号，前者是连续的，后者离散的。因此有DAC和ADC。
-需要关注的三个指标，这三个指标决定音频的质量
+思路是生成一个patch，然后把这个patch应用到要merge的分支。
+
+有2种方式，一种是git format-patch，然后用 git am 应用。还有一种就是git diff, 切换分支后，git apply.推荐前一种，前一种是包含了邮件格式。
+
+git format-patch
+
+用法， g...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 19, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/10/17/visualition-apache-jmter/">
+        <h2 class="post-title">
+             可视化压力测试工具- apache jmter
+        </h2>
+        
+        <h3 class="post-subtitle">
+             开源工具
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                
+  Apache JMeter ™是开源软件，是一个 100% 纯 Java 应用程序，旨在加载测试功能行为和测量性能。它最初设计用于测试 Web 应用程序，但后来扩展到其他测试函数。
+
+
+功能预览
+
+能够加载和性能测试许多不同的应用程序/服务器/协议类型：
+
+  Web - HTTP、HTTPS（Java、NodeJS、PHP、ASP.NET，…）
+  REST Web 服务
+  Ftp...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 17, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/10/17/microsoft-automation-tool-playwright/">
+        <h2 class="post-title">
+            微软推出的浏览器自动化工具 playwright
+        </h2>
+        
+        <h3 class="post-subtitle">
+            特点是浏览器的控制脚本用 Python 来写
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                github
+playwright Guide
+
+API
+提供同步（阻塞）API 和异步 API。它们在功能方面是相同的，并且仅在使用 API 的方式上有所不同。
+
+from playwright import sync_playwright
+
+with sync_playwright() as p:
+    for browser_type in [p.chromium, p.firefo...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 17, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/10/16/how-to-test-big-data/">
+        <h2 class="post-title">
+            怎么测试大数据
+        </h2>
+        
+        <h3 class="post-subtitle">
+            大数据
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                先抛出个问题
+
+  我们为什么要测试大数据
+
+
+什么大数据测试
+
+大数据测试可以定义为涉及检查和验证大数据应用程序功能的过程。大数据是传统存储系统无法处理的大量数据的集合。
+
+
+
+策略
+
+测试处理数 TB 数据的应用程序将从一个全新的级别和开箱即用思维中学习技能。质量保证团队关注的核心和重要测试基于三种方案。即
+
+批处理数据处理测试
+
+批处理数据处理测试涉及在批处理模式下使用批处理存储单元（...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on October 16, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2020/10/12/challenge-disadvantage/">
+        <h2 class="post-title">
+            正视自己的不足
+        </h2>
+        
+        <h3 class="post-subtitle">
+            更大的挑战
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                Audio
+PESQ
+NR 无参考
+FR 全参考
+
+Video
+POLQA PS 像素
 
   
-    比特率：表示经过编码（压缩）后的音频数据每秒钟需要用多少个比特来表示，单位常为kbps。 这个数字越大音频质量越好，但是数据文件就越大。
+    PSNR（峰值信噪比）：用得最多，但是其值不能很好地反映人眼主观感受。一般取值范围：20-40.值越大，视频质量越好。
   
   
-    响度和强度：声音的主观属性响度表示的是一个声音听来有多响的程度。响度主要随声...
+    SSIM（结构相似性）：计算稍复杂，其值可以较好地反映人眼主观感受。一般取值范围：0-1.值越大，视频质量越好。
+  
+
+
+ECNR
+布局 混响
+延时...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on September 23, 2020
+        Posted by 叉叉敌 on October 12, 2020
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2020/09/21/think-about-software-testing/">
+    <a href="/2020/10/07/Python-List-complement/">
         <h2 class="post-title">
-            干了8年测试了
+            Python list 实现
         </h2>
         
         <h3 class="post-subtitle">
-            基础还不过关
+            看看底层是怎么实现的
         </h3>
         
         <div class="post-content-preview">
             
-                对知识点不会筛选，盲目买书看视频，资料堆积如山，什么都不管先学了再说;
-目前基本上都在极客时间上面学习，主要便宜。找到自己感兴趣就学，这个自己要改正。
-有学习有摄影产品。性能测试，安全测试。开始的策略就是想把自己的一个广度打开，然后再慢慢的深入下去。我想的是找一个方向，自己真真正正的深入进去。
+                List 对象的C结构
+CPython 中的列表对象由以下 C 结构表示。ob_item是指向列表元素的指针列表。分配的是内存中分配的插槽数。
+typedef struct {
+    PyObject_VAR_HEAD
+    PyObject **ob_item;
+    Py_ssize_t allocated;
+} PyListObject;
 
-指望把一本书啃透、一套视频看完，多敲敲写一些就能搞定
-看一本书，看一个视频就是像小学生一样要把整...
+
+初始化list
+比如初始化一个空的数...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on September 21, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/21/software-testing/">
-        <h2 class="post-title">
-            软件测试-52讲
-        </h2>
-        
-        <h3 class="post-subtitle">
-            基础还不过关
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                课程连接：
-
-  https://time.geekbang.org/column/intro/103
-
-
-开篇
-从知识体系上看，你需要有比开发人员更全面的计算机基础知识，还需要了解互联网的基础架构、安全攻击、软件性能、用户体验和常见缺陷等知识。
-
-“如何把手工测试步骤用自动化脚本实现”变成了“如何构建低维护成本，可以灵活组装的自动化脚本”
-
-基础
-
-登录界面
-但是作为测试工程师，你的目标是...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 21, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/19/automation-framework-in-cloud/">
-        <h2 class="post-title">
-            云测试自动化框架
-        </h2>
-        
-        <h3 class="post-subtitle">
-            传统QA到测开要过渡
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                环境部署，以及使用的问题， 有没有想过直接在用云创建一个自动化测试框架，动态的分配资源？
-可以利用利用 OpenStack，Ubuntu，KVM等开源项目构造了云计算软件测试平台。
-
-
-云计算软件测试平台是一个复杂的软件、硬件和服务的综合体，不同的云测试平台设计和实现的重点也不相同。
-
-
-需求
-
-
-  可移植性高
--要支持多操作系统， 本地和云都可以运行
-  易于扩展和维护
-
-
-老的测试环境...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 19, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/18/Python-builtin-function/">
-        <h2 class="post-title">
-            Python内建函数
-        </h2>
-        
-        <h3 class="post-subtitle">
-            学下下内建函数，事半功倍
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                是计算一个数的商和余数的时候，发现基础的内建函数还没有掌握，今天空了来补一下。以下的列子均是在Python3里面支持的。
-
-那就从第一个开始求余数和商开始吧。
-
-数字有关
-
-数字计算
-
-
-  divmod
-python divmod() 函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a // b, a % b)。
-
-
-
-
-
-  abs
-提到数字计算还有用的最多的， abs，比...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 18, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/12/bash-and-shell/">
-        <h2 class="post-title">
-            Bash和sh的区别
-        </h2>
-        
-        <h3 class="post-subtitle">
-            sh比较常用
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                sh
-
-Shell命令语言 是 POSIX 标准描述的一种编程语言。它有许多的实现（ksh88，dash，…）。bash也可以视为的实现sh
-
-
-因为 sh 是规范，所以它/bin/sh是到大多数POSIX系统上实际实现的符号链接（或硬链接）。
-bash
-bash 开始时是sh兼容的实现（尽管它比POSIX标准早了几年），但是随着时间的流逝，它获得了许多扩展。这些扩展中的许多扩展名可能会更改...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 12, 2020
+        Posted by 叉叉敌 on October 7, 2020
     </p>
 </div>
 <hr>
@@ -661,217 +645,217 @@ bash 开始时是sh兼容的实现（尽管它比POSIX标准早了几年），�
         
         
         
-                <a data-sort="0222" 
+                <a data-sort="0234" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
-                    rel="49">Newsletter</a>
+                    rel="56">Newsletter</a>
         
-                <a data-sort="0221" 
+                <a data-sort="0233" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0236" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
-                    rel="6">LLVM</a>
+                    rel="7">LLVM</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="7">cuda</a>
+        
+                <a data-sort="0237" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0238" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0226" 
-                    href="/archive/?tag=cuda"
-                    title="cuda"
-                    rel="5">cuda</a>
-        
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

@@ -1,6 +1,94 @@
 [
   
     {
+      "title"    : "61 - 经验",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/10/29/experience/",
+      "date"     : "2022-10-29 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "60 - 当前最优选择",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/10/22/current-best-choice/",
+      "date"     : "2022-10-22 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "59 - 兴趣+赚钱",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/10/15/advanced/",
+      "date"     : "2022-10-15 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "58 - 游戏",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/10/07/play-game/",
+      "date"     : "2022-10-07 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "57 - 反馈",
+      "subtitle" : "内有芯片交流群",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/10/01/feedback/",
+      "date"     : "2022-10-01 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "Fuzz工具 - yara",
+      "subtitle" : "",
+      "tags"     : "yara",
+      "url"      : "/2022/09/27/yara-fuzzing-tool/",
+      "date"     : "2022-09-27 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "56 - 记录自己",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/09/24/record-myself/",
+      "date"     : "2022-09-24 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "LLVM工具 - LLVM lit",
+      "subtitle" : "",
+      "tags"     : "LLVM",
+      "url"      : "/2022/09/22/llvm-lit/",
+      "date"     : "2022-09-22 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "55 - 保持更新",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2022/09/17/nvidia-new-arrival/",
+      "date"     : "2022-09-17 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "CUDA 基础 - 04 访存- share、const",
+      "subtitle" : "",
+      "tags"     : "cuda",
+      "url"      : "/2022/09/16/cuda-load-store-2/",
+      "date"     : "2022-09-16 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "CUDA 基础 - 03 访存- register、global、local",
+      "subtitle" : "",
+      "tags"     : "cuda",
+      "url"      : "/2022/09/13/cuda-load-store/",
+      "date"     : "2022-09-13 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "Mid Autumn",
       "subtitle" : "",
       "tags"     : "",
@@ -153,9 +241,17 @@
     } ,
   
     {
-      "title"    : "LLVM LibFuzzer介绍和实践 -2",
-      "subtitle" : "浅谈",
+      "title"    : "浅谈 LLVM LibFuzzer 介绍和实践",
+      "subtitle" : "技多不压身",
       "tags"     : "LLVM",
+      "url"      : "/2022/06/07/llvm-fuzz-2/",
+      "date"     : "2022-06-07 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "Llvm Fuzz 2",
+      "subtitle" : "",
+      "tags"     : "",
       "url"      : "/2022/06/07/llvm-fuzz-2/",
       "date"     : "2022-06-07 00:00:00 +0000"
     } ,
@@ -179,7 +275,7 @@
     {
       "title"    : "LLVM LibFuzzer介绍和实践",
       "subtitle" : "浅谈",
-      "tags"     : "LLVM",
+      "tags"     : "LLVM, Fuzz",
       "url"      : "/2022/06/01/llvm-fuzz/",
       "date"     : "2022-06-01 00:00:00 +0000"
     } ,

@@ -157,6 +157,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                SEARCH <i class="fa fa-search"></i>
@@ -281,9 +283,180 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2022/05/17/LLVM-install-and-compiler/">
+    <a href="/2022/06/07/llvm-fuzz-2/">
         <h2 class="post-title">
-            LLVM 安装和编译 1
+            浅谈 LLVM LibFuzzer 介绍和实践
+        </h2>
+        
+        <h3 class="post-subtitle">
+            技多不压身
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                浅谈 LLVM LibFuzzer 介绍和实践
+
+目录
+
+
+  什么是 Fuzzing Testing
+  LLVm libFuzzer
+  环境准备
+  编译LLVM内建Fuzzer
+  提高 Fuzzer 效率
+  Hello World Fuzzer
+  总结
+
+
+
+
+
+  导读：通过本文我们可以知道什么是 Fuzzer、LibFuzzer，如何编译LLVM-Fuzzer，以及快速写一...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on June 7, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/06/07/llvm-fuzz-2/">
+        <h2 class="post-title">
+            Llvm Fuzz 2
+        </h2>
+        
+        <div class="post-content-preview">
+            
+                
+
+
+2022-06-07-llvm-fuzz-2.md
+
+
+
+
+
+
+
+
+
+
+
+  
+浅谈 LLVM LibFuzzer 介绍和实践
+目录
+
+什么是 Fuzzing Testing
+LLVm libFuzzer
+环境准备
+编译LLVM内建Fuzzer
+提高 Fuzzer 效率
+Hello World Fuzzer
+总结
+
+
+
+导读：通过本文我们可以知道什么是 Fuzzer...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 察说花园 on June 7, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/06/04/what-is-friend/">
+        <h2 class="post-title">
+            40 - 朋友多好，还是少好？
+        </h2>
+        
+        <h3 class="post-subtitle">
+            2022-06-04
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                如果您喜欢这份Newsletter，请转发给您朋友，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
+
+本周话题
+
+朋友，别看我平时像个逗比一样，其实我是很内向的。
+
+我的朋友很少，我个人感觉不超过一桌人，一年吃饭的话就更少了，不超过10次。
+
+我老婆经常说我没什么朋友，确实我身边朋友比较少，然后能约出来一起吃饭的，那就更少了。
+
+我是这么看待的，如果你要维持这个朋友关系，那可能要...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on June 4, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/06/02/run-cuda-with-free-cloud/">
+        <h2 class="post-title">
+            用谷歌云服务器免费跑 cuda 代码
+        </h2>
+        
+        <h3 class="post-subtitle">
+            免费
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                什么是 CUDA？
+
+CUDA 是 Nvidia 为并行计算平台和应用程序编程接口创建的一个模型。CUDA 是 NVIDIA 的并行计算架构，通过利用 GPU 的能力，可以大幅度提高计算性能。
+
+CUDA 代码不会在 AMD CPU 或者 Intel HD Graphics 上运行，除非你的机器里有 NVIDIA 的硬件。在 Colab 上，你可以利用 NVIDIA 的 GPU，以及一个预装...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on June 2, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/06/01/llvm-fuzz/">
+        <h2 class="post-title">
+            LLVM LibFuzzer介绍和实践
+        </h2>
+        
+        <h3 class="post-subtitle">
+            浅谈
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                Fuzzing 是一种软件测试方法，将格式不正确的数据作为输入传递给程序，并查看其是否存在不正确的行为。今天 fuzzing 是发现软件安全问题的最有效的方法之一。2014年第一个覆盖引导模糊器Fuzzy Lop。这开创了现代市场上的模糊解决方案和技术。
+
+什么是LibFuzzer
+
+
+  LibFuzzer is in-process, coverage-guided, evolution...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on June 1, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/05/30/wsl-install-error-0x80072f7d/">
+        <h2 class="post-title">
+            安装WSL错误0x80072f7d，解决办法
         </h2>
         
         <h3 class="post-subtitle">
@@ -292,178 +465,133 @@
         
         <div class="post-content-preview">
             
-                LLVM基础设施适用于若干 Unix 系统（GNU/Linux，FreeBSD ，Mac OS）和 Windows 系统。我们一步一步地说明如何让LLVM在这些系统上工作。某些系统可获得LLVM和Clang的预编译安装包，但是也可以从源代码编译得到它们。
+                现象
 
-获取LLVM预编译安装包有两种通常的方法；你可以从官方网站获取二进制文件，也可以从第三方获取GNU/Linux发布的安装包和Window...
+wsl2安装ubuntu的时候，提示错误0x80072f7d
+
+C:\Windows\system32&gt;wsl --install
+Installing: Windows Subsystem for Linux
+Windows Subsystem for Linux has been installed.
+Downloading: WSL Kernel
+A error was ...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on May 17, 2022
+        Posted by 叉叉敌 on May 30, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/05/17/LLVM-IR-transform/">
+    <a href="/2022/05/30/config-linux-forward-history-search/">
         <h2 class="post-title">
-            LLVM IR转换
+            Linux 配置 xx search history
         </h2>
         
         <h3 class="post-subtitle">
-            强大的现代编译器设计
+            
         </h3>
         
         <div class="post-content-preview">
             
-                什么是 LLVM  IR
+                这个是为我自己记录配置的，因为我换了环境之后，总是忘记怎么配置.
+
+喜欢linux、unix的终端，非常的方便.
+
+但是快速的的找到某一个历史命令，有很多种途径，有没有更快速的方法喃
 
 
-  ⽆限制的单分配寄存器机器指令集
-  强类型
-  三种常⻅表⽰形式：
-1， ⼈类可读的 LLVM 程序集（.ll ⽂件） 
-2， 密集的 bitcode ⼆进制表⽰（.bc ⽂件） 
-3,  C++ 类
-
-
-SSA
-
-Static Single Assignment, 我理解的是单一静态赋值，寄存器可能只分配一次.
-
-与之对应的就是多赋值，下面就是一个变量a，...
+  
+    
+      
+        
+          history
+          grep xxx 这个太慢了
+        
+      
+    
+  
+  ctrl+r 输入之...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on May 17, 2022
+        Posted by 叉叉敌 on May 30, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/05/14/what-is-product/">
+    <a href="/2022/05/28/keep-health/">
         <h2 class="post-title">
-            37 - 产品是什么
+            Keep Health
+        </h2>
+        
+        <div class="post-content-preview">
+            
+                
+
+layout: post
+title: “39 - 保持健康”
+subtitle: ‘2022-05-20’ 
+author: “叉叉敌”
+header-style: text
+tags:
+
+  
+    Newsletter
+  
+
+
+朋友，您好 ~
+
+我经常不知道如何写newsletter的开头，有时候就写最近的天气，或者最近的热点。
+
+你没看错，都是最近相关的。但是有个问题，我们大...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 察说花园 on May 28, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/05/21/small-behavior/">
+        <h2 class="post-title">
+            38 - 小习惯
         </h2>
         
         <h3 class="post-subtitle">
-            产品需要有交易和商品的属性，才有可能变为商业
+            特别容易做到
         </h3>
         
         <div class="post-content-preview">
             
                 朋友，您好 ~
 
-成都的天气确实有点异常，前几天都快 30+ 度了，短裤、短袖都搞起了，从昨天开始突然降温，真的是满减活动不落伍，随时搞起来 ~
-
-
+今天是520，我想是一个美好的日子，祝大家节日快乐~
 
 如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
 
+今天老婆大人的胆囊炎犯了，还在急诊室输液喃，我就趁这个时间更新一篇来自医院的 Newsletter， 今天的内容就将就看一些呀 ~
 
-
-改变
-
-有人说减肥、运动、锻炼是非常愉悦的，我想大部分人是感受不到的这份愉快的。
-
-我自己也经常跑步，跑步的时候，特别是开...
+最近看的技术书籍比较多，所以个人成长之类的书就比较少了。输入的知识少了...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on May 14, 2022
+        Posted by 叉叉敌 on May 21, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/05/12/gdb-user-guide/">
+    <a href="/2022/05/19/LLVM-GPU-Compiler/">
         <h2 class="post-title">
-            使用 GDB 进行调试
-        </h2>
-        
-        <h3 class="post-subtitle">
-            习惯了比GUI的还爽
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                经常我们使用的vscode、pycharm等等ide，都带有断点设置，参数检查等，但是GDB就没有这些，那我们能不能通过设置，把gdb用起来更简单喃？
-比如，如果你知道这些的话，可以跳过了.
-
-  gdb 脚本配合–batch
-  gdb .gdbinit  文件
-
-
-使用 GDB 进行调试
-
-在过去的几年里，我大部分时间都在用 Python 工作，而且我非常喜欢用 Python 进行调试。...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 12, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/11/tencent-cloud-subdomain-config-githubpages/">
-        <h2 class="post-title">
-            腾讯云配置二级域名到Github pages，并用 cloudflare 加速
-        </h2>
-        
-        <h3 class="post-subtitle">
-            这样访问速度还不错
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                背景
-
-为什么要使用独立的域名，第一个，首先是独立的域名可以使用提高自己的权重以及引用，那能使提高自己网站的流量；第2个是自己注册了一个域名，然后没有使用二级域域名，这个时候开通，那使用起来也非常方便，而且还是免费的。
-
-本人也是第一次走完整个流程，github pages当然一直有使用，创建也很简单，并且网上教程也比较多；然后是关于自定义域名的问题，自己以前使用过国外的免费域名，然后是直接...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 11, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/11/dokcer-copy-files/">
-        <h2 class="post-title">
-            向 Docker 容器复制文件和从 Docker 容器复制文件
-        </h2>
-        
-        <h3 class="post-subtitle">
-            ‘太方便了'
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                在处理 Docker 项目时，可能需要在 Docker 容器和本地计算机之间复制文件。
-
-Docker 为我们提供了非常有用的复制命令，使我们能够无缝地从 Docker 容器和本地机器复制文件。在本文中，我们将使用实例讨论如何使用 docker cp 命令。除了用到cp命令外， 还有一个docker exec常见的命令.
-
-下面是已经有启动docker镜像的情况下，docker镜像的名字为t...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 11, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/07/35-old-year-for-programmer/">
-        <h2 class="post-title">
-            36 - 35岁，程序员在做什么
+            LLVM 测试
         </h2>
         
         <h3 class="post-subtitle">
@@ -472,105 +600,14 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
         
         <div class="post-content-preview">
             
-                朋友，您好 ~
+                LLVM 测试基础设施包含三大类测试: 单元测试、回归测试和整个程序。单元测试和回归测试分别包含在 LLVM 存储在 LLVM/unittest 和 LLVM/test 之下，并且应该始终通过，一般情况作为checkin，即它们应该在每次提交之前运行。
 
-今天下班之后，回老家了，走的比较匆忙，忘了带自己的电脑，用的是公司的电脑。 公司的电脑上好多软件没有安装，有些许的不方便~
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-我之前在互联网工作，由于互联网的性质，大家都知道，除了 996，还有比较有名气的就是「内卷」。
-
-当然也有好处，就是资本趋利，互联...
+单元测试是使用 Google Test 和 Google Mock 编写的，位于 llvm/unittest 目录中。在一般情况下，单元测...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on May 7, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/06/git-pull-cherrypick-fetch/">
-        <h2 class="post-title">
-            Git 常用命令 pull、cherry-pick、fetch 有什么区别？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            掌握了就非常的方便
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                Cherry-pick
-
-使用场景：假设您正在与一组开发人员一起开发一个中型到大型的项目。由另一个团队成员提出的一些更改，您希望将其中的一些更改应用于您的主项目，而不是全部。因为管理几个 Git 分支之间的更改可能成为一项复杂的任务，您不希望将整个分支合并到另一个分支中。你只需要选择一个或两个特定的commit。从其他分支中挑选一些变更到您的主项目分支中，这被称为“cherry-pick”。...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 6, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/06/cgsx/">
-        <h2 class="post-title">
-            2022 5月重疾推荐
-        </h2>
-        
-        <h3 class="post-subtitle">
-            给生活多一分安稳
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                线上
-
-  重疾：以达尔文6号为单次重疾主推，慧馨安2022作为少儿重疾主推。中荷超越1号作为非标人群推荐，人保i无忧作为大品牌大保司重疾补充
-  储蓄：增额以长城司马台作为推荐，养老年金以金盈年年为主推，太平e养添年为大保司品牌产品推荐
-  定寿医疗及其他短险：大麦2022及定海柱2号作为定寿主推，e享护-医享无忧维持独家销售作为百万医疗主推，小蜜蜂2号超越版作为综合意外险主推，小医仙2号...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 6, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/05/picgo-picbed-config/">
-        <h2 class="post-title">
-            PicGo 图床工具配置 Github 等
-        </h2>
-        
-        <h3 class="post-subtitle">
-            免费图床
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                场景
-
-
-  
-    程序员写博客、文章等，然后发现图上传和管理都不是特别的方便，还有就是服务器保存图片就很繁琐，建议使用PicGo、uPic等工具，支持把图片传到github、gitee、微信小程序云等机器
-  
-  
-    最近使用gitee的时候发现，上传失败了，又换到了github上.
-  
-
-
-用https://cdn.jsdelivr.net/gh/user/repo来替代官...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 5, 2022
+        Posted by 叉叉敌 on May 19, 2022
     </p>
 </div>
 <hr>
@@ -615,217 +652,217 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
         
         
         
-                <a data-sort="0222" 
+                <a data-sort="0234" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
-                    rel="49">Newsletter</a>
+                    rel="56">Newsletter</a>
         
-                <a data-sort="0221" 
+                <a data-sort="0233" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0236" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
-                    rel="6">LLVM</a>
+                    rel="7">LLVM</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="7">cuda</a>
+        
+                <a data-sort="0237" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0238" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0226" 
-                    href="/archive/?tag=cuda"
-                    title="cuda"
-                    rel="5">cuda</a>
-        
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

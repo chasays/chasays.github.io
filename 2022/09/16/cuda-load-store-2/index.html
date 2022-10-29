@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="人生就是干">
+    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="theme-color" content="">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="CUDA 基础 - 04 访存- share、const - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。
+
+">
+    
+    <meta property="article:published_time" content="2022-09-16T00:00:00Z">
+    
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="cuda">
+    
+    
+    <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://blog.chiphub.top/2022/09/16/cuda-load-store-2/">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    
+    <title>CUDA 基础 - 04 访存- share、const - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://blog.chiphub.top/2022/09/16/cuda-load-store-2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                               SEARCH <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/https://source.unsplash.com/random/1800x400/?tech" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('https://source.unsplash.com/random/1800x400/?tech');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=cuda" title="cuda">cuda</a>
+                        
+                    </div>
+                    <h1>CUDA 基础 - 04 访存- share、const</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by 叉叉敌 on September 16, 2022</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。</p>
+
+<p>之前写了一篇关于cuda的kernel函数调用相关的知识，以及一个hello world入手学习语法等。知道了GPU架构,如何写一个cuda程序,今天继续深入学习cuda的内存相关知识。</p>
+
+<p>回顾下，前面学习了的内存类型：三种内存，寄存器，全局、局部内存。寄存器可用于本地存储数据，避免重复内存操作。全局内存是主存空间，用于host和 GPU 之间的数据共享。本地内存是一种特殊类型的内存，可用于存储寄存器中不适合的数据，并且是线程的私有数据，局部的。</p>
+
+<h2 id="内存分类">内存分类</h2>
+
+<p>大致可以分为:Registers、global 、shared 、constant、local， 那就开始学习吧.</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220913111256.png" alt="" /></p>
+
+<h3 id="share-共享">share 共享</h3>
+
+<p>虽然让不同的线程对不同的数据执行相同的操作是使用 GPU 的好的模式，但在某些情况下，线程需要进行通信。这种通信可能是必要的，因为我们试图实现的算法的工作方式，或者它可能来源于我们试图实现的性能目标。</p>
+
+<p>掌握这些有非常大的好处，前段时间听组内的x博士讲到，比如<code class="language-plaintext highlighter-rouge">CUDA用软件实现的算法，比amd用硬件实现的算法都要快</code>，估计问题就在这里吧。</p>
+
+<p>共享内存是<code class="language-plaintext highlighter-rouge">线程块</code>中所有线程共享的 CUDA 内存空间。在这种情况下，<code class="language-plaintext highlighter-rouge">共享意味着一个线程块中的所有线程都可以对块分配的共享内存进行写入和读取</code>，并且对这个内存的所有更改最终都将对该块中的所有线程可用。</p>
+
+<p>为了在共享内存中分配一个数组，我们需要在定义前加上标识符<code class="language-plaintext highlighter-rouge"> __share__</code>。</p>
+
+<pre><code class="language-C">extern "C"
+__global__ void vector_add(const float * A, const float * B, float * C, const int size)
+{
+  int item = (blockIdx.x * blockDim.x) + threadIdx.x;
+  __shared__ float temp[3];
+
+  if ( item &lt; size )
+  {
+      temp[0] = A[item];
+      temp[1] = B[item];
+      temp[2] = temp[0] + temp[1];
+      C[item] = temp[2];
+  }
+}
+</code></pre>
+
+<p>上面的代码，若要为临时数组使用共享内存，请将标识符 <code class="language-plaintext highlighter-rouge">__share__</code> 添加到其定义中。</p>
+
+<p>虽然语法正确，但<code class="language-plaintext highlighter-rouge">上面的示例在功能上是错误的</code>。原因是临时数组不再是分配它的线程的私有数组，而是现在由整个线程块共享。</p>
+
+<blockquote>
+  <p>猜一下大概是因为是？</p>
+</blockquote>
+
+<p>GPU是多个warp同时执行同一个命令，所以结果是不确定的，而且肯定不同于以前版本的 Vector_add。<code class="language-plaintext highlighter-rouge">线程将相互覆盖对方的临时值</code>，并且不能保证每个线程对哪个值可见。</p>
+
+<p>为了修复前一个kernel，我们应该为每个线程分配足够的共享内存来存储三个值，这样每个线程都有自己的共享内存数组部分。</p>
+
+<p>为了分配足够的内存，我们需要用其他内存来替换 <strong>shared</strong> float temp[3] 。如果我们知道每个线程块有1024个线程，我们可以编写如下代码:
+<code class="language-plaintext highlighter-rouge">__shared__ float temp[3 * 1024];</code></p>
+
+<p>但是根据经验，我们知道在代码中包含常量不是一个可维护的解决方案。问题是，如果我们想声明一个共享内存数组，我们需要一个常量值，因为编译器需要知道要分配多少内存。</p>
+
+<p>这个问题的解决方案是不指定数组的大小，而是将内存分配到其他地方。</p>
+
+<p>extern <strong>shared</strong> float temp[];</p>
+
+<p>通过将命名参数 shared_mem  添加到kernel调用来完成。修改过的代码大概是这个样子：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">__global__</span> <span class="kt">void</span> <span class="nf">vector_add</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span> <span class="n">B</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span> <span class="n">C</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">item</span> <span class="o">=</span> <span class="p">(</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">extern</span> <span class="n">__shared__</span> <span class="kt">float</span> <span class="n">temp</span><span class="p">[];</span>
+  <span class="kt">float</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="n">temp</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">item</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">item</span><span class="p">];</span>
+      <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">item</span><span class="p">];</span>
+      <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+      <span class="n">C</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>上面的代码现在是正确的，虽然它仍然不是很有用。我们确实在使用共享内存，而且我们正在以正确的方式使用它，但是这样做并<code class="language-plaintext highlighter-rouge">没有获得任何性能提升</code>。实际上，我们正在使代码变得更慢，而不是更快，因为共享内存比寄存器慢。</p>
+
+<p>GPU 是一个高度并行的device，<code class="language-plaintext highlighter-rouge">可以同时执行多个线程</code>。在前面的代码中，不同的线程可能同时更新相同的输出项，从而产生错误的结果。</p>
+
+<p>为了解决这个问题，我们需要使用 CUDA 库中名为 <code class="language-plaintext highlighter-rouge">atomicAdd</code> 的函数。这个函数确保 output 的增量以原子方式发生，以便在多个线程想要同时更新同一项时不会发生冲突。</p>
+
+<pre><code class="language-C">__global__ void histogram(const int * input, int * output)
+{
+    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+    atomicAdd(&amp;(output[input[item]]), 1);
+}
+</code></pre>
+
+<p>说实话，我看完共享内存目前就知道了，共享意味着一个线程块中的所有线程都可以对块分配的共享内存进行写入和读取。关于怎么用，如何用才能写出更高效，有性能的kernel函数，我还是有一点懵。</p>
+
+<p>下面来了，围绕cuda <code class="language-plaintext highlighter-rouge">histogram</code>函数 和<code class="language-plaintext highlighter-rouge">atomicAdd </code>来完成。</p>
+
+<h3 id="histogram-函数__syncthreads">histogram 函数、__syncthreads()</h3>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220916202002.png" alt="" /></p>
+
+<p>histogram 是图像处理和数据挖掘中常用的分析工具。它们显示每个数据元素出现的频率。虽然在 CPU 上计算很简单，但是传统上histogram在 GPU 上很难有效地计算。之前提出的方法包括使用遮挡查询机制(需要为每个直方图桶提供渲染通道) ，或者对图像的像素进行排序，然后搜索每个桶的开始，这两种方法都非常昂贵。我们可以使用<code class="language-plaintext highlighter-rouge"> CUDA 和共享内存</code>有效地生成 histogram ，然后可以将其读回host或保存在 GPU 上供以后使用。</p>
+
+<p>所以用一个 CUDA <code class="language-plaintext highlighter-rouge">histogram</code> 函数来实现，使用共享内存来减少全局内存中的冲突。继续共享</p>
+
+<pre><code class="language-C">__global__ void histogram(const int * input, int * output)
+{
+    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
+    __shared__ int temp_histogram[256];
+
+    atomicAdd(&amp;(temp_histogram[input[item]]), 1);
+    atomicAdd(&amp;(output[threadIdx.x]), temp_histogram[threadIdx.x]);
+}
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">atomicAdd</code> 可用于全局内存和共享内存。</p>
+
+<p><code class="language-plaintext highlighter-rouge">CUDA的原子操作可以理解为对一个变量进行“读取-修改-写入”这三个操作的一个最小单位的执行过程，这个执行过程不能够再分解为更小的部分</code>，在它执行过程中，不允许其他并行线程对该变量进行读取和写入的操作。基于这个机制，原子操作实现了对在多个线程间共享的变量的互斥保护，确保任何一次对变量的操作的结果的正确性。</p>
+
+<p>原子操作确保了在多个并行线程间共享的内存的读写保护，每次只能有一个线程对该变量进行读写操作，一个线程对该变量操作的时候，其他线程如果也要操作该变量，只能等待前一线程执行完成。原子操作确保了安全，代价是牺牲了性能</p>
+
+<p><code class="language-plaintext highlighter-rouge">atomicAdd(&amp;(temp_histogram[input[item]]), 1)</code>，这句代码，每个线程根据输入的值更新共享内存中的一个任意位置，而下一行atomicAdd，每个线程读取共享内存中与其线程 ID 对应的元素。但是，<code class="language-plaintext highlighter-rouge">对共享内存的更改不会自动对所有其他线程可用</code>，因此最终结果可能不正确。</p>
+
+<p>为了解决这个问题，我们需要同步一个块中的所有线程，以便内存操作也最终完成并对所有人可见。<code class="language-plaintext highlighter-rouge">要同步块中的线程</code>，我们使用 <code class="language-plaintext highlighter-rouge">__syncthreads()</code> 函数。此外，共享内存没有初始化，程序员也需要处理这个问题。因此，我们需要首先初始化 temp_histogram，等待所有线程都完成这项工作，在共享内存中执行计算，再次等待所有线程都完成，然后才更新全局数组。</p>
+
+<p>完整的代码如下</p>
+<pre><code class="language-C">__global__ void histogram(const int * input, int * output)
+{
+    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
+    __shared__ int temp_histogram[256];
+ 
+    // Initialize shared memory and synchronize
+    temp_histogram[threadIdx.x] = 0;
+    __syncthreads();
+
+    // Compute shared memory histogram and synchronize
+    atomicAdd(&amp;(temp_histogram[input[item]]), 1);
+    __syncthreads();
+
+    // Update global histogram
+    atomicAdd(&amp;(output[threadIdx.x]), temp_histogram[threadIdx.x]);
+}
+</code></pre>
+
+<p>这个解决方案背后的想法是通过在<code class="language-plaintext highlighter-rouge">共享内存中使用临时histogram来减少全局内存中代价高昂的冲突</code>。当一个块处理完其输入数组的分数，并填充了局部histogram后，线程协作更新全局histogram。这种解决方案不仅潜在地减少了全局内存中的冲突，而且还产生了更好的访问模式，因为线程在第二次调用 atomicAdd 期间读取输入数组的相邻项，并写入输出数组的相邻元素。</p>
+
+<h3 id="const-内存">const 内存</h3>
+
+<p>device侧的const值也分多种，比如inline const，literal const，immediately number。</p>
+
+<p>constant Memory对于<code class="language-plaintext highlighter-rouge">device来说只读但是对于host是可读可写</code>，其内容可以广播到一个块中的多个线程。分配到常量内存中的变量需要在 CUDA 中使用特殊的 <strong>constant</strong>  标识符进行声明，而且它必须是一个全局变量，也就是说，它必须在包含kernel的作用域中声明，而<code class="language-plaintext highlighter-rouge">不是在kernel本身内部声明</code>。</p>
+
+<p>代码时间：</p>
+
+<pre><code class="language-C">extern "C" {
+#define BLOCKS 2
+
+__constant__ float factors[BLOCKS];
+
+__global__ void sum_and_multiply(const float * A, const float * B, float * C, const int size)
+{
+    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
+    C[item] = (A[item] + B[item]) * factors[blockIdx.x];
+}
+}
+</code></pre>
+
+<p>前面的__constant__ 就是 const memory，<code class="language-plaintext highlighter-rouge">const内存的初始化发生在host端</code>，不是device GPU端。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>共享内存比全局内存和本地内存快，共享内存可以用作用户控制的缓存来加速代码。如果在线程内部分配，则在编译时必须知道共享内存数组的大小，可以在kernel调用期间声明extern共享内存数组并传递大小。</p>
+
+<p>使用 <strong>shared</strong>  在共享内存空间中分配内存，使用 __syncthreads() 等待共享内存操作对块中的所有线程可见。</p>
+
+<p>全局作用域的数组，其大小在编译时已知，可以使用 <strong>constant</strong> 标识符存储在const内存中。</p>
+
+<p>host CPU能访问分类：</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220916203806.png" alt="" /></p>
+
+<p>对于CUDA的学习就到此告一段落了，后面用到了再来继续补充深入，<code class="language-plaintext highlighter-rouge">学以致用</code>，不用肯定是会忘记的，用起来吧。</p>
+
+<p>推荐一个cnblogs cuda：https://www.cnblogs.com/1024incn/tag/CUDA/</p>
+
+<h2 id="read-more">Read more</h2>
+
+<p>http://developer.download.nvidia.com/compute/cuda/1.1-Beta/x86_website/projects/histogram64/doc/histogram.pdf</p>
+
+<p>https://github.com/kevinzakka/learn-cuda/blob/master/src/histogram.cu</p>
+
+<p>https://developer.nvidia.com/blog/gpu-pro-tip-fast-histograms-using-shared-atomics-maxwell/</p>
+
+<p>https://carpentries-incubator.github.io/lesson-gpu-programming/06-global_local_memory/index.html</p>
+
+<blockquote>
+  <p><a href="https://chasays.github.io/">github博客</a></p>
+
+  <p>微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+</blockquote>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/09/13/cuda-load-store/" data-toggle="tooltip" data-placement="top" title="CUDA 基础 - 03 访存- register、global、local">
+                        Previous<br>
+                        <span>CUDA 基础 - 03 访存- register、global、local</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/09/17/nvidia-new-arrival/" data-toggle="tooltip" data-placement="top" title="55 - 保持更新">
+                        Next<br>
+                        <span>55 - 保持更新</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0234" 
+                    href="/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0187" 
+                    href="/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="56">Newsletter</a>
+        
+                <a data-sort="0233" 
+                    href="/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0235" 
+                    href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0235" 
+                    href="/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0235" 
+                    href="/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="8">测试</a>
+        
+                <a data-sort="0235" 
+                    href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0236" 
+                    href="/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0236" 
+                    href="/archive/?tag=LLVM"
+                    title="LLVM"
+                    rel="7">LLVM</a>
+        
+                <a data-sort="0236" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="7">cuda</a>
+        
+                <a data-sort="0237" 
+                    href="/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0238" 
+                    href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0239" 
+                    href="/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0239" 
+                    href="/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0239" 
+                    href="/archive/?tag=git"
+                    title="git"
+                    rel="4">git</a>
+        
+                <a data-sort="0239" 
+                    href="/archive/?tag=github"
+                    title="github"
+                    rel="4">github</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="3">面试</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=docker"
+                    title="docker"
+                    rel="3">docker</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=llvm"
+                    title="llvm"
+                    rel="3">llvm</a>
+        
+                <a data-sort="0240" 
+                    href="/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E4%BF%9D%E9%99%A9"
+                    title="保险"
+                    rel="2">保险</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
+                    title="计算机"
+                    rel="2">计算机</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=linux"
+                    title="linux"
+                    rel="2">linux</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0241" 
+                    href="/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  
+  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
+  
+  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/feed.xml">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2022
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'blog.chiphub.top';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

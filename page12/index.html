@@ -157,6 +157,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                SEARCH <i class="fa fa-search"></i>
@@ -281,333 +283,312 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2021/02/21/learn-english-shopping-scenario/">
+    <a href="/2021/09/19/invest-yourself/">
         <h2 class="post-title">
-            Shopping 购物常用的英语词汇
+            03 - 投资自己
         </h2>
         
         <h3 class="post-subtitle">
-            cash back,coupon,limited-time offer, special offer, steal, worth
-        </h3>
-        
-        <div class="post-content-preview">
             
-                Coupon
-：优惠券
-
-The coupon is not valid if detached.
-
-Tear off this coupon and use it to get 25p off your next jar of coffee.
-
-Offer
-
-特价
-Special offer - complete set for only ￡5.99.
-
-You can enjoy a s...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 21, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/18/learn-tensorflow-basic-4/">
-        <h2 class="post-title">
-            TensorFlow 基础学习 - 4
-        </h2>
-        
-        <h3 class="post-subtitle">
-            对一个真实项目的训练，重点是调参
         </h3>
         
         <div class="post-content-preview">
             
                 
-
-准备数据
-
-!wget --no-check-certificate \
-    https://storage.googleapis.com/laurencemoroney-blog.appspot.com/horse-or-human.zip \
-    -O /tmp/horse-or-human.zip
+  个人能力 = 认知力 + 管理力 + 见识
 
 
+控制消费
 
+先说观点，在买一个东西的时候，如果考虑下这个东西，不是为了给别人展示，而是为自己而买，那么这个东西就是自己真正需求的东西，对自己有有价值的东西。当我看到这个观点，有一种醍醐灌顶的感觉。
 
-该目录下又分别包含horses和humans子目录。
-
-简而言之：训...
+在我上学的时候，就喜欢穿板鞋、帆布鞋，这个看起来就比较时尚，也很好搭配衣服。但是舒适度真的不好，个人感觉，板鞋鞋底太硬，帆布鞋还不适合脚，脚...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2021
+        Posted by 叉叉敌 on September 19, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/02/18/learn-tensorflow-basic-2/">
+    <a href="/2021/09/12/accept-yourself/">
         <h2 class="post-title">
-            TensorFlow 基础学习 - 2
+            02 - 接受自己和多写作
         </h2>
         
         <h3 class="post-subtitle">
-            物品图片如何训练
-        </h3>
-        
-        <div class="post-content-preview">
             
-                让我们来看这样一个场景，让计算机识别不同的服装用品（有提包、鞋子、裤子等10类物品）。我们将用包含10种不同类型的物品图片的数据集来训练一个神经元网络，实现分类。
-
-数据导入
-
-首先通过tf.keras的API可以直接获得Fashion MNIST数据集。
-
-在mnist对象上调用load_data方法会得到两个元组，各自包含两个列表。这些列表存储了服装用品的训练与测试图像数据及标签值。
-
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/18/learn-tensorflow-basic-1/">
-        <h2 class="post-title">
-            TensorFlow 基础学习 - 1
-        </h2>
-        
-        <h3 class="post-subtitle">
-            y=2x-1，如何训练
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                学习目的
-
-了解机器学习的一些基础功能，一些基础用法，然后在我们的实际工作中创造出更多的火花。
-
-
-
-环境准备
-
-环境话有很多，我在学习的这个慕课的实验室、谷歌实验室。还有腾讯实验室都可以用来做，也非常方便，本地环境搭建也是非常的方便，但是在训练数据多的时候，那就非常的慢。
-
-这些实验室提供强大的算力，最主要的还是免费。
-
-
-  https://ot.icourse163.org/#/lab...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/18/learn-tensorflow-3-CNN/">
-        <h2 class="post-title">
-            TensorFlow 基础学习 - 3
-        </h2>
-        
-        <h3 class="post-subtitle">
-            图片不是规则的怎么办
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                卷积神经网络
-
-抓住它的核心思路，即通过卷积操作缩小了图像的内容，将模型注意力集中在图像特定的、明显的特征上。
-
-max pooling - 增强特征，减少数据
-
-
-实现
-
-在下面的代码中模型在训练数据上的精度可能上升到93%左右，在验证数据上可能上升到91%。
-
-这是朝着正确方向取得的显著进步!
-
-试着运行更多的epochs–比如20个epochs，然后观察结果! 虽然结果可能看起来非常好...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/12/how-to-install-altStore/">
-        <h2 class="post-title">
-            可能提到Cydia的东西
-        </h2>
-        
-        <h3 class="post-subtitle">
-            如何安装altstore
         </h3>
         
         <div class="post-content-preview">
             
                 
+  接受自己，说起来简单，实际做起来也没那么复杂，关键懂得放下。
 
 
-  开始邮件的管理插件功能
+接受自己
+
+前段时间在公众号看到一篇文章，提到了樊登读书会 -「人生只有一件事」，作者提到自己对这本书了听了 35 遍，最后悟出来一个道理就是：接受自己。
+
+我看完之后，自己的收获就是三个接受，「接受失败」、「接受自己」、「接受他人」。
 
 
+  接受失败
 
 
-默认情况下是关闭的。
-试了很多方法都不是很有用。主要的是需要在里面创建一个Bundles的目录。然后把插件解压后copy进去重启mail。
-Quit the Mail application.
-Go to the Finder
-Hold the Option key and click on the Go menu
-Choose Library
-Na...
+就是当前事情已经发生了，不能去回避，要面对。前面这句鸡汤是不是...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on February 12, 2021
+        Posted by 叉叉敌 on September 12, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/02/10/resolved-question-is-mainly/">
+    <a href="/2021/09/03/prejudice/">
         <h2 class="post-title">
-            解决问题为主
+            01 - 走出偏见
         </h2>
         
         <h3 class="post-subtitle">
-            总结
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                福利
-我自己发现，我公众号下面的广告。因为这个是腾讯自己根据用户偏好去推送的广告，这个广告并不是我自己设定的，还有文中的一些广告我一直没开。
-
-
-
-我今天发现我在公众号广告这块赚了几百块，那几百块对我说，也没有太多钱。但是影响用户的一个阅读体验，从今天开始，我关闭广告文中和文末的广告。如果后面可能我再开的话，有可能我真的是需要这部分钱，或者是其他的原因吧，目前先把这个广告关掉。说不定后面哪天...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 10, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/09/wechat-red-packet/">
-        <h2 class="post-title">
-            非认证用户如何定制自己的视频号
-        </h2>
-        
-        <h3 class="post-subtitle">
-            总结
+            偏见不是一个好东西
         </h3>
         
         <div class="post-content-preview">
             
                 
-  非认证用户，拉到最下面「点击链接」可以打开如何定制自己的红包封面。
+  后面争取每周一写一篇记录和分享。
 
 
+练习 POP 写作
+
+前段时间看了文浩的事不过三的写作原则。有2个地方自己有些感触记录下来，自己先试着坚持写一段时间来，看看效果如何。
 
 
-
-  
-    注册一个视频号
-并发布一条视频，集赞10个，这个硬性要求。
-
-  
-  
-    然后打开文末左下角的连接。跳转过去，然后点击下面这个图片。如果没有看到这个图片，说明没有资格。
-  
+  为自己而写，这样的目的是为了写的更长久
+  自己不是大师，写的也不是什么专业的papar，所以心态就放下来了，放手去做
+  坚持的目的就是链接更多的人，找到和自己同一个圈子
 
 
-
-
-
-  准备资料
-上传红包封面定制信息，包括素材图、封面简称、品牌logo、封面故事素材以及相关证明材料。...
+写作确实是一门技巧，前段时间...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on February 9, 2021
+        Posted by 叉叉敌 on September 3, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/02/05/time-how-flies/">
+    <a href="/2021/08/31/how-to-improve-your-work/">
         <h2 class="post-title">
-            已经过去2周了，你感觉怎么样？
+            做好做工作任何一个可以改进的地方
         </h2>
         
         <h3 class="post-subtitle">
-            总结
+            对复杂的事情提出简单的解决办法
         </h3>
         
         <div class="post-content-preview">
             
-                时间过得非常快，我已经去新公司已经有一个多月了，在这一个月多的时间里面，我觉得时间过得非常的慢，对我来说每天都是煎熬。不是身边的同事对我不好，不是公司不行，不是我所做的东西我不感兴趣。其实恰恰相反，这三个方面都很Nice了。反而是我自己心里有一个坎过不去，这有可能就是走出舒适圈的感觉。
+                
+  没有完善，因为有些图片是内网的，涉及敏感，后面看看找个替代的图片上来，所以目前的图片是看不到的。
 
 
+如何保证重前端交互性产品质量
 
-就其原因，我想还是因为自己选择了一个不同的赛道，对于自己来说非常的困难，如何去坚持。我原本以为我自己...
+投稿规则：实践案例需具备一定影响力，包括但不限于工具平台、流程机制、管理模式、研发质量、系统架构、工程算法等领域，通过提升研发人力及IT资源效率，以实现业务加速发展，稿件中需附以图文数据说明成果。
+结构建议：可遵循专业、案例落地实践的原则，案例需要
+
+从...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on February 5, 2021
+        Posted by 叉叉敌 on August 31, 2021
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2021/01/17/feeling-output-input/">
+    <a href="/2021/08/25/string-comparison-in-less-than-greater-than/">
         <h2 class="post-title">
-            已经过去2周了，你感觉怎么样？
+            在Python里面字符串比较大小
         </h2>
         
         <h3 class="post-subtitle">
-            总结
+            本质就是 ASCII码 的大小比较
         </h3>
         
         <div class="post-content-preview">
             
-                2021年已经过去两周了，在网上看了，大家对20201年头两周，其实和之前也是一样的，没什么改变。一切都是老样子的，一切都是和往年一样的。
+                好久没有开始写过技术文章了。
 
+主要是拖延病犯了，始终不愿意抬手去敲键盘。有一个好的主题，自己老毛病又来了，觉得这个主题太简单。技术人始终就是太偏执，认为一定是要高级、复杂的东西才需要分享。
 
+比如需要一个高级的算法、复杂的架构才需要分享给其他人，其实不然。
 
-看了和菜头的文章，里面提到了，有一句非常好的地方就是，
-
-  没有任何一种道理说，每年只要新年一到，一切就可以翻篇，大家可以重新来过。这是地球，这是生活，不是个游戏，可以随时按下重新开始键。
-
-
-新年，并不是一切一翻篇就完了，然后就重新开始。它并不...
+分享的东西一定要有意义，不要造垃圾知识。之前看到一篇报道，说一个美国一个小伙用机器翻译成苏格兰的维基百科，导致读起来非常的费力，这个...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on January 17, 2021
+        Posted by 叉叉敌 on August 25, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2021/08/15/how-to-interview/">
+        <h2 class="post-title">
+            如何面试别人
+        </h2>
+        
+        <h3 class="post-subtitle">
+            更多的技术交流
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                还记得几年前，我第一次面试别人的时候。没有啥经验，全凭感觉。
+
+今天来讲下几年前我是怎么面试别人的，后面有空也说说我当时怎么上任项目经理。
+
+我当时在2楼，HRBP通知我去行政那边面试，大概有一段路，在路上，我就嘀咕：怎么面试喃？毫无头绪，要不就按照之前自己面试的时候：别人是怎么问的，我就这么问。死板套路。
+
+估计当时的心情比面试人员还紧张。
+
+拿到面试者简历后，看见是一个刚毕业的不久的同行...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on August 15, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2021/07/28/Accident-Insurance/">
+        <h2 class="post-title">
+            如何选择意外险
+        </h2>
+        
+        <h3 class="post-subtitle">
+            提高抗风险的能力
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                下面是在看意外险过程中学习的知识，大部分来自网上零星收集。主要是自己近段时间自己也想买个意外险。
+
+什么意外险？
+
+
+  意外险最关键的概念，就是保障责任中的事故，都必须是意外导致的。而不同种类的意外事故，则产生了不同种类的意外险。
+
+
+如果本来就病，然后住院这种不是意外。这个不是意外事故。
+
+保障责任
+
+三大核心：意外身故+意外伤残+意外医疗。
+
+前面2种一般都很好买，而且价格也不贵，但是...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on July 28, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2021/06/29/manage-team-with-tech/">
+        <h2 class="post-title">
+            用技术管理团队
+        </h2>
+        
+        <h3 class="post-subtitle">
+            和人打交道、还是需要一些制度
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                今天遇到一个问题，就是如何用技术来管理团队？
+
+我自己想到一个点，一个是人的软性管理，一个硬性可以度量的管理。
+
+人的管理
+
+用对的人做对的事情。
+
+就是找的这个人，他特长点是什么，然后去做对应的事情，比如他擅长开发，比较仔细，那可能去做一些效率提升开发相关的；对于对风险识别比较高的，那可以做一些小项目的管理。
+
+其实找到每个人的特长，然后用他们的特长去做他们更擅长的事情。
+
+以及一些团队建...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on June 29, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2021/03/12/how-to-deal-with-youself/">
+        <h2 class="post-title">
+            该学习了
+        </h2>
+        
+        <h3 class="post-subtitle">
+            搞起来呗
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                一个朋友暗示我该更新文章了，发现有那么一段时间没有更新了。
+
+看了年初的定下Flag，默默的吸了口气。默念道：该死为什么对自己这么狠。
+
+说说我最近在干吗？最近已经很久很久…没更新过技术类的文章了，因为技术文章之前我也讲过，在手机上看，如果你不去实际的操作，也没什么效果，可能就相当于跑马观花。留下的可能只是一个单词的拼写而已。
+
+干错我就不写了，或者有读者要求，亦或我那天想通了，我也看情况糊...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on March 12, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2021/02/28/GrowingIO-think/">
+        <h2 class="post-title">
+            好好的实践一下商业增长
+        </h2>
+        
+        <h3 class="post-subtitle">
+            学习下增长知识
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                最近公司有一个增长大会，那组织了不同部门10个小伙伴去参与，这是一个增长赛，而且增长和商业是我一直想学习的一个东西，那借这个机会去好好的学习和实践。说实话，我作为队长，我自己从来没有做过增长，更没有增长的经验，而且我们在下个月中旬的时候要提出自己的一个增长方案去路演，压力非常的大。就是逼自己去输出在自己不熟悉的领域去做学习和提高。真的非常非常的难，并不是有天赋和热爱就能成功的，还需要能非常忍...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on February 28, 2021
     </p>
 </div>
 <hr>
@@ -652,217 +633,217 @@ Na...
         
         
         
-                <a data-sort="0222" 
+                <a data-sort="0234" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
-                    rel="49">Newsletter</a>
+                    rel="56">Newsletter</a>
         
-                <a data-sort="0221" 
+                <a data-sort="0233" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0236" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
-                    rel="6">LLVM</a>
+                    rel="7">LLVM</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="7">cuda</a>
+        
+                <a data-sort="0237" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0238" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0226" 
-                    href="/archive/?tag=cuda"
-                    title="cuda"
-                    rel="5">cuda</a>
-        
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

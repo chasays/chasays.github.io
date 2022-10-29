@@ -157,6 +157,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                SEARCH <i class="fa fa-search"></i>
@@ -281,317 +283,295 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2022/05/04/assembly-basic-instruction/">
+    <a href="/2022/05/19/CUDA-beginner-guider/">
         <h2 class="post-title">
-            汇编基础指令 
+            CUDA 入门教程
         </h2>
         
         <h3 class="post-subtitle">
-            SHL、ADD等
+            
         </h3>
         
         <div class="post-content-preview">
             
-                汇编
+                可以用 CUDA 创建大规模并行处理机应用程序的方法之一。它允许您使用强大的 c++ 编程语言来开发高性能算法，这些算法由运行在 GPU 上的数千个并行线程加速。
 
+许多开发人员已经通过这种方式加速了他们计算和带宽需求量巨大的应用程序，包括支持深度学习这一人工智能革命的库和框架。
 
-
-在计算机程序设计中，汇编语言，是任何一种低级语言语言中的指令和结构中的机器代码指令之间有很强的对应关系。汇编语言通常每个指令有一个语句，但是通常也支持常量、注释、汇编程序指令、象内存位置、寄存器和宏的符号标签。
-
-比如and 运算
-             Operand1: 	0101
-             Operand2: 	0011
------------------...
+需要有NV显卡的电脑，环境准备，我用的thinkpad，装的windows，在wsl下面安装cuda，参考官方...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on May 4, 2022
+        Posted by 叉叉敌 on May 19, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/05/03/squash-2-commit-to-1/">
+    <a href="/2022/05/17/external-project/">
         <h2 class="post-title">
-            git 2 个 commit 压缩为一个 commit
+            LLVM 外部项目 2
         </h2>
         
         <h3 class="post-subtitle">
-            rebase特别有用
+            
         </h3>
         
         <div class="post-content-preview">
             
-                问题
-在使用 Git 作为版本控制的时候，我们可能会由于各种各样的原因提交了许多临时的 commit(git add -m “xx”, 不是追加的–amend)，而这些 commit 拼接起来才是完整的任务。那么我们为了避免太多的 commit 而造成版本控制的混乱，通常我们推荐将这些 commit 合并成一个。
+                最近在github上发现一个不错的翻译文档，关于llvm的，虽然文档是2014.08年，但是对于用来了解llvm也是足够了.
 
-这个情况下用rebase就可以登场了.
+对于英文文档，可以下载这里.
 
-Rebase
+关于 Clang
 
-Rebase 是在...
+Clang不仅将C和C++转换为LLVM IR，而且能够监督整个编译过程，作为一个灵活的编译器驱动器，努力与GCC兼容共处。
+
+
+
+Clang看作一个前端编译器，而不是一个编译器驱动器，它负责将C和C++程序翻译为...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on May 3, 2022
+        Posted by 叉叉敌 on May 17, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/05/02/LLVM-intrinsic_introduce/">
+    <a href="/2022/05/17/LLVM-install-and-compiler/">
         <h2 class="post-title">
-            LLVM intrinsic 介绍
+            LLVM 安装和编译 1
         </h2>
         
         <h3 class="post-subtitle">
-            LLVM基础
+            
         </h3>
         
         <div class="post-content-preview">
             
-                什么是 LLVM intrinsic
+                LLVM基础设施适用于若干 Unix 系统（GNU/Linux，FreeBSD ，Mac OS）和 Windows 系统。我们一步一步地说明如何让LLVM在这些系统上工作。某些系统可获得LLVM和Clang的预编译安装包，但是也可以从源代码编译得到它们。
 
-LLVM 支持“intrinsic function”的概念。这些函数具有众所周知的名称和语义，并且需要遵循某些限制。总的来说，这些 intrinsic 代表 LLVM 语言的扩展机制，在添加到语言(或者位码读取器/写入器、解析器等)时不需要更改 LLVM 中的所有转换。
-
-Intrinsic函数是编译器内建的函数，由编译器提供，类似于内联函数。但与内...
+获取LLVM预编译安装包有两种通常的方法；你可以从官方网站获取二进制文件，也可以从第三方获取GNU/Linux发布的安装包和Window...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on May 2, 2022
+        Posted by 叉叉敌 on May 17, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/04/30/compare-with-others/">
+    <a href="/2022/05/17/LLVM-IR-transform/">
         <h2 class="post-title">
-            Compare With Others
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-layout: post
-title: “35 - 和别人比较”
-subtitle: ‘痛苦就是来源于此’ 
-author: “叉叉敌”
-header-style: text
-tags:
-
-  
-    Newsletter
-  
-
-
-朋友，您好 ~
-
-长假开始了，你准备好了么？
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 30, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/04/23/how-to-talk-story/">
-        <h2 class="post-title">
-            34 - 讲故事
+            LLVM IR转换
         </h2>
         
         <h3 class="post-subtitle">
-            讲故事的说道理是容易接受的
+            强大的现代编译器设计
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                什么是 LLVM  IR
+
+
+  ⽆限制的单分配寄存器机器指令集
+  强类型
+  三种常⻅表⽰形式：
+1， ⼈类可读的 LLVM 程序集（.ll ⽂件） 
+2， 密集的 bitcode ⼆进制表⽰（.bc ⽂件） 
+3,  C++ 类
+
+
+SSA
+
+Static Single Assignment, 我理解的是单一静态赋值，寄存器可能只分配一次.
+
+与之对应的就是多赋值，下面就是一个变量a，...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on May 17, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/05/14/what-is-product/">
+        <h2 class="post-title">
+            37 - 产品是什么
+        </h2>
+        
+        <h3 class="post-subtitle">
+            产品需要有交易和商品的属性，才有可能变为商业
         </h3>
         
         <div class="post-content-preview">
             
                 朋友，您好 ~
 
-今天是五一前的一个周末，由于明天要继续上班，所以只有一天的时间短暂休息下。
+成都的天气确实有点异常，前几天都快 30+ 度了，短裤、短袖都搞起了，从昨天开始突然降温，真的是满减活动不落伍，随时搞起来 ~
 
 
 
-我记得早些年的时候，五一长假四7天，后来由于春节、国庆太多假期了，调整了下，五一法定的只有一天假期了。那么实际五一只有1天的法定假期，但是要调休集中到一起休息5天喃？
+如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
 
-我想大部分人应该也知道了，就是为了促进消费，促进旅游，这不就是拉动内循环和经济么？
 
-不过疫情猖獗的情况下，还是在省内找到小...
+
+改变
+
+有人说减肥、运动、锻炼是非常愉悦的，我想大部分人是感受不到的这份愉快的。
+
+我自己也经常跑步，跑步的时候，特别是开...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on April 23, 2022
+        Posted by 叉叉敌 on May 14, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/04/20/LLVM-introduce/">
+    <a href="/2022/05/12/gdb-user-guide/">
         <h2 class="post-title">
-            LLVM 介绍
+            使用 GDB 进行调试
         </h2>
         
         <h3 class="post-subtitle">
-            
+            习惯了比GUI的还爽
         </h3>
         
         <div class="post-content-preview">
             
-                
+                经常我们使用的vscode、pycharm等等ide，都带有断点设置，参数检查等，但是GDB就没有这些，那我们能不能通过设置，把gdb用起来更简单喃？
+比如，如果你知道这些的话，可以跳过了.
+
+  gdb 脚本配合–batch
+  gdb .gdbinit  文件
 
 
+使用 GDB 进行调试
 
-
-
-
-
-https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
-
+在过去的几年里，我大部分时间都在用 Python 工作，而且我非常喜欢用 Python 进行调试。...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on April 20, 2022
+        Posted by 叉叉敌 on May 12, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/04/18/gihub-action-build-blog/">
+    <a href="/2022/05/11/tencent-cloud-subdomain-config-githubpages/">
         <h2 class="post-title">
-            用 Github Action 构建自己的 Jekyll 博客
+            腾讯云配置二级域名到Github pages，并用 cloudflare 加速
         </h2>
         
         <h3 class="post-subtitle">
-            github actions 工具太好了
+            这样访问速度还不错
         </h3>
         
         <div class="post-content-preview">
             
-                思路
+                背景
 
-对自己的提交的md文档，通过github action编译为静态文件，然后push到username.github.io仓库。从而可以浏览自己的博客。
+为什么要使用独立的域名，第一个，首先是独立的域名可以使用提高自己的权重以及引用，那能使提高自己网站的流量；第2个是自己注册了一个域名，然后没有使用二级域域名，这个时候开通，那使用起来也非常方便，而且还是免费的。
 
-
-  创建一个仓库，比如名字为A-repo，用来管理自己的md文件
-  上传自己的Jekyll 网站文件，可以参考这个创建的文章；,如果不会的可以参考fastpage来生成也非常的方便。
-  创建github actions来自动运...
+本人也是第一次走完整个流程，github pages当然一直有使用，创建也很简单，并且网上教程也比较多；然后是关于自定义域名的问题，自己以前使用过国外的免费域名，然后是直接...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on April 18, 2022
+        Posted by 叉叉敌 on May 11, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/04/16/how-to-plan/">
+    <a href="/2022/05/11/dokcer-copy-files/">
         <h2 class="post-title">
-            33 - 如何计划
+            向 Docker 容器复制文件和从 Docker 容器复制文件
         </h2>
         
         <h3 class="post-subtitle">
-            计划固然重要，行动更为重要
+            ‘太方便了'
+        </h3>
+        
+        <div class="post-content-preview">
+            
+                在处理 Docker 项目时，可能需要在 Docker 容器和本地计算机之间复制文件。
+
+Docker 为我们提供了非常有用的复制命令，使我们能够无缝地从 Docker 容器和本地机器复制文件。在本文中，我们将使用实例讨论如何使用 docker cp 命令。除了用到cp命令外， 还有一个docker exec常见的命令.
+
+下面是已经有启动docker镜像的情况下，docker镜像的名字为t...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 叉叉敌 on May 11, 2022
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2022/05/07/35-old-year-for-programmer/">
+        <h2 class="post-title">
+            36 - 35岁，程序员在做什么
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
         </h3>
         
         <div class="post-content-preview">
             
                 朋友，您好 ~
 
-成都天气转凉，今天晚上只有12°，光说一个数字，估计大部分人没有什么概念，就是12°可以穿薄款羽绒服了。
-
-成都不只是一个来了就不想走的城市，还是一个天气多变的城市，如果你是外地人，来成都游玩，类似春天或者秋天，多准备几件厚衣服 ~
+今天下班之后，回老家了，走的比较匆忙，忘了带自己的电脑，用的是公司的电脑。 公司的电脑上好多软件没有安装，有些许的不方便~
 
 
 
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
+如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
 
-计...
+我之前在互联网工作，由于互联网的性质，大家都知道，除了 996，还有比较有名气的就是「内卷」。
+
+当然也有好处，就是资本趋利，互联...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on April 16, 2022
+        Posted by 叉叉敌 on May 7, 2022
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2022/04/09/time-as-a-friend/">
+    <a href="/2022/05/06/git-pull-cherrypick-fetch/">
         <h2 class="post-title">
-            32 - 时间就是朋友
+            Git 常用命令 pull、cherry-pick、fetch 有什么区别？
         </h2>
         
         <h3 class="post-subtitle">
-            接受自己的本性
+            掌握了就非常的方便
         </h3>
         
         <div class="post-content-preview">
             
-                朋友，您好 ~
+                Cherry-pick
 
-上海确实疫情非常的严重，但是致死率官方报道的至少还是零，这个0给了我们很多信心，坚持下去一定会成功的。
-
-对于在上海的同事们来说，定闹钟抢购是家常便饭了。有个同事在隔离在酒店，每天有饭菜送上门，不用担心没有吃的问题，反而还是因祸得福。
-
-顺便祝大家有菜吃，有了菜吃，才能更好的防御疫情。
-
-加油，上海！
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮...
+使用场景：假设您正在与一组开发人员一起开发一个中型到大型的项目。由另一个团队成员提出的一些更改，您希望将其中的一些更改应用于您的主项目，而不是全部。因为管理几个 Git 分支之间的更改可能成为一项复杂的任务，您不希望将整个分支合并到另一个分支中。你只需要选择一个或两个特定的commit。从其他分支中挑选一些变更到您的主项目分支中，这被称为“cherry-pick”。...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 叉叉敌 on April 9, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/04/02/what-your-expectation/">
-        <h2 class="post-title">
-            31 - 你的期望是什么
-        </h2>
-        
-        <h3 class="post-subtitle">
-            有希望是好事
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-节前时刻，成都突然发现有2例本土确诊病例，大家假期出行一定要做好防护，尽量不要出行或者到高风险地区，保命要紧~
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-
-
-你对这个行业的期望是什么
-
-我是从互联网进入到芯片行业，有人问我”你是怎么进入这个行业的，你心态是什么样的”。
-
-其实我...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 2, 2022
+        Posted by 叉叉敌 on May 6, 2022
     </p>
 </div>
 <hr>
@@ -636,217 +616,217 @@ https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
         
         
         
-                <a data-sort="0222" 
+                <a data-sort="0234" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
-                    rel="49">Newsletter</a>
+                    rel="56">Newsletter</a>
         
-                <a data-sort="0221" 
+                <a data-sort="0233" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0223" 
+                <a data-sort="0235" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0224" 
+                <a data-sort="0236" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
-                    rel="6">LLVM</a>
+                    rel="7">LLVM</a>
         
-                <a data-sort="0225" 
+                <a data-sort="0236" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="7">cuda</a>
+        
+                <a data-sort="0237" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0226" 
+                <a data-sort="0238" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0226" 
-                    href="/archive/?tag=cuda"
-                    title="cuda"
-                    rel="5">cuda</a>
-        
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0227" 
+                <a data-sort="0239" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0228" 
+                <a data-sort="0240" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0229" 
+                <a data-sort="0241" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>
