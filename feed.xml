@@ -5,9 +5,91 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 29 Oct 2022 06:36:15 +0000</pubDate>
-    <lastBuildDate>Sat, 29 Oct 2022 06:36:15 +0000</lastBuildDate>
+    <pubDate>Mon, 07 Nov 2022 03:22:58 +0000</pubDate>
+    <lastBuildDate>Mon, 07 Nov 2022 03:22:58 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>62 - 复制粘贴</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;周末差点被自己的无知给毒死了。&lt;/p&gt;
+
+&lt;p&gt;在卫生间的洗漱台，我先用84消毒液撒了一遍之后，发现没有变化，有一些水垢还是不能轻松的清除。我就想上次用的洁厕液效果还不错，就又顺便就撒了一点，几秒之后，眼睛不能睁开，非常的刺鼻，心想这个洁厕液效果是真的好 ……&lt;/p&gt;
+
+&lt;p&gt;后来气味传到了客厅，媳妇说：“你在干吗呀”，我说在洗厕所，听了说了一遍之后，媳妇才说不能混用，会生成有毒气体氯气。&lt;/p&gt;
+
+&lt;p&gt;后来查询有关资料，发现84消毒液有几个使用误区，有可能只有我不知道（逃~）。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;84消毒液不能和洁厕灵一起使用&lt;/code&gt;，这些含氯消毒剂跟洁厕灵混合，会直接产生剧烈刺激性气体，造成使用者呼吸道伤害；&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;84消毒液需要加稀释直接用于消毒&lt;/code&gt;。市面上销售的84消毒液这些含氯消毒剂浓度是比较高的，一般是5%-10%。换算一下浓度就是50000-100000mg/L。我们在做家庭预防性消毒的时候，通常只需要500mg/L的浓度。因此使用时需要按100倍到200倍比例的用水稀释以后再使用。原液使用，刺激性会很强、腐蚀性会很大。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以后使用这些带有腐蚀性等的用品，最好还是先看看说明书啥的。&lt;/p&gt;
+
+&lt;p&gt;顺便大家猜猜84消毒液，名字是怎么来的?&lt;/p&gt;
+
+&lt;h2 id=&quot;一句话&quot;&gt;一句话&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;记忆是思考的残留物&lt;/code&gt;。如果是只是复制和粘贴，没有经过大脑的思考，终究只是一个搬运工。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://www.xiaoyuzhoufm.com/episode/635531f22a992d56e91e6572
+你能读出来的东西，取决于你的长期记忆中的背景知识。换句话说，背景知识多的人，可能读懂了 80% 的内容，而背景知识少的人，只读懂了 20%。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/UW2Ual0v21KNQz60MHT1nQ&quot;&gt;每个C++工程师都要了解的十个性能陷阱&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;与 go、java 等垃圾回收语言的大道至简、python 等解释语言的小快灵不同，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;C++最大的魅力就是给予工程师对代码完全的掌控&lt;/code&gt;，每个 C++程序员仿佛都是人形编译器，不止要看懂代码表面的逻辑，甚至要知道每行代码对应的汇编指令。优化代码也成了 C++工程师日常必备活动，正所谓“一杯茶，一包烟，一段代码，优化一天”。在经历过无数个性能优化的日日夜夜后，笔者也总结了几个中过招的性能陷阱，与诸位分享。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/r0a4sx_zV_4BnZwDI4sAgA&quot;&gt;斯托克代尔悖论&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;斯托克代尔强调一定不要把信念与原则搞混。信念是你一定要成功，而原则是你一定要面对现状中最残忍的事实，无论他们是什么。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/pxcIMfWeO2Dc0TtJjznNcw&quot;&gt;手把手带你看美国CDC的奥米克戎死亡数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;美国CDC被认为是最专业的疾病控制和预防机构。可能由于美国在疫情中的表现，有些人会对这个结论表示怀疑，但至少可以肯定的一点是：美国CDC的数据统计和披露是很好的。借助美国CDC的原始死亡统计数据，作者带大家看看奥密克戎的威胁究竟如何。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/0UrOYPI2yS7Di1wRxHbrmg&quot;&gt;华为星闪1.0系列标准正式发布&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;星闪联盟成立于2020年9月，目标是推动新一代无线短距通信技术SparkLink的创新和产业生态，该技术可广泛满足智能汽车、工业智造、智慧家庭、个人穿戴等多场景对低时延、高可靠、精同步、多并发的技术需求。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://buck.build/&quot;&gt;构建系统 Buck&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在使用fbinfer的时候，发现有buck这么一个工具，Buck是一个由Facebook开发和使用的构建系统。它鼓励创建由代码和资源组成的小型、可重复使用的模块，并支持许多平台上的各种语言。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/OMnQMynv5_CQBlZ7mXi1RQ&quot;&gt;无码科技：Readhub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;推荐一个小程序，这个是无码科技，Fenng大公司的开发的一个科技资讯集合的软件，能看到非常多科技相关的咨询和文章。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 05 Nov 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/11/05/copy-and-paste/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/11/05/copy-and-paste/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>61 - 经验</title>
@@ -882,217 +964,6 @@ getTestsInSuite
         <guid isPermaLink="true">https://blog.chiphub.top/2022/09/17/nvidia-new-arrival/</guid>
         
         <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>CUDA 基础 - 04 访存- share、const</title>
-        <description>&lt;p&gt;最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。&lt;/p&gt;
-
-&lt;p&gt;之前写了一篇关于cuda的kernel函数调用相关的知识，以及一个hello world入手学习语法等。知道了GPU架构,如何写一个cuda程序,今天继续深入学习cuda的内存相关知识。&lt;/p&gt;
-
-&lt;p&gt;回顾下，前面学习了的内存类型：三种内存，寄存器，全局、局部内存。寄存器可用于本地存储数据，避免重复内存操作。全局内存是主存空间，用于host和 GPU 之间的数据共享。本地内存是一种特殊类型的内存，可用于存储寄存器中不适合的数据，并且是线程的私有数据，局部的。&lt;/p&gt;
-
-&lt;h2 id=&quot;内存分类&quot;&gt;内存分类&lt;/h2&gt;
-
-&lt;p&gt;大致可以分为:Registers、global 、shared 、constant、local， 那就开始学习吧.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220913111256.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;share-共享&quot;&gt;share 共享&lt;/h3&gt;
-
-&lt;p&gt;虽然让不同的线程对不同的数据执行相同的操作是使用 GPU 的好的模式，但在某些情况下，线程需要进行通信。这种通信可能是必要的，因为我们试图实现的算法的工作方式，或者它可能来源于我们试图实现的性能目标。&lt;/p&gt;
-
-&lt;p&gt;掌握这些有非常大的好处，前段时间听组内的x博士讲到，比如&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CUDA用软件实现的算法，比amd用硬件实现的算法都要快&lt;/code&gt;，估计问题就在这里吧。&lt;/p&gt;
-
-&lt;p&gt;共享内存是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;线程块&lt;/code&gt;中所有线程共享的 CUDA 内存空间。在这种情况下，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;共享意味着一个线程块中的所有线程都可以对块分配的共享内存进行写入和读取&lt;/code&gt;，并且对这个内存的所有更改最终都将对该块中的所有线程可用。&lt;/p&gt;
-
-&lt;p&gt;为了在共享内存中分配一个数组，我们需要在定义前加上标识符&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; __share__&lt;/code&gt;。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;extern &quot;C&quot;
-__global__ void vector_add(const float * A, const float * B, float * C, const int size)
-{
-  int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-  __shared__ float temp[3];
-
-  if ( item &amp;lt; size )
-  {
-      temp[0] = A[item];
-      temp[1] = B[item];
-      temp[2] = temp[0] + temp[1];
-      C[item] = temp[2];
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上面的代码，若要为临时数组使用共享内存，请将标识符 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__share__&lt;/code&gt; 添加到其定义中。&lt;/p&gt;
-
-&lt;p&gt;虽然语法正确，但&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;上面的示例在功能上是错误的&lt;/code&gt;。原因是临时数组不再是分配它的线程的私有数组，而是现在由整个线程块共享。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;猜一下大概是因为是？&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;GPU是多个warp同时执行同一个命令，所以结果是不确定的，而且肯定不同于以前版本的 Vector_add。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;线程将相互覆盖对方的临时值&lt;/code&gt;，并且不能保证每个线程对哪个值可见。&lt;/p&gt;
-
-&lt;p&gt;为了修复前一个kernel，我们应该为每个线程分配足够的共享内存来存储三个值，这样每个线程都有自己的共享内存数组部分。&lt;/p&gt;
-
-&lt;p&gt;为了分配足够的内存，我们需要用其他内存来替换 &lt;strong&gt;shared&lt;/strong&gt; float temp[3] 。如果我们知道每个线程块有1024个线程，我们可以编写如下代码:
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__shared__ float temp[3 * 1024];&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;但是根据经验，我们知道在代码中包含常量不是一个可维护的解决方案。问题是，如果我们想声明一个共享内存数组，我们需要一个常量值，因为编译器需要知道要分配多少内存。&lt;/p&gt;
-
-&lt;p&gt;这个问题的解决方案是不指定数组的大小，而是将内存分配到其他地方。&lt;/p&gt;
-
-&lt;p&gt;extern &lt;strong&gt;shared&lt;/strong&gt; float temp[];&lt;/p&gt;
-
-&lt;p&gt;通过将命名参数 shared_mem  添加到kernel调用来完成。修改过的代码大概是这个样子：&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;n&quot;&gt;__global__&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;vector_add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blockIdx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;blockDim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threadIdx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threadIdx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;extern&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__shared__&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;上面的代码现在是正确的，虽然它仍然不是很有用。我们确实在使用共享内存，而且我们正在以正确的方式使用它，但是这样做并&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;没有获得任何性能提升&lt;/code&gt;。实际上，我们正在使代码变得更慢，而不是更快，因为共享内存比寄存器慢。&lt;/p&gt;
-
-&lt;p&gt;GPU 是一个高度并行的device，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;可以同时执行多个线程&lt;/code&gt;。在前面的代码中，不同的线程可能同时更新相同的输出项，从而产生错误的结果。&lt;/p&gt;
-
-&lt;p&gt;为了解决这个问题，我们需要使用 CUDA 库中名为 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;atomicAdd&lt;/code&gt; 的函数。这个函数确保 output 的增量以原子方式发生，以便在多个线程想要同时更新同一项时不会发生冲突。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;__global__ void histogram(const int * input, int * output)
-{
-    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-
-    atomicAdd(&amp;amp;(output[input[item]]), 1);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;说实话，我看完共享内存目前就知道了，共享意味着一个线程块中的所有线程都可以对块分配的共享内存进行写入和读取。关于怎么用，如何用才能写出更高效，有性能的kernel函数，我还是有一点懵。&lt;/p&gt;
-
-&lt;p&gt;下面来了，围绕cuda &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;histogram&lt;/code&gt;函数 和&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;atomicAdd &lt;/code&gt;来完成。&lt;/p&gt;
-
-&lt;h3 id=&quot;histogram-函数__syncthreads&quot;&gt;histogram 函数、__syncthreads()&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220916202002.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;histogram 是图像处理和数据挖掘中常用的分析工具。它们显示每个数据元素出现的频率。虽然在 CPU 上计算很简单，但是传统上histogram在 GPU 上很难有效地计算。之前提出的方法包括使用遮挡查询机制(需要为每个直方图桶提供渲染通道) ，或者对图像的像素进行排序，然后搜索每个桶的开始，这两种方法都非常昂贵。我们可以使用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; CUDA 和共享内存&lt;/code&gt;有效地生成 histogram ，然后可以将其读回host或保存在 GPU 上供以后使用。&lt;/p&gt;
-
-&lt;p&gt;所以用一个 CUDA &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;histogram&lt;/code&gt; 函数来实现，使用共享内存来减少全局内存中的冲突。继续共享&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;__global__ void histogram(const int * input, int * output)
-{
-    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-    __shared__ int temp_histogram[256];
-
-    atomicAdd(&amp;amp;(temp_histogram[input[item]]), 1);
-    atomicAdd(&amp;amp;(output[threadIdx.x]), temp_histogram[threadIdx.x]);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;atomicAdd&lt;/code&gt; 可用于全局内存和共享内存。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CUDA的原子操作可以理解为对一个变量进行“读取-修改-写入”这三个操作的一个最小单位的执行过程，这个执行过程不能够再分解为更小的部分&lt;/code&gt;，在它执行过程中，不允许其他并行线程对该变量进行读取和写入的操作。基于这个机制，原子操作实现了对在多个线程间共享的变量的互斥保护，确保任何一次对变量的操作的结果的正确性。&lt;/p&gt;
-
-&lt;p&gt;原子操作确保了在多个并行线程间共享的内存的读写保护，每次只能有一个线程对该变量进行读写操作，一个线程对该变量操作的时候，其他线程如果也要操作该变量，只能等待前一线程执行完成。原子操作确保了安全，代价是牺牲了性能&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;atomicAdd(&amp;amp;(temp_histogram[input[item]]), 1)&lt;/code&gt;，这句代码，每个线程根据输入的值更新共享内存中的一个任意位置，而下一行atomicAdd，每个线程读取共享内存中与其线程 ID 对应的元素。但是，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;对共享内存的更改不会自动对所有其他线程可用&lt;/code&gt;，因此最终结果可能不正确。&lt;/p&gt;
-
-&lt;p&gt;为了解决这个问题，我们需要同步一个块中的所有线程，以便内存操作也最终完成并对所有人可见。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;要同步块中的线程&lt;/code&gt;，我们使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__syncthreads()&lt;/code&gt; 函数。此外，共享内存没有初始化，程序员也需要处理这个问题。因此，我们需要首先初始化 temp_histogram，等待所有线程都完成这项工作，在共享内存中执行计算，再次等待所有线程都完成，然后才更新全局数组。&lt;/p&gt;
-
-&lt;p&gt;完整的代码如下&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;__global__ void histogram(const int * input, int * output)
-{
-    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-    __shared__ int temp_histogram[256];
- 
-    // Initialize shared memory and synchronize
-    temp_histogram[threadIdx.x] = 0;
-    __syncthreads();
-
-    // Compute shared memory histogram and synchronize
-    atomicAdd(&amp;amp;(temp_histogram[input[item]]), 1);
-    __syncthreads();
-
-    // Update global histogram
-    atomicAdd(&amp;amp;(output[threadIdx.x]), temp_histogram[threadIdx.x]);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这个解决方案背后的想法是通过在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;共享内存中使用临时histogram来减少全局内存中代价高昂的冲突&lt;/code&gt;。当一个块处理完其输入数组的分数，并填充了局部histogram后，线程协作更新全局histogram。这种解决方案不仅潜在地减少了全局内存中的冲突，而且还产生了更好的访问模式，因为线程在第二次调用 atomicAdd 期间读取输入数组的相邻项，并写入输出数组的相邻元素。&lt;/p&gt;
-
-&lt;h3 id=&quot;const-内存&quot;&gt;const 内存&lt;/h3&gt;
-
-&lt;p&gt;device侧的const值也分多种，比如inline const，literal const，immediately number。&lt;/p&gt;
-
-&lt;p&gt;constant Memory对于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;device来说只读但是对于host是可读可写&lt;/code&gt;，其内容可以广播到一个块中的多个线程。分配到常量内存中的变量需要在 CUDA 中使用特殊的 &lt;strong&gt;constant&lt;/strong&gt;  标识符进行声明，而且它必须是一个全局变量，也就是说，它必须在包含kernel的作用域中声明，而&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不是在kernel本身内部声明&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;代码时间：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;extern &quot;C&quot; {
-#define BLOCKS 2
-
-__constant__ float factors[BLOCKS];
-
-__global__ void sum_and_multiply(const float * A, const float * B, float * C, const int size)
-{
-    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-    C[item] = (A[item] + B[item]) * factors[blockIdx.x];
-}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;前面的__constant__ 就是 const memory，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;const内存的初始化发生在host端&lt;/code&gt;，不是device GPU端。&lt;/p&gt;
-
-&lt;h2 id=&quot;总结&quot;&gt;总结&lt;/h2&gt;
-
-&lt;p&gt;共享内存比全局内存和本地内存快，共享内存可以用作用户控制的缓存来加速代码。如果在线程内部分配，则在编译时必须知道共享内存数组的大小，可以在kernel调用期间声明extern共享内存数组并传递大小。&lt;/p&gt;
-
-&lt;p&gt;使用 &lt;strong&gt;shared&lt;/strong&gt;  在共享内存空间中分配内存，使用 __syncthreads() 等待共享内存操作对块中的所有线程可见。&lt;/p&gt;
-
-&lt;p&gt;全局作用域的数组，其大小在编译时已知，可以使用 &lt;strong&gt;constant&lt;/strong&gt; 标识符存储在const内存中。&lt;/p&gt;
-
-&lt;p&gt;host CPU能访问分类：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220916203806.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;对于CUDA的学习就到此告一段落了，后面用到了再来继续补充深入，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;学以致用&lt;/code&gt;，不用肯定是会忘记的，用起来吧。&lt;/p&gt;
-
-&lt;p&gt;推荐一个cnblogs cuda：https://www.cnblogs.com/1024incn/tag/CUDA/&lt;/p&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;http://developer.download.nvidia.com/compute/cuda/1.1-Beta/x86_website/projects/histogram64/doc/histogram.pdf&lt;/p&gt;
-
-&lt;p&gt;https://github.com/kevinzakka/learn-cuda/blob/master/src/histogram.cu&lt;/p&gt;
-
-&lt;p&gt;https://developer.nvidia.com/blog/gpu-pro-tip-fast-histograms-using-shared-atomics-maxwell/&lt;/p&gt;
-
-&lt;p&gt;https://carpentries-incubator.github.io/lesson-gpu-programming/06-global_local_memory/index.html&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Fri, 16 Sep 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/09/16/cuda-load-store-2/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/09/16/cuda-load-store-2/</guid>
-        
-        <category>cuda</category>
         
         
       </item>
