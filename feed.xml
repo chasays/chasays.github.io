@@ -5,9 +5,87 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 07 Nov 2022 03:22:58 +0000</pubDate>
-    <lastBuildDate>Mon, 07 Nov 2022 03:22:58 +0000</lastBuildDate>
+    <pubDate>Tue, 15 Nov 2022 00:58:04 +0000</pubDate>
+    <lastBuildDate>Tue, 15 Nov 2022 00:58:04 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>63 - 不确定性</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221115084814.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;“准备的终极形式不是为特定的情景做计划，而是一种能够应对不确定性的心态。”&lt;/p&gt;
+
+&lt;p&gt;尽管现在有天气预报，我们还是不能 100% 的笃定明天的天气是雨天、阴天，还是晴天。生活亦是如此，在这样的经济情况下，全球互联网巨头们都纷纷开始裁员，亦或是冻结招聘岗位，不知道明天是否会被裁员，失业。&lt;/p&gt;
+
+&lt;p&gt;但是唯一确定的就是「不确定」。&lt;/p&gt;
+
+&lt;p&gt;我想大部分所在的公司，都是希望自己的公司变得更好，这样公司就有更多的利润拿来分给员工。对于当下的大环境的影响，不能把鸡蛋放在同一个篮子里面，只做一种情况的准备，应该有多种准备。&lt;/p&gt;
+
+&lt;p&gt;如果非要上价值的话，个人建议有 2 个：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;努力做好当下的工作，保持现有的工作正常开展&lt;/li&gt;
+  &lt;li&gt;提升自己，应对未来不确定性做准备（这个比较泛，重点就是找到自己的兴趣+特长）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;您还有什么好的想法么，可以私信回复我。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://archive.ph/e1SRq#selection-1215.83-1221.9&quot;&gt;GPT-4：即将到来&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;GPT-4几乎准备好了，有望在2月份之前发布。这一版本可能会在参数方面带来超过100倍的改进。它很可能能够轻松通过图灵测试，尽管图灵测试现在通常被认为是过时的。该模型将能够接受文本、音频、图像，可能还有视频输入。每个了解GPT-4的人都还在保密协议下，所以关于这个模型的公开信息很少。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://linuxize.com/post/how-to-copy-cut-paste-in-vim/&quot;&gt;在vim里面剪切和粘贴&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;之前一直记不住为什么vim里面的复制是y，粘贴是p，看了这篇文章，然后在分享给大家，应该可以记住好长一段时间了。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;y就是yank（突然拿起来）， p就是put（然后放上去）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;您记住了么？&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://about.fb.com/news/2022/11/mark-zuckerberg-layoff-message-to-employees&quot;&gt;马克·扎克伯格给Meta员工的信息&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;比较佩服的就是欧美这些创业者，面对自己的失败就是很坦然，错了就是错了，对就是对。不像某些人，错了还是对。还是多向他们学习，承认自己的错误不可拍，可怕的是知道错了，不承认，还要让大家一起认为自己是对的。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I want to take accountability for these decisions and for how we got here. I know this is tough for everyone, and I’m especially sorry to those impacted.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dagger/dagger&quot;&gt;CICD工具-Dagger&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dagger是一个可编程的CI/CD引擎，在容器中运行。它允许开发人员将CI/CD管道开发成与他们的应用程序相同的编程语言的代码。Dagger完全作为标准的OCI容器执行管道。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://zb.liey.cn/&quot;&gt;竹白newsletter专栏检索&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221114195228.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一款用于检索竹白高质量专栏的工具。竹白现在没有检索功能，v2ex 上面一位网友做的一款检索小工具。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/11/12/uncertain/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/11/12/uncertain/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>62 - 复制粘贴</title>
@@ -889,81 +967,6 @@ getTestsInSuite
         <guid isPermaLink="true">https://blog.chiphub.top/2022/09/22/llvm-lit/</guid>
         
         <category>LLVM</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>55 - 保持更新</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/9XxacMZt-hzmRkehIbSAgA&quot;&gt;特斯拉Semi Truck进入中国的三大猜想&lt;/a&gt;
-&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220917133158.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;近日，特斯拉官网更新了Semi Truck的外观图片。与此同时，特斯拉首席执行官埃隆·马斯克也公开宣称，首款电动卡车Semi长续驶里程版将于年底正式交付。如果特斯拉Semi Truck入华，将有望复制Model S的带动作用，提高电动重卡的接受度，促进相关配套设施建设的完善。如果特斯拉后期发布更加经济的车型，还将推动电动卡车大规模普及应用。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/HTHnvik_dFsvp3oLZWqqRA&quot;&gt;4万加密人在线见证历史，“币圈春晚”意义到底在哪？&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220917133420.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这预示着能源密集型挖矿工作需求将消失，网络保护机制将通过质押以太坊实现。同时，在经历了数月的市场波动后，这一里程碑还可能提振市场信心。以太坊的合并“将证明去中心化和无需许可的网络可以以节能的方式运行。”&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://threadreaderapp.com/thread/1570144499187453952.html&quot;&gt;Action Transformer &lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Action Transformer (ACT-1)是一个可以使用多种软件工具的模型。用户可以输入 ACT-1将执行的高级请求，例如，在房地产网站上搜索房产或在 Salesforce 中输入新的线索。该模型可以查询 Wikipedia 来学习，并且可以通过反馈进行指导。它可以完成需要多个程序的任务。ACT-1能力的视频演示可以在主题中找到。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://typefully.com/DanHollick/qr-codes-T7tLlNi&quot;&gt;二维码是如何工作的&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220917194502.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;二维码，或快速反应代码，是由丰田的一个子公司发明的跟踪零件。该公司从未行使其专利并免费发布该技术。二维码可以存储数据，可以从多个角度进行读取。即使部分代码被掩盖，它们仍然可以被解码。这篇文章解释了二维码是如何工作的。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.blog/2022-09-08-github-copilot-now-available-for-teachers/&quot;&gt;github-copilot对于教师可用&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;教师免费。GitHub 致力于负责任的创新，同时也降低了任何对学习编码感兴趣的人的进入门槛。这个承诺的一部分意味着向那些教育下一代软件开发人员的人免费提供工具。到目前为止，我们已经能够提供多种好处，包括通过 GitHub Codespaces 为教师提供免费的云计算。文中有申请链接。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/maxwell-bland/copilot-in-the-terminal&quot;&gt;copilot-in-the-terminal&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;github推出的AI写代码，，现在你希望它也能帮助你运行代码，可以参考这个。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=sf3vENkPKj8&amp;amp;ab_channel=ReuvenLerner&quot;&gt;python里面的’&lt;strong&gt;name&lt;/strong&gt;’==’&lt;strong&gt;main&lt;/strong&gt;‘是什么&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220917193926.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这个视频讲解的很详细，看上面的图片也可以了解。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/dflex-js/dflex&quot;&gt;DFlex&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;DFlex 是一个用于web拖放应用程序的 Javascript 库。它是用普通的 Javascript 构建的，并实现了一种增强的转换机制来操作 DOM 元素。到目前为止，它是互联网上唯一一个操作 DOM 而不是重新构造它的拖放库，并且有自己的调度器和协调器。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 17 Sep 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/09/17/nvidia-new-arrival/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/09/17/nvidia-new-arrival/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>
