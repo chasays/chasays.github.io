@@ -12,27 +12,27 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="CUDA 基础 - 04 访存- share、const - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="65 - 装睡 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。
+    <meta property="og:description" content="朋友，您好 ~
 
 ">
     
-    <meta property="article:published_time" content="2022-09-16T00:00:00Z">
+    <meta property="article:published_time" content="2022-11-26T00:00:00Z">
     
     
     <meta property="article:author" content="叉叉敌">
     
     
-    <meta property="article:tag" content="cuda">
+    <meta property="article:tag" content="Newsletter">
     
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2022/09/16/cuda-load-store-2/">
+    <meta property="og:url" content="https://blog.chiphub.top/2022/11/26/unsleep/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <title>CUDA 基础 - 04 访存- share、const - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>65 - 装睡 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -41,7 +41,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2022/09/16/cuda-load-store-2/">
+    <link rel="canonical" href="https://blog.chiphub.top/2022/11/26/unsleep/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -282,13 +282,13 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=cuda" title="cuda">cuda</a>
+                        <a class="tag" href="/archive/?tag=Newsletter" title="Newsletter">Newsletter</a>
                         
                     </div>
-                    <h1>CUDA 基础 - 04 访存- share、const</h1>
+                    <h1>65 - 装睡</h1>
                     
                     <h2 class="subheading"></h2>
-                    <span class="meta">Posted by 叉叉敌 on September 16, 2022</span>
+                    <span class="meta">Posted by 叉叉敌 on November 26, 2022</span>
                 </div>
             </div>
         </div>
@@ -314,204 +314,68 @@
                 <!-- Multi-Lingual -->
                 
 
-				<p>最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。</p>
+				<p>朋友，您好 ~</p>
 
-<p>之前写了一篇关于cuda的kernel函数调用相关的知识，以及一个hello world入手学习语法等。知道了GPU架构,如何写一个cuda程序,今天继续深入学习cuda的内存相关知识。</p>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221126155026.png" alt="" /></p>
 
-<p>回顾下，前面学习了的内存类型：三种内存，寄存器，全局、局部内存。寄存器可用于本地存储数据，避免重复内存操作。全局内存是主存空间，用于host和 GPU 之间的数据共享。本地内存是一种特殊类型的内存，可用于存储寄存器中不适合的数据，并且是线程的私有数据，局部的。</p>
+<ul>
+  <li>昆明，大巴车</li>
+  <li>新疆，火灾</li>
+  <li>郑州，富士康</li>
+</ul>
 
-<h2 id="内存分类">内存分类</h2>
+<p>…………</p>
 
-<p>大致可以分为:Registers、global 、shared 、constant、local， 那就开始学习吧.</p>
+<p>你永远无法叫醒一个装睡的人。</p>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220913111256.png" alt="" /></p>
+<p>如果您喜欢这份Newsletter，<a href="https://chasays.zhubai.love/">请转发给您朋友，</a>，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。</p>
 
-<h3 id="share-共享">share 共享</h3>
+<h1 id="文章推荐">文章推荐</h1>
 
-<p>虽然让不同的线程对不同的数据执行相同的操作是使用 GPU 的好的模式，但在某些情况下，线程需要进行通信。这种通信可能是必要的，因为我们试图实现的算法的工作方式，或者它可能来源于我们试图实现的性能目标。</p>
+<ul>
+  <li><a href="https://mp.weixin.qq.com/s/UIkJ-kkk25uJnBNNuZ26Gw">长线投资：有知有行</a></li>
+</ul>
 
-<p>掌握这些有非常大的好处，前段时间听组内的x博士讲到，比如<code class="language-plaintext highlighter-rouge">CUDA用软件实现的算法，比amd用硬件实现的算法都要快</code>，估计问题就在这里吧。</p>
+<p>有知有行，帮大家在这个越来越不确定的世界里，放下焦虑，把更多的时间和精力留给工作、生活、家人和自己。</p>
 
-<p>共享内存是<code class="language-plaintext highlighter-rouge">线程块</code>中所有线程共享的 CUDA 内存空间。在这种情况下，<code class="language-plaintext highlighter-rouge">共享意味着一个线程块中的所有线程都可以对块分配的共享内存进行写入和读取</code>，并且对这个内存的所有更改最终都将对该块中的所有线程可用。</p>
+<ul>
+  <li><a href="https://mp.weixin.qq.com/s/dDZx85ga-YO2KAp2Phcffw">AMD 为爱信下一代自动泊车辅助系统提供支持</a></li>
+</ul>
 
-<p>为了在共享内存中分配一个数组，我们需要在定义前加上标识符<code class="language-plaintext highlighter-rouge"> __share__</code>。</p>
+<p>爱信 APA 系统采用安装在车辆上的 4 个摄像头和 12 个超声波传感器识别周边环境并计算驾驶路线。随后，该系统会根据计算出的路线控制车辆以自动泊车。此外，当遭遇碰撞风险时，爱信 APA 系统还能自动执行自动紧急制动。从车载信息娱乐系统到高级驾驶辅助系统、自动驾驶和车联网应用等功能安全关键型应用，AMD 能为汽车制造商提供芯片和软件解决方案一站式服务</p>
 
-<pre><code class="language-C">extern "C"
-__global__ void vector_add(const float * A, const float * B, float * C, const int size)
-{
-  int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-  __shared__ float temp[3];
+<ul>
+  <li><a href="https://mp.weixin.qq.com/s/SrYl-JwYbjH4rteSOhXdUw">消息称台积电取代三星，拿下特斯拉辅助驾驶 FSD 芯片大单</a></li>
+</ul>
 
-  if ( item &lt; size )
-  {
-      temp[0] = A[item];
-      temp[1] = B[item];
-      temp[2] = temp[0] + temp[1];
-      C[item] = temp[2];
-  }
-}
-</code></pre>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221126144557.png" alt="" /></p>
 
-<p>上面的代码，若要为临时数组使用共享内存，请将标识符 <code class="language-plaintext highlighter-rouge">__share__</code> 添加到其定义中。</p>
+<p>在此之前，特斯拉采取多元供应商策略，在台积电、三星都有下单。IT之家了解到，特斯拉前一代辅助驾驶芯片采用 14nm 生产，以三星奥斯汀工厂为主，该芯片又称为 Hardware 3.0，而后续又升级为 7nm 制程。</p>
 
-<p>虽然语法正确，但<code class="language-plaintext highlighter-rouge">上面的示例在功能上是错误的</code>。原因是临时数组不再是分配它的线程的私有数组，而是现在由整个线程块共享。</p>
+<h1 id="工具资源推荐">工具、资源推荐</h1>
+
+<ul>
+  <li><a href="https://github.com/MichaelMure/git-bug">git-bug</a></li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221126154254.png" alt="" /></p>
+
+<p>现在好程序员用这个功能来做博客，结合github.io，就是一个免费的博客。
+git-bug是一个完全嵌入git的分布式bug跟踪器。它可以离线工作，并且不向项目添加任何额外的文件。git-bug与现有的工具集成，并且它支持与其他错误跟踪器的桥接。</p>
+
+<ul>
+  <li><a href="https://github.com/kiteco/vscode-plugin">kiteco</a></li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221126150406.png" alt="" />
+类似GitHub Copilot，Kite 是一家使用 AI 帮助开发者编写代码的初创公司，也是 Python 代码自动补全的神器。一直以来，因为其在「Intelligent Snippets」功能的加持下，可以帮助 Python 程序员减少一半的操作，而备受大家喜爱，甚至此前 Python 之父 Gudio van Rossum 在使用之后，也强烈推荐。</p>
+
+<p>大概看了下，没有商业软件的这个GitHub Copilot智能，但是也平时用的自动补全功能好用些。还是那句话，在于人，不是工具。</p>
+
+<h2 id="每周一句">每周一句</h2>
 
 <blockquote>
-  <p>猜一下大概是因为是？</p>
-</blockquote>
-
-<p>GPU是多个warp同时执行同一个命令，所以结果是不确定的，而且肯定不同于以前版本的 Vector_add。<code class="language-plaintext highlighter-rouge">线程将相互覆盖对方的临时值</code>，并且不能保证每个线程对哪个值可见。</p>
-
-<p>为了修复前一个kernel，我们应该为每个线程分配足够的共享内存来存储三个值，这样每个线程都有自己的共享内存数组部分。</p>
-
-<p>为了分配足够的内存，我们需要用其他内存来替换 <strong>shared</strong> float temp[3] 。如果我们知道每个线程块有1024个线程，我们可以编写如下代码:
-<code class="language-plaintext highlighter-rouge">__shared__ float temp[3 * 1024];</code></p>
-
-<p>但是根据经验，我们知道在代码中包含常量不是一个可维护的解决方案。问题是，如果我们想声明一个共享内存数组，我们需要一个常量值，因为编译器需要知道要分配多少内存。</p>
-
-<p>这个问题的解决方案是不指定数组的大小，而是将内存分配到其他地方。</p>
-
-<p>extern <strong>shared</strong> float temp[];</p>
-
-<p>通过将命名参数 shared_mem  添加到kernel调用来完成。修改过的代码大概是这个样子：</p>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="n">__global__</span> <span class="kt">void</span> <span class="nf">vector_add</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span> <span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span> <span class="n">B</span><span class="p">,</span> <span class="kt">float</span> <span class="o">*</span> <span class="n">C</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">item</span> <span class="o">=</span> <span class="p">(</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span>
-  <span class="k">extern</span> <span class="n">__shared__</span> <span class="kt">float</span> <span class="n">temp</span><span class="p">[];</span>
-  <span class="kt">float</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="n">temp</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span> <span class="n">item</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="p">)</span>
-  <span class="p">{</span>
-      <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">item</span><span class="p">];</span>
-      <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">item</span><span class="p">];</span>
-      <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-      <span class="n">C</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>上面的代码现在是正确的，虽然它仍然不是很有用。我们确实在使用共享内存，而且我们正在以正确的方式使用它，但是这样做并<code class="language-plaintext highlighter-rouge">没有获得任何性能提升</code>。实际上，我们正在使代码变得更慢，而不是更快，因为共享内存比寄存器慢。</p>
-
-<p>GPU 是一个高度并行的device，<code class="language-plaintext highlighter-rouge">可以同时执行多个线程</code>。在前面的代码中，不同的线程可能同时更新相同的输出项，从而产生错误的结果。</p>
-
-<p>为了解决这个问题，我们需要使用 CUDA 库中名为 <code class="language-plaintext highlighter-rouge">atomicAdd</code> 的函数。这个函数确保 output 的增量以原子方式发生，以便在多个线程想要同时更新同一项时不会发生冲突。</p>
-
-<pre><code class="language-C">__global__ void histogram(const int * input, int * output)
-{
-    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-
-    atomicAdd(&amp;(output[input[item]]), 1);
-}
-</code></pre>
-
-<p>说实话，我看完共享内存目前就知道了，共享意味着一个线程块中的所有线程都可以对块分配的共享内存进行写入和读取。关于怎么用，如何用才能写出更高效，有性能的kernel函数，我还是有一点懵。</p>
-
-<p>下面来了，围绕cuda <code class="language-plaintext highlighter-rouge">histogram</code>函数 和<code class="language-plaintext highlighter-rouge">atomicAdd </code>来完成。</p>
-
-<h3 id="histogram-函数__syncthreads">histogram 函数、__syncthreads()</h3>
-
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220916202002.png" alt="" /></p>
-
-<p>histogram 是图像处理和数据挖掘中常用的分析工具。它们显示每个数据元素出现的频率。虽然在 CPU 上计算很简单，但是传统上histogram在 GPU 上很难有效地计算。之前提出的方法包括使用遮挡查询机制(需要为每个直方图桶提供渲染通道) ，或者对图像的像素进行排序，然后搜索每个桶的开始，这两种方法都非常昂贵。我们可以使用<code class="language-plaintext highlighter-rouge"> CUDA 和共享内存</code>有效地生成 histogram ，然后可以将其读回host或保存在 GPU 上供以后使用。</p>
-
-<p>所以用一个 CUDA <code class="language-plaintext highlighter-rouge">histogram</code> 函数来实现，使用共享内存来减少全局内存中的冲突。继续共享</p>
-
-<pre><code class="language-C">__global__ void histogram(const int * input, int * output)
-{
-    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-    __shared__ int temp_histogram[256];
-
-    atomicAdd(&amp;(temp_histogram[input[item]]), 1);
-    atomicAdd(&amp;(output[threadIdx.x]), temp_histogram[threadIdx.x]);
-}
-</code></pre>
-
-<p><code class="language-plaintext highlighter-rouge">atomicAdd</code> 可用于全局内存和共享内存。</p>
-
-<p><code class="language-plaintext highlighter-rouge">CUDA的原子操作可以理解为对一个变量进行“读取-修改-写入”这三个操作的一个最小单位的执行过程，这个执行过程不能够再分解为更小的部分</code>，在它执行过程中，不允许其他并行线程对该变量进行读取和写入的操作。基于这个机制，原子操作实现了对在多个线程间共享的变量的互斥保护，确保任何一次对变量的操作的结果的正确性。</p>
-
-<p>原子操作确保了在多个并行线程间共享的内存的读写保护，每次只能有一个线程对该变量进行读写操作，一个线程对该变量操作的时候，其他线程如果也要操作该变量，只能等待前一线程执行完成。原子操作确保了安全，代价是牺牲了性能</p>
-
-<p><code class="language-plaintext highlighter-rouge">atomicAdd(&amp;(temp_histogram[input[item]]), 1)</code>，这句代码，每个线程根据输入的值更新共享内存中的一个任意位置，而下一行atomicAdd，每个线程读取共享内存中与其线程 ID 对应的元素。但是，<code class="language-plaintext highlighter-rouge">对共享内存的更改不会自动对所有其他线程可用</code>，因此最终结果可能不正确。</p>
-
-<p>为了解决这个问题，我们需要同步一个块中的所有线程，以便内存操作也最终完成并对所有人可见。<code class="language-plaintext highlighter-rouge">要同步块中的线程</code>，我们使用 <code class="language-plaintext highlighter-rouge">__syncthreads()</code> 函数。此外，共享内存没有初始化，程序员也需要处理这个问题。因此，我们需要首先初始化 temp_histogram，等待所有线程都完成这项工作，在共享内存中执行计算，再次等待所有线程都完成，然后才更新全局数组。</p>
-
-<p>完整的代码如下</p>
-<pre><code class="language-C">__global__ void histogram(const int * input, int * output)
-{
-    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-    __shared__ int temp_histogram[256];
- 
-    // Initialize shared memory and synchronize
-    temp_histogram[threadIdx.x] = 0;
-    __syncthreads();
-
-    // Compute shared memory histogram and synchronize
-    atomicAdd(&amp;(temp_histogram[input[item]]), 1);
-    __syncthreads();
-
-    // Update global histogram
-    atomicAdd(&amp;(output[threadIdx.x]), temp_histogram[threadIdx.x]);
-}
-</code></pre>
-
-<p>这个解决方案背后的想法是通过在<code class="language-plaintext highlighter-rouge">共享内存中使用临时histogram来减少全局内存中代价高昂的冲突</code>。当一个块处理完其输入数组的分数，并填充了局部histogram后，线程协作更新全局histogram。这种解决方案不仅潜在地减少了全局内存中的冲突，而且还产生了更好的访问模式，因为线程在第二次调用 atomicAdd 期间读取输入数组的相邻项，并写入输出数组的相邻元素。</p>
-
-<h3 id="const-内存">const 内存</h3>
-
-<p>device侧的const值也分多种，比如inline const，literal const，immediately number。</p>
-
-<p>constant Memory对于<code class="language-plaintext highlighter-rouge">device来说只读但是对于host是可读可写</code>，其内容可以广播到一个块中的多个线程。分配到常量内存中的变量需要在 CUDA 中使用特殊的 <strong>constant</strong>  标识符进行声明，而且它必须是一个全局变量，也就是说，它必须在包含kernel的作用域中声明，而<code class="language-plaintext highlighter-rouge">不是在kernel本身内部声明</code>。</p>
-
-<p>代码时间：</p>
-
-<pre><code class="language-C">extern "C" {
-#define BLOCKS 2
-
-__constant__ float factors[BLOCKS];
-
-__global__ void sum_and_multiply(const float * A, const float * B, float * C, const int size)
-{
-    int item = (blockIdx.x * blockDim.x) + threadIdx.x;
-    C[item] = (A[item] + B[item]) * factors[blockIdx.x];
-}
-}
-</code></pre>
-
-<p>前面的__constant__ 就是 const memory，<code class="language-plaintext highlighter-rouge">const内存的初始化发生在host端</code>，不是device GPU端。</p>
-
-<h2 id="总结">总结</h2>
-
-<p>共享内存比全局内存和本地内存快，共享内存可以用作用户控制的缓存来加速代码。如果在线程内部分配，则在编译时必须知道共享内存数组的大小，可以在kernel调用期间声明extern共享内存数组并传递大小。</p>
-
-<p>使用 <strong>shared</strong>  在共享内存空间中分配内存，使用 __syncthreads() 等待共享内存操作对块中的所有线程可见。</p>
-
-<p>全局作用域的数组，其大小在编译时已知，可以使用 <strong>constant</strong> 标识符存储在const内存中。</p>
-
-<p>host CPU能访问分类：</p>
-
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220916203806.png" alt="" /></p>
-
-<p>对于CUDA的学习就到此告一段落了，后面用到了再来继续补充深入，<code class="language-plaintext highlighter-rouge">学以致用</code>，不用肯定是会忘记的，用起来吧。</p>
-
-<p>推荐一个cnblogs cuda：https://www.cnblogs.com/1024incn/tag/CUDA/</p>
-
-<h2 id="read-more">Read more</h2>
-
-<p>http://developer.download.nvidia.com/compute/cuda/1.1-Beta/x86_website/projects/histogram64/doc/histogram.pdf</p>
-
-<p>https://github.com/kevinzakka/learn-cuda/blob/master/src/histogram.cu</p>
-
-<p>https://developer.nvidia.com/blog/gpu-pro-tip-fast-histograms-using-shared-atomics-maxwell/</p>
-
-<p>https://carpentries-incubator.github.io/lesson-gpu-programming/06-global_local_memory/index.html</p>
-
-<blockquote>
-  <p><a href="https://chasays.github.io/">github博客</a></p>
-
-  <p>微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+  <p>“好的选择创造机会。好的习惯能充分利用这些机会”。</p>
 </blockquote>
 
 
@@ -519,19 +383,12 @@ __global__ void sum_and_multiply(const float * A, const float * B, float * C, co
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2022/09/13/cuda-load-store/" data-toggle="tooltip" data-placement="top" title="CUDA 基础 - 03 访存- register、global、local">
+                        <a href="/2022/11/19/thinking/" data-toggle="tooltip" data-placement="top" title="64 - 思考">
                         Previous<br>
-                        <span>CUDA 基础 - 03 访存- register、global、local</span>
+                        <span>64 - 思考</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2022/09/17/nvidia-new-arrival/" data-toggle="tooltip" data-placement="top" title="55 - 保持更新">
-                        Next<br>
-                        <span>55 - 保持更新</span>
-                        </a>
-                    </li>
                     
                 </ul>
                 <hr style="visibility: hidden;">

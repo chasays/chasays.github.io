@@ -5,9 +5,84 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 19 Nov 2022 07:53:33 +0000</pubDate>
-    <lastBuildDate>Sat, 19 Nov 2022 07:53:33 +0000</lastBuildDate>
+    <pubDate>Sat, 26 Nov 2022 07:52:17 +0000</pubDate>
+    <lastBuildDate>Sat, 26 Nov 2022 07:52:17 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>65 - 装睡</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221126155026.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;昆明，大巴车&lt;/li&gt;
+  &lt;li&gt;新疆，火灾&lt;/li&gt;
+  &lt;li&gt;郑州，富士康&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;…………&lt;/p&gt;
+
+&lt;p&gt;你永远无法叫醒一个装睡的人。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/UIkJ-kkk25uJnBNNuZ26Gw&quot;&gt;长线投资：有知有行&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;有知有行，帮大家在这个越来越不确定的世界里，放下焦虑，把更多的时间和精力留给工作、生活、家人和自己。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/dDZx85ga-YO2KAp2Phcffw&quot;&gt;AMD 为爱信下一代自动泊车辅助系统提供支持&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;爱信 APA 系统采用安装在车辆上的 4 个摄像头和 12 个超声波传感器识别周边环境并计算驾驶路线。随后，该系统会根据计算出的路线控制车辆以自动泊车。此外，当遭遇碰撞风险时，爱信 APA 系统还能自动执行自动紧急制动。从车载信息娱乐系统到高级驾驶辅助系统、自动驾驶和车联网应用等功能安全关键型应用，AMD 能为汽车制造商提供芯片和软件解决方案一站式服务&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/SrYl-JwYbjH4rteSOhXdUw&quot;&gt;消息称台积电取代三星，拿下特斯拉辅助驾驶 FSD 芯片大单&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221126144557.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在此之前，特斯拉采取多元供应商策略，在台积电、三星都有下单。IT之家了解到，特斯拉前一代辅助驾驶芯片采用 14nm 生产，以三星奥斯汀工厂为主，该芯片又称为 Hardware 3.0，而后续又升级为 7nm 制程。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/MichaelMure/git-bug&quot;&gt;git-bug&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221126154254.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在好程序员用这个功能来做博客，结合github.io，就是一个免费的博客。
+git-bug是一个完全嵌入git的分布式bug跟踪器。它可以离线工作，并且不向项目添加任何额外的文件。git-bug与现有的工具集成，并且它支持与其他错误跟踪器的桥接。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/kiteco/vscode-plugin&quot;&gt;kiteco&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221126150406.png&quot; alt=&quot;&quot; /&gt;
+类似GitHub Copilot，Kite 是一家使用 AI 帮助开发者编写代码的初创公司，也是 Python 代码自动补全的神器。一直以来，因为其在「Intelligent Snippets」功能的加持下，可以帮助 Python 程序员减少一半的操作，而备受大家喜爱，甚至此前 Python 之父 Gudio van Rossum 在使用之后，也强烈推荐。&lt;/p&gt;
+
+&lt;p&gt;大概看了下，没有商业软件的这个GitHub Copilot智能，但是也平时用的自动补全功能好用些。还是那句话，在于人，不是工具。&lt;/p&gt;
+
+&lt;h2 id=&quot;每周一句&quot;&gt;每周一句&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“好的选择创造机会。好的习惯能充分利用这些机会”。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/11/26/unsleep/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/11/26/unsleep/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>64 - 思考</title>
@@ -900,111 +975,6 @@ rule HelloWorld
         <guid isPermaLink="true">https://blog.chiphub.top/2022/09/27/yara-fuzzing-tool/</guid>
         
         <category>yara</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>56 - 记录自己</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;前几天听刘旸教主（脱口秀演员）提到，说我们还是要去多记录自己，分享自己，心中自己的一个想法。谈到他自己已经录了300多期的播客，但是有些东西真会忘掉。&lt;/p&gt;
-
-&lt;p&gt;不过别人要了解你的时候，通过这些播客，可以了解到你是什么样子的，同时也是不是志同道合的人。&lt;/p&gt;
-
-&lt;p&gt;我觉得一些输出就是这样的，影响别人，交到志同道合的人，同时在公开场合发表一些言论，一定是代表自己的客观真实的自己–真诚。&lt;/p&gt;
-
-&lt;p&gt;也要做到尽量不要把自己一些负面的情绪暴露、和分享给别人，因为负面的东西是不受控的，那这样就体现了自己的缺点。我想没有人愿意给一个自己情绪不受控的人交朋友，想尽量说一些正面的向上的东西。&lt;/p&gt;
-
-&lt;p&gt;同时对一些谣言，还有你不相信的东西，就不要去评论，也不要去转发，这样就把&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;谣言止于智者&lt;/code&gt;做好了。&lt;/p&gt;
-
-&lt;p&gt;关于谣言你有什么想法？&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/XpNQ-i6n2VpSHnOl9VT2uQ&quot;&gt;英伟达推出自动驾驶芯片Thor 吉利成首个客户&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Nvidia发布的新品，国内已经有合作的客户的，就是吉利。多年前听一个读MBA的朋友说道，吉利是一家国内民营汽车唯一赚钱了的公司。&lt;/p&gt;
-
-&lt;p&gt;英伟达表示，该平台将集中自动驾驶、辅助驾驶，以及包括车内娱乐在内的其他数字功能，将能取代汽车中的大量芯片和电缆，并降低整个系统的成本。&lt;/p&gt;
-
-&lt;p&gt;这款芯片基于最新的CPU和GPU打造，可提供每秒2000万亿次浮点运算，是此前发布的Altan的2倍，是Orin的8倍。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/_JHbhNJBUogt78xZMRCjHw&quot;&gt;回头看，腾讯游戏海外投资额已达千亿元&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220924200029.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;自 2012 年以来，腾讯至少耗费 978.67 亿元，投资了 33 家海外游戏公司，包括开发《英雄联盟》的拳头公司、开发《皇室战争》的 Supercell。考虑到样本遗漏，其整体投资额当在千亿之巨。在游戏产业链上的各个环节，腾讯都有投资布局。腾讯游戏高管曾表示，未来，腾讯游戏的收入构成目标，是国内海外各一半。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.ifixit.com/News/64865/iphone-14-teardown&quot;&gt;在苹果iPhone的秘密,14内部的重新设计&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220924200105.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;据说Phone 14卖的不好这篇文章说了iPhone14它里面的一些构造是我们看不到的一些升级的一些点。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.zdnet.com/article/linus-torvalds-rust-will-go-into-linux-6-1/#ftag=COS-05-10aaa0j&quot;&gt;Rust 将进入 Linux 6.1&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;进入 Linux 内核的 Rust 编程语言已经存在了一段时间。在 2020 年 Linux 大会上，开发人员开始考虑将 Rust 语言用于新的 Linux 内联代码。支持 Rust 开发 Android 的谷歌 - 本身就是一个 Linux 发行版 - 于 2021 年 4 月开始在 Linux 内核中推动 Rust。&lt;/p&gt;
-
-&lt;p&gt;如果你是一个程序员，可以考虑抽个时间了解下这门语言。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/rCZM40wTM61Nyc6sK0CDqA&quot;&gt;以梦为马 不负韶华–写在离开华为之际&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220924200604.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;作者记录自己在华为24年的时光，就像作者说的离开只是一段旧的旅程结束，新的旅途即将开始，继续用心探索世界、用爱感受生活，以梦为马，不负韶华！&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/learn/paths/rust-first-steps/&quot;&gt;Rust的入门教程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220924201644.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;微软有很多这样的入门教程，可以跟着走一篇，基本就熟悉个七七八八，后面在练手一些有难度的基本上这个语言就掌握了6~7分，要深入还是要多用，多看一些开源的项目。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/ahershy/Virtual_assistant&quot;&gt;用OpenAi实现语音助手&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220924200825.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;作者通过用Pyaudio、OpenAI API构建了类似亚马逊Alexa和Siri，这样的语音助手。&lt;/p&gt;
-
-&lt;p&gt;对于任何有兴趣使用使Siri或Alexa功能相同的技术的人来说，这是一个整洁的项目。不需要太多的编码经验，因为我们利用API进行处理。我强烈建议fork这个项目的repo，如果任何读者想了解更多关于这些技术的信息，可以直接玩一手。&lt;/p&gt;
-
-&lt;h1 id=&quot;本周&quot;&gt;本周&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.xiaoyuzhoufm.com/episode/63242c915b989d89724dd5df&quot;&gt;我不是巴菲特，也没有必要成为巴菲特&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;有知有行的知行小酒馆播客节目。之前年轻的时候，也就是7~8年轻，觉得自己可以改变天改变地，后来发现什么都改变不了，只有做一些小的事情，真正有意义的东西。估计这个就是成熟吧。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/25Nx8go-bRD-PJ7SFYQwTQ&quot;&gt;CUDA基础&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;CUDA编程内存相关的知识。寄存器可用于本地存储数据，避免重复内存操作。全局内存是主存空间，用于host和 GPU 之间的数据共享。本地内存是一种特殊类型的内存，可用于存储寄存器中不适合的数据，并且是线程的私有数据，局部的。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 24 Sep 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/09/24/record-myself/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/09/24/record-myself/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>
