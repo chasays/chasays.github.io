@@ -5,9 +5,91 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 26 Nov 2022 07:52:17 +0000</pubDate>
-    <lastBuildDate>Sat, 26 Nov 2022 07:52:17 +0000</lastBuildDate>
+    <pubDate>Sat, 10 Dec 2022 05:40:20 +0000</pubDate>
+    <lastBuildDate>Sat, 10 Dec 2022 05:40:20 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>66 - 想象力</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221210133620.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;本来这篇文章是上周就要发出的，推迟到现在。&lt;/p&gt;
+
+&lt;p&gt;目前用的是 Obsidian 完成写作，有好的文章和观点及时记录到以日期命名的 md 文件里面，在 mac、iPhone、PC之间用iCloud同步数据，本周的问题就是不知道啥原因，PC的iCloud始终不能和其他设备同步数据，至今都没有解决，我是手动复制过来的信息。&lt;/p&gt;
+
+&lt;p&gt;如果你知道有更好的方法，可以推荐给我么？谢谢~&lt;/p&gt;
+
+&lt;p&gt;最近听了一篇关于&lt;a href=&quot;https://www.xiaoyuzhoufm.com/episode/63716b0e3a7c46529cb39ea9&quot;&gt;借钱的播客&lt;/a&gt;，我给别人借过钱，别人也给我借过钱。&lt;/p&gt;
+
+&lt;p&gt;增加我的奇怪知识：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;别人借你钱，如果一段时间不问对方之后，就是默认不还了。所以一定时间之后要去问他，这样才有法律效应；&lt;/li&gt;
+  &lt;li&gt;现在P2P少了，高利贷也少了。高利贷是不合法的，还是的还钱，只有超出规定的部分利息不用换，剩余合法的还是要归还。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;爱因斯坦的一句话： “想象力比知识更重要。“&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/9ImL2BXGejI4M8lmqi8Zgw&quot;&gt;关于「个人养老金」的一些建议&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;有知有行的伙伴钊蓬过去许多年间，一直在研究、推动个人养老金政策的发展和落地。她和其他伙伴们一起，给你写了一封信。希望能通过这样的方式，与你分享有关个人养老金的，那些你也许需要知道的事。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/bNjrCN1OSFeLilRhk94yfQ&quot;&gt;奥密克戎致病力大幅减弱？新冠没有后遗症？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一个癌症患者该如何看待奥密克戎的风险？他（她）的考量不能和一个健康年轻人一样，采取的防范措施自然也要有所不同。而一个健康年轻人，身边万一有老人、多种基础疾病的人，风险考量也要有所改变。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/ocelot-inc/ocelotgui&quot;&gt;sql管理工具&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ocelotgui GUI是一个数据库客户端，允许用户连接到MySQL或MariaDB DBMS服务器，输入SQL语句，并接收结果。它的一些特点是：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;语法高亮，用户可以为屏幕的每个部分设置颜色和字体，结果集显示有多行和可调整大小的列，以及一个调试器&lt;/code&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://chat.openai.com/chat&quot;&gt;openAI作品 chatgpt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;用来写项目的 pitch deck 和产品文案，基本上可以覆盖 copy.ai, jasper.ai, lex.page 这些服务提供的功能。另外一点是，一些运营和 marketing 的工作可能在未来会面临比较大的挑战，AI 已经可以承担大部分的文案写作工作了。&lt;/p&gt;
+
+&lt;p&gt;下面这个截图就是我问chatgpt，返回的信息，还是蛮可靠，不过据说这个模型是2021年之前的训练数据，所以有时候不一定准确，可以通过自己的数据训练来提高实时反馈的数据。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221210123634.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我还问了一个收费的问题，目前来看至少至少不会收费。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221210123911.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/wong2/chat-gpt-google-extension&quot;&gt;chat-gpt浏览器插件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一个浏览器扩展，在谷歌搜索结果旁边显示ChatGPT的响应，支持Chrome/Edge/Firefox。需要登录自己的OPENAI账号才可以正常使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221208095231.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;比如我搜索一个slurm超时怎么解决，旁边就会自动吧啦吧吧的弹出来一堆消息，似乎没用。&lt;/p&gt;
+
+&lt;p&gt;如果没有账号，可以用这个实现的反向代理来体验下：https://gpt.chatapi.art/&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 03 Dec 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/12/03/imagenation/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/12/03/imagenation/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>65 - 装睡</title>
@@ -809,172 +891,6 @@ git-bug是一个完全嵌入git的分布式bug跟踪器。它可以离线工作�
         <guid isPermaLink="true">https://blog.chiphub.top/2022/10/01/feedback/</guid>
         
         <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Fuzz工具 - yara</title>
-        <description>&lt;p&gt;YARA是一个工具，旨在（但不限于）&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;帮助恶意软件研究人员识别和分类恶意软件样本&lt;/code&gt;。通过YARA，你可以根据文本或二进制模式创建恶意软件特征（或任何你想描述的）的描述。每个描述，又称规则，由一组字符串和一个布尔表达式组成，决定其逻辑。&lt;/p&gt;
-
-&lt;p&gt;有史以来第一次，在 YARA 3.0中，您可以扩展其特性以表达更复杂和精细的条件。YARA 3.0通过使用模块来实现这一点，您可以使用这些模块来定义数据结构和函数，以后可以在规则中使用这些模块。您可以在使用模块一节中看到一些模块可以做什么的示例。&lt;/p&gt;
-
-&lt;p&gt;下面的代码就演示下如何解析Hello world&lt;/p&gt;
-
-&lt;h2 id=&quot;写一个hello-world-模块&quot;&gt;写一个hello world 模块&lt;/h2&gt;
-
-&lt;p&gt;模块是用 C 编写的，并作为编译过程的一部分内置到 YARA 中。为了创建自己的模块，您必须熟悉 C 编程语言以及如何从源代码配置和构建 YARA。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;您不需要了解 YARA 是如何做到这一点的;&lt;/code&gt; YARA 为模块提供了一个简单的 API，这就是您需要了解的全部内容。&lt;/p&gt;
-
-&lt;p&gt;模块的源代码必须位于源代码的 libyara/module 目录中。建议使用模块名作为源文件的文件名，如果模块名为 foo，则源文件应为 foo.c。&lt;/p&gt;
-
-&lt;p&gt;在 libyara/module 目录中，你会找到一个 demo.c 文件作为我们的起点，该文件如下所示:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;include &amp;lt;yara/modules.h&amp;gt;
-
-#define MODULE_NAME demo
-
-begin_declarations;
-
-  declare_string(&quot;greeting&quot;);
-
-end_declarations;
-
-int module_initialize(
-    YR_MODULE* module)
-{
-  return ERROR_SUCCESS;
-}
-
-int module_finalize(
-    YR_MODULE* module)
-{
-  return ERROR_SUCCESS;
-}
-
-int module_load(
-    YR_SCAN_CONTEXT* context,
-    YR_OBJECT* module_object,
-    void* module_data,
-    size_t module_data_size)
-{
-  set_string(&quot;Hello World!&quot;, module_object, &quot;greeting&quot;);
-  return ERROR_SUCCESS;
-}
-
-int module_unload(
-    YR_OBJECT* module_object)
-{
-  return ERROR_SUCCESS;
-}
-
-#undef MODULE_NAME
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#include &amp;lt;yara/modules.h&amp;gt;&lt;/code&gt; 头文件是 YARA 模块 API 的定义所在的地方，因此在所有模块中都需要这个头文件。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#define MODULE_NAME demo&lt;/code&gt; 这是定义模块名称的方式，也是必需的。每个模块都必须在源代码的开头定义其名称。在构建到 YARA 中的模块中，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;模块名称必须是唯一的&lt;/code&gt;。&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;begin_declarations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;declare_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;greeting&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;end_declarations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;在这里，模块&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;声明了可用于 YARA 规则的函数和数据结构&lt;/code&gt;。在这种情况下，我们只是声明了一个字符串变量，命名为问候语。&lt;/p&gt;
-
-&lt;p&gt;Module_initialize 函数在 YARA 的初始化过程中被调用，而其对应的 module_finalize 函数在 YARA 的终止过程中被调用。这些函数允许您初始化和终止模块中可能需要使用的任何全局数据结构。&lt;/p&gt;
-
-&lt;p&gt;对于每个扫描的文件，只调用此函数一次，但只有在通过某个规则和 import 指令导入模块时才调用此函数。Module_load 函数是您的模块有机会检查被扫描的文件、按照首选的方式解析或分析它，然后填充在声明部分中定义的数据结构的地方。&lt;/p&gt;
-
-&lt;p&gt;在本例中，module_load 函数根本不检查文件内容，它只是分配字符串“ Hello World!”前面声明的变量问候语。&lt;/p&gt;
-
-&lt;p&gt;对于 module_load 的每个调用，都有一个对应的 module_unload 调用。这个函数允许您的模块释放 module_load 期间分配的任何资源。在这种情况下没有什么可以释放，所以函数只返回 ERROR_SUCCESS。Module_load 和 module_unload 都应返回 ERROR_SUCCESS，以表明一切正常。如果返回不同的值，则扫描将中止，并向用户报告错误。&lt;/p&gt;
-
-&lt;h2 id=&quot;编译&quot;&gt;编译&lt;/h2&gt;
-
-&lt;p&gt;模块并不是仅仅通过将它们的源代码放入 libyara/module 目录就神奇地内置到 YARA 中的，您必须遵循两个进一步的步骤才能使它们工作。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;第一步是将您的模块添加到 module_list 文件&lt;/code&gt;，该文件也可以在 libyara/module 目录中找到。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;MODULE(tests)
-MODULE(pe)
-
-#ifdef CUCKOO_MODULE
-MODULE(cuckoo)
-#endif
-MODULE(demo)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;最后一行&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MODULE(demo)&lt;/code&gt;不能少，代表是demo模块。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;第二步是修改 Makefile.am&lt;/code&gt;，告诉 make 程序必须编译模块的源代码并链接到 YARA。在 libyara/Makefile.am 的开头，你会发现:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;MODULES =  modules/tests/tests.c
-MODULES += modules/pe/pe.c
-
-if CUCKOO_MODULE
-MODULES += modules/cuckoo/cuckoo.c
-endif
-
-MODULES += modules/demo/demo.c
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;最后一行不能少。&lt;/p&gt;
-
-&lt;p&gt;到现在已经准备一个模块了，准备编译吧。切到工作目录执行如下编译命令。&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;make &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;创建一个rule文件：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;import &quot;demo&quot;
-
-rule HelloWorld
-{
-    condition:
-        demo.greeting == &quot;Hello World!&quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;使用此规则扫描的任何文件都将与 HelloWord 匹配，因为 demo.looking==“ Hello World!”始终为 true。&lt;/p&gt;
-
-&lt;h2 id=&quot;声明&quot;&gt;声明&lt;/h2&gt;
-
-&lt;p&gt;声明部分是您声明变量、结构和函数的地方，这些变量、结构和函数将可用于您的 YARA 规则。每个模块都必须包含如下声明部分。&lt;/p&gt;
-
-&lt;h3 id=&quot;基础类型&quot;&gt;基础类型&lt;/h3&gt;
-
-&lt;p&gt;在声明部分中，可以分别使用 Declaration_string (&amp;lt; variable name &amp;gt;)、 Declaration_whole (&amp;lt; variable name &amp;gt;)和 Declaration_float (&amp;lt; variable name &amp;gt;)来声明 string、 int 或 float 变量。比如说&lt;/p&gt;
-
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;begin_declarations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;declare_integer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;foo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;declare_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bar&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;declare_float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;baz&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;end_declarations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;变量名不能&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;包含字母、数字和下划线以外的字符&lt;/code&gt;。这些变量可以在以后的规则中任何需要整数或字符串的地方使用。假设您的模块名称是“ mymodule”，它们可以这样使用:&lt;/p&gt;
-
-&lt;h3 id=&quot;其他&quot;&gt;其他&lt;/h3&gt;
-
-&lt;p&gt;结构体、数组、字典、函数&lt;/p&gt;
-
-&lt;p&gt;在本例中，我们使用 start_struct (&amp;lt; structname &amp;gt;)和 end_struct (&amp;lt; structname &amp;gt;)来划分两个结构，它们分别名为 some_struct 和 another_struct。在结构分隔符中，您可以放置任何其他需要的声明，包括另一个结构声明。还要注意，不同结构的成员可以具有相同的名称，但同一结构中的成员必须具有唯一的名称。&lt;/p&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;p&gt;https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Tue, 27 Sep 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/09/27/yara-fuzzing-tool/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/09/27/yara-fuzzing-tool/</guid>
-        
-        <category>yara</category>
         
         
       </item>
