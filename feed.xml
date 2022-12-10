@@ -5,9 +5,95 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 10 Dec 2022 05:40:20 +0000</pubDate>
-    <lastBuildDate>Sat, 10 Dec 2022 05:40:20 +0000</lastBuildDate>
+    <pubDate>Sat, 10 Dec 2022 06:41:22 +0000</pubDate>
+    <lastBuildDate>Sat, 10 Dec 2022 06:41:22 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>67 - 疫情</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;目前大部分地区的防疫都开始放开了，就那我们办公园区来说，在周二的时候，就拆除了扫码、围栏的设备，只需要测量提问即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221210143926.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;虽然说感染了和感冒类似，还是对身体不舒服，尽量用药来减轻症状。对于放开还是有必要准备一点药物，我前几天买了一些常见的发烧和流鼻涕的感冒药：头孢、感康、布洛芬。&lt;/p&gt;
+
+&lt;p&gt;如果还是比较恐慌的，自己可以看一些科普的文章。顺便推荐下无码科技的小程序「就诊问问」&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221210143512.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/AzHZtYkINAxtM5sgpcIzSg&quot;&gt;什么时候阳最好？二次感染风险怎么看？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;随着新冠防疫措施调整，国内不少地方的人正经历着疫情三年来史无前例的感染风险激增。看到周围的人一个接一个阳了，一些小伙伴甚至戏言如今是阴性清零。&lt;/p&gt;
+
+&lt;p&gt;我们现在有降低新冠重症风险非常高效的疫苗与抗病毒药，对于感染不必恐慌，但也不是抓紧感染的时候——对任何一个病毒都该如此对待。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jameswillia.ms/posts/chatgpt-rot13.html&quot;&gt;chatgpt适合做什么&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;作者举例了一些场景，然后大概总结了下，chatgpt适合做什么，不适合做什么。&lt;/p&gt;
+
+&lt;p&gt;不适合：评估复杂的数学方程、写数学证明、解开神秘的字谜线索
+适合做：翻译语言、写笑话、总结文档&lt;/p&gt;
+
+&lt;p&gt;还可以直接查看当前部署机器上的内容，让chatgpt作为一个中断，并告诉他什么内容的格式输出来：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221210135424.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221210140033.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;那感觉可以做许多有意义的事情了样。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/vrescobar/chatGPT-python-elm&quot;&gt;chatGPT-python-elm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;只需要在README的第一行就描述了这个repo库，一个完全由ChatGPT生成的repo库，让人相信它检查了这个repo库。&lt;/p&gt;
+
+&lt;p&gt;类似google的colab，不过最近github在各地出现了DNS不能访问的问题，所以还的还的想办法了。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://coke.do/issues/116-1478644&quot;&gt;如何给忙人写一封邮件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;除了理解为写邮件，也可以应对一些日常的见面聊天等。&lt;/p&gt;
+
+&lt;p&gt;总结一下就是：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;节省对方时间，简单描述问题&lt;/li&gt;
+  &lt;li&gt;避免宽泛、开放的问题&lt;/li&gt;
+  &lt;li&gt;最好只用对方回答是或不是&lt;/li&gt;
+  &lt;li&gt;或者提出你建议的方案供对方选择&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/features/codespaces&quot;&gt;GitHub Codespaces免费60小时&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221210141255.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;GitHub已经推出了企业版Copilot。它还发布了一项名为 “hi，GitHub！”的功能，可以与Copilot进行语音互动。
+企业版Copilot将允许企业为其员工购买和管理GitHub Copilot的座位许可证。开发人员可以在等待名单上注册，以测试 “hi，GitHub！”。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codespaces现在对所有用户每月免费使用60小时&lt;/code&gt;。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2022/12/10/COVID-19/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2022/12/10/COVID-19/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>66 - 想象力</title>
@@ -791,104 +877,6 @@ git-bug是一个完全嵌入git的分布式bug跟踪器。它可以离线工作�
         <pubDate>Fri, 07 Oct 2022 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2022/10/07/play-game/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2022/10/07/play-game/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>57 - 反馈</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;本来这个国庆长假7天，基本上都计划的七七八八了。因为之前成都静态管控了将近一个月，20天左右，还说准备在国庆去哪里，小孩被寄宿到外地去上学，这次当地的疫情也回不来了，现在我一个人在家，老婆孩子都没在身边。&lt;/p&gt;
-
-&lt;p&gt;最大的就是吃饭是个问题，因为一个人煮饭，不好控制量，煮太多就怕有剩余，煮太少不够吃，吃不爽。只有叫外卖，我都不知道吃什么外卖了，最恐怖的是这才刚开始，关于一个人的生活，吃什么之类的，你们有什么建议么？&lt;/p&gt;
-
-&lt;p&gt;如果&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;做一件事情的原因来自于某一个反馈，那么这件事情大概率是做不长久的&lt;/code&gt;，最近听王建硕前辈说到这个点。举个例子，比如说为了减肥，就去跑步，但是实际这个对减肥真的是微乎其微，减肥最重要的就是管上嘴，迈开腿。&lt;/p&gt;
-
-&lt;p&gt;后面我觉得这个 newsletter 会往一个方向去发展，就是写我自己感兴趣的东西，不管多少，不管是人物传记，还是科技类的文章。包括不限于现在所处的芯片行业，以及芯片行业的一个细分领域做显卡GPU，去了解相关的新闻相关和科技动态。&lt;/p&gt;
-
-&lt;p&gt;这样的话我觉得可以把我的这些信息分享出来，能够去扩展我的一个圈子，同时能触及到相同知识领域的一批人。&lt;/p&gt;
-
-&lt;p&gt;前前后后后写博客、公众号大概写了几十万字上百万字，就是我获取的知识以及给我带来的回报不是用这个来去衡量的，但是也在从侧面上反映，从不断的输出中，我学到了不少东西，吸收到很多东西。&lt;/p&gt;
-
-&lt;p&gt;我最近搞了一个微信群，主要是芯片相关的技术、信息等，如果你感兴趣可以扫码加入，过期了也可以加我微信「xiaorik」。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221001205208.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/yvcMjHdaEc7F1O48zN5Xqw&quot;&gt;杨振宁100岁了，诺奖都不算他的人生巅峰&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221001211130.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;杨振宁是那种“别人家的孩子”。曾任复旦大学校长的女物理学家谢希德记得，小时候父亲谢玉铭拿“杨武之之子”来教育他们不要贪玩，要好好学习。有一回杨武之跟华罗庚吵架还说，我这一辈子数学赶不上你，但将来我儿子一定要超过你。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/Sb-dlTJrAg-ysKPnXSjeww&quot;&gt;摩尔定律“失效”，三星和台积电3nm遇阻，尖端工艺去向何处？&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220927190917.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;长期以来，人类在追逐摩尔定律的过程中，被物理规律卡脖子之前，总是能发现新的解决办法，总结下来大概分为3种，光学、材料、结构。
-光学技术，未来一片“乌云”，电气电子工程师学会发布的最新《国际设备和系统路线图》显示，EUV的潜力将在2028年前后被挖掘殆尽，栅极长度将会定格在12nm，看不见EUV的替代者。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/hNGb8LkAuQsDVk3kC7ipAA&quot;&gt;新冠肺炎防控措施正在影响法国企业在华经营活动&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221001211743.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我们每个人都是这场疫情的受害者，如果你现在还没有感受到，在未来每一个时刻一定会被感受。
-上述最新调查证明，法国企业在华遇到的困难依然存在。因此，越来越多的在华企业正在重新考虑，在这种不乐观的情况下放缓对这个国家投资新的项目。尽管今年夏天中国的入境限制有所放宽，但法国企业仍然很难吸引到外籍人才。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/e0ioOcw_wUgl-RhDyg9Xkg&quot;&gt;他的超强防守力，是你投资「足球队」的坚强后盾&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220928110120.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;有知有行的另外一个公众号，用漫画来解释投资的知识。比文字有趣多了。投资真的是学习了一点就可以超越80%的人，但是一定要遵循投资策略，不然迟早会摔跤。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://riju.codes/&quot;&gt;Riju：几乎所有编程语言的在线编程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20220930084459.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Riju 是每种编程语言的一个非常快速的在线playground。在不到一秒的时间内，可以开始使用Python解释器或编译内部代码。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/alineacms/alinea&quot;&gt;Alinea&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Alinea是一个用于现代网络的内容管理系统。它将完全键入的内容存储在平面文件中，可以通过内存中的SQLite数据库轻松地进行查询。Alinea支持可以作为Node.js进程托管或在无服务器运行时托管的自定义后端。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/dosisod/refurb&quot;&gt;Reflb&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Reflb 是一个用于翻新和现代化Python代码库的工具。它旨在使代码更优雅、可读性更强、更现代化。Reflb支持插件和定制。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bit-player.org/2022/the-middle-of-the-square&quot;&gt;中平方法是一种生成伪随机数的方法&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20221001212848.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;约翰·冯·诺伊曼是一位神童，也是一位博学者。他在纯数学、物理学、博弈论、经济学和计算机设计方面做出了令人瞩目的贡献。他还提出了第一个用数字计算机产生伪随机数的算法。然而，最后一项发明很少被算作他最辉煌的成就之一。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 01 Oct 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/10/01/feedback/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/10/01/feedback/</guid>
         
         <category>Newsletter</category>
         
