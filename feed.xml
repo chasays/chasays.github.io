@@ -5,9 +5,104 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 11 Jan 2023 01:10:39 +0000</pubDate>
-    <lastBuildDate>Wed, 11 Jan 2023 01:10:39 +0000</lastBuildDate>
+    <pubDate>Wed, 18 Jan 2023 03:12:23 +0000</pubDate>
+    <lastBuildDate>Wed, 18 Jan 2023 03:12:23 +0000</lastBuildDate>
     <generator>Jekyll v3.9.2</generator>
+    
+      <item>
+        <title>72 -  永无止境</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118111051.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图片来自 Deepai 生成&lt;/p&gt;
+
+&lt;p&gt;看到一篇文章，&lt;a href=&quot;https://news.ycombinator.com/item?id=34272834&quot;&gt;囤积信息的坏习惯&lt;/a&gt;，作者像大多数程序员一样，浏览 hacknews、reddit或twitter（国内的浏览知乎、csdn、博客园），文章以技术为重点，主要还囤积信息，看到有些留言说，在浏览器打开接近1000个tabs。&lt;/p&gt;
+
+&lt;p&gt;事实上，我不确定大多数人都会这样做，我只是希望我不是唯一的一个，我曾经就是这样。&lt;/p&gt;
+
+&lt;p&gt;这个应该就是FOMO（fear of missing out 害怕错过）的心理，我相信大部分都是这样的。这不是病，是一种对知识和信息的获取渴望。&lt;/p&gt;
+
+&lt;p&gt;这些随机的知识，有什么用喃？&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;windows的出现：比尔盖茨有次意外的发现播种机的操作系统很难用，就想到开发一个易用的系统，可能对windows的出现有一定影响；&lt;/li&gt;
+  &lt;li&gt;macOS 的设计：乔布斯有一次意外的上了一次书法课，就造就一个很优雅的系统；
+……&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在工作中，我经常把一些意外的小东西，从大脑后面拉出来，并把它们归档，”以备不时之需”，这让我们感到震惊。有时，这个 “万一 “也会出现。&lt;/p&gt;
+
+&lt;p&gt;我注意到，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;现在的IT行业越来越不需要具备某种原始天赋&lt;/code&gt;，而更多的是需要了解由其他有天赋的人编写的工具、SDK和API。&lt;/p&gt;
+
+&lt;p&gt;在过去，你必须是魔法师，现在你只需要知道魔法师。&lt;/p&gt;
+
+&lt;p&gt;这些零碎，看起来是很意外的知识，不知道哪一天会影响到你自己的生活。&lt;/p&gt;
+
+&lt;p&gt;我被所有的科技信息所吸引，我喜欢发现新的和闪亮的东西，可以拓展自己的思路。&lt;/p&gt;
+
+&lt;p&gt;我喜欢看人们正在研究的东西，但信息量太大，我对此有一个小问题。虽然阅读一批较小的30-40个链接是可以应付的，但当数量在一个星期内增长到80多个时，就很费时，而且令人难以承受。&lt;/p&gt;
+
+&lt;p&gt;有人留言说，《百万富翁快车道》对这本书其中有一点是好的，那就是要&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;专注于成为生产者而不是消费者的建议&lt;/code&gt;。。&lt;/p&gt;
+
+&lt;p&gt;毕竟，学习和信息汇总背后的想法是，你学习所有这些东西是为了更好地准备采取更正确、更快的行动。&lt;/p&gt;
+
+&lt;p&gt;同时，我觉得更重要的是要输出内容和自己的想法，从他们的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;链接里面获取和提炼他们的想法，而不是信息本身&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0703/&quot;&gt;在CPython中使全局解释程序锁成为可选的&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本PEP提出了对CPython构建过程的修改，允许你构建一个无GIL的解释器。这种解释器将不与基于GIL的解释器ABI兼容，程序员将对C语言扩展中的一些锁定情况负责。如果实现的话，这将导致在后向兼容性问题不重要的情况下，能够在没有GIL的情况下运行。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://siboehm.com/articles/22/CUDA-MMM&quot;&gt;如何优化CUDA Matmul内核以获得类似cuBLAS的性能&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;作者讨论了如何优化CUDA矩阵乘法内核的性能。目标是将NVIDIA官方矩阵库cuBLAS的性能提高到80%以内；深入探讨凝聚全局内存访问、共享内存缓存、占用率优化等问题&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.semianalysis.com/p/nvidiaopenaitritonpytorch&quot;&gt;Nvidia在机器学习领域的CUDA垄断是如何被打破的&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118110924.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在过去的十年里，机器学习软件开发的格局发生了重大变化。许多框架来来去去，但大多数都严重依赖于利用NVIDIA的CUDA，并且在NVIDIA图形处理器上表现最好。然而，随着PyTorch 2.0和OpenAI的Triton的到来，英伟达在这一领域的主导地位，主要是由于其软件护城河，正在被颠覆。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mupuf.org/blog/2021/02/08/setting-up-a-ci-system-preparing-your-test-machine&quot;&gt;设置CI系统第一部分。准备你的测试机&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;重复使用以前的系统中的组件，因为它的组件集成度很高，而且实施细节会从一个组件渗透到另一个。此外，这样的设计限制了系统的发展能力，因为更新一个组件会影响到很多组件，如果不重写系统，或者让系统瘫痪数小时，就很难甚至不可能做到这一点。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/red-data-tools/YouPlot&quot;&gt;YouPlot&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118110204.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一个在终端上画图的命令行工具。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Kanaries/graphic-walker&quot;&gt;graphic-walker&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;graphic-walker允许数据科学家通过简单的拖放操作来分析数据并将模式可视化。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 14 Jan 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/01/14/nerver-ending/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/01/14/nerver-ending/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>71 -  活下去</title>
@@ -875,88 +970,6 @@ git-bug是一个完全嵌入git的分布式bug跟踪器。它可以离线工作�
         <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2022/11/12/uncertain/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2022/11/12/uncertain/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>62 - 复制粘贴</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;周末差点被自己的无知给毒死了。&lt;/p&gt;
-
-&lt;p&gt;在卫生间的洗漱台，我先用84消毒液撒了一遍之后，发现没有变化，有一些水垢还是不能轻松的清除。我就想上次用的洁厕液效果还不错，就又顺便就撒了一点，几秒之后，眼睛不能睁开，非常的刺鼻，心想这个洁厕液效果是真的好 ……&lt;/p&gt;
-
-&lt;p&gt;后来气味传到了客厅，媳妇说：“你在干吗呀”，我说在洗厕所，听了说了一遍之后，媳妇才说不能混用，会生成有毒气体氯气。&lt;/p&gt;
-
-&lt;p&gt;后来查询有关资料，发现84消毒液有几个使用误区，有可能只有我不知道（逃~）。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;84消毒液不能和洁厕灵一起使用&lt;/code&gt;，这些含氯消毒剂跟洁厕灵混合，会直接产生剧烈刺激性气体，造成使用者呼吸道伤害；&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;84消毒液需要加稀释直接用于消毒&lt;/code&gt;。市面上销售的84消毒液这些含氯消毒剂浓度是比较高的，一般是5%-10%。换算一下浓度就是50000-100000mg/L。我们在做家庭预防性消毒的时候，通常只需要500mg/L的浓度。因此使用时需要按100倍到200倍比例的用水稀释以后再使用。原液使用，刺激性会很强、腐蚀性会很大。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;以后使用这些带有腐蚀性等的用品，最好还是先看看说明书啥的。&lt;/p&gt;
-
-&lt;p&gt;顺便大家猜猜84消毒液，名字是怎么来的?&lt;/p&gt;
-
-&lt;h2 id=&quot;一句话&quot;&gt;一句话&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;记忆是思考的残留物&lt;/code&gt;。如果是只是复制和粘贴，没有经过大脑的思考，终究只是一个搬运工。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://www.xiaoyuzhoufm.com/episode/635531f22a992d56e91e6572
-你能读出来的东西，取决于你的长期记忆中的背景知识。换句话说，背景知识多的人，可能读懂了 80% 的内容，而背景知识少的人，只读懂了 20%。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/UW2Ual0v21KNQz60MHT1nQ&quot;&gt;每个C++工程师都要了解的十个性能陷阱&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;与 go、java 等垃圾回收语言的大道至简、python 等解释语言的小快灵不同，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;C++最大的魅力就是给予工程师对代码完全的掌控&lt;/code&gt;，每个 C++程序员仿佛都是人形编译器，不止要看懂代码表面的逻辑，甚至要知道每行代码对应的汇编指令。优化代码也成了 C++工程师日常必备活动，正所谓“一杯茶，一包烟，一段代码，优化一天”。在经历过无数个性能优化的日日夜夜后，笔者也总结了几个中过招的性能陷阱，与诸位分享。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/r0a4sx_zV_4BnZwDI4sAgA&quot;&gt;斯托克代尔悖论&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;斯托克代尔强调一定不要把信念与原则搞混。信念是你一定要成功，而原则是你一定要面对现状中最残忍的事实，无论他们是什么。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/pxcIMfWeO2Dc0TtJjznNcw&quot;&gt;手把手带你看美国CDC的奥米克戎死亡数据&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;美国CDC被认为是最专业的疾病控制和预防机构。可能由于美国在疫情中的表现，有些人会对这个结论表示怀疑，但至少可以肯定的一点是：美国CDC的数据统计和披露是很好的。借助美国CDC的原始死亡统计数据，作者带大家看看奥密克戎的威胁究竟如何。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/0UrOYPI2yS7Di1wRxHbrmg&quot;&gt;华为星闪1.0系列标准正式发布&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;星闪联盟成立于2020年9月，目标是推动新一代无线短距通信技术SparkLink的创新和产业生态，该技术可广泛满足智能汽车、工业智造、智慧家庭、个人穿戴等多场景对低时延、高可靠、精同步、多并发的技术需求。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://buck.build/&quot;&gt;构建系统 Buck&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;在使用fbinfer的时候，发现有buck这么一个工具，Buck是一个由Facebook开发和使用的构建系统。它鼓励创建由代码和资源组成的小型、可重复使用的模块，并支持许多平台上的各种语言。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/OMnQMynv5_CQBlZ7mXi1RQ&quot;&gt;无码科技：Readhub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;推荐一个小程序，这个是无码科技，Fenng大公司的开发的一个科技资讯集合的软件，能看到非常多科技相关的咨询和文章。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 05 Nov 2022 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2022/11/05/copy-and-paste/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2022/11/05/copy-and-paste/</guid>
         
         <category>Newsletter</category>
         
