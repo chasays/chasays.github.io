@@ -302,7 +302,7 @@ def upload_media_news(post_path):
     """
     上传到微信公众号素材
     """
-    content = open(post_path, 'r').read()
+    content = open(post_path, 'r', encoding='utf8').read()
     TITLE = fetch_attr(content, 'title').strip('"').strip('\'')
     images = get_images_from_markdown(content)
     print(TITLE)
