@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 Feb 2023 00:49:54 +0000</pubDate>
-    <lastBuildDate>Tue, 21 Feb 2023 00:49:54 +0000</lastBuildDate>
+    <pubDate>Mon, 27 Feb 2023 15:07:19 +0000</pubDate>
+    <lastBuildDate>Mon, 27 Feb 2023 15:07:19 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
     
       <item>
@@ -107,10 +107,56 @@
       </item>
     
       <item>
-        <title>Fuzz工具 - yara</title>
-        <description>&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+        <title>用宝塔部署 flask 应用</title>
+        <description>&lt;h1 id=&quot;安装宝塔&quot;&gt;安装宝塔&lt;/h1&gt;
 
-&lt;p&gt;https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module&lt;/p&gt;
+&lt;p&gt;这个是最新的地址：https://www.bt.cn/bbs/thread-19376-1-1.html。&lt;/p&gt;
+
+&lt;p&gt;ubuntu的安装脚本是：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget -O install.sh https://download.bt.cn/install/install-ubuntu_6.0.sh &amp;amp;&amp;amp; sudo bash install.sh 12f2c1d72&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;其他系统的安装脚本参见上面的网页的，非常全面。一键安装。&lt;/p&gt;
+
+&lt;p&gt;安装好之后，就可以通过显示的用户名和密码登录，以及网址url就可以访问到后台。&lt;/p&gt;
+
+&lt;p&gt;为了更好的开发，可以安装vscode remote，这里就不展开说细节了。&lt;/p&gt;
+
+&lt;h1 id=&quot;安装flask&quot;&gt;安装flask&lt;/h1&gt;
+
+&lt;p&gt;安装flask的restful即可。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Flask==2.2.2
+Flask-RESTful==0.3.9
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;准备好自己的应用程序，没有路径要求。&lt;/p&gt;
+
+&lt;h1 id=&quot;运行flask-app&quot;&gt;运行flask app&lt;/h1&gt;
+
+&lt;p&gt;安装之前需要先安装2个软件，在bt里面的软件商店里面可以看到。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230227093710.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;进程守护管理器 2.4	
+基于Supervisor开发的进程守护工具，可以让进程开机启动，异常关闭自动重启，这个软件是为了安装的flask是守护进程。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Python项目管理器 2.1
+快速部署Python项目，当前仅支持Centos7.x（我用的ubuntu20也可以），可部署框架有flask,django,sanic。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;接下来就参考这个教程。https://www.bt.cn/bbs/thread-90005-1-1.html&lt;/p&gt;
+
+&lt;p&gt;按照上面的修改完了之后，有可能post的data太长会运行失败，建议修改配置文件
+&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230227094106.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;添加ssh&quot;&gt;添加ssh&lt;/h1&gt;
+
+&lt;p&gt;网站-&amp;gt;创建其他网站，输入域名，主要是申请ssl证书。&lt;/p&gt;
+
+&lt;p&gt;然后到软件商店里面找到Python项目管理器，里面映射到这个IP既可以通过https访问了。&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
@@ -119,10 +165,12 @@
 &lt;/blockquote&gt;
 </description>
         <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/02/16/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/02/16/</guid>
+        <link>https://blog.chiphub.top/2023/02/16/deploy-flask-with-bt/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/02/16/deploy-flask-with-bt/</guid>
         
-        <category>yara</category>
+        <category>flask</category>
+        
+        <category>bt</category>
         
         
       </item>

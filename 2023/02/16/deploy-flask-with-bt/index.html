@@ -12,19 +12,16 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Fuzz工具 - yara - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="用宝塔部署 flask 应用 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="Read more
+    <meta property="og:description" content="安装宝塔
 
-https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module
+这个是最新的地址：https://www.bt.cn/bbs/thread-19376-1-1.html。
 
+ubuntu的安装脚本是：wget -O install.sh https://download.bt.cn/install/install-ubuntu_6.0.sh &amp;&amp; sudo bash install.sh 12f2c1d72
 
-  github博客
-
-  微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。
-
-">
+其他系统的安装脚...">
     
     <meta property="article:published_time" content="2023-02-16T00:00:00Z">
     
@@ -32,14 +29,16 @@ https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module
     <meta property="article:author" content="叉叉敌">
     
     
-    <meta property="article:tag" content="yara">
+    <meta property="article:tag" content="flask">
+    
+    <meta property="article:tag" content="bt">
     
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2023/02/16/">
+    <meta property="og:url" content="https://blog.chiphub.top/2023/02/16/deploy-flask-with-bt/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <title>Fuzz工具 - yara - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>用宝塔部署 flask 应用 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -48,7 +47,7 @@ https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2023/02/16/">
+    <link rel="canonical" href="https://blog.chiphub.top/2023/02/16/deploy-flask-with-bt/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -293,10 +292,12 @@ https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=yara" title="yara">yara</a>
+                        <a class="tag" href="/archive/?tag=flask" title="flask">flask</a>
+                        
+                        <a class="tag" href="/archive/?tag=bt" title="bt">bt</a>
                         
                     </div>
-                    <h1>Fuzz工具 - yara</h1>
+                    <h1>用宝塔部署 flask 应用</h1>
                     
                     <h2 class="subheading"></h2>
                     <span class="meta">Posted by 叉叉敌 on February 16, 2023</span>
@@ -325,9 +326,55 @@ https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module
                 <!-- Multi-Lingual -->
                 
 
-				<h2 id="read-more">Read more</h2>
+				<h1 id="安装宝塔">安装宝塔</h1>
 
-<p>https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module</p>
+<p>这个是最新的地址：https://www.bt.cn/bbs/thread-19376-1-1.html。</p>
+
+<p>ubuntu的安装脚本是：<code class="language-plaintext highlighter-rouge">wget -O install.sh https://download.bt.cn/install/install-ubuntu_6.0.sh &amp;&amp; sudo bash install.sh 12f2c1d72</code></p>
+
+<p>其他系统的安装脚本参见上面的网页的，非常全面。一键安装。</p>
+
+<p>安装好之后，就可以通过显示的用户名和密码登录，以及网址url就可以访问到后台。</p>
+
+<p>为了更好的开发，可以安装vscode remote，这里就不展开说细节了。</p>
+
+<h1 id="安装flask">安装flask</h1>
+
+<p>安装flask的restful即可。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Flask==2.2.2
+Flask-RESTful==0.3.9
+</code></pre></div></div>
+
+<p>准备好自己的应用程序，没有路径要求。</p>
+
+<h1 id="运行flask-app">运行flask app</h1>
+
+<p>安装之前需要先安装2个软件，在bt里面的软件商店里面可以看到。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230227093710.png" alt="" /></p>
+
+<ol>
+  <li>
+    <p>进程守护管理器 2.4	
+基于Supervisor开发的进程守护工具，可以让进程开机启动，异常关闭自动重启，这个软件是为了安装的flask是守护进程。</p>
+  </li>
+  <li>
+    <p>Python项目管理器 2.1
+快速部署Python项目，当前仅支持Centos7.x（我用的ubuntu20也可以），可部署框架有flask,django,sanic。</p>
+  </li>
+</ol>
+
+<p>接下来就参考这个教程。https://www.bt.cn/bbs/thread-90005-1-1.html</p>
+
+<p>按照上面的修改完了之后，有可能post的data太长会运行失败，建议修改配置文件
+<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230227094106.png" alt="" /></p>
+
+<h1 id="添加ssh">添加ssh</h1>
+
+<p>网站-&gt;创建其他网站，输入域名，主要是申请ssl证书。</p>
+
+<p>然后到软件商店里面找到Python项目管理器，里面映射到这个IP既可以通过https访问了。</p>
 
 <blockquote>
   <p><a href="https://chasays.github.io/">github博客</a></p>
@@ -630,11 +677,6 @@ https://yara.readthedocs.io/en/stable/writingmodules.html#the-hello-world-module
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>
-        
-                <a data-sort="0259" 
-                    href="/archive/?tag=yara"
-                    title="yara"
-                    rel="2">yara</a>
     </div>
 </section>
 

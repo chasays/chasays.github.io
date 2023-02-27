@@ -9,10 +9,10 @@
     } ,
   
     {
-      "title"    : "Fuzz工具 - yara",
+      "title"    : "用宝塔部署 flask 应用",
       "subtitle" : "",
-      "tags"     : "yara",
-      "url"      : "/2023/02/16/",
+      "tags"     : "flask, bt",
+      "url"      : "/2023/02/16/deploy-flask-with-bt/",
       "date"     : "2023-02-16 00:00:00 +0000"
     } ,
   
