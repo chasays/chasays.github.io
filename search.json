@@ -1,11 +1,27 @@
 [
   
     {
+      "title"    : "78 -  继续搞钱",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2023/02/25/make-more-money/",
+      "date"     : "2023-02-25 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "77 - 亲情",
       "subtitle" : "",
       "tags"     : "Newsletter",
       "url"      : "/2023/02/18/relationship/",
       "date"     : "2023-02-18 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "GCC编译优化流程",
+      "subtitle" : "",
+      "tags"     : "gcc, compiler",
+      "url"      : "/2023/02/16/learn-gcc-compiler-optimzation/",
+      "date"     : "2023-02-16 00:00:00 +0000"
     } ,
   
     {
