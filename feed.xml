@@ -5,9 +5,123 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 03 Mar 2023 01:34:28 +0000</pubDate>
-    <lastBuildDate>Fri, 03 Mar 2023 01:34:28 +0000</lastBuildDate>
+    <pubDate>Thu, 09 Mar 2023 00:51:57 +0000</pubDate>
+    <lastBuildDate>Thu, 09 Mar 2023 00:51:57 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>79 -  技能速成</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;去年成都由于疫情，还有就是高温的原因，work from home，在家办公的日子就是舒服，不用考虑通勤时间，起床就可以开电脑，然后再去洗漱……&lt;/p&gt;
+
+&lt;p&gt;慢慢的觉得在家办公特别爽，主要是我现在每天的通勤时间在1个小时。之前出门比较晚，出门就开始堵车，一天通勤时间在2~3个小时。用这个时间来做点自己喜欢的事情，应该是不错的。&lt;/p&gt;
+
+&lt;p&gt;很久以前，关注过远程工作的时候，顺便推荐一个远程工作的社区：电鸭社区。发现里面前端岗位是最多的，后来就学习了一段时间的前端工程，诠释了什么是从入门到放弃。最主要的还是没有实际的工程来搞，就没那么容易记住。俗话说得好： talk is cheap, show me code.&lt;/p&gt;
+
+&lt;p&gt;最近自己捣鼓一个前端工程，不管多晚，多累，就喜欢调试出来结果才罢休，一度我以为自己是不是真的兴趣爱好是这个做前端开发。&lt;/p&gt;
+
+&lt;p&gt;前端是一个变化特别快，技术栈更新迭代快，如果自己不是一个爱学习，按钻研的性格，很难做的优秀。为了学习前端js用法，最近自己找了一个项目用js实现一个编译器流程的项目，找到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;项目结合当前学习的东西，这样才更容易掌握和速成&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;下面是chatGPT的回答，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;关于如何使前端开发变得有趣？格式为：观点1、观点2&lt;/code&gt;  （chatgpt的prompt非常重要，你看我把格式都给出来了，结果也不会差太远了，所以后面会不会有prompt engineer，不好说呀。）&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;作为一个前端开发人员，有很多方法可以使工作更有趣：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;学习新技能和工具 - 不断学习新的技术和工具可以使前端开发总是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;保持新鲜感&lt;/code&gt;，同时也可以提高自己的技能水平。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;参加社区活动 - 参加线下或者线上的前端开发社区活动可&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;以认识更多志同道合的人&lt;/code&gt;，扩展自己的人脉，同时也可以学习到最新的前端技术发展趋势。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;实战练习 - 通过完成一些实际项目的练习，可以让自己的技能更快地提高，同时也可以增加对前端开发的兴趣和热情。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;做自己感兴趣的项目 - 在自己的空闲时间，可以做一些自己感兴趣的前端开发项目，例如搭建自己的博客网站、构建一个自己喜欢的应用等等，这样可以让自己更加投入到前端开发中。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;加入开源社区 - 加入一些开源社区可以得到更广泛的技术交流和学习经验，同时也可以通过提交自己的代码或者修复别人的缺陷来积累自己的经验。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;与其他开发人员合作 - 与其他开发人员合作可以让前端开发更有趣，可以借鉴其他人的经验和技能，并且在合作中加深人际关系，增加团队协作和创造的乐趣。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我发现自己特别着迷的就是，自己撸一个后端的接口，然后前端拿到数据之后渲染那个感觉，太爽了。说不上来为啥。&lt;/p&gt;
+
+&lt;p&gt;关于后端接口，不用掌握Java，Python里面有一个fastapi就可以在10行代码内完成，以及熟悉各种接口的调用方式和数据传递方式。如果你熟练地掌握了这些技能，你可以很容易地开发出健壮的接口，并且灵活地应对客户端的需求变化。另外，你也可以关注一些有关接口相关的博客、技术文章等渠道，了解行业最新的接口开发趋势，不断提升自己的技能水平。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://learningpromt.wiki/&quot;&gt;chatGPT提示工程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;里面提到的几个小技巧，已经在使用了，非常好用。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://catcoding.me/p/apple-perf/&quot;&gt;苹果：为了安全让 M2 吃灰&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本文介绍了苹果计算机在运行Rust编译器项目上的性能问题，以及它的根源 - System Integrity Protection（SIP）。SIP是苹果操作系统的一项安全技术，目的是阻止未经授权的代码执行，从而保护系统完整性。然而，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SIP会在执行任意代码之前对其进行校验，并可能发送网络请求以确保文件的安全性&lt;/code&gt;。这对于需要执行大量代码的开发人员来说可能会产生问题，因为SIP会降低系统的性能，并导致长时间运行的代码在苹果计算机上速度较慢。虽然可以通过禁用SIP来解决这个问题，但这也会降低计算机的安全性。作者认为，苹果公司在这个问题上没有给出一个充分的解决方案，这可能表明苹果对于开发者的重视程度已经不如以前了。&lt;/p&gt;
+
+&lt;p&gt;文章还提供一些bypass的策略。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/5JnKZ4MTnk8Hl_Jiz3DF4A&quot;&gt;关于南极旅游 - 王叔特别篇&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;王叔就是一个典范，无所畏惧，勇于尝试，才能拥有更大，更广阔的舒适区，让自己可以更好的去欣赏世界，享受人生。&lt;/p&gt;
+
+&lt;p&gt;这其实无关财富，语言能力。王叔用自己的经历证明，用极为克制的预算，极为有限的语言能力，一样可以做到。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://glarity.app/google-summary&quot;&gt;谷歌总结内容&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;输入视频，可以直接总结视频的内容， 还有一个链接：https://youtu.be/5Lh4qiB3STo&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://newsletter.pragmaticengineer.com/p/why-did-google-close-its-coding-competitions&quot;&gt;为什么谷歌关闭了代码竞赛&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Google 关闭持续了 20 年的编程比赛。这些比赛每年吸引近 30 w 开发者。这些年，Goolge 员工数目从 2004 年的 3000 人翻了 60 倍，而编程比赛是招人的一个重要手段，也开启了 IT 行业面试刷题的时代。最近因为减成本，组织比赛的员工很多被开了。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://citw.dev/tutorial/create-your-own-compiler&quot;&gt;创建自己的编译器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;将对杰米·凯尔的《超级小编译器》进行指导演练。超级微型编译器是一个用Javascript编写的简单编译器，我们将从头开始逐步编写它。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/lxgw/LxgwWenkaiTC&quot;&gt;开源字体wenkai&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本字體的字形調整參考 一點字坊「傳承字形標準化文件」，但並不追求完全遵循之，有些部件會視情況做出取捨（如「曰」部件、「艹」部件等，由於涉及的漢字數量較多，故並未按照「檢校表」做改動；此外本字體中的部分部件採用了「檢校表」中收錄的一些稍爲遷就美觀需要的常見字形，如「蔑」「益」「亟」「老」「殳」等部件）。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/swc-project/swc/tree/main/crates&quot;&gt;swc-project小项目&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;CSS、JavaScript、HTML 的 Parser 都手动实现了一遍。&lt;/p&gt;
+
+&lt;p&gt;这个项目里面的子项目多得令人发指！且每个子项目的代码量都不少。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/04/quick-skill/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/04/quick-skill/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>78 -  继续搞钱</title>
@@ -806,101 +920,6 @@ Flask-RESTful==0.3.9
         <pubDate>Sat, 21 Jan 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/01/21/new-year/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/01/21/new-year/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>72 -  永无止境</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118111051.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;图片来自 Deepai 生成&lt;/p&gt;
-
-&lt;p&gt;看到一篇文章，&lt;a href=&quot;https://news.ycombinator.com/item?id=34272834&quot;&gt;囤积信息的坏习惯&lt;/a&gt;，作者像大多数程序员一样，浏览 hacknews、reddit或twitter（国内的浏览知乎、csdn、博客园），文章以技术为重点，主要还囤积信息，看到有些留言说，在浏览器打开接近1000个tabs。&lt;/p&gt;
-
-&lt;p&gt;事实上，我不确定大多数人都会这样做，我只是希望我不是唯一的一个，我曾经就是这样。&lt;/p&gt;
-
-&lt;p&gt;这个应该就是FOMO（fear of missing out 害怕错过）的心理，我相信大部分都是这样的。这不是病，是一种对知识和信息的获取渴望。&lt;/p&gt;
-
-&lt;p&gt;这些随机的知识，有什么用喃？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;windows的出现：比尔盖茨有次意外的发现播种机的操作系统很难用，就想到开发一个易用的系统，可能对windows的出现有一定影响；&lt;/li&gt;
-  &lt;li&gt;macOS 的设计：乔布斯有一次意外的上了一次书法课，就造就一个很优雅的系统；
-……&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;在工作中，我经常把一些意外的小东西，从大脑后面拉出来，并把它们归档，”以备不时之需”，这让我们感到震惊。有时，这个 “万一 “也会出现。&lt;/p&gt;
-
-&lt;p&gt;我注意到，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;现在的IT行业越来越不需要具备某种原始天赋&lt;/code&gt;，而更多的是需要了解由其他有天赋的人编写的工具、SDK和API。&lt;/p&gt;
-
-&lt;p&gt;在过去，你必须是魔法师，现在你只需要知道魔法师。&lt;/p&gt;
-
-&lt;p&gt;这些零碎，看起来是很意外的知识，不知道哪一天会影响到你自己的生活。&lt;/p&gt;
-
-&lt;p&gt;我被所有的科技信息所吸引，我喜欢发现新的和闪亮的东西，可以拓展自己的思路。&lt;/p&gt;
-
-&lt;p&gt;我喜欢看人们正在研究的东西，但信息量太大，我对此有一个小问题。虽然阅读一批较小的30-40个链接是可以应付的，但当数量在一个星期内增长到80多个时，就很费时，而且令人难以承受。&lt;/p&gt;
-
-&lt;p&gt;有人留言说，《百万富翁快车道》对这本书其中有一点是好的，那就是要&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;专注于成为生产者而不是消费者的建议&lt;/code&gt;。。&lt;/p&gt;
-
-&lt;p&gt;毕竟，学习和信息汇总背后的想法是，你学习所有这些东西是为了更好地准备采取更正确、更快的行动。&lt;/p&gt;
-
-&lt;p&gt;同时，我觉得更重要的是要输出内容和自己的想法，从他们的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;链接里面获取和提炼他们的想法，而不是信息本身&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://peps.python.org/pep-0703/&quot;&gt;在CPython中使全局解释程序锁成为可选的&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本PEP提出了对CPython构建过程的修改，允许你构建一个无GIL的解释器。这种解释器将不与基于GIL的解释器ABI兼容，程序员将对C语言扩展中的一些锁定情况负责。如果实现的话，这将导致在后向兼容性问题不重要的情况下，能够在没有GIL的情况下运行。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://siboehm.com/articles/22/CUDA-MMM&quot;&gt;如何优化CUDA Matmul内核以获得类似cuBLAS的性能&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;作者讨论了如何优化CUDA矩阵乘法内核的性能。目标是将NVIDIA官方矩阵库cuBLAS的性能提高到80%以内；深入探讨凝聚全局内存访问、共享内存缓存、占用率优化等问题&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.semianalysis.com/p/nvidiaopenaitritonpytorch&quot;&gt;Nvidia在机器学习领域的CUDA垄断是如何被打破的&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118110924.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在过去的十年里，机器学习软件开发的格局发生了重大变化。许多框架来来去去，但大多数都严重依赖于利用NVIDIA的CUDA，并且在NVIDIA图形处理器上表现最好。然而，随着PyTorch 2.0和OpenAI的Triton的到来，英伟达在这一领域的主导地位，主要是由于其软件护城河，正在被颠覆。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mupuf.org/blog/2021/02/08/setting-up-a-ci-system-preparing-your-test-machine&quot;&gt;设置CI系统第一部分。准备你的测试机&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;重复使用以前的系统中的组件，因为它的组件集成度很高，而且实施细节会从一个组件渗透到另一个。此外，这样的设计限制了系统的发展能力，因为更新一个组件会影响到很多组件，如果不重写系统，或者让系统瘫痪数小时，就很难甚至不可能做到这一点。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/red-data-tools/YouPlot&quot;&gt;YouPlot&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118110204.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;一个在终端上画图的命令行工具。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/Kanaries/graphic-walker&quot;&gt;graphic-walker&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;graphic-walker允许数据科学家通过简单的拖放操作来分析数据并将模式可视化。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 14 Jan 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/01/14/nerver-ending/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/01/14/nerver-ending/</guid>
         
         <category>Newsletter</category>
         
