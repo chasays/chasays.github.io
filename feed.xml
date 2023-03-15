@@ -5,9 +5,196 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 09 Mar 2023 00:51:57 +0000</pubDate>
-    <lastBuildDate>Thu, 09 Mar 2023 00:51:57 +0000</lastBuildDate>
+    <pubDate>Wed, 15 Mar 2023 01:21:52 +0000</pubDate>
+    <lastBuildDate>Wed, 15 Mar 2023 01:21:52 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>GCC 编译器优化 - ThinLTO</title>
+        <description>&lt;h2 id=&quot;lto&quot;&gt;LTO&lt;/h2&gt;
+
+&lt;p&gt;LTO（Link Time Optimization）是一种通过整个程序分析和跨模块优化来实现更好的运行时性能的方法。在编译阶段，clang会发出LLVM位码而不是对象文件。链接器会识别这些位码文件，并在链接过程中调用LLVM，以生成构成可执行文件的最终对象。LLVM实现加载所有输入的比特码文件，并将它们合并在一起以产生一个单一的模块。程序间分析（IPA）和程序间优化（IPO）在这个单体模块上连续进行。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230313170728.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;LTO有个缺点：这在实践中意味着LTO经常需要大量的内存（以一次容纳所有的IR），而且速度非常慢。而在通过-g启用调试信息的情况下，IR的大小和由此产生的内存需求会明显增大。即使没有调试信息，这对于非常大的应用程序，或者在内存受限的机器上进行编译，也是令人望而却步的。这也使得增量构建不那么有效，因为当任何输入源发生变化时，从LTO步骤开始的一切都必须重新执行。&lt;/p&gt;
+
+&lt;h2 id=&quot;thinlto&quot;&gt;ThinLTO&lt;/h2&gt;
+
+&lt;p&gt;ThinLTO 是一种新的方法，旨在像非LTO构建那样进行扩展，同时保留了全LTO的大部分性能成就。
+在ThinLTO中，串行步骤是非常薄和快速的。这是因为它不是加载比特码和合并一个单一的单体模块来进行这些分析，而是利用每个模块的紧凑摘要来进行串行链接步骤中的全局分析，以及为后来的跨模块导入的函数位置索引。当模块在完全并行的后端进行优化时，函数导入和其他IPO转换将在以后进行。&lt;/p&gt;
+
+&lt;p&gt;由ThinLTO全局分析实现的关键转换是函数导入，其中只有那些可能被内联的函数被导入到每个模块。这最大限度地减少了每个ThinLTO后端的内存开销，同时最大化了最有影响的跨模块优化机会。因此，IPO转换是在每个模块上用其导入的函数进行扩展。
+ThinLTO的过程分为3个阶段。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;编译：与完全的LTO模式一样生成IR，但用模块摘要进行扩展。&lt;/li&gt;
+  &lt;li&gt;thin link:thin 链接器插件层，结合摘要并进行全局分析&lt;/li&gt;
+  &lt;li&gt;ThinLTO后端: 具有基于摘要的导入和优化的并行后端&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230313171121.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这个过程的关键因素是在第一阶段发出的摘要。这些摘要是使用比特码格式发布的，但设计成可以单独加载，而不涉及LLVMContext或任何其他昂贵的结构。每个全局变量和函数在模块摘要中都有一个条目。一个条目包含元数据，对它所描述的符号进行抽象。例如，一个函数被抽象为它的链接类型，它所包含的指令数量，以及可选的剖析信息（PGO）。此外，对另一个全局的每一个引用（采取的地址，直接调用）都被记录下来。这些信息可以在Thin link阶段建立一个完整的引用图，并利用全局总结信息进行后续快速分析。&lt;/p&gt;
+
+&lt;p&gt;下面图片是LTO和ThinLTO的编译对比图；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230314084435.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ipo&quot;&gt;IPO&lt;/h2&gt;
+
+&lt;p&gt;过程间分析（inter-procedural analysis）是一个多步骤的过程，是LTO分析过程中的重要部分，也是一个跨模块的分析过程。跨模块的优化功能实现最早在1987年（Link time optimization - MIPS），后来相继出现了过程间分析和转换，动态链接程序的优化（IPA + LTO）。&lt;/p&gt;
+
+&lt;p&gt;GCC中的IPA包含的操作有： increase alignment、devirtualization、constant propagation、inline、pure/const analysis等。&lt;/p&gt;
+
+&lt;p&gt;ICC中的IPO（Interprocedural Optimization）包含众多的优化，例如：Array dimension padding、Alias analysis、Constant propagation、Dead call deletion、Dead function elimination、Inlining、Structure splitting and field reordering、Whole program analysis等重要优化过程。优化选项配置为-ipo。&lt;/p&gt;
+
+&lt;p&gt;比如inline内联优化。&lt;/p&gt;
+
+&lt;h3 id=&quot;inline内联优化&quot;&gt;inline内联优化&lt;/h3&gt;
+
+&lt;p&gt;内联（inline）优化就是把调用的函数放到调用的地方，避免函数调用和寄存器的分配，增加指令的数量。&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kr&quot;&gt;inline&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myNum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 内联优化后&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myNum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;优化后，取消函数调用的好处&lt;/p&gt;
+
+&lt;p&gt;1.它消除了函数调用过程中所需的各种指令：包括在堆栈或寄存器中放置参数，调用函数指令，返回函数过程，获取返回值，从堆栈中删除参数并恢复寄存器等。&lt;/p&gt;
+
+&lt;p&gt;2.由于不需要寄存器来传递参数，因此减少了寄存器溢出的概率。当使用引用调用（或通过地址调用或通过共享调用）时，它消除了必须传递引用然后取消引用它们。&lt;/p&gt;
+
+&lt;p&gt;除了有点，也有缺点：优化后的执行程序包变大。还有一些特定情况，内联将会造成很严重的后果，如递归函数的内联可能造成代码的无限inline循环。所以编译器在这些特殊情况下会拒绝内联，常见的包括虚调用，函数体积过大，有递归，可变数目参数，通过函数指针调用，调用者异常类型不同，declspec宏、使用alloca、使用setjump等。&lt;/p&gt;
+
+&lt;p&gt;可以通过关键字：inline来实现内联优化。&lt;/p&gt;
+
+&lt;p&gt;其实内联inline只是建议性的关键字，编译器并不一定会听你的，毕竟他比你更了解你的代码编译后是什么样子的，而所谓的内联也不单单是指inline这个关键字了，他本质上是一种编译器的优化方式。另外，在windows上平台我还经常能看到【forceinline】（GCC上的【always_inline】）这样的关键字，字面意思是强制内联。不过经过查阅，发现一般只是对代码体积不做限制了，或者说在Debug模式（不不开启优化的情况）下也会尽量按照开发者的意愿去内联。无论如何，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;最终的决定权还是交给编译器去处理&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/qq_36287943/article/details/103930336&quot;&gt;编译优化之 - 过程间优化(IPA/IPO)入门&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/50812510&quot;&gt;被知乎大佬嘲讽后的一个月，我重新研究了一下内联函数&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://llvm.org/docs/LinkTimeOptimization.html#example-of-link-time-optimization&quot;&gt;example-of-link-time-optimization&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.llvm.org/2016/06/thinlto-scalable-and-incremental-lto.html&quot;&gt;thinlto-scalable-and-incremental-lto&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Mon, 13 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/13/GCC-process/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/13/GCC-process/</guid>
+        
+        <category>gcc</category>
+        
+        <category>compiler</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>80 - 适者生存</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;今天看到冯大的一篇文章，&lt;a href=&quot;https://mp.weixin.qq.com/s/zN8vBAjrPh9nA0Q-kjnBWA&quot;&gt;我是这么看腾讯 T13 技术大佬被裁这事儿的&lt;/a&gt;，一个腾讯T13技术大佬被裁事件。&lt;/p&gt;
+
+&lt;p&gt;技术专家在公司工作很多年而被裁，换了谁心里头都不舒服。对于当事人总结的被裁原因，往往又不是真正的原因，这就是所谓的当局者迷。&lt;/p&gt;
+
+&lt;p&gt;作者给出了几个职场建议，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;包括低头干活，抬头看路，改变自己适应环境，以及让个人和公司相忘于江湖&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;最近恰好听播客，接触到了一本书「高效能人士的7个习惯」,听名字就很鸡汤，但是里面对于职场新人来说，干货满满，豆瓣评分8.5。&lt;/p&gt;
+
+&lt;p&gt;什么是彼得原理喃？&lt;/p&gt;
+
+&lt;p&gt;指出&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;一个人在组织内部会得到晋升，直到不能胜任为止&lt;/code&gt;。也就是说，某个人在组织内部的管理层级，最终会达到自己无法胜任的位置。这意味着，即使一个人已经得到了晋升，但如果没有适当的培训和支持，他将无法胜任他晋升到的职位，会成为他的天花板。&lt;/p&gt;
+
+&lt;p&gt;比如有一个程序员，他很擅长编写代码，并且在编写小型项目时表现优异。但是，当他被提升为高级软件工程师时，他可能会发现自己无法对应复杂和较大规模的项目，并且无法与团队进行沟通，或者无法承担管理职责。&lt;/p&gt;
+
+&lt;p&gt;尽管他在代码方面很优秀，但是他可能会陷入自己的无能之境。他的上司可能会意识到他不能完成高级软件工程师的工作，并将他排除在项目外，或者将他降回到程序员或其他适合他的职位。&lt;/p&gt;
+
+&lt;p&gt;但是在这里，有时候这个程序员可能也会变得太重要，团队已经习惯了他的存在，不能失去他，于是他就会继续留在这个职位上，直到他自己离开或者公司以某种方式解决这个问题。&lt;/p&gt;
+
+&lt;p&gt;这个例子说明了在职场上，员工可能会被升迁到他们的无能之境，这不仅对他们本人不利，而且还对公司和团队产生负面影响。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/5cW_LyfGRBoiYZYKi-eB4g&quot;&gt;想让我的方法更容易持续、更容易参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;作者的第六个年头的财务自由计划，她每年会整理过去的有价值的内容并定期更新分享给读者。文章重点在于如何获得10%的年度投资收益，从而达到财务自由的目标。作者强调了专业人士的专业知识的重要性，比如基金经理的投资建议等等。她建议投资者进行分散投资，使用能够跟踪表现最佳股票型基金平均收益的基金。作者还分享了她使用投资顾问和FOF来跟踪投资回报的经历和体验。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/E2KnibkYlVT4cgmd3QH1Kw&quot;&gt;无痛分娩，为什么还有 70% 产妇用不上？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;胡佳（化名）是一线城市三甲综合医院的麻醉科医生。和大家普遍想象的不同，胡佳所在的医院，产妇选择无痛分娩的比例是 100%。&lt;/p&gt;
+
+&lt;p&gt;而在 19 年前，这个数据还只有 1%。据不完全统计，2004 年前仅有不足 1% 的国内产妇享受到分娩镇痛，即使在较发达地区分娩镇痛率仍不足 10%，而在边疆偏远地区，分娩镇痛更是一片空白。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzIwODQ3NjU5Ng==&amp;amp;mid=2247483986&amp;amp;idx=1&amp;amp;sn=995667b91c52664c265e5f65e2a8f59a&amp;amp;scene=58&amp;amp;subscene=0&quot;&gt;阿强买基金，为啥没人能卷走他的钱？&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;把枯燥无趣的金融知识，用漫画的新式来传达，我觉得太有趣了。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cocktailpeanut.github.io/dalai/#/&quot;&gt;自动安装LLM模型&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在你的电脑上运行LLaMA的简单方法。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/camenduru/stable-diffusion-webui-colab&quot;&gt;stable diffusion的webui colab&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;通过一个草图的形式就可以自动生成一个漂亮的图片，结合google colab,免费部署和使用。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://shots.so/&quot;&gt;shots截图工具&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;各种样式的截图边框。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/microsoft/visual-chatgpt&quot;&gt;visual-chatgpt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;微软自家的Visual ChatGPT连接了ChatGPT和一系列的Visual Foundation模型，以便在聊天过程中发送和接收图像。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/11/Survival-of-the-fittest/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/11/Survival-of-the-fittest/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>79 -  技能速成</title>
@@ -738,188 +925,6 @@ Flask-RESTful==0.3.9
         <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/02/04/no-hurry-no-busy/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/02/04/no-hurry-no-busy/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>74 -  好好生活</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230131100305.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;图片来自 Deepai 生成&lt;/p&gt;
-
-&lt;p&gt;人的最大痛苦根源来自和他人比较。&lt;/p&gt;
-
-&lt;p&gt;过年了，3 年的疫情终于结束了，大家又可以愉快地相聚在一起。每次看到身边亲朋好友开豪车，赚大钱，我就心生嫉妒，如果要是这样和他们比的话，我估计活不到今天。&lt;/p&gt;
-
-&lt;p&gt;有一句鸡汤，不知道该讲不该讲。&lt;/p&gt;
-
-&lt;p&gt;永远不因别人才貌双全、财运亨通而去嫉妒，一次次的去清理这些杂念，把嫉妒转化为深深地赞美和祝福，心念转化的瞬间，那些令人羡慕的美好品质也会慢慢在你身上生长出来。&lt;/p&gt;
-
-&lt;p&gt;同时，也永远不因别人落难亏钱而沾沾自喜，再小的邪恶念头也会长出果实。走在光明的大路上，也只有这一条路可以走。&lt;/p&gt;
-
-&lt;p&gt;在新的 2023 年，祝愿大家搞钱多多。&lt;/p&gt;
-
-&lt;p&gt;……&lt;/p&gt;
-
-&lt;p&gt;大家应该也陆陆续续地开始上班了，发现外面的天气好晴朗，在成都，冬天能见到这样的天气，实属不多。&lt;/p&gt;
-
-&lt;p&gt;非常羡慕那些不用天天上班，让我们在办公室灵魂出窍的时候，发现晒着太阳比这更好。&lt;/p&gt;
-
-&lt;p&gt;让我萌生了一个念头，什么时候 settle down，不可能一辈子打工的，打工迟早要被淘汰。至少我目前是这么想的。&lt;/p&gt;
-
-&lt;p&gt;那 2023 年度工作计划，初步定一个：对于未来有一天自己打不动工了，被淘汰了，找到或者理清自己未来可能要做的行业或者工作，会做什么。&lt;/p&gt;
-
-&lt;p&gt;今天天气也不错😁&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.xiaoyuzhoufm.com/episode/63ca00d978910ae65ca1d17f&quot;&gt;你想要的不是更大更贵更好，你想要的是舒服&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如果没有这个习惯：让房间变得干净整齐，做到随手拿随手放。那就放松心态，接受自己。&lt;/p&gt;
-
-&lt;p&gt;好好住的创始人说，自己也有这个小问题。似乎是小学之前养成的习惯，如果小学之后没有养成就很难改变了，会变成终身的一个小习惯。&lt;/p&gt;
-
-&lt;p&gt;但是这个习惯不是错误，也不是智商问题。不要太自责，放松心态就好了，每个人的生活方式不一样。&lt;/p&gt;
-
-&lt;p&gt;还提到了一种曲线救国的方法，就是装修设计的时候，让家里多一些收纳柜，让自己用了的东西随手就放了，不用放一个东西跑老远。已经装修好了，可以试试购置一个移动的柜子等。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/xbLJs0XAs2JvaySMjYmbaQ&quot;&gt;一人食下厨经验分享（爱用菜谱+小技巧）&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;有可能是刚过完年，大鱼大肉的吃腻了，想自己做饭，顺便多做一点，把明天中午的也给做了，这样可以节省一部分开支。可以尝试一人下厨的经验文章。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.exaloop.io/python-llvm/&quot;&gt;python llvm&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这篇文章将主要关注LLVM IR的生成，以及我们如何将各种Python结构映射到LLVM IR。有时这是非常直接的，而有时则是非常棘手的,流程如下&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- 将源代码解析为抽象语法树(AST)。
-- 使用改进的类似Hindley-Milner的算法对AST执行类型检查。
-- 将类型化的AST转换为称为CIR的中间表示形式。
-- 对CIR进行大量分析、转换和优化。
-- 从CIR转换为LLVM IR。
-- 运行LLVM优化管道等。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.deepl.com/write&quot;&gt;deepl 写作助手&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;一键完成你的写作，修复语法和标点错误，选择你的翻译方式，创造性地改写整个句子，通过Write建议的改写方式获取准确的措辞。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/aRw0ig60YeuREHYwgojRUA&quot;&gt;知道正确标准为什么还找不到好工作&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;曹大的一篇文章，给职场人的。这个世界一直在改变，好的企业也不会一直都好，不好的企业也可能有咸鱼翻身的时候，所有的经验，所有的标准都会被时代颠覆，永远没有标准答案。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://apps.apple.com/cn/app/aa-reader-clean-ebook-reader/id1589022901?l=en&quot;&gt;iPhone的aa-reader&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;AA阅读器是一个AI（人工智能）+NLP（自然语言处理）驱动的电子书+网络书签，专注于帮助读者在阅读电子书和网络内容的同时学习。这里有一些关键功能，比如要学习英语的人来说，就方便了不少。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/sczhou/CodeFormer&quot;&gt;一键去除马赛克CodeFormer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;一键去除视频马赛克，让模糊不清的视频瞬间高清化。修复老旧照片，照片去除马赛克。hi还有打包好的桌面GUI版的 CodeFormer 软件，一键打开即可使用，非常方便。启动程序.Bat运行后黑色终端不能关闭。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/fathyb/carbonyl&quot;&gt;基于chromium，终端浏览器carbony&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Carbonyl是一个基于Chromium的浏览器，专为在终端中运行而构建。它支持运行几乎所有的Web API，包括WebGL、WebGPU、音频和视频播放以及动画。Carbonyl在不到一秒钟内启动，以60 FPS的速度运行，闲置时CPU使用量为0%。它与安全模式控制台兼容，甚至可以通过SSH使用。Carbonyl仅在Linux和macOS上进行了测试。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 28 Jan 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/01/28/better-lift/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/01/28/better-lift/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>73 -  新年快乐</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118111716.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;图片来自 Deepai 生成&lt;/p&gt;
-
-&lt;p&gt;祝大家新年快乐。&lt;/p&gt;
-
-&lt;p&gt;希望大家在这个长假里面多多休息，因为我觉得我需要的。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://matt.might.net/articles/26-languages-part1&quot;&gt;text&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://sudhir.io/uuids-ulids&quot;&gt;了解UUID、ULID和字符串表示&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;UUID看起来像这样 ff78ae6b-7176-46e9-81c6-4bee60ba81bb？ UUID是一个字符串吗？ 它怎么会有128位？在它的核心，UUID只是一个字节数组，我们可以用任何我们想要的编码重新呈现这个字节数组，base10，base64，base36，或者hex。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://martinrue.com/to-be-productive-be-prepared/&quot;&gt;要想有成效，就要做好准备&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;生产力不是来自于感觉上的激励，而是来自于知道你需要做的事情有足够的细节，你可以完成它，而不会不断地停下来，失去你的注意力。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.jamesshore.com/v2/projects/testing-without-mocks/testing-without-mocks&quot;&gt;无Mock测试：一种模式语言&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;作者讨论了自动化测试的重要性以及编写测试的各种方法。作者描述了用简单、明显的方式来写测试的问题，以及使用mock和spies的好处。他还描述了使用mock和spies的问题以及如何避免这些问题。这篇文章被分解成一个个小块，并有大量的代码实例。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://zb.v1.mk/&quot;&gt;IPTV直播源&lt;/a&gt;
-&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118123112.png&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;群晖NAS、OpenWrt软路由部署PHP直播源。IPTV、足球等直播源。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://rxresu.me/zh&quot;&gt;免费简历生成器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118121835.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;马上过完年之后，应该有大部分人会选择换工作，说不定这个可以帮上忙，用得上。&lt;/p&gt;
-
-&lt;p&gt;Reactive Resume 是一个免费和开源的简历生成器，旨在使创建、更新和共享简历的日常任务变得像 1、2、3 一样简单。使用此应用程序，您可以创建多份简历，与招聘人员或朋友分享通过一个独特的链接并将其打印为 PDF，全部免费，无广告，无跟踪，不会丢失您数据的完整性和隐私性。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/burn-rs/burn&quot;&gt;burn&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;burn是一个用Rust编写的完整的深度学习框架。它有一个灵活直观的自定义神经网络模型，完全支持度量、日志和检查点的训练，一个有多个后端的Tensor crate，以及一个有多个实用程序和来源的Dataset crate。 burn主要针对研究人员和从业人员，以方便实验、训练和模型的部署。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 21 Jan 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/01/21/new-year/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/01/21/new-year/</guid>
         
         <category>Newsletter</category>
         

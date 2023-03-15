@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "GCC 编译器优化 - ThinLTO",
+      "subtitle" : "",
+      "tags"     : "gcc, compiler",
+      "url"      : "/2023/03/13/GCC-process/",
+      "date"     : "2023-03-13 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "80 - 适者生存",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2023/03/11/Survival-of-the-fittest/",
+      "date"     : "2023-03-11 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "79 -  技能速成",
       "subtitle" : "",
       "tags"     : "Newsletter",
