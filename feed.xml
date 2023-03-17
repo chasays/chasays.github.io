@@ -5,9 +5,50 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 15 Mar 2023 01:21:52 +0000</pubDate>
-    <lastBuildDate>Wed, 15 Mar 2023 01:21:52 +0000</lastBuildDate>
+    <pubDate>Fri, 17 Mar 2023 01:06:06 +0000</pubDate>
+    <lastBuildDate>Fri, 17 Mar 2023 01:06:06 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>GCC 编译器优化 - 常量折叠</title>
+        <description>&lt;h2 id=&quot;什么是编译器优化&quot;&gt;什么是编译器优化&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;编译器优化（Compiler optimization）是指在编译器将源代码转化为可执行代码的过程中，通过对程序的分析和优化，使得生成的目标代码在执行速度、占用内存等方面都能够达到更好的效果。&lt;/p&gt;
+
+&lt;p&gt;具体来说，编译器优化可以通过减少代码的重复计算、减少缓存未命中的情况以及减少不必要的寄存器使用等方式提高程序的执行效率，从而让程序的运行更快、更稳定。同时，优化也可以使得编译出来的目标代码更加紧凑，减少程序所占用的内存和磁盘空间。&lt;/p&gt;
+
+&lt;p&gt;编译器优化的主要目标是提高程序的性能、优化目标代码的大小以及减少程序的资源占用。为了达到这些目标，编译器需要对源代码进行细致的分析，确定不必要的代码并去除，同时在编译过程中根据程序的表现不断进行优化调整，以逐步提高程序的性能。&lt;/p&gt;
+
+&lt;p&gt;我们老大叫我们多看看在LLVM上优化，可以参考下GCC的优化方法。你们有没有什么好的方法？&lt;/p&gt;
+
+&lt;p&gt;##&lt;/p&gt;
+
+&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://oi-wiki.org/lang/optimizations/&quot;&gt;编译优化&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/qq_36287943/article/details/104974597&quot;&gt;编译优化之 - 常量传播入门&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Wed, 15 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/15/compiler-const-folding/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/15/compiler-const-folding/</guid>
+        
+        <category>gcc</category>
+        
+        <category>compiler</category>
+        
+        
+      </item>
     
       <item>
         <title>GCC 编译器优化 - ThinLTO</title>
@@ -844,87 +885,6 @@ Flask-RESTful==0.3.9
         <pubDate>Thu, 09 Feb 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/02/09/extra-story/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/02/09/extra-story/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>75 -  不慌不忙</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230207123106.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;图片由 Deepai 自动生成&lt;/p&gt;
-
-&lt;p&gt;周末晚上睡不着，打开 Spotify，点击播放我标记喜欢歌曲：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;慌慌张张 匆匆忙忙
-为何生活总是这样
-难道说 我的理想 
-就是这样度 过一生的时光&lt;/p&gt;
-
-  &lt;p&gt;不卑不亢 不慌不忙
-也许生活应该这样
-难道说 60岁以后再去寻找
-我想要的自由&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;没错，就是郝云的活着。歌词朴实无华，人人都能看懂，但是却听了有种无名的伤感。&lt;/p&gt;
-
-&lt;p&gt;……&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://youzhiyouxing.cn/n/materials/1400&quot;&gt;E73《财富自由之路》：这本书是大忽悠，还是行动指南？&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;李笑来的财务自由之路，我看过这本书，是后来看了相关的理财书，有了一定的理财知识，才接触到这本书，这本书文字简单，不像论文那样高深，看完了根据自己的经验去实践。&lt;/p&gt;
-
-&lt;p&gt;我理解的财务自由，是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;指某个人再也不用为了满足生活而出售自己的时间&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;推荐一个小技巧，AirPods pro 听歌曲可以使用背景音乐，比如可以开启溪水，雨声等等。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230207123009.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/l1PhOdB2wP-7HeTkv9P5CQ&quot;&gt;2023 年，产品经理的成长，从破除迷信开始&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;作者尝试把多端的微信聊天记录合并到新购买的设备上，合并完成的那一刻，新设备原本空荡荡的对话列表，一个个熟悉的头像又出现了。随便挑了几个最新的对话检查了一下，滑动一下列表看了看对话总量，没发现什么问题。于是把老旧的设备都格式化了。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.theverge.com/2023/2/3/23584675/microsoft-ai-bing-chatgpt-screenshots-leak&quot;&gt;Bing结合chatgpt的搜索&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;微软正在通过将AI聊天机器人集成到其搜索引擎Bing中来利用ChatGPT的成功。几个用户短暂地看到人工智能辅助搜索引擎的一个版本。据报道，它能够引用其消息来源。预计微软将在未来几周内发布关于新必应的公告。AI驱动的必应的屏幕截图可在文章中找到。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/05h1y5i3hsAOzFopTyubxw&quot;&gt;当我决定从苹果辞职&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;作者才三十岁，心里还有一团火，想再投身于洪流中探索一番，想做更有价值、更有意义的事情。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://openai.com/blog/chatgpt-plus/&quot;&gt;chatgpt plus&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;openai 正在为ChatGPT推出一项试点订阅计划，这是一种对话型人工智能，可以与你聊天，回答后续问题，并挑战不正确的假设。新的订阅计划，ChatGPT Plus，将以20美元/月的价格提供，用户将获得一些好处。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/PlexPt/awesome-chatgpt-prompts-zh&quot;&gt;chatgpt中文调教版&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ChatGPT模型是由OpenAI训练的大型语言模型，能够生成类人文本。通过向它提供提示，它可以生成继续对话或扩展给定提示的响应。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/02/04/no-hurry-no-busy/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/02/04/no-hurry-no-busy/</guid>
         
         <category>Newsletter</category>
         

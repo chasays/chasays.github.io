@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "GCC 编译器优化 - 常量折叠",
+      "subtitle" : "",
+      "tags"     : "gcc, compiler",
+      "url"      : "/2023/03/15/compiler-const-folding/",
+      "date"     : "2023-03-15 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "GCC 编译器优化 - ThinLTO",
       "subtitle" : "",
       "tags"     : "gcc, compiler",

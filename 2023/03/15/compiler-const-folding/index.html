@@ -12,27 +12,33 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="73 -  新年快乐 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="GCC 编译器优化 - 常量折叠 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="朋友，您好 ~
+    <meta property="og:description" content="什么是编译器优化
 
-">
+保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进。
+
+编译器优化（Compiler optimization）是指在编译器将源代码转化为可执行代码的过程中，通过对程序的分析和优化，使得生成的目标代码在执行速度、占用内存等方面都能够达到更好的效果。
+
+具体来说，编译器优化可以通过减少代码的重复计算、减少缓存未命中的情况以及减少不必要的寄存器使用等方式提高程序...">
     
-    <meta property="article:published_time" content="2023-01-21T00:00:00Z">
+    <meta property="article:published_time" content="2023-03-15T00:00:00Z">
     
     
     <meta property="article:author" content="叉叉敌">
     
     
-    <meta property="article:tag" content="Newsletter">
+    <meta property="article:tag" content="gcc">
+    
+    <meta property="article:tag" content="compiler">
     
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2023/01/21/new-year/">
+    <meta property="og:url" content="https://blog.chiphub.top/2023/03/15/compiler-const-folding/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
     
-    <title>73 -  新年快乐 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>GCC 编译器优化 - 常量折叠 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -41,7 +47,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2023/01/21/new-year/">
+    <link rel="canonical" href="https://blog.chiphub.top/2023/03/15/compiler-const-folding/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -286,13 +292,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=Newsletter" title="Newsletter">Newsletter</a>
+                        <a class="tag" href="/archive/?tag=gcc" title="gcc">gcc</a>
+                        
+                        <a class="tag" href="/archive/?tag=compiler" title="compiler">compiler</a>
                         
                     </div>
-                    <h1>73 -  新年快乐</h1>
+                    <h1>GCC 编译器优化 - 常量折叠</h1>
                     
                     <h2 class="subheading"></h2>
-                    <span class="meta">Posted by 叉叉敌 on January 21, 2023</span>
+                    <span class="meta">Posted by 叉叉敌 on March 15, 2023</span>
                 </div>
             </div>
         </div>
@@ -318,85 +326,45 @@
                 <!-- Multi-Lingual -->
                 
 
-				<p>朋友，您好 ~</p>
+				<h2 id="什么是编译器优化">什么是编译器优化</h2>
 
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118111716.png" alt="" /></p>
+<p><code class="language-plaintext highlighter-rouge">保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进</code>。</p>
 
-<p>图片来自 Deepai 生成</p>
+<p>编译器优化（Compiler optimization）是指在编译器将源代码转化为可执行代码的过程中，通过对程序的分析和优化，使得生成的目标代码在执行速度、占用内存等方面都能够达到更好的效果。</p>
 
-<p>祝大家新年快乐。</p>
+<p>具体来说，编译器优化可以通过减少代码的重复计算、减少缓存未命中的情况以及减少不必要的寄存器使用等方式提高程序的执行效率，从而让程序的运行更快、更稳定。同时，优化也可以使得编译出来的目标代码更加紧凑，减少程序所占用的内存和磁盘空间。</p>
 
-<p>希望大家在这个长假里面多多休息，因为我觉得我需要的。</p>
+<p>编译器优化的主要目标是提高程序的性能、优化目标代码的大小以及减少程序的资源占用。为了达到这些目标，编译器需要对源代码进行细致的分析，确定不必要的代码并去除，同时在编译过程中根据程序的表现不断进行优化调整，以逐步提高程序的性能。</p>
 
-<ul>
-  <li><a href="https://matt.might.net/articles/26-languages-part1">text</a></li>
-</ul>
+<p>我们老大叫我们多看看在LLVM上优化，可以参考下GCC的优化方法。你们有没有什么好的方法？</p>
 
-<p>如果您喜欢这份Newsletter，<a href="https://chasays.zhubai.love/">请转发给您朋友，</a>，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。</p>
+<p>##</p>
 
-<h1 id="文章推荐">文章推荐</h1>
+<h2 id="更多阅读">更多阅读</h2>
 
 <ul>
-  <li><a href="https://sudhir.io/uuids-ulids">了解UUID、ULID和字符串表示</a></li>
+  <li><a href="https://oi-wiki.org/lang/optimizations/">编译优化</a></li>
+  <li><a href="https://blog.csdn.net/qq_36287943/article/details/104974597">编译优化之 - 常量传播入门</a></li>
 </ul>
 
-<p>UUID看起来像这样 ff78ae6b-7176-46e9-81c6-4bee60ba81bb？ UUID是一个字符串吗？ 它怎么会有128位？在它的核心，UUID只是一个字节数组，我们可以用任何我们想要的编码重新呈现这个字节数组，base10，base64，base36，或者hex。</p>
+<blockquote>
+  <p><a href="https://chasays.github.io/">github博客</a></p>
 
-<ul>
-  <li><a href="https://martinrue.com/to-be-productive-be-prepared/">要想有成效，就要做好准备</a></li>
-</ul>
+  <p>微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+</blockquote>
 
-<p>生产力不是来自于感觉上的激励，而是来自于知道你需要做的事情有足够的细节，你可以完成它，而不会不断地停下来，失去你的注意力。</p>
-
-<ul>
-  <li><a href="https://www.jamesshore.com/v2/projects/testing-without-mocks/testing-without-mocks">无Mock测试：一种模式语言</a></li>
-</ul>
-
-<p>作者讨论了自动化测试的重要性以及编写测试的各种方法。作者描述了用简单、明显的方式来写测试的问题，以及使用mock和spies的好处。他还描述了使用mock和spies的问题以及如何避免这些问题。这篇文章被分解成一个个小块，并有大量的代码实例。</p>
-
-<h1 id="工具资源推荐">工具、资源推荐</h1>
-
-<ul>
-  <li><a href="https://zb.v1.mk/">IPTV直播源</a>
-<img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118123112.png" alt="" /></li>
-</ul>
-
-<p>群晖NAS、OpenWrt软路由部署PHP直播源。IPTV、足球等直播源。</p>
-
-<ul>
-  <li><a href="https://rxresu.me/zh">免费简历生成器</a></li>
-</ul>
-
-<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230118121835.png" alt="" /></p>
-
-<p>马上过完年之后，应该有大部分人会选择换工作，说不定这个可以帮上忙，用得上。</p>
-
-<p>Reactive Resume 是一个免费和开源的简历生成器，旨在使创建、更新和共享简历的日常任务变得像 1、2、3 一样简单。使用此应用程序，您可以创建多份简历，与招聘人员或朋友分享通过一个独特的链接并将其打印为 PDF，全部免费，无广告，无跟踪，不会丢失您数据的完整性和隐私性。</p>
-
-<ul>
-  <li><a href="https://github.com/burn-rs/burn">burn</a></li>
-</ul>
-
-<p>burn是一个用Rust编写的完整的深度学习框架。它有一个灵活直观的自定义神经网络模型，完全支持度量、日志和检查点的训练，一个有多个后端的Tensor crate，以及一个有多个实用程序和来源的Dataset crate。 burn主要针对研究人员和从业人员，以方便实验、训练和模型的部署。</p>
 
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/01/14/nerver-ending/" data-toggle="tooltip" data-placement="top" title="72 -  永无止境">
+                        <a href="/2023/03/13/GCC-process/" data-toggle="tooltip" data-placement="top" title="GCC 编译器优化 - ThinLTO">
                         Previous<br>
-                        <span>72 -  永无止境</span>
+                        <span>GCC 编译器优化 - ThinLTO</span>
                         </a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2023/01/28/better-lift/" data-toggle="tooltip" data-placement="top" title="74 -  好好生活">
-                        Next<br>
-                        <span>74 -  好好生活</span>
-                        </a>
-                    </li>
                     
                 </ul>
                 <hr style="visibility: hidden;">
