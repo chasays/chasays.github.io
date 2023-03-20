@@ -5,9 +5,186 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 17 Mar 2023 01:06:06 +0000</pubDate>
-    <lastBuildDate>Fri, 17 Mar 2023 01:06:06 +0000</lastBuildDate>
+    <pubDate>Mon, 20 Mar 2023 03:01:41 +0000</pubDate>
+    <lastBuildDate>Mon, 20 Mar 2023 03:01:41 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>如何调试我们 LLVM 的代码</title>
+        <description>&lt;h2 id=&quot;开篇&quot;&gt;开篇&lt;/h2&gt;
+
+&lt;p&gt;LLVM是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做LLVM都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。&lt;/p&gt;
+
+&lt;p&gt;比如你在开发一个llvm的pass，或者一个feature，在编译的过程中crash了， 怎么去定位和修复的喃？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230317094622.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;尽量最小化例子&quot;&gt;尽量最小化例子&lt;/h2&gt;
+
+&lt;p&gt;一般来说，编译器从分析代码中产生大量的信息。因此，一个有用的第一步通常是找到一个最小的例子。做到这一点的一个方法是&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;创建一个重现该问题的新case（例如，将有问题的地方添加为依赖关系，并从这里开始）&lt;/li&gt;
+  &lt;li&gt;通过&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;移除外部依赖关系&lt;/code&gt;来最小化这个板块；也就是说，将所有相关的东西移到新文件中去&lt;/li&gt;
+  &lt;li&gt;通过缩短代码来进一步减少问题（有一些工具可以帮助实现这一点，比如creduce）。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在实际的工程中，是通过如下步骤，不过工程有一点差异，但是可以参考这个过程：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;用编译器（gcc/clang,或者其他）编译cpp文件为一个ll文件&lt;/li&gt;
+  &lt;li&gt;通过上面生成的 ll 文件，从中提取报错函数的最小 ll文件&lt;/li&gt;
+  &lt;li&gt;然后带上mtriple，map，mcpu等参数用llc来编译这个 ll 文件为汇编，一般在这个时候就会出问题了。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 编译cpp为一个ll文件&lt;/span&gt;
+clang &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-emit-llvm&lt;/span&gt; test.cpp
+
+&lt;span class=&quot;c&quot;&gt;# 提取文件里面的该funtion有关的ir&lt;/span&gt;
+llvm-ir-extractor test.ll &lt;span class=&quot;nt&quot;&gt;--save-mode&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;functioName&quot;&lt;/span&gt; &amp;amp;&amp;gt; new.ll
+
+&lt;span class=&quot;c&quot;&gt;# 用llc来编译&lt;/span&gt;
+llc &lt;span class=&quot;nt&quot;&gt;-mtriple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;amdgpucn &lt;span class=&quot;nt&quot;&gt;-verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;machineinstrs new.ll
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;##&lt;/p&gt;
+
+&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://rustc-dev-guide.rust-lang.org/backend/debugging.html#enable-llvm-internal-checks&quot;&gt;Rust Compiler Development Guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.pnkfx.org/blog/2019/11/18/rust-bug-minimization-patterns/&quot;&gt;rust 最小化代码&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/18/how-to-debug-llvm-code/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/18/how-to-debug-llvm-code/</guid>
+        
+        <category>compiler</category>
+        
+        <category>LLVM</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>81 -  GPT4 来了</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;如果有一天你发现自己被一台电脑取代了怎么办？别担心，这不是科幻小说里的情节，而是可能很快就会发生在我们身边的现实。因为 GPT4 已经出现了！&lt;/p&gt;
+
+&lt;p&gt;GPT4  是什么？简单地说，它就是一个能写出任何东西的超级机器人。不管你想要什么样子、什么风格、什么内容、什么语言、什么格式、什么长度、甚至什么字体都可以满足你。&lt;/p&gt;
+
+&lt;p&gt;听起来很神奇吧？但是也很可怕！因为它不光能写出东西，还能写得比我们更好！&lt;/p&gt;
+
+&lt;p&gt;GPT4 的出现，让许多人感到焦虑不安，其中最重要的两个问题是：是否能赚到钱和是否会被取代或失业。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230317085036.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;对于第一个问题，历史规律表明，只有少部分人能够从这种类型的技术中赚到钱。此类人主要是利用信息差贩卖信息的，他们可能会从中获得可观的收入。现在像知识星球和小报童这些已经开始推出各种课程，每天都有很多人报名，并且在短时间内得到了非常好的回报。&lt;/p&gt;
+
+&lt;p&gt;虽然对于我们这些普通人而言，赚钱的机会可能较少，但可以通过学习一些 prompt 和提示词，并将其应用于日常生活中，例如当我作为一个程序员遇到困难时，通常我更倾向于在网上使用 Google 或 Stack   Overflow 查询。这些答案有可能很难找到，但你可以快速地将你的问题描述给 ChatGPT ，并很快地找到解决办法，我身边有很多人遇到问题都喜欢通过询问 ChatGPT 来解决，这种方法比自己去找答案更快更省时。&lt;/p&gt;
+
+&lt;p&gt;对于第二个问题，我们可以考虑到一些容易被替代的工作，例如文字编辑和 PPT 的简单制作等没有技术门槛的工作，在 ChatGPT   Plus 的 API 接口上，每个月只需花费 200 块，就能找到一个替代人员，难道你会雇一个人只给他/她 100 块吗？这是不现实的，因此这些替代工作可能会被取代。&lt;/p&gt;
+
+&lt;p&gt;目前已经有些公司开始使用 Midjourney   v5 来生成一些图像，例如制作定制化的图片等，这是一项非常有新意的技术，能够生成非常逼真的图像，甚至超越人类能力，完全看不出是由 AI 生成的。&lt;/p&gt;
+
+&lt;p&gt;但是，这些技术是否会为我们带来收益还存在一定的疑虑，例如生成一首歌曲，但如果这首歌曲并没有广受欢迎或者没有被商用，则可能只是娱乐而已，无法为我们带来实际的价值。因此，我们应该是以结果为导向，将这些技术应用于实际领域中，使之与商业结合起来，这样才能发挥其真正的潜力，而不仅仅停留在娱乐的层面上。&lt;/p&gt;
+
+&lt;p&gt;总的来说， GPT4 的出现无疑为我们带来了很多便利和创造机会，但我们也应该意识到，如何将这些技术应用于实际问题上，创造出更多有价值的产品和服务，才是这项技术发展的关键所在。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份 Newsletter ，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://wallstreetcn.com/articles/3684246&quot;&gt;微软深夜放炸弹！GPT-4 Office全家桶发布，10亿打工人被革命&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;微软宣布Microsoft 365 Copilot，将在未来几个月内把OpenAI的GPT-4带到Excel、PowerPoint、Outlook、Word及其他Office应用中。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.bloomberg.com/news/articles/2023-03-16/chip-globalization-is-over-and-sanctions-work-says-tsmc-founder&quot;&gt;台积电创始人说：芯片全球化已经结束，制裁起作用了&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://yesaiwen.com/art-of-asking-chatgpt-for-high-quality-answ-engineering-techniques/?utm_source=wechat_session&amp;amp;utm_medium=social&amp;amp;utm_oi=61310502961152&quot;&gt;如何向ChatGPT提问并获得高质量的答案&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;非常高兴您阅读我的新书《如何向ChatGPT提问并获得高质量的答案——提示技术的完整指南》。&lt;/p&gt;
+
+&lt;p&gt;本书是一本综合性的指南，目的是帮助您理解和利用各种提示技术，以便从ChatGPT中获得高质量的答案。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blogs.bing.com/search/march_2023/Confirmed-the-new-Bing-runs-on-OpenAI%E2%80%99s-GPT-4&quot;&gt;证实：新必应在OpenAI的GPT-4上运行&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不过需要全程科学上网。&lt;/p&gt;
+
+&lt;p&gt;新的Bing是在GPT-4上运行的，MS 为搜索进行了定制。如果你在过去五周的任何时候使用过新必应预览版，你已经体验到了这个强大模型的早期版本。随着OpenAI对GPT-4及以后的更新，Bing将从这些改进中受益。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pytorch.org/blog/pytorch-2.0-release/&quot;&gt;pytroch 2.0 发布&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;PyTorch 2.0提供了相同的急切模式开发和用户体验，同时从根本上改变和提高了PyTorch在编译器层面的运行方式，提高了性能并支持动态形状和分布式。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/m8hiQo6smRnHFjPkGfYLNQ&quot;&gt;关于GPT答朋友问&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在另外一边，AI也好，GPT也罢，未来算力提升会让智能提升到什么人类无法想象和企及的境界我不清楚，起码在现在，它们没可能超脱于现实世界而独立存在。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/18/GPT4-release/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/18/GPT4-release/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>如何通过chatgpt，获取高质量的回答</title>
+        <description>&lt;h1 id=&quot;开篇&quot;&gt;开篇&lt;/h1&gt;
+
+&lt;p&gt;任务：对模型生成内容的清晰、简洁的陈述。&lt;/p&gt;
+
+&lt;p&gt;说明：模型生成文本时应遵循的指令。&lt;/p&gt;
+
+&lt;p&gt;角色：模型在生成文本时应承担的角色。&lt;/p&gt;
+
+&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://yesaiwen.com/art-of-asking-chatgpt-for-high-quality-answ-engineering-techniques/?utm_source=wechat_session&amp;amp;utm_medium=social&amp;amp;utm_oi=61310502961152&quot;&gt;《如何向ChatGPT提问并获得高质量的答案》&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Fri, 17 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/17/chatgpt-promt-words/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/17/chatgpt-promt-words/</guid>
+        
+        <category>chatgpt</category>
+        
+        <category>promt</category>
+        
+        
+      </item>
     
       <item>
         <title>GCC 编译器优化 - 常量折叠</title>
@@ -125,6 +302,24 @@ ThinLTO的过程分为3个阶段。&lt;/p&gt;
 &lt;p&gt;可以通过关键字：inline来实现内联优化。&lt;/p&gt;
 
 &lt;p&gt;其实内联inline只是建议性的关键字，编译器并不一定会听你的，毕竟他比你更了解你的代码编译后是什么样子的，而所谓的内联也不单单是指inline这个关键字了，他本质上是一种编译器的优化方式。另外，在windows上平台我还经常能看到【forceinline】（GCC上的【always_inline】）这样的关键字，字面意思是强制内联。不过经过查阅，发现一般只是对代码体积不做限制了，或者说在Debug模式（不不开启优化的情况）下也会尽量按照开发者的意愿去内联。无论如何，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;最终的决定权还是交给编译器去处理&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;##&lt;/p&gt;
+
+&lt;h2 id=&quot;死代码码消除-deadcode-elimination&quot;&gt;死代码码消除 (Deadcode Elimination)&lt;/h2&gt;
+
+&lt;p&gt;故名思义，就是一段代码没用上就会被删去。&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;233&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;234&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;将被转换为&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;234&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
 
@@ -669,224 +864,6 @@ https://github.com/clubxdev/bob-plugin-deeplx&lt;/p&gt;
         <category>gcc</category>
         
         <category>compiler</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>用宝塔部署 flask 应用</title>
-        <description>&lt;h1 id=&quot;安装宝塔&quot;&gt;安装宝塔&lt;/h1&gt;
-
-&lt;p&gt;这个是最新的地址：https://www.bt.cn/bbs/thread-19376-1-1.html。&lt;/p&gt;
-
-&lt;p&gt;ubuntu的安装脚本是：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wget -O install.sh https://download.bt.cn/install/install-ubuntu_6.0.sh &amp;amp;&amp;amp; sudo bash install.sh 12f2c1d72&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;其他系统的安装脚本参见上面的网页的，非常全面。一键安装。&lt;/p&gt;
-
-&lt;p&gt;安装好之后，就可以通过显示的用户名和密码登录，以及网址url就可以访问到后台。&lt;/p&gt;
-
-&lt;p&gt;为了更好的开发，可以安装vscode remote，这里就不展开说细节了。&lt;/p&gt;
-
-&lt;h1 id=&quot;安装flask&quot;&gt;安装flask&lt;/h1&gt;
-
-&lt;p&gt;安装flask的restful即可。&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Flask==2.2.2
-Flask-RESTful==0.3.9
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;准备好自己的应用程序，没有路径要求。&lt;/p&gt;
-
-&lt;h1 id=&quot;运行flask-app&quot;&gt;运行flask app&lt;/h1&gt;
-
-&lt;p&gt;安装之前需要先安装2个软件，在bt里面的软件商店里面可以看到。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230227093710.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;进程守护管理器 2.4	
-基于Supervisor开发的进程守护工具，可以让进程开机启动，异常关闭自动重启，这个软件是为了安装的flask是守护进程。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Python项目管理器 2.1
-快速部署Python项目，当前仅支持Centos7.x（我用的ubuntu20也可以），可部署框架有flask,django,sanic。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;接下来就参考这个教程。https://www.bt.cn/bbs/thread-90005-1-1.html&lt;/p&gt;
-
-&lt;p&gt;按照上面的修改完了之后，有可能post的data太长会运行失败，建议修改配置文件
-&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230227094106.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;添加ssh&quot;&gt;添加ssh&lt;/h1&gt;
-
-&lt;p&gt;网站-&amp;gt;创建其他网站，输入域名，主要是申请ssl证书。&lt;/p&gt;
-
-&lt;p&gt;然后到软件商店里面找到Python项目管理器，里面映射到这个IP既可以通过https访问了。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/02/16/deploy-flask-with-bt/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/02/16/deploy-flask-with-bt/</guid>
-        
-        <category>flask</category>
-        
-        <category>bt</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>76 -  兴趣和特长</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;如果把自己的兴趣爱好和事业结合起来？这个是多么美好的一份工作呀。&lt;/p&gt;
-
-&lt;p&gt;你是这样的？或者你身边有这样的朋友么？&lt;/p&gt;
-
-&lt;p&gt;早几年，有爱的人、有喜欢的工作，没有担心过这个问题，但是随着时间的推移，发现工作这个参数，不受自己控制，老板可以改变、市场行情可以改变……&lt;/p&gt;
-
-&lt;p&gt;找到一个自己喜欢的工作，而且可以变成金钱，那想想就有多么美好。&lt;/p&gt;
-
-&lt;p&gt;我最近用chatGPT来回答这个问题，提供了许多的问题，找一个空闲、安静的时间，写出这些问题的答案，或许就可以找到自己的兴趣。&lt;/p&gt;
-
-&lt;p&gt;找到自己的兴趣的点，不是一蹴而就的，可能是1个月，可能是几年。要有这个心理准备，但是这个时间是非常值得投入。&lt;/p&gt;
-
-&lt;p&gt;下面都是比较简单的英语问题，就直接粘贴过来了，没有任何的改动。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Explore your hobbies and pastimes: What do you enjoy doing in your free time? What activities bring you the most joy and fulfillment? Consider trying new hobbies and activities to see if they spark a new interest.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reflect on your values: What is important to you? What values do you hold dear? What do you believe in and want to stand for? Understanding your values can help you identify activities and causes that align with your beliefs.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Think about your skills and strengths: What are you naturally good at? What tasks do you find effortless and enjoyable? Consider pursuing activities and careers that allow you to use and develop these skills.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Take a personality test: There are many online personality tests that can help you understand your unique traits, values, and interests. Taking a test can provide you with a new perspective and insights into your personality and what might be the best fit for you.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Try new things: Don’t be afraid to step outside of your comfort zone. Try new activities, attend events, and meet new people. You never know what you might discover about yourself and what you enjoy.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;这篇&lt;a href=&quot;https://mp.weixin.qq.com/s/Ush0Z1UErrcZkFPfb_NZxQ&quot;&gt;如何找到自己的长处&lt;/a&gt;里面提到了，可以用：要发现自己的长处，唯一途径就是反馈分析法（feedback analysis）。&lt;/p&gt;
-
-&lt;p&gt;要找到兴趣和特长的工作或者是职业，完成这个过程大概需要5年左右的时间。看上去，这个时间不短。事实上，把五年放到你漫长的一生，只是一小段时间，而这段时间可以帮助你找到一生中最重要的东西，难道不值得一试？&lt;/p&gt;
-
-&lt;p&gt;祝你早日找到自己喜欢的工作。&lt;/p&gt;
-
-&lt;p&gt;……&lt;/p&gt;
-
-&lt;p&gt;慢慢变富，之前港股开户后，存了一部分钱到里面，用来打新，近段时间发现有新的用途了。&lt;/p&gt;
-
-&lt;p&gt;最近几年的行情不好，打新经常都会破发。所以闲置了一段时间了，最近看到「也谈钱」提到港股有一只恒生高股息率指数，在市场GX恒生高股息率ETF就是用来跟踪前者的，主要是每年的股息派发比较多，用来做长久投资，看了下年化益在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;7%~10%&lt;/code&gt;，这个已经收益不错了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230208110324.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;更多详细信息，可以参考这个链接：https://www.globalxetfs.com.hk/zh-hant/campaign/hang-seng-high-dividend-yield&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/xlrRPpvFgtg8x1-L1SC5OA&quot;&gt;连更2年&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;人总是会有虚荣心，总是会有好胜心，会在意一篇用心写出来的文章是否受欢迎。于是会去区分什么是我喜欢的文章，什么是读者会喜欢的文章，而且会忍不住多创作一点后者。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://three-recorder-52a.notion.site/OpenAI-Chatgpt-12-5-88e7b6a77db74d41b038440b824d7f9f&quot;&gt;与Chatgpt沟通方式一览&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这个notion网页提到了一些chatgpt常用的技巧和调教手段。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/waylaidwanderer/node-chatgpt-api&quot;&gt;BingAIClient&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;BingAIClient是Bing的GPT-4版本ChatGPT的实验性客户端。它的工作原理与ChatGPT很相似，但它是由GPT-4而不是GPT-3驱动的。有关其功能和限制的更多信息，请参见Reddit的评论。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/zhayujie/chatgpt-on-wechat&quot;&gt;ChatGPT的微信聊天机器人&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;基于ChatGPT的微信聊天机器人，通过 OpenAI 接口生成对话内容，使用 itchat 实现微信消息的接收和自动回复，有些优秀的网友通过这个已经赚到几十万了。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/wnma3mz/wechat_articles_spider&quot;&gt;微信公众号文章的爬虫&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;可以学习下爬虫的思路，从微信公众号平台获取微信公众所有文章的url，登录微信PC端或移动端获取文章的阅读数、点赞数、评论信息。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/02/11/interest-stength/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/02/11/interest-stength/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>75 - 番外篇 找到自己的兴趣</title>
-        <description>&lt;p&gt;朋友，您好，由于最近比较惆怅，就多了这一次的番外篇 ~&lt;/p&gt;
-
-&lt;p&gt;如果把自己的兴趣爱好和事业结合起来？这个是多么美好的一份工作呀。&lt;/p&gt;
-
-&lt;p&gt;你是这样的？或者你身边有这样的朋友么？&lt;/p&gt;
-
-&lt;p&gt;早几年，有爱的人、有喜欢的工作，没有担心过这个问题，但是随着时间的推移，发现工作这个参数，不受自己控制，老板可以改变、市场行情可以改变……&lt;/p&gt;
-
-&lt;p&gt;找到一个自己喜欢的工作，而且可以变成金钱，那想想就有多么美好。&lt;/p&gt;
-
-&lt;p&gt;我最近用chatGPT来回答这个问题，提供了许多的问题，找一个空闲、安静的时间，写出这些问题的答案，或许就可以找到自己的兴趣。&lt;/p&gt;
-
-&lt;p&gt;找到自己的兴趣的点，不是一蹴而就的，可能是1个月，可能是几年。要有这个心理准备，但是这个时间是非常值得投入。&lt;/p&gt;
-
-&lt;p&gt;下面都是比较简单的英语问题，就直接粘贴过来了，没有任何的改动。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Explore your hobbies and pastimes: What do you enjoy doing in your free time? What activities bring you the most joy and fulfillment? Consider trying new hobbies and activities to see if they spark a new interest.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reflect on your values: What is important to you? What values do you hold dear? What do you believe in and want to stand for? Understanding your values can help you identify activities and causes that align with your beliefs.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Think about your skills and strengths: What are you naturally good at? What tasks do you find effortless and enjoyable? Consider pursuing activities and careers that allow you to use and develop these skills.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Take a personality test: There are many online personality tests that can help you understand your unique traits, values, and interests. Taking a test can provide you with a new perspective and insights into your personality and what might be the best fit for you.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Try new things: Don’t be afraid to step outside of your comfort zone. Try new activities, attend events, and meet new people. You never know what you might discover about yourself and what you enjoy.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;这篇&lt;a href=&quot;https://mp.weixin.qq.com/s/Ush0Z1UErrcZkFPfb_NZxQ&quot;&gt;如何找到自己的长处&lt;/a&gt;里面提到了，可以用：要发现自己的长处，唯一途径就是反馈分析法（feedback analysis）。&lt;/p&gt;
-
-&lt;p&gt;要找到兴趣和特长的工作或者是职业，完成这个过程大概需要5年左右的时间。看上去，这个时间不短。事实上，把五年放到你漫长的一生，只是一小段时间，而这段时间可以帮助你找到一生中最重要的东西，难道不值得一试？&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;欢迎转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 09 Feb 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/02/09/extra-story/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/02/09/extra-story/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>
