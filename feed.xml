@@ -5,8 +5,8 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 20 Mar 2023 03:01:41 +0000</pubDate>
-    <lastBuildDate>Mon, 20 Mar 2023 03:01:41 +0000</lastBuildDate>
+    <pubDate>Tue, 21 Mar 2023 01:50:38 +0000</pubDate>
+    <lastBuildDate>Tue, 21 Mar 2023 01:50:38 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
     
       <item>
@@ -187,7 +187,185 @@ llc &lt;span class=&quot;nt&quot;&gt;-mtriple&lt;/span&gt;&lt;span class=&quot;o
       </item>
     
       <item>
-        <title>GCC 编译器优化 - 常量折叠</title>
+        <title>编译器优化 3 - 常量折叠和传播</title>
+        <description>&lt;p&gt;前面了解了lto、thinlto、以及inline优化、死代码优化等。今天继续学习下常量折叠优化，&lt;/p&gt;
+
+&lt;h2 id=&quot;常量折叠和常量传播&quot;&gt;常量折叠和常量传播&lt;/h2&gt;
+
+&lt;p&gt;常量折叠和常量传播有什么不同？它们似乎都做了同样的事情，而不是将常量保存到堆栈中或计算完整的算术表达式，而是简单地将其替换为可以在编译时获得的结果。两者之间有什么不同？&lt;/p&gt;
+
+&lt;p&gt;区别在于，常量传播&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不是将一个变量保存到堆栈中&lt;/code&gt;，因为我们知道它是一个常量，可以简单地将它插入到任何地方，它被用于机器代码中。而常数折叠是简单地评估，使用常数的表达式，并将结果代入机器码。&lt;/p&gt;
+
+&lt;p&gt;来吧，看一个例子&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 常量传播&lt;/span&gt;
+x &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 10
+y &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; x + x + x
+y &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 10 + 10 + 10
+
+&lt;span class=&quot;c&quot;&gt;# 常量折叠&lt;/span&gt;
+y &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 10 + 10 + 10
+y &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 30
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这就是区别。常量传播只是用绑定的常量表达式&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;替换绑定的变量&lt;/code&gt;，而常量折叠则&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;是评估一个（无副作用的）表达式&lt;/code&gt;，其中所有输入都是编译时常量。&lt;/p&gt;
+
+&lt;p&gt;常量传播是一种编译器优化方法&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;，它可以在编译期间用常量值替换变量或表达式，从而减少运行时的计算开销和代码大小&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;常量传播有四种算法：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;简单常量传播、稀疏简单常量传播、条件常量传播和稀疏条件常量传播&lt;/code&gt;，它们的效率和精度各有不同。&lt;/p&gt;
+
+&lt;p&gt;常量折叠是一种与常量传播相关的优化方法，它可以将具有已知常量值的运算符表达式简化为操作数。&lt;/p&gt;
+
+&lt;h2 id=&quot;常量折叠&quot;&gt;常量折叠&lt;/h2&gt;
+
+&lt;p&gt;常量折叠是指在编译时识别和评估常量表达式的过程，而不是在运行时计算它们。常量表达式中的术语通常是简单的字面意义，例如整数字面意义2，但它们也可能是变量，其值在编译时已经知道。考虑一下这个语句。&lt;/p&gt;
+
+&lt;p&gt;比如： i = 20* 20 * 10;&lt;/p&gt;
+
+&lt;p&gt;上面这个表达式，有2个乘号，很少有编译器的指令会对2个乘号做运算，并存到一个寄存器，比如我下才一个：
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mul_mul dst,src0,src1,src2&lt;/code&gt;,想这样的指令看起来就比较怪异。所以在编译的时候替换计算值为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4000&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;常量折叠可以利用算术特性。如果x是数字，即使编译器不知道x的值，0*x的值也是零。&lt;/p&gt;
+
+&lt;p&gt;注意，大部分编译器对 IEEE754 浮点数是无效的，因为x可能是Infinity或NaN。不过，为了性能，某些编译器允许对常数这样做。&lt;/p&gt;
+
+&lt;p&gt;常数折叠可能不仅仅适用于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;数字。字符串和常量字符串&lt;/code&gt;的拼接可以被常量折叠。像 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;abc&quot;+&quot;def&quot;&lt;/code&gt;这样的代码可以被替换为 “&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;abcdef&lt;/code&gt;“。&lt;/p&gt;
+
+&lt;h2 id=&quot;常量传播&quot;&gt;常量传播&lt;/h2&gt;
+
+&lt;p&gt;常数折叠和传播通常一起使用，以实现许多简化和减少，通过迭代交织，直到不再发生变化。所以继续来看看常量传播。&lt;/p&gt;
+
+&lt;p&gt;常数传播是在编译时将已知常数的值替换到表达式中的过程。这些常量包括上面定义的常量，以及应用于常量值的内在函数。考虑一下下面的伪代码。&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;把 x （传播propagate）带入后，变成&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;继续传播，带入后的结果为：&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;组合起来使用&quot;&gt;组合起来使用&lt;/h2&gt;
+
+&lt;p&gt;举个维基百科例子，从至少需要3个寄存器和7条基础指令（别问，瞎猜的，具体数量还要取决于硬件的设计），一个分支，优化到只有一个寄存器的过程：&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;用一次常量的传播，然后是常量的折叠，得到&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//折叠+传播&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 折叠&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;再重复2次：&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 传播+折叠&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// 传播+折叠&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;由于a和b已经被简化为常数，并且它们的值在它们出现的地方都被替换了，编译器现在应用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;死代码消除法&lt;/code&gt;来丢弃它们，进一步减少了代码。&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;我们肉眼就能看出来，if 这个分支里面始终都会别执行，难道编译器不行？别急，继续优化。&lt;/p&gt;
+
+&lt;p&gt;在上面的代码中，根据编译器框架，它可以是1或任何其他布尔结构，而不是true。通过传统的常数传播，我们只能得到这么多的优化。它不能改变程序的结构。&lt;/p&gt;
+
+&lt;p&gt;还有一个类似的优化，叫做稀疏条件常量传播，它根据if条件选择适当的分支，编译器现在可以检测到if语句总是评估为真，c本身可以被消除，进一步缩小代码。&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个伪代码构成了一个函数的主体，编译器可以进一步利用它评估为常数整数4的知识来消除对函数的不必要的调用，从而产生进一步的性能提升。&lt;/p&gt;
+
+&lt;h2 id=&quot;小结&quot;&gt;小结&lt;/h2&gt;
+
+&lt;p&gt;常数传播是在编译器中使用到达定义分析结果实现的。如果所有变量的达成定义都是相同的赋值，而这个赋值又给变量分配了一个相同的常数，那么这个变量就有一个常数值，可以用这个常数来代替。&lt;/p&gt;
+
+&lt;p&gt;常数传播也可以使条件分支简化为一个或多个无条件语句，此时条件表达式可以在编译时被评估为真或假，以确定唯一可能的结果。&lt;/p&gt;
+
+&lt;p&gt;顺便推荐一个编译器优化方案的一个集合，还提供了一些测试集，对于编译器开发的同事来说，太棒了。我要推荐给你，知行合一，来卷起来。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;看名字就知道是什么： http://compileroptimizations.com&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ps.最近有个尴尬的烦恼，打「什么」2个字的时候，总是出现「SM」……&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230321085747.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://compileroptimizations.com/category/constant_folding.htm&quot;&gt;Constant Folding&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Constant_folding&quot;&gt;Constant Folding&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://oi-wiki.org/lang/optimizations/&quot;&gt;编译优化&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/qq_36287943/article/details/104974597&quot;&gt;编译优化之 - 常量传播入门&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Wed, 15 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/15/compiler-const-folding/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/15/compiler-const-folding/</guid>
+        
+        <category>gcc</category>
+        
+        <category>compiler</category>
+        
+        <category>constant</category>
+        
+        <category>optimization</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>编译器优化 2 - ThinLTO</title>
         <description>&lt;h2 id=&quot;什么是编译器优化&quot;&gt;什么是编译器优化&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进&lt;/code&gt;。&lt;/p&gt;
@@ -200,36 +378,7 @@ llc &lt;span class=&quot;nt&quot;&gt;-mtriple&lt;/span&gt;&lt;span class=&quot;o
 
 &lt;p&gt;我们老大叫我们多看看在LLVM上优化，可以参考下GCC的优化方法。你们有没有什么好的方法？&lt;/p&gt;
 
-&lt;p&gt;##&lt;/p&gt;
-
-&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://oi-wiki.org/lang/optimizations/&quot;&gt;编译优化&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/qq_36287943/article/details/104974597&quot;&gt;编译优化之 - 常量传播入门&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-</description>
-        <pubDate>Wed, 15 Mar 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/03/15/compiler-const-folding/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/15/compiler-const-folding/</guid>
-        
-        <category>gcc</category>
-        
-        <category>compiler</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>GCC 编译器优化 - ThinLTO</title>
-        <description>&lt;h2 id=&quot;lto&quot;&gt;LTO&lt;/h2&gt;
+&lt;h2 id=&quot;lto&quot;&gt;LTO&lt;/h2&gt;
 
 &lt;p&gt;LTO（Link Time Optimization）是一种通过整个程序分析和跨模块优化来实现更好的运行时性能的方法。在编译阶段，clang会发出LLVM位码而不是对象文件。链接器会识别这些位码文件，并在链接过程中调用LLVM，以生成构成可执行文件的最终对象。LLVM实现加载所有输入的比特码文件，并将它们合并在一起以产生一个单一的模块。程序间分析（IPA）和程序间优化（IPO）在这个单体模块上连续进行。&lt;/p&gt;
 
@@ -303,27 +452,28 @@ ThinLTO的过程分为3个阶段。&lt;/p&gt;
 
 &lt;p&gt;其实内联inline只是建议性的关键字，编译器并不一定会听你的，毕竟他比你更了解你的代码编译后是什么样子的，而所谓的内联也不单单是指inline这个关键字了，他本质上是一种编译器的优化方式。另外，在windows上平台我还经常能看到【forceinline】（GCC上的【always_inline】）这样的关键字，字面意思是强制内联。不过经过查阅，发现一般只是对代码体积不做限制了，或者说在Debug模式（不不开启优化的情况）下也会尽量按照开发者的意愿去内联。无论如何，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;最终的决定权还是交给编译器去处理&lt;/code&gt;。&lt;/p&gt;
 
-&lt;p&gt;##&lt;/p&gt;
-
 &lt;h2 id=&quot;死代码码消除-deadcode-elimination&quot;&gt;死代码码消除 (Deadcode Elimination)&lt;/h2&gt;
 
 &lt;p&gt;故名思义，就是一段代码没用上就会被删去。&lt;/p&gt;
 
 &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;233&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;234&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;233&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;234&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;将被转换为&lt;/p&gt;
+&lt;p&gt;上面的代码中，a和b实际在后面的代码中没有用到，所以编译的时候可以直接优化掉，将被转换为&lt;/p&gt;
 
 &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;234&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;学习东西要有耐心，不要着急，不要焦虑，否则会影响自己的信心。要循序渐进，关键是保持持续的学习动力。 编译器优化的内容很多，不必一次掌握。要逐个理解每个概念和原理。&lt;/p&gt;
+
 &lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
 
 &lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://grin-compiler.github.io/&quot;&gt;GRIN Compiler&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/qq_36287943/article/details/103930336&quot;&gt;编译优化之 - 过程间优化(IPA/IPO)入门&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/50812510&quot;&gt;被知乎大佬嘲讽后的一个月，我重新研究了一下内联函数&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;
@@ -340,12 +490,14 @@ ThinLTO的过程分为3个阶段。&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 13 Mar 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/03/13/GCC-process/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/13/GCC-process/</guid>
+        <link>https://blog.chiphub.top/2023/03/13/compiler-thinlto/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/13/compiler-thinlto/</guid>
         
         <category>gcc</category>
         
         <category>compiler</category>
+        
+        <category>optimization</category>
         
         
       </item>
@@ -729,7 +881,7 @@ https://github.com/clubxdev/bob-plugin-deeplx&lt;/p&gt;
       </item>
     
       <item>
-        <title>GCC编译优化流程</title>
+        <title>编译优化流程 1</title>
         <description>&lt;h2 id=&quot;开篇&quot;&gt;开篇&lt;/h2&gt;
 
 &lt;p&gt;由于自己对编译器比较感兴趣，开始准备学习一些编译器相关的知识，目前学习路径是编译器原理、gcc编译器优化、cuda编程基础、（重点是掌握编译流程，执行流程、优化流程）。&lt;/p&gt;
@@ -864,6 +1016,8 @@ https://github.com/clubxdev/bob-plugin-deeplx&lt;/p&gt;
         <category>gcc</category>
         
         <category>compiler</category>
+        
+        <category>optimization</category>
         
         
       </item>

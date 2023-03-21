@@ -8,20 +8,20 @@
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="人生就是干">
-    <meta name="keywords"  content="叉叉敌|测试|开发|音视频|自动化">
+    <meta name="keywords"  content="叉叉敌|开发|音视频|自动化|互联网|编译器">
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="GCC 编译器优化 - 常量折叠 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:title" content="编译器优化 3 - 常量折叠和传播 - 察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="什么是编译器优化
+    <meta property="og:description" content="前面了解了lto、thinlto、以及inline优化、死代码优化等。今天继续学习下常量折叠优化，
 
-保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进。
+常量折叠和常量传播
 
-编译器优化（Compiler optimization）是指在编译器将源代码转化为可执行代码的过程中，通过对程序的分析和优化，使得生成的目标代码在执行速度、占用内存等方面都能够达到更好的效果。
+常量折叠和常量传播有什么不同？它们似乎都做了同样的事情，而不是将常量保存到堆栈中或计算完整的算术表达式，而是简单地将其替换为可以在编译时获得的结果。两者之间有什么不同？
 
-具体来说，编译器优化可以通过减少代码的重复计算、减少缓存未命中的情况以及减少不必要的寄存器使用等方式提高程序...">
+区别在于，常量传播不是将一个变量保存到堆栈中，因为我们知道它是一个常量，可以简单地将它插入到任何地...">
     
     <meta property="article:published_time" content="2023-03-15T00:00:00Z">
     
@@ -33,12 +33,16 @@
     
     <meta property="article:tag" content="compiler">
     
+    <meta property="article:tag" content="constant">
+    
+    <meta property="article:tag" content="optimization">
+    
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/2023/03/15/compiler-const-folding/">
-    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序">
+    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器">
     
-    <title>GCC 编译器优化 - 常量折叠 - 察说花园|叉叉敌|chasays |测试|newsletter|互联网|TensorFlow|车载|安卓|音视频|自动化|Django|存储|小程序</title>
+    <title>编译器优化 3 - 常量折叠和传播 - 察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -296,8 +300,12 @@
                         
                         <a class="tag" href="/archive/?tag=compiler" title="compiler">compiler</a>
                         
+                        <a class="tag" href="/archive/?tag=constant" title="constant">constant</a>
+                        
+                        <a class="tag" href="/archive/?tag=optimization" title="optimization">optimization</a>
+                        
                     </div>
-                    <h1>GCC 编译器优化 - 常量折叠</h1>
+                    <h1>编译器优化 3 - 常量折叠和传播</h1>
                     
                     <h2 class="subheading"></h2>
                     <span class="meta">Posted by 叉叉敌 on March 15, 2023</span>
@@ -326,23 +334,157 @@
                 <!-- Multi-Lingual -->
                 
 
-				<h2 id="什么是编译器优化">什么是编译器优化</h2>
+				<p>前面了解了lto、thinlto、以及inline优化、死代码优化等。今天继续学习下常量折叠优化，</p>
 
-<p><code class="language-plaintext highlighter-rouge">保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进</code>。</p>
+<h2 id="常量折叠和常量传播">常量折叠和常量传播</h2>
 
-<p>编译器优化（Compiler optimization）是指在编译器将源代码转化为可执行代码的过程中，通过对程序的分析和优化，使得生成的目标代码在执行速度、占用内存等方面都能够达到更好的效果。</p>
+<p>常量折叠和常量传播有什么不同？它们似乎都做了同样的事情，而不是将常量保存到堆栈中或计算完整的算术表达式，而是简单地将其替换为可以在编译时获得的结果。两者之间有什么不同？</p>
 
-<p>具体来说，编译器优化可以通过减少代码的重复计算、减少缓存未命中的情况以及减少不必要的寄存器使用等方式提高程序的执行效率，从而让程序的运行更快、更稳定。同时，优化也可以使得编译出来的目标代码更加紧凑，减少程序所占用的内存和磁盘空间。</p>
+<p>区别在于，常量传播<code class="language-plaintext highlighter-rouge">不是将一个变量保存到堆栈中</code>，因为我们知道它是一个常量，可以简单地将它插入到任何地方，它被用于机器代码中。而常数折叠是简单地评估，使用常数的表达式，并将结果代入机器码。</p>
 
-<p>编译器优化的主要目标是提高程序的性能、优化目标代码的大小以及减少程序的资源占用。为了达到这些目标，编译器需要对源代码进行细致的分析，确定不必要的代码并去除，同时在编译过程中根据程序的表现不断进行优化调整，以逐步提高程序的性能。</p>
+<p>来吧，看一个例子</p>
 
-<p>我们老大叫我们多看看在LLVM上优化，可以参考下GCC的优化方法。你们有没有什么好的方法？</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 常量传播</span>
+x <span class="o">=</span> 10
+y <span class="o">=</span> x + x + x
+y <span class="o">=</span> 10 + 10 + 10
 
-<p>##</p>
+<span class="c"># 常量折叠</span>
+y <span class="o">=</span> 10 + 10 + 10
+y <span class="o">=</span> 30
+</code></pre></div></div>
+
+<p>这就是区别。常量传播只是用绑定的常量表达式<code class="language-plaintext highlighter-rouge">替换绑定的变量</code>，而常量折叠则<code class="language-plaintext highlighter-rouge">是评估一个（无副作用的）表达式</code>，其中所有输入都是编译时常量。</p>
+
+<p>常量传播是一种编译器优化方法<code class="language-plaintext highlighter-rouge">，它可以在编译期间用常量值替换变量或表达式，从而减少运行时的计算开销和代码大小</code>。</p>
+
+<p>常量传播有四种算法：<code class="language-plaintext highlighter-rouge">简单常量传播、稀疏简单常量传播、条件常量传播和稀疏条件常量传播</code>，它们的效率和精度各有不同。</p>
+
+<p>常量折叠是一种与常量传播相关的优化方法，它可以将具有已知常量值的运算符表达式简化为操作数。</p>
+
+<h2 id="常量折叠">常量折叠</h2>
+
+<p>常量折叠是指在编译时识别和评估常量表达式的过程，而不是在运行时计算它们。常量表达式中的术语通常是简单的字面意义，例如整数字面意义2，但它们也可能是变量，其值在编译时已经知道。考虑一下这个语句。</p>
+
+<p>比如： i = 20* 20 * 10;</p>
+
+<p>上面这个表达式，有2个乘号，很少有编译器的指令会对2个乘号做运算，并存到一个寄存器，比如我下才一个：
+<code class="language-plaintext highlighter-rouge">mul_mul dst,src0,src1,src2</code>,想这样的指令看起来就比较怪异。所以在编译的时候替换计算值为<code class="language-plaintext highlighter-rouge">4000</code></p>
+
+<p>常量折叠可以利用算术特性。如果x是数字，即使编译器不知道x的值，0*x的值也是零。</p>
+
+<p>注意，大部分编译器对 IEEE754 浮点数是无效的，因为x可能是Infinity或NaN。不过，为了性能，某些编译器允许对常数这样做。</p>
+
+<p>常数折叠可能不仅仅适用于<code class="language-plaintext highlighter-rouge">数字。字符串和常量字符串</code>的拼接可以被常量折叠。像 <code class="language-plaintext highlighter-rouge">"abc"+"def"</code>这样的代码可以被替换为 “<code class="language-plaintext highlighter-rouge">abcdef</code>“。</p>
+
+<h2 id="常量传播">常量传播</h2>
+
+<p>常数折叠和传播通常一起使用，以实现许多简化和减少，通过迭代交织，直到不再发生变化。所以继续来看看常量传播。</p>
+
+<p>常数传播是在编译时将已知常数的值替换到表达式中的过程。这些常量包括上面定义的常量，以及应用于常量值的内在函数。考虑一下下面的伪代码。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">7</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">28</span> <span class="o">/</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+<p>把 x （传播propagate）带入后，变成</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">7</span> <span class="o">-</span> <span class="mi">14</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">y</span> <span class="o">*</span> <span class="p">(</span><span class="mi">28</span> <span class="o">/</span> <span class="mi">14</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></div></div>
+<p>继续传播，带入后的结果为：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">14</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<h2 id="组合起来使用">组合起来使用</h2>
+
+<p>举个维基百科例子，从至少需要3个寄存器和7条基础指令（别问，瞎猜的，具体数量还要取决于硬件的设计），一个分支，优化到只有一个寄存器的过程：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">9</span> <span class="o">-</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="mi">5</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+
+  <span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="mi">60</span> <span class="o">/</span> <span class="n">a</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>用一次常量的传播，然后是常量的折叠，得到</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">//折叠+传播</span>
+    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 折叠</span>
+</code></pre></div></div>
+
+<p>再重复2次：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+
+  <span class="n">c</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 传播+折叠</span>
+     <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>   <span class="c1">// 传播+折叠</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>由于a和b已经被简化为常数，并且它们的值在它们出现的地方都被替换了，编译器现在应用<code class="language-plaintext highlighter-rouge">死代码消除法</code>来丢弃它们，进一步减少了代码。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>我们肉眼就能看出来，if 这个分支里面始终都会别执行，难道编译器不行？别急，继续优化。</p>
+
+<p>在上面的代码中，根据编译器框架，它可以是1或任何其他布尔结构，而不是true。通过传统的常数传播，我们只能得到这么多的优化。它不能改变程序的结构。</p>
+
+<p>还有一个类似的优化，叫做稀疏条件常量传播，它根据if条件选择适当的分支，编译器现在可以检测到if语句总是评估为真，c本身可以被消除，进一步缩小代码。</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="mi">4</span>
+</code></pre></div></div>
+
+<p>这个伪代码构成了一个函数的主体，编译器可以进一步利用它评估为常数整数4的知识来消除对函数的不必要的调用，从而产生进一步的性能提升。</p>
+
+<h2 id="小结">小结</h2>
+
+<p>常数传播是在编译器中使用到达定义分析结果实现的。如果所有变量的达成定义都是相同的赋值，而这个赋值又给变量分配了一个相同的常数，那么这个变量就有一个常数值，可以用这个常数来代替。</p>
+
+<p>常数传播也可以使条件分支简化为一个或多个无条件语句，此时条件表达式可以在编译时被评估为真或假，以确定唯一可能的结果。</p>
+
+<p>顺便推荐一个编译器优化方案的一个集合，还提供了一些测试集，对于编译器开发的同事来说，太棒了。我要推荐给你，知行合一，来卷起来。</p>
+
+<blockquote>
+  <p>看名字就知道是什么： http://compileroptimizations.com</p>
+</blockquote>
+
+<p>ps.最近有个尴尬的烦恼，打「什么」2个字的时候，总是出现「SM」……</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230321085747.png" alt="" /></p>
 
 <h2 id="更多阅读">更多阅读</h2>
 
 <ul>
+  <li><a href="http://compileroptimizations.com/category/constant_folding.htm">Constant Folding</a></li>
+  <li>
+    <p><a href="https://en.wikipedia.org/wiki/Constant_folding">Constant Folding</a></p>
+  </li>
   <li><a href="https://oi-wiki.org/lang/optimizations/">编译优化</a></li>
   <li><a href="https://blog.csdn.net/qq_36287943/article/details/104974597">编译优化之 - 常量传播入门</a></li>
 </ul>
@@ -354,14 +496,13 @@
 </blockquote>
 
 
-
                 <hr style="visibility: hidden;">
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2023/03/13/GCC-process/" data-toggle="tooltip" data-placement="top" title="GCC 编译器优化 - ThinLTO">
+                        <a href="/2023/03/13/compiler-thinlto/" data-toggle="tooltip" data-placement="top" title="编译器优化 2 - ThinLTO">
                         Previous<br>
-                        <span>GCC 编译器优化 - ThinLTO</span>
+                        <span>编译器优化 2 - ThinLTO</span>
                         </a>
                     </li>
                     
@@ -576,6 +717,11 @@
                     rel="3">llvm</a>
         
                 <a data-sort="0267" 
+                    href="/archive/?tag=optimization"
+                    title="optimization"
+                    rel="3">optimization</a>
+        
+                <a data-sort="0267" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
@@ -671,15 +817,13 @@
   
   <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
   
-  <li><a href="https://www.google.com/search?q=%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF&source=lnt&tbs=qdr:y&sa=X&ved=2ahUKEwiuwsPB16TsAhWKv5QKHX9iATEQpwV6BAgMECE&biw=1867&bih=946">测试开发技术</a></li>
-  
-  <li><a href="https://testing.googleblog.com/">Google测试博客</a></li>
+  <li><a href="https://hckrnews.com/">Hacker News</a></li>
   
   <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
   
   <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
   
-  <li><a href="https://testerhome.com/">Testerhome</a></li>
+  <li><a href="https://www.cnblogs.com/ievjai/">博客园</a></li>
   
 </ul>
 

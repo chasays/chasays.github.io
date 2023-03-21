@@ -25,18 +25,18 @@
     } ,
   
     {
-      "title"    : "GCC 编译器优化 - 常量折叠",
+      "title"    : "编译器优化 3 - 常量折叠和传播",
       "subtitle" : "",
-      "tags"     : "gcc, compiler",
+      "tags"     : "gcc, compiler, constant, optimization",
       "url"      : "/2023/03/15/compiler-const-folding/",
       "date"     : "2023-03-15 00:00:00 +0000"
     } ,
   
     {
-      "title"    : "GCC 编译器优化 - ThinLTO",
+      "title"    : "编译器优化 2 - ThinLTO",
       "subtitle" : "",
-      "tags"     : "gcc, compiler",
-      "url"      : "/2023/03/13/GCC-process/",
+      "tags"     : "gcc, compiler, optimization",
+      "url"      : "/2023/03/13/compiler-thinlto/",
       "date"     : "2023-03-13 00:00:00 +0000"
     } ,
   
@@ -73,9 +73,9 @@
     } ,
   
     {
-      "title"    : "GCC编译优化流程",
+      "title"    : "编译优化流程 1",
       "subtitle" : "",
-      "tags"     : "gcc, compiler",
+      "tags"     : "gcc, compiler, optimization",
       "url"      : "/2023/02/16/learn-gcc-compiler-optimzation/",
       "date"     : "2023-02-16 00:00:00 +0000"
     } ,
