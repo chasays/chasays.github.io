@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "如何调试我们 LLVM 的代码 - 进阶",
+      "subtitle" : "",
+      "tags"     : "compiler, LLVM, debug",
+      "url"      : "/2023/03/30/how-to-debug-llvm-code-2/",
+      "date"     : "2023-03-30 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "82 -  知行合一",
       "subtitle" : "顺便带来德州扑克的经验",
       "tags"     : "Newsletter",
@@ -9,9 +17,9 @@
     } ,
   
     {
-      "title"    : "如何调试我们 LLVM 的代码",
+      "title"    : "如何调试我们 LLVM 的代码 - 入门",
       "subtitle" : "",
-      "tags"     : "compiler, LLVM",
+      "tags"     : "compiler, LLVM, debug",
       "url"      : "/2023/03/18/how-to-debug-llvm-code/",
       "date"     : "2023-03-18 00:00:00 +0000"
     } ,

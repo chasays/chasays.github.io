@@ -5,9 +5,37 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 30 Mar 2023 01:55:00 +0000</pubDate>
-    <lastBuildDate>Thu, 30 Mar 2023 01:55:00 +0000</lastBuildDate>
+    <pubDate>Thu, 30 Mar 2023 02:33:07 +0000</pubDate>
+    <lastBuildDate>Thu, 30 Mar 2023 02:33:07 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>如何调试我们 LLVM 的代码 - 进阶</title>
+        <description>&lt;p&gt;前面简单介绍了如何从一个bc文件里面提炼出一个精简的ll文件，只包含报错的函数。&lt;/p&gt;
+
+&lt;p&gt;如果看到的不正确的行为是由于一个优化pass，一个非常方便的LLVM选项是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-opt-bisect-limit&lt;/code&gt;，它采用一个整数表示要运行的最高pass的索引值。所取pass的索引值在不同的运行中是稳定的；通过将其与根据结果程序自动划分搜索空间的软件相结合，可以快速确定错误的通道。当指定了-opt-bisect-limit时，所有的运行都会被显示到标准错误中，同时显示它们的索引和输出，表明是否运行或跳过了该通道。将限制设置为索引-1（例如，RUSTFLAGS=”-C llvm-args=-opt-bisect-limit=-1”）将显示所有的通过和它们相应的索引值。&lt;/p&gt;
+
+&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Thu, 30 Mar 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/03/30/how-to-debug-llvm-code-2/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/30/how-to-debug-llvm-code-2/</guid>
+        
+        <category>compiler</category>
+        
+        <category>LLVM</category>
+        
+        <category>debug</category>
+        
+        
+      </item>
     
       <item>
         <title>82 -  知行合一</title>
@@ -145,14 +173,16 @@ Streamlight 在几分钟内就能将数据脚本变成可共享的网络应用�
       </item>
     
       <item>
-        <title>如何调试我们 LLVM 的代码</title>
+        <title>如何调试我们 LLVM 的代码 - 入门</title>
         <description>&lt;h2 id=&quot;开篇&quot;&gt;开篇&lt;/h2&gt;
 
 &lt;p&gt;LLVM是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做LLVM都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。&lt;/p&gt;
 
-&lt;p&gt;比如你在开发一个llvm的pass，或者一个feature，在编译的过程中crash了， 怎么去定位和修复的喃？&lt;/p&gt;
+&lt;p&gt;比如在开发一个llvm的pass，或者一个feature，在编译的过程中crash了， 怎么去定位和修复的喃？&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230317094622.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注意官方编译器禁用了LLVM断言，这意味着LLVM断言失败可能会显示为编译器崩溃（不是ICE-内部编译错误，而是 “真正的”崩溃）和其他各种奇怪的行为。编译llvm的时候最好使能assertion，在cmake的时候记得带上参数即可：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertions=true&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h2 id=&quot;尽量最小化例子&quot;&gt;尽量最小化例子&lt;/h2&gt;
 
@@ -180,7 +210,73 @@ llvm-ir-extractor test.ll &lt;span class=&quot;nt&quot;&gt;--save-mode&lt;/span&
 llc &lt;span class=&quot;nt&quot;&gt;-mtriple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;amdgpucn &lt;span class=&quot;nt&quot;&gt;-verify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;machineinstrs new.ll
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;##&lt;/p&gt;
+&lt;h2 id=&quot;获得一个原始的输入文件&quot;&gt;获得一个原始的输入文件&lt;/h2&gt;
+
+&lt;p&gt;大致情况是把一个crash文件，一个bc文件转化为一个ll文件。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果在调用LLVM时遇到了来自 LLVM 后台的断言失败或分段故障，不妨尝试将这些 .bc 文件分别传递给 llc 命令，看看是否得到了同样的失败。(LLVM的开发者通常更喜欢被简化为.bc文件的bug，而不是使用工具最小化再来复现)。&lt;/li&gt;
+  &lt;li&gt;为了得到人类可读的LLVM bc文件，人们只需要使用llvm-dis将位码（.bc）文件转换为.ll文件。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果只想在LLVM pipeline中获得LLVM的IR，例如查看哪个IR导致优化时间断言失败，或者查看LLVM何时执行特定的优化，可以通过llvm标志位&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-print-after-all&lt;/code&gt;，这样就可以获得更多的报错信息，从而精准找到问题所在。&lt;/p&gt;
+
+&lt;p&gt;这将产生大量的输出到标准错误中，所以要把这些输出管到某个文件中。另外，如果既没有使用-filter-print-funcs，也没有使用-C codegen-units=1，那么，由于多个codegen单元并行运行，打印结果会混在一起，会有很多的无效信息，将无法阅读任何东西，或者很难找到问题所在。&lt;/p&gt;
+
+&lt;p&gt;如果是单个函数在一个ll文件或者是bc文件里面，这样用这个方法是好处理，但是有多个函数，估计就不好处理了，还可以继续精简么？&lt;/p&gt;
+
+&lt;p&gt;精简到只有这个对应函数和其依赖，这样就好定位处理了，同时也能把这个case加入到日常的看护中。&lt;/p&gt;
+
+&lt;p&gt;可以用到2个工具，一个是llvm-extract/llvm-ir-extractor。&lt;/p&gt;
+
+&lt;p&gt;先说说第一个的用法，还是举个例子吧。&lt;/p&gt;
+
+&lt;p&gt;准备一个ir文件，在x86的机器上运行，内容如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ll&quot;&gt;declare {i32, i1} @llvm.sadd.with.overflow.i32(i32, i32)
+declare {i32, i1} @llvm.uadd.with.overflow.i32(i32, i32)
+
+; The immediate can be encoded in a smaller way if the
+; instruction is a sub instead of an add.
+define i32 @test1(i32 inreg %a) nounwind {
+entry:
+  %b = add i32 %a, 128
+  ret i32 %b
+}
+
+define i32 @test1b(i32* %p) nounwind {
+entry:
+  %a = load i32, i32* %p
+  %b = add i32 %a, 128
+  ret i32 %b
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个ir文件里面，包含了2个函数，分别为test1和test1b，现在需要把test1函数提出来，只需要这个函数。的ll文件。&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;llvm-extract &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-func&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'test_add'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &amp;lt; add.ll &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; extracted.ll
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;执行上面命令后，查看 extracted.ll，这个文件里面的内容如下。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ll&quot;&gt;; ModuleID = '&amp;lt;stdin&amp;gt;'
+source_filename = &quot;&amp;lt;stdin&amp;gt;&quot;
+
+; Function Attrs: nounwind
+define i32 @test1(i32 inreg %a) #0 {
+entry:
+  %b = add i32 %a, 128
+  ret i32 %b
+}
+
+attributes #0 = { nounwind }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;是不是简单了。今天就先来一个简单的，后面继续学习下一个关于优化pass的调试和定位。&lt;/p&gt;
 
 &lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
 
@@ -203,6 +299,8 @@ llc &lt;span class=&quot;nt&quot;&gt;-mtriple&lt;/span&gt;&lt;span class=&quot;o
         <category>compiler</category>
         
         <category>LLVM</category>
+        
+        <category>debug</category>
         
         
       </item>
@@ -463,9 +561,8 @@ y &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 30
   &lt;p&gt;看名字就知道是什么： http://compileroptimizations.com&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;ps.最近有个尴尬的烦恼，打「什么」2个字的时候，总是出现「SM」……&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230321085747.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;ps.最近有个尴尬的烦恼，打「什么」2个字的时候，总是出现「SM」……
+&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/xB9W7B.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
 
@@ -912,103 +1009,6 @@ https://github.com/clubxdev/bob-plugin-deeplx&lt;/p&gt;
         <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/02/25/make-more-money/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/02/25/make-more-money/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>77 - 亲情</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230221082556.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;最近《狂飙》已经更新完了，我开始刷剧了，每天5集左右，1.5~2倍速度观看，观感上没有什么问题，一个礼拜就可以看完。&lt;/p&gt;
-
-&lt;p&gt;对于本周的主题，我一开始也不知道写什么，要不就写一个我对亲情的认知。&lt;/p&gt;
-
-&lt;p&gt;亲情，是有血缘关系的人之间存在的特殊感情。不管对方怎样也会爱对方，无论贫穷或富有，无论健康或疾病，你愿意嫁给……&lt;/p&gt;
-
-&lt;p&gt;稍等，在这个充满诱惑和危机的世界里，亲情有时也会被利益、欺骗、背叛所蒙蔽，甚至导致家庭的崩溃和悲剧的发生。别说贫穷富有、健康疾病了，有时候连善恶，身边人都会失去理智，站在亲情这一边。&lt;/p&gt;
-
-&lt;p&gt;我看过的美剧：《绝命毒师》和《越狱》是两部以亲情为主题的，它们都展示了主角&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;为了保护家人而走上违法的道路，最终陷入了无法自拔的困境&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;再来看国内这部剧，又何尝不是喃？从一个卖鱼的小商贩到一方恶霸黑势力。用黑暗、激烈、惊心动魄的手法来描绘亲情在极端环境下的变化和考验。&lt;/p&gt;
-
-&lt;p&gt;他利用自己在的天赋，逐渐成为了一名冷酷无情、权势滔天的黑势力大佬。他不惜与警察、黑帮发生冲突和对抗，最后付出了沉重的代价，这个结尾，符合社会主义价值观。&lt;/p&gt;
-
-&lt;p&gt;要不上点价值？&lt;/p&gt;
-
-&lt;p&gt;亲情是无价之宝，但也需要正确地表达和维护。我们不能因为盲目地爱而做出错误或伤害别人。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/wFAqIByK_d3Ks70dARtzUw&quot;&gt;醒醒！先别看ChatGPT，AI绘画突破性进展&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ChatGPT现在非常火爆，但是我在前面的系列文章都反复强调过，这一次AIGC浪潮必须看GPT系列和Diffusion系列（AI绘画背后的技术）。
-从内容生成的角度，文+图+多模态（音频、视频、3D等）才是全部的方向，目前来看GPT负责文，而Diffusion扛起来图+多模态的大旗。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/zloirock/core-js/blob/master/docs/2023-02-14-so-whats-next.md&quot;&gt;so，whats next&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;core-js 的作者是奇人，很多人应该都听说过，他的库每月有2亿5000万次下载，他在 npm 安装信息中发求职信息然后被很多人黑，他开车撞死一个醉鬼差点坐牢，他现在一个月靠捐赠只能拿 $400。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/N7rcT_d-1eN_zkqsZl3C0A&quot;&gt;因为 ChatGPT，未来十年中国会新增五亿程序员&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;王建硕老师的文章我比较喜欢，都是一些浅显易懂的，而且很会用类举法，让深奥的问题轻松就能理解。&lt;/p&gt;
-
-&lt;p&gt;有人说因为 ChatGPT 可以写程序了，所以程序员要失业了。但是，在程序员的世界里面，生产效率一夜提升 100 倍的事情几乎天天都就会发生。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mirror.xyz/coolberwin.eth/4Cqe0yewBGB-nmYD27m2TW442RrnDjOPue9M1cjL2Gs&quot;&gt;GhatGPT的AI版Bing搜索申请攻略&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;微软推出了整合 ChatGPT-4 的全新必应（Bing）搜索引擎，并且48小时内 申请用户就已经达到百万，国内访问bing都会跳转到国内的版本，通过修改一些请求头来达到。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.checklyhq.com/how-to-bypass-totp-based-2fa-login-flows-with-playwright/&quot;&gt;playwright绕过2次验证&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/yihong0618/xiaogpt&quot;&gt;小米和chatgpt结合起来&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;小米和chatgpt结合起来，跑起来之后就可以问小爱同学问题了，“帮我回答开头的问题” 会发送一份给 ChatGPT 然后小爱同学用 tts 回答&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://f-droid.org/en/packages/com.carriez.flutter_hbb/&quot;&gt;远程桌面软件&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;你没有这个烦恼？给家里的老人手机设置，我试了市面上的大部分软件，好像都不太好用，主要是收费，这个功能就一年用一次都不到，如果是付费感觉不是很值，可以试试这个。&lt;/p&gt;
-
-&lt;p&gt;一个开源的远程桌面应用，开源的TeamViewer替代品。为了让远程设备通过鼠标或触摸来控制你的安卓设备，你需要允许RustDesk使用 “Accessibility “服务，RustDesk使用AccessibilityService API来实现Addroid远程控制。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/ScoopInstaller/Scoop&quot;&gt;windows 软件包管理工具 Scoop&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Scoop是一个用于Windows的命令行安装程序。类似linux下面的apt、apt-get、yum等，就是软件管理包工具。如果习惯了linux，切换到windows，可以试试这个软件，非常的好用。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://tool.browser.qq.com/&quot;&gt;QQ 工具助手&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;轻松办公，工具助你一臂之力，功能一应俱全、简单好用的线上工具宝。有几个语言识别的，语音转文字的还不错了，我试了下，成功率不是很高，但是还可以将就着用。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/02/18/relationship/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/02/18/relationship/</guid>
         
         <category>Newsletter</category>
         
