@@ -5,9 +5,327 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 31 Mar 2023 00:47:04 +0000</pubDate>
-    <lastBuildDate>Fri, 31 Mar 2023 00:47:04 +0000</lastBuildDate>
+    <pubDate>Thu, 06 Apr 2023 02:06:23 +0000</pubDate>
+    <lastBuildDate>Thu, 06 Apr 2023 02:06:23 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>哈夫曼编码</title>
+        <description>&lt;p&gt;哈夫曼编码是一种在无损信息的情况下压缩数据的有效方法。在计算机科学中，信息被编码为比特：1和0。位串编码的信息告诉计算机要执行哪些指令。视频游戏、照片、电影等等在计算机中被编码为比特串。计算机每秒执行数十亿条指令，而一个视频游戏可能是数十亿比特的数据。不难看出，为什么高效和不含糊的信息编码是计算机科学中一个令人感兴趣的话题。&lt;/p&gt;
+
+&lt;p&gt;哈夫曼编码通过分析某些符号在信息中出现的频率，提供了一种高效、明确的编码。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;出现频率较高的符号将被编码为较短的比特串，而使用频率不高的符号将被编码为较长的字符串&lt;/code&gt;。然后用这种频率的编码来&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;替换原来的信息，出现频率较高的就会替换为较短的编码，从而节省空间。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;举个例子：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406085143.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上面图中对字符串&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ABCD&lt;/code&gt;构建一个huffman的二叉树，如果要对CBA编码，结果就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;011011&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;由于符号的频率在不同的信息中是不同的，所以没有一种哈夫曼编码可以适用于所有的信息。这意味着，发送消息X的哈夫曼编码可能与发送消息Y的哈夫曼编码不同。&lt;/p&gt;
+
+&lt;h2 id=&quot;huffman的原理&quot;&gt;huffman的原理&lt;/h2&gt;
+
+&lt;p&gt;对于哈夫曼编码的原理，我是看了这个教程就了解了，我直接搬运过来，借鉴下大佬的讲解。重点的地方，我自己第一次没有太理解的地方，我加了部分补充来理解。&lt;/p&gt;
+
+&lt;p&gt;下面是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;we will we will r u&lt;/code&gt;中每个字符出现的频率。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092329.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;构建二叉树&quot;&gt;构建二叉树&lt;/h2&gt;
+
+&lt;p&gt;对于上面这样的值，构建一个二叉树来表达每一个字符的路径信息。&lt;/p&gt;
+
+&lt;h3 id=&quot;初始队列&quot;&gt;初始队列&lt;/h3&gt;
+&lt;p&gt;那么我们按出现频率高低将其放入一个优先级队列中，从左到右依次为频率逐渐增加。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092623.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;下面我们需要将这个队列转换成哈夫曼二叉树，哈夫曼二叉树是一颗带权重的二叉树，权重是由队列中每个字符出现的次数所决定的。并且&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;哈夫曼二叉树始终保证权重越大的字符出现在越高的地方&lt;/code&gt;。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这样就是出现频率越高的字符，编码的路径就越短，这样编码出来的结果就越少。&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;第一步合并&quot;&gt;第一步合并&lt;/h3&gt;
+&lt;p&gt;首先我们从左到右进行合并，依次构建二叉树。第一步取前两个字符u和r来构造初始二叉树，第一个字符作为左节点，第二个元素作为右节点，然后两个元素相加作为新空元素，并且两者权重相加作为新元素的权重。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092634.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;同理，新元素可以和字符i再合并，如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092649.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;重新调整队列&quot;&gt;重新调整队列&lt;/h3&gt;
+&lt;p&gt;上图新元素权重相加后结果是变大了，需要对权重进行重新排序。
+&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092814.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后再依次从左到右合并，每合并一次则进行一次队列重新排序调整。如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092827.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;经过多步操作之后，得到以下的哈夫曼二叉树结构，也就是一个带有权重的二叉树：&lt;/p&gt;
+
+&lt;p&gt;重点就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;当根节点的权重大于剩余权重的时候，就要新开一个节点，下图中的I、W，权重都是4，而当前根节点的权重为11，所以就新开了一个节点。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092845.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;哈夫曼编码&quot;&gt;哈夫曼编码&lt;/h3&gt;
+&lt;p&gt;有了上面带权重的二叉树之后，我们就可以进行编码了。我们把二叉树分支中左边的支路编码为0，右边分支表示为1，如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092907.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这样依次遍历这颗二叉树就可以获取得到所有字符的编码了。例如：‘ ’的编码为10，‘l’的编码为00，‘u’的编码为11100等等。经过这个编码设置之后我们可以发现，出现频率越高的字符越会在上层，这样它的编码越短；出现频率越低的字符越会在下层，编码越短。经过这样的设计，最终整个文本存储空间才会最大化的缩减。
+最终我们可以得到下面这张编码表：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092928.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;show-me-the-code&quot;&gt;show me the code&lt;/h2&gt;
+
+&lt;p&gt;huffman的具体实现步骤：
+1）将信源符号的概率按减小的顺序排队。
+2）把两个最小的概率相加，并继续这一步骤，始终将较高的概率分支放在右边，直到最后变成概率１。
+3）画出由概率１处到每个信源符号的路径，顺序记下沿路径的０和１，所得就是该符号的霍夫曼码字。
+4）将每对组合的左边一个指定为0，右边一个指定为1（或相反）。&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 这是一个关于Huffman编码的测试用例&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;queue&amp;gt;
+#include &amp;lt;vector&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;unordered_map&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Huffman树节点&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nullptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nullptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 比较函数，用于优先队列&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmp&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;operator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 构建Huffman树&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;buildHuffmanTree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;priority_queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;second&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;'$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 递归函数，用于生成Huffman编码&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generateHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;'$'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;generateHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;generateHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 打印Huffman编码&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;printHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hello world&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decltype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buildHuffmanTree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;generateHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;输出的结果：&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 打印的huffman编码结果&lt;/span&gt;
+w 1111
+h 001
+o 01
+e 000
+l 10
+r 1100
+  1110
+d 1101
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;对应的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hello world&lt;/code&gt;的编码就是如下&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// iterate over each character in the string&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// std::cout &amp;lt;&amp;lt; c &amp;lt;&amp;lt; std::endl; // print the character&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 00100010100111101111011100101101&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;最后的长度就是32位，如果用原始的编码是实现，就是11*8=88位才能存下，空间减少63%，可见这个效果是多么的好。&lt;/p&gt;
+
+&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/FX677588/article/details/70767446&quot;&gt;详细图解哈夫曼Huffman编码树&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/Young_IT/article/details/106730343&quot;&gt;哈夫曼编码详解——图解真能看了秒懂&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/04/06/huffman-coding/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/04/06/huffman-coding/</guid>
+        
+        <category>algorithm</category>
+        
+        <category>huffman</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>83 -  保持好奇</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230331084307.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;AIGC现在可谓是大红大紫，尤其是chatgpt4和midjourney，你怎么看待它们呢？&lt;/p&gt;
+
+&lt;p&gt;我自己的心态经历了从期待到焦虑，再到憧憬的过程。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;首先，让自己来谈谈我对这些技术工具的第一印象。当它们第一次出现时，我以为它们只是普通的技术工具，没有太多特别之处，所以我对它们并没有太多期待。但是，随着我慢慢地接触和使用它们，我发现它们真的非常强大，可以帮助自己解决很多问题，让自己的工作变得更加高效和便捷。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;其次，我对这些技术工具保持着好奇心。我相信，只有保持好奇心，才能不断地探索新的可能性，发现新的功能和特性。因此，我会尽量关注一些一线的开发者，听取他们的声音，了解最新的技术趋势和发展动态。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;那么，对于未来，自己应该有什么打算呢？我认为，自己需要做以下几点：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;要对&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;一线的信息保持好奇心&lt;/code&gt;，不要只看二手的信息，而是尽量关注一些一线的开发者，听取他们的声音。这样，自己才能了解最新的技术趋势和发展动态，及时掌握最新的技术动态。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不要被标题党所迷惑&lt;/code&gt;，那些所谓的“xx用这个技术赚了几百万”之类的垃圾文，可能会引发自己的焦虑，自己应该保持冷静，不要被这些无意义的信息所干扰。自己应该专注于自己的工作，不断提高自己的技能和能力。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果自己有好的想法或者发现有好的需求，就要&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;动手去实践，保持知行合一&lt;/code&gt;，这样才能不断提高自己的技能和能力。自己应该不断地尝试新的技术和工具，探索新的可能性，为未来的发展打下坚实的基础。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;让自己一起保持好奇心，不断探索新的技术和工具，为未来的发展打下坚实的基础！&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/j5xPMjrwTLconbUS4MTc9A&quot;&gt;深度剖析：ChatGPT 及其继任者会成为通用人工智能吗？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/G4uaBE.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ChatGPT是一种大语言模型，其目标是总结人类语言使用的统计规律。它通过互联网等来源提供的语言材料训练一个巨型人工神经元网络，直接在字词、语句等水平上总结语言使用者的习惯。在预训练的基础上，ChatGPT又经过了一个强化学习过程，在其中人类训练者为它提供了大量典型问题，并对其回复进行奖励或惩罚，通过调整模型的参数使得其行为符合人类要求。ChatGPT的内容广度和语言流畅性是因为它所说的话就是该语言的使用者们在相同的语境下最可能说的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;[人工智能时代已经开始&lt;/td&gt;
+          &lt;td&gt;盖茨笔记](https://mp.weixin.qq.com/s/pYjY_LT8I33YqCn415AUAA)&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;人工智能（AI）和通用人工智能（AGI）的发展一直是计算行业的伟大梦想。现在，随着机器学习和大量计算能力的出现，复杂的人工智能已经成为现实，而且它们会快速迭代升级。人工智能将改变人们工作、学习、旅行、获得医疗保健以及彼此交流的方式。整个行业将围绕人工智能重新洗牌。企业也将根据其利用人工智能技术的程度来区分优劣。人工智能可以减少世界上一些最严重的不平等现象，如改善教育、拯救生命、减少气候变化等。政府和慈善机构将需要发挥重要作用，以确保人工智能是在减少而非加剧不平等现象。这是我自己人工智能相关工作的重点。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/jSH0WTGrABZg4jRA9g21YA&quot;&gt;网课后，农村留守儿童正在塌陷式沉迷手机&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这篇文章主要讲述了农村留守儿童沉迷手机的现象。文章从2017年开始关注到这个问题，到2021年的调研发现，这个问题已经变得更加严重。文章提到，40.4%的留守儿童有专属手机，49.3%的留守儿童使用长辈的手机。其中21.3%的家长认为孩子严重沉迷手机，事态已十分严重。文章还提到了一些案例，比如小孩玩游戏相约自杀，11岁的女孩在游戏中认识某外地17岁的男孩，确定恋爱关系后相约在宾馆发生关系等。文章认为，孩子们沉迷手机的原因有很多，比如手机内容的丰富度和吸引力，网络游戏、短视频往往使用了增强黏性的算法设计等。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://app.copilothub.co/chat?id=5&quot;&gt;copilothub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我试了下，类似github copilot，还是不错的，每个用户有10次免费的配额。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://orbstack.dev/&quot;&gt;orbstack容器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在你的Mac上无缝、高效地运行Docker和Linux。通过直观的集成来简化你的开发工作流程。&lt;/p&gt;
+
+&lt;p&gt;OrbStack在测试期间是完全免费使用的，但之后它将成为一个付费产品。仍在制定细节（个人与企业使用，订阅与永久许可，定价，开放源码和学生折扣，等等），并将在接近推出时分享更多信息。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/vincelwt/chatgpt-mac&quot;&gt;chatgpt-mac&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mac版ChatGPT，支持 intel 和 m 系列芯片。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/apple/ml-ane-transformers&quot;&gt;apple ane-transformers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果您考虑在搭载A14或更新版本和M1或更新版本芯片的Apple设备上部署Transformer模型，并希望相对于基准实现实现高达10倍更快和14倍更低峰值内存消耗，请使用ane_transformers作为PyTorch参考实现。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/TiesdeKok/chat-gpt-jupyter-extension&quot;&gt;chat-gpt-jupyter-extension&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一个浏览器扩展，在Jupyter笔记本中提供各种人工智能辅助功能，由ChatGPT提供。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/04/01/Stay-curious/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/04/01/Stay-curious/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>如何调试我们 LLVM 的代码 - 进阶</title>
@@ -810,205 +1128,6 @@ ThinLTO的过程分为3个阶段。&lt;/p&gt;
         <pubDate>Sat, 11 Mar 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/03/11/Survival-of-the-fittest/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/03/11/Survival-of-the-fittest/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>79 -  技能速成</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;去年成都由于疫情，还有就是高温的原因，work from home，在家办公的日子就是舒服，不用考虑通勤时间，起床就可以开电脑，然后再去洗漱……&lt;/p&gt;
-
-&lt;p&gt;慢慢的觉得在家办公特别爽，主要是我现在每天的通勤时间在1个小时。之前出门比较晚，出门就开始堵车，一天通勤时间在2~3个小时。用这个时间来做点自己喜欢的事情，应该是不错的。&lt;/p&gt;
-
-&lt;p&gt;很久以前，关注过远程工作的时候，顺便推荐一个远程工作的社区：电鸭社区。发现里面前端岗位是最多的，后来就学习了一段时间的前端工程，诠释了什么是从入门到放弃。最主要的还是没有实际的工程来搞，就没那么容易记住。俗话说得好： talk is cheap, show me code.&lt;/p&gt;
-
-&lt;p&gt;最近自己捣鼓一个前端工程，不管多晚，多累，就喜欢调试出来结果才罢休，一度我以为自己是不是真的兴趣爱好是这个做前端开发。&lt;/p&gt;
-
-&lt;p&gt;前端是一个变化特别快，技术栈更新迭代快，如果自己不是一个爱学习，按钻研的性格，很难做的优秀。为了学习前端js用法，最近自己找了一个项目用js实现一个编译器流程的项目，找到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;项目结合当前学习的东西，这样才更容易掌握和速成&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;下面是chatGPT的回答，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;关于如何使前端开发变得有趣？格式为：观点1、观点2&lt;/code&gt;  （chatgpt的prompt非常重要，你看我把格式都给出来了，结果也不会差太远了，所以后面会不会有prompt engineer，不好说呀。）&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;作为一个前端开发人员，有很多方法可以使工作更有趣：&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;学习新技能和工具 - 不断学习新的技术和工具可以使前端开发总是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;保持新鲜感&lt;/code&gt;，同时也可以提高自己的技能水平。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;参加社区活动 - 参加线下或者线上的前端开发社区活动可&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;以认识更多志同道合的人&lt;/code&gt;，扩展自己的人脉，同时也可以学习到最新的前端技术发展趋势。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;实战练习 - 通过完成一些实际项目的练习，可以让自己的技能更快地提高，同时也可以增加对前端开发的兴趣和热情。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;做自己感兴趣的项目 - 在自己的空闲时间，可以做一些自己感兴趣的前端开发项目，例如搭建自己的博客网站、构建一个自己喜欢的应用等等，这样可以让自己更加投入到前端开发中。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;加入开源社区 - 加入一些开源社区可以得到更广泛的技术交流和学习经验，同时也可以通过提交自己的代码或者修复别人的缺陷来积累自己的经验。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;与其他开发人员合作 - 与其他开发人员合作可以让前端开发更有趣，可以借鉴其他人的经验和技能，并且在合作中加深人际关系，增加团队协作和创造的乐趣。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;我发现自己特别着迷的就是，自己撸一个后端的接口，然后前端拿到数据之后渲染那个感觉，太爽了。说不上来为啥。&lt;/p&gt;
-
-&lt;p&gt;关于后端接口，不用掌握Java，Python里面有一个fastapi就可以在10行代码内完成，以及熟悉各种接口的调用方式和数据传递方式。如果你熟练地掌握了这些技能，你可以很容易地开发出健壮的接口，并且灵活地应对客户端的需求变化。另外，你也可以关注一些有关接口相关的博客、技术文章等渠道，了解行业最新的接口开发趋势，不断提升自己的技能水平。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://learningpromt.wiki/&quot;&gt;chatGPT提示工程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;里面提到的几个小技巧，已经在使用了，非常好用。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://catcoding.me/p/apple-perf/&quot;&gt;苹果：为了安全让 M2 吃灰&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本文介绍了苹果计算机在运行Rust编译器项目上的性能问题，以及它的根源 - System Integrity Protection（SIP）。SIP是苹果操作系统的一项安全技术，目的是阻止未经授权的代码执行，从而保护系统完整性。然而，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SIP会在执行任意代码之前对其进行校验，并可能发送网络请求以确保文件的安全性&lt;/code&gt;。这对于需要执行大量代码的开发人员来说可能会产生问题，因为SIP会降低系统的性能，并导致长时间运行的代码在苹果计算机上速度较慢。虽然可以通过禁用SIP来解决这个问题，但这也会降低计算机的安全性。作者认为，苹果公司在这个问题上没有给出一个充分的解决方案，这可能表明苹果对于开发者的重视程度已经不如以前了。&lt;/p&gt;
-
-&lt;p&gt;文章还提供一些bypass的策略。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/5JnKZ4MTnk8Hl_Jiz3DF4A&quot;&gt;关于南极旅游 - 王叔特别篇&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;王叔就是一个典范，无所畏惧，勇于尝试，才能拥有更大，更广阔的舒适区，让自己可以更好的去欣赏世界，享受人生。&lt;/p&gt;
-
-&lt;p&gt;这其实无关财富，语言能力。王叔用自己的经历证明，用极为克制的预算，极为有限的语言能力，一样可以做到。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://glarity.app/google-summary&quot;&gt;谷歌总结内容&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;输入视频，可以直接总结视频的内容， 还有一个链接：https://youtu.be/5Lh4qiB3STo&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://newsletter.pragmaticengineer.com/p/why-did-google-close-its-coding-competitions&quot;&gt;为什么谷歌关闭了代码竞赛&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Google 关闭持续了 20 年的编程比赛。这些比赛每年吸引近 30 w 开发者。这些年，Goolge 员工数目从 2004 年的 3000 人翻了 60 倍，而编程比赛是招人的一个重要手段，也开启了 IT 行业面试刷题的时代。最近因为减成本，组织比赛的员工很多被开了。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://citw.dev/tutorial/create-your-own-compiler&quot;&gt;创建自己的编译器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;将对杰米·凯尔的《超级小编译器》进行指导演练。超级微型编译器是一个用Javascript编写的简单编译器，我们将从头开始逐步编写它。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/lxgw/LxgwWenkaiTC&quot;&gt;开源字体wenkai&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本字體的字形調整參考 一點字坊「傳承字形標準化文件」，但並不追求完全遵循之，有些部件會視情況做出取捨（如「曰」部件、「艹」部件等，由於涉及的漢字數量較多，故並未按照「檢校表」做改動；此外本字體中的部分部件採用了「檢校表」中收錄的一些稍爲遷就美觀需要的常見字形，如「蔑」「益」「亟」「老」「殳」等部件）。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/swc-project/swc/tree/main/crates&quot;&gt;swc-project小项目&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;CSS、JavaScript、HTML 的 Parser 都手动实现了一遍。&lt;/p&gt;
-
-&lt;p&gt;这个项目里面的子项目多得令人发指！且每个子项目的代码量都不少。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/03/04/quick-skill/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/04/quick-skill/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>78 -  继续搞钱</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;我有一个小习惯，就是每次用了不管是多少钱，都会记录一下。&lt;/p&gt;
-
-&lt;p&gt;之前记账只记录金额，没有具体的花销事项，导致时间一长就可能忘记。现在几张都会记录具体每一笔的用途是什么，买了什么。&lt;/p&gt;
-
-&lt;p&gt;在开始阅读之前，大家先思考下，记账的好处是什么？&lt;/p&gt;
-
-&lt;p&gt;我自己记账的时间，我看了下快有 5 年了。发现去年的支出比前年支出上浮了 10%，不知道是不是物价上涨的原因。去年全年支出 143,824 元，不包含房贷和其他贷款，基本上就是为了生活的开支。&lt;/p&gt;
-
-&lt;p&gt;从去年的饼状图来看，依次是发红包 &amp;gt; 房贷 &amp;gt; 医疗 &amp;gt; 数码 &amp;gt; 三餐 &amp;gt; 孩子，没有想到三餐居然在数码之后，这部分要好好的反思下，有些数码的东西，如果是刚需才购买。&lt;/p&gt;
-
-&lt;p&gt;看到有个方法，我&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不喜欢「克制」自己的消费，更喜欢理想的消费&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;就是把自己喜欢的东西加入到购物车，过一段时间再来看看，是不是自己想要的，如果是想要的，那说明当时不是冲动消费。&lt;/p&gt;
-
-&lt;p&gt;2023 年的开支争取不增加，这个做到不是特别难，因为在数码这一块已经换的才换不久。但是由于大家都知道前不久，我们国家老人越来越多了，所以要准备点钱买入作为以后养老使用。&lt;/p&gt;
-
-&lt;p&gt;医疗险、重疾险、储蓄养老有合适的产品可以再补充部分。&lt;/p&gt;
-
-&lt;p&gt;除了开支外，还有一个重要反向节省的地方就是开源。&lt;/p&gt;
-
-&lt;p&gt;「保持通话」播客里面有提到一个清单，除了支出外，还得有多个收入，大家都懂，不要把鸡蛋放在同一个篮子里面，这样的风险高。&lt;/p&gt;
-
-&lt;p&gt;我除了上班，几乎没有其他的收入来源。收入单一，哪一天被裁员，或者毕业，就很危险。&lt;/p&gt;
-
-&lt;p&gt;也要搞一搞 side project，你们有没有好的副业推荐的呀。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MjM5MDU1Mzg3Mw==&amp;amp;mid=2651483959&amp;amp;idx=1&amp;amp;sn=f4d3fa555806fc8e2bfc619e0cac7126&amp;amp;chksm=bdbdcd498aca445f90195daa4c0e0b430a86979f6a8dc6b17fe7dde60f117299393a6a4c82d4&amp;amp;mpshare=1&amp;amp;scene=1&amp;amp;srcid=0227zBHxofXi1YOw21BMlpwo&amp;amp;sharer_sharetime=1677468259838&amp;amp;sharer_shareid=e73f8d7af2e8f1807ea7886e4c9a51c0&amp;amp;key=4b2e4dea11a1f06c147f211fbf1a783927b64bd2796389c6dc37d85a788c39438d73b4e19d5636e0205b7a8c3b17877cc9910f7d4374f7514313c6a9c0113c693abd5bb7d7e5de34fd252743054d7e0a210faf593b7c50d057ab52219dc2224058a4cc695f9d80ac85747a6d2bf1ac5cfa7ad6570aa8d1bfab94fa60a6f7cb7d&amp;amp;ascene=1&amp;amp;uin=NDA3MDQzMDU%3D&amp;amp;devicetype=Windows+11+x64&amp;amp;version=6309001c&amp;amp;lang=zh_CN&amp;amp;countrycode=CN&amp;amp;exportkey=n_ChQIAhIQKwubYTHDbvfedvvOlw9EsBLmAQIE97dBBAEAAAAAANi3Es09oWkAAAAOpnltbLcz9gKNyK89dVj0ln5yEK%2BqqT4DlE7Yor2j7sS2OfyEawJkDGDimfSrBJYW8A8wYueumgWLIePTadu%2F%2FTwsNcm3AABWbK1L2FuSVMSUR2hd5cZmjc4ifhzL2QFlahi4OYz1IaYbrnYodqKFwRZ6aZnsCbVvjLi4r7HZt09QKVMJ5PhbZ76SqvxUFXqYI6v63HGVkDl%2FkFZoO5qI1RruP0EsQDswxZ5njMSdvXijyUm1NoQGlxfIO2FjDBDokndeAxW7SadaCBcVndIt&amp;amp;acctmode=0&amp;amp;pass_ticket=DpZtvWuZp0su4Ublg8CIcroF2PGsiOxMjS%2F79ndbjarXh%2BcmFYK3sGTzKdStauJMQnp2RzA0JmaqZeFNrBmHKA%3D%3D&amp;amp;wx_header=1&amp;amp;fontgear=2&quot;&gt;教师过剩、高校关停，人口如何影响教育？&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;与在校生数变化趋势类似，2020~2035年我国义务教育阶段专任教师需求量总体减少，按现行生师比标准，到2035年全国将有约150万小学教师、37万初中教师过剩，小学教师需求量过剩较大，初中教师先短缺后过剩。
-为应对这些过剩，除缩小班级规模、降低生师比外，未来应在稳定部属和省属师范大学招生计划的同时，逐步减少师专和高职高专的师范生招生，保持一定的师资规模和质量。另外，师资培养体系也要调整，调整师范专业设置，扩大音、体、美、劳、通用技术、学前、托育和特教等学科招生人数，减少文化科目招生计划。实际上，现在的师资供给存在较为严重的结构性缺编，语数等大课类老师相对容易过剩，而艺术、体育、科学等小课类老师更为短缺。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/5cZkmPICwj3RM3PlfUM7rg&quot;&gt;首轮关停潮已来，幼儿园“一孩难求”&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;往年3月到8月，她每天都会接到大量咨询和报名电话，很多家长还要给孩子排队等位。&lt;/p&gt;
-
-&lt;p&gt;希望，国家能尽快出台一个关于托育的细化政策，列出收费等方面的参考标准，目前仍是以各地摸索为主。“我们一定注意不要走幼儿园走过的弯路，应尽快把托育机构的性质有个明确的定位。”柳倩说。另外，托育老师的专业性和综合性要求很高，国内还缺乏一套成系统的托育教师培养体系，这方面也应进一步加强。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/liupan1890/aliyunpan/issues/714&quot;&gt;阿里云盘个人开发者&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;作者前几天刚刚确认找到了新工作（之前回老家被隔离就是在办这个事），以后不跑美团了，新工作是做出纳，嗯，现金出纳&lt;/p&gt;
-
-&lt;p&gt;从程序员转到外卖员转到出纳，这个跨度有点大，所以接下来一段时间需要从零开始学出纳，这个比较耗精力。为了避免因为啥也不会被开除，因此会暂时停止v3的开发工作，等我熟悉了出纳的工作事宜，再继续开发&lt;/p&gt;
-
-&lt;p&gt;程序是爱好，不会停止，也无法割舍
-出纳是生活，我已经穷的到了一定地步了，要养家，要想我媳妇问我今天超市搞活动一瓶2L可乐活动价5.5元买不买。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/OwO-Network/DeepLX&quot;&gt;DeepLX&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;用Golang编写的永久免费的DeepL API，在mac上配合bob，就很方便的使用deepl的精准翻译功能。
-https://github.com/clubxdev/bob-plugin-deeplx&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/cfortuner/promptable&quot;&gt;promptable&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Promptable是一个库，它可以让你用LLMS和嵌入提供商(如OpenAI、Huging Face、Cohere和Anthropic)构建强大的AI应用程序。它提供了灵活且可扩展的API，使您可以轻松地将LLM与数据和工具组合在一起，从而快速轻松地构建复杂的应用程序。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 25 Feb 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/02/25/make-more-money/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/02/25/make-more-money/</guid>
         
         <category>Newsletter</category>
         

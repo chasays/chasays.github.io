@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "哈夫曼编码",
+      "subtitle" : "提供了一种高效、明确的编码",
+      "tags"     : "algorithm, huffman",
+      "url"      : "/2023/04/06/huffman-coding/",
+      "date"     : "2023-04-06 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "83 -  保持好奇",
+      "subtitle" : "不断探索新的技术和工具，为未来的发展打下坚实的基础",
+      "tags"     : "Newsletter",
+      "url"      : "/2023/04/01/Stay-curious/",
+      "date"     : "2023-04-01 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "如何调试我们 LLVM 的代码 - 进阶",
       "subtitle" : "",
       "tags"     : "compiler, LLVM, debug",
