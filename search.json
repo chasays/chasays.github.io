@@ -1,6 +1,30 @@
 [
   
     {
+      "title"    : "85 - 用  AI  一起工作的感觉 ",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2023/04/15/what-feel-work-with-ai/",
+      "date"     : "2023-04-15 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "预处理器指令--C编程",
+      "subtitle" : "",
+      "tags"     : "preprocessor",
+      "url"      : "/2023/04/14/preprocessor-directives-c-programming/",
+      "date"     : "2023-04-14 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "84 -  赚钱的方式",
+      "subtitle" : "间接和直接",
+      "tags"     : "Newsletter",
+      "url"      : "/2023/04/08/make-money-method/",
+      "date"     : "2023-04-08 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "哈夫曼编码",
       "subtitle" : "提供了一种高效、明确的编码",
       "tags"     : "algorithm, huffman",
