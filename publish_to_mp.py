@@ -23,25 +23,14 @@ args = parser.parse_args()
 
 
 CACHE = {}
-# TFUG-CD
-WECHAT_APP_ID = 'wx193da9cd52d2b703'
-WECHAT_APP_SECRET = '479a4ffce6bcce71119fe1d57936f200'
-
-# chasays
-# WECHAT_APP_ID = 'wx90a82fb7b8e6861f'
-# WECHAT_APP_SECRET = 'edbabaf47f8425102033bcc82e43c4bf'
-
-# 叉哥说险
-# WECHAT_APP_ID = 'wx3ff6a703f848d4f3'
-# WECHAT_APP_SECRET = '55585b112cea70fc9818d66a74a26e92'
 
 WECHAT_DICT = {
     'tfug' : {'WECHAT_APP_ID' :'wx193da9cd52d2b703',
-            'WECHAT_APP_SECRET' : '479a4ffce6bcce71119fe1d57936f200'},
+            'WECHAT_APP_SECRET' : '479a4ffce6bcce71119fe1d57036f200'},
     'cgsx': {'WECHAT_APP_ID' :'wx3ff6a703f848d4f3',
-            'WECHAT_APP_SECRET' : '55585b112cea70fc9818d66a74a26e92'},
+            'WECHAT_APP_SECRET' : '55585a112cea73fc9818d66a74c16e92'},
     'chasays': {'WECHAT_APP_ID' :'wx90a82fb7b8e6861f',
-                'WECHAT_APP_SECRET' : 'edbabaf47f8425102033bcc82e43c4bf'}
+                'WECHAT_APP_SECRET' : 'edbaeaf47f8425402033bcc82e03c4bf'}
 }
 
 CACHE_STORE = "cache.bin"
@@ -100,7 +89,7 @@ def cache_get(key):
 
 def file_digest(file_path):
     """
-    计算文件的md5值
+    计算文件的 md5 值
     """
     md5 = hashlib.md5()
     with open(file_path, 'rb') as f:
@@ -138,8 +127,8 @@ def upload_image_from_path(image_path):
 def upload_image(img_url):
     """
     * 上传临时素菜
-    * 1、临时素材media_id是可复用的。
-    * 2、媒体文件在微信后台保存时间为3天，即3天后media_id失效。
+    * 1、临时素材 media_id 是可复用的。
+    * 2、媒体文件在微信后台保存时间为 3 天，即 3 天后 media_id 失效。
     * 3、上传临时素材的格式、大小限制与公众平台官网一致。
     """
     f_name = ''
@@ -173,7 +162,7 @@ def get_images_from_markdown(content):
 
 def fetch_attr(content, key):
     """
-    从markdown文件中提取属性
+    从 markdown 文件中提取属性
     """
     lines = content.split('\n')
     for line in lines:
@@ -343,7 +332,7 @@ def upload_media_news(post_path):
                 # "content_source_url": CONTENT_SOURCE_URL,
                 "need_open_comment": 1
             }
-            # 若新增的是多图文素材，则此处应有几段articles结构，最多8段
+            # 若新增的是多图文素材，则此处应有几段 articles 结构，最多 8 段
         ]
     }
     with open('./result.html', 'w') as fp:
@@ -432,4 +421,4 @@ if __name__ == '__main__':
         print(string_date)
         run(string_date)
     end_time = time.time()  # 结束时间
-    print("程序耗时%f秒." % (end_time - start_time))
+    print("程序耗时%f秒。" % (end_time - start_time))
