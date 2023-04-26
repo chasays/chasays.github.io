@@ -17,13 +17,13 @@
     <meta property="og:type" content="article">
     <meta property="og:description" content="开篇
 
-LLVM是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做LLVM都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。
+LLVM 是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做 LLVM 都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。
 
-比如在开发一个llvm的pass，或者一个feature，在编译的过程中crash了， 怎么去定位和修复的喃？
+比如在开发一个 llvm 的 pass，或者一个 feature，在编译的过程中 crash 了，怎么去定位和修复的喃？
 
 
 
-注意官方编译器禁用了LLVM断言，这意味着LLVM断言失败可能会显示为编译器崩溃（不是ICE-内部编译错误，而...">
+注意官方编译器禁用了 LLVM 断言，这意味着 LLVM 断言失败可能会显示为编译器崩溃（不是...">
     
     <meta property="article:published_time" content="2023-03-18T00:00:00Z">
     
@@ -338,28 +338,28 @@ LLVM是一个独立的大项目，可能需要有自己的调试文档，我似�
 
 				<h2 id="开篇">开篇</h2>
 
-<p>LLVM是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做LLVM都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。</p>
+<p>LLVM 是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做 LLVM 都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。</p>
 
-<p>比如在开发一个llvm的pass，或者一个feature，在编译的过程中crash了， 怎么去定位和修复的喃？</p>
+<p>比如在开发一个 llvm 的 pass，或者一个 feature，在编译的过程中 crash 了，怎么去定位和修复的喃？</p>
 
 <p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230317094622.png" alt="" /></p>
 
-<p>注意官方编译器禁用了LLVM断言，这意味着LLVM断言失败可能会显示为编译器崩溃（不是ICE-内部编译错误，而是 “真正的”崩溃）和其他各种奇怪的行为。编译llvm的时候最好使能assertion，在cmake的时候记得带上参数即可：<code class="language-plaintext highlighter-rouge">assertions=true</code>。</p>
+<p>注意官方编译器禁用了 LLVM 断言，这意味着 LLVM 断言失败可能会显示为编译器崩溃（不是 ICE-内部编译错误，而是 “真正的”崩溃）和其他各种奇怪的行为。编译 llvm 的时候最好使能 assertion，在 cmake 的时候记得带上参数即可：<code class="language-plaintext highlighter-rouge">assertions=true</code>。</p>
 
 <h2 id="尽量最小化例子">尽量最小化例子</h2>
 
 <p>一般来说，编译器从分析代码中产生大量的信息。因此，一个有用的第一步通常是找到一个最小的例子。做到这一点的一个方法是</p>
 <ol>
-  <li>创建一个重现该问题的新case（例如，将有问题的地方添加为依赖关系，并从这里开始）</li>
+  <li>创建一个重现该问题的新 case（例如，将有问题的地方添加为依赖关系，并从这里开始）</li>
   <li>通过<code class="language-plaintext highlighter-rouge">移除外部依赖关系</code>来最小化这个板块；也就是说，将所有相关的东西移到新文件中去</li>
-  <li>通过缩短代码来进一步减少问题（有一些工具可以帮助实现这一点，比如creduce）。</li>
+  <li>通过缩短代码来进一步减少问题（有一些工具可以帮助实现这一点，比如 creduce）。</li>
 </ol>
 
 <p>在实际的工程中，是通过如下步骤，不过工程有一点差异，但是可以参考这个过程：</p>
 <ol>
-  <li>用编译器（gcc/clang,或者其他）编译cpp文件为一个ll文件</li>
-  <li>通过上面生成的 ll 文件，从中提取报错函数的最小 ll文件</li>
-  <li>然后带上mtriple，map，mcpu等参数用llc来编译这个 ll 文件为汇编，一般在这个时候就会出问题了。</li>
+  <li>用编译器（gcc/clang，或者其他）编译 cpp 文件为一个 ll 文件</li>
+  <li>通过上面生成的 ll 文件，从中提取报错函数的最小 ll 文件</li>
+  <li>然后带上 mtriple，map，mcpu 等参数用 llc 来编译这个 ll 文件为汇编，一般在这个时候就会出问题了。</li>
 </ol>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 编译cpp为一个ll文件</span>
@@ -374,26 +374,26 @@ llc <span class="nt">-mtriple</span><span class="o">=</span>amdgpucn <span class
 
 <h2 id="获得一个原始的输入文件">获得一个原始的输入文件</h2>
 
-<p>大致情况是把一个crash文件，一个bc文件转化为一个ll文件。</p>
+<p>大致情况是把一个 crash 文件，一个 bc 文件转化为一个 ll 文件。</p>
 
 <ul>
-  <li>如果在调用LLVM时遇到了来自 LLVM 后台的断言失败或分段故障，不妨尝试将这些 .bc 文件分别传递给 llc 命令，看看是否得到了同样的失败。(LLVM的开发者通常更喜欢被简化为.bc文件的bug，而不是使用工具最小化再来复现)。</li>
-  <li>为了得到人类可读的LLVM bc文件，人们只需要使用llvm-dis将位码（.bc）文件转换为.ll文件。</li>
+  <li>如果在调用 LLVM 时遇到了来自 LLVM 后台的断言失败或分段故障，不妨尝试将这些 .bc 文件分别传递给 llc 命令，看看是否得到了同样的失败。(LLVM 的开发者通常更喜欢被简化为.bc 文件的 bug，而不是使用工具最小化再来复现)。</li>
+  <li>为了得到人类可读的 LLVM bc 文件，人们只需要使用 llvm-dis 将位码（.bc）文件转换为.ll 文件。</li>
 </ul>
 
-<p>如果只想在LLVM pipeline中获得LLVM的IR，例如查看哪个IR导致优化时间断言失败，或者查看LLVM何时执行特定的优化，可以通过llvm标志位<code class="language-plaintext highlighter-rouge">-print-after-all</code>，这样就可以获得更多的报错信息，从而精准找到问题所在。</p>
+<p>如果只想在 LLVM pipeline 中获得 LLVM 的 IR，例如查看哪个 IR 导致优化时间断言失败，或者查看 LLVM 何时执行特定的优化，可以通过 llvm 标志位<code class="language-plaintext highlighter-rouge">-print-after-all</code>，这样就可以获得更多的报错信息，从而精准找到问题所在。</p>
 
-<p>这将产生大量的输出到标准错误中，所以要把这些输出管到某个文件中。另外，如果既没有使用-filter-print-funcs，也没有使用-C codegen-units=1，那么，由于多个codegen单元并行运行，打印结果会混在一起，会有很多的无效信息，将无法阅读任何东西，或者很难找到问题所在。</p>
+<p>这将产生大量的输出到标准错误中，所以要把这些输出管到某个文件中。另外，如果既没有使用-filter-print-funcs，也没有使用-C codegen-units=1，那么，由于多个 codegen 单元并行运行，打印结果会混在一起，会有很多的无效信息，将无法阅读任何东西，或者很难找到问题所在。</p>
 
-<p>如果是单个函数在一个ll文件或者是bc文件里面，这样用这个方法是好处理，但是有多个函数，估计就不好处理了，还可以继续精简么？</p>
+<p>如果是单个函数在一个 ll 文件或者是 bc 文件里面，这样用这个方法是好处理，但是有多个函数，估计就不好处理了，还可以继续精简么？</p>
 
-<p>精简到只有这个对应函数和其依赖，这样就好定位处理了，同时也能把这个case加入到日常的看护中。</p>
+<p>精简到只有这个对应函数和其依赖，这样就好定位处理了，同时也能把这个 case 加入到日常的看护中。</p>
 
-<p>可以用到2个工具，一个是llvm-extract/llvm-ir-extractor。</p>
+<p>可以用到 2 个工具，一个是 llvm-extract/llvm-ir-extractor。</p>
 
 <p>先说说第一个的用法，还是举个例子吧。</p>
 
-<p>准备一个ir文件，在x86的机器上运行，内容如下：</p>
+<p>准备一个 ir 文件，在 x86 的机器上运行，内容如下：</p>
 <pre><code class="language-ll">declare {i32, i1} @llvm.sadd.with.overflow.i32(i32, i32)
 declare {i32, i1} @llvm.uadd.with.overflow.i32(i32, i32)
 
@@ -414,7 +414,7 @@ entry:
 
 </code></pre>
 
-<p>这个ir文件里面，包含了2个函数，分别为test1和test1b，现在需要把test1函数提出来，只需要这个函数。的ll文件。</p>
+<p>这个 ir 文件里面，包含了 2 个函数，分别为 test1 和 test1b，现在需要把 test1 函数提出来，只需要这个函数。的 ll 文件。</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>llvm-extract <span class="se">\</span>
     <span class="nt">-func</span><span class="o">=</span><span class="s1">'test_add'</span> <span class="se">\</span>
@@ -438,7 +438,7 @@ entry:
 attributes #0 = { nounwind }
 </code></pre>
 
-<p>是不是简单了。今天就先来一个简单的，后面继续学习下一个关于优化pass的调试和定位。</p>
+<p>是不是简单了。今天就先来一个简单的，后面继续学习下一个关于优化 pass 的调试和定位。</p>
 
 <h2 id="更多阅读">更多阅读</h2>
 
@@ -448,9 +448,9 @@ attributes #0 = { nounwind }
 </ul>
 
 <blockquote>
-  <p><a href="https://chasays.github.io/">github博客</a></p>
+  <p><a href="https://chasays.github.io/">github 博客</a></p>
 
-  <p>微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+  <p>微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
 </blockquote>
 
 
@@ -535,237 +535,237 @@ attributes #0 = { nounwind }
         
         
         
-                <a data-sort="0269" 
+                <a data-sort="0270" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0196" 
+                <a data-sort="0197" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
                     rel="82">Newsletter</a>
         
-                <a data-sort="0268" 
+                <a data-sort="0269" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0269" 
+                <a data-sort="0270" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
                     rel="9">LLVM</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0271" 
+                <a data-sort="0272" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0271" 
+                <a data-sort="0272" 
                     href="/archive/?tag=cuda"
                     title="cuda"
                     rel="7">cuda</a>
         
-                <a data-sort="0272" 
+                <a data-sort="0273" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0273" 
+                <a data-sort="0274" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0273" 
+                <a data-sort="0274" 
                     href="/archive/?tag=compiler"
                     title="compiler"
                     rel="5">compiler</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=gcc"
                     title="gcc"
                     rel="3">gcc</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=optimization"
                     title="optimization"
                     rel="3">optimization</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=debug"
                     title="debug"
                     rel="2">debug</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

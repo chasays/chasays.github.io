@@ -344,48 +344,48 @@
 
 <p>编译器优化的主要目标是提高程序的性能、优化目标代码的大小以及减少程序的资源占用。为了达到这些目标，编译器需要对源代码进行细致的分析，确定不必要的代码并去除，同时在编译过程中根据程序的表现不断进行优化调整，以逐步提高程序的性能。</p>
 
-<p>我们老大叫我们多看看在LLVM上优化，可以参考下GCC的优化方法。你们有没有什么好的方法？</p>
+<p>我们老大叫我们多看看在 LLVM 上优化，可以参考下 GCC 的优化方法。你们有没有什么好的方法？</p>
 
 <h2 id="lto">LTO</h2>
 
-<p>LTO（Link Time Optimization）是一种通过整个程序分析和跨模块优化来实现更好的运行时性能的方法。在编译阶段，clang会发出LLVM位码而不是对象文件。链接器会识别这些位码文件，并在链接过程中调用LLVM，以生成构成可执行文件的最终对象。LLVM实现加载所有输入的比特码文件，并将它们合并在一起以产生一个单一的模块。程序间分析（IPA）和程序间优化（IPO）在这个单体模块上连续进行。</p>
+<p>LTO（Link Time Optimization）是一种通过整个程序分析和跨模块优化来实现更好的运行时性能的方法。在编译阶段，clang 会发出 LLVM 位码而不是对象文件。链接器会识别这些位码文件，并在链接过程中调用 LLVM，以生成构成可执行文件的最终对象。LLVM 实现加载所有输入的比特码文件，并将它们合并在一起以产生一个单一的模块。程序间分析（IPA）和程序间优化（IPO）在这个单体模块上连续进行。</p>
 
 <p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230313170728.png" alt="" /></p>
 
-<p>LTO有个缺点：这在实践中意味着LTO经常需要大量的内存（以一次容纳所有的IR），而且速度非常慢。而在通过-g启用调试信息的情况下，IR的大小和由此产生的内存需求会明显增大。即使没有调试信息，这对于非常大的应用程序，或者在内存受限的机器上进行编译，也是令人望而却步的。这也使得增量构建不那么有效，因为当任何输入源发生变化时，从LTO步骤开始的一切都必须重新执行。</p>
+<p>LTO 有个缺点：这在实践中意味着 LTO 经常需要大量的内存（以一次容纳所有的 IR），而且速度非常慢。而在通过-g 启用调试信息的情况下，IR 的大小和由此产生的内存需求会明显增大。即使没有调试信息，这对于非常大的应用程序，或者在内存受限的机器上进行编译，也是令人望而却步的。这也使得增量构建不那么有效，因为当任何输入源发生变化时，从 LTO 步骤开始的一切都必须重新执行。</p>
 
 <h2 id="thinlto">ThinLTO</h2>
 
-<p>ThinLTO 是一种新的方法，旨在像非LTO构建那样进行扩展，同时保留了全LTO的大部分性能成就。
-在ThinLTO中，串行步骤是非常薄和快速的。这是因为它不是加载比特码和合并一个单一的单体模块来进行这些分析，而是利用每个模块的紧凑摘要来进行串行链接步骤中的全局分析，以及为后来的跨模块导入的函数位置索引。当模块在完全并行的后端进行优化时，函数导入和其他IPO转换将在以后进行。</p>
+<p>ThinLTO 是一种新的方法，旨在像非 LTO 构建那样进行扩展，同时保留了全 LTO 的大部分性能成就。
+在 ThinLTO 中，串行步骤是非常薄和快速的。这是因为它不是加载比特码和合并一个单一的单体模块来进行这些分析，而是利用每个模块的紧凑摘要来进行串行链接步骤中的全局分析，以及为后来的跨模块导入的函数位置索引。当模块在完全并行的后端进行优化时，函数导入和其他 IPO 转换将在以后进行。</p>
 
-<p>由ThinLTO全局分析实现的关键转换是函数导入，其中只有那些可能被内联的函数被导入到每个模块。这最大限度地减少了每个ThinLTO后端的内存开销，同时最大化了最有影响的跨模块优化机会。因此，IPO转换是在每个模块上用其导入的函数进行扩展。
-ThinLTO的过程分为3个阶段。</p>
+<p>由 ThinLTO 全局分析实现的关键转换是函数导入，其中只有那些可能被内联的函数被导入到每个模块。这最大限度地减少了每个 ThinLTO 后端的内存开销，同时最大化了最有影响的跨模块优化机会。因此，IPO 转换是在每个模块上用其导入的函数进行扩展。
+ThinLTO 的过程分为 3 个阶段。</p>
 <ul>
-  <li>编译：与完全的LTO模式一样生成IR，但用模块摘要进行扩展。</li>
+  <li>编译：与完全的 LTO 模式一样生成 IR，但用模块摘要进行扩展。</li>
   <li>thin link:thin 链接器插件层，结合摘要并进行全局分析</li>
-  <li>ThinLTO后端: 具有基于摘要的导入和优化的并行后端</li>
+  <li>ThinLTO 后端：具有基于摘要的导入和优化的并行后端</li>
 </ul>
 
 <p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230313171121.png" alt="" /></p>
 
-<p>这个过程的关键因素是在第一阶段发出的摘要。这些摘要是使用比特码格式发布的，但设计成可以单独加载，而不涉及LLVMContext或任何其他昂贵的结构。每个全局变量和函数在模块摘要中都有一个条目。一个条目包含元数据，对它所描述的符号进行抽象。例如，一个函数被抽象为它的链接类型，它所包含的指令数量，以及可选的剖析信息（PGO）。此外，对另一个全局的每一个引用（采取的地址，直接调用）都被记录下来。这些信息可以在Thin link阶段建立一个完整的引用图，并利用全局总结信息进行后续快速分析。</p>
+<p>这个过程的关键因素是在第一阶段发出的摘要。这些摘要是使用比特码格式发布的，但设计成可以单独加载，而不涉及 LLVMContext 或任何其他昂贵的结构。每个全局变量和函数在模块摘要中都有一个条目。一个条目包含元数据，对它所描述的符号进行抽象。例如，一个函数被抽象为它的链接类型，它所包含的指令数量，以及可选的剖析信息（PGO）。此外，对另一个全局的每一个引用（采取的地址，直接调用）都被记录下来。这些信息可以在 Thin link 阶段建立一个完整的引用图，并利用全局总结信息进行后续快速分析。</p>
 
-<p>下面图片是LTO和ThinLTO的编译对比图；</p>
+<p>下面图片是 LTO 和 ThinLTO 的编译对比图；</p>
 
 <p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230314084435.png" alt="" /></p>
 
 <h2 id="ipo">IPO</h2>
 
-<p>过程间分析（inter-procedural analysis）是一个多步骤的过程，是LTO分析过程中的重要部分，也是一个跨模块的分析过程。跨模块的优化功能实现最早在1987年（Link time optimization - MIPS），后来相继出现了过程间分析和转换，动态链接程序的优化（IPA + LTO）。</p>
+<p>过程间分析（inter-procedural analysis）是一个多步骤的过程，是 LTO 分析过程中的重要部分，也是一个跨模块的分析过程。跨模块的优化功能实现最早在 1987 年（Link time optimization - MIPS），后来相继出现了过程间分析和转换，动态链接程序的优化（IPA + LTO）。</p>
 
-<p>GCC中的IPA包含的操作有： increase alignment、devirtualization、constant propagation、inline、pure/const analysis等。</p>
+<p>GCC 中的 IPA 包含的操作有：increase alignment、devirtualization、constant propagation、inline、pure/const analysis 等。</p>
 
-<p>ICC中的IPO（Interprocedural Optimization）包含众多的优化，例如：Array dimension padding、Alias analysis、Constant propagation、Dead call deletion、Dead function elimination、Inlining、Structure splitting and field reordering、Whole program analysis等重要优化过程。优化选项配置为-ipo。</p>
+<p>ICC 中的 IPO（Interprocedural Optimization）包含众多的优化，例如：Array dimension padding、Alias analysis、Constant propagation、Dead call deletion、Dead function elimination、Inlining、Structure splitting and field reordering、Whole program analysis 等重要优化过程。优化选项配置为-ipo。</p>
 
-<p>比如inline内联优化。</p>
+<p>比如 inline 内联优化。</p>
 
-<h3 id="inline内联优化">inline内联优化</h3>
+<h3 id="inline-内联优化">inline 内联优化</h3>
 
 <p>内联（inline）优化就是把调用的函数放到调用的地方，避免函数调用和寄存器的分配，增加指令的数量。</p>
 
@@ -414,11 +414,11 @@ ThinLTO的过程分为3个阶段。</p>
 
 <p>2.由于不需要寄存器来传递参数，因此减少了寄存器溢出的概率。当使用引用调用（或通过地址调用或通过共享调用）时，它消除了必须传递引用然后取消引用它们。</p>
 
-<p>除了有点，也有缺点：优化后的执行程序包变大。还有一些特定情况，内联将会造成很严重的后果，如递归函数的内联可能造成代码的无限inline循环。所以编译器在这些特殊情况下会拒绝内联，常见的包括虚调用，函数体积过大，有递归，可变数目参数，通过函数指针调用，调用者异常类型不同，declspec宏、使用alloca、使用setjump等。</p>
+<p>除了有点，也有缺点：优化后的执行程序包变大。还有一些特定情况，内联将会造成很严重的后果，如递归函数的内联可能造成代码的无限 inline 循环。所以编译器在这些特殊情况下会拒绝内联，常见的包括虚调用，函数体积过大，有递归，可变数目参数，通过函数指针调用，调用者异常类型不同，declspec 宏、使用 alloca、使用 setjump 等。</p>
 
-<p>可以通过关键字：inline来实现内联优化。</p>
+<p>可以通过关键字：inline 来实现内联优化。</p>
 
-<p>其实内联inline只是建议性的关键字，编译器并不一定会听你的，毕竟他比你更了解你的代码编译后是什么样子的，而所谓的内联也不单单是指inline这个关键字了，他本质上是一种编译器的优化方式。另外，在windows上平台我还经常能看到【forceinline】（GCC上的【always_inline】）这样的关键字，字面意思是强制内联。不过经过查阅，发现一般只是对代码体积不做限制了，或者说在Debug模式（不不开启优化的情况）下也会尽量按照开发者的意愿去内联。无论如何，<code class="language-plaintext highlighter-rouge">最终的决定权还是交给编译器去处理</code>。</p>
+<p>其实内联 inline 只是建议性的关键字，编译器并不一定会听你的，毕竟他比你更了解你的代码编译后是什么样子的，而所谓的内联也不单单是指 inline 这个关键字了，他本质上是一种编译器的优化方式。另外，在 windows 上平台我还经常能看到【forceinline】（GCC 上的【always_inline】）这样的关键字，字面意思是强制内联。不过经过查阅，发现一般只是对代码体积不做限制了，或者说在 Debug 模式（不不开启优化的情况）下也会尽量按照开发者的意愿去内联。无论如何，<code class="language-plaintext highlighter-rouge">最终的决定权还是交给编译器去处理</code>。</p>
 
 <h2 id="死代码码消除-deadcode-elimination">死代码码消除 (Deadcode Elimination)</h2>
 
@@ -431,18 +431,18 @@ ThinLTO的过程分为3个阶段。</p>
 <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>上面的代码中，a和b实际在后面的代码中没有用到，所以编译的时候可以直接优化掉，将被转换为</p>
+<p>上面的代码中，a 和 b 实际在后面的代码中没有用到，所以编译的时候可以直接优化掉，将被转换为</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">234</span><span class="p">;</span> <span class="p">}</span>
 </code></pre></div></div>
 
-<p>学习东西要有耐心，不要着急，不要焦虑，否则会影响自己的信心。要循序渐进，关键是保持持续的学习动力。 编译器优化的内容很多，不必一次掌握。要逐个理解每个概念和原理。</p>
+<p>学习东西要有耐心，不要着急，不要焦虑，否则会影响自己的信心。要循序渐进，关键是保持持续的学习动力。编译器优化的内容很多，不必一次掌握。要逐个理解每个概念和原理。</p>
 
 <h2 id="更多阅读">更多阅读</h2>
 
 <ul>
   <li><a href="https://grin-compiler.github.io/">GRIN Compiler</a></li>
-  <li><a href="https://blog.csdn.net/qq_36287943/article/details/103930336">编译优化之 - 过程间优化(IPA/IPO)入门</a></li>
+  <li><a href="https://blog.csdn.net/qq_36287943/article/details/103930336">编译优化之 - 过程间优化 (IPA/IPO) 入门</a></li>
   <li><a href="https://zhuanlan.zhihu.com/p/50812510">被知乎大佬嘲讽后的一个月，我重新研究了一下内联函数</a></li>
   <li>
     <p><a href="https://llvm.org/docs/LinkTimeOptimization.html#example-of-link-time-optimization">example-of-link-time-optimization</a></p>
@@ -451,9 +451,9 @@ ThinLTO的过程分为3个阶段。</p>
 </ul>
 
 <blockquote>
-  <p><a href="https://chasays.github.io/">github博客</a></p>
+  <p><a href="https://chasays.github.io/">github 博客</a></p>
 
-  <p>微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+  <p>微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
 </blockquote>
 
 
@@ -538,237 +538,237 @@ ThinLTO的过程分为3个阶段。</p>
         
         
         
-                <a data-sort="0269" 
+                <a data-sort="0270" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0196" 
+                <a data-sort="0197" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
                     rel="82">Newsletter</a>
         
-                <a data-sort="0268" 
+                <a data-sort="0269" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0269" 
+                <a data-sort="0270" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
                     rel="9">LLVM</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0271" 
+                <a data-sort="0272" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0271" 
+                <a data-sort="0272" 
                     href="/archive/?tag=cuda"
                     title="cuda"
                     rel="7">cuda</a>
         
-                <a data-sort="0272" 
+                <a data-sort="0273" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0273" 
+                <a data-sort="0274" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0273" 
+                <a data-sort="0274" 
                     href="/archive/?tag=compiler"
                     title="compiler"
                     rel="5">compiler</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=gcc"
                     title="gcc"
                     rel="3">gcc</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=optimization"
                     title="optimization"
                     rel="3">optimization</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=debug"
                     title="debug"
                     rel="2">debug</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

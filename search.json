@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "LLVLM Data hazard",
+      "subtitle" : "",
+      "tags"     : "data hazard",
+      "url"      : "/2023/04/26/LLVM-data-hazard/",
+      "date"     : "2023-04-26 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "86 -  AI 会取代程序员么",
       "subtitle" : "和产品经理撕逼，怕 AI 还是不行吧",
       "tags"     : "Newsletter",
@@ -17,7 +25,7 @@
     } ,
   
     {
-      "title"    : "预处理器指令--C编程",
+      "title"    : "预处理器指令--C 编程",
       "subtitle" : "",
       "tags"     : "preprocessor",
       "url"      : "/2023/04/14/preprocessor-directives-c-programming/",
@@ -81,7 +89,7 @@
     } ,
   
     {
-      "title"    : "如何通过chatgpt，获取高质量的回答",
+      "title"    : "如何通过 chatgpt，获取高质量的回答",
       "subtitle" : "",
       "tags"     : "chatgpt, promt",
       "url"      : "/2023/03/17/chatgpt-promt-words/",

@@ -5,9 +5,119 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 24 Apr 2023 04:31:43 +0000</pubDate>
-    <lastBuildDate>Mon, 24 Apr 2023 04:31:43 +0000</lastBuildDate>
+    <pubDate>Wed, 26 Apr 2023 07:18:27 +0000</pubDate>
+    <lastBuildDate>Wed, 26 Apr 2023 07:18:27 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>LLVLM Data hazard</title>
+        <description>&lt;p&gt;先来一个例子：&lt;/p&gt;
+
+&lt;p&gt;A 给 B 转账，A 负责存款，B 负责取款。比如:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;客户 A 去银行 ATM 机前转账给 B&lt;/li&gt;
+  &lt;li&gt;客户 B 随后也来使用 ATM 机取 A 给他转账&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;比如客户 B 先进行了取款，但他的钱还没有进入账户，此时如果客户 B 进行取款，他会取出的钱比实际余额少（如果取出的钱多了，记得退回去，不然是违法的哦），这就像后续指令读取了旧的数据一样。&lt;/p&gt;
+
+&lt;p&gt;为了解决这个问题，银行会要求客户排队取款，严格控制操作顺序。这相当于编译器重新排序指令以解决 data hazard。&lt;/p&gt;
+
+&lt;p&gt;如果某个客户的取款操作比较复杂，需要一定时间，则会影响后续客户的取款，此时银行可能会要求客户 B 等一会再进行操作，以缓冲时间，这就像插入 nop 指令一样。&lt;/p&gt;
+
+&lt;p&gt;而银行 ATM 机内部的账户余额数据可以看作是“寄存器”值，它会实时更新，那么无论外部操作多快，账户余额这个寄存器的值总是正确的最新值，这样在用户读取时就避免了 data hazard。&lt;/p&gt;
+
+&lt;p&gt;所以这个银行取款的例子来理解 data hazard 和解决方法。客户进行取款操作相当于指令执行，ATM 机与银行账户系统相当于 CPU 与主存，采取的排队、等待和寄存器机制都能很好说明编译器是如何处理 data hazard 的。&lt;/p&gt;
+
+&lt;p&gt;先来看一段指令，下面 2 个指令相当于是同时发出，只是 sub 指令比 and 指令早一个 cycle 发出：&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sub &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$3&lt;/span&gt;
+
+and &lt;span class=&quot;nv&quot;&gt;$12&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230426144446.png&quot; alt=&quot;&quot; /&gt;
+解读：
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sub&lt;/code&gt;指令在读取寄存器 $1 和 $3，并将它们传递给 ALU，然后把结果 $2 保存到 reg 寄存器上。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;and&lt;/code&gt; 指令在第 3 个周期读取 $2 和 $5 寄存器的数据，记得这个里面的的 $2 依赖&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sub&lt;/code&gt;的，在第 3 个周期的时候，$2 还没有更新，就出发了 data hazard，称之为数据风险。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;如果一条指令读取的寄存器在未来的周期中被前一条指令覆盖，就会发生数据危险&lt;/code&gt;。我们必须消除数据隐患，否则流水线会产生不正确的结果。&lt;/p&gt;
+
+&lt;p&gt;在 llvm 编译器里，data hazard 指的是读写同一条指令序列中相邻的指令访问同一存储器位置，并且至少有一个指令是写操作的情况。这会导致后续指令读取的是旧的数据，影响正确性。
+再来一个简单的例子：&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;add r1, r2, r3   &lt;span class=&quot;c&quot;&gt;# r1 = r2 + r3&lt;/span&gt;
+sub r4, r1, r5   &lt;span class=&quot;c&quot;&gt;# r4 = r1 - r5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这里有一个 data hazard，因为 sub 指令要读取 r1 的值，但是 add 指令刚刚更新了 r1，所以 sub 读取到的还是 r1 的旧值，导致计算错误。
+为了解决 data hazard，编译器通常会在指令序列中插入 nop 指令或重新排列指令顺序，让存储器访问时间错开，避免读写冲突。也可以使用域霸道之类的硬件来缓存需要的寄存器值，避免直接从存储器读取。
+所以在 llvm 中，解决 data hazard 的主要方法是:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;重新排序指令&lt;/li&gt;
+  &lt;li&gt;插入 nop 指令&lt;/li&gt;
+  &lt;li&gt;使用寄存器重命名和寄存器缓冲来缓存值，避免频繁访问主存。&lt;/li&gt;
+  &lt;li&gt;硬件来实现暂停&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;消除-data-hazard&quot;&gt;消除 data hazard&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-插入-nop-指令&quot;&gt;1. 插入 nop 指令&lt;/h2&gt;
+
+&lt;p&gt;还是上面的例子，就是把读取 $2寄存器的地址的时候推迟到写之后，就可以了。&lt;/p&gt;
+
+&lt;p&gt;看图片&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230426145020.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最后得到的指令为，nop 简单粗暴的理解为相当于 sleep&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sub &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$3&lt;/span&gt;
+nop
+nop
+nop
+and &lt;span class=&quot;nv&quot;&gt;$12&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这使消除危险的责任落在了编译器编写者身上，而且不涉及额外的硬件。&lt;/p&gt;
+
+&lt;h2 id=&quot;2-硬件来实现&quot;&gt;2. 硬件来实现&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230426150302.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在检测到危险之后，我们停止指令内存，以便在停止问题解决之前不会读取新指令。检测危险条件包括检查每个流水线寄存器中的写寄存器。如果写入寄存器等于 IF/ID 寄存器中的两个读取寄存器中的任何一个，则会发生&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;停顿（stall）&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;3-重新排序指令&quot;&gt;3. 重新排序指令&lt;/h2&gt;
+
+&lt;p&gt;编译器通过重新排序指令 (instruction re-ordering) 来解决 data hazard 的具体实现如下:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;编译器会分析指令序列，检查是否存在读后写 (read after write) 的数据依赖关系，即后续指令要读取的寄存器正被前面的指令更新。如果检测到这样的数据冲突，就需要重新排序。&lt;/li&gt;
+  &lt;li&gt;编译器会计算每个指令的最早执行时间 (earliest execution time) 和最晚执行时间 (latest execution time)。最早时间是考虑数据依赖的最快执行时间，最晚时间是考虑控制依赖和结构限制的最晚时间。只有在两个指令的时间区间有重叠，它们才能交换顺序。&lt;/li&gt;
+  &lt;li&gt;编译器会在时间区间有重叠的指令里选择一个或多个指令进行交换，将它们重新排序到一个不会产生数据冲突的顺序。选择哪些指令交换涉及到一些优化策略。&lt;/li&gt;
+  &lt;li&gt;编译器会通过重复 2 和 3 的步骤，尽量重新排序更多的指令，扩大重排序范围，获得最大的重排序效果。但仍需要确保重排序后程序的语义不变。&lt;/li&gt;
+  &lt;li&gt;有些指令由于控制依赖或者结构限制无法重排序，对它们编译器将选择插入 nop 指令以避免数据冲突。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;所以，编译器通过计算指令时间区间找寻重排序机会，交换能重排序的指令顺序，不断扩大重排序范围，以解决尽可能完整的数据冲突问题。为无法重排序的指令插入空 nop 指令也能起到类似效果。这就是编译器实现 data hazard 重排序的基本思想和方法。&lt;/p&gt;
+
+&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://xie.infoq.cn/article/0b6b5f2d4dd6520a6b12b7511&quot;&gt;详解指令重排序与数据依赖&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.massey.ac.nz/~mjjohnso/notes/59233/lect19.html&quot;&gt;Hazards&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github 博客&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/04/26/LLVM-data-hazard/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/04/26/LLVM-data-hazard/</guid>
+        
+        <category>data hazard</category>
+        
+        
+      </item>
     
       <item>
         <title>86 -  AI 会取代程序员么</title>
@@ -185,17 +295,17 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
       </item>
     
       <item>
-        <title>预处理器指令--C编程</title>
+        <title>预处理器指令--C 编程</title>
         <description>&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;hhttps://developerinsider.co/preprocessor-directives-c-programming/&quot;&gt;详细图解哈夫曼Huffman编码树&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;hhttps://developerinsider.co/preprocessor-directives-c-programming/&quot;&gt;详细图解哈夫曼 Huffman 编码树&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github 博客&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+  &lt;p&gt;微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 </description>
@@ -298,7 +408,7 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
     
       <item>
         <title>哈夫曼编码</title>
-        <description>&lt;p&gt;哈夫曼编码是一种在无损信息的情况下压缩数据的有效方法。在计算机科学中，信息被编码为比特：1和0。位串编码的信息告诉计算机要执行哪些指令。视频游戏、照片、电影等等在计算机中被编码为比特串。计算机每秒执行数十亿条指令，而一个视频游戏可能是数十亿比特的数据。不难看出，为什么高效和不含糊的信息编码是计算机科学中一个令人感兴趣的话题。&lt;/p&gt;
+        <description>&lt;p&gt;哈夫曼编码是一种在无损信息的情况下压缩数据的有效方法。在计算机科学中，信息被编码为比特：1 和 0。位串编码的信息告诉计算机要执行哪些指令。视频游戏、照片、电影等等在计算机中被编码为比特串。计算机每秒执行数十亿条指令，而一个视频游戏可能是数十亿比特的数据。不难看出，为什么高效和不含糊的信息编码是计算机科学中一个令人感兴趣的话题。&lt;/p&gt;
 
 &lt;p&gt;哈夫曼编码通过分析某些符号在信息中出现的频率，提供了一种高效、明确的编码。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;出现频率较高的符号将被编码为较短的比特串，而使用频率不高的符号将被编码为较长的字符串&lt;/code&gt;。然后用这种频率的编码来&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;替换原来的信息，出现频率较高的就会替换为较短的编码，从而节省空间。&lt;/code&gt;&lt;/p&gt;
 
@@ -306,11 +416,11 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406085143.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;上面图中对字符串&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ABCD&lt;/code&gt;构建一个huffman的二叉树，如果要对CBA编码，结果就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;011011&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;上面图中对字符串&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ABCD&lt;/code&gt;构建一个 huffman 的二叉树，如果要对 CBA 编码，结果就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;011011&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;由于符号的频率在不同的信息中是不同的，所以没有一种哈夫曼编码可以适用于所有的信息。这意味着，发送消息X的哈夫曼编码可能与发送消息Y的哈夫曼编码不同。&lt;/p&gt;
+&lt;p&gt;由于符号的频率在不同的信息中是不同的，所以没有一种哈夫曼编码可以适用于所有的信息。这意味着，发送消息 X 的哈夫曼编码可能与发送消息 Y 的哈夫曼编码不同。&lt;/p&gt;
 
-&lt;h2 id=&quot;huffman的原理&quot;&gt;huffman的原理&lt;/h2&gt;
+&lt;h2 id=&quot;huffman-的原理&quot;&gt;huffman 的原理&lt;/h2&gt;
 
 &lt;p&gt;对于哈夫曼编码的原理，我是看了这个教程就了解了，我直接搬运过来，借鉴下大佬的讲解。重点的地方，我自己第一次没有太理解的地方，我加了部分补充来理解。&lt;/p&gt;
 
@@ -330,11 +440,11 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
 &lt;p&gt;下面我们需要将这个队列转换成哈夫曼二叉树，哈夫曼二叉树是一颗带权重的二叉树，权重是由队列中每个字符出现的次数所决定的。并且&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;哈夫曼二叉树始终保证权重越大的字符出现在越高的地方&lt;/code&gt;。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这样就是出现频率越高的字符，编码的路径就越短，这样编码出来的结果就越少。&lt;/code&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;第一步合并&quot;&gt;第一步合并&lt;/h3&gt;
-&lt;p&gt;首先我们从左到右进行合并，依次构建二叉树。第一步取前两个字符u和r来构造初始二叉树，第一个字符作为左节点，第二个元素作为右节点，然后两个元素相加作为新空元素，并且两者权重相加作为新元素的权重。&lt;/p&gt;
+&lt;p&gt;首先我们从左到右进行合并，依次构建二叉树。第一步取前两个字符 u 和 r 来构造初始二叉树，第一个字符作为左节点，第二个元素作为右节点，然后两个元素相加作为新空元素，并且两者权重相加作为新元素的权重。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092634.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;同理，新元素可以和字符i再合并，如下：&lt;/p&gt;
+&lt;p&gt;同理，新元素可以和字符 i 再合并，如下：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092649.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -353,24 +463,24 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092845.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;哈夫曼编码&quot;&gt;哈夫曼编码&lt;/h3&gt;
-&lt;p&gt;有了上面带权重的二叉树之后，我们就可以进行编码了。我们把二叉树分支中左边的支路编码为0，右边分支表示为1，如下图：&lt;/p&gt;
+&lt;p&gt;有了上面带权重的二叉树之后，我们就可以进行编码了。我们把二叉树分支中左边的支路编码为 0，右边分支表示为 1，如下图：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092907.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;这样依次遍历这颗二叉树就可以获取得到所有字符的编码了。例如：‘ ’的编码为10，‘l’的编码为00，‘u’的编码为11100等等。经过这个编码设置之后我们可以发现，出现频率越高的字符越会在上层，这样它的编码越短；出现频率越低的字符越会在下层，编码越短。经过这样的设计，最终整个文本存储空间才会最大化的缩减。
+&lt;p&gt;这样依次遍历这颗二叉树就可以获取得到所有字符的编码了。例如：‘ ’的编码为 10，‘l’的编码为 00，‘u’的编码为 11100 等等。经过这个编码设置之后我们可以发现，出现频率越高的字符越会在上层，这样它的编码越短；出现频率越低的字符越会在下层，编码越短。经过这样的设计，最终整个文本存储空间才会最大化的缩减。
 最终我们可以得到下面这张编码表：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230406092928.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;show-me-the-code&quot;&gt;show me the code&lt;/h2&gt;
 
-&lt;p&gt;huffman的具体实现步骤：
+&lt;p&gt;huffman 的具体实现步骤：
 1）将信源符号的概率按减小的顺序排队。
-2）把两个最小的概率相加，并继续这一步骤，始终将较高的概率分支放在右边，直到最后变成概率１。
-3）画出由概率１处到每个信源符号的路径，顺序记下沿路径的０和１，所得就是该符号的霍夫曼码字。
-4）将每对组合的左边一个指定为0，右边一个指定为1（或相反）。&lt;/p&gt;
+2）把两个最小的概率相加，并继续这一步骤，始终将较高的概率分支放在右边，直到最后变成概率 1。
+3）画出由概率 1 处到每个信源符号的路径，顺序记下沿路径的 0 和 1，所得就是该符号的霍夫曼码字。
+4）将每对组合的左边一个指定为 0，右边一个指定为 1（或相反）。&lt;/p&gt;
 
-&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 这是一个关于Huffman编码的测试用例&lt;/span&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 这是一个关于 Huffman 编码的测试用例&lt;/span&gt;
 &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;iostream&amp;gt;
 #include &amp;lt;queue&amp;gt;
 #include &amp;lt;vector&amp;gt;
@@ -378,7 +488,7 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
 #include &amp;lt;unordered_map&amp;gt;
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// Huffman树节点&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Huffman 树节点&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -398,7 +508,7 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// 构建Huffman树&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 构建 Huffman 树&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;buildHuffmanTree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;priority_queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -417,7 +527,7 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// 递归函数，用于生成Huffman编码&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 递归函数，用于生成 Huffman 编码&lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generateHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -429,7 +539,7 @@ AutoCorrect 用于「自动纠正」或「检查并建议」文案，给 CJK（�
     &lt;span class=&quot;n&quot;&gt;generateHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// 打印Huffman编码&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 打印 Huffman 编码&lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;printHuffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unordered_map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;huffmanCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -472,13 +582,13 @@ d 1101
 &lt;span class=&quot;c1&quot;&gt;// 00100010100111101111011100101101&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;最后的长度就是32位，如果用原始的编码是实现，就是11*8=88位才能存下，空间减少63%，可见这个效果是多么的好。&lt;/p&gt;
+&lt;p&gt;最后的长度就是 32 位，如果用原始的编码是实现，就是 11*8=88 位才能存下，空间减少 63%，可见这个效果是多么的好。&lt;/p&gt;
 
 &lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/FX677588/article/details/70767446&quot;&gt;详细图解哈夫曼Huffman编码树&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/FX677588/article/details/70767446&quot;&gt;详细图解哈夫曼 Huffman 编码树&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/Young_IT/article/details/106730343&quot;&gt;哈夫曼编码详解——图解真能看了秒懂&lt;/a&gt;&lt;/p&gt;
@@ -486,9 +596,9 @@ d 1101
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github 博客&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+  &lt;p&gt;微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 </description>
@@ -616,16 +726,16 @@ d 1101
     
       <item>
         <title>如何调试我们 LLVM 的代码 - 进阶</title>
-        <description>&lt;p&gt;前面简单介绍了如何从一个bc文件里面提炼出一个精简的ll文件，只包含报错的函数。&lt;/p&gt;
+        <description>&lt;p&gt;前面简单介绍了如何从一个 bc 文件里面提炼出一个精简的 ll 文件，只包含报错的函数。&lt;/p&gt;
 
-&lt;p&gt;如果看到的不正确的行为是由于一个优化pass，一个非常方便的LLVM选项是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-opt-bisect-limit&lt;/code&gt;，它采用一个整数表示要运行的最高pass的索引值。所取pass的索引值在不同的运行中是稳定的；通过将其与根据结果程序自动划分搜索空间的软件相结合，可以快速确定错误的通道。当指定了-opt-bisect-limit时，所有的运行都会被显示到标准错误中，同时显示它们的索引和输出，表明是否运行或跳过了该通道。将限制设置为索引-1（例如，RUSTFLAGS=”-C llvm-args=-opt-bisect-limit=-1”）将显示所有的通过和它们相应的索引值。&lt;/p&gt;
+&lt;p&gt;如果看到的不正确的行为是由于一个优化 pass，一个非常方便的 LLVM 选项是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-opt-bisect-limit&lt;/code&gt;，它采用一个整数表示要运行的最高 pass 的索引值。所取 pass 的索引值在不同的运行中是稳定的；通过将其与根据结果程序自动划分搜索空间的软件相结合，可以快速确定错误的通道。当指定了-opt-bisect-limit 时，所有的运行都会被显示到标准错误中，同时显示它们的索引和输出，表明是否运行或跳过了该通道。将限制设置为索引 -1（例如，RUSTFLAGS=”-C llvm-args=-opt-bisect-limit=-1”）将显示所有的通过和它们相应的索引值。&lt;/p&gt;
 
 &lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github 博客&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+  &lt;p&gt;微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 </description>
@@ -781,28 +891,28 @@ Streamlight 在几分钟内就能将数据脚本变成可共享的网络应用�
         <title>如何调试我们 LLVM 的代码 - 入门</title>
         <description>&lt;h2 id=&quot;开篇&quot;&gt;开篇&lt;/h2&gt;
 
-&lt;p&gt;LLVM是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做LLVM都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。&lt;/p&gt;
+&lt;p&gt;LLVM 是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做 LLVM 都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。&lt;/p&gt;
 
-&lt;p&gt;比如在开发一个llvm的pass，或者一个feature，在编译的过程中crash了， 怎么去定位和修复的喃？&lt;/p&gt;
+&lt;p&gt;比如在开发一个 llvm 的 pass，或者一个 feature，在编译的过程中 crash 了，怎么去定位和修复的喃？&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230317094622.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;注意官方编译器禁用了LLVM断言，这意味着LLVM断言失败可能会显示为编译器崩溃（不是ICE-内部编译错误，而是 “真正的”崩溃）和其他各种奇怪的行为。编译llvm的时候最好使能assertion，在cmake的时候记得带上参数即可：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertions=true&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;注意官方编译器禁用了 LLVM 断言，这意味着 LLVM 断言失败可能会显示为编译器崩溃（不是 ICE-内部编译错误，而是 “真正的”崩溃）和其他各种奇怪的行为。编译 llvm 的时候最好使能 assertion，在 cmake 的时候记得带上参数即可：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertions=true&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h2 id=&quot;尽量最小化例子&quot;&gt;尽量最小化例子&lt;/h2&gt;
 
 &lt;p&gt;一般来说，编译器从分析代码中产生大量的信息。因此，一个有用的第一步通常是找到一个最小的例子。做到这一点的一个方法是&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;创建一个重现该问题的新case（例如，将有问题的地方添加为依赖关系，并从这里开始）&lt;/li&gt;
+  &lt;li&gt;创建一个重现该问题的新 case（例如，将有问题的地方添加为依赖关系，并从这里开始）&lt;/li&gt;
   &lt;li&gt;通过&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;移除外部依赖关系&lt;/code&gt;来最小化这个板块；也就是说，将所有相关的东西移到新文件中去&lt;/li&gt;
-  &lt;li&gt;通过缩短代码来进一步减少问题（有一些工具可以帮助实现这一点，比如creduce）。&lt;/li&gt;
+  &lt;li&gt;通过缩短代码来进一步减少问题（有一些工具可以帮助实现这一点，比如 creduce）。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;在实际的工程中，是通过如下步骤，不过工程有一点差异，但是可以参考这个过程：&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;用编译器（gcc/clang,或者其他）编译cpp文件为一个ll文件&lt;/li&gt;
-  &lt;li&gt;通过上面生成的 ll 文件，从中提取报错函数的最小 ll文件&lt;/li&gt;
-  &lt;li&gt;然后带上mtriple，map，mcpu等参数用llc来编译这个 ll 文件为汇编，一般在这个时候就会出问题了。&lt;/li&gt;
+  &lt;li&gt;用编译器（gcc/clang，或者其他）编译 cpp 文件为一个 ll 文件&lt;/li&gt;
+  &lt;li&gt;通过上面生成的 ll 文件，从中提取报错函数的最小 ll 文件&lt;/li&gt;
+  &lt;li&gt;然后带上 mtriple，map，mcpu 等参数用 llc 来编译这个 ll 文件为汇编，一般在这个时候就会出问题了。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# 编译cpp为一个ll文件&lt;/span&gt;
@@ -817,26 +927,26 @@ llc &lt;span class=&quot;nt&quot;&gt;-mtriple&lt;/span&gt;&lt;span class=&quot;o
 
 &lt;h2 id=&quot;获得一个原始的输入文件&quot;&gt;获得一个原始的输入文件&lt;/h2&gt;
 
-&lt;p&gt;大致情况是把一个crash文件，一个bc文件转化为一个ll文件。&lt;/p&gt;
+&lt;p&gt;大致情况是把一个 crash 文件，一个 bc 文件转化为一个 ll 文件。&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;如果在调用LLVM时遇到了来自 LLVM 后台的断言失败或分段故障，不妨尝试将这些 .bc 文件分别传递给 llc 命令，看看是否得到了同样的失败。(LLVM的开发者通常更喜欢被简化为.bc文件的bug，而不是使用工具最小化再来复现)。&lt;/li&gt;
-  &lt;li&gt;为了得到人类可读的LLVM bc文件，人们只需要使用llvm-dis将位码（.bc）文件转换为.ll文件。&lt;/li&gt;
+  &lt;li&gt;如果在调用 LLVM 时遇到了来自 LLVM 后台的断言失败或分段故障，不妨尝试将这些 .bc 文件分别传递给 llc 命令，看看是否得到了同样的失败。(LLVM 的开发者通常更喜欢被简化为.bc 文件的 bug，而不是使用工具最小化再来复现)。&lt;/li&gt;
+  &lt;li&gt;为了得到人类可读的 LLVM bc 文件，人们只需要使用 llvm-dis 将位码（.bc）文件转换为.ll 文件。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;如果只想在LLVM pipeline中获得LLVM的IR，例如查看哪个IR导致优化时间断言失败，或者查看LLVM何时执行特定的优化，可以通过llvm标志位&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-print-after-all&lt;/code&gt;，这样就可以获得更多的报错信息，从而精准找到问题所在。&lt;/p&gt;
+&lt;p&gt;如果只想在 LLVM pipeline 中获得 LLVM 的 IR，例如查看哪个 IR 导致优化时间断言失败，或者查看 LLVM 何时执行特定的优化，可以通过 llvm 标志位&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-print-after-all&lt;/code&gt;，这样就可以获得更多的报错信息，从而精准找到问题所在。&lt;/p&gt;
 
-&lt;p&gt;这将产生大量的输出到标准错误中，所以要把这些输出管到某个文件中。另外，如果既没有使用-filter-print-funcs，也没有使用-C codegen-units=1，那么，由于多个codegen单元并行运行，打印结果会混在一起，会有很多的无效信息，将无法阅读任何东西，或者很难找到问题所在。&lt;/p&gt;
+&lt;p&gt;这将产生大量的输出到标准错误中，所以要把这些输出管到某个文件中。另外，如果既没有使用-filter-print-funcs，也没有使用-C codegen-units=1，那么，由于多个 codegen 单元并行运行，打印结果会混在一起，会有很多的无效信息，将无法阅读任何东西，或者很难找到问题所在。&lt;/p&gt;
 
-&lt;p&gt;如果是单个函数在一个ll文件或者是bc文件里面，这样用这个方法是好处理，但是有多个函数，估计就不好处理了，还可以继续精简么？&lt;/p&gt;
+&lt;p&gt;如果是单个函数在一个 ll 文件或者是 bc 文件里面，这样用这个方法是好处理，但是有多个函数，估计就不好处理了，还可以继续精简么？&lt;/p&gt;
 
-&lt;p&gt;精简到只有这个对应函数和其依赖，这样就好定位处理了，同时也能把这个case加入到日常的看护中。&lt;/p&gt;
+&lt;p&gt;精简到只有这个对应函数和其依赖，这样就好定位处理了，同时也能把这个 case 加入到日常的看护中。&lt;/p&gt;
 
-&lt;p&gt;可以用到2个工具，一个是llvm-extract/llvm-ir-extractor。&lt;/p&gt;
+&lt;p&gt;可以用到 2 个工具，一个是 llvm-extract/llvm-ir-extractor。&lt;/p&gt;
 
 &lt;p&gt;先说说第一个的用法，还是举个例子吧。&lt;/p&gt;
 
-&lt;p&gt;准备一个ir文件，在x86的机器上运行，内容如下：&lt;/p&gt;
+&lt;p&gt;准备一个 ir 文件，在 x86 的机器上运行，内容如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ll&quot;&gt;declare {i32, i1} @llvm.sadd.with.overflow.i32(i32, i32)
 declare {i32, i1} @llvm.uadd.with.overflow.i32(i32, i32)
 
@@ -857,7 +967,7 @@ entry:
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这个ir文件里面，包含了2个函数，分别为test1和test1b，现在需要把test1函数提出来，只需要这个函数。的ll文件。&lt;/p&gt;
+&lt;p&gt;这个 ir 文件里面，包含了 2 个函数，分别为 test1 和 test1b，现在需要把 test1 函数提出来，只需要这个函数。的 ll 文件。&lt;/p&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;llvm-extract &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;-func&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'test_add'&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -881,7 +991,7 @@ entry:
 attributes #0 = { nounwind }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;是不是简单了。今天就先来一个简单的，后面继续学习下一个关于优化pass的调试和定位。&lt;/p&gt;
+&lt;p&gt;是不是简单了。今天就先来一个简单的，后面继续学习下一个关于优化 pass 的调试和定位。&lt;/p&gt;
 
 &lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
 
@@ -891,9 +1001,9 @@ attributes #0 = { nounwind }
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github博客&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github 博客&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;微信公众号：cdtfug， 欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
+  &lt;p&gt;微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 </description>
@@ -906,86 +1016,6 @@ attributes #0 = { nounwind }
         <category>LLVM</category>
         
         <category>debug</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>81 -  GPT4 来了</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;如果有一天你发现自己被一台电脑取代了怎么办？别担心，这不是科幻小说里的情节，而是可能很快就会发生在我们身边的现实。因为 GPT4 已经出现了！&lt;/p&gt;
-
-&lt;p&gt;GPT4  是什么？简单地说，它就是一个能写出任何东西的超级机器人。不管你想要什么样子、什么风格、什么内容、什么语言、什么格式、什么长度、甚至什么字体都可以满足你。&lt;/p&gt;
-
-&lt;p&gt;听起来很神奇吧？但是也很可怕！因为它不光能写出东西，还能写得比我们更好！&lt;/p&gt;
-
-&lt;p&gt;GPT4 的出现，让许多人感到焦虑不安，其中最重要的两个问题是：是否能赚到钱和是否会被取代或失业。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230317085036.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;对于第一个问题，历史规律表明，只有少部分人能够从这种类型的技术中赚到钱。此类人主要是利用信息差贩卖信息的，他们可能会从中获得可观的收入。现在像知识星球和小报童这些已经开始推出各种课程，每天都有很多人报名，并且在短时间内得到了非常好的回报。&lt;/p&gt;
-
-&lt;p&gt;虽然对于我们这些普通人而言，赚钱的机会可能较少，但可以通过学习一些 prompt 和提示词，并将其应用于日常生活中，例如当我作为一个程序员遇到困难时，通常我更倾向于在网上使用 Google 或 Stack   Overflow 查询。这些答案有可能很难找到，但你可以快速地将你的问题描述给 ChatGPT，并很快地找到解决办法，我身边有很多人遇到问题都喜欢通过询问 ChatGPT 来解决，这种方法比自己去找答案更快更省时。&lt;/p&gt;
-
-&lt;p&gt;对于第二个问题，我们可以考虑到一些容易被替代的工作，例如文字编辑和 PPT 的简单制作等没有技术门槛的工作，在 ChatGPT   Plus 的 API 接口上，每个月只需花费 200 块，就能找到一个替代人员，难道你会雇一个人只给他/她 100 块吗？这是不现实的，因此这些替代工作可能会被取代。&lt;/p&gt;
-
-&lt;p&gt;目前已经有些公司开始使用 Midjourney   v5 来生成一些图像，例如制作定制化的图片等，这是一项非常有新意的技术，能够生成非常逼真的图像，甚至超越人类能力，完全看不出是由 AI 生成的。&lt;/p&gt;
-
-&lt;p&gt;但是，这些技术是否会为我们带来收益还存在一定的疑虑，例如生成一首歌曲，但如果这首歌曲并没有广受欢迎或者没有被商用，则可能只是娱乐而已，无法为我们带来实际的价值。因此，我们应该是以结果为导向，将这些技术应用于实际领域中，使之与商业结合起来，这样才能发挥其真正的潜力，而不仅仅停留在娱乐的层面上。&lt;/p&gt;
-
-&lt;p&gt;总的来说，GPT4 的出现无疑为我们带来了很多便利和创造机会，但我们也应该意识到，如何将这些技术应用于实际问题上，创造出更多有价值的产品和服务，才是这项技术发展的关键所在。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;请转发给您朋友，&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://wallstreetcn.com/articles/3684246&quot;&gt;微软深夜放炸弹！GPT-4 Office 全家桶发布，10 亿打工人被革命&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;微软宣布 Microsoft 365 Copilot，将在未来几个月内把 OpenAI 的 GPT-4 带到 Excel、PowerPoint、Outlook、Word 及其他 Office 应用中。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.bloomberg.com/news/articles/2023-03-16/chip-globalization-is-over-and-sanctions-work-says-tsmc-founder&quot;&gt;台积电创始人说：芯片全球化已经结束，制裁起作用了&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://yesaiwen.com/art-of-asking-chatgpt-for-high-quality-answ-engineering-techniques/?utm_source=wechat_session&amp;amp;utm_medium=social&amp;amp;utm_oi=61310502961152&quot;&gt;如何向 ChatGPT 提问并获得高质量的答案&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;非常高兴您阅读我的新书《如何向 ChatGPT 提问并获得高质量的答案——提示技术的完整指南》。&lt;/p&gt;
-
-&lt;p&gt;本书是一本综合性的指南，目的是帮助您理解和利用各种提示技术，以便从 ChatGPT 中获得高质量的答案。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blogs.bing.com/search/march_2023/Confirmed-the-new-Bing-runs-on-OpenAI%E2%80%99s-GPT-4&quot;&gt;证实：新必应在 OpenAI 的 GPT-4 上运行&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;不过需要全程科学上网。&lt;/p&gt;
-
-&lt;p&gt;新的 Bing 是在 GPT-4 上运行的，MS 为搜索进行了定制。如果你在过去五周的任何时候使用过新必应预览版，你已经体验到了这个强大模型的早期版本。随着 OpenAI 对 GPT-4 及以后的更新，Bing 将从这些改进中受益。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://pytorch.org/blog/pytorch-2.0-release/&quot;&gt;pytroch 2.0 发布&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;PyTorch 2.0 提供了相同的急切模式开发和用户体验，同时从根本上改变和提高了 PyTorch 在编译器层面的运行方式，提高了性能并支持动态形状和分布式。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/m8hiQo6smRnHFjPkGfYLNQ&quot;&gt;关于 GPT 答朋友问&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;在另外一边，AI 也好，GPT 也罢，未来算力提升会让智能提升到什么人类无法想象和企及的境界我不清楚，起码在现在，它们没可能超脱于现实世界而独立存在。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 18 Mar 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/03/18/GPT4-release/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/03/18/GPT4-release/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>
