@@ -12,7 +12,7 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="LLVLM Data hazard - 察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器">
+    <meta property="og:title" content="LLVM Data hazard 数据冲突 - 察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器">
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="先来一个例子：
@@ -40,7 +40,7 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
     <meta property="og:url" content="https://blog.chiphub.top/2023/04/26/LLVM-data-hazard/">
     <meta property="og:site_name" content="察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器">
     
-    <title>LLVLM Data hazard - 察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器</title>
+    <title>LLVM Data hazard 数据冲突 - 察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -301,7 +301,7 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
                         <a class="tag" href="/archive/?tag=data+hazard" title="data hazard">data hazard</a>
                         
                     </div>
-                    <h1>LLVLM Data hazard</h1>
+                    <h1>LLVM Data hazard 数据冲突</h1>
                     
                     <h2 class="subheading"></h2>
                     <span class="meta">Posted by 叉叉敌 on April 26, 2023</span>
@@ -359,7 +359,7 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
 <code class="language-plaintext highlighter-rouge">sub</code>指令在读取寄存器 $1 和 $3，并将它们传递给 ALU，然后把结果 $2 保存到 reg 寄存器上。
 <code class="language-plaintext highlighter-rouge">and</code> 指令在第 3 个周期读取 $2 和 $5 寄存器的数据，记得这个里面的的 $2 依赖<code class="language-plaintext highlighter-rouge">sub</code>的，在第 3 个周期的时候，$2 还没有更新，就出发了 data hazard，称之为数据风险。</p>
 
-<p><code class="language-plaintext highlighter-rouge">如果一条指令读取的寄存器在未来的周期中被前一条指令覆盖，就会发生数据危险</code>。我们必须消除数据隐患，否则流水线会产生不正确的结果。</p>
+<p><code class="language-plaintext highlighter-rouge">如果一条指令读取的寄存器在未来的周期中被前一条指令覆盖，就会发生数据冲突</code>。我们必须消除数据隐患，否则流水线会产生不正确的结果。</p>
 
 <p>在 llvm 编译器里，data hazard 指的是读写同一条指令序列中相邻的指令访问同一存储器位置，并且至少有一个指令是写操作的情况。这会导致后续指令读取的是旧的数据，影响正确性。
 再来一个简单的例子：</p>
@@ -404,13 +404,24 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
 
 <h2 id="3-重新排序指令">3. 重新排序指令</h2>
 
-<p>编译器通过重新排序指令 (instruction re-ordering) 来解决 data hazard 的具体实现如下:</p>
+<p>编译器通过重新排序指令 (instruction re-ordering) 来解决 data hazard 的具体实现如下：</p>
+
 <ol>
-  <li>编译器会分析指令序列，检查是否存在读后写 (read after write) 的数据依赖关系，即后续指令要读取的寄存器正被前面的指令更新。如果检测到这样的数据冲突，就需要重新排序。</li>
-  <li>编译器会计算每个指令的最早执行时间 (earliest execution time) 和最晚执行时间 (latest execution time)。最早时间是考虑数据依赖的最快执行时间，最晚时间是考虑控制依赖和结构限制的最晚时间。只有在两个指令的时间区间有重叠，它们才能交换顺序。</li>
-  <li>编译器会在时间区间有重叠的指令里选择一个或多个指令进行交换，将它们重新排序到一个不会产生数据冲突的顺序。选择哪些指令交换涉及到一些优化策略。</li>
-  <li>编译器会通过重复 2 和 3 的步骤，尽量重新排序更多的指令，扩大重排序范围，获得最大的重排序效果。但仍需要确保重排序后程序的语义不变。</li>
-  <li>有些指令由于控制依赖或者结构限制无法重排序，对它们编译器将选择插入 nop 指令以避免数据冲突。</li>
+  <li>
+    <p>编译器会分析指令序列，检查是否存在读后写 (read after write) 的数据依赖关系，即后续指令要读取的寄存器正被前面的指令更新。如果检测到这样的数据冲突，就需要重新排序。</p>
+  </li>
+  <li>
+    <p>编译器会计算每个指令的最早执行时间 (earliest execution time) 和最晚执行时间 (latest execution time)。最早时间是考虑数据依赖的最快执行时间，最晚时间是考虑控制依赖和结构限制的最晚时间。只有在两个指令的时间区间有重叠，它们才能交换顺序。</p>
+  </li>
+  <li>
+    <p>编译器会在时间区间有重叠的指令里选择一个或多个指令进行交换，将它们重新排序到一个不会产生数据冲突的顺序。选择哪些指令交换涉及到一些优化策略。</p>
+  </li>
+  <li>
+    <p>编译器会通过重复 2 和 3 的步骤，尽量重新排序更多的指令，扩大重排序范围，获得最大的重排序效果。但仍需要确保重排序后程序的语义不变。</p>
+  </li>
+  <li>
+    <p>有些指令由于控制依赖或者结构限制无法重排序，对它们编译器将选择插入 nop 指令以避免数据冲突。</p>
+  </li>
 </ol>
 
 <p>所以，编译器通过计算指令时间区间找寻重排序机会，交换能重排序的指令顺序，不断扩大重排序范围，以解决尽可能完整的数据冲突问题。为无法重排序的指令插入空 nop 指令也能起到类似效果。这就是编译器实现 data hazard 重排序的基本思想和方法。</p>
@@ -440,6 +451,13 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
                         </a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2023/04/27/new-ipo/" data-toggle="tooltip" data-placement="top" title="（番外）港股打新，简单粗暴分析，值得买么？">
+                        Next<br>
+                        <span>（番外）港股打新，简单粗暴分析，值得买么？</span>
+                        </a>
+                    </li>
                     
                 </ul>
                 <hr style="visibility: hidden;">
@@ -503,237 +521,237 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
         
         
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0197" 
+                <a data-sort="0198" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
                     rel="82">Newsletter</a>
         
-                <a data-sort="0269" 
+                <a data-sort="0270" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0270" 
+                <a data-sort="0271" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
                     rel="9">LLVM</a>
         
-                <a data-sort="0271" 
+                <a data-sort="0272" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0271" 
+                <a data-sort="0272" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0271" 
+                <a data-sort="0272" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0271" 
+                <a data-sort="0272" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0272" 
+                <a data-sort="0273" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0272" 
+                <a data-sort="0273" 
                     href="/archive/?tag=cuda"
                     title="cuda"
                     rel="7">cuda</a>
         
-                <a data-sort="0273" 
+                <a data-sort="0274" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0274" 
+                <a data-sort="0275" 
                     href="/archive/?tag=compiler"
                     title="compiler"
                     rel="5">compiler</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0275" 
+                <a data-sort="0276" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=gcc"
                     title="gcc"
                     rel="3">gcc</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=llvm"
                     title="llvm"
                     rel="3">llvm</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=optimization"
                     title="optimization"
                     rel="3">optimization</a>
         
-                <a data-sort="0276" 
+                <a data-sort="0277" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=debug"
                     title="debug"
                     rel="2">debug</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0277" 
+                <a data-sort="0278" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>
