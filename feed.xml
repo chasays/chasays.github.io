@@ -5,9 +5,81 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 05 Jun 2023 04:33:31 +0000</pubDate>
-    <lastBuildDate>Mon, 05 Jun 2023 04:33:31 +0000</lastBuildDate>
+    <pubDate>Sat, 10 Jun 2023 06:52:51 +0000</pubDate>
+    <lastBuildDate>Sat, 10 Jun 2023 06:52:51 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>93 -  不要预设</title>
+        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
+
+&lt;p&gt;最近经过大佬的指点，学到了一个写作的技巧。&lt;/p&gt;
+
+&lt;p&gt;我的公众号很少有人回复，就是反馈很少，不知道哪里做的对不对。直到我分享了一篇文章，得到了大佬的指点。&lt;/p&gt;
+
+&lt;p&gt;我把这一点分享给大家。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;如果你没有时间的话，请看这个大纲……&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这里的「如果你没有时间的话」，就是预设。以及你文章里面任何一句话都要说出来它的作用。&lt;/p&gt;
+
+&lt;p&gt;很多人在生活和工作中经常会预设一些不好的结果，这会给自己带来很大的心理压力和负面影响。例如，在写作或学习的时候，常会预设自己没有足够的时间去完成，结果导致自己的效率和质量大打折扣。&lt;/p&gt;
+
+&lt;p&gt;事实上，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这种预设是没有必要的&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;首先，你点击这篇文章，说明你有时间阅读它。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;我不会预设读者没有时间，这会给读者一种负面暗示，影响体验&lt;/code&gt;。其次，预设常来自自卑、不自信和焦虑，但事实上我们的能力和时间往往比预设的更加充足。最后，预设会成为自我实现的预言，使我们误以为它是事实，从而影响我们的思维和行动。&lt;/p&gt;
+
+&lt;p&gt;在生活和工作中，尽量避免预设，特别是那些负面和不好的预设。相反，我们应该以积极和开放的心态面对每一天，相信自己有能力完成需要完成的事情。如果实在担心时间不够，可以事先做好规划，但不要提前就决定“不可能完成”。&lt;/p&gt;
+
+&lt;p&gt;to be honest，不要给自己设限。相信自己的能力，相信时间总是充足的。用积极的心态去面对每一天，你会发现生活和工作都会简单很多。这就是避免预设的力量。&lt;/p&gt;
+
+&lt;p&gt;你觉得写作容易么？&lt;/p&gt;
+
+&lt;p&gt;最近在读一本书「营销笔记」。加入了在生财社群里面，经常小马宋老师的高质量分享，特别好奇什么样的人能如此高产，质量上乘。之前都是看小马宋老师的公众号、小宇宙的播客，没想到这本书也是一个宝藏。&lt;/p&gt;
+
+&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;从这里开始&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
+
+&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/ZiKydBHzXH4zeOlWRhLctg&quot;&gt;10+秒，AIGC 炸出抖音小红书爆款！国产 Fashion Diffusion 颠覆时尚行业&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;前不久，西湖心辰和知衣科技联合研发了一款面向服装设计行业的 AI 大模型——Fashion Diffusion(简称 FD 模型)。FD 模型可以在 10 秒内生成超过上万套的高质量服装设计图。通过深度学习服装行业的数据，FD 模型有望颠覆传统的服装设计流程，为行业带来革命性变革。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;是专注于人工智能服务研发的科技公司，我们与西湖大学等顶级 AI 研究团队合作，共同探索 AIGC 的未来，积极推动 AI 在内容生产、心理咨询等方面的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;商业化、民用化&lt;/code&gt;;推出 AI 绘画、A1 写作、AI 心理咨询等相关产品，希望创造每个人都能享受到 AIGC 带来的智能时代。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在技术上，FD 模型的实现路径是：采衣→识衣→知衣→懂衣→创衣。知衣科技积累了超过 10 亿份服饰数据和 500 个设计标签，对服装行业有深入了解。西湖心辰开发了“识衣”模型，可以过滤低质量图片和优化人像，基于服装美学给图片打分。FD 模型综合知衣科技的行业认知和西湖心辰在自动图文生成的技术，对传统生成模型难以捕捉的服装特征如工艺、材质等进行增强，并对生成人像进行优化，在服装工艺、材质捕捉和人体比例方面具有较强优势。&lt;/p&gt;
+
+&lt;p&gt;FD 模型将推动服装设计行业实现“柔性生产”,提高设计效率，缩短设计周期，让设计师和品牌能快速响应市场需求。借助 FD 模型，设计师和品牌可以在短时间内创作大量设计方案并测试市场反馈，帮助企业优化生产计划和降低库存。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/bpWw1CEFpw3u-OHq108UPQ&quot;&gt;「孩子们对人生一无所知，到底要怎么做呢？」&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;作为第 75 届戛纳电影节影评人周的闭幕影片，韩国电影《下一个素熙》放映完毕后，收获了现场观众长达 7 分钟的掌声——这是一部特殊的电影，它改编自真实事件，片长达到了 137 分钟，且片中没有出现一段背景音乐。&lt;/p&gt;
+
+&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://meldmerge.org/&quot;&gt;Meld 视觉差异和合并工具&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果你经常需要用到 beyond compare，winmerge 对比文本之类的软件，可以试试这个。&lt;/p&gt;
+
+&lt;p&gt;Meld 帮助你比较文件、目录和版本控制项目。它提供文件和目录的双向和三向比较，并支持许多流行的版本控制系统。Meld 帮助你审查代码变化和理解补丁。它甚至可以帮助你弄清楚你一直回避的合并中发生了什么。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/06/10/not-preset/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/06/10/not-preset/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>92 -  想要某个东西？</title>
@@ -955,127 +1027,6 @@ OpenAI 发展到今天做了很多尝试，有些是刻意为之，有些则单�
         <guid isPermaLink="true">https://blog.chiphub.top/2023/04/27/new-ipo/</guid>
         
         <category>港股</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM Data hazard 数据冲突</title>
-        <description>&lt;p&gt;先来一个例子：&lt;/p&gt;
-
-&lt;p&gt;A 给 B 转账，A 负责存款，B 负责取款。比如:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;客户 A 去银行 ATM 机前转账给 B&lt;/li&gt;
-  &lt;li&gt;客户 B 随后也来使用 ATM 机取 A 给他转账&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;比如客户 B 先进行了取款，但他的钱还没有进入账户，此时如果客户 B 进行取款，他会取出的钱比实际余额少（如果取出的钱多了，记得退回去，不然是违法的哦），这就像后续指令读取了旧的数据一样。&lt;/p&gt;
-
-&lt;p&gt;为了解决这个问题，银行会要求客户排队取款，严格控制操作顺序。这相当于编译器重新排序指令以解决 data hazard。&lt;/p&gt;
-
-&lt;p&gt;如果某个客户的取款操作比较复杂，需要一定时间，则会影响后续客户的取款，此时银行可能会要求客户 B 等一会再进行操作，以缓冲时间，这就像插入 nop 指令一样。&lt;/p&gt;
-
-&lt;p&gt;而银行 ATM 机内部的账户余额数据可以看作是“寄存器”值，它会实时更新，那么无论外部操作多快，账户余额这个寄存器的值总是正确的最新值，这样在用户读取时就避免了 data hazard。&lt;/p&gt;
-
-&lt;p&gt;所以这个银行取款的例子来理解 data hazard 和解决方法。客户进行取款操作相当于指令执行，ATM 机与银行账户系统相当于 CPU 与主存，采取的排队、等待和寄存器机制都能很好说明编译器是如何处理 data hazard 的。&lt;/p&gt;
-
-&lt;p&gt;先来看一段指令，下面 2 个指令相当于是同时发出，只是 sub 指令比 and 指令早一个 cycle 发出：&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sub &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$3&lt;/span&gt;
-
-and &lt;span class=&quot;nv&quot;&gt;$12&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230426144446.png&quot; alt=&quot;&quot; /&gt;
-解读：
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sub&lt;/code&gt;指令在读取寄存器 $1 和 $3，并将它们传递给 ALU，然后把结果 $2 保存到 reg 寄存器上。
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;and&lt;/code&gt; 指令在第 3 个周期读取 $2 和 $5 寄存器的数据，记得这个里面的的 $2 依赖&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sub&lt;/code&gt;的，在第 3 个周期的时候，$2 还没有更新，就出发了 data hazard，称之为数据风险。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;如果一条指令读取的寄存器在未来的周期中被前一条指令覆盖，就会发生数据冲突&lt;/code&gt;。我们必须消除数据隐患，否则流水线会产生不正确的结果。&lt;/p&gt;
-
-&lt;p&gt;在 llvm 编译器里，data hazard 指的是读写同一条指令序列中相邻的指令访问同一存储器位置，并且至少有一个指令是写操作的情况。这会导致后续指令读取的是旧的数据，影响正确性。
-再来一个简单的例子：&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;add r1, r2, r3   &lt;span class=&quot;c&quot;&gt;# r1 = r2 + r3&lt;/span&gt;
-sub r4, r1, r5   &lt;span class=&quot;c&quot;&gt;# r4 = r1 - r5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;这里有一个 data hazard，因为 sub 指令要读取 r1 的值，但是 add 指令刚刚更新了 r1，所以 sub 读取到的还是 r1 的旧值，导致计算错误。
-为了解决 data hazard，编译器通常会在指令序列中插入 nop 指令或重新排列指令顺序，让存储器访问时间错开，避免读写冲突。也可以使用域霸道之类的硬件来缓存需要的寄存器值，避免直接从存储器读取。
-所以在 llvm 中，解决 data hazard 的主要方法是:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;重新排序指令&lt;/li&gt;
-  &lt;li&gt;插入 nop 指令&lt;/li&gt;
-  &lt;li&gt;使用寄存器重命名和寄存器缓冲来缓存值，避免频繁访问主存。&lt;/li&gt;
-  &lt;li&gt;硬件来实现暂停&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;消除-data-hazard&quot;&gt;消除 data hazard&lt;/h1&gt;
-
-&lt;h2 id=&quot;1-插入-nop-指令&quot;&gt;1. 插入 nop 指令&lt;/h2&gt;
-
-&lt;p&gt;还是上面的例子，就是把读取 $2寄存器的地址的时候推迟到写之后，就可以了。&lt;/p&gt;
-
-&lt;p&gt;看图片&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230426145020.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;最后得到的指令为，nop 简单粗暴的理解为相当于 sleep&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sub &lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$3&lt;/span&gt;
-nop
-nop
-nop
-and &lt;span class=&quot;nv&quot;&gt;$12&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;,&lt;span class=&quot;nv&quot;&gt;$5&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;这使消除危险的责任落在了编译器编写者身上，而且不涉及额外的硬件。&lt;/p&gt;
-
-&lt;h2 id=&quot;2-硬件来实现&quot;&gt;2. 硬件来实现&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230426150302.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在检测到危险之后，我们停止指令内存，以便在停止问题解决之前不会读取新指令。检测危险条件包括检查每个流水线寄存器中的写寄存器。如果写入寄存器等于 IF/ID 寄存器中的两个读取寄存器中的任何一个，则会发生&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;停顿（stall）&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h2 id=&quot;3-重新排序指令&quot;&gt;3. 重新排序指令&lt;/h2&gt;
-
-&lt;p&gt;编译器通过重新排序指令 (instruction re-ordering) 来解决 data hazard 的具体实现如下：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;编译器会分析指令序列，检查是否存在读后写 (read after write) 的数据依赖关系，即后续指令要读取的寄存器正被前面的指令更新。如果检测到这样的数据冲突，就需要重新排序。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;编译器会计算每个指令的最早执行时间 (earliest execution time) 和最晚执行时间 (latest execution time)。最早时间是考虑数据依赖的最快执行时间，最晚时间是考虑控制依赖和结构限制的最晚时间。只有在两个指令的时间区间有重叠，它们才能交换顺序。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;编译器会在时间区间有重叠的指令里选择一个或多个指令进行交换，将它们重新排序到一个不会产生数据冲突的顺序。选择哪些指令交换涉及到一些优化策略。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;编译器会通过重复 2 和 3 的步骤，尽量重新排序更多的指令，扩大重排序范围，获得最大的重排序效果。但仍需要确保重排序后程序的语义不变。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;有些指令由于控制依赖或者结构限制无法重排序，对它们编译器将选择插入 nop 指令以避免数据冲突。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;所以，编译器通过计算指令时间区间找寻重排序机会，交换能重排序的指令顺序，不断扩大重排序范围，以解决尽可能完整的数据冲突问题。为无法重排序的指令插入空 nop 指令也能起到类似效果。这就是编译器实现 data hazard 重排序的基本思想和方法。&lt;/p&gt;
-
-&lt;h2 id=&quot;更多阅读&quot;&gt;更多阅读&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://xie.infoq.cn/article/0b6b5f2d4dd6520a6b12b7511&quot;&gt;详解指令重排序与数据依赖&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.massey.ac.nz/~mjjohnso/notes/59233/lect19.html&quot;&gt;Hazards&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://chasays.github.io/&quot;&gt;github 博客&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-</description>
-        <pubDate>Wed, 26 Apr 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/04/26/LLVM-data-hazard/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/04/26/LLVM-data-hazard/</guid>
-        
-        <category>data hazard</category>
         
         
       </item>
