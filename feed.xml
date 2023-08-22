@@ -5,9 +5,213 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 16 Jul 2023 13:53:39 +0000</pubDate>
-    <lastBuildDate>Sun, 16 Jul 2023 13:53:39 +0000</lastBuildDate>
+    <pubDate>Tue, 22 Aug 2023 14:13:45 +0000</pubDate>
+    <lastBuildDate>Tue, 22 Aug 2023 14:13:45 +0000</lastBuildDate>
     <generator>Jekyll v3.9.3</generator>
+    
+      <item>
+        <title>如何编译 SHOC（可扩展的异构计算基准套件）</title>
+        <description>&lt;h1 id=&quot;什么是-shoc&quot;&gt;什么是 SHOC&lt;/h1&gt;
+
+&lt;p&gt;可扩展异源计算基准套件（SHOC）是一组基准程序，用于测试系统的性能和稳定性。其最初的重点是其最初的重点是包含图形处理器（GPU）和多核和多核处理器的系统，以及 OpenCL（openclspec）编程标准。&lt;/p&gt;
+
+&lt;p&gt;它既可用于集群，也可用于单个主机。&lt;/p&gt;
+
+&lt;p&gt;OpenCL 是一个开放标准，用于对各种类型的计算设备进行编程。&lt;/p&gt;
+
+&lt;p&gt;设备编程的开放标准。OpenCL 规范描述了一种编程语言。&lt;/p&gt;
+
+&lt;p&gt;内核的编程语言，以及用于在支持 OpenCL 的设备上运行的应用编程接口 (API)，用于将数据传输到此类设备并在其上执行内核。
+内核的应用编程接口（API）。&lt;/p&gt;
+
+&lt;h1 id=&quot;shoc-可以验证什么&quot;&gt;SHOC 可以验证什么？&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142732.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;稳定测试&quot;&gt;稳定测试&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142513.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;spmv&quot;&gt;SpMV&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142534.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;能效&quot;&gt;能效&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142555.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;资源竞争&quot;&gt;资源竞争&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142612.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;gpu-api-比较&quot;&gt;GPU api 比较&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142639.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;如何编译-shoc&quot;&gt;如何编译 SHOC&lt;/h1&gt;
+
+&lt;p&gt;参考文件：https://github.com/vetter/shoc/blob/master/INSTALL.txt&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;拉代码 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git clone https://github.com/vetter/shoc.git&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;进入目录 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd shoc&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;执行 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./configure&lt;/code&gt; 来配置编译选项。这里可以指定一些参数来运行： &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--with-cuda, --with-opencl, --with-mpi&lt;/code&gt; ,也可以用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./configure --help&lt;/code&gt; 查看其他的选项。&lt;/li&gt;
+  &lt;li&gt;编译&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make -j 88&lt;/code&gt; 来执行编译。这里的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-j&lt;/code&gt;参数是指定并行编译的线程数，可以根据自己的机器来设置。&lt;/li&gt;
+  &lt;li&gt;可选， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make install&lt;/code&gt; 来安装 bin 到指定目录。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面是我的执行命令：&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/vetter/shoc.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;shoc
+&lt;span class=&quot;c&quot;&gt;# ./configure CPPFLAGS=&quot;-I/usr/local/cuda/include&quot; CUDA_CPPFLAGS=&quot;-gencode=arch=compute_60,code=sm_60&quot; LIBS=&quot;-lcuda -lcudart&quot; LFLAGS=&quot;-l/usr/local/cuda/lib64&quot; --with-cuda&lt;/span&gt;
+./configure &lt;span class=&quot;nv&quot;&gt;CPPFLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-I/usr/local/cuda/include&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;CUDA_CPPFLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;LIBS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-lcuda -lcudart&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;LFLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-l/usr/local/cuda/lib64&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--with-cuda&lt;/span&gt;
+make &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; 88
+make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;可能遇到的问题：
+https://github.com/vetter/shoc/issues/67
+CUDA10.0（不含）之后的版本会出现的问题：编译失败
+执行 configure 配置时加入&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-lcuda -lcudart&lt;/code&gt; 参数，指定 cuda 库和 cudart 库。&lt;/p&gt;
+
+&lt;p&gt;也可以参考这个教程，shell 已经写好了：
+https://openbenchmarking.org/innhold/db04416737e558c3510d20be04d2574e63e0a548&lt;/p&gt;
+
+&lt;h1 id=&quot;如何执行-shoc&quot;&gt;如何执行 SHOC&lt;/h1&gt;
+
+&lt;p&gt;执行：&lt;/p&gt;
+
+&lt;p&gt;用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perl tools/driver.pl -s 1 -d 0 -cuda&lt;/code&gt; 来执行测试。这里的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-s&lt;/code&gt;参数是指定测试的规模，就是节点数量，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-d&lt;/code&gt;参数是指定测试的设备，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-cuda&lt;/code&gt;参数是指定测试的类型。&lt;/p&gt;
+
+&lt;p&gt;也可以用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./bin/shocdirver -h&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;结果截图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811143648.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;https://blog.csdn.net/babyfacer/article/details/6989093&lt;/li&gt;
+  &lt;li&gt;https://openbenchmarking.org/test/pts/shoc&lt;/li&gt;
+  &lt;li&gt;https://on-demand.gputechconf.com/gtc/2010/posters/I05-The-Scalable-HeterOgeneous-Computing-(SHOC)-Benchmark-Suite.pdf&lt;/li&gt;
+  &lt;li&gt;https://www.jianshu.com/p/9cd6708246c9
+(1) shoc/shoc-manual.tex at master · vetter/shoc · GitHub. https://github.com/vetter/shoc/blob/master/doc/shoc-manual.tex
+(2) Issues · vetter/shoc · GitHub. https://github.com/vetter/shoc/issues
+(3) SHOC: The Scalable HeterOgeneous Computing Benchmark Suite. https://usermanual.wiki/Document/shocmanual.432449542.pdf&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/08/11/how-compiler-shoc/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/08/11/how-compiler-shoc/</guid>
+        
+        <category>SHOC</category>
+        
+        <category>benchmark</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>98 -  云南游记</title>
+        <description>&lt;p&gt;记录下这次的旅游线路和见闻，路线为：成都 - 大理 - 丽江 - 云南 - 成都，时间总共 9 天。&lt;/p&gt;
+
+&lt;p&gt;第一天：大部分时间实在高铁上，终点是大理才村。8 点成都南站出发，达到广通北，转车到大理，花费时间为 8 个小时左右。&lt;/p&gt;
+
+&lt;p&gt;在广通北，中转的时候，这个站点很小，如果有中转的话，建议在多带一点水和实物，站里面没有卖的。&lt;/p&gt;
+
+&lt;p&gt;经过 1 个小时达到大理，然后打车达到洱海才村名宿，60 左右的打车费，找了一家本地的餐馆，吃的是菌菇类的菜，消费不高，8 个人，7 菜一汤，不到 300 元，年轻人不要点太多，晚点去夜市，还有的吃，不然就吃不爽了。&lt;/p&gt;
+
+&lt;p&gt;吃完之后到 50 来开外的洱海，散步，特别凉快。等天黑了之后，就去夜市，夜市小吃也特别的丰富，价格特别的便宜。&lt;/p&gt;
+
+&lt;p&gt;第二天：包车游览这个洱海一圈，重要景点自己挑，我没有老人和小孩，去了 S 湾、廊桥、喜洲、xx 古城；单个车 500 元左右。早上 9 点出发，晚上 8.30 回到起到。&lt;/p&gt;
+
+&lt;p&gt;时间有限，有好多景点都没有来得及看。&lt;/p&gt;
+
+&lt;p&gt;还间歇性下雨，出门备好雨伞和雨衣，我比较喜欢雨衣，吃东西也不耽搁手。&lt;/p&gt;
+
+&lt;p&gt;由于已经逛了一天了，晚上就找了一家民宿门口的餐馆，吃的石锅烤肉，和烤肉差不多，老板是本地人，有时候听不懂我们说话，经常会叫年轻人过来服务我们。&lt;/p&gt;
+
+&lt;p&gt;第三天：出海一圈，然后去古城（大理大学旁边）&lt;/p&gt;
+
+&lt;p&gt;出海就是在湖中看周围的山和村子的全貌，天气好的话，记得多拍照，美得很。&lt;/p&gt;
+
+&lt;p&gt;打车去古城，有电动三轮车，每人 5 元。这个速度快，其他车估计要堵车。&lt;/p&gt;
+
+&lt;p&gt;之前去过的这些地方（除了喜洲人多外），人都很少，但是到了古城就能看到很多的人，又是旅游旺季，特别多的跟团。我们的节奏就是吃，逛，拍照。&lt;/p&gt;
+
+&lt;p&gt;第四天：早上 10 点出发，12 点高铁出发去往，丽江束河古镇，同样是名宿（便宜）&lt;/p&gt;
+
+&lt;p&gt;到了基本上就是下午了，休息下，就开始逛古镇，找了一家川菜馆（有老人，估计中午饭没好好吃），消费 500 元左右，菜味道一般。&lt;/p&gt;
+
+&lt;p&gt;吃了就往下到一个「四方听音」广场，这个地方晚上可以看篝火，也可以跟着跳。但是是不下雨，下雨就没有了。&lt;/p&gt;
+
+&lt;p&gt;我们走到这个地方就开始下雨，就去了一家旁边楼上的歌吧，点了一壶茶，2 小杯果汁，价格有点贵 200 多。&lt;/p&gt;
+
+&lt;p&gt;第五天：打车去丽江古城&lt;/p&gt;
+
+&lt;p&gt;太大了，从南门进入，逛到下面，边走边吃，吃了午饭。古城太大了，要全部逛完，几乎要一个礼拜吧。这个就像看书，只看自己感兴趣的东西，或者有益的东西，不要想小学生那样，一字一字的全部看完。&lt;/p&gt;
+
+&lt;p&gt;午饭吃的乌鸡米线，其他吃的人特别少，只有这个米线，还要排队，应该是经过筛选的，没有啥问题。&lt;/p&gt;
+
+&lt;p&gt;吃了午饭去木府，这个地方有很多领导人都来过。最好请一个导游，看这种没有导游，基本上就是看个热闹，啥也看不懂。&lt;/p&gt;
+
+&lt;p&gt;网上走，就是万古楼，要单独收门票（35 元），上面就去了一个楼，还有 2 个观景台，观景台就在售票窗口旁边，视野开阔，可以看到整个古城。还是整个古城，一面是砖瓦白灰的古城，一面是现代风格的高楼大厦。&lt;/p&gt;
+
+&lt;p&gt;万古楼有望远镜，可以看到很远的东西，比如看到看到一排墙，墙上有一些象形字体。&lt;/p&gt;
+
+&lt;p&gt;下午返回，休息下，大众点评找了一家不错的排骨汤锅。&lt;/p&gt;
+
+&lt;p&gt;第六天：打车去白沙，惬意&lt;/p&gt;
+
+&lt;p&gt;逛古镇，还有一个壁画的博物馆，吃了一家腊排骨汤锅，下午找了一个地方看玉龙雪山。&lt;/p&gt;
+
+&lt;p&gt;晚上在束河古镇吃的云上鱼，这个吃法很新鲜，但是就是煮的太慢了。&lt;/p&gt;
+
+&lt;p&gt;吃了之后，往下走一点，有一个四方听音，今天天气不错，终于在 8.30 开始了篝火晚会，有专门的人组织这个活动。如果之前在古城没有见到人山人海，那在这里是不会辜负你的期望，特别热闹。&lt;/p&gt;
+
+&lt;p&gt;第七天：早上 10 点，出发去云南城区，也是名宿（一个套 4 房，一天 700 左右）&lt;/p&gt;
+
+&lt;p&gt;到了名宿之后，大概是下午 2 点左右，休息会儿，然后出发吃饭。&lt;/p&gt;
+
+&lt;p&gt;我个亲戚在这边工作，晚上宴请了我们，吃当地的一家野菌皇（宝海店），看了下大众点评的，人均 100 左右。&lt;/p&gt;
+
+&lt;p&gt;一大锅菌菇，一只鸡 + 一个团鱼，还有一些当地的特色小吃，就是菌菇的各种烹饪。&lt;/p&gt;
+
+&lt;p&gt;第八天：滇池，聂耳博物馆，花池古街&lt;/p&gt;
+
+&lt;p&gt;滇池从边上看不咋样，水富营养化了，呈绿色。看多了还有点不舒服。下面也没有什么游览的地方，建议还是做缆车上山看看。&lt;/p&gt;
+
+&lt;p&gt;做缆车上西山，上了西山之后，还有一个龙门景区，需要再次买票，人超级多，就没有去龙门景区。&lt;/p&gt;
+
+&lt;p&gt;大中午的，这个时候放眼望去，黑压压的一片，全是人。就看了免费的聂耳博物馆，然后做大巴车下山，山路崎岖，车程估计 20 分钟左右，但是自己感觉做了一个世纪，天昏地暗的。&lt;/p&gt;
+
+&lt;p&gt;下山的时候，要逛古街，司机会在古街停，但是说的是地铁口，我们就不知道，结果往下去了，然后走回来，热得不行。&lt;/p&gt;
+
+&lt;p&gt;古街，这个地方就是吃，看上喜欢的吃吧，价格也不贵。&lt;/p&gt;
+
+&lt;p&gt;第九天：早上 8 点出发，返回成都。&lt;/p&gt;
+
+&lt;p&gt;从 25°的天气，来到了 43°烤炉，在四川土生土长，43°这样的高温，似乎也觉得就这样，毕竟也只是室外温度，也不是天天都在室外。&lt;/p&gt;
+
+&lt;p&gt;我从事的是程序员，可以做一些远程类的工作。云南四季如春。以为云南很适合我，可以远程办公。&lt;/p&gt;
+
+&lt;p&gt;生活了一周之后，发现并不是现象的那样，在回来的高铁上，我的皮肤开始发痒，这个是在成都冬天经常会出现的情况。难受 ~&lt;/p&gt;
+
+&lt;p&gt;如果要去这个地方长期生活，建议先去这个地方待上一段时间，看看是不是你想要的生活。再做长久打算。可以用到生活上的其他事情上面。&lt;/p&gt;
+
+&lt;p&gt;这次云南之行，有小孩，老人，旅途就是也轻松居多，也不用赶路，整体下来就是一个放松的状态。&lt;/p&gt;
+
+&lt;p&gt;但是对于&lt;/p&gt;
+</description>
+        <pubDate>Sat, 15 Jul 2023 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2023/07/15/yunnan-travel-note/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2023/07/15/yunnan-travel-note/</guid>
+        
+        <category>Newsletter</category>
+        
+        
+      </item>
     
       <item>
         <title>97 -  做确定的事情，长期有益</title>
@@ -562,344 +766,6 @@
         <guid isPermaLink="true">https://blog.chiphub.top/2023/05/27/life-with-original-life/</guid>
         
         <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>90 -  找到个人优势</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;人生不是只能追求深度，还可以追求的广度。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我们时常提到要做一个既有广度的人，也要做一个有深度的人，这样的人才在职场才有竞争力。&lt;/p&gt;
-
-&lt;p&gt;我们先来看看什么是 T 型人才。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;什么是 T 型人才？这种人才具有广博的知识面和专业的技能。他们既具有跨领域的广泛知识和视野，也有某一个专业领域的深入精通与技能。&lt;/p&gt;
-  &lt;ol&gt;
-    &lt;li&gt;广博的知识面。在不同领域都有一定的了解和知识，具有跨学科和综合的视野。&lt;/li&gt;
-    &lt;li&gt;深入的专业技能。除了广博的知识面外，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;T 型人才在某一个专业领域有深入的学习和练习，&lt;/code&gt;掌握核心的技能和技巧。&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;T 型人才有广度也有深度，那么他们一般是具有下面的特质。&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;跨界思维。善于跨界思维，可以将不同领域的知识和经验融合在一起，产生新的见解和创意。&lt;/li&gt;
-  &lt;li&gt;学习能力强。具有强烈的学习动机和学习能力，善于主动学习新的知识和技能，不断丰富和更新自己的知识结构。&lt;/li&gt;
-  &lt;li&gt;适应多变环境。可以适应快速变化的环境，善于应对新的任务与角色要求，擅长在不同领域之间转换和调整。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;还有就是可以带来更多的薪酬，反正 T 型人才有很多好处，是不？&lt;/p&gt;
-
-&lt;p&gt;我自己尝试了很多年，要么是自己不够努力，要么自己没有找到自己的优势，借势发挥。反正现在不是一个 T 型人才。&lt;/p&gt;
-
-&lt;h2 id=&quot;找到个人的优势&quot;&gt;找到个人的优势&lt;/h2&gt;
-
-&lt;p&gt;我思考过，大概有 2 个原因，一个是在这个领域没有天赋，如何快速的找到个人的优势，可以试试通过「盖洛普」测评找到个人的优势。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;什么是盖洛普？是评估帮助人们发现自己的优势、特长和天赋，以此帮助人才发展和生涯规划。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我对这种性格测评、星座测评，几乎是完全不相信的，但是用一个空杯的心态来看待，做完题之后，说不定里面有几个就是你自己可以突破的优势。&lt;/p&gt;
-
-&lt;p&gt;付费的几百到几千，花钱的有花钱的道理，大部分是专业的，测评完了还可以通过 TOP5 来分析什么岗位比较适合自己。&lt;/p&gt;
-
-&lt;p&gt;在互联网时代，时间也是一种成本，我找到了 2 个免费的工具。不过还是推荐大家找更专业的人，我认识一个「醒醒 - 盖洛普认证教练」，她这里只要几百块就可以。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;excel 盖洛普测评：&lt;a href=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/%E7%9B%96%E6%B4%9B%E6%99%AE%E4%BC%98%E5%8A%BF%E8%AF%86%E5%88%AB%E5%99%A8%E6%B5%8B%E8%AF%95.zip&quot;&gt;链接&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;小程序测评：#小程序://职业测评/3oGw2ZHZ3bo1D1h&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;比如下面就是我的 TOP5 个人优势：分析、和谐、回顾、行动、审慎。&lt;/p&gt;
-
-&lt;p&gt;这里面我不认可的就是「和谐」，和谐解读擅长从事客户服务、人力资源、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;销售&lt;/code&gt;等工作，这里看到销售的时候，我一千万个不认同，我自己的性格是一个我行我素的，不适合做一个点头哈腰的人。从我的个人认知里面做销售是绝无可能的。&lt;/p&gt;
-
-&lt;p&gt;后来有一段时间，有空就在思考这个问题 - 存在即合理。应该有其他的地方是我没有发现的，后来我心里有个答案比较认可：&lt;/p&gt;
-
-&lt;p&gt;我自认为是一个比较自卑、内向的人，做什么事情，都是优先考虑别人，始终是站在对方的立场考虑问题，比较适合缓解紧张气氛，化解冲突、谈判等。所以这个工作的性质就和销售的特质有点重合了。&lt;/p&gt;
-
-&lt;h2 id=&quot;试着追求广度何尝不可&quot;&gt;试着追求广度，何尝不可？&lt;/h2&gt;
-
-&lt;p&gt;如果在一个领域，已经很努力了，还是没有达到一个专业的深度，那其实可以尝试下追求广度？&lt;/p&gt;
-
-&lt;p&gt;在这个信息爆炸的时代，某一领域的知识和技能更新换代越来越快。如果我们仅仅专注在一个狭窄的领域，紧密跟踪其最新的进展，那我们很容易迷失在繁杂的细节中，失去更广阔视野。&lt;/p&gt;
-
-&lt;p&gt;拥有广博的知识面和跨领域的视野，可以让我们在复杂多变的环境中游刃有余。在解决实际问题时，可以综合运用不同领域的知识与思维模式，产生更加创新而全面的解决方案。这也使我们有更强的学习能力，可以迅速吸收新的知识和技能，不断丰富和提高自己。&lt;/p&gt;
-
-&lt;p&gt;当然，广度不能完全取代深度。我们仍需要在某个专业领域有深入的技能与经验，达到专家级水平。但是如果仅有深度而无广度，我们的视野会变得相对狭窄，思维也会趋于定式化。广度可以给深度以更广阔的背景和更全面的参照系，让专业知识产生更强的适用性。&lt;/p&gt;
-
-&lt;p&gt;如果没有找到自己感兴趣的领域，可以试着追求广度，说不定在这个过程中就找到了自己的深度领域。&lt;/p&gt;
-
-&lt;p&gt;追求广度与深度并不矛盾，理想的状态是融合两者。既要在一个专业领域达到高超的技能，也要开拓视野，涉猎各个领域的知识，拥有跨界的思维能力。广度可以成就深度，深度也可以推动广度。只有广度与深度相结合，才可以成就真正意义上的高阶人才和创新成果。&lt;/p&gt;
-
-&lt;p&gt;不知道你有什么看法，欢迎留言讨论。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，亦或是有什么好的建议都可以回复我，我看会第一时间回复，谢谢您～&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;p&gt;– &lt;a href=&quot;https://blog.google/technology/developers/google-colab-ai-coding-features/&quot;&gt;谷歌 Colab 集成了 AI coding&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230519095237.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;谷歌 Colab 很快将使用谷歌最先进的代码模型系列 Codey 推出人工智能编码功能。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/AUTOMATIC1111/stable-diffusion-webui&quot;&gt;SD webui&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;基于 GRadio 库智能图片生成器，用的浏览器界面，更易于使用。同时百度飞浆也有一个应用：AI Studio Project Page
-https://aistudio.baidu.com/aistudio/projectdetail/6157023&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://zhaopin.comiru.cn/us&quot;&gt;comiru 远程招聘&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;成立于 2015 年 1 月，位于日本东京。是一所服务于教育领域的 IT 信息技术公司。
-秉承着“让「教学」更加畅所欲为”的信念，为教育界开发了不计其数的高质量・高水准系统软件。
-短短的时间内，公司成长为一家国际氛围浓郁的多元化企业。并朝着上市的目标，队伍不断增大。有无限的成长空间。当中有无数来自中国的优秀工程师以及设计师等。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.learnprompt.pro/&quot;&gt;提示工程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;人工智能正在迅速改变各个行业，包括新闻业、医疗保健和教育，如果你还没有在工作场所或课堂上遇到人工智能，那么你极有可能很快就会遇到。尽管人工智能有巨大的效用，但它仍然需要人类的指导才能有效运作。从本质上讲，人工智能就像高智商的孩子–它们可以做很多事情，但它们需要明确的提示（Prompt）才能很好地完成。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/05/20/personal-advantage/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/05/20/personal-advantage/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>课程设计</title>
-        <description>&lt;p&gt;#&lt;/p&gt;
-
-&lt;p&gt;超级智能时代到来 
-每个人都要 学会的 AI 工具&lt;/p&gt;
-
-&lt;p&gt;模块化教学 小白即学即用&lt;/p&gt;
-
-&lt;h2 id=&quot;课程价值&quot;&gt;课程价值&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;零基础能学，并能轻松上手 0
-这门课主要从零开始，来讲普及人工智能的 知识，并且通过具体实操的方式，让大家快 速了解掌握人工智能技术&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;从理论到实操，覆盖多场景 
-无论你是普通人或者上班族，还是创业者老 板，不论你从事什么行业，该课程都将为提 供极高价值的知识和技能&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;匹配 AI 智能工具产品集锦&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;智能时代的技术是颠覆性的，和发电机、蒸 汽机、计算机一样，所有行业都将被重新塑 造，没有谁能够逃脱&lt;/p&gt;
-
-&lt;h2 id=&quot;课程形式&quot;&gt;课程形式&lt;/h2&gt;
-
-&lt;p&gt;30 节录播视频课，购买支持永久回看高质量资料和工具，一站式学习提供社群答疑，导师在线答疑&lt;/p&gt;
-
-&lt;h2 id=&quot;适合人群&quot;&gt;适合人群&lt;/h2&gt;
-&lt;p&gt;家长学技能
-小孩学外语
-学生学知识
-老师写课件
-运营提效率
-开发写代码
-电商卖产品
-设计找灵感
-网红拍视频
-达人做直播
-个人干副业
-公司搞创业&lt;/p&gt;
-
-&lt;p&gt;电商销售商品
-博主制作影片 &lt;br /&gt;
-设计师获取创意 
-小孩学习第二语言
-家长学习实用技巧 
-老师制作教学素材
-运营优化工作流程 
-公司开展创业项目
-开发人员编写程序 
-达人进行实时视频 
-个人从事兼职工作
-学生获取常识和技能&lt;/p&gt;
-&lt;h2 id=&quot;课程大纲&quot;&gt;课程大纲&lt;/h2&gt;
-
-&lt;p&gt;第 1 节：什么是人工智能，带来什么改变 
-第 2 节：人工智能有哪些常见的应用领域 
-第 3 节：人工智能的应用形式有哪些 
-第 4 节：什么是 ChatGPT
-第 5 节:ChatGPT 有哪些用法&lt;/p&gt;
-
-&lt;p&gt;第 6 节：ChatGPT 和其他 Al 的区别 
-第 7 节：与 AI 机脑沟通应该怎么讲话
-第 8 节：普通人英语不好怎么办？
-第 9 节：插件工具不会用怎么办
-第 10 节：如何快速注册使用 AI 工具&lt;/p&gt;
-
-&lt;p&gt;第 11 节：如何使用 Al 接口开发平台级产品
-第 12 节：不用再熬夜了，让 AI 帮你写方案
-第 13 节：知识付费门槛降低，AI 帮你做课件
-第 14 节：让 AI 帮你修改完善研究论文
-第 15 节：和机器人进行只能对话学外语&lt;/p&gt;
-
-&lt;p&gt;第 16 节：程序员的福利，AI 帮你轻松写代码
-第 17 节：轻松做短视频和直播，AI 写脚本
-第 18 节：不会营销没关系，A 是你的顾问团
-第 19 节：不花钱也能学习生活兴趣的技能
-第 20 节：如何做自媒体，让 AI 帮你写文章
-第 21 节：没有团队，也能轻松做好电商平台
-第 22 节：有哪些赚钱和创业的机会
-第 23 节：如何深度开发 ChatGPT
-第 24 节：如何用 AI 工具做文档
-第 25 节：如何用 AI 工具做 PPT&lt;/p&gt;
-
-&lt;p&gt;第 26 节：如何用 AI 工具做图片
-第 27 节：如何用 AI 工具信息检索
-第 28 节：经常联网失效怎么办？
-第 29 节：账号注册常见的问题
-第 30 节：内容下载常见的问题
-–&lt;/p&gt;
-
-&lt;h2 id=&quot;生财有术&quot;&gt;生财有术&lt;/h2&gt;
-&lt;p&gt;课程设计思路：
-权益清单
-权益1/2/3、&lt;/p&gt;
-
-&lt;p&gt;部分项目目录
-社群团购、资料整理、技能服务、流量变现、中介服务。。。。&lt;/p&gt;
-
-&lt;p&gt;这里不是什么
-不是保姆级的教程
-不是没经过实操的故事
-不是赚钱的大道理
-希望可以帮到你
-看到更多你也能做的生意模式，发现赚钱的生意就在我们身边
-看山不是山：“原来，这钱是这么赚的！”
-看见「树木」背后的「森林」：“原来，赚钱的底层是相通的！”
-2023，一起“小赚一笔”，生财有术&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;ai-破局俱乐部&quot;&gt;AI 破局俱乐部&lt;/h2&gt;
-
-&lt;h3 id=&quot;加入星球核心权益&quot;&gt;加入星球核心权益&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;搞钱机会
-最新风向：为大家分享最新的行业趋势
-副业变现：分享 ChatGPT 等 AI 保姆级副业变现教程&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;案例：。。。。&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;项目实战
-基础操作
-实践训练&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;ChatGPT 基础使用方法分享
-星球定期组织实践训练活动&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;链接高手
-最新风向：13000+高质量圈友，自由交流探讨实现
-AI 包业
- 牛人分享：每月至少一次专题分享，AI 创业、项目
-前景、投融资等答疑，无限次回看&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-&lt;h2 id=&quot;玩赚-chot6pt&quot;&gt;玩赚 chot6PT&lt;/h2&gt;
-
-&lt;p&gt;常见问题
-什么是 chatGPT
-如果在国内环境下使用 chatGPT
-如何注册原版 chatGPT
-星球权益
-带你用 chatGPT 赚点小钱
-教会你如何正确的使用 chatGPT
-参与 chatGPT 社群共创
-丰富的 chatGPT 赚钱实战案例
-chatGPT 行业的一手前沿资讯&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;体系：一套完整的工作手册
-通用：常见问题，适用于各种行业
-简单：零基础学习、小白可以理解
-数据：12 种常见问题实操&lt;/p&gt;
-
-&lt;p&gt;超级智能时代到来，每个人都要学会的 AI 工具&lt;/p&gt;
-
-&lt;p&gt;课程名称：AI 最强大工具箱，让生活和工作更简单
-课程目标：21 节课详细实用图文课程，，轻松掌握各行各业必备的 AI 工具，提高办公和生活效率。
-课程形式：21 节课程 + 社群答疑 + 在线答疑
-适合人群：各行各业学习和使用 AI 工具的普通用户&lt;/p&gt;
-
-&lt;p&gt;课程大纲：
-PART 1：人工智能概述（共 3 节）
-1.1 什么是人工智能及其带来的改变
-1.2 人工智能的常见应用领域 
-1.3 人工智能的应用形式&lt;/p&gt;
-
-&lt;p&gt;PART 2：ChatGPT 详解
-2.1 ChatGPT 是什么 
-2.2 ChatGPT 的用法 
-2.3 ChatGPT 与其他 AI 的区别&lt;/p&gt;
-
-&lt;p&gt;PART 3：与 AI 交流技巧
-3.1 与 AI 机器人沟通的技巧 
-3.2 普通人学会 AI 工具 
-3.3 如何快速注册和使用 AI 工具&lt;/p&gt;
-
-&lt;p&gt;PART 4：AI 工具实操
-4.1 如何使用 AI 接口开发产品 
-4.2 如何让 AI 帮你写方案、课件和论文，以及提供灵感
-4.3 和机器人练习外语会话
-4.4 程序员使用 AI 工具开发代码
-4.5 网红和主播使用 AI 工具做内容 
-4.6 电商平台使用 AI 工具 
-4.7 利用 AI 工具学习生活技能和赚钱创业
-4.8 如何深度开发 ChatGPT
-4.9 如何用 AI 工具制作文档、PPT、图片和信息检索
-4.10 如何用 AI 辅导孩子作业
-4.11 如何用 AI 提供娱乐，如聊天、讲笑话、写故事和推荐书单、电影
-4.12 遇到的常见问题及解决方案&lt;/p&gt;
-
-&lt;p&gt;显示免费送资料大礼包，英语交流群&lt;/p&gt;
-
-&lt;p&gt;如何使用 AI 接口开发产品 
-如何让 AI 帮你写方案、课件和论文，以及提供灵感
-和机器人练习外语会话
-程序员使用 AI 工具开发代码
-网红和主播使用 AI 工具做内容 
-电商平台使用 AI 工具 
-利用 AI 工具学习生活技能和赚钱创业
-如何深度开发 ChatGPT
-如何用 AI 工具制作文档、PPT、图片和信息检索
-如何用 AI 辅导孩子作业
-如何用 AI 提供娱乐，如聊天、讲笑话、写故事和推荐书单、电影
-遇到的常见问题及解决方案&lt;/p&gt;
-</description>
-        <pubDate>Sat, 13 May 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/05/13/course-design/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/05/13/course-design/</guid>
         
         
       </item>

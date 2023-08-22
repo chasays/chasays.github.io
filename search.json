@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "如何编译 SHOC（可扩展的异构计算基准套件）",
+      "subtitle" : "",
+      "tags"     : "SHOC, benchmark",
+      "url"      : "/2023/08/11/how-compiler-shoc/",
+      "date"     : "2023-08-11 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "98 -  云南游记",
+      "subtitle" : "",
+      "tags"     : "Newsletter",
+      "url"      : "/2023/07/15/yunnan-travel-note/",
+      "date"     : "2023-07-15 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "97 -  做确定的事情，长期有益",
       "subtitle" : "",
       "tags"     : "Newsletter",
