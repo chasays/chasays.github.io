@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "LLVM 学习记录 1 如何添加一个 builtin 函数",
+      "subtitle" : "",
+      "tags"     : "llvm, 编译器",
+      "url"      : "/2024/05/21/llvm-learning-01/",
+      "date"     : "2024-05-21 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "如何编译 SHOC（可扩展的异构计算基准套件）",
       "subtitle" : "",
       "tags"     : "SHOC, benchmark",

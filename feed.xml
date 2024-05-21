@@ -5,9 +5,117 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 22 Aug 2023 14:13:45 +0000</pubDate>
-    <lastBuildDate>Tue, 22 Aug 2023 14:13:45 +0000</lastBuildDate>
-    <generator>Jekyll v3.9.3</generator>
+    <pubDate>Tue, 21 May 2024 09:29:20 +0000</pubDate>
+    <lastBuildDate>Tue, 21 May 2024 09:29:20 +0000</lastBuildDate>
+    <generator>Jekyll v3.9.5</generator>
+    
+      <item>
+        <title>LLVM 学习记录 1 如何添加一个 builtin 函数</title>
+        <description>&lt;h1 id=&quot;今天学习如何在后端添加一个builtin-和对应的指令mapping起来&quot;&gt;今天学习如何在后端添加一个builtin 和对应的指令mapping起来？&lt;/h1&gt;
+
+&lt;h2 id=&quot;什么情况下会添加这个函数&quot;&gt;什么情况下会添加这个函数？&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://llvm.org/docs/ExtendingLLVM.html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在使用 LLVM 的过程中，您可能希望为您的研究项目或实验定制它。此时，您可能会意识到需要向 LLVM 添加一些内容，无论是新的基本类型、新的内部函数还是全新的指令。&lt;/p&gt;
+
+&lt;p&gt;一般情况时有新的target添加，或者是支持新的target，那么才需要，不然似乎需要。&lt;/p&gt;
+
+&lt;p&gt;因为这个需要花费大量的时间，请在社区咨询和是不是已经支持，或者已经有人在做了。&lt;/p&gt;
+
+&lt;h2 id=&quot;开始添加&quot;&gt;开始添加&lt;/h2&gt;
+
+&lt;p&gt;向 LLVM 添加新的内部函数比添加新指令要容易得多。几乎所有 LLVM 扩展都应该作为内在函数开始，然后在必要时转换为指令。&lt;/p&gt;
+
+&lt;p&gt;首先，要知道 tablegen 的语法。&lt;/p&gt;
+
+&lt;p&gt;关于tablegen, 可以看下这篇文章，太多了，死机是记不住的， 怎么办？多在实际项目中应用，记不住的再来查字典。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;https://blog.llvm.org/posts/2023-12-07-tools-for-learning-llvm-tablegen/
+https://llvm.org/docs/TableGen/
+https://llvm.org/docs/TableGen/ProgRef.html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;1-llvmincludellvmirintrinsicstd&quot;&gt;1. llvm/include/llvm/IR/Intrinsics*.td:&lt;/h3&gt;
+
+&lt;p&gt;之类用amdgpu来举例：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/IntrinsicsAMDGPU.td&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def int_amdgcn_rcp_legacy : ClangBuiltin&amp;lt;&quot;__builtin_amdgcn_rcp_legacy&quot;&amp;gt;,
+  DefaultAttrsIntrinsic&amp;lt;[llvm_float_ty], [llvm_float_ty],
+  [IntrNoMem, IntrSpeculatable]
+&amp;gt;;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;def是定义一个record： def的语法
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Def       ::=  &quot;def&quot; [NameValue] RecordBody
+NameValue ::=  Value (parsed in a special mode)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这里的intrinsic def 用法这么定义的（这个定义我没有找到，为什么这么约束的？我猜应该是在Intrinsic.td里面）&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def &amp;lt;name&amp;gt; &amp;lt;args&amp;gt; &amp;lt;ret&amp;gt; [&amp;lt;attrs&amp;gt;] {
+  // Definition body
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;name&gt;：正在定义的实体的名称，例如内部函数、指令或数据类型。
+&lt;/name&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;args&gt;：实体的参数列表，通常由其数据类型表示。
+&lt;/args&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ret&gt;：实体的返回类型（如果适用）。
+&lt;/ret&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;attrs&gt;：实体的可选属性列表，提供附加信息。
+{}：包含定义主体，其中包含有关实体的特定详细信息。
+这里的`ClangBuiltin&amp;lt;&quot;__builtin_amdgcn_rcp_legacy&quot;&amp;gt;`就是 NameValue， RecordBody就是后面的`DefaultAttrsIntrinsic&amp;lt;&amp;gt;`.
+
+&lt;/attrs&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个Clangbuiltin和DefaultAttrsIntrinsic都定义在 ： https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/Intrinsics.td&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Intrinsic with default attributes (disable_default_attributes = false).
+class DefaultAttrsIntrinsic&amp;lt;list&amp;lt;LLVMType&amp;gt; ret_types,
+                list&amp;lt;LLVMType&amp;gt; param_types = [],
+                list&amp;lt;IntrinsicProperty&amp;gt; intr_properties = [],
+                string name = &quot;&quot;,
+                list&amp;lt;SDNodeProperty&amp;gt; sd_properties = []&amp;gt;
+                : Intrinsic&amp;lt;ret_types, param_types,
+                            intr_properties, name,
+                            sd_properties, /*disable_default_attributes*/ 0&amp;gt; {}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IntrNoMem 这些就是属性，也是定义在Intrinsics.td里面的，有解释，比如这个就是： IntrNoMem - The intrinsic does not access memory or have any other side effects.  It may be CSE’d deleted if dead, etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Tue, 21 May 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/05/21/llvm-learning-01/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/21/llvm-learning-01/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        
+      </item>
     
       <item>
         <title>如何编译 SHOC（可扩展的异构计算基准套件）</title>
@@ -691,79 +799,6 @@ https://openbenchmarking.org/innhold/db04416737e558c3510d20be04d2574e63e0a548&lt
         <pubDate>Sat, 27 May 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/05/27/side-%E4%B9%90%E5%B1%B1%E6%B8%B8%E8%AE%B0/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/05/27/side-%E4%B9%90%E5%B1%B1%E6%B8%B8%E8%AE%B0/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>91 -  努力过好一个平凡人</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;h1 id=&quot;有人夸你你会怎么做&quot;&gt;有人夸你，你会怎么做？&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;不好意思，谦虚的回答： “哪里有，没有，没有……”&lt;/li&gt;
-  &lt;li&gt;不知道怎么回答&lt;/li&gt;
-  &lt;li&gt;平静的回答，“是么？谢谢嗷”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;我最近被人夸奖了，原话是这样：“你刚刚才毕业把？好年轻”，“你才 20 几岁吧？”……&lt;/p&gt;
-
-&lt;p&gt;我是一个比较内向的人，一般有人夸奖我，我都会脸红，会以为对方是出于真诚的表达。后来仔细一想，会不会就是别人的夸人的技巧，「操纵别人的手段」。&lt;/p&gt;
-
-&lt;p&gt;如果还有人这么说的话，我现在的回答是「是么？谢谢嗷，xxxx」&lt;/p&gt;
-
-&lt;p&gt;你有被夸奖过的经历么？&lt;/p&gt;
-
-&lt;h1 id=&quot;努力过好一个平凡人&quot;&gt;努力过好一个平凡人&lt;/h1&gt;
-
-&lt;p&gt;这个是听「无聊斋」里面听到的一个感悟的点。&lt;/p&gt;
-
-&lt;p&gt;平凡并不代表平庸，它只是表示普通人的生活状态。作为平凡人，也可以过得十分充实和快乐。&lt;/p&gt;
-
-&lt;p&gt;首先要接受自己的平凡，不必强求非凡或与名人相比。平凡人也可以有属于自己的理想和追求。不必羡慕别人的人生，要学会在自己的生活中找到属于自己的价值和意义。&lt;/p&gt;
-
-&lt;p&gt;平凡生活由许许多多小事组成，要学会在这些小事中找到乐趣。比如和朋友的交谈，阅读的兴趣，家人的陪伴，这些看似微不足道的小事，才是构成生活的基石。要学会欣赏生活中的美好，珍惜每一天，感激生活赐予的所有。这份感恩的心态，会让平凡生活充满意义。&lt;/p&gt;
-
-&lt;p&gt;生活不需要非凡的事迹或壮举，更需要的只是对生活本身的热情与喜爱。要懂得欣赏生命中的每一个阶段。生活的意义不在载誉或名利，而在我们如何过好每一天。&lt;/p&gt;
-
-&lt;p&gt;拥有一颗感恩的心，珍惜生命中的每一刻，这是充实平凡生活最好的方法。不需凭借非凡来证明自己，要学会在平凡中发现生活的意义，这也是实现人生价值的最高境界。生活的真谛，在于我们如何度过每一天，而非追名逐利或声名显赫。&lt;/p&gt;
-
-&lt;p&gt;平凡人也可以活得很快乐和有意义。&lt;/p&gt;
-
-&lt;h1 id=&quot;写作的目的是什么&quot;&gt;写作的目的是什么&lt;/h1&gt;
-
-&lt;p&gt;我之前的认知是，传递一个读者可能不知道的信息，或者是大部分读者不知道的信息。除了传递信息外，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;还有是共鸣&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;传递信息是写作的基础，但不应该是终极目的&lt;/code&gt;。如果一个作品仅仅传递信息，读者收获的不会深刻，也难以产生共鸣。好的作品应以生动细腻的笔触和智慧的观点，来呈现和解读信息，激发读者的思考。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;产生共鸣是作家最理想的目的&lt;/code&gt;。一篇作品如果能唤起读者的感动、思考，进而改变看法和行动，那就是巨大的成功。共鸣能让信息和观点在读者心中生根发芽，产生深远影响。&lt;/p&gt;
-
-&lt;p&gt;最终作家希望通过产生共鸣来影响和改变读者，甚至社会。一位伟大的作家，其作品之所以历久弥新，就是因为其所传达的思想和真知灼见具有改变世界的力量。他们的作品能在广大读者的心中激起涟漪，进而汇集成潮流，改变一代人的精神面貌和社会状况。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;从这里开始&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://a16z.com/2023/05/25/ai-canon/&quot;&gt;ai-canon&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;人工智能的研究正在以指数级的速度增长。人工智能专家很难跟上所有新发布的内容，初学者更难知道从哪里开始。因此，在这篇文章中，分享了一份精心策划的资源清单，这些资源是我们了解现代人工智能所依赖的。称之为“AI canon”，因为这些论文、博客文章、课程和指南在过去几年中对该领域产生了巨大影响。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.rask.ai/&quot;&gt;本地化视频&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;比如人工智能配音工具，你现在可以轻松地将你的员工培训视频本地化，并接触到世界各地的新受众，使你能够更好地教育和吸引你的员工，无论他们身在何处。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 27 May 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/05/27/life-with-original-life/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/05/27/life-with-original-life/</guid>
         
         <category>Newsletter</category>
         
