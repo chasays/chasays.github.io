@@ -5,13 +5,13 @@
     <description>人生就是干</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 May 2024 09:29:20 +0000</pubDate>
-    <lastBuildDate>Tue, 21 May 2024 09:29:20 +0000</lastBuildDate>
+    <pubDate>Wed, 22 May 2024 09:37:09 +0000</pubDate>
+    <lastBuildDate>Wed, 22 May 2024 09:37:09 +0000</lastBuildDate>
     <generator>Jekyll v3.9.5</generator>
     
       <item>
         <title>LLVM 学习记录 1 如何添加一个 builtin 函数</title>
-        <description>&lt;h1 id=&quot;今天学习如何在后端添加一个builtin-和对应的指令mapping起来&quot;&gt;今天学习如何在后端添加一个builtin 和对应的指令mapping起来？&lt;/h1&gt;
+        <description>&lt;h1 id=&quot;今天学习如何在后端添加一个-builtin-和对应的指令-mapping-起来&quot;&gt;今天学习如何在后端添加一个 builtin 和对应的指令 mapping 起来？&lt;/h1&gt;
 
 &lt;h2 id=&quot;什么情况下会添加这个函数&quot;&gt;什么情况下会添加这个函数？&lt;/h2&gt;
 
@@ -21,7 +21,7 @@
 
 &lt;p&gt;在使用 LLVM 的过程中，您可能希望为您的研究项目或实验定制它。此时，您可能会意识到需要向 LLVM 添加一些内容，无论是新的基本类型、新的内部函数还是全新的指令。&lt;/p&gt;
 
-&lt;p&gt;一般情况时有新的target添加，或者是支持新的target，那么才需要，不然似乎需要。&lt;/p&gt;
+&lt;p&gt;一般情况时有新的 target 添加，或者是支持新的 target，那么才需要，不然似乎需要。&lt;/p&gt;
 
 &lt;p&gt;因为这个需要花费大量的时间，请在社区咨询和是不是已经支持，或者已经有人在做了。&lt;/p&gt;
 
@@ -31,16 +31,20 @@
 
 &lt;p&gt;首先，要知道 tablegen 的语法。&lt;/p&gt;
 
-&lt;p&gt;关于tablegen, 可以看下这篇文章，太多了，死机是记不住的， 怎么办？多在实际项目中应用，记不住的再来查字典。&lt;/p&gt;
+&lt;p&gt;关于 tablegen, 可以看下这篇文章，太多了，死机是记不住的，怎么办？多在实际项目中应用，记不住的再来查字典。&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;https://blog.llvm.org/posts/2023-12-07-tools-for-learning-llvm-tablegen/
 https://llvm.org/docs/TableGen/
 https://llvm.org/docs/TableGen/ProgRef.html&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;1-llvmincludellvmirintrinsicstd&quot;&gt;1. llvm/include/llvm/IR/Intrinsics*.td:&lt;/h3&gt;
+&lt;h3 id=&quot;1-添加一个-intrinsic-的定义&quot;&gt;1. 添加一个 intrinsic 的定义&lt;/h3&gt;
 
-&lt;p&gt;之类用amdgpu来举例：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;llvm/include/llvm/IR/Intrinsics*.td:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;之类用 amdgpu 来举例：&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/IntrinsicsAMDGPU.td&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -52,14 +56,14 @@ https://llvm.org/docs/TableGen/ProgRef.html&lt;/p&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;ul&gt;
-  &lt;li&gt;def是定义一个record： def的语法
+  &lt;li&gt;def 是定义一个 record：def 的语法
     &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Def       ::=  &quot;def&quot; [NameValue] RecordBody
 NameValue ::=  Value (parsed in a special mode)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;这里的intrinsic def 用法这么定义的（这个定义我没有找到，为什么这么约束的？我猜应该是在Intrinsic.td里面）&lt;/p&gt;
+&lt;p&gt;这里的 intrinsic def 用法这么定义的（这个定义我没有找到，为什么这么约束的？我猜应该是在 Intrinsic.td 里面）&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def &amp;lt;name&amp;gt; &amp;lt;args&amp;gt; &amp;lt;ret&amp;gt; [&amp;lt;attrs&amp;gt;] {
   // Definition body
@@ -82,12 +86,12 @@ NameValue ::=  Value (parsed in a special mode)
   &lt;li&gt;
     &lt;attrs&gt;：实体的可选属性列表，提供附加信息。
 {}：包含定义主体，其中包含有关实体的特定详细信息。
-这里的`ClangBuiltin&amp;lt;&quot;__builtin_amdgcn_rcp_legacy&quot;&amp;gt;`就是 NameValue， RecordBody就是后面的`DefaultAttrsIntrinsic&amp;lt;&amp;gt;`.
+这里的`ClangBuiltin&amp;lt;&quot;__builtin_amdgcn_rcp_legacy&quot;&amp;gt;`就是 NameValue，RecordBody 就是后面的`DefaultAttrsIntrinsic&amp;lt;&amp;gt;`.
 
 &lt;/attrs&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;这个Clangbuiltin和DefaultAttrsIntrinsic都定义在 ： https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/Intrinsics.td&lt;/p&gt;
+&lt;p&gt;这个 Clangbuiltin 和 DefaultAttrsIntrinsic 都定义在：https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/Intrinsics.td&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Intrinsic with default attributes (disable_default_attributes = false).
 class DefaultAttrsIntrinsic&amp;lt;list&amp;lt;LLVMType&amp;gt; ret_types,
@@ -102,8 +106,76 @@ class DefaultAttrsIntrinsic&amp;lt;list&amp;lt;LLVMType&amp;gt; ret_types,
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;IntrNoMem 这些就是属性，也是定义在Intrinsics.td里面的，有解释，比如这个就是： IntrNoMem - The intrinsic does not access memory or have any other side effects.  It may be CSE’d deleted if dead, etc.&lt;/li&gt;
+  &lt;li&gt;IntrNoMem 这些就是属性，也是定义在 Intrinsics.td 里面的，有解释，比如这个就是：IntrNoMem - The intrinsic does not access memory or have any other side effects.  It may be CSE’d deleted if dead, etc.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&quot;2-添加一个入口方便高级语言调用&quot;&gt;2. 添加一个入口，方便高级语言调用&lt;/h3&gt;
+
+&lt;p&gt;定义好了，还需要可以在高级语言里面可以调用。那么就需要在这里实现。&lt;/p&gt;
+
+&lt;p&gt;就是在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGBuiltin.cpp&lt;/code&gt; 文件是 LLVM 项目的一部分，主要负责生成 LLVM IR 代码以实现内置函数的编译，包括初始化内存、生成内置库函数调用以及处理特定于目标架构的内置函数，如 RISC-V 的加密指令。&lt;/p&gt;
+
+&lt;p&gt;这个文件里面主要关注 2 个函数：文件包含了初始化内存的函数 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initializeAlloca&lt;/code&gt;，该函数根据不同的初始化策略（如未初始化、全零初始化或模式初始化）来初始化 alloca 分配的内存。还有就是对齐方式，这个主要取决于硬件。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getBuiltinLibFunction&lt;/code&gt; 函数负责将高级语言中的内置函数映射到 LLVM IR 的内置函数，这对于生成有效的目标代码至关重要。&lt;/p&gt;
+
+&lt;p&gt;举个例子：比如高级语言是__builtin_fabs，对应的 IR 可能就是 llvm.fabs。&lt;/p&gt;
+
+&lt;p&gt;可以看到很多&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;枚举值&lt;/code&gt;。比如：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case RISCV::BI__builtin_riscv_ntl_store:&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这个枚举值是通过 TargetBuiltins.h 里面通过 namespace 里面的 include 来的。&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SVE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;LastNEONBuiltin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NEON&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstTSBuiltin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#define BUILTIN(ID, TYPE, ATTRS) BI##ID,
+#define TARGET_BUILTIN(ID, TYPE, ATTRS, FEATURE) BI##ID,
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&quot;clang/Basic/BuiltinsSVE.def&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;FirstTSBuiltin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;来到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang/Basic/Builtins*.def&lt;/code&gt;这个文件里面，就可以看到具体的定义 BUILTIN 定义了。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;BUILTIN(__builtin_amdgcn_dispatch_ptr, &quot;v*4&quot;, &quot;nc&quot;)
+BUILTIN(__builtin_amdgcn_kernarg_segment_ptr, &quot;v*4&quot;, &quot;nc&quot;)
+BUILTIN(__builtin_amdgcn_implicitarg_ptr, &quot;v*4&quot;, &quot;nc&quot;)
+BUILTIN(__builtin_amdgcn_queue_ptr, &quot;v*4&quot;, &quot;nc&quot;)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;估计你和我一样，第一眼看到的饿时候，what？这些神秘的 v，n，c 是什么意思？没关系，看文件的顶部，有一个文件，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;builtins.def&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//https://github.com/llvm/llvm-project/blob/main/clang/include/clang/Basic/Builtins.def
+
+// (result value, then each argument) as follows:
+//  v -&amp;gt; void
+//  b -&amp;gt; boolean
+//  c -&amp;gt; char
+//  s -&amp;gt; short
+//  i -&amp;gt; int
+//  h -&amp;gt; half (__fp16, OpenCL)
+//  x -&amp;gt; half (_Float16)
+//  y -&amp;gt; half (__bf16)
+//  f -&amp;gt; float
+//  d -&amp;gt; double
+//  z -&amp;gt; size_t
+//  w -&amp;gt; wchar_t
+//  F -&amp;gt; constant CFString
+//  G -&amp;gt; id
+//  H -&amp;gt; SEL
+//  M -&amp;gt; struct objc_super
+//  a -&amp;gt; __builtin_va_list
+//  A -&amp;gt; &quot;reference&quot; to __builtin_va_list
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;看了就知道是什么意思了吧，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v 就是 void，没有返回值&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;所以最后这个枚举值需要定义在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;llvm/IR/Intrinsics*.td&lt;/code&gt; 这个里面，就是第一步我们定义的。&lt;/p&gt;
+
+&lt;p&gt;并在 llvm/IR/Intrinsics.gen 文件中通过 TableGen 工具生成对应的 LLVM IR 表示。这个枚举值与 Builtin.def 文件中的定义相关联，Builtin.def 文件包含了所有支持的内置函数的名称和 ID。&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 21 May 2024 00:00:00 +0000</pubDate>
