@@ -7,12 +7,12 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="人生就是干">
-    <meta name="keywords"  content="叉叉敌|开发|音视频|自动化|互联网|编译器">
+    <meta name="description" content="察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享">
+    <meta name="keywords"  content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="LLVM 学习记录 1 如何添加一个 builtin 函数 - 察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器">
+    <meta property="og:title" content="LLVM 学习记录：如何添加一个 builtin 函数 - 察说花园 | Newsletter | 互联网 | TensorFlow | 车载 | 安卓 | 音视频 | 小程序 | 编译器">
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="今天学习如何在后端添加一个 builtin 和对应的指令 mapping 起来？
@@ -31,10 +31,10 @@
     
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2024/05/21/llvm-learning-01/">
-    <meta property="og:site_name" content="察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器">
+    <meta property="og:url" content="https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics/">
+    <meta property="og:site_name" content="察说花园 | Newsletter | 互联网 | TensorFlow | 车载 | 安卓 | 音视频 | 小程序 | 编译器">
     
-    <title>LLVM 学习记录 1 如何添加一个 builtin 函数 - 察说花园|叉叉敌|chasays |newsletter|互联网|TensorFlow|车载|安卓|音视频|存储|小程序|编译器</title>
+    <title>LLVM 学习记录：如何添加一个 builtin 函数 - 察说花园 | Newsletter | 互联网 | TensorFlow | 车载 | 安卓 | 音视频 | 小程序 | 编译器</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -43,7 +43,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2024/05/21/llvm-learning-01/">
+    <link rel="canonical" href="https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -270,7 +270,7 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/https://source.unsplash.com/random/1800x400/?tech" width="0" height="0"> -->
+<!-- <img src="/https://source.unsplash.com/random/1600x400/?tech" width="0" height="0"> -->
 
 <!-- Post Header -->
 
@@ -279,7 +279,7 @@
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('https://source.unsplash.com/random/1800x400/?tech');
+        background-image: url('https://source.unsplash.com/random/1600x400/?tech');
         background: ;
     }
 
@@ -301,7 +301,7 @@
                         <a class="tag" href="/archive/?tag=%E7%BC%96%E8%AF%91%E5%99%A8" title="编译器">编译器</a>
                         
                     </div>
-                    <h1>LLVM 学习记录 1 如何添加一个 builtin 函数</h1>
+                    <h1>LLVM 学习记录：如何添加一个 builtin 函数</h1>
                     
                     <h2 class="subheading"></h2>
                     <span class="meta">Posted by 叉叉敌 on May 21, 2024</span>
@@ -332,7 +332,21 @@
 
 				<h1 id="今天学习如何在后端添加一个-builtin-和对应的指令-mapping-起来">今天学习如何在后端添加一个 builtin 和对应的指令 mapping 起来？</h1>
 
-<h2 id="什么情况下会添加这个函数">什么情况下会添加这个函数？</h2>
+<p>整个过程预览：</p>
+
+<ol>
+  <li>
+    <p>源代码调用：在高级语言的源代码中使用特定于 AMDGPU 的内置函数，例如就这么写 __builtin_amdgcn_sin(x)。</p>
+  </li>
+  <li>
+    <p>LLVM IR 生成：Clang 编译器在编译过程中将这些内置函数调用转换为 LLVM IR 中的内置函数，例如 %0 = call float @llvm.amdgcn.sin.f32(float %x)。</p>
+  </li>
+  <li>
+    <p>机器代码生成：LLVM 的后端（例如 AMDGPU 后端）读取 LLVM IR，并根据 IntrinsicsAMDGPU.td 文件中的定义，将这些内置函数映射到具体的机器指令，就是 amd 的 isa 指令。</p>
+  </li>
+</ol>
+
+<h2 id="1--什么情况下会添加这个函数">1.  什么情况下会添加这个函数？</h2>
 
 <blockquote>
   <p>https://llvm.org/docs/ExtendingLLVM.html</p>
@@ -344,7 +358,7 @@
 
 <p>因为这个需要花费大量的时间，请在社区咨询和是不是已经支持，或者已经有人在做了。</p>
 
-<h2 id="开始添加">开始添加</h2>
+<h2 id="2-开始添加">2. 开始添加</h2>
 
 <p>向 LLVM 添加新的内部函数比添加新指令要容易得多。几乎所有 LLVM 扩展都应该作为内在函数开始，然后在必要时转换为指令。</p>
 
@@ -352,87 +366,33 @@
 
 <p>关于 tablegen, 可以看下这篇文章，太多了，死机是记不住的，怎么办？多在实际项目中应用，记不住的再来查字典。</p>
 <blockquote>
-  <p>https://blog.llvm.org/posts/2023-12-07-tools-for-learning-llvm-tablegen/
-https://llvm.org/docs/TableGen/
-https://llvm.org/docs/TableGen/ProgRef.html</p>
+  <p>https://blog.llvm.org/posts/2023-12-07-tools-for-learning-llvm-tablegen/</p>
+
+  <p>https://llvm.org/docs/TableGen/</p>
+
+  <p>https://llvm.org/docs/TableGen/ProgRef.html</p>
 </blockquote>
 
-<h3 id="1-添加一个-intrinsic-的定义">1. 添加一个 intrinsic 的定义</h3>
+<h3 id="1--添加定义-builtin-和-intrinsic为了高级语言可以调用">1.  添加定义 builtin 和 intrinsic，为了高级语言可以调用</h3>
 
-<ol>
-  <li>llvm/include/llvm/IR/Intrinsics*.td:</li>
-</ol>
+<p>首先需要了解点，基础的知识。</p>
 
-<p>之类用 amdgpu 来举例：</p>
-<blockquote>
-  <p>https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/IntrinsicsAMDGPU.td</p>
-</blockquote>
+<h4 id="builtin-和-intrinsic-有什么区别">builtin 和 intrinsic 有什么区别？</h4>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def int_amdgcn_rcp_legacy : ClangBuiltin&lt;"__builtin_amdgcn_rcp_legacy"&gt;,
-  DefaultAttrsIntrinsic&lt;[llvm_float_ty], [llvm_float_ty],
-  [IntrNoMem, IntrSpeculatable]
-&gt;;
+<p>一开始也不懂，只是啥呀？看名字感觉都是内置函数，确实都是内置函数。</p>
 
-</code></pre></div></div>
-<ul>
-  <li>def 是定义一个 record：def 的语法
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Def       ::=  "def" [NameValue] RecordBody
-NameValue ::=  Value (parsed in a special mode)
-</code></pre></div>    </div>
-  </li>
-</ul>
+<p>我理解的有点区别，就是 builtin 是高级语言级别的，而 intrinsic 是 IR 级别的。</p>
 
-<p>这里的 intrinsic def 用法这么定义的（这个定义我没有找到，为什么这么约束的？我猜应该是在 Intrinsic.td 里面）</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def &lt;name&gt; &lt;args&gt; &lt;ret&gt; [&lt;attrs&gt;] {
-  // Definition body
-}
-</code></pre></div></div>
+<p>在 llvm 里面他们的命名大概是这样子的。</p>
 
 <ul>
-  <li>
-    <name>：正在定义的实体的名称，例如内部函数、指令或数据类型。
-</name>
-  </li>
-  <li>
-    <args>：实体的参数列表，通常由其数据类型表示。
-</args>
-  </li>
-  <li>
-    <ret>：实体的返回类型（如果适用）。
-</ret>
-  </li>
-  <li>
-    <attrs>：实体的可选属性列表，提供附加信息。
-{}：包含定义主体，其中包含有关实体的特定详细信息。
-这里的`ClangBuiltin&lt;"__builtin_amdgcn_rcp_legacy"&gt;`就是 NameValue，RecordBody 就是后面的`DefaultAttrsIntrinsic&lt;&gt;`.
-
-</attrs>
-  </li>
-</ul>
-<p>这个 Clangbuiltin 和 DefaultAttrsIntrinsic 都定义在：https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/Intrinsics.td</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Intrinsic with default attributes (disable_default_attributes = false).
-class DefaultAttrsIntrinsic&lt;list&lt;LLVMType&gt; ret_types,
-                list&lt;LLVMType&gt; param_types = [],
-                list&lt;IntrinsicProperty&gt; intr_properties = [],
-                string name = "",
-                list&lt;SDNodeProperty&gt; sd_properties = []&gt;
-                : Intrinsic&lt;ret_types, param_types,
-                            intr_properties, name,
-                            sd_properties, /*disable_default_attributes*/ 0&gt; {}
-
-</code></pre></div></div>
-
-<ul>
-  <li>IntrNoMem 这些就是属性，也是定义在 Intrinsics.td 里面的，有解释，比如这个就是：IntrNoMem - The intrinsic does not access memory or have any other side effects.  It may be CSE’d deleted if dead, etc.</li>
+  <li>builtin：__builtin_memcpy()、__builtin_popcount()</li>
+  <li>intrinsic: llvm.memcpy(), llvm.ctpop()</li>
 </ul>
 
-<h3 id="2-添加一个入口方便高级语言调用">2. 添加一个入口，方便高级语言调用</h3>
+<h4 id="cgbuiltincpp-这个文件干嘛的">CGBuiltin.cpp 这个文件干嘛的？</h4>
 
-<p>定义好了，还需要可以在高级语言里面可以调用。那么就需要在这里实现。</p>
-
-<p>就是在<code class="language-plaintext highlighter-rouge">CGBuiltin.cpp</code> 文件是 LLVM 项目的一部分，主要负责生成 LLVM IR 代码以实现内置函数的编译，包括初始化内存、生成内置库函数调用以及处理特定于目标架构的内置函数，如 RISC-V 的加密指令。</p>
+<p><code class="language-plaintext highlighter-rouge">CGBuiltin.cpp</code> 文件是 LLVM 项目的一部分，主要负责生成 LLVM IR 代码以实现内置函数的编译，包括初始化内存、生成内置库函数调用以及处理特定于目标架构的内置函数。</p>
 
 <p>这个文件里面主要关注 2 个函数：文件包含了初始化内存的函数 <code class="language-plaintext highlighter-rouge">initializeAlloca</code>，该函数根据不同的初始化策略（如未初始化、全零初始化或模式初始化）来初始化 alloca 分配的内存。还有就是对齐方式，这个主要取决于硬件。</p>
 
@@ -444,19 +404,31 @@ class DefaultAttrsIntrinsic&lt;list&lt;LLVMType&gt; ret_types,
 
 <p>这个枚举值是通过 TargetBuiltins.h 里面通过 namespace 里面的 include 来的。</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">namespace</span> <span class="n">SVE</span> <span class="p">{</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// AMDGPU builtins</span>
+  <span class="k">namespace</span> <span class="n">AMDGPU</span> <span class="p">{</span>
   <span class="k">enum</span> <span class="p">{</span>
-    <span class="n">LastNEONBuiltin</span> <span class="o">=</span> <span class="n">NEON</span><span class="o">::</span><span class="n">FirstTSBuiltin</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
-<span class="cp">#define BUILTIN(ID, TYPE, ATTRS) BI##ID,
-#define TARGET_BUILTIN(ID, TYPE, ATTRS, FEATURE) BI##ID,
-#include</span> <span class="cpf">"clang/Basic/BuiltinsSVE.def"</span><span class="cp">
-</span>    <span class="n">FirstTSBuiltin</span><span class="p">,</span>
+    <span class="n">LastTIBuiltin</span> <span class="o">=</span> <span class="n">clang</span><span class="o">::</span><span class="n">Builtin</span><span class="o">::</span><span class="n">FirstTSBuiltin</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="cp">#define BUILTIN(ID, TYPE, ATTRS) BI##ID,
+</span>  <span class="cp">#include</span> <span class="cpf">"clang/Basic/BuiltinsAMDGPU.def"</span><span class="cp">
+</span>    <span class="n">LastTSBuiltin</span>
   <span class="p">};</span>
-  <span class="p">}</span>
-
+<span class="p">}</span>
 </code></pre></div></div>
 
-<p>来到<code class="language-plaintext highlighter-rouge">clang/Basic/Builtins*.def</code>这个文件里面，就可以看到具体的定义 BUILTIN 定义了。</p>
+<h4 id="builtinsdef-是干嘛的">Builtins*.def 是干嘛的</h4>
+
+<p>来到<code class="language-plaintext highlighter-rouge">clang/Basic/BuiltinsAMDGPU.def</code>这个文件里面，就可以看到具体的定义 BUILTIN 定义了。</p>
+
+<p>有必要对这个代码解释下，我看了之后，一头雾水。LastTIBuiltin 和 FirstTSBuiltin 是什么？</p>
+
+<ul>
+  <li>第一个是 namespace 这个好理解；</li>
+  <li>enum 枚举值；匿名枚举值；</li>
+  <li>LastTIBuiltin = clang::Builtin::FirstTSBuiltin - 1,：我看了大概是 AMDGPU 内置函数的 ID 值比 clang 内置函数的 ID 值小 1。
+LastTIBuiltin：这个枚举成员表示 LLVM/Clang 中最后一个 Target-Independent (TI) 内置函数的编号。Target-Independent 内置函数是不依赖于特定硬件架构的内置函数。LastTIBuiltin 的值是 clang::Builtin::FirstTSBuiltin - 1，其中 FirstTSBuiltin 表示第一个 Target-Specific (TS) 内置函数的编号。这样设置是为了确保 AMDGPU 的内置函数枚举值在数值上紧跟在 TI 内置函数之后。</li>
+  <li>#define BUILTIN(ID, TYPE, ATTRS) BI##ID, 定义了宏，包含 3 个参数；展开后，应该类似 BI1，BI2……</li>
+  <li></li>
+</ul>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BUILTIN(__builtin_amdgcn_dispatch_ptr, "v*4", "nc")
 BUILTIN(__builtin_amdgcn_kernarg_segment_ptr, "v*4", "nc")
@@ -465,7 +437,7 @@ BUILTIN(__builtin_amdgcn_queue_ptr, "v*4", "nc")
 
 </code></pre></div></div>
 
-<p>估计你和我一样，第一眼看到的饿时候，what？这些神秘的 v，n，c 是什么意思？没关系，看文件的顶部，有一个文件，<code class="language-plaintext highlighter-rouge">builtins.def</code></p>
+<p>估计你和我一样，第一眼看到的饿时候，what？这些神秘的 v，n，c 是什么意思？没关系，看文件的顶部，有一个文件，<code class="language-plaintext highlighter-rouge">builtins.def</code>，跟过去，看一下里面的内容，下面是部分内容。</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//https://github.com/llvm/llvm-project/blob/main/clang/include/clang/Basic/Builtins.def
 
@@ -489,12 +461,211 @@ BUILTIN(__builtin_amdgcn_queue_ptr, "v*4", "nc")
 //  a -&gt; __builtin_va_list
 //  A -&gt; "reference" to __builtin_va_list
 
+……
+
+// Types may be prefixed with the following modifiers:
+//  L   -&gt; long (e.g. Li for 'long int', Ld for 'long double')
+//  LL  -&gt; long long (e.g. LLi for 'long long int', LLd for __float128)
+//  LLL -&gt; __int128_t (e.g. LLLi)
+//  Z   -&gt; int32_t (require a native 32-bit integer type on the target)
+//  W   -&gt; int64_t (require a native 64-bit integer type on the target)
+//  N   -&gt; 'int' size if target is LP64, 'L' otherwise.
+//  O   -&gt; long for OpenCL targets, long long otherwise.
+//  S   -&gt; signed
+//  U   -&gt; unsigned
+//  I   -&gt; Required to constant fold to an integer constant expression.
+//
 </code></pre></div></div>
-<p>看了就知道是什么意思了吧，<code class="language-plaintext highlighter-rouge">v 就是 void，没有返回值</code>。</p>
 
-<p>所以最后这个枚举值需要定义在<code class="language-plaintext highlighter-rouge">llvm/IR/Intrinsics*.td</code> 这个里面，就是第一步我们定义的。</p>
+<p>看了就知道是什么意思了吧，<code class="language-plaintext highlighter-rouge">v 就是 void，没有返回值</code>。如果是<code class="language-plaintext highlighter-rouge">Si</code> signed integer 就是有符号整型。</p>
 
-<p>并在 llvm/IR/Intrinsics.gen 文件中通过 TableGen 工具生成对应的 LLVM IR 表示。这个枚举值与 Builtin.def 文件中的定义相关联，Builtin.def 文件包含了所有支持的内置函数的名称和 ID。</p>
+<h4 id="intrinsicstd-是干嘛的">Intrinsics*.td 是干嘛的</h4>
+
+<p>最后这个枚举值需要定义在<code class="language-plaintext highlighter-rouge">llvm/IR/Intrinsics*.td</code> 这个里面，就是第一步我们定义的。</p>
+
+<p>llvm/include/llvm/IR/Intrinsics*.td:</p>
+
+<p>用 amdgpu 来举例：</p>
+<blockquote>
+  <p>https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/IntrinsicsAMDGPU.td</p>
+</blockquote>
+
+<p>下面是我为了举例自己构造的，用法不一定正确。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def int_amdgcn_rcp_legacy : ClangBuiltin&lt;"__builtin_amdgcn_rcp_legacy"&gt;,
+  DefaultAttrsIntrinsic&lt;[llvm_float_ty], [llvm_i32_ty],
+  [IntrNoMem, IntrSpeculatable]
+&gt;;
+
+</code></pre></div></div>
+
+<ul>
+  <li>IntrNoMem 这些就是属性，也是定义在 Intrinsics.td 里面的，有解释，比如这个的定义意思就是：IntrNoMem - The intrinsic does not access memory or have any other side effects.  It may be CSE’d deleted if dead, etc.</li>
+  <li>llvm_i32<em>ty 是定义的一个数据类型属性，llvm</em> 是命名空间的一部分，用于避免与其他库或框架中的类型名冲突。i32 表示 32 位整数，_ty 表示这是一个类型（type）的定义。</li>
+</ul>
+
+<p>其他就去这个上面的链接上看。</p>
+
+<p>顺便提一下这个 def 是啥和用法。</p>
+<ul>
+  <li>def 是定义一个 record：def 的语法
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Def       ::=  "def" [NameValue] RecordBody
+NameValue ::=  Value (parsed in a special mode)
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>这里的 intrinsic def 用法这么定义的（这个定义我没有找到，为什么这么约束的？我猜应该是在 Intrinsic.td 里面）</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def &lt;name&gt; &lt;args&gt; &lt;ret&gt; [&lt;attrs&gt;] {
+  // Definition body
+}
+</code></pre></div></div>
+
+<ul>
+  <li>name&gt;：正在定义的实体的名称，例如内部函数、指令或数据类型。</li>
+  <li>args&gt;：实体的参数列表，通常由其数据类型表示。</li>
+  <li>ret&gt;：实体的返回类型（如果适用）。</li>
+  <li>attrs&gt;：实体的可选属性列表，提供附加信息。
+{}：包含定义主体，其中包含有关实体的特定详细信息。</li>
+</ul>
+
+<p>这里的<code class="language-plaintext highlighter-rouge">ClangBuiltin&lt;"__builtin_amdgcn_rcp_legacy"&gt;</code>就是 NameValue，就是可以在高级语言直接调用的。
+RecordBody 就是后面的<code class="language-plaintext highlighter-rouge">DefaultAttrsIntrinsic&lt;&gt;</code>.</p>
+
+<p>这个 Clangbuiltin 和 DefaultAttrsIntrinsic 都定义在：https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/Intrinsics.td</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Intrinsic with default attributes (disable_default_attributes = false).
+class DefaultAttrsIntrinsic&lt;list&lt;LLVMType&gt; ret_types,
+                list&lt;LLVMType&gt; param_types = [],
+                list&lt;IntrinsicProperty&gt; intr_properties = [],
+                string name = "",
+                list&lt;SDNodeProperty&gt; sd_properties = []&gt;
+                : Intrinsic&lt;ret_types, param_types,
+                            intr_properties, name,
+                            sd_properties, /*disable_default_attributes*/ 0&gt; {}
+
+</code></pre></div></div>
+
+<p>定义好了，高级语言可以条用的接口，那么接下来就是，后端的实现了。</p>
+
+<h3 id="2-把-intrinsic-和指令关联起来">2. 把 intrinsic 和指令关联起来</h3>
+
+<p>需要到 llvm 的前端把 builtin 函数转化为 intrinsic，这个是前端实现的，我不太熟悉，我用 AI 搜索下了，回答如下：</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">
+1.</span> 语法分析
+
+首先，LLVM 的前端分析器（如 Clang）会对源代码进行语法分析，将源代码转换为抽象语法树（AST）。AST 包含了代码的结构和语义信息，包括函数声明、函数调用、表达式等。
+
+在 AST 中，intrinsic 函数会被表示为特殊的节点，其中包含了函数名、参数类型和返回值类型等信息。
+<span class="p">
+2.</span> 语义分析
+
+接下来，LLVM 会进行语义分析，检查代码的语义是否正确。在这个阶段，LLVM 会检查 intrinsic 函数的调用是否合法，例如参数类型是否匹配、函数是否被定义等。
+
+如果语义分析成功，LLVM 会将 AST 转换为 IR。
+<span class="p">
+3.</span> IR 生成
+
+在 IR 生成阶段，LLVM 会为每个 intrinsic 函数生成对应的 IR 函数。IR 函数由一系列 LLVM IR 指令组成，这些指令描述了函数的具体操作
+
+</code></pre></div></div>
+
+<p>然后是 intrinsic 和指令的映射。</p>
+
+<p>这类文件 llvm/lib/Target/AMDGPU/*Instructions.td 就是定义具体的指令的，</p>
+
+<p>在这个文件里面 https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/AMDGPU/DSInstructions.td 可以看到关于 ds_consume 的多个定义。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">def</span> <span class="n">DS_CONSUME</span>       <span class="o">:</span> <span class="n">DS_0A_RET</span><span class="o">&lt;</span><span class="s">"ds_consume"</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">defm</span> <span class="n">DS_CONSUME</span>             <span class="o">:</span> <span class="n">DS_Real_gfx6_gfx7_gfx10_gfx11_gfx12</span><span class="o">&lt;</span><span class="mh">0x03d</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">def</span> <span class="n">DS_CONSUME_vi</span>         <span class="o">:</span> <span class="n">DS_Real_vi</span><span class="o">&lt;</span><span class="mh">0xbd</span><span class="p">,</span> <span class="n">DS_CONSUME</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>看一个，就可以看到这个类 <code class="language-plaintext highlighter-rouge">DS_0A_RET</code>的定义。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DS_0A_RET</span> <span class="o">&lt;</span><span class="n">string</span> <span class="n">opName</span><span class="o">&gt;</span> <span class="o">:</span> <span class="n">DS_Pseudo</span><span class="o">&lt;</span><span class="n">opName</span><span class="p">,</span>
+  <span class="p">(</span><span class="n">outs</span> <span class="n">getLdStRegisterOperand</span><span class="o">&lt;</span><span class="n">VGPR_32</span><span class="o">&gt;</span><span class="p">.</span><span class="n">ret</span><span class="o">:</span><span class="err">$</span><span class="n">vdst</span><span class="p">),</span>
+  <span class="p">(</span><span class="n">ins</span> <span class="n">Offset</span><span class="o">:</span><span class="err">$</span><span class="n">offset</span><span class="p">,</span> <span class="n">gds</span><span class="o">:</span><span class="err">$</span><span class="n">gds</span><span class="p">),</span>
+  <span class="s">" $vdst$offset$gds"</span><span class="o">&gt;</span> <span class="p">{</span>
+
+  <span class="n">let</span> <span class="n">mayLoad</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">let</span> <span class="n">mayStore</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">let</span> <span class="n">has_addr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">let</span> <span class="n">has_data0</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">let</span> <span class="n">has_data1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>里面就是约束了定义时候的用法，其他就没有了，还有一些属性。</p>
+
+<p>再来看另外一个，类名<code class="language-plaintext highlighter-rouge">DS_Real_vi</code>。用的是一个 64 位的寄存器，0~63，每一位代表的是什么，都写了。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DS_Real_vi</span> <span class="o">&lt;</span><span class="n">bits</span><span class="o">&lt;</span><span class="mi">8</span><span class="o">&gt;</span> <span class="n">op</span><span class="p">,</span> <span class="n">DS_Pseudo</span> <span class="n">ps</span><span class="o">&gt;</span> <span class="o">:</span>
+  <span class="n">DS_Real</span> <span class="o">&lt;</span><span class="n">ps</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="n">SIMCInstr</span> <span class="o">&lt;</span><span class="n">ps</span><span class="p">.</span><span class="n">PseudoInstr</span><span class="p">,</span> <span class="n">SIEncodingFamily</span><span class="p">.</span><span class="n">VI</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="n">AssemblerPredicate</span> <span class="o">=</span> <span class="n">isGFX8GFX9</span><span class="p">;</span>
+  <span class="n">let</span> <span class="n">DecoderNamespace</span> <span class="o">=</span> <span class="s">"GFX8"</span><span class="p">;</span>
+
+  <span class="c1">// encoding</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">7</span><span class="o">-</span><span class="mi">0</span><span class="p">}</span>   <span class="o">=</span> <span class="o">!</span><span class="k">if</span><span class="p">(</span><span class="n">ps</span><span class="p">.</span><span class="n">has_offset0</span><span class="p">,</span> <span class="n">offset0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">15</span><span class="o">-</span><span class="mi">8</span><span class="p">}</span>  <span class="o">=</span> <span class="o">!</span><span class="k">if</span><span class="p">(</span><span class="n">ps</span><span class="p">.</span><span class="n">has_offset1</span><span class="p">,</span> <span class="n">offset1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">16</span><span class="p">}</span>    <span class="o">=</span> <span class="o">!</span><span class="k">if</span><span class="p">(</span><span class="n">ps</span><span class="p">.</span><span class="n">has_gds</span><span class="p">,</span> <span class="n">gds</span><span class="p">,</span> <span class="n">ps</span><span class="p">.</span><span class="n">gdsValue</span><span class="p">);</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">24</span><span class="o">-</span><span class="mi">17</span><span class="p">}</span> <span class="o">=</span> <span class="n">op</span><span class="p">;</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">25</span><span class="p">}</span>    <span class="o">=</span> <span class="n">acc</span><span class="p">;</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">31</span><span class="o">-</span><span class="mi">26</span><span class="p">}</span> <span class="o">=</span> <span class="mh">0x36</span><span class="p">;</span> <span class="c1">// ds prefix</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">39</span><span class="o">-</span><span class="mi">32</span><span class="p">}</span> <span class="o">=</span> <span class="o">!</span><span class="k">if</span><span class="p">(</span><span class="n">ps</span><span class="p">.</span><span class="n">has_addr</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="o">!</span><span class="k">if</span><span class="p">(</span><span class="n">ps</span><span class="p">.</span><span class="n">has_gws_data0</span><span class="p">,</span> <span class="n">data0</span><span class="p">{</span><span class="mi">7</span><span class="o">-</span><span class="mi">0</span><span class="p">},</span> <span class="mi">0</span><span class="p">));</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">47</span><span class="o">-</span><span class="mi">40</span><span class="p">}</span> <span class="o">=</span> <span class="o">!</span><span class="k">if</span><span class="p">(</span><span class="n">ps</span><span class="p">.</span><span class="n">has_data0</span><span class="p">,</span> <span class="n">data0</span><span class="p">{</span><span class="mi">7</span><span class="o">-</span><span class="mi">0</span><span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">55</span><span class="o">-</span><span class="mi">48</span><span class="p">}</span> <span class="o">=</span> <span class="o">!</span><span class="k">if</span><span class="p">(</span><span class="n">ps</span><span class="p">.</span><span class="n">has_data1</span><span class="p">,</span> <span class="n">data1</span><span class="p">{</span><span class="mi">7</span><span class="o">-</span><span class="mi">0</span><span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">let</span> <span class="n">Inst</span><span class="p">{</span><span class="mi">63</span><span class="o">-</span><span class="mi">56</span><span class="p">}</span> <span class="o">=</span> <span class="o">!</span><span class="k">if</span><span class="p">(</span><span class="n">ps</span><span class="p">.</span><span class="n">has_vdst</span><span class="p">,</span> <span class="n">vdst</span><span class="p">{</span><span class="mi">7</span><span class="o">-</span><span class="mi">0</span><span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>我强行解读下，估计是小尾端编码：</p>
+<ul>
+  <li>0~15 位，都是表示 offset</li>
+  <li>16 位：是一个 gds 的值，估计是一个 bool 啥的</li>
+  <li>17-24：是一个操作数，opcode，每个指令不一样，是唯一的</li>
+  <li>25：acc 是加速？准确？不装了，确实不懂……</li>
+  <li>32-55 都是 data，应该是 source 之类的 addr</li>
+  <li>56~63 是 destination，</li>
+</ul>
+
+<h3 id="3-用-amdgpu-的来举例">3. 用 amdgpu 的来举例</h3>
+
+<p>首先，需要 https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/IntrinsicsAMDGPU.td 里面定义个 intrinsic :: <code class="language-plaintext highlighter-rouge">amdgcn_div_fixuph</code> 函数。必须是 int_ 开头。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">def</span> <span class="n">int_amdgcn_div_fixuph</span> <span class="o">:</span> <span class="n">DefaultAttrsIntrinsic</span><span class="o">&lt;</span><span class="p">[</span><span class="n">llvm_anyfloat_ty</span><span class="p">],</span>
+  <span class="p">[</span><span class="n">LLVMMatchType</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">LLVMMatchType</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">LLVMMatchType</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">],</span>
+  <span class="p">[</span><span class="n">IntrNoMem</span><span class="p">,</span> <span class="n">IntrSpeculatable</span><span class="p">]</span>
+<span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>然后，在 https://github.com/llvm/llvm-project/blob/main/clang/include/clang/Basic/BuiltinsAMDGPU.def 文件里面定义个 builtin 的函数。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TARGET_BUILTIN</span><span class="p">(</span><span class="n">__builtin_amdgcn_div_fixuph</span><span class="p">,</span> <span class="s">"hhhh"</span><span class="p">,</span> <span class="s">"nc"</span><span class="p">,</span> <span class="s">"16-bit-insts"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>然后，在 https://github.com/llvm/llvm-project/blob/main/clang/lib/CodeGen/CGBuiltin.cpp 里面，然后对应的 intrinsic 函数，这里返回的<code class="language-plaintext highlighter-rouge">Intrinsic::amdgcn_div_fixuph</code>。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="n">AMDGPU</span><span class="o">::</span><span class="n">BI__builtin_amdgcn_div_fixuph</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nf">emitTernaryBuiltin</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">Intrinsic</span><span class="o">::</span><span class="n">amdgcn_div_fixuph</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>这样前端就可以调用了，但是在 amdgpu 上还没有映射具体的指令。</p>
+
+<p>这个需要在 intrinsic 里面添加这个定义。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">defm</span> <span class="n">V_DIV_FIXUP_F16</span> <span class="o">:</span> <span class="n">VOP3Inst</span> <span class="o">&lt;</span><span class="s">"v_div_fixup_f16"</span><span class="p">,</span> <span class="n">VOP3_Profile</span><span class="o">&lt;</span><span class="n">VOP_F16_F16_F16_F16</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">AMDGPUdiv_fixup</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>这个对于的指令就是<code class="language-plaintext highlighter-rouge">v_div_fixup_f16</code>。</p>
+
+<p>所以高级语言调用<code class="language-plaintext highlighter-rouge">__builtin_amdgcn_div_fixuph</code> 然后根据参数，会具体映射到定义的指令上面：<code class="language-plaintext highlighter-rouge">v_div_fixup_f16</code>。</p>
+
+<hr />
+
+<p>end</p>
 
 
 
@@ -508,6 +679,13 @@ BUILTIN(__builtin_amdgcn_queue_ptr, "v*4", "nc")
                         </a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2024/05/23/llvm-td-syntax-def-defm-defvar/" data-toggle="tooltip" data-placement="top" title="LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别">
+                        Next<br>
+                        <span>LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别</span>
+                        </a>
+                    </li>
                     
                 </ul>
                 <hr style="visibility: hidden;">
@@ -571,237 +749,242 @@ BUILTIN(__builtin_amdgcn_queue_ptr, "v*4", "nc")
         
         
         
-                <a data-sort="0287" 
+                <a data-sort="0288" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0202" 
+                <a data-sort="0203" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
                     rel="94">Newsletter</a>
         
-                <a data-sort="0286" 
+                <a data-sort="0287" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0287" 
+                <a data-sort="0288" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
                     rel="9">LLVM</a>
         
-                <a data-sort="0288" 
+                <a data-sort="0289" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0288" 
+                <a data-sort="0289" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0288" 
+                <a data-sort="0289" 
                     href="/archive/?tag=%E6%B5%8B%E8%AF%95"
                     title="测试"
                     rel="8">测试</a>
         
-                <a data-sort="0288" 
+                <a data-sort="0289" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0289" 
+                <a data-sort="0290" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0289" 
+                <a data-sort="0290" 
                     href="/archive/?tag=cuda"
                     title="cuda"
                     rel="7">cuda</a>
         
-                <a data-sort="0290" 
+                <a data-sort="0291" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0291" 
+                <a data-sort="0292" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0291" 
+                <a data-sort="0292" 
                     href="/archive/?tag=compiler"
                     title="compiler"
                     rel="5">compiler</a>
         
                 <a data-sort="0292" 
+                    href="/archive/?tag=llvm"
+                    title="llvm"
+                    rel="5">llvm</a>
+        
+                <a data-sort="0293" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0292" 
+                <a data-sort="0293" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0292" 
+                <a data-sort="0293" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0292" 
+                <a data-sort="0293" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0292" 
-                    href="/archive/?tag=llvm"
-                    title="llvm"
-                    rel="4">llvm</a>
-        
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=gcc"
                     title="gcc"
                     rel="3">gcc</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=optimization"
                     title="optimization"
                     rel="3">optimization</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0294" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
+                    href="/archive/?tag=%E7%BC%96%E8%AF%91%E5%99%A8"
+                    title="编译器"
+                    rel="2">编译器</a>
+        
+                <a data-sort="0295" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=debug"
                     title="debug"
                     rel="2">debug</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0295" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>
@@ -815,7 +998,7 @@ BUILTIN(__builtin_amdgcn_queue_ptr, "v*4", "nc")
 <h5>Read More</h5>
 <ul class="list-inline">
   
-  <li><a href="https://github.com/chasays/newsletter-list">newsletter清单</a></li>
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter 清单</a></li>
   
   <li><a href="https://hckrnews.com/">Hacker News</a></li>
   

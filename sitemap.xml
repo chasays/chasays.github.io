@@ -1181,8 +1181,12 @@
 <lastmod>2023-08-11T00:00:00+00:00</lastmod>
 </url>
 <url>
-<loc>https://blog.chiphub.top/2024/05/21/llvm-learning-01/</loc>
+<loc>https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics/</loc>
 <lastmod>2024-05-21T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://blog.chiphub.top/2024/05/23/llvm-td-syntax-def-defm-defvar/</loc>
+<lastmod>2024-05-23T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://blog.chiphub.top/about/</loc>

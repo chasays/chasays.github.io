@@ -1,10 +1,18 @@
 [
   
     {
-      "title"    : "LLVM 学习记录 1 如何添加一个 builtin 函数",
+      "title"    : "LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别",
       "subtitle" : "",
       "tags"     : "llvm, 编译器",
-      "url"      : "/2024/05/21/llvm-learning-01/",
+      "url"      : "/2024/05/23/llvm-td-syntax-def-defm-defvar/",
+      "date"     : "2024-05-23 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "LLVM 学习记录：如何添加一个 builtin 函数",
+      "subtitle" : "",
+      "tags"     : "llvm, 编译器",
+      "url"      : "/2024/05/21/llvm-learning-define-intrinsics/",
       "date"     : "2024-05-21 00:00:00 +0000"
     } ,
   
