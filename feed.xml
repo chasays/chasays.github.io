@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 23 May 2024 08:36:00 +0000</pubDate>
-    <lastBuildDate>Thu, 23 May 2024 08:36:00 +0000</lastBuildDate>
+    <pubDate>Fri, 24 May 2024 00:45:42 +0000</pubDate>
+    <lastBuildDate>Fri, 24 May 2024 00:45:42 +0000</lastBuildDate>
     <generator>Jekyll v3.9.5</generator>
     
       <item>
@@ -111,7 +111,11 @@ defm，这个多了一个 m，m 代表的就是 multiclass，就是定义的多�
     
       <item>
         <title>LLVM 学习记录：如何添加一个 builtin 函数</title>
-        <description>&lt;h1 id=&quot;今天学习如何在后端添加一个-builtin-和对应的指令-mapping-起来&quot;&gt;今天学习如何在后端添加一个 builtin 和对应的指令 mapping 起来？&lt;/h1&gt;
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;学习过程，求勘误，多谢指出~&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;今天学习如何在后端添加一个-builtin-和对应的指令-mapping-起来&quot;&gt;今天学习如何在后端添加一个 builtin 和对应的指令 mapping 起来？&lt;/h1&gt;
 
 &lt;p&gt;整个过程预览：&lt;/p&gt;
 
