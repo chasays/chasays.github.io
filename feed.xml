@@ -5,9 +5,75 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 24 May 2024 00:45:42 +0000</pubDate>
-    <lastBuildDate>Fri, 24 May 2024 00:45:42 +0000</lastBuildDate>
+    <pubDate>Fri, 24 May 2024 08:18:00 +0000</pubDate>
+    <lastBuildDate>Fri, 24 May 2024 08:18:00 +0000</lastBuildDate>
     <generator>Jekyll v3.9.5</generator>
+    
+      <item>
+        <title>LLVM 学习记录：如何添加一个 builtin 函数 - 2</title>
+        <description>&lt;p&gt;需要主要有一个地方。&lt;/p&gt;
+
+&lt;p&gt;如果是 intrinsic*.td 里面使用了，ClangBuiltin&amp;lt;&amp;gt;, 那么就不需要再 CGBuiltin.cpp 里面添加枚举了。&lt;/p&gt;
+
+&lt;h2 id=&quot;先来看一组定义的差别&quot;&gt;先来看一组定义的差别&lt;/h2&gt;
+
+&lt;p&gt;定义 1&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_stackrestore&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DefaultAttrsIntrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llvm_anyptr_ty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                        &lt;span class=&quot;n&quot;&gt;ClangBuiltin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;__builtin_stack_restore&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;定义 2&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_stackrestore&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DefaultAttrsIntrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llvm_anyptr_ty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这两个定义的主要区别在于是否将 LLVM 固有函数与 Clang builtin 函数关联。这确实是一个关键差别，影响到 Clang 如何处理 builtin 函数以及它们在 LLVM IR 中的表示。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClangBuiltin&amp;lt;&quot;__builtin_stack_restore&quot;&amp;gt;&lt;/code&gt; 表示这个固有函数在 Clang 中对应于 builtin 函数 __builtin_stack_restore。这意味着，当你在 C/C++ 代码中使用 __builtin_stack_restore 时，Clang 会将其转换为 LLVM IR 中的 llvm.stackrestore builtin 函数调用。&lt;/p&gt;
+
+&lt;h2 id=&quot;没看懂举个例子&quot;&gt;没看懂，举个例子？&lt;/h2&gt;
+
+&lt;p&gt;比如在 intrinsic.td 里面定义了&lt;/p&gt;
+
+&lt;p&gt;https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/Intrinsics.td&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_stackrestore&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DefaultAttrsIntrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llvm_anyptr_ty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                        &lt;span class=&quot;n&quot;&gt;ClangBuiltin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;__builtin_stack_restore&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;其中&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClangBuiltin&amp;lt;&quot;__builtin_stack_restore&quot;&amp;gt;;&lt;/code&gt;
+Clang 内建函数关联：
+ClangBuiltin&amp;lt;”__builtin_stack_restore”&amp;gt; 表示这个固有函数在 Clang 中对应于内建函数 __builtin_stack_restore。即，当你在 C/C++ 代码中使用 __builtin_stack_restore 时，Clang 会将它转换为 LLVM IR 中的 llvm.stackrestore 固有函数调用。&lt;/p&gt;
+
+&lt;p&gt;有了这个，就不需要在 CGbuiltin.cpp 里面添加枚举了，添加了也不会走到枚举这里的。&lt;/p&gt;
+
+&lt;p&gt;再来看看 ClangBuiltin&amp;lt;&amp;gt; 这个定义说的啥？&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;/// ClangBuiltin - If this intrinsic exactly corresponds to a Clang builtin, this&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;/// specifies the name of the builtin.  This provides automatic CBE and CFE&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;/// support.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClangBuiltin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClangBuiltinName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;意思就是 ClangBuiltin 如果此内在 intrinsic 函数能完全对应于 Clang builtin 函数，则此指定 builtin 的名称，会自动支持 clang 前后端。&lt;/p&gt;
+
+&lt;p&gt;还没看懂？别开玩笑了，我的零基础的都能看懂~&lt;/p&gt;
+
+&lt;p&gt;还有一个问题，估计你和我一样，好奇，如果是 2 边都添加了，会怎么样？&lt;/p&gt;
+
+&lt;p&gt;我试了，如过 intrinsic.td 里面添加了，又在 CGBuiltin.cpp 里面添加了。CGBuiltin.cpp 这个里面是不会生效的。&lt;/p&gt;
+</description>
+        <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/05/24/llvm-learning-define-intrinsics-2/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/24/llvm-learning-define-intrinsics-2/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        
+      </item>
     
       <item>
         <title>LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别</title>
@@ -454,8 +520,8 @@ class DefaultAttrsIntrinsic&amp;lt;list&amp;lt;LLVMType&amp;gt; ret_types,
 
 </description>
         <pubDate>Tue, 21 May 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics/</guid>
+        <link>https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics-1/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics-1/</guid>
         
         <category>llvm</category>
         
@@ -1008,87 +1074,6 @@ https://openbenchmarking.org/innhold/db04416737e558c3510d20be04d2574e63e0a548&lt
         <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/06/10/not-preset/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/06/10/not-preset/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>92 -  想要某个东西？</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;芒格说：如果你想获得某样东西，那就让自己配得上它。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;这句话，我想大家都不陌生，纯鸡汤励志。&lt;/p&gt;
-
-&lt;p&gt;让我们在追求目標与理想的过程中时时自我要求，努力让自己成长为配得上理想的人。&lt;/p&gt;
-
-&lt;p&gt;我最近在日更公众号文章，7 天过去了，有一篇阅读量达到了 10W+，人生新成就。&lt;/p&gt;
-
-&lt;p&gt;这句话对我的感悟来说，非常的贴切。&lt;/p&gt;
-
-&lt;p&gt;每天日更，只有 7 天，还能做到 10w+，我想只有自己默默地努力，才配得起这个 10w+。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不要轻易妥协和放弃&lt;/code&gt;。很多时候，我们之所以无法得到心之所向，并不是因为这个目标本身不可及，而是因为我们自己还不够资格与之匹配。&lt;/p&gt;
-
-&lt;p&gt;所谓“天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，…………”，我们必须付出努力，经受磨练，才能成长为配得上目标的人。&lt;/p&gt;
-
-&lt;p&gt;再来看看我平时更新这个 newsletter，虽然没有什么阅读量，但是自己从里面的收获也是不少的，只有自己知道。&lt;/p&gt;
-
-&lt;p&gt;对自己要有自我要求，不断学习和进步。很多人总是抱怨这个社会不公平，机会都被别人捷足先登。然而，问题的关键往往不在于机会的来临，而是自己是否已经具备了抓住机会的资格和能力。作为一个人，我们必须不断充实自己，提高技能和修养，才能在机会来临时立于不败之地。&lt;/p&gt;
-
-&lt;p&gt;如果一位作家如果希望自己的作品能出版并获得读者的认可，那么他就必须不断练习写作，广泛阅读以增强文笔，深入生活寻找素材以丰富自己的创作。&lt;/p&gt;
-
-&lt;p&gt;如果一个人渴望成为一名优秀的教师，那么他就应该不断学习新的教学方法和技巧，并在实践中不断总结和提高。&lt;/p&gt;
-
-&lt;p&gt;要以实际行动来证明自己配得上心目中的目标。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;单纯的空想和妄言是远远不够的&lt;/code&gt;，我们必须通过行动和实践来让自己真正成长为配得上理想的人。&lt;/p&gt;
-
-&lt;p&gt;天下没有免费的午餐，要想获得某样东西，就必须付出等价的努力。许多时候，目标之所以难以实现，是因为我们过于空想，缺乏实际行动来推动自己的成长。&lt;/p&gt;
-
-&lt;p&gt;心生理想，感到它如此高不可登时，我们就应该放慢脚步，静下来思考自己现在是否已具备与之匹配的资格与实力，然后付诸努力，一步一步地提高自己，最终成为理想中配得上的那个人。&lt;/p&gt;
-
-&lt;p&gt;……&lt;/p&gt;
-
-&lt;p&gt;希望今天的分享对你有帮助。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;从这里开始&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/FqgNlXWFsprhYpcV0_sUNg&quot;&gt;生孩子的人少了，产科的寒冬也快到了&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;“原来全国每年的出生人口数量最多是 2000 多万，后来降到 1000 多万，开放生育之后最多的时候也回升到 1400-1500 万，现在连 1000 万都不到了，在一妇婴，我们前些年最多的时候，年分娩量是接近 3.4 万，现在分娩量大概是年 2.5 万，少了近 1 万。”对于产科接诊量变化，上海一妇婴的前院长，春田医管创始人段涛如是描述。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/dibrale/samist&quot;&gt;samist&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;分割任何模型 (SAM) 图像分割工具-SAMIST。由 Meta AI 使用 SAM 进行图像分割的 Python 图形用户界面。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/bravekingzhang/flutter_chat_box&quot;&gt;flutter 开发的 chat&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Flutter 开发的和 ChatGPT 聊天的 App，全平台支持&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/etrobot/CNStockGPT/blob/main/us.py&quot;&gt;GPT 炒股&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;基于 GPT 的人工智能炒股程序。可以用 ChatGPT 免费版的 session。&lt;/p&gt;
-
-&lt;p&gt;用同花顺问财 AI 进行技术面筛选；使用 akshare；询网上最新资料；ChatGPT 进行分析并打分&lt;/p&gt;
-</description>
-        <pubDate>Sat, 03 Jun 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/06/03/want-to-sth/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/06/03/want-to-sth/</guid>
         
         <category>Newsletter</category>
         
