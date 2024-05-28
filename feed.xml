@@ -5,9 +5,82 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 24 May 2024 08:18:00 +0000</pubDate>
-    <lastBuildDate>Fri, 24 May 2024 08:18:00 +0000</lastBuildDate>
+    <pubDate>Tue, 28 May 2024 03:33:47 +0000</pubDate>
+    <lastBuildDate>Tue, 28 May 2024 03:33:47 +0000</lastBuildDate>
     <generator>Jekyll v3.9.5</generator>
+    
+      <item>
+        <title>LLVM 学习记录：调试技巧</title>
+        <description>&lt;p&gt;调试的时候有几个技巧，分享和记录下，方便自己后面可以熟练的用到。&lt;/p&gt;
+
+&lt;h2 id=&quot;看所有的编译命令但是不执行&quot;&gt;看所有的编译命令，但是不执行&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-###&lt;/code&gt;，这个就是 clang 的第一个参数。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://clang.llvm.org/docs/CommandGuide/clang.html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;用 clang 编译的时候，会从打印（但不运行）为此编译运行的命令。&lt;/p&gt;
+
+&lt;p&gt;然后打印出出错的命令，然后一步一步的执行，就知道是哪里的问题了。&lt;/p&gt;
+
+&lt;p&gt;比如：优化或者是定位哪一步的编译时间过长，是词法解析，还是编译器后端，还是 lld 导致的，用这个方法分别执行每一步的命令，然后统计下，就知道是哪里耗费的时间长。&lt;/p&gt;
+
+&lt;h2 id=&quot;llvm_debug-用法&quot;&gt;llvm_debug 用法&lt;/h2&gt;
+
+&lt;p&gt;将对应的实例以字符串的形式输入到 errs() 流中，但是类似这种调试信息，我们通常并不想在正式发布的时候打印，而且有时候 Pass 的代码一多，就会造成打印的信息过多，干扰我们调试。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://zhqli.com/post/1667466024&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;借助 LLVM 的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_DEBUG&lt;/code&gt; 对调试信息进行分类，使用之前需要导入对应的头文件并定义 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DEBUG_TYPE&lt;/code&gt;, 如下所示&lt;/p&gt;
+
+&lt;p&gt;在 llvm 代码里面可以看到 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_DEBUG()&lt;/code&gt;的用法，这个用法是什么喃？&lt;/p&gt;
+
+&lt;p&gt;用的时候需要在 cpp 顶部定义各一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#incldue DEBUG_TYPE &quot;pass_name&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;举个例子&quot;&gt;举个例子&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/AMDGPU/AMDGPUCallLowering.cpp&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;AMDGPU 的 calllowering 里面。&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define DEBUG_TYPE &quot;amdgpu-call-lowering&quot;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;定义一个 debug_type 的，后面是 pass 的名字。如何使用，
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_DEBUG(dbgs())&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Make sure that they can fit on the caller's stack.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SIMachineFunctionInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FuncInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SIMachineFunctionInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OutInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getStackSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FuncInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getBytesInStackArgArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;LLVM_DEBUG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dbgs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;... Cannot fit call operands on caller's stack.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这样 debug 的时候，只需要接这个 pass 的名字，就只打印出这个 pass 的相关的 log 信息了。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opt xxx  --debug-only=amdgpu-call-lowering &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;方便么？do you get it?&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        <category>调试</category>
+        
+        
+      </item>
     
       <item>
         <title>LLVM 学习记录：如何添加一个 builtin 函数 - 2</title>
@@ -67,6 +140,79 @@ ClangBuiltin&amp;lt;”__builtin_stack_restore”&amp;gt; 表示这个固有函�
         <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/05/24/llvm-learning-define-intrinsics-2/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2024/05/24/llvm-learning-define-intrinsics-2/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LLVM 学习记录：编译器之美 - 后端基础：20~22</title>
+        <description>&lt;p&gt;学习内容来自极客时间的付费课程，我是针对性的学习，直接进入后端的学习，从 20 讲开始，前端的词法解析，直接跳过。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://time.geekbang.org/column/intro/100034101&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;```graph TD&lt;/p&gt;
+
+&lt;p&gt;A[前端] –&amp;gt; B{词法分析}
+B –&amp;gt; C{语法分析}
+C –&amp;gt; D{语义分析}
+D –&amp;gt; E{生成中间代码}
+E –&amp;gt; F{优化}
+F –&amp;gt; G{生成目标代码}
+G –&amp;gt; H[后端]&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;你是不是觉得汇编很难？&lt;/p&gt;
+
+&lt;p&gt;不瞒你说，我一开始也觉得汇编好高级呀，看不懂呀，太难了。&lt;/p&gt;
+
+&lt;p&gt;这个是什么鬼语法。其他汇编比高级语言简单，没有复杂的类型，没有多的语法结构。通常就是把数据拷贝到寄存器，处理一下，再保存回内存。&lt;/p&gt;
+
+&lt;p&gt;只是我们见到的，都是高级语言，都是处理过的，辨识度高。&lt;/p&gt;
+
+&lt;p&gt;为了降低后端工作量，提高软件复用度，就需要引入中间代码（Intermediate Representation，IR）的机制，它是独立于具体硬件的一种代码格式。各个语言的前端可以先翻译成 IR，然后再从 IR 翻译成不同硬件架构的汇编代码。如果有 n 个前端语言，m 个后端架构，本来需要做 m*n 个翻译程序，现在只需要 m+n 个了。这就大大降低了总体的工作量。&lt;/p&gt;
+
+&lt;p&gt;像 Rust 就充分利用了 LLVM，GCC 的各种语言，如 C、C++、Object C 等，也是充分共享了后端技术。&lt;/p&gt;
+
+&lt;p&gt;不得不说 rust 的开源社区建设太好了。&lt;/p&gt;
+
+&lt;h2 id=&quot;代码分析和优化&quot;&gt;代码分析和优化&lt;/h2&gt;
+
+&lt;p&gt;依赖于机器的优化，则是依赖于硬件的特征。现代的计算机硬件设计了很多特性，以便提供更高的处理能力，比如并行计算能力，多层次内存结构（使用多个级别的高速缓存）等等。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;编译器要能够充分利用硬件提供的性能&lt;/code&gt;，比如：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;寄存器优化。对于频繁访问的变量，最好放在寄存器中，并且尽量最大限度地利用寄存器，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不让其中一些空着&lt;/code&gt;，有不少算法是解决这个问题的，教材上一般提到的是染色算法；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;充分利用高速缓存。高速缓存的访问速度可以比内存快几十倍上百倍，所以我们要尽量&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;利用高速缓存&lt;/code&gt;。比如，某段代码操作的数据，在内存里尽量放在一起，这样 CPU 读入数据时，会一起都放到高速缓存中，不用一遍一遍地重新到内存取。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;并行性。现代计算机都有多个内核，可以&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;并行计算&lt;/code&gt;。我们的编译器要尽可能把充分利用多个内核的计算能力。这在编译技术中是一个专门的领域。比如 NVIDIA 的 cuda&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;流水线。CPU 在处理不同的指令的时候，需要等待的时间周期是不一样的，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;在等待某些指令做完的过程中其实还可以执行其他指令&lt;/code&gt;。就比如在星巴克买咖啡，交了钱就可以去等了，收银员可以先去处理下一个顾客，而不是要等到前一个顾客拿到咖啡才开始处理下一个顾客。涉及到 data hazard&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;指令选择。有的时候，CPU 完成一个功能，有多个指令可供选择。而针对某个特定的需求，采用 A 指令可能比 B 指令效率高百倍。比如 X86 架构的 CPU 提供 SIMD 功能，也就是一条指令可以处理多条数据，而不是像传统指令那样一条指令只能处理一条数据。在内存计算领域，SIMD 也可以大大提升性能，我们在第 30 讲的应用篇，会针对 SIMD 做一个实验。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;其他优化。比如可以针对专用的 AI 芯片和 GPU 做优化，提供 AI 计算能力，等等。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;刚接触编译技术的时候，可能会把视线停留在前端技术上，以为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;能做 Lexer、Parser 就是懂编译了&lt;/code&gt;。实际上，词法分析和语法分析比较成熟，有成熟的工具来支撑。相对来说，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;后端的工作量更大，挑战更多，研究的热点也更多&lt;/code&gt;。比如，人工智能领域又出现了一些专用的 AI 芯片和指令集，就需要去适配。&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/05/24/llvm-learning-basic-1/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/24/llvm-learning-basic-1/</guid>
         
         <category>llvm</category>
         
@@ -936,144 +1082,6 @@ https://openbenchmarking.org/innhold/db04416737e558c3510d20be04d2574e63e0a548&lt
         <pubDate>Sat, 24 Jun 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/06/24/for-life/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/06/24/for-life/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>94 -  出苦力搞副业赚钱</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;主动输出并不仅仅是一个纯利他的行为。它带来的好处是多方面的。&lt;/p&gt;
-
-&lt;p&gt;输出的过程能够帮助我们更清晰地思考和更出色地行动。当我们将自己的想法、知识或经验分享出来时，我们需要对其进行整理和梳理，以便能够准确地传达给他人。这个过程迫使我们反思和总结，从而深化我们对所涉及主题的理解。通过与他人的交流和互动，我们不断修正和完善自己的观点，从而推动个人成长。&lt;/p&gt;
-
-&lt;p&gt;有知有行的孟岩老师和老钱的一起对话里面，老钱想准备播客的目录，但是孟岩没有让他准备。这个就是当你不知道写什么的时候，拿起笔，大脑里面就会有很多的想法，抓住一个抓手，就开始写，太多需要写了内容了。&lt;/p&gt;
-
-&lt;p&gt;主动输出让更多的人有机会看到我们的才华和能力。当我们将自己的作品、见解或成果分享给他人时，我们展示了自己的实力和潜力。这种展示不仅有助于提升自己的名气，也为未来的人生机会创造更多可能。他人可能会注意到我们的才华和独特之处，为我们提供更多合作、学习和发展的机会。&lt;/p&gt;
-
-&lt;p&gt;通过主动输出，我们扩大了自己的影响力和社交圈子，为个人发展打开了更多的门路。&lt;/p&gt;
-
-&lt;p&gt;从一个更深层次的角度来看，主动输出的真诚分享让我们更加自洽。&lt;/p&gt;
-
-&lt;p&gt;如果我们分享的东西都是一些自己都很难给其他人看的内容，心理就过不去。最近在做公众号爆款文章的写作，发现好多人利用 ChatGPT + SD 模型生成一些色图，这样流量很高，但是让我自己去做的话，很难做到自洽，也没有去跟风。&lt;/p&gt;
-
-&lt;p&gt;当我们以诚实和真实的态度分享自己的想法和经验时，我们与自己的内心保持一致。我们不再隐藏自己的才华或担心被他人超越，而是勇敢地展示自己的独特之处。这种真诚的分享让我们更加自信和满足，为我们的内在和外在一致性增添了力量。&lt;/p&gt;
-
-&lt;p&gt;主动输出不仅是一种利他的行为，更是对个人成长和发展有益的过程。通过输出，我们能够思考得更清楚，行动得更出色，同时也能够获得更多的机会和名气。而当我们以真诚的态度分享自己的才华和经验时，我们能够建立内外一致的自洽，获得更深层次的满足感。因此，让我们主动迈出这一步，将自己的想法和才华分享给他人，开启一个更加充实和有意义的人生旅程。&lt;/p&gt;
-
-&lt;p&gt;主动输出并不仅仅是一个纯利他的行为。输出的过程，能帮你想得更清楚，做得更好。同时也能让更多的人看到你，让你以后的人生机会更多，走得更顺。&lt;/p&gt;
-
-&lt;p&gt;自己最近在搞 side project，纯瞎搞，有几个观点给大家分享下。&lt;/p&gt;
-
-&lt;p&gt;在选择圈子和内容时，垂直聚焦是至关重要的。将注意力集中在我们准备或正在从事的事情上，而不是分散精力。&lt;/p&gt;
-
-&lt;p&gt;这种垂直聚焦可以帮助我们更好地专注和深入研究特定领域，从而提高我们在该领域的能力和专业知识。&lt;/p&gt;
-
-&lt;p&gt;我们应该注意借鉴其他商业变现思路，但不盲目跟从。每个人的情况和能力都不同，我们需要结合自己的实际情况来判断何种思路适合我们，以避免盲目决策。&lt;/p&gt;
-
-&lt;p&gt;我们也不应过于相信那些声称只有加班才能成功并表现出过度矫情的人。成功的商业模式不仅仅依赖于加班，而是需要我们灵活地利用资源、创新思考和努力工作。我们应该相信自己的能力，寻找适合自己的副业机会，以通过创造价值来实现收益。&lt;/p&gt;
-
-&lt;p&gt;同时，需要及时总结和复盘自己的选择。我们应该审视自己投入的项目是否具有可行性和前景，如果发现项目没有戏可言，就要及时止损。这种及时的总结和复盘帮助我们不断学习和成长，避免陷入无望的努力中。只有不断调整和优化我们的选择，我们才能更好地实现商业目标和个人发展。&lt;/p&gt;
-
-&lt;p&gt;对于副业你有什么好的建议么？或者你的副业是什么，欢迎分享。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;从这里开始&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/Q-3PFOPG8KmH7I9Vvt92nw&quot;&gt;一个青年劳动者的 19 份痛苦肖像&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;张伟是个青年劳动者，毕业六年换了 19 份工作。他好像是特殊的。他没有好的收入、没有好的身体、没有好的精神、没有亲密关系，和家人的关系也很紧张。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/godly-devotion/MochiDiffusion&quot;&gt;MochiDiffusion&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;在 macOS 上运行的  Stable Diffusion，需要是 M 系列的芯片。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 17 Jun 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/06/17/make-money-by-sideline/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/06/17/make-money-by-sideline/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>93 -  不要预设</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;p&gt;最近经过大佬的指点，学到了一个写作的技巧。&lt;/p&gt;
-
-&lt;p&gt;我的公众号很少有人回复，就是反馈很少，不知道哪里做的对不对。直到我分享了一篇文章，得到了大佬的指点。&lt;/p&gt;
-
-&lt;p&gt;我把这一点分享给大家。&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;如果你没有时间的话，请看这个大纲……&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;这里的「如果你没有时间的话」，就是预设。以及你文章里面任何一句话都要说出来它的作用。&lt;/p&gt;
-
-&lt;p&gt;很多人在生活和工作中经常会预设一些不好的结果，这会给自己带来很大的心理压力和负面影响。例如，在写作或学习的时候，常会预设自己没有足够的时间去完成，结果导致自己的效率和质量大打折扣。&lt;/p&gt;
-
-&lt;p&gt;事实上，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;这种预设是没有必要的&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;首先，你点击这篇文章，说明你有时间阅读它。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;我不会预设读者没有时间，这会给读者一种负面暗示，影响体验&lt;/code&gt;。其次，预设常来自自卑、不自信和焦虑，但事实上我们的能力和时间往往比预设的更加充足。最后，预设会成为自我实现的预言，使我们误以为它是事实，从而影响我们的思维和行动。&lt;/p&gt;
-
-&lt;p&gt;在生活和工作中，尽量避免预设，特别是那些负面和不好的预设。相反，我们应该以积极和开放的心态面对每一天，相信自己有能力完成需要完成的事情。如果实在担心时间不够，可以事先做好规划，但不要提前就决定“不可能完成”。&lt;/p&gt;
-
-&lt;p&gt;to be honest，不要给自己设限。相信自己的能力，相信时间总是充足的。用积极的心态去面对每一天，你会发现生活和工作都会简单很多。这就是避免预设的力量。&lt;/p&gt;
-
-&lt;p&gt;你觉得写作容易么？&lt;/p&gt;
-
-&lt;p&gt;最近在读一本书「营销笔记」。加入了在生财社群里面，经常小马宋老师的高质量分享，特别好奇什么样的人能如此高产，质量上乘。之前都是看小马宋老师的公众号、小宇宙的播客，没想到这本书也是一个宝藏。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;从这里开始&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/ZiKydBHzXH4zeOlWRhLctg&quot;&gt;10+秒，AIGC 炸出抖音小红书爆款！国产 Fashion Diffusion 颠覆时尚行业&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;前不久，西湖心辰和知衣科技联合研发了一款面向服装设计行业的 AI 大模型——Fashion Diffusion(简称 FD 模型)。FD 模型可以在 10 秒内生成超过上万套的高质量服装设计图。通过深度学习服装行业的数据，FD 模型有望颠覆传统的服装设计流程，为行业带来革命性变革。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;是专注于人工智能服务研发的科技公司，我们与西湖大学等顶级 AI 研究团队合作，共同探索 AIGC 的未来，积极推动 AI 在内容生产、心理咨询等方面的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;商业化、民用化&lt;/code&gt;;推出 AI 绘画、A1 写作、AI 心理咨询等相关产品，希望创造每个人都能享受到 AIGC 带来的智能时代。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;在技术上，FD 模型的实现路径是：采衣→识衣→知衣→懂衣→创衣。知衣科技积累了超过 10 亿份服饰数据和 500 个设计标签，对服装行业有深入了解。西湖心辰开发了“识衣”模型，可以过滤低质量图片和优化人像，基于服装美学给图片打分。FD 模型综合知衣科技的行业认知和西湖心辰在自动图文生成的技术，对传统生成模型难以捕捉的服装特征如工艺、材质等进行增强，并对生成人像进行优化，在服装工艺、材质捕捉和人体比例方面具有较强优势。&lt;/p&gt;
-
-&lt;p&gt;FD 模型将推动服装设计行业实现“柔性生产”,提高设计效率，缩短设计周期，让设计师和品牌能快速响应市场需求。借助 FD 模型，设计师和品牌可以在短时间内创作大量设计方案并测试市场反馈，帮助企业优化生产计划和降低库存。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/bpWw1CEFpw3u-OHq108UPQ&quot;&gt;「孩子们对人生一无所知，到底要怎么做呢？」&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;作为第 75 届戛纳电影节影评人周的闭幕影片，韩国电影《下一个素熙》放映完毕后，收获了现场观众长达 7 分钟的掌声——这是一部特殊的电影，它改编自真实事件，片长达到了 137 分钟，且片中没有出现一段背景音乐。&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://meldmerge.org/&quot;&gt;Meld 视觉差异和合并工具&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如果你经常需要用到 beyond compare，winmerge 对比文本之类的软件，可以试试这个。&lt;/p&gt;
-
-&lt;p&gt;Meld 帮助你比较文件、目录和版本控制项目。它提供文件和目录的双向和三向比较，并支持许多流行的版本控制系统。Meld 帮助你审查代码变化和理解补丁。它甚至可以帮助你弄清楚你一直回避的合并中发生了什么。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/06/10/not-preset/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/06/10/not-preset/</guid>
         
         <category>Newsletter</category>
         
