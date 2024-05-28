@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 28 May 2024 03:33:47 +0000</pubDate>
-    <lastBuildDate>Tue, 28 May 2024 03:33:47 +0000</lastBuildDate>
+    <pubDate>Tue, 28 May 2024 04:39:29 +0000</pubDate>
+    <lastBuildDate>Tue, 28 May 2024 04:39:29 +0000</lastBuildDate>
     <generator>Jekyll v3.9.5</generator>
     
       <item>
@@ -62,12 +62,25 @@
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;这样 debug 的时候，只需要接这个 pass 的名字，就只打印出这个 pass 的相关的 log 信息了。&lt;/p&gt;
+&lt;p&gt;这样 debug 的时候，只需要跟上这个 pass 的名字，就只打印出这个 pass 的相关的 log 信息了。定位就方便多了。&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opt xxx  --debug-only=amdgpu-call-lowering &lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;方便么？do you get it?&lt;/p&gt;
+&lt;h2 id=&quot;统计运行时间&quot;&gt;统计运行时间&lt;/h2&gt;
 
+&lt;p&gt;上面提到如何用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;###&lt;/code&gt;来查看命令，那么还有如何通过执行直接获取每一个的执行时间？&lt;/p&gt;
+
+&lt;p&gt;可以用这个命令通过 opt &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-time-trace&lt;/code&gt; 选项告诉 opt 导出所有由 TimeTraceaScope 收集的信息，并将 trace 文件保存到 -time-trace-file 指定的 json 文件中，这个 json 文件怎么查看呢？可以在 chrome 地址栏输入 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chrome://tracing&lt;/code&gt;, 然后打开这个 json 文件即可可视化查看，是不是有点惊喜？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;2024-5-28-tracing.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击图片中第三个图标，就可以放大和缩小这个图片了，能看到具体是哪一个出了问题。&lt;/p&gt;
+
+&lt;p&gt;chrome 的 trace 查看功能实际上是集成了项目 perfetto, 这个项目可以在线使用，地址是 https://ui.perfetto.dev/.&lt;/p&gt;
+
+&lt;p&gt;那么 clang 里面用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-ftime-trace&lt;/code&gt; 也是可以用的`。&lt;/p&gt;
+
+&lt;p&gt;方便么？do you get it?&lt;/p&gt;
 </description>
         <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</link>
