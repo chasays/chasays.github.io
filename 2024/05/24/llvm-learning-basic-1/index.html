@@ -184,6 +184,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                SEARCH <i class="fa fa-search"></i>
@@ -389,6 +391,23 @@ G –&gt; H[后端]</p>
 
 <p>刚接触编译技术的时候，可能会把视线停留在前端技术上，以为<code class="language-plaintext highlighter-rouge">能做 Lexer、Parser 就是懂编译了</code>。实际上，词法分析和语法分析比较成熟，有成熟的工具来支撑。相对来说，<code class="language-plaintext highlighter-rouge">后端的工作量更大，挑战更多，研究的热点也更多</code>。比如，人工智能领域又出现了一些专用的 AI 芯片和指令集，就需要去适配。</p>
 
+<h2 id="程序运行的环境">程序运行的环境</h2>
+
+<p>下面这一段是我直接 copy 过来的，我还没有消化掉。后面慢慢看。</p>
+
+<p><img src="image.png" alt="alt text" /></p>
+
+<p>一般来讲，代码区是在最低的地址区域，然后是静态数据区，然后是堆。而栈传统上是从高地址向低地址延伸，栈的最顶部有一块区域，用来保存环境变量。</p>
+
+<p>代码区（也叫文本段）存放编译完成以后的机器码。这个内存区域是只读的，不会再修改，但也不绝对。现代语言的运行时已经越来越动态化，除了保存机器码，还可以存放中间代码，并且还可以在运行时把中间代码编译成机器码，写入代码区。</p>
+
+<p>静态数据区保存程序中全局的变量和常量。它的地址在编译期就是确定的，在生成的代码里直接使用这个地址就可以访问它们，它们的生存期是从程序启动一直到程序结束。它又可以细分为 Data 和 BSS 两个段。Data 段中的变量是在编译期就初始化好的，直接从程序装在进内存。BSS 段中是那些没有声明初始化值的变量，都会被初始化成 0。</p>
+
+<p>堆适合管理生存期较长的一些数据，这些数据在退出作用域以后也不会消失。比如，我们在某个方法里创建了一个对象并返回，并希望代表这个对象的数据在退出函数后仍然可以访问。</p>
+
+<p>而栈适合保存生存期比较短的数据，比如函数和方法里的本地变量。它们在进入某个作用域的时候申请内存，退出这个作用域的时候就可以释放掉</p>
+
+<p>关于优化，可以看这个里面的一些思路：我目前还没有看。https://www.agner.org/optimize/</p>
 
 
                 <hr style="visibility: hidden;">
@@ -471,242 +490,247 @@ G –&gt; H[后端]</p>
         
         
         
-                <a data-sort="0291" 
+                <a data-sort="0293" 
                     href="/archive/?tag=%E5%9F%BA%E7%A1%80"
                     title="基础"
                     rel="9">基础</a>
         
-                <a data-sort="0206" 
+                <a data-sort="0208" 
                     href="/archive/?tag=Newsletter"
                     title="Newsletter"
                     rel="94">Newsletter</a>
         
-                <a data-sort="0290" 
+                <a data-sort="0292" 
+                    href="/archive/?tag=llvm"
+                    title="llvm"
+                    rel="10">llvm</a>
+        
+                <a data-sort="0292" 
                     href="/archive/?tag=python"
                     title="python"
                     rel="10">python</a>
         
-                <a data-sort="0291" 
+                <a data-sort="0293" 
+                    href="/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="9">测试</a>
+        
+                <a data-sort="0293" 
                     href="/archive/?tag=LLVM"
                     title="LLVM"
                     rel="9">LLVM</a>
         
-                <a data-sort="0292" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
                     title="平假名"
                     rel="8">平假名</a>
         
-                <a data-sort="0292" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E6%97%A5%E8%AF%AD"
                     title="日语"
                     rel="8">日语</a>
         
-                <a data-sort="0292" 
-                    href="/archive/?tag=%E6%B5%8B%E8%AF%95"
-                    title="测试"
-                    rel="8">测试</a>
-        
-                <a data-sort="0292" 
+                <a data-sort="0294" 
                     href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
                     title="片假名"
                     rel="8">片假名</a>
         
-                <a data-sort="0292" 
-                    href="/archive/?tag=llvm"
-                    title="llvm"
-                    rel="8">llvm</a>
-        
-                <a data-sort="0293" 
+                <a data-sort="0295" 
                     href="/archive/?tag=%E6%80%BB%E7%BB%93"
                     title="总结"
                     rel="7">总结</a>
         
-                <a data-sort="0293" 
+                <a data-sort="0295" 
+                    href="/archive/?tag=%E7%BC%96%E8%AF%91%E5%99%A8"
+                    title="编译器"
+                    rel="7">编译器</a>
+        
+                <a data-sort="0295" 
                     href="/archive/?tag=cuda"
                     title="cuda"
                     rel="7">cuda</a>
         
-                <a data-sort="0294" 
+                <a data-sort="0296" 
                     href="/archive/?tag=TensorFlow"
                     title="TensorFlow"
                     rel="6">TensorFlow</a>
         
-                <a data-sort="0295" 
+                <a data-sort="0297" 
                     href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
                     title="大数据"
                     rel="5">大数据</a>
         
-                <a data-sort="0295" 
-                    href="/archive/?tag=%E7%BC%96%E8%AF%91%E5%99%A8"
-                    title="编译器"
-                    rel="5">编译器</a>
-        
-                <a data-sort="0295" 
+                <a data-sort="0297" 
                     href="/archive/?tag=compiler"
                     title="compiler"
                     rel="5">compiler</a>
         
-                <a data-sort="0296" 
+                <a data-sort="0298" 
                     href="/archive/?tag=%E5%B7%A5%E5%85%B7"
                     title="工具"
                     rel="4">工具</a>
         
-                <a data-sort="0296" 
+                <a data-sort="0298" 
                     href="/archive/?tag=%E6%8A%95%E8%B5%84"
                     title="投资"
                     rel="4">投资</a>
         
-                <a data-sort="0296" 
+                <a data-sort="0298" 
                     href="/archive/?tag=git"
                     title="git"
                     rel="4">git</a>
         
-                <a data-sort="0296" 
+                <a data-sort="0298" 
                     href="/archive/?tag=github"
                     title="github"
                     rel="4">github</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=%E4%B9%A6%E5%8D%95"
                     title="书单"
                     rel="3">书单</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=%E5%86%99%E4%BD%9C"
                     title="写作"
                     rel="3">写作</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=%E6%8F%90%E5%8D%87"
                     title="提升"
                     rel="3">提升</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
                     title="英语"
                     rel="3">英语</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=%E9%80%BB%E8%BE%91"
                     title="逻辑"
                     rel="3">逻辑</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=%E9%9D%A2%E8%AF%95"
                     title="面试"
                     rel="3">面试</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=Maven"
                     title="Maven"
                     rel="3">Maven</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=docker"
                     title="docker"
                     rel="3">docker</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=gRPC"
                     title="gRPC"
                     rel="3">gRPC</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=gcc"
                     title="gcc"
                     rel="3">gcc</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=optimization"
                     title="optimization"
                     rel="3">optimization</a>
         
-                <a data-sort="0297" 
+                <a data-sort="0299" 
                     href="/archive/?tag=redis"
                     title="redis"
                     rel="3">redis</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E4%BF%9D%E9%99%A9"
                     title="保险"
                     rel="2">保险</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E5%A2%9E%E9%95%BF"
                     title="增长"
                     rel="2">增长</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E6%8A%80%E6%9C%AF"
                     title="技术"
                     rel="2">技术</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
                     title="智能计算系统"
                     rel="2">智能计算系统</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E7%AE%80%E5%8E%86"
                     title="简历"
                     rel="2">简历</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E7%AE%97%E6%B3%95"
                     title="算法"
                     rel="2">算法</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
                     title="线程"
                     rel="2">线程</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
                     title="计算机"
                     rel="2">计算机</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
                     title="读书"
                     rel="2">读书</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
+                    href="/archive/?tag=%E8%B0%83%E8%AF%95"
+                    title="调试"
+                    rel="2">调试</a>
+        
+                <a data-sort="0300" 
                     href="/archive/?tag=%E8%BF%9B%E9%98%B6"
                     title="进阶"
                     rel="2">进阶</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E9%80%9A%E4%BF%A1"
                     title="通信"
                     rel="2">通信</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=%E9%9F%B3%E9%A2%91"
                     title="音频"
                     rel="2">音频</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=debug"
                     title="debug"
                     rel="2">debug</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=grep"
                     title="grep"
                     rel="2">grep</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=linux"
                     title="linux"
                     rel="2">linux</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=vscode"
                     title="vscode"
                     rel="2">vscode</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0300" 
                     href="/archive/?tag=webrtc"
                     title="webrtc"
                     rel="2">webrtc</a>

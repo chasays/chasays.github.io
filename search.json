@@ -1,10 +1,26 @@
 [
   
     {
+      "title"    : "LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test",
+      "subtitle" : "",
+      "tags"     : "llvm, 编译器, 测试",
+      "url"      : "/2024/05/31/llvm-learning-best_practice-1/",
+      "date"     : "2024-05-31 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "LLVM 学习记录：调试技巧",
       "subtitle" : "",
       "tags"     : "llvm, 编译器, 调试",
       "url"      : "/2024/05/28/llvm-learning-debug/",
+      "date"     : "2024-05-28 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "LLVM 学习记录：调试技巧 2 ",
+      "subtitle" : "",
+      "tags"     : "llvm, 编译器, 调试",
+      "url"      : "/2024/05/28/llvm-learning-debug-2/",
       "date"     : "2024-05-28 00:00:00 +0000"
     } ,
   

@@ -5,9 +5,136 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 28 May 2024 04:39:29 +0000</pubDate>
-    <lastBuildDate>Tue, 28 May 2024 04:39:29 +0000</lastBuildDate>
+    <pubDate>Fri, 31 May 2024 07:42:31 +0000</pubDate>
+    <lastBuildDate>Fri, 31 May 2024 07:42:31 +0000</lastBuildDate>
     <generator>Jekyll v3.9.5</generator>
+    
+      <item>
+        <title>LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test</title>
+        <description>&lt;p&gt;学习内容来自网络课程，这个基本上是针对有点经验的 llvm 开发者，前面的就是过一遍。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Libraries&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://books.google.com.tw/books?id=g_wqEAAAQBAJ&amp;amp;printsec=copyright&amp;amp;redir_esc=y#v=onepage&amp;amp;q&amp;amp;f=false&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;1-构建技巧&quot;&gt;1. 构建技巧&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;用 ninja 构建&lt;/li&gt;
+  &lt;li&gt;指定 lld 或者是 gold 的链接器&lt;/li&gt;
+  &lt;li&gt;用特定的 cmake 参数来构建&lt;/li&gt;
+  &lt;li&gt;构建不同的类型；debug，release，RelWithDebInfo&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这个我试了，RelWithDebInfo 又慢又大
+ release，又快又小，如果不 debug 的话，用这个不错；
+ debug 编译慢，空间占用的也非常的大。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;构建指定的目标 target， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-DLLVM_TARGETS_TO_BUILD=&quot;X86;AMDGPU&quot; …&lt;/code&gt; ,有针对性的编译，速度会快很多；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;构建动态库： &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-DBUILD_SHARED_LIBS=ON&lt;/code&gt; 链接静态库通常比链接动态库花费更多的时间&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用 gn 来编译，我没有成功；&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM 的 GN 支持位于 llvm/utils/gn 文件夹中。&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-llvm-里面-cmake-用法&quot;&gt;2. llvm 里面 Cmake 用法&lt;/h2&gt;
+
+&lt;p&gt;lib 是 LLVM 框架的基本构建块。&lt;/p&gt;
+
+&lt;h3 id=&quot;cmake-添加新的库&quot;&gt;CMake 添加新的库&lt;/h3&gt;
+
+&lt;p&gt;不要用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_library&lt;/code&gt;，要用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_llvm_component_library&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;# In an in-tree CMakeLists.txt file…
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyLLVMPass&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SHARED&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;MyPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Do&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLVM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;为什么不要用这个？主要就是慢，而且不好扩展和控制。&lt;/p&gt;
+
+&lt;h3 id=&quot;llvm-更喜欢使用全局-cmake-参数-即-build_shared_libs-来控制所有的组件库是静态构建还是动态构建使用内置指令很难做到这一点的&quot;&gt;LLVM 更喜欢使用全局 CMake 参数 (即 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BUILD_SHARED_LIBS&lt;/code&gt;) 来控制所有的组件库是静态构建还是动态构建。使用内置指令很难做到这一点的&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;LLVM 更喜欢使用一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;全局的 CMake&lt;/code&gt; 参数来控制一些编译标志&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;# In a CMakeLists.txt
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_llvm_component_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVMFancyOpt&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;FancyOpt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这里，LLVMFancyOpt 是库名，FancyOpt.cpp 是源文件。&lt;/p&gt;
+
+&lt;p&gt;注意下面 2 个用法是一样的：&lt;/p&gt;
+
+&lt;p&gt;写到一个里面&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;add_llvm_component_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVMFancyOpt&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;FancyOpt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;LINK_COMPONENTS&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Analysis&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ScalarOpts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;分开写，先 link 组件：&lt;/p&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVM_LINK_COMPONENTS&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Analysis&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ScalarOpts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;add_llvm_component_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVMFancyOpt&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;FancyOpt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;cmake-函数添加可执行文件和工具&quot;&gt;CMake 函数添加可执行文件和工具&lt;/h3&gt;
+
+&lt;p&gt;可以使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_llvm_executable&lt;/code&gt; 或 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_llvm_tool&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;add_llvm_tool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myLittleTool&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;MyLittleTool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;还有一个全局的 CMake 变量 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_BUILD_TOOLS&lt;/code&gt;，用来启用/禁用 LLVM 工具。&lt;/p&gt;
+
+&lt;h3 id=&quot;cmake-函数添加-pass-插件&quot;&gt;CMake 函数添加 Pass 插件&lt;/h3&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;add_llvm_pass_plugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyPass&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;HelloWorldPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;LINK_COMPONENTS、LINK_LIBS 和 DEPENDS 参数也可以在这里使用，其用法和功能与 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_llvm_component_library&lt;/code&gt; 相同。&lt;/p&gt;
+
+&lt;h2 id=&quot;3-lit-测试&quot;&gt;3. lit 测试&lt;/h2&gt;
+
+&lt;p&gt;LIT 是一个测试基础设施，最初是为运行 LLVM 的回归测试而开发的。主要配合 Filecheck 来用。&lt;/p&gt;
+
+&lt;p&gt;书里面，没有提到的，我这里补充一个，就是最好用 llvm-lit 工具，而不是 lit（python 的 lib）。&lt;/p&gt;
+
+&lt;p&gt;如果还有就是可以自动更新 lit 测试的检查点；工具位于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;llvm/util/update_xxxx.py&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;用法&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python update_xxx.py under_test_file.xx&lt;/code&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 31 May 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/05/31/llvm-learning-best_practice-1/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/31/llvm-learning-best_practice-1/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        <category>测试</category>
+        
+        
+      </item>
     
       <item>
         <title>LLVM 学习记录：调试技巧</title>
@@ -81,10 +208,107 @@
 &lt;p&gt;那么 clang 里面用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-ftime-trace&lt;/code&gt; 也是可以用的`。&lt;/p&gt;
 
 &lt;p&gt;方便么？do you get it?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;顺便推荐一本书，就是短时间内学习有用的 LLVM 技能，并使您能够快速构建原型和项目。编程语言爱好者还会发现本书对于在 LLVM 的帮助下构建新的编程语言很有用。
+https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Libraries&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;还有大佬翻译为中文了，https://github.com/xiaoweiChen/LLVM-Techniques-Tips-and-Best-Practies&lt;/p&gt;
 </description>
         <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        <category>调试</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LLVM 学习记录：调试技巧 2 </title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;这里直接推荐一个 https://blog.csdn.net/zhongyunde/article/details/109013865&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;工具的选项&quot;&gt;工具的选项&lt;/h1&gt;
+
+&lt;p&gt;传递编译选项给 clang -cc1：-Xclang
+-cc1 选项：实际的编译命令
+传递编译选项给 llvm 编译：-mllvm
+打印 token：-Xclang -dump-tokens
+打印 AST： -Xclang -ast-dump
+打印 llvm IR：-S -emit-llvm
+打印汇编：-S
+打印 pass 列表： -mllvm -debug-pass=Structure
+打印 clang driver：-###
+在 pass 执行完打印 IR：-mllvm -print-after-all；llc 也可以 -print-after-all, or stop-before=xx, stop-after=xx
+DAGToDAG Debug 日志：-mllvm -debug&lt;/p&gt;
+
+&lt;p&gt;选项-verify-each 能够使能每个 pass 后的验证&lt;/p&gt;
+
+&lt;p&gt;打印模块信息： -print-module-scope，由于默认 print-after-all 仅在模块信息发生变化时才重新打印，导致过程中的 IR 内容不能直接用于 pass 的输入，因此配合此选项可以避免额外适配&lt;/p&gt;
+
+&lt;p&gt;获取指定函数的 lr 文件：-mllvm -opt-bisect-limit=-1 -S -emit-llvm -filter-print-funcs=poo&lt;/p&gt;
+
+&lt;p&gt;邮件 Which optimization pass deals with heap values 标题中提到选项-mllvm -print-changed 可以显示变化&lt;/p&gt;
+
+&lt;p&gt;使用选项-mllvm –print-changed=quiet -mllvm –print-module-scope 查看状态变化，参考 Why is llvm.loop.unroll.disable appended for -O1 -emit-llvm - #2 by aeubanks - IR &amp;amp; Optimizations - LLVM Discussion Forums&lt;/p&gt;
+
+&lt;h1 id=&quot;裁剪-case&quot;&gt;裁剪 case&lt;/h1&gt;
+
+&lt;p&gt;a) 用例裁剪：llvm 提供 llvm-reduce 及使用示例&lt;/p&gt;
+
+&lt;p&gt;~/test/issue2485/err » cat test1.sh                                                           &lt;br /&gt;
+#!/bin/bash
+opt  $1 -instcombine -S 2&amp;gt;&amp;amp;1 | grep SafeReplacementConstant # 匹配返回 0 是感兴趣
+————————————————————
+~/test/issue2485/err » llvm-reduce –test=test1.sh test-2485.ll
+如果是 lto 优化，则需要使用-Wl,-plugin-opt=save-temps 保留中间文件，生成的&lt;em&gt;.opt.bc 使用 llvm-dis 转换为&lt;/em&gt;.ll 文件，后续裁剪方法同上&lt;/p&gt;
+
+&lt;p&gt;llvm-dis a.out.0.4.opt.bc – 生成 a.out.0.4.opt.ll&lt;/p&gt;
+
+&lt;p&gt;opt  -instcombine  a.out.0.4.opt.ll&lt;/p&gt;
+
+&lt;p&gt;b) 源码裁剪：llvm 后端中的 llvm-reduce 只能对非后端的 IR 进行裁剪，无法对后端的 IR 进行裁剪。因此可以先使用 C-Reduce 对 C 源码裁剪，间接的进行简化，使用方法类似 llvm-reduce&lt;/p&gt;
+
+&lt;p&gt;MIR 相关的调试补充介绍&lt;/p&gt;
+
+&lt;p&gt;MIR 的调试参考 Machine IR (MIR) Format Reference Manual — LLVM 13 documentation&lt;/p&gt;
+
+&lt;p&gt;You can use the MIR format for testing in two different ways:&lt;/p&gt;
+
+&lt;p&gt;You can write MIR tests that invoke a single code generation pass using the -run-pass option in llc.
+You can use llc’s -stop-after option with existing or new LLVM assembly tests and check the MIR output of a specific code generation pass.&lt;/p&gt;
+
+&lt;p&gt;参考 CodeGen/AMDGPU/fold-reload-into-m0.mir，可以使用 -start-before=greedy -stop-after=virtregmap 指定开始和结束要执行的 pass, 也就是并不需要都重头开始执行，示例：&lt;/p&gt;
+
+&lt;p&gt;llc -O3 reduced.ll -stop-before=virtregmap -o - &amp;amp;&amp;gt; machine-scheduler1.mir&lt;/p&gt;
+
+&lt;p&gt;llc -O3 reduced.ll -simplify-mir -o - -print-after-all 也可以打印 mir&lt;/p&gt;
+
+&lt;p&gt;注意： -o - 是关键，和 llc -O3 reduced.ll -stop-before=virtregmap -debug-only=machine-scheduler 得到的内容存在差异&lt;/p&gt;
+
+&lt;p&gt;学习 mllvm -opt-bisect-limit 用法：Using -opt-bisect-limit to debug optimization errors — LLVM 15.0.0git documentation&lt;/p&gt;
+
+&lt;p&gt;cgdb 类似 emacs + gdb 功能，可以实时查看代码执行位置，参考 https://blog.csdn.net/yzhang6_10/article/details/83626226&lt;/p&gt;
+
+&lt;p&gt;IRbuilder 或者 MachineIRBuilder 是为了建新的语句的一个接口类，可以使用&lt;/p&gt;
+
+&lt;p&gt;p Builder.GetInsertBlock()-&amp;gt;dump() 打印当前 basicblock 的信息&lt;/p&gt;
+
+&lt;h1 id=&quot;3常用-debug-api查看过程状态&quot;&gt;3、常用 debug API，查看过程状态&lt;/h1&gt;
+
+&lt;p&gt;p L.getHeader()-&amp;gt;getParent()-&amp;gt;dump()  查看循环体的内容&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/05/28/llvm-learning-debug-2/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/28/llvm-learning-debug-2/</guid>
         
         <category>llvm</category>
         
@@ -222,6 +446,23 @@ G –&amp;gt; H[后端]&lt;/p&gt;
 
 &lt;p&gt;刚接触编译技术的时候，可能会把视线停留在前端技术上，以为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;能做 Lexer、Parser 就是懂编译了&lt;/code&gt;。实际上，词法分析和语法分析比较成熟，有成熟的工具来支撑。相对来说，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;后端的工作量更大，挑战更多，研究的热点也更多&lt;/code&gt;。比如，人工智能领域又出现了一些专用的 AI 芯片和指令集，就需要去适配。&lt;/p&gt;
 
+&lt;h2 id=&quot;程序运行的环境&quot;&gt;程序运行的环境&lt;/h2&gt;
+
+&lt;p&gt;下面这一段是我直接 copy 过来的，我还没有消化掉。后面慢慢看。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一般来讲，代码区是在最低的地址区域，然后是静态数据区，然后是堆。而栈传统上是从高地址向低地址延伸，栈的最顶部有一块区域，用来保存环境变量。&lt;/p&gt;
+
+&lt;p&gt;代码区（也叫文本段）存放编译完成以后的机器码。这个内存区域是只读的，不会再修改，但也不绝对。现代语言的运行时已经越来越动态化，除了保存机器码，还可以存放中间代码，并且还可以在运行时把中间代码编译成机器码，写入代码区。&lt;/p&gt;
+
+&lt;p&gt;静态数据区保存程序中全局的变量和常量。它的地址在编译期就是确定的，在生成的代码里直接使用这个地址就可以访问它们，它们的生存期是从程序启动一直到程序结束。它又可以细分为 Data 和 BSS 两个段。Data 段中的变量是在编译期就初始化好的，直接从程序装在进内存。BSS 段中是那些没有声明初始化值的变量，都会被初始化成 0。&lt;/p&gt;
+
+&lt;p&gt;堆适合管理生存期较长的一些数据，这些数据在退出作用域以后也不会消失。比如，我们在某个方法里创建了一个对象并返回，并希望代表这个对象的数据在退出函数后仍然可以访问。&lt;/p&gt;
+
+&lt;p&gt;而栈适合保存生存期比较短的数据，比如函数和方法里的本地变量。它们在进入某个作用域的时候申请内存，退出这个作用域的时候就可以释放掉&lt;/p&gt;
+
+&lt;p&gt;关于优化，可以看这个里面的一些思路：我目前还没有看。https://www.agner.org/optimize/&lt;/p&gt;
 </description>
         <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/05/24/llvm-learning-basic-1/</link>
@@ -958,143 +1199,6 @@ https://openbenchmarking.org/innhold/db04416737e558c3510d20be04d2574e63e0a548&lt
         <pubDate>Sun, 09 Jul 2023 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2023/07/09/do-certainly-thing/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2023/07/09/do-certainly-thing/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>96 - 解决问题为导向 </title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;任务不是列问题，而是解决问题。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我刚工作的时候，老板安排的事情，总是很抗拒，喜欢自己找事情做，不喜欢被人安排，被人指挥的感觉。&lt;/p&gt;
-
-&lt;p&gt;老板安排的事情，有时候自己搞不定，就会立马提出来，希望有其他来人帮自己搞定。想想那个时候的自己是真的蠢。&lt;/p&gt;
-
-&lt;p&gt;遇到问题不喜欢去深究，总是提出来即可，没有思考过解决办法。如果你也是这样的话，要及时改正。那怎么改喃？&lt;/p&gt;
-
-&lt;p&gt;在市场竞争日益激烈的今天，我们需要成为问题的解决者而非问题的提出者。&lt;/p&gt;
-
-&lt;p&gt;面对挑战，不要沉浸在悲观和牢骚中，要抱着积极进取的势头寻找解决方案。&lt;/p&gt;
-
-&lt;p&gt;刚进职场时，我们常常会列出许多问题。随着工作经验的累积，我们渐渐发现，问题不光在我们身上，而是存在于这份工作、于这个公司、乃至这个市场之中。但问题的存在不应阻碍我们。&lt;/p&gt;
-
-&lt;p&gt;我们需要做的是，质疑不是问题本身，而是我们之前采取的对策是否正确。&lt;/p&gt;
-
-&lt;p&gt;分析问题起因可帮助我们改进。先确定问题的根源，是系统设计不合理？还是我们操作上有缺陷，以后是人的问题，老板还是自己？&lt;/p&gt;
-
-&lt;p&gt;然后，我们该怎么解决？有哪些选择？我们需要权衡各自的利弊。在选择最佳方案时，要客观评估各项指标。&lt;/p&gt;
-
-&lt;p&gt;最后，我们需要执行力。不管选择哪一种方案，都要全身心投入，并持续挖掘改进空间。
-善于总结经验教训，不断完善。&lt;/p&gt;
-
-&lt;p&gt;以问题为导向会让我们停滞不前，而以解决问题为目标，我们就能不断创新。不断改进——这才能带来生机。&lt;/p&gt;
-
-&lt;p&gt;你在工作中，有没有这种经历？&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;从这里开始&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ai.stanford.edu/courses/&quot;&gt;斯坦福的 AI 课程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;我们从 2019 年秋季开始在斯坦福大学的一些人工智能课程中添加了视频介绍 CS229。
-请访问 https://ai.stanford.edu/stanford-ai-courses 查看它们&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/zongzibinbin/MallChat&quot;&gt;聊天购物商城&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;一个既能购物又能即时聊天的电商系统。致力于打造互联网企业级项目的最佳实践。
-电商该有的购物车、订单、支付、推荐、搜索、拉新、促活、推送、物流、客服、它都必须有。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/geohot/tinygrad&quot;&gt;tinygrad&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这可能不是最好的深度学习框架，但它是一个深度学习框架。
-由于它的极端简单性，它的目标是成为最容易添加新加速器的框架，并支持推理和训练。如果 XLA 是 CISC，那么 tinygrad 就是 RISC。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 02 Jul 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/07/02/resolve-problem/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/07/02/resolve-problem/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>95 -  为生活托底</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;保险的本质是为生活托底。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我们看到的作战的士兵都是戴了一顶坚固的头盔，这顶头盔可以保护他的头部，让他在遭受枪击或爆炸时，有一定的生存机会。&lt;/p&gt;
-
-&lt;p&gt;不是绝对的，有时候幸运，头盔挡住了致命的一枪，就保住了性命。有时候虽然身上有多处伤口，主要不是头部，没有危及生命。如果没有戴着头盔，他可能容易就会死在战场上。&lt;/p&gt;
-
-&lt;p&gt;有人可能会想到，那全副武装，带一个盔甲上战场，这样就很安全了，但是这样不利于行动，也容易毙命。&lt;/p&gt;
-
-&lt;p&gt;从这个例子中，我们可以看到，保险就像是士兵戴头盔一样，它可以保护我们最重要和最脆弱的部分，让我们在遇到最大的风险时，有一定的抵御能力。我们不需要为自己买满身的保险来应对所有可能发生的事情，那样既不现实也不经济。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;保险是一种风险管理的工具，它可以帮助我们在遇到意外或灾难时，减轻经济损失和心理压力。保险的本质是为生活托底，让我们在面对不确定的未来时，有一份安心和信心。&lt;/p&gt;
-
-&lt;p&gt;有些人认为保险是一种赌博，是在用自己的钱买运气。有些人认为保险是一种负担，是在浪费自己的钱。有些人认为保险是一种奢侈，是在给自己找麻烦。其实，这些观点都是不正确的。&lt;/p&gt;
-
-&lt;p&gt;保险不是赌博，而是一种预防和补偿。我们买保险，并不是希望发生意外或灾难，而是希望能够避免或减少它们对我们的影响。&lt;/p&gt;
-
-&lt;p&gt;我们买保险，并不是期待能够从中获利，而是期待能够在需要时得到帮助。我们买保险，并不是把自己的命运交给别人，而是把自己的风险分散给更多的人。&lt;/p&gt;
-
-&lt;p&gt;保险不是负担，而是一种投资和保障。我们买保险，并不是在浪费自己的钱，而是在为自己和家人建立一个安全网。我们买保险，并不是在减少自己的收入，而是在增加自己的财富。我们买保险，并不是在剥夺自己的自由，而是在赋予自己的选择。&lt;/p&gt;
-
-&lt;p&gt;保险不是奢侈，而是一种必需和责任。我们买保险，并不是在给自己找麻烦，而是在给自己找解决方案。我们买保险，并不是在放弃自己的梦想，而是在实现自己的目标。我们买保险，并不是在逃避自己的责任，而是在履行自己的义务。&lt;/p&gt;
-
-&lt;p&gt;我自己给家人也配备，相对比较齐全的保障。大部分是消费险，等有钱的时候再配置下储蓄险。下面是个人家庭的配置方案&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;家里的老人：医疗险 + 政府的医疗险（这个也是在云里雾里她们播客听到的，马上就买了后者）&lt;/li&gt;
-  &lt;li&gt;自己和老婆：医疗险 + 重疾&lt;/li&gt;
-  &lt;li&gt;孩子：医疗险 + （重疾计划中）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如果你对保险不是很了解，可以一起交流。我自己找到一个渠道，可以免费的预约和指定保障计划，脸皮厚点，不一定要买，先咨询看看：&lt;a href=&quot;https://cps.qixin18.com/v3/m/xxd1038390/reservation?createTime=1688431378384&quot;&gt;免费预约咨询&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;从这里开始&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/WA8qOYQMQ0wLn3lEq9LAEg&quot;&gt;一张图看 2023 高考本科录取分数线，哪个省最卷？&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;在都是采用全国乙卷、3+综合模式、总分一样的 8 个省份中，河南、江西两省的录取分数线大幅领先，如果说分数越高就是越卷的话，这两个省当然就是这八个省之中的卷王了。&lt;/p&gt;
-
-&lt;p&gt;那河南、江西这两个其中谁又更卷呢？&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/questdb/questdb&quot;&gt;questdb&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;用于快速摄取和 SQL 查询的开源时间序列数据库。&lt;/p&gt;
-</description>
-        <pubDate>Sat, 24 Jun 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/06/24/for-life/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/06/24/for-life/</guid>
         
         <category>Newsletter</category>
         
