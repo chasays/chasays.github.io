@@ -1,6 +1,38 @@
 [
   
     {
+      "title"    : "智能合约 学习记录 1",
+      "subtitle" : "",
+      "tags"     : "智能合约",
+      "url"      : "/2024/09/11/smart-contract-guide/",
+      "date"     : "2024-09-11 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "LLVM 学习记录：编译器最佳实践 - 后端",
+      "subtitle" : "",
+      "tags"     : "llvm, 编译器, 后端",
+      "url"      : "/2024/06/13/simt-warp/",
+      "date"     : "2024-06-13 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "LLVM 快速入门 - 后端",
+      "subtitle" : "",
+      "tags"     : "llvm, 编译器, 后端",
+      "url"      : "/2024/06/01/llvm-learning-end/",
+      "date"     : "2024-06-01 00:00:00 +0000"
+    } ,
+  
+    {
+      "title"    : "LLVM 学习记录：编译器最佳实践 - 后端",
+      "subtitle" : "",
+      "tags"     : "llvm, 编译器, 后端",
+      "url"      : "/2024/06/01/llvm-learning-best_practice-2/",
+      "date"     : "2024-06-01 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test",
       "subtitle" : "",
       "tags"     : "llvm, 编译器, 测试",

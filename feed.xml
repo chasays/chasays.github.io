@@ -5,9 +5,163 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 30 Jul 2024 00:35:38 +0000</pubDate>
-    <lastBuildDate>Tue, 30 Jul 2024 00:35:38 +0000</lastBuildDate>
-    <generator>Jekyll v3.9.5</generator>
+    <pubDate>Tue, 15 Oct 2024 09:00:57 +0000</pubDate>
+    <lastBuildDate>Tue, 15 Oct 2024 09:00:57 +0000</lastBuildDate>
+    <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>智能合约 学习记录 1</title>
+        <description>&lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://liaoxuefeng.com/books/blockchain/ethereum/smart-contract/index.html&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Wed, 11 Sep 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/09/11/smart-contract-guide/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/09/11/smart-contract-guide/</guid>
+        
+        <category>智能合约</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LLVM 学习记录：编译器最佳实践 - 后端</title>
+        <description>&lt;h1 id=&quot;simt-是什么意思&quot;&gt;SIMT 是什么意思？&lt;/h1&gt;
+
+&lt;p&gt;Single Instruction Multiple Threads” (SIMT) 单指令多线程。&lt;/p&gt;
+
+&lt;p&gt;在纯 SIMD 中，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;一条指令以完全相同的方式作用于所有数据&lt;/code&gt;。
+在 SIMT 中，这一限制有所放松：可以激活或停用选定的线程，以便仅在活动线程上&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;处理指令和数据，而在非活动线程上本地数据保持不变。&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;因此，SIMT 可以适应分支，尽管效率不高。给定以 if (条件) 开头的 if-else 构造，当运行 if 子句中的语句时，condition==true 的线程将处于活动状态，而当运行 else 中的语句时，condition==false 的线程将处于活动状态条款。结果应该是正确的，但非活动线程在等待活动子句中的语句完成时不会执行任何有用的工作。SIMT 内的分支如下图所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;simd_if.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在 Volta 之前的 NVIDIA GPU 中，整个 if 子句（即语句 A 和 B）必须由相关线程执行，然后整个 else 子句（语句 X 和 Y）必须由相关线程执行其余线程，则所有线程在继续执行之前都必须同步（语句 Z）。Volta 更灵活的 SIMT 模型允许在中间点（例如 A 和 X 之后）同步共享数据。&lt;/p&gt;
+
+&lt;p&gt;这些不同的语句块在不同的线程里面，我们知道 GPU 都是并行运行的。那么这些线程都是执行的同一个命令，那结果怎么处理？&lt;/p&gt;
+
+&lt;h1 id=&quot;warp&quot;&gt;warp&lt;/h1&gt;
+
+&lt;p&gt;warp 是什么意思？&lt;/p&gt;
+
+&lt;p&gt;指的是编织者的梭子穿过的一组垂直线-warp，为了后面更形象的理解吧。顺便说一下横着的是 weft。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;warp-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在编程技术里面，是这个意思：The term warp originates from weaving, the first parallel-thread technology.&lt;/p&gt;
+
+&lt;p&gt;在运行时，线程块被分为多个线程束以供 SIMT 执行。一个完整的 warp 由一组具有连续线程索引的 32 个线程组成。然后，warp 中的线程由一组 32 个 CUDA 核心一起处理。这类似于 CPU 上的向量化循环被分成固定大小的向量，然后由一组向量通道进行处理的方式。&lt;/p&gt;
+
+&lt;p&gt;将线程捆绑为 32 个线程束的原因很简单，在 NVIDIA 的硬件中，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CUDA 核心被分为固定的 32 个组&lt;/code&gt;。将大线程块分解成这种大小的块可以简化 SM 在其可用资源上调度整个线程块的任务。&lt;/p&gt;
+
+&lt;p&gt;这个图，大家应该看到很多很多次了吧。&lt;/p&gt;
+
+&lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://cvw.cac.cornell.edu/gpu-architecture/gpu-characteristics/simt_warp&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/06/13/simt-warp/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/06/13/simt-warp/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        <category>后端</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LLVM 快速入门 - 后端</title>
+        <description>&lt;p&gt;如何快速的入门 llvm 后端？&lt;/p&gt;
+
+&lt;h2 id=&quot;ide工具&quot;&gt;IDE工具&lt;/h2&gt;
+
+&lt;p&gt;推荐一个工具clion：这个没有社区版的， 用付费的就可以， 其他的我不知道。&lt;/p&gt;
+
+&lt;p&gt;有个trace功能，1个函数调用路径，然后右键查看源码可以跳转到源码里面去。&lt;/p&gt;
+
+&lt;h2 id=&quot;操作系统&quot;&gt;操作系统&lt;/h2&gt;
+
+&lt;p&gt;windoows， 不管是多大的项目，只要debug，几秒就可以调到断点的地方。&lt;/p&gt;
+
+&lt;p&gt;我用的m1电脑，编译慢，调试而慢，应该是对于debug没有优化，windwos是 debug是优化过的。&lt;/p&gt;
+
+&lt;p&gt;有懂的大佬可以留言，我学习学习。&lt;/p&gt;
+
+&lt;h2 id=&quot;关于编译&quot;&gt;关于编译&lt;/h2&gt;
+
+&lt;p&gt;装一个 c cache， 编译成动态库， 可以缓存编译的文件， 速度会快很多。&lt;/p&gt;
+
+&lt;h2 id=&quot;关于寄存器的分配&quot;&gt;关于寄存器的分配&lt;/h2&gt;
+
+&lt;p&gt;llvm太复杂了，寄存器分配那个地方非常难搞。&lt;/p&gt;
+
+&lt;h2 id=&quot;学习后端pass&quot;&gt;学习后端pass&lt;/h2&gt;
+
+&lt;p&gt;debug的速度决定了理解这个项目的速度，先了解这个pass是干什么的。&lt;/p&gt;
+
+&lt;p&gt;首先，想如果是你你会怎么写，然后去代码里面找你脑中会怎么写的代码片段。&lt;/p&gt;
+
+&lt;p&gt;对于GPU编译器， 看amd的编译器，在里面乱写，就改其中的1-2行，看看预期效果怎么回事，多弄几遍这个就会了。&lt;/p&gt;
+
+&lt;h1 id=&quot;more&quot;&gt;more&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://www.jetbrains.com/clion/download/&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sat, 01 Jun 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/06/01/llvm-learning-end/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/06/01/llvm-learning-end/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        <category>后端</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LLVM 学习记录：编译器最佳实践 - 后端</title>
+        <description>&lt;p&gt;学习内容来自网络课程，这个基本上是针对有点经验的 llvm 开发者，前面的就是过一遍。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Libraries&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://books.google.com.tw/books?id=g_wqEAAAQBAJ&amp;amp;printsec=copyright&amp;amp;redir_esc=y#v=onepage&amp;amp;q&amp;amp;f=false&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;使用-passmanager-和-analysismanage&quot;&gt;使用 PassManager 和 AnalysisManage&lt;/h2&gt;
+
+&lt;h2 id=&quot;处理-llvm-ir&quot;&gt;处理 LLVM IR&lt;/h2&gt;
+&lt;h2 id=&quot;准备相关的工具&quot;&gt;准备相关的工具&lt;/h2&gt;
+&lt;h2 id=&quot;学习-llvm-ir-表达式&quot;&gt;学习 LLVM IR 表达式&lt;/h2&gt;
+
+</description>
+        <pubDate>Sat, 01 Jun 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/06/01/llvm-learning-best_practice-2/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/06/01/llvm-learning-best_practice-2/</guid>
+        
+        <category>llvm</category>
+        
+        <category>编译器</category>
+        
+        <category>后端</category>
+        
+        
+      </item>
     
       <item>
         <title>LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test</title>
@@ -182,10 +336,10 @@
 &lt;p&gt;定义一个 debug_type 的，后面是 pass 的名字。如何使用，
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_DEBUG(dbgs())&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Make sure that they can fit on the caller's stack.&lt;/span&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Make sure that they can fit on the caller&apos;s stack.&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SIMachineFunctionInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FuncInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SIMachineFunctionInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OutInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getStackSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FuncInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getBytesInStackArgArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;LLVM_DEBUG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dbgs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;... Cannot fit call operands on caller's stack.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;LLVM_DEBUG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dbgs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;... Cannot fit call operands on caller&apos;s stack.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -571,636 +725,6 @@ defm，这个多了一个 m，m 代表的就是 multiclass，就是定义的多�
         <category>llvm</category>
         
         <category>编译器</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 学习记录：如何添加一个 builtin 函数</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;学习过程，求勘误，多谢指出~&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;今天学习如何在后端添加一个-builtin-和对应的指令-mapping-起来&quot;&gt;今天学习如何在后端添加一个 builtin 和对应的指令 mapping 起来？&lt;/h1&gt;
-
-&lt;p&gt;整个过程预览：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;源代码调用：在高级语言的源代码中使用特定于 AMDGPU 的内置函数，例如就这么写 __builtin_amdgcn_sin(x)。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;LLVM IR 生成：Clang 编译器在编译过程中将这些内置函数调用转换为 LLVM IR 中的内置函数，例如 %0 = call float @llvm.amdgcn.sin.f32(float %x)。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;机器代码生成：LLVM 的后端（例如 AMDGPU 后端）读取 LLVM IR，并根据 IntrinsicsAMDGPU.td 文件中的定义，将这些内置函数映射到具体的机器指令，就是 amd 的 isa 指令。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;1--什么情况下会添加这个函数&quot;&gt;1.  什么情况下会添加这个函数？&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://llvm.org/docs/ExtendingLLVM.html&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;在使用 LLVM 的过程中，您可能希望为您的研究项目或实验定制它。此时，您可能会意识到需要向 LLVM 添加一些内容，无论是新的基本类型、新的内部函数还是全新的指令。&lt;/p&gt;
-
-&lt;p&gt;一般情况时有新的 target 添加，或者是支持新的 target，那么才需要，不然似乎需要。&lt;/p&gt;
-
-&lt;p&gt;因为这个需要花费大量的时间，请在社区咨询和是不是已经支持，或者已经有人在做了。&lt;/p&gt;
-
-&lt;h2 id=&quot;2-开始添加&quot;&gt;2. 开始添加&lt;/h2&gt;
-
-&lt;p&gt;向 LLVM 添加新的内部函数比添加新指令要容易得多。几乎所有 LLVM 扩展都应该作为内在函数开始，然后在必要时转换为指令。&lt;/p&gt;
-
-&lt;p&gt;首先，要知道 tablegen 的语法。&lt;/p&gt;
-
-&lt;p&gt;关于 tablegen, 可以看下这篇文章，太多了，死机是记不住的，怎么办？多在实际项目中应用，记不住的再来查字典。&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;https://blog.llvm.org/posts/2023-12-07-tools-for-learning-llvm-tablegen/&lt;/p&gt;
-
-  &lt;p&gt;https://llvm.org/docs/TableGen/&lt;/p&gt;
-
-  &lt;p&gt;https://llvm.org/docs/TableGen/ProgRef.html&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;1--添加定义-builtin-和-intrinsic为了高级语言可以调用&quot;&gt;1.  添加定义 builtin 和 intrinsic，为了高级语言可以调用&lt;/h3&gt;
-
-&lt;p&gt;首先需要了解点，基础的知识。&lt;/p&gt;
-
-&lt;h4 id=&quot;builtin-和-intrinsic-有什么区别&quot;&gt;builtin 和 intrinsic 有什么区别？&lt;/h4&gt;
-
-&lt;p&gt;一开始也不懂，只是啥呀？看名字感觉都是内置函数，确实都是内置函数。&lt;/p&gt;
-
-&lt;p&gt;我理解的有点区别，就是 builtin 是高级语言级别的，而 intrinsic 是 IR 级别的。&lt;/p&gt;
-
-&lt;p&gt;在 llvm 里面他们的命名大概是这样子的。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;builtin：__builtin_memcpy()、__builtin_popcount()&lt;/li&gt;
-  &lt;li&gt;intrinsic: llvm.memcpy(), llvm.ctpop()&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;cgbuiltincpp-这个文件干嘛的&quot;&gt;CGBuiltin.cpp 这个文件干嘛的？&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CGBuiltin.cpp&lt;/code&gt; 文件是 LLVM 项目的一部分，主要负责生成 LLVM IR 代码以实现内置函数的编译，包括初始化内存、生成内置库函数调用以及处理特定于目标架构的内置函数。&lt;/p&gt;
-
-&lt;p&gt;这个文件里面主要关注 2 个函数：文件包含了初始化内存的函数 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initializeAlloca&lt;/code&gt;，该函数根据不同的初始化策略（如未初始化、全零初始化或模式初始化）来初始化 alloca 分配的内存。还有就是对齐方式，这个主要取决于硬件。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getBuiltinLibFunction&lt;/code&gt; 函数负责将高级语言中的内置函数映射到 LLVM IR 的内置函数，这对于生成有效的目标代码至关重要。&lt;/p&gt;
-
-&lt;p&gt;举个例子：比如高级语言是__builtin_fabs，对应的 IR 可能就是 llvm.fabs。&lt;/p&gt;
-
-&lt;p&gt;可以看到很多&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;枚举值&lt;/code&gt;。比如：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case RISCV::BI__builtin_riscv_ntl_store:&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;这个枚举值是通过 TargetBuiltins.h 里面通过 namespace 里面的 include 来的。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;/// AMDGPU builtins&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AMDGPU&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;LastTIBuiltin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Builtin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstTSBuiltin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;cp&quot;&gt;#define BUILTIN(ID, TYPE, ATTRS) BI##ID,
-&lt;/span&gt;  &lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&quot;clang/Basic/BuiltinsAMDGPU.def&quot;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;LastTSBuiltin&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;builtinsdef-是干嘛的&quot;&gt;Builtins*.def 是干嘛的&lt;/h4&gt;
-
-&lt;p&gt;来到&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang/Basic/BuiltinsAMDGPU.def&lt;/code&gt;这个文件里面，就可以看到具体的定义 BUILTIN 定义了。&lt;/p&gt;
-
-&lt;p&gt;有必要对这个代码解释下，我看了之后，一头雾水。LastTIBuiltin 和 FirstTSBuiltin 是什么？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;第一个是 namespace 这个好理解；&lt;/li&gt;
-  &lt;li&gt;enum 枚举值；匿名枚举值；&lt;/li&gt;
-  &lt;li&gt;LastTIBuiltin = clang::Builtin::FirstTSBuiltin - 1,：我看了大概是 AMDGPU 内置函数的 ID 值比 clang 内置函数的 ID 值小 1。
-LastTIBuiltin：这个枚举成员表示 LLVM/Clang 中最后一个 Target-Independent (TI) 内置函数的编号。Target-Independent 内置函数是不依赖于特定硬件架构的内置函数。LastTIBuiltin 的值是 clang::Builtin::FirstTSBuiltin - 1，其中 FirstTSBuiltin 表示第一个 Target-Specific (TS) 内置函数的编号。这样设置是为了确保 AMDGPU 的内置函数枚举值在数值上紧跟在 TI 内置函数之后。&lt;/li&gt;
-  &lt;li&gt;#define BUILTIN(ID, TYPE, ATTRS) BI##ID, 定义了宏，包含 3 个参数；展开后，应该类似 BI1，BI2……&lt;/li&gt;
-  &lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;BUILTIN(__builtin_amdgcn_dispatch_ptr, &quot;v*4&quot;, &quot;nc&quot;)
-BUILTIN(__builtin_amdgcn_kernarg_segment_ptr, &quot;v*4&quot;, &quot;nc&quot;)
-BUILTIN(__builtin_amdgcn_implicitarg_ptr, &quot;v*4&quot;, &quot;nc&quot;)
-BUILTIN(__builtin_amdgcn_queue_ptr, &quot;v*4&quot;, &quot;nc&quot;)
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;估计你和我一样，第一眼看到的饿时候，what？这些神秘的 v，n，c 是什么意思？没关系，看文件的顶部，有一个文件，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;builtins.def&lt;/code&gt;，跟过去，看一下里面的内容，下面是部分内容。&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//https://github.com/llvm/llvm-project/blob/main/clang/include/clang/Basic/Builtins.def
-
-// (result value, then each argument) as follows:
-//  v -&amp;gt; void
-//  b -&amp;gt; boolean
-//  c -&amp;gt; char
-//  s -&amp;gt; short
-//  i -&amp;gt; int
-//  h -&amp;gt; half (__fp16, OpenCL)
-//  x -&amp;gt; half (_Float16)
-//  y -&amp;gt; half (__bf16)
-//  f -&amp;gt; float
-//  d -&amp;gt; double
-//  z -&amp;gt; size_t
-//  w -&amp;gt; wchar_t
-//  F -&amp;gt; constant CFString
-//  G -&amp;gt; id
-//  H -&amp;gt; SEL
-//  M -&amp;gt; struct objc_super
-//  a -&amp;gt; __builtin_va_list
-//  A -&amp;gt; &quot;reference&quot; to __builtin_va_list
-
-……
-
-// Types may be prefixed with the following modifiers:
-//  L   -&amp;gt; long (e.g. Li for 'long int', Ld for 'long double')
-//  LL  -&amp;gt; long long (e.g. LLi for 'long long int', LLd for __float128)
-//  LLL -&amp;gt; __int128_t (e.g. LLLi)
-//  Z   -&amp;gt; int32_t (require a native 32-bit integer type on the target)
-//  W   -&amp;gt; int64_t (require a native 64-bit integer type on the target)
-//  N   -&amp;gt; 'int' size if target is LP64, 'L' otherwise.
-//  O   -&amp;gt; long for OpenCL targets, long long otherwise.
-//  S   -&amp;gt; signed
-//  U   -&amp;gt; unsigned
-//  I   -&amp;gt; Required to constant fold to an integer constant expression.
-//
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;看了就知道是什么意思了吧，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v 就是 void，没有返回值&lt;/code&gt;。如果是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Si&lt;/code&gt; signed integer 就是有符号整型。&lt;/p&gt;
-
-&lt;h4 id=&quot;intrinsicstd-是干嘛的&quot;&gt;Intrinsics*.td 是干嘛的&lt;/h4&gt;
-
-&lt;p&gt;最后这个枚举值需要定义在&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;llvm/IR/Intrinsics*.td&lt;/code&gt; 这个里面，就是第一步我们定义的。&lt;/p&gt;
-
-&lt;p&gt;llvm/include/llvm/IR/Intrinsics*.td:&lt;/p&gt;
-
-&lt;p&gt;用 amdgpu 来举例：&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/IntrinsicsAMDGPU.td&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;下面是我为了举例自己构造的，用法不一定正确。&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def int_amdgcn_rcp_legacy : ClangBuiltin&amp;lt;&quot;__builtin_amdgcn_rcp_legacy&quot;&amp;gt;,
-  DefaultAttrsIntrinsic&amp;lt;[llvm_float_ty], [llvm_i32_ty],
-  [IntrNoMem, IntrSpeculatable]
-&amp;gt;;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;IntrNoMem 这些就是属性，也是定义在 Intrinsics.td 里面的，有解释，比如这个的定义意思就是：IntrNoMem - The intrinsic does not access memory or have any other side effects.  It may be CSE’d deleted if dead, etc.&lt;/li&gt;
-  &lt;li&gt;llvm_i32&lt;em&gt;ty 是定义的一个数据类型属性，llvm&lt;/em&gt; 是命名空间的一部分，用于避免与其他库或框架中的类型名冲突。i32 表示 32 位整数，_ty 表示这是一个类型（type）的定义。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;其他就去这个上面的链接上看。&lt;/p&gt;
-
-&lt;p&gt;顺便提一下这个 def 是啥和用法。&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;def 是定义一个 record：def 的语法
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Def       ::=  &quot;def&quot; [NameValue] RecordBody
-NameValue ::=  Value (parsed in a special mode)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这里的 intrinsic def 用法这么定义的（这个定义我没有找到，为什么这么约束的？我猜应该是在 Intrinsic.td 里面）&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def &amp;lt;name&amp;gt; &amp;lt;args&amp;gt; &amp;lt;ret&amp;gt; [&amp;lt;attrs&amp;gt;] {
-  // Definition body
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;name&amp;gt;：正在定义的实体的名称，例如内部函数、指令或数据类型。&lt;/li&gt;
-  &lt;li&gt;args&amp;gt;：实体的参数列表，通常由其数据类型表示。&lt;/li&gt;
-  &lt;li&gt;ret&amp;gt;：实体的返回类型（如果适用）。&lt;/li&gt;
-  &lt;li&gt;attrs&amp;gt;：实体的可选属性列表，提供附加信息。
-{}：包含定义主体，其中包含有关实体的特定详细信息。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这里的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClangBuiltin&amp;lt;&quot;__builtin_amdgcn_rcp_legacy&quot;&amp;gt;&lt;/code&gt;就是 NameValue，就是可以在高级语言直接调用的。
-RecordBody 就是后面的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DefaultAttrsIntrinsic&amp;lt;&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;这个 Clangbuiltin 和 DefaultAttrsIntrinsic 都定义在：https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/Intrinsics.td&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Intrinsic with default attributes (disable_default_attributes = false).
-class DefaultAttrsIntrinsic&amp;lt;list&amp;lt;LLVMType&amp;gt; ret_types,
-                list&amp;lt;LLVMType&amp;gt; param_types = [],
-                list&amp;lt;IntrinsicProperty&amp;gt; intr_properties = [],
-                string name = &quot;&quot;,
-                list&amp;lt;SDNodeProperty&amp;gt; sd_properties = []&amp;gt;
-                : Intrinsic&amp;lt;ret_types, param_types,
-                            intr_properties, name,
-                            sd_properties, /*disable_default_attributes*/ 0&amp;gt; {}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;定义好了，高级语言可以条用的接口，那么接下来就是，后端的实现了。&lt;/p&gt;
-
-&lt;h3 id=&quot;2-把-intrinsic-和指令关联起来&quot;&gt;2. 把 intrinsic 和指令关联起来&lt;/h3&gt;
-
-&lt;p&gt;需要到 llvm 的前端把 builtin 函数转化为 intrinsic，这个是前端实现的，我不太熟悉，我用 AI 搜索下了，回答如下：&lt;/p&gt;
-
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;
-1.&lt;/span&gt; 语法分析
-
-首先，LLVM 的前端分析器（如 Clang）会对源代码进行语法分析，将源代码转换为抽象语法树（AST）。AST 包含了代码的结构和语义信息，包括函数声明、函数调用、表达式等。
-
-在 AST 中，intrinsic 函数会被表示为特殊的节点，其中包含了函数名、参数类型和返回值类型等信息。
-&lt;span class=&quot;p&quot;&gt;
-2.&lt;/span&gt; 语义分析
-
-接下来，LLVM 会进行语义分析，检查代码的语义是否正确。在这个阶段，LLVM 会检查 intrinsic 函数的调用是否合法，例如参数类型是否匹配、函数是否被定义等。
-
-如果语义分析成功，LLVM 会将 AST 转换为 IR。
-&lt;span class=&quot;p&quot;&gt;
-3.&lt;/span&gt; IR 生成
-
-在 IR 生成阶段，LLVM 会为每个 intrinsic 函数生成对应的 IR 函数。IR 函数由一系列 LLVM IR 指令组成，这些指令描述了函数的具体操作
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后是 intrinsic 和指令的映射。&lt;/p&gt;
-
-&lt;p&gt;这类文件 llvm/lib/Target/AMDGPU/*Instructions.td 就是定义具体的指令的，&lt;/p&gt;
-
-&lt;p&gt;在这个文件里面 https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/AMDGPU/DSInstructions.td 可以看到关于 ds_consume 的多个定义。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_CONSUME&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_0A_RET&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ds_consume&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;defm&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_CONSUME&lt;/span&gt;             &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_Real_gfx6_gfx7_gfx10_gfx11_gfx12&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mh&quot;&gt;0x03d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_CONSUME_vi&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_Real_vi&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mh&quot;&gt;0xbd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_CONSUME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;看一个，就可以看到这个类 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DS_0A_RET&lt;/code&gt;的定义。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DS_0A_RET&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_Pseudo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;outs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getLdStRegisterOperand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VGPR_32&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vdst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ins&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Offset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;&quot; $vdst$offset$gds&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mayLoad&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mayStore&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has_addr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has_data0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;has_data1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;里面就是约束了定义时候的用法，其他就没有了，还有一些属性。&lt;/p&gt;
-
-&lt;p&gt;再来看另外一个，类名&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DS_Real_vi&lt;/code&gt;。用的是一个 64 位的寄存器，0~63，每一位代表的是什么，都写了。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DS_Real_vi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bits&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DS_Pseudo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;DS_Real&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;SIMCInstr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PseudoInstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SIEncodingFamily&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VI&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AssemblerPredicate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isGFX8GFX9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DecoderNamespace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;GFX8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;// encoding&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_offset0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;offset0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_offset1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;offset1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_gds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gdsValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;op&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x36&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ds prefix&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;39&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_addr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;addr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_gws_data0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;47&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_data0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;55&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;48&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_data1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Inst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;63&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;56&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;has_vdst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vdst&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;我强行解读下，估计是小尾端编码：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;0~15 位，都是表示 offset&lt;/li&gt;
-  &lt;li&gt;16 位：是一个 gds 的值，估计是一个 bool 啥的&lt;/li&gt;
-  &lt;li&gt;17-24：是一个操作数，opcode，每个指令不一样，是唯一的&lt;/li&gt;
-  &lt;li&gt;25：acc 是加速？准确？不装了，确实不懂……&lt;/li&gt;
-  &lt;li&gt;32-55 都是 data，应该是 source 之类的 addr&lt;/li&gt;
-  &lt;li&gt;56~63 是 destination，&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;3-用-amdgpu-的来举例&quot;&gt;3. 用 amdgpu 的来举例&lt;/h3&gt;
-
-&lt;p&gt;首先，需要 https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/IntrinsicsAMDGPU.td 里面定义个 intrinsic :: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;amdgcn_div_fixuph&lt;/code&gt; 函数。必须是 int_ 开头。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_amdgcn_div_fixuph&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DefaultAttrsIntrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llvm_anyfloat_ty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVMMatchType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLVMMatchType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLVMMatchType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IntrNoMem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IntrSpeculatable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后，在 https://github.com/llvm/llvm-project/blob/main/clang/include/clang/Basic/BuiltinsAMDGPU.def 文件里面定义个 builtin 的函数。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;TARGET_BUILTIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__builtin_amdgcn_div_fixuph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hhhh&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;nc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;16-bit-insts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后，在 https://github.com/llvm/llvm-project/blob/main/clang/lib/CodeGen/CGBuiltin.cpp 里面，然后对应的 intrinsic 函数，这里返回的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Intrinsic::amdgcn_div_fixuph&lt;/code&gt;。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AMDGPU&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BI__builtin_amdgcn_div_fixuph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;emitTernaryBuiltin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Intrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amdgcn_div_fixuph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;这样前端就可以调用了，但是在 amdgpu 上还没有映射具体的指令。&lt;/p&gt;
-
-&lt;p&gt;这个需要在 intrinsic 里面添加这个定义。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;defm&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V_DIV_FIXUP_F16&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VOP3Inst&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;v_div_fixup_f16&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;VOP3_Profile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VOP_F16_F16_F16_F16&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AMDGPUdiv_fixup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;这个对于的指令就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v_div_fixup_f16&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;所以高级语言调用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__builtin_amdgcn_div_fixuph&lt;/code&gt; 然后根据参数，会具体映射到定义的指令上面：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v_div_fixup_f16&lt;/code&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;end&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 21 May 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics-1/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/21/llvm-learning-define-intrinsics-1/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>如何编译 SHOC（可扩展的异构计算基准套件）</title>
-        <description>&lt;h1 id=&quot;什么是-shoc&quot;&gt;什么是 SHOC&lt;/h1&gt;
-
-&lt;p&gt;可扩展异源计算基准套件（SHOC）是一组基准程序，用于测试系统的性能和稳定性。其最初的重点是其最初的重点是包含图形处理器（GPU）和多核和多核处理器的系统，以及 OpenCL（openclspec）编程标准。&lt;/p&gt;
-
-&lt;p&gt;它既可用于集群，也可用于单个主机。&lt;/p&gt;
-
-&lt;p&gt;OpenCL 是一个开放标准，用于对各种类型的计算设备进行编程。&lt;/p&gt;
-
-&lt;p&gt;设备编程的开放标准。OpenCL 规范描述了一种编程语言。&lt;/p&gt;
-
-&lt;p&gt;内核的编程语言，以及用于在支持 OpenCL 的设备上运行的应用编程接口 (API)，用于将数据传输到此类设备并在其上执行内核。
-内核的应用编程接口（API）。&lt;/p&gt;
-
-&lt;h1 id=&quot;shoc-可以验证什么&quot;&gt;SHOC 可以验证什么？&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142732.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;稳定测试&quot;&gt;稳定测试&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142513.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;spmv&quot;&gt;SpMV&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142534.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;能效&quot;&gt;能效&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142555.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;资源竞争&quot;&gt;资源竞争&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142612.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;gpu-api-比较&quot;&gt;GPU api 比较&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811142639.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;如何编译-shoc&quot;&gt;如何编译 SHOC&lt;/h1&gt;
-
-&lt;p&gt;参考文件：https://github.com/vetter/shoc/blob/master/INSTALL.txt&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;拉代码 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git clone https://github.com/vetter/shoc.git&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;进入目录 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cd shoc&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;执行 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./configure&lt;/code&gt; 来配置编译选项。这里可以指定一些参数来运行： &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--with-cuda, --with-opencl, --with-mpi&lt;/code&gt; ,也可以用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./configure --help&lt;/code&gt; 查看其他的选项。&lt;/li&gt;
-  &lt;li&gt;编译&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make -j 88&lt;/code&gt; 来执行编译。这里的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-j&lt;/code&gt;参数是指定并行编译的线程数，可以根据自己的机器来设置。&lt;/li&gt;
-  &lt;li&gt;可选， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make install&lt;/code&gt; 来安装 bin 到指定目录。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;下面是我的执行命令：&lt;/p&gt;
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/vetter/shoc.git
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;shoc
-&lt;span class=&quot;c&quot;&gt;# ./configure CPPFLAGS=&quot;-I/usr/local/cuda/include&quot; CUDA_CPPFLAGS=&quot;-gencode=arch=compute_60,code=sm_60&quot; LIBS=&quot;-lcuda -lcudart&quot; LFLAGS=&quot;-l/usr/local/cuda/lib64&quot; --with-cuda&lt;/span&gt;
-./configure &lt;span class=&quot;nv&quot;&gt;CPPFLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-I/usr/local/cuda/include&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;CUDA_CPPFLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;LIBS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-lcuda -lcudart&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;LFLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-l/usr/local/cuda/lib64&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--with-cuda&lt;/span&gt;
-make &lt;span class=&quot;nt&quot;&gt;-j&lt;/span&gt; 88
-make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;可能遇到的问题：
-https://github.com/vetter/shoc/issues/67
-CUDA10.0（不含）之后的版本会出现的问题：编译失败
-执行 configure 配置时加入&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-lcuda -lcudart&lt;/code&gt; 参数，指定 cuda 库和 cudart 库。&lt;/p&gt;
-
-&lt;p&gt;也可以参考这个教程，shell 已经写好了：
-https://openbenchmarking.org/innhold/db04416737e558c3510d20be04d2574e63e0a548&lt;/p&gt;
-
-&lt;h1 id=&quot;如何执行-shoc&quot;&gt;如何执行 SHOC&lt;/h1&gt;
-
-&lt;p&gt;执行：&lt;/p&gt;
-
-&lt;p&gt;用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;perl tools/driver.pl -s 1 -d 0 -cuda&lt;/code&gt; 来执行测试。这里的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-s&lt;/code&gt;参数是指定测试的规模，就是节点数量，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-d&lt;/code&gt;参数是指定测试的设备，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-cuda&lt;/code&gt;参数是指定测试的类型。&lt;/p&gt;
-
-&lt;p&gt;也可以用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./bin/shocdirver -h&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;结果截图&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/win2022/20230811143648.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;read-more&quot;&gt;Read more&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;https://blog.csdn.net/babyfacer/article/details/6989093&lt;/li&gt;
-  &lt;li&gt;https://openbenchmarking.org/test/pts/shoc&lt;/li&gt;
-  &lt;li&gt;https://on-demand.gputechconf.com/gtc/2010/posters/I05-The-Scalable-HeterOgeneous-Computing-(SHOC)-Benchmark-Suite.pdf&lt;/li&gt;
-  &lt;li&gt;https://www.jianshu.com/p/9cd6708246c9
-(1) shoc/shoc-manual.tex at master · vetter/shoc · GitHub. https://github.com/vetter/shoc/blob/master/doc/shoc-manual.tex
-(2) Issues · vetter/shoc · GitHub. https://github.com/vetter/shoc/issues
-(3) SHOC: The Scalable HeterOgeneous Computing Benchmark Suite. https://usermanual.wiki/Document/shocmanual.432449542.pdf&lt;/li&gt;
-&lt;/ol&gt;
-
-</description>
-        <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/08/11/how-compiler-shoc/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/08/11/how-compiler-shoc/</guid>
-        
-        <category>SHOC</category>
-        
-        <category>benchmark</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>98 -  云南游记</title>
-        <description>&lt;p&gt;记录下这次的旅游线路和见闻，路线为：成都 - 大理 - 丽江 - 云南 - 成都，时间总共 9 天。&lt;/p&gt;
-
-&lt;p&gt;第一天：大部分时间实在高铁上，终点是大理才村。8 点成都南站出发，达到广通北，转车到大理，花费时间为 8 个小时左右。&lt;/p&gt;
-
-&lt;p&gt;在广通北，中转的时候，这个站点很小，如果有中转的话，建议在多带一点水和实物，站里面没有卖的。&lt;/p&gt;
-
-&lt;p&gt;经过 1 个小时达到大理，然后打车达到洱海才村名宿，60 左右的打车费，找了一家本地的餐馆，吃的是菌菇类的菜，消费不高，8 个人，7 菜一汤，不到 300 元，年轻人不要点太多，晚点去夜市，还有的吃，不然就吃不爽了。&lt;/p&gt;
-
-&lt;p&gt;吃完之后到 50 来开外的洱海，散步，特别凉快。等天黑了之后，就去夜市，夜市小吃也特别的丰富，价格特别的便宜。&lt;/p&gt;
-
-&lt;p&gt;第二天：包车游览这个洱海一圈，重要景点自己挑，我没有老人和小孩，去了 S 湾、廊桥、喜洲、xx 古城；单个车 500 元左右。早上 9 点出发，晚上 8.30 回到起到。&lt;/p&gt;
-
-&lt;p&gt;时间有限，有好多景点都没有来得及看。&lt;/p&gt;
-
-&lt;p&gt;还间歇性下雨，出门备好雨伞和雨衣，我比较喜欢雨衣，吃东西也不耽搁手。&lt;/p&gt;
-
-&lt;p&gt;由于已经逛了一天了，晚上就找了一家民宿门口的餐馆，吃的石锅烤肉，和烤肉差不多，老板是本地人，有时候听不懂我们说话，经常会叫年轻人过来服务我们。&lt;/p&gt;
-
-&lt;p&gt;第三天：出海一圈，然后去古城（大理大学旁边）&lt;/p&gt;
-
-&lt;p&gt;出海就是在湖中看周围的山和村子的全貌，天气好的话，记得多拍照，美得很。&lt;/p&gt;
-
-&lt;p&gt;打车去古城，有电动三轮车，每人 5 元。这个速度快，其他车估计要堵车。&lt;/p&gt;
-
-&lt;p&gt;之前去过的这些地方（除了喜洲人多外），人都很少，但是到了古城就能看到很多的人，又是旅游旺季，特别多的跟团。我们的节奏就是吃，逛，拍照。&lt;/p&gt;
-
-&lt;p&gt;第四天：早上 10 点出发，12 点高铁出发去往，丽江束河古镇，同样是名宿（便宜）&lt;/p&gt;
-
-&lt;p&gt;到了基本上就是下午了，休息下，就开始逛古镇，找了一家川菜馆（有老人，估计中午饭没好好吃），消费 500 元左右，菜味道一般。&lt;/p&gt;
-
-&lt;p&gt;吃了就往下到一个「四方听音」广场，这个地方晚上可以看篝火，也可以跟着跳。但是是不下雨，下雨就没有了。&lt;/p&gt;
-
-&lt;p&gt;我们走到这个地方就开始下雨，就去了一家旁边楼上的歌吧，点了一壶茶，2 小杯果汁，价格有点贵 200 多。&lt;/p&gt;
-
-&lt;p&gt;第五天：打车去丽江古城&lt;/p&gt;
-
-&lt;p&gt;太大了，从南门进入，逛到下面，边走边吃，吃了午饭。古城太大了，要全部逛完，几乎要一个礼拜吧。这个就像看书，只看自己感兴趣的东西，或者有益的东西，不要想小学生那样，一字一字的全部看完。&lt;/p&gt;
-
-&lt;p&gt;午饭吃的乌鸡米线，其他吃的人特别少，只有这个米线，还要排队，应该是经过筛选的，没有啥问题。&lt;/p&gt;
-
-&lt;p&gt;吃了午饭去木府，这个地方有很多领导人都来过。最好请一个导游，看这种没有导游，基本上就是看个热闹，啥也看不懂。&lt;/p&gt;
-
-&lt;p&gt;网上走，就是万古楼，要单独收门票（35 元），上面就去了一个楼，还有 2 个观景台，观景台就在售票窗口旁边，视野开阔，可以看到整个古城。还是整个古城，一面是砖瓦白灰的古城，一面是现代风格的高楼大厦。&lt;/p&gt;
-
-&lt;p&gt;万古楼有望远镜，可以看到很远的东西，比如看到看到一排墙，墙上有一些象形字体。&lt;/p&gt;
-
-&lt;p&gt;下午返回，休息下，大众点评找了一家不错的排骨汤锅。&lt;/p&gt;
-
-&lt;p&gt;第六天：打车去白沙，惬意&lt;/p&gt;
-
-&lt;p&gt;逛古镇，还有一个壁画的博物馆，吃了一家腊排骨汤锅，下午找了一个地方看玉龙雪山。&lt;/p&gt;
-
-&lt;p&gt;晚上在束河古镇吃的云上鱼，这个吃法很新鲜，但是就是煮的太慢了。&lt;/p&gt;
-
-&lt;p&gt;吃了之后，往下走一点，有一个四方听音，今天天气不错，终于在 8.30 开始了篝火晚会，有专门的人组织这个活动。如果之前在古城没有见到人山人海，那在这里是不会辜负你的期望，特别热闹。&lt;/p&gt;
-
-&lt;p&gt;第七天：早上 10 点，出发去云南城区，也是名宿（一个套 4 房，一天 700 左右）&lt;/p&gt;
-
-&lt;p&gt;到了名宿之后，大概是下午 2 点左右，休息会儿，然后出发吃饭。&lt;/p&gt;
-
-&lt;p&gt;我个亲戚在这边工作，晚上宴请了我们，吃当地的一家野菌皇（宝海店），看了下大众点评的，人均 100 左右。&lt;/p&gt;
-
-&lt;p&gt;一大锅菌菇，一只鸡 + 一个团鱼，还有一些当地的特色小吃，就是菌菇的各种烹饪。&lt;/p&gt;
-
-&lt;p&gt;第八天：滇池，聂耳博物馆，花池古街&lt;/p&gt;
-
-&lt;p&gt;滇池从边上看不咋样，水富营养化了，呈绿色。看多了还有点不舒服。下面也没有什么游览的地方，建议还是做缆车上山看看。&lt;/p&gt;
-
-&lt;p&gt;做缆车上西山，上了西山之后，还有一个龙门景区，需要再次买票，人超级多，就没有去龙门景区。&lt;/p&gt;
-
-&lt;p&gt;大中午的，这个时候放眼望去，黑压压的一片，全是人。就看了免费的聂耳博物馆，然后做大巴车下山，山路崎岖，车程估计 20 分钟左右，但是自己感觉做了一个世纪，天昏地暗的。&lt;/p&gt;
-
-&lt;p&gt;下山的时候，要逛古街，司机会在古街停，但是说的是地铁口，我们就不知道，结果往下去了，然后走回来，热得不行。&lt;/p&gt;
-
-&lt;p&gt;古街，这个地方就是吃，看上喜欢的吃吧，价格也不贵。&lt;/p&gt;
-
-&lt;p&gt;第九天：早上 8 点出发，返回成都。&lt;/p&gt;
-
-&lt;p&gt;从 25°的天气，来到了 43°烤炉，在四川土生土长，43°这样的高温，似乎也觉得就这样，毕竟也只是室外温度，也不是天天都在室外。&lt;/p&gt;
-
-&lt;p&gt;我从事的是程序员，可以做一些远程类的工作。云南四季如春。以为云南很适合我，可以远程办公。&lt;/p&gt;
-
-&lt;p&gt;生活了一周之后，发现并不是现象的那样，在回来的高铁上，我的皮肤开始发痒，这个是在成都冬天经常会出现的情况。难受 ~&lt;/p&gt;
-
-&lt;p&gt;如果要去这个地方长期生活，建议先去这个地方待上一段时间，看看是不是你想要的生活。再做长久打算。可以用到生活上的其他事情上面。&lt;/p&gt;
-
-&lt;p&gt;这次云南之行，有小孩，老人，旅途就是也轻松居多，也不用赶路，整体下来就是一个放松的状态。&lt;/p&gt;
-
-&lt;p&gt;但是对于&lt;/p&gt;
-</description>
-        <pubDate>Sat, 15 Jul 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/07/15/yunnan-travel-note/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/07/15/yunnan-travel-note/</guid>
-        
-        <category>Newsletter</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>97 -  做确定的事情，长期有益</title>
-        <description>&lt;p&gt;朋友，您好 ~&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;赚几千万，赚一个亿是不确定的，但是爱护好自己的身体，保持健康，这是一个确定的。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我们生活在一个看重金钱和地位的社会。许多人为了事业奋斗，经常过度工作而忽视了身体健康。我深深理解大家追求成功的渴望，但是我们千万不能忘记生活的本质。&lt;/p&gt;
-
-&lt;p&gt;赚钱只是手段，绝不能成为我们生活的全部。我们要时刻记住，锻炼身体，丰富心智，与家人朋友团聚，这些才是生活和人生的真正意义所在。如果为了赚钱而舍弃了健康和关系，哪怕积累了千万财富，那又有什么意义呢？&lt;/p&gt;
-
-&lt;p&gt;不要本末倒置。&lt;/p&gt;
-
-&lt;p&gt;比如说，你是否能赚到几百万或者几千万，完全是未知数。谁也无法保证一定能赚到巨款。但是，如果你从现在就开始关注身体，养成健康的生活习惯，那就是你能够确定做到的事。&lt;/p&gt;
-
-&lt;p&gt;每天保证睡眠时间，积极运动锻炼，饮食加强营养均衡，这样都有利于你的身心健康。即使最终没能赚到巨款，起码你活得健康快乐。&lt;/p&gt;
-
-&lt;p&gt;相反，如果现在不爱惜自己的身体，将来即使赚了钱，也可能因为疾病而无法享受。比如长期熬夜加班导致身体亏空，到头来发现自己患上了失眠症、胃病等疾病。或者工作压力大，没有时间运动，长期缺乏锻炼，以至患上心血管疾病。届时，即使你已经是一个百万富翁，又有何益呢？&lt;/p&gt;
-
-&lt;p&gt;用本山老师的话说：人最大的悲哀是人走了，钱用完……&lt;/p&gt;
-
-&lt;p&gt;在追求事业的同时，千万不要忽视对自己身体的照顾。保持健康的生活作息，健康饮食，经常进行适量运动，做好心理调适。这对于身体机能的维护，情绪的稳定都非常重要。只有当我们拥有健康的身体和心态，才能更好地享受生活，感受人生的意义。&lt;/p&gt;
-
-&lt;p&gt;让我们一起来关爱自己的身心吧。健康生活，快乐生活，这是我们现在就能够掌握的宝贵财富。即使最终没能赚到巨款，起码我们活得健康、快乐、有尊严。&lt;/p&gt;
-
-&lt;p&gt;请记住，没有任何金钱能够买来健康。&lt;/p&gt;
-
-&lt;h2 id=&quot;读书日记&quot;&gt;读书日记&lt;/h2&gt;
-
-&lt;p&gt;最近在看一本书「终身成长」，我读了之后收货不错，有点后悔读迟了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/YLtemv.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;无论是在商界、体坛、婚恋关系还是亲子教养中，这种&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;成长型思维模式&lt;/code&gt;都至关重要，它决定了我们面对失败时的复原力，面对挑战时的承受力，面对我们需要为之努力的事业时付出努力的多寡。这种思维模式标志着一种诚实的态度，因为真正的成功从来不是偶然的，偶然得来的成功并不可靠。&lt;/p&gt;
-
-&lt;p&gt;比如：龟兔赛跑的故事本想强调努力可以有多重要的意义，却给了努力一个坏名声。它巩固了人们“只有缺乏天赋的人才需要努力”的观念，并让人们以为只有在非常罕见的情况下，当有天赋的人失误时，后进者才有机可乘。&lt;/p&gt;
-
-&lt;p&gt;如果您喜欢这份 Newsletter，&lt;a href=&quot;https://chasays.zhubai.love/&quot;&gt;从这里开始&lt;/a&gt;，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。&lt;/p&gt;
-
-&lt;h1 id=&quot;文章推荐&quot;&gt;文章推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.xiaoyuzhoufm.com/episode/649e79ecba16d4cb98641f02&quot;&gt;我不祝你成功上岸，我祝你选完不后悔&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;近几年，每每看到许多年轻人把考研当成本科后的最佳选择，把考公考编当成自己唯一可能的上岸之路，如鲠在喉——当可能只适合一部分人的「考公考编考研」，渐渐被吹捧成了最具普适性的答案，一个没有多少社会阅历的人，究竟该如何理解这一切？怎么选才不会后悔？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/hsTwbrsdQQVOBlmGiksqKA&quot;&gt;分享三个坚持写作的小技巧&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;先说结论，能长时间持续写作的人，基本上都满足这三点：降低写作成本，提升写作效率，持续产生内容&lt;/p&gt;
-
-&lt;h1 id=&quot;工具资源推荐&quot;&gt;工具、资源推荐&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://claude.ai/chats&quot;&gt;Claude.ai&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;官方支持了 PDF 文件上传，结合 100k 的上下文，提供了丝滑的 PDF 问答体验。对整个文档进行理解和分析，而不是使用文本切块。&lt;/p&gt;
-</description>
-        <pubDate>Sun, 09 Jul 2023 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2023/07/09/do-certainly-thing/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2023/07/09/do-certainly-thing/</guid>
-        
-        <category>Newsletter</category>
         
         
       </item>
