@@ -12,32 +12,29 @@
     <meta name="theme-color" content="">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Python进阶 - 察说花园 | Newsletter">
+    <meta property="og:title" content="一个程序员视角下，谈谈 Cursor 自动编码工具 - 察说花园 | Newsletter">
     
     <meta property="og:type" content="article">
-    <meta property="og:description" content="课程连接：
-
-  https://time.geekbang.org/column/intro/176
-
+    <meta property="og:description" content="想象一下，一个不懂编程的小白站在电脑前，面对着一堆凌乱的代码和复杂的设计需求，手足无措。突然，他看到了桌上那台小巧而神秘的设备——Cursor自动编码工具。它似乎能读懂他的每一个想法，并自动将其转换成可运行的程序。这不仅仅是一个虚构的故事，而是科技行业正在发生的真实转变。简述AI辅助编程工具在科技行业的重要性和发展背景。
 
 ">
     
-    <meta property="article:published_time" content="2020-09-24T00:00:00Z">
+    <meta property="article:published_time" content="2024-05-28T00:00:00Z">
     
     
     <meta property="article:author" content="叉叉敌">
     
     
-    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="编辑器">
     
-    <meta property="article:tag" content="进阶">
+    <meta property="article:tag" content="cursor">
     
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
-    <meta property="og:url" content="https://blog.chiphub.top/2020/09/24/Python-advanced/">
+    <meta property="og:url" content="https://blog.chiphub.top/2024/05/28/talk-cursor-in-programmer-view/">
     <meta property="og:site_name" content="察说花园 | Newsletter">
     
-    <title>Python进阶 - 察说花园 | Newsletter</title>
+    <title>一个程序员视角下，谈谈 Cursor 自动编码工具 - 察说花园 | Newsletter</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -46,7 +43,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://blog.chiphub.top/2020/09/24/Python-advanced/">
+    <link rel="canonical" href="https://blog.chiphub.top/2024/05/28/talk-cursor-in-programmer-view/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -301,15 +298,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/archive/?tag=Python" title="Python">Python</a>
+                        <a class="tag" href="/archive/?tag=%E7%BC%96%E8%BE%91%E5%99%A8" title="编辑器">编辑器</a>
                         
-                        <a class="tag" href="/archive/?tag=%E8%BF%9B%E9%98%B6" title="进阶">进阶</a>
+                        <a class="tag" href="/archive/?tag=cursor" title="cursor">cursor</a>
                         
                     </div>
-                    <h1>Python进阶</h1>
+                    <h1>一个程序员视角下，谈谈 Cursor 自动编码工具</h1>
                     
-                    <h2 class="subheading">向高手学习学习</h2>
-                    <span class="meta">Posted by 叉叉敌 on September 24, 2020</span>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by 叉叉敌 on May 28, 2024</span>
                 </div>
             </div>
         </div>
@@ -335,91 +332,199 @@
                 <!-- Multi-Lingual -->
                 
 
-				<p>课程连接：</p>
-<blockquote>
-  <p>https://time.geekbang.org/column/intro/176</p>
-</blockquote>
+				<p>想象一下，一个不懂编程的小白站在电脑前，面对着一堆凌乱的代码和复杂的设计需求，手足无措。突然，他看到了桌上那台小巧而神秘的设备——Cursor自动编码工具。它似乎能读懂他的每一个想法，并自动将其转换成可运行的程序。这不仅仅是一个虚构的故事，而是科技行业正在发生的真实转变。简述AI辅助编程工具在科技行业的重要性和发展背景。</p>
 
-<h2 id="开篇">开篇</h2>
-<ul>
-  <li>从工程角度掌握Python高阶用法；</li>
-  <li>独立开发Python项目的能力；</li>
-  <li>硅谷一线工程师的独家经验分享；</li>
-  <li>完整的Python学习路径。</li>
-</ul>
+<p>下面就来介绍下Cursor软件，包括其开发背景、核心功能及其对行业的影响。</p>
 
-<h2 id="基础">基础</h2>
+<h1 id="第一部分cursor的技术基础">第一部分：Cursor的技术基础</h1>
 
-<h3 id="ide">IDE</h3>
-<p>Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成本重现结果。</p>
+<p>在人工智能领域，Claude 3.5与GPT-4等模型代表了当前的前沿技术。这些模型采用先进的算法和大量数据集进行训练，能够处理复杂任务并提供高质量的输出。它们不仅在语言理解方面表现出色，而且在生成文本、图像识别以及其他模态中也展现出令人印象深刻的能力。这些先进模型的出现标志着人工智能研究进入了一个新的阶段，为各行各业带来了前所未有的机遇和挑战。</p>
 
-<h3 id="元组和列表">元组和列表</h3>
-<p>列表是动态的，长度可变，可以随意的增加、删减或改变元素。列表的存储空间略大于元组，性能略逊于元组。
-元组是静态的，长度大小固定，不可以对元素进行增加、删减或者改变操作。元组相对于列表更加<code class="language-plaintext highlighter-rouge">轻量级，性能稍优</code>。</p>
+<p>如果你已经习惯了VS Code的高效开发，那么转到Cursor将是一次非常顺滑的体验。Cursor作为新一代的AI编程助手，在继承VS Code强大功能的基础上，更进一步地融入了AI智能，让编码过程变得更加高效和有趣。</p>
 
-<h3 id="字典和集合">字典和集合</h3>
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/LsmruT.png" alt="迁移从 vsvcode" /></p>
 
-<p>集合的pop()操作是删除集合中最后一个元素，可是集合本身是无序的，你无法知道会删除哪个元素，因此这个操作得谨慎使用。</p>
+<p>来看看有哪些功能？</p>
 
-<p>字典和集合都是无序的数据结构，其内部的哈希表存储结构，保证了其查找、插入、删除操作的高效性。所以，字典和集合通常运用在对元素的<code class="language-plaintext highlighter-rouge">高效查找、去重</code>等场景。</p>
+<h1 id="第二部分cursor-的核心功能">第二部分：Cursor 的核心功能</h1>
 
-<h3 id="字符串">字符串</h3>
+<h2 id="1-代码自动生成与优化">1. 代码自动生成与优化</h2>
 
-<ul>
-  <li>Python中字符串使用单引号、双引号或三引号表示，三者意义相同，并没有什么区别。其中，三引号的字符串通常用在多行字符串的场景。</li>
-  <li>Python中字符串是不可变的（前面所讲的新版本Python中拼接操作’+=’是个例外）。因此，随意改变字符串中字符的值，是不被允许的。</li>
-  <li>拼接用 <code class="language-plaintext highlighter-rouge">‘’.join() </code>或者用 <code class="language-plaintext highlighter-rouge">+</code></li>
-  <li>Python中字符串的格式化（string.format）常常用在输出、日志的记录等场景。</li>
-</ul>
+<p>尝试用 3 个语言来写 3 个程序。</p>
+<ol>
+  <li>第一个 python，写一个快速排序。
+直接写下最上面的一行注释，一个 tab 就完成。
+```py
+    <h1 id="write-a-program-to-implement-quick-sort">write a program to implement quick sort</h1>
+  </li>
+</ol>
 
-<h3 id="输入和输出">输入和输出</h3>
-<ul>
-  <li>I/O	操作需谨慎，一定要<code class="language-plaintext highlighter-rouge">进行充分的错误处理</code>，并细心编码，防止出现编码漏洞；</li>
-  <li>编码时，对内存<code class="language-plaintext highlighter-rouge">占用和磁盘占用</code>要有充分的估计，这样在出错时可以更容易找到原因；</li>
-  <li>JSON序列化是很方便的工具，要结合实战多多练习；</li>
-  <li>代码尽量简洁、清晰，哪怕是初学阶段</li>
-</ul>
+<p>def quick_sort(arr):
+    if len(arr) &lt;= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x &lt; pivot]
+    right = [x for x in arr if x &gt; pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)</p>
 
-<p>思考</p>
+<p>print(quick_sort([3, 6, 8, 10, 1, 2, 1]))</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2. 写一个 html 的页面。
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## in.txt	可能非常非常大（意味着你不能一次读取到内存中），而	output.txt	不会很大（意味着重复的单词数量很多）。
+```html
+&lt;!-- write a program to implement a tech style website, with a header, a footer, and a main content area --&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Tech Style Website&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Tech Style Website&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;h2&gt;Welcome to our Tech Style Website&lt;/h2&gt;
+        &lt;p&gt;This is the main content area of our website.&lt;/p&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 Tech Style Website. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div></div>
+<p>效果图</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/TgysfV.png" alt="效果图" /></p>
+
+<ol>
+  <li>写一个cuda的vectoradd  kernel 函数。</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// write a program to implement vector addition</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="cp">
 </span>
-<span class="c1">## 遍历 用一个迭代器
-</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"in.txt"</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">infile</span><span class="p">:</span>
-        <span class="n">do_something_with</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="n">__global__</span> <span class="kt">void</span> <span class="nf">vectorAdd</span><span class="p">(</span><span class="k">const</span> <span class="kt">float</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">float</span><span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span><span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">tid</span> <span class="o">=</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tid</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">c</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">tid</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">tid</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span class="c1">## 读取的时候指定大小
-</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'in.txt'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">buf</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">buf</span><span class="p">:</span> 
-            <span class="p">...</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">break</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">2.0</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>
 
+    <span class="c1">// allocate memory on the device</span>
+    <span class="kt">float</span> <span class="o">*</span><span class="n">d_a</span><span class="p">,</span> <span class="o">*</span><span class="n">d_b</span><span class="p">,</span> <span class="o">*</span><span class="n">d_c</span><span class="p">;</span>
+    <span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_a</span><span class="p">,</span> <span class="n">n</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_b</span><span class="p">,</span> <span class="n">n</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_c</span><span class="p">,</span> <span class="n">n</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
 
-<span class="c1">## defaultdict
-</span>
-<span class="kn">from</span>	<span class="nn">collections</span>	<span class="kn">import</span>	<span class="n">defaultdict</span>
-<span class="kn">import</span>	<span class="nn">re</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"ini.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">"utf-8"</span><span class="p">)</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s">"\s"</span><span class="p">,</span> <span class="n">line</span><span class="p">)):</span>
-    <span class="n">d</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1">## 统计每个字符的多少个
-</span></code></pre></div></div>
+    <span class="c1">// copy data to the device</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">d_a</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">n</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">cudaMemcpyHostToDevice</span><span class="p">);</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">d_b</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">n</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">cudaMemcpyHostToDevice</span><span class="p">);</span>
 
-<h2 id="进阶">进阶</h2>
-<h3 id="比较和拷贝">比较和拷贝</h3>
+    <span class="c1">// launch the kernel</span>
+    <span class="n">vectorAdd</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_a</span><span class="p">,</span> <span class="n">d_b</span><span class="p">,</span> <span class="n">d_c</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
 
-<h2 id="规范">规范</h2>
-<h3 id="代码风格">代码风格？</h3>
+    <span class="c1">// copy the result back to the host</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">d_c</span><span class="p">,</span> <span class="n">n</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
 
-<h2 id="实战">实战</h2>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">d_b</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">n</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">cudaMemcpyHostToDevice</span><span class="p">);</span>
 
-<h3 id="量化">量化</h3>
+    <span class="c1">// free the memory</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_a</span><span class="p">);</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_b</span><span class="p">);</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_c</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>优化下代码
+上面的 cuda 函数，对于返回的值，没有做校验,我只需要加一个“添加对结果检查”
+几秒就完成了，速度非常快。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/G9Y3nH.png" alt="优化" /></p>
+
+<p>还有其他未开发的功能，对于一个新人来说，要完成一个产品从 0～1，是完全可以实现的。</p>
+
+<h1 id="第三部分cursor的应用案例">第三部分：Cursor的应用案例</h1>
+
+<p>Cursor作为一款强大的AI编码工具，正在深刻地改变着开发者们的编程方式。</p>
+
+<p>许多企业和个人开发者已经开始将Cursor应用于实际项目中，并取得了显著成效。例如，某大型互联网公司利用Cursor的代码生成功能，大幅提升了后端服务的开发效率，缩短了产品上线周期。而一位独立开发者则通过Cursor的智能补全功能，快速构建了一个个人博客系统。这些成功案例表明，Cursor不仅能满足企业级开发的需求，也能为个人开发者提供便利。</p>
+
+<p>AI编码工具的应用前景远不止于软件开发。在金融行业，Cursor可以用于构建复杂的量化交易模型；在生物医药领域，它能加速新药研发过程；在人工智能领域，Cursor可以辅助科学家进行模型训练和调参。随着AI技术的不断发展，AI编码工具将在越来越多的行业发挥重要作用。</p>
+
+<p>Cursor在某些特定领域展现出了独特的创新应用。例如，在游戏开发领域，Cursor可以自动生成游戏关卡、角色和物品，大大降低了游戏开发的门槛。在数据科学领域，Cursor可以帮助数据科学家快速构建数据分析管道，并生成可解释的模型。这些创新应用表明，Cursor不仅是一个代码编辑器，更是一个能激发开发者创造力的工具。
+Cursor的出现，标志着编程方式正在发生一场革命。通过自动化代码生成、智能代码补全等功能，Cursor极大地提高了开发效率，降低了开发门槛。随着AI技术的不断进步，我们可以期待Cursor在未来能为我们带来更多的惊喜。</p>
+
+<h1 id="第四部分cursor的未来展望">第四部分：Cursor的未来展望</h1>
+
+<p>Cursor作为一款AI编程助手，在快速发展的AI编程工具市场中占据了一席之地。其精准的代码补全、高效的代码生成以及与自然语言的顺畅交互，使其在众多竞争对手中脱颖而出。然而，市场竞争日益激烈，来自GitHub Copilot、Tabnine等同类产品的挑战不容忽视。未来，Cursor需要在保持技术领先优势的同时，不断拓展应用场景，以巩固其市场地位。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/6hd3OO.png" alt="" /></p>
+
+<p>Anysphere作为Cursor的母公司，与OpenAI等AI领域的领军企业保持着密切的合作关系。这种合作一方面可以加速Cursor的技术迭代，另一方面也能为Anysphere带来更多的资源和技术支持。未来，这种合作关系将进一步深化，推动AI编程工具的发展。</p>
+
+<h1 id="结语">结语</h1>
+
+<p>Cursor AI的出现，标志着编程工具迈入了智能化的新时代。通过将强大的AI能力融入到编程过程中，Cursor不仅提高了开发效率，而且降低了编程的门槛，为科技行业带来了深远的影响。</p>
+
+<ul>
+  <li>提升开发效率：  Cursor能够自动生成代码、智能补全、快速修复错误，大大缩短了开发周期，提高了开发效率。</li>
+  <li>降低编程门槛：  通过自然语言交互和智能提示，Cursor使得编程变得更加直观易懂，降低了编程学习的难度，吸引了更多的人加入到编程的行列。</li>
+  <li>促进创新：  Cursor为开发者提供了更多的可能性，激发了他们的创造力，促进了创新应用的诞生。</li>
+  <li>推动行业发展：  AI编程工具的普及，将加速软件开发行业的转型升级，推动整个科技产业的发展。</li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/tEzQ83.png" alt="" />
+上面这个是 github copilot 的介绍语。</p>
+
+<p>随着AI技术的不断成熟，AI编程工具将会越来越普及。我们鼓励更多的科技从业者拥抱这些新工具，将它们融入到日常的开发工作中。通过共同努力，我们可以共同推动编程生产力的提升，加速科技创新的步伐。</p>
+
+<p>虽然Cursor AI已经展现出了强大的能力，但它仍处于发展的初级阶段。未来，随着AI技术的不断进步，我们可以期待Cursor在以下几个方面取得更大的突破：</p>
+<ul>
+  <li>更深入的代码理解：  能够理解更复杂的代码逻辑，实现更高级的代码重构和优化。</li>
+  <li>更广泛的应用场景：  除了传统的软件开发，还将在更多领域发挥重要作用，如数据科学、机器学习等。</li>
+  <li>更强的安全性：  能够更好地保障代码的安全性，防止恶意代码的生成。</li>
+</ul>
+
+<p>Cursor AI的出现，预示着编程行业正在经历一场深刻的变革。通过拥抱AI，我们可以创造一个更加智能、高效的编程未来。让我们共同期待，AI编程工具能够为我们带来更多的惊喜。</p>
 
 
 
@@ -427,17 +532,17 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/09/23/audio-quality-evaluation-1/" data-toggle="tooltip" data-placement="top" title="音频质量评估-1">
+                        <a href="/2024/05/28/llvm-learning-debug/" data-toggle="tooltip" data-placement="top" title="LLVM 学习记录：调试技巧">
                         Previous<br>
-                        <span>音频质量评估-1</span>
+                        <span>LLVM 学习记录：调试技巧</span>
                         </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2020/09/25/Vscode-bring-up-Java-Spring-project/" data-toggle="tooltip" data-placement="top" title="Vscode 安装Java Spring项目">
+                        <a href="/2024/05/31/llvm-learning-best_practice-1/" data-toggle="tooltip" data-placement="top" title="LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test">
                         Next<br>
-                        <span>Vscode 安装Java Spring项目</span>
+                        <span>LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test</span>
                         </a>
                     </li>
                     

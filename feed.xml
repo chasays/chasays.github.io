@@ -5,21 +5,44 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 16 Oct 2024 09:36:21 +0000</pubDate>
-    <lastBuildDate>Wed, 16 Oct 2024 09:36:21 +0000</lastBuildDate>
+    <pubDate>Wed, 16 Oct 2024 16:01:16 +0000</pubDate>
+    <lastBuildDate>Wed, 16 Oct 2024 16:01:16 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
         <title>智能合约 学习记录 1</title>
-        <description>&lt;h1 id=&quot;1-什么是智能合约&quot;&gt;1. 什么是智能合约&lt;/h1&gt;
+        <description>&lt;h1 id=&quot;初识-智能合约&quot;&gt;初识 智能合约&lt;/h1&gt;
 
-&lt;h1 id=&quot;2-智能合约的编程语言&quot;&gt;2. 智能合约的编程语言&lt;/h1&gt;
+&lt;p&gt;各位区块链世界的冒险者们，今天我们来聊聊一个既神奇又有点”笨笨”的东西——智能合约。想象一下，如果自动售货机突然学会了编程，还能自动执行各种复杂的任务，那会是什么样子？没错，这就是智能合约的魔力所在！&lt;/p&gt;
 
-&lt;h1 id=&quot;3-如何写一个简单的智能合约&quot;&gt;3. 如何写一个简单的智能合约&lt;/h1&gt;
+&lt;p&gt;首先，让我们来认识一下这个神奇的发明。智能合约是以太坊的一大创新，本质上就是运行在区块链上的程序。它就像是一个被严格管教的乖孩子，永远按照预设的规则行事，不会耍小聪明，也不会偷懒。&lt;/p&gt;
 
-&lt;h1 id=&quot;4-智能合约的发布&quot;&gt;4. 智能合约的发布&lt;/h1&gt;
+&lt;p&gt;为了确保所有的”孩子”都表现一致，以太坊还专门设立了一个超级严格的”老师”——以太坊虚拟机（EVM）。在 EVM 的监督下，所有的节点都必须得到一模一样的答案，就像是一群小学生在做一道数学题，每个人的答案都必须一致，否则就要被”罚站”。&lt;/p&gt;
 
-&lt;h1 id=&quot;5-智能合约的调用&quot;&gt;5. 智能合约的调用&lt;/h1&gt;
+&lt;p&gt;不过，这个”魔法自动售货机”也有它的局限性。比如，它不支持浮点运算，也不能生成真正的随机数。这就好比给程序员系上了手铐脚镣，让他们在写代码时束手束脚。但是，耍小聪明的开发者们总想找到办法绕过这些限制，就像是在玩一场智力游戏。&lt;/p&gt;
+
+&lt;p&gt;说到开发，Solidity 是智能合约世界的”普通话”。如果你想在这个世界里畅通无阻，学好 Solidity 就像是学好普通话一样重要。&lt;/p&gt;
+
+&lt;p&gt;有趣的是，智能合约部署后会获得一个地址，但这个地址就像是一个没有钥匙的保险箱，只能通过特定的方式打开。它没有私钥，只能通过调用公共函数来操作。这种设计确保了合约的安全性和透明度。&lt;/p&gt;
+
+&lt;p&gt;智能合约还是个多面手，它不仅可以接收和发送以太币，还能存储数据。你可以把它想象成一个多功能的电子钱包，既能存钱，又能记账，简直是区块链世界的瑞士军刀！&lt;/p&gt;
+
+&lt;p&gt;更厉害的是，合约还能调用其他合约，实现更复杂的功能。这就像是在玩积木游戏，通过组合不同的积木，我们可以搭建出令人惊叹的复杂结构。&lt;/p&gt;
+
+&lt;p&gt;各位冒险者要注意了，使用智能合约也有一些需要特别小心的地方：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;合约的执行结果必须在所有节点上保持一致，这是保证其可信性的关键。就像是一群人在玩”传话游戏”，如果最后的结果不一致，那这个游戏就失去了意义。&lt;/li&gt;
+  &lt;li&gt;编写合约时要时刻记住它的特殊限制，比如不支持浮点运算等。这就像是在玩一个特殊的拼图游戏，有些形状的拼图是不存在的，你得想办法用其他的拼图来代替。&lt;/li&gt;
+  &lt;li&gt;合约不能主动执行，需要外部触发。这就像是一个沉睡的巨人，需要有人去推一把才能醒来。有时候，我们可能需要额外的线下服务来定期”叫醒”这个巨人。&lt;/li&gt;
+  &lt;li&gt;合约间的嵌套调用虽然强大，但也增加了出错和被攻击的风险。这就像是在搭建一个复杂的多米诺骨牌，一不小心可能就会全盘崩溃。所以，编写时需要格外谨慎。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;智能合约就像是区块链世界的”自动售货机”，一旦部署好，就能按照预设的规则自动运行。&lt;/p&gt;
+
+&lt;p&gt;这个”售货机”比普通的要复杂得多，既能存钱、付款，还能和其他”售货机”互动。不过，千万别把它想得太聪明，它还是需要我们这些人类来精心设计和小心使用的！&lt;/p&gt;
+
+&lt;h1 id=&quot;如何写一个简单的智能合约&quot;&gt;如何写一个简单的智能合约&lt;/h1&gt;
 
 &lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
 &lt;ul&gt;
@@ -297,6 +320,214 @@
         <category>编译器</category>
         
         <category>测试</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>一个程序员视角下，谈谈 Cursor 自动编码工具</title>
+        <description>&lt;p&gt;想象一下，一个不懂编程的小白站在电脑前，面对着一堆凌乱的代码和复杂的设计需求，手足无措。突然，他看到了桌上那台小巧而神秘的设备——Cursor自动编码工具。它似乎能读懂他的每一个想法，并自动将其转换成可运行的程序。这不仅仅是一个虚构的故事，而是科技行业正在发生的真实转变。简述AI辅助编程工具在科技行业的重要性和发展背景。&lt;/p&gt;
+
+&lt;p&gt;下面就来介绍下Cursor软件，包括其开发背景、核心功能及其对行业的影响。&lt;/p&gt;
+
+&lt;h1 id=&quot;第一部分cursor的技术基础&quot;&gt;第一部分：Cursor的技术基础&lt;/h1&gt;
+
+&lt;p&gt;在人工智能领域，Claude 3.5与GPT-4等模型代表了当前的前沿技术。这些模型采用先进的算法和大量数据集进行训练，能够处理复杂任务并提供高质量的输出。它们不仅在语言理解方面表现出色，而且在生成文本、图像识别以及其他模态中也展现出令人印象深刻的能力。这些先进模型的出现标志着人工智能研究进入了一个新的阶段，为各行各业带来了前所未有的机遇和挑战。&lt;/p&gt;
+
+&lt;p&gt;如果你已经习惯了VS Code的高效开发，那么转到Cursor将是一次非常顺滑的体验。Cursor作为新一代的AI编程助手，在继承VS Code强大功能的基础上，更进一步地融入了AI智能，让编码过程变得更加高效和有趣。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/LsmruT.png&quot; alt=&quot;迁移从 vsvcode&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;来看看有哪些功能？&lt;/p&gt;
+
+&lt;h1 id=&quot;第二部分cursor-的核心功能&quot;&gt;第二部分：Cursor 的核心功能&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-代码自动生成与优化&quot;&gt;1. 代码自动生成与优化&lt;/h2&gt;
+
+&lt;p&gt;尝试用 3 个语言来写 3 个程序。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;第一个 python，写一个快速排序。
+直接写下最上面的一行注释，一个 tab 就完成。
+```py
+    &lt;h1 id=&quot;write-a-program-to-implement-quick-sort&quot;&gt;write a program to implement quick sort&lt;/h1&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;def quick_sort(arr):
+    if len(arr) &amp;lt;= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x &amp;lt; pivot]
+    right = [x for x in arr if x &amp;gt; pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)&lt;/p&gt;
+
+&lt;p&gt;print(quick_sort([3, 6, 8, 10, 1, 2, 1]))&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2. 写一个 html 的页面。
+
+```html
+&amp;lt;!-- write a program to implement a tech style website, with a header, a footer, and a main content area --&amp;gt;
+
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html lang=&quot;en&quot;&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;
+    &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&amp;gt;
+    &amp;lt;title&amp;gt;Tech Style Website&amp;lt;/title&amp;gt;
+    &amp;lt;style&amp;gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+    &amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;header&amp;gt;
+        &amp;lt;h1&amp;gt;Tech Style Website&amp;lt;/h1&amp;gt;
+    &amp;lt;/header&amp;gt;
+    &amp;lt;main&amp;gt;
+        &amp;lt;h2&amp;gt;Welcome to our Tech Style Website&amp;lt;/h2&amp;gt;
+        &amp;lt;p&amp;gt;This is the main content area of our website.&amp;lt;/p&amp;gt;
+    &amp;lt;/main&amp;gt;
+    &amp;lt;footer&amp;gt;
+        &amp;lt;p&amp;gt;&amp;amp;copy; 2023 Tech Style Website. All rights reserved.&amp;lt;/p&amp;gt;
+    &amp;lt;/footer&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;效果图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/TgysfV.png&quot; alt=&quot;效果图&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;写一个cuda的vectoradd  kernel 函数。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// write a program to implement vector addition&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;cuda_runtime.h&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;__global__&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;vectorAdd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threadIdx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vector&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// allocate memory on the device&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaMalloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaMalloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaMalloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// copy data to the device&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaMemcpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cudaMemcpyHostToDevice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaMemcpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cudaMemcpyHostToDevice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// launch the kernel&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;vectorAdd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// copy the result back to the host&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaMemcpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cudaMemcpyDeviceToHost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;cudaMemcpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cudaMemcpyHostToDevice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// free the memory&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaFree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaFree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cudaFree&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;优化下代码
+上面的 cuda 函数，对于返回的值，没有做校验,我只需要加一个“添加对结果检查”
+几秒就完成了，速度非常快。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/G9Y3nH.png&quot; alt=&quot;优化&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;还有其他未开发的功能，对于一个新人来说，要完成一个产品从 0～1，是完全可以实现的。&lt;/p&gt;
+
+&lt;h1 id=&quot;第三部分cursor的应用案例&quot;&gt;第三部分：Cursor的应用案例&lt;/h1&gt;
+
+&lt;p&gt;Cursor作为一款强大的AI编码工具，正在深刻地改变着开发者们的编程方式。&lt;/p&gt;
+
+&lt;p&gt;许多企业和个人开发者已经开始将Cursor应用于实际项目中，并取得了显著成效。例如，某大型互联网公司利用Cursor的代码生成功能，大幅提升了后端服务的开发效率，缩短了产品上线周期。而一位独立开发者则通过Cursor的智能补全功能，快速构建了一个个人博客系统。这些成功案例表明，Cursor不仅能满足企业级开发的需求，也能为个人开发者提供便利。&lt;/p&gt;
+
+&lt;p&gt;AI编码工具的应用前景远不止于软件开发。在金融行业，Cursor可以用于构建复杂的量化交易模型；在生物医药领域，它能加速新药研发过程；在人工智能领域，Cursor可以辅助科学家进行模型训练和调参。随着AI技术的不断发展，AI编码工具将在越来越多的行业发挥重要作用。&lt;/p&gt;
+
+&lt;p&gt;Cursor在某些特定领域展现出了独特的创新应用。例如，在游戏开发领域，Cursor可以自动生成游戏关卡、角色和物品，大大降低了游戏开发的门槛。在数据科学领域，Cursor可以帮助数据科学家快速构建数据分析管道，并生成可解释的模型。这些创新应用表明，Cursor不仅是一个代码编辑器，更是一个能激发开发者创造力的工具。
+Cursor的出现，标志着编程方式正在发生一场革命。通过自动化代码生成、智能代码补全等功能，Cursor极大地提高了开发效率，降低了开发门槛。随着AI技术的不断进步，我们可以期待Cursor在未来能为我们带来更多的惊喜。&lt;/p&gt;
+
+&lt;h1 id=&quot;第四部分cursor的未来展望&quot;&gt;第四部分：Cursor的未来展望&lt;/h1&gt;
+
+&lt;p&gt;Cursor作为一款AI编程助手，在快速发展的AI编程工具市场中占据了一席之地。其精准的代码补全、高效的代码生成以及与自然语言的顺畅交互，使其在众多竞争对手中脱颖而出。然而，市场竞争日益激烈，来自GitHub Copilot、Tabnine等同类产品的挑战不容忽视。未来，Cursor需要在保持技术领先优势的同时，不断拓展应用场景，以巩固其市场地位。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/6hd3OO.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Anysphere作为Cursor的母公司，与OpenAI等AI领域的领军企业保持着密切的合作关系。这种合作一方面可以加速Cursor的技术迭代，另一方面也能为Anysphere带来更多的资源和技术支持。未来，这种合作关系将进一步深化，推动AI编程工具的发展。&lt;/p&gt;
+
+&lt;h1 id=&quot;结语&quot;&gt;结语&lt;/h1&gt;
+
+&lt;p&gt;Cursor AI的出现，标志着编程工具迈入了智能化的新时代。通过将强大的AI能力融入到编程过程中，Cursor不仅提高了开发效率，而且降低了编程的门槛，为科技行业带来了深远的影响。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;提升开发效率：  Cursor能够自动生成代码、智能补全、快速修复错误，大大缩短了开发周期，提高了开发效率。&lt;/li&gt;
+  &lt;li&gt;降低编程门槛：  通过自然语言交互和智能提示，Cursor使得编程变得更加直观易懂，降低了编程学习的难度，吸引了更多的人加入到编程的行列。&lt;/li&gt;
+  &lt;li&gt;促进创新：  Cursor为开发者提供了更多的可能性，激发了他们的创造力，促进了创新应用的诞生。&lt;/li&gt;
+  &lt;li&gt;推动行业发展：  AI编程工具的普及，将加速软件开发行业的转型升级，推动整个科技产业的发展。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/tEzQ83.png&quot; alt=&quot;&quot; /&gt;
+上面这个是 github copilot 的介绍语。&lt;/p&gt;
+
+&lt;p&gt;随着AI技术的不断成熟，AI编程工具将会越来越普及。我们鼓励更多的科技从业者拥抱这些新工具，将它们融入到日常的开发工作中。通过共同努力，我们可以共同推动编程生产力的提升，加速科技创新的步伐。&lt;/p&gt;
+
+&lt;p&gt;虽然Cursor AI已经展现出了强大的能力，但它仍处于发展的初级阶段。未来，随着AI技术的不断进步，我们可以期待Cursor在以下几个方面取得更大的突破：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;更深入的代码理解：  能够理解更复杂的代码逻辑，实现更高级的代码重构和优化。&lt;/li&gt;
+  &lt;li&gt;更广泛的应用场景：  除了传统的软件开发，还将在更多领域发挥重要作用，如数据科学、机器学习等。&lt;/li&gt;
+  &lt;li&gt;更强的安全性：  能够更好地保障代码的安全性，防止恶意代码的生成。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cursor AI的出现，预示着编程行业正在经历一场深刻的变革。通过拥抱AI，我们可以创造一个更加智能、高效的编程未来。让我们共同期待，AI编程工具能够为我们带来更多的惊喜。&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2024/05/28/talk-cursor-in-programmer-view/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/28/talk-cursor-in-programmer-view/</guid>
+        
+        <category>编辑器</category>
+        
+        <category>cursor</category>
         
         
       </item>
@@ -632,106 +863,6 @@ G –&amp;gt; H[后端]&lt;/p&gt;
         <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/05/24/llvm-learning-basic-1/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2024/05/24/llvm-learning-basic-1/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别</title>
-        <description>&lt;p&gt;前面学习了如何添加一个 intrinsic 函数的过程，发现有涉及到 td table gen 语言的格式，这个需要注意。&lt;/p&gt;
-
-&lt;p&gt;有几个关键字，def，defm，defvar 的区别？&lt;/p&gt;
-
-&lt;p&gt;这个内容非常的简单，使用的时候注意下即可。官方文档把这个称为 record，翻译过来是记录？anyway，随便是什么，记住就是一个标识符吧。&lt;/p&gt;
-
-&lt;h1 id=&quot;首先了解下什么-single-class和-multiclass&quot;&gt;首先了解下什么 single class，和 multiclass&lt;/h1&gt;
-
-&lt;p&gt;重要的一点就是：class 类型只能从一个 class 类型继承，而 multiclass 类型可以从多个 class 类型继承。&lt;/p&gt;
-
-&lt;p&gt;class 类型通常比 multiclass 类型更有效率，因为 LLVM 可以更轻松地优化 class 类型。&lt;/p&gt;
-
-&lt;p&gt;还是用 amd 的 td 文件来举例：&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/IntrinsicsAMDGPU.td&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;single-class&quot;&gt;single class&lt;/h2&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AMDGPUReadPreloadRegisterIntrinsic&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DefaultAttrsIntrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llvm_i32_ty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IntrNoMem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IntrSpeculatable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;标识符 class 开头的就是单类。单类的名称是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AMDGPUReadPreloadRegisterIntrinsic&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h2 id=&quot;multi-class&quot;&gt;multi class&lt;/h2&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;multiclass&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AMDGPUReadPreloadRegisterIntrinsic_xyz&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AMDGPUReadPreloadRegisterIntrinsic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AMDGPUReadPreloadRegisterIntrinsic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AMDGPUReadPreloadRegisterIntrinsic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;关键字是 multiclass，就是多类。&lt;/p&gt;
-
-&lt;p&gt;这里多类的名称是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AMDGPUReadPreloadRegisterIntrinsic_xyz&lt;/code&gt;，然后里面包含了多个单类&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AMDGPUReadPreloadRegisterIntrinsic&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;btw，每个类都有一个名为 NAME（大写）的隐式模板参数，它绑定到从该类继承的 Def 或 Defm 的名称。如果该类由匿名记录继承，则名称未指定，但全局唯一。&lt;/p&gt;
-
-&lt;p&gt;学了容易忘记，建议是用到的时候，可以看一下，基本上就知道了。&lt;/p&gt;
-
-&lt;h1 id=&quot;区别&quot;&gt;区别&lt;/h1&gt;
-
-&lt;p&gt;def 就是单纯的定义个单类的变量；
-defm，这个多了一个 m，m 代表的就是 multiclass，就是定义的多类。&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Feature&lt;/th&gt;
-      &lt;th&gt;defm&lt;/th&gt;
-      &lt;th&gt;def&lt;/th&gt;
-      &lt;th&gt;defvar&lt;/th&gt;
-      &lt;th&gt; &lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Type of entity&lt;/td&gt;
-      &lt;td&gt;Multiclass&lt;/td&gt;
-      &lt;td&gt;Class&lt;/td&gt;
-      &lt;td&gt;Global variable&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Inheritance&lt;/td&gt;
-      &lt;td&gt;Multiple inheritance&lt;/td&gt;
-      &lt;td&gt;Single inheritance&lt;/td&gt;
-      &lt;td&gt;None&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Can define&lt;/td&gt;
-      &lt;td&gt;types&lt;/td&gt;
-      &lt;td&gt;Yes&lt;/td&gt;
-      &lt;td&gt;Yes&lt;/td&gt;
-      &lt;td&gt;No&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;其实看了上面的 class 和 multiclass 的定义，就大概知道怎么用了。&lt;/p&gt;
-
-&lt;p&gt;还有更多的 def* ，&amp;gt; https://llvm.org/docs/TableGen/ProgRef.html#id24&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/05/23/llvm-td-syntax-def-defm-defvar/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/23/llvm-td-syntax-def-defm-defvar/</guid>
         
         <category>llvm</category>
         
