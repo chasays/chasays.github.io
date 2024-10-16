@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 15 Oct 2024 09:02:49 +0000</pubDate>
-    <lastBuildDate>Tue, 15 Oct 2024 09:02:49 +0000</lastBuildDate>
+    <pubDate>Wed, 16 Oct 2024 09:36:21 +0000</pubDate>
+    <lastBuildDate>Wed, 16 Oct 2024 09:36:21 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -24,8 +24,9 @@
 &lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;https://liaoxuefeng.com/books/blockchain/ethereum/smart-contract/index.html&lt;/li&gt;
+  &lt;li&gt;https://github.com/chaseSpace/learn_blockchain/blob/main/smart_contract_dev_guide.md&lt;/li&gt;
+  &lt;li&gt;https://web3py.readthedocs.io/en/stable/&lt;/li&gt;
 &lt;/ul&gt;
-
 </description>
         <pubDate>Wed, 11 Sep 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/09/11/smart-contract-guide/</link>
