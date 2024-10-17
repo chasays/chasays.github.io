@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 16 Oct 2024 16:01:16 +0000</pubDate>
-    <lastBuildDate>Wed, 16 Oct 2024 16:01:16 +0000</lastBuildDate>
+    <pubDate>Thu, 17 Oct 2024 02:20:15 +0000</pubDate>
+    <lastBuildDate>Thu, 17 Oct 2024 02:20:15 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -43,6 +43,136 @@
 &lt;p&gt;这个”售货机”比普通的要复杂得多，既能存钱、付款，还能和其他”售货机”互动。不过，千万别把它想得太聪明，它还是需要我们这些人类来精心设计和小心使用的！&lt;/p&gt;
 
 &lt;h1 id=&quot;如何写一个简单的智能合约&quot;&gt;如何写一个简单的智能合约&lt;/h1&gt;
+
+&lt;p&gt;教程我是按照廖雪峰老师的教程，自己的操作了，写了一个vote投票的合约。&lt;/p&gt;
+
+&lt;h2 id=&quot;1-首先申请测试网的ether&quot;&gt;1. 首先申请测试网的Ether&lt;/h2&gt;
+
+&lt;p&gt;部署合约也是一个交易，需要一个外部账户，花费一定的Gas，就可以把合约部署到链上。&lt;/p&gt;
+
+&lt;p&gt;测试环境不能用在真金白银， 就用测试环境的。&lt;/p&gt;
+
+&lt;p&gt;如何申请？ 我是申请的这个网络的Ether。SepoliaETH&lt;/p&gt;
+
+&lt;p&gt;以太坊有多个测试网，开发前请在Etherscan确认使用哪个活动的测试网。&lt;/p&gt;
+
+&lt;p&gt;有些钱包不支持，比如我的okx的就不行，用的metamask。&lt;/p&gt;
+
+&lt;p&gt;https://faucets.chain.link/sepolia&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;sepolia.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-部署合约&quot;&gt;2. 部署合约&lt;/h2&gt;
+&lt;p&gt;访问Remix（注意：要部署合约，只能通过http访问，不能使用https），在左侧选择“File explorers”，在默认的Workspace的contracts目录下新建文件Vote.sol，然后贴入上一节我们编写的代码。&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity =0.8.28;
+
+contract Vote {
+
+    event Voted(address indexed voter, uint8 proposal);
+
+    mapping(address =&amp;gt; bool) public voted;
+
+    uint256 public endTime;
+    uint256 public startTime;
+
+    uint256 public proposalA;
+    uint256 public proposalB;
+    uint256 public proposalC;
+
+    constructor(uint256 _startTime, uint256 _endTime) {
+        startTime = _startTime;
+        endTime = _endTime;
+    }
+
+    function vote(uint8 _proposal) public {
+        require(block.timestamp &amp;lt; endTime, &quot;Vote expired..&quot;);
+        require(_proposal &amp;gt;= 1 &amp;amp;&amp;amp; _proposal &amp;lt;= 3, &quot;Invalid proposal.&quot;);
+        require(!voted[msg.sender], &quot;Can not vote again.&quot;);
+        voted[msg.sender] = true;
+        if (_proposal == 1) {
+            proposalA ++;
+        }
+        else if (_proposal == 2) {
+            proposalB ++;
+        }
+        else if (_proposal == 3) {
+            proposalC ++;
+        }
+        emit Voted(msg.sender, _proposal);
+    }
+
+    function votes() public view returns (uint256) {
+        return proposalA + proposalB + proposalC;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;关于代码解释，看不懂的，可以直接丢给GPT分析下即可。&lt;/p&gt;
+
+&lt;p&gt;合约只能有一个构造函数， 这里的函数，设置2个入参。&lt;/p&gt;
+
+&lt;p&gt;ENVIRONMENT，这里选择钱包。
+&lt;img src=&quot;image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;时间戳：设置为如图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击 transact。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;部署好之后，链上就可以看到了。&lt;/p&gt;
+
+&lt;p&gt;交易tx的信息。从to里面可以看到一个contract的地址。和这个就是合约地址。
+https://sepolia.etherscan.io/tx/0x98bd4157fefbd11bbb70cf808ddcd9fb7a031069f8581d080556883d7bd91c48&lt;/p&gt;
+
+&lt;p&gt;合约：
+https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-5.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以查看历史，钱包里面的活动页面，可以看到历史的。点开就可以看到了
+&lt;img src=&quot;image-6.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-调用和这个合约&quot;&gt;3. 调用和这个合约&lt;/h2&gt;
+
+&lt;p&gt;调用之前，需要publish，发布的网址也是需要加一个二级域名的标识。&lt;/p&gt;
+
+&lt;p&gt;我用的测试网络对应的是：https://sepolia.etherscan.io/verifyContract&lt;/p&gt;
+
+&lt;p&gt;按照提示，添加一些field即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-7.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;提交之后，这个合约的：https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617#code&lt;/p&gt;
+
+&lt;p&gt;这里contract有一个confirm的标识，绿色勾勾。
+&lt;img src=&quot;image-8.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;访问合约的只读函数时，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;无需消耗Gas，也无需连接钱包&lt;/code&gt;，直接切换到“Read”面板，即可看到只读函数的返回值。&lt;/p&gt;
+
+&lt;p&gt;最后一个voted，输入地址，query。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-9.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-写入合约&quot;&gt;4. 写入合约&lt;/h2&gt;
+
+&lt;p&gt;当我们要写入合约时，就必须提交一个签名的交易，并消耗一定的Gas。我们在Etherscan的合约页选择“Write”，会出现一个“Connect to Web3”的链接。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-11.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后查看交易链接：
+https://sepolia.etherscan.io/tx/0xac44e04612170a163b29cd42d8a1ff69ebdcfa964a5c5c8478f7d00ef2702b90&lt;/p&gt;
+
+&lt;p&gt;然后查看，这个地方的值就被修改为1.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-10.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
 &lt;ul&gt;
