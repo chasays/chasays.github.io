@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 17 Oct 2024 02:20:15 +0000</pubDate>
-    <lastBuildDate>Thu, 17 Oct 2024 02:20:15 +0000</lastBuildDate>
+    <pubDate>Thu, 17 Oct 2024 06:12:57 +0000</pubDate>
+    <lastBuildDate>Thu, 17 Oct 2024 06:12:57 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -60,9 +60,9 @@
 
 &lt;p&gt;https://faucets.chain.link/sepolia&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;sepolia.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/sepolia.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/image-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;2-部署合约&quot;&gt;2. 部署合约&lt;/h2&gt;
 &lt;p&gt;访问Remix（注意：要部署合约，只能通过http访问，不能使用https），在左侧选择“File explorers”，在默认的Workspace的contracts目录下新建文件Vote.sol，然后贴入上一节我们编写的代码。&lt;/p&gt;
@@ -117,15 +117,15 @@ contract Vote {
 &lt;p&gt;合约只能有一个构造函数， 这里的函数，设置2个入参。&lt;/p&gt;
 
 &lt;p&gt;ENVIRONMENT，这里选择钱包。
-&lt;img src=&quot;image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;../../../../img/2024/image-3.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;时间戳：设置为如图。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/image-2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;点击 transact。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/image-4.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;部署好之后，链上就可以看到了。&lt;/p&gt;
 
@@ -135,44 +135,44 @@ https://sepolia.etherscan.io/tx/0x98bd4157fefbd11bbb70cf808ddcd9fb7a031069f8581d
 &lt;p&gt;合约：
 https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image-5.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/image-5.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以查看历史，钱包里面的活动页面，可以看到历史的。点开就可以看到了
-&lt;img src=&quot;image-6.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;../../../../img/2024/image-6.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;3-调用和这个合约&quot;&gt;3. 调用和这个合约&lt;/h2&gt;
 
 &lt;p&gt;调用之前，需要publish，发布的网址也是需要加一个二级域名的标识。&lt;/p&gt;
 
-&lt;p&gt;我用的测试网络对应的是：https://sepolia.etherscan.io/verifyContract&lt;/p&gt;
+&lt;p&gt;我用的测试网络对应的是：&lt;a href=&quot;https://sepolia.etherscan.io/verifyContract&quot;&gt;verifyContract&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;按照提示，添加一些field即可。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image-7.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/image-7.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;提交之后，这个合约的：https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617#code&lt;/p&gt;
+&lt;p&gt;提交之后，这个合约的：&lt;a href=&quot;https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617#code&quot;&gt;sepolia.etherscan&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;这里contract有一个confirm的标识，绿色勾勾。
-&lt;img src=&quot;image-8.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;../../../../img/2024/image-8.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;访问合约的只读函数时，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;无需消耗Gas，也无需连接钱包&lt;/code&gt;，直接切换到“Read”面板，即可看到只读函数的返回值。&lt;/p&gt;
 
 &lt;p&gt;最后一个voted，输入地址，query。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image-9.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/image-9.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;4-写入合约&quot;&gt;4. 写入合约&lt;/h2&gt;
 
 &lt;p&gt;当我们要写入合约时，就必须提交一个签名的交易，并消耗一定的Gas。我们在Etherscan的合约页选择“Write”，会出现一个“Connect to Web3”的链接。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image-11.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/image-11.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;然后查看交易链接：
-https://sepolia.etherscan.io/tx/0xac44e04612170a163b29cd42d8a1ff69ebdcfa964a5c5c8478f7d00ef2702b90&lt;/p&gt;
+&lt;a href=&quot;https://sepolia.etherscan.io/tx/0xac44e04612170a163b29cd42d8a1ff69ebdcfa964a5c5c8478f7d00ef2702b90&quot;&gt;sepolia.etherscan&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;然后查看，这个地方的值就被修改为1.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image-10.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/image-10.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
 &lt;ul&gt;
@@ -201,7 +201,7 @@ https://sepolia.etherscan.io/tx/0xac44e04612170a163b29cd42d8a1ff69ebdcfa964a5c5c
 
 &lt;p&gt;因此，SIMT 可以适应分支，尽管效率不高。给定以 if (条件) 开头的 if-else 构造，当运行 if 子句中的语句时，condition==true 的线程将处于活动状态，而当运行 else 中的语句时，condition==false 的线程将处于活动状态条款。结果应该是正确的，但非活动线程在等待活动子句中的语句完成时不会执行任何有用的工作。SIMT 内的分支如下图所示。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;simd_if.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/simd_if.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;在 Volta 之前的 NVIDIA GPU 中，整个 if 子句（即语句 A 和 B）必须由相关线程执行，然后整个 else 子句（语句 X 和 Y）必须由相关线程执行其余线程，则所有线程在继续执行之前都必须同步（语句 Z）。Volta 更灵活的 SIMT 模型允许在中间点（例如 A 和 X 之后）同步共享数据。&lt;/p&gt;
 
@@ -213,7 +213,7 @@ https://sepolia.etherscan.io/tx/0xac44e04612170a163b29cd42d8a1ff69ebdcfa964a5c5c
 
 &lt;p&gt;指的是编织者的梭子穿过的一组垂直线-warp，为了后面更形象的理解吧。顺便说一下横着的是 weft。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;warp-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/warp-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;在编程技术里面，是这个意思：The term warp originates from weaving, the first parallel-thread technology.&lt;/p&gt;
 
@@ -725,7 +725,7 @@ Cursor的出现，标志着编程方式正在发生一场革命。通过自动�
 
 &lt;p&gt;可以用这个命令通过 opt &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-time-trace&lt;/code&gt; 选项告诉 opt 导出所有由 TimeTraceaScope 收集的信息，并将 trace 文件保存到 -time-trace-file 指定的 json 文件中，这个 json 文件怎么查看呢？可以在 chrome 地址栏输入 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chrome://tracing&lt;/code&gt;, 然后打开这个 json 文件即可可视化查看，是不是有点惊喜？&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;2024-5-28-tracing.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/2024-5-28-tracing.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;点击图片中第三个图标，就可以放大和缩小这个图片了，能看到具体是哪一个出了问题。&lt;/p&gt;
 
@@ -976,7 +976,7 @@ G –&amp;gt; H[后端]&lt;/p&gt;
 
 &lt;p&gt;下面这一段是我直接 copy 过来的，我还没有消化掉。后面慢慢看。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;image.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2024/compiler-register.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;一般来讲，代码区是在最低的地址区域，然后是静态数据区，然后是堆。而栈传统上是从高地址向低地址延伸，栈的最顶部有一块区域，用来保存环境变量。&lt;/p&gt;
 

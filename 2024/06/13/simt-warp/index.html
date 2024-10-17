@@ -345,7 +345,7 @@
 
 <p>因此，SIMT 可以适应分支，尽管效率不高。给定以 if (条件) 开头的 if-else 构造，当运行 if 子句中的语句时，condition==true 的线程将处于活动状态，而当运行 else 中的语句时，condition==false 的线程将处于活动状态条款。结果应该是正确的，但非活动线程在等待活动子句中的语句完成时不会执行任何有用的工作。SIMT 内的分支如下图所示。</p>
 
-<p><img src="simd_if.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/simd_if.png" alt="alt text" /></p>
 
 <p>在 Volta 之前的 NVIDIA GPU 中，整个 if 子句（即语句 A 和 B）必须由相关线程执行，然后整个 else 子句（语句 X 和 Y）必须由相关线程执行其余线程，则所有线程在继续执行之前都必须同步（语句 Z）。Volta 更灵活的 SIMT 模型允许在中间点（例如 A 和 X 之后）同步共享数据。</p>
 
@@ -357,7 +357,7 @@
 
 <p>指的是编织者的梭子穿过的一组垂直线-warp，为了后面更形象的理解吧。顺便说一下横着的是 weft。</p>
 
-<p><img src="warp-1.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/warp-1.png" alt="alt text" /></p>
 
 <p>在编程技术里面，是这个意思：The term warp originates from weaving, the first parallel-thread technology.</p>
 

@@ -377,9 +377,9 @@
 
 <p>https://faucets.chain.link/sepolia</p>
 
-<p><img src="sepolia.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/sepolia.png" alt="alt text" /></p>
 
-<p><img src="image-1.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/image-1.png" alt="alt text" /></p>
 
 <h2 id="2-部署合约">2. 部署合约</h2>
 <p>访问Remix（注意：要部署合约，只能通过http访问，不能使用https），在左侧选择“File explorers”，在默认的Workspace的contracts目录下新建文件Vote.sol，然后贴入上一节我们编写的代码。</p>
@@ -434,15 +434,15 @@ contract Vote {
 <p>合约只能有一个构造函数， 这里的函数，设置2个入参。</p>
 
 <p>ENVIRONMENT，这里选择钱包。
-<img src="image-3.png" alt="alt text" /></p>
+<img src="../../../../img/2024/image-3.png" alt="alt text" /></p>
 
 <p>时间戳：设置为如图。</p>
 
-<p><img src="image-2.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/image-2.png" alt="alt text" /></p>
 
 <p>点击 transact。</p>
 
-<p><img src="image-4.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/image-4.png" alt="alt text" /></p>
 
 <p>部署好之后，链上就可以看到了。</p>
 
@@ -452,44 +452,44 @@ https://sepolia.etherscan.io/tx/0x98bd4157fefbd11bbb70cf808ddcd9fb7a031069f8581d
 <p>合约：
 https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617</p>
 
-<p><img src="image-5.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/image-5.png" alt="alt text" /></p>
 
 <p>可以查看历史，钱包里面的活动页面，可以看到历史的。点开就可以看到了
-<img src="image-6.png" alt="alt text" /></p>
+<img src="../../../../img/2024/image-6.png" alt="alt text" /></p>
 
 <h2 id="3-调用和这个合约">3. 调用和这个合约</h2>
 
 <p>调用之前，需要publish，发布的网址也是需要加一个二级域名的标识。</p>
 
-<p>我用的测试网络对应的是：https://sepolia.etherscan.io/verifyContract</p>
+<p>我用的测试网络对应的是：<a href="https://sepolia.etherscan.io/verifyContract">verifyContract</a></p>
 
 <p>按照提示，添加一些field即可。</p>
 
-<p><img src="image-7.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/image-7.png" alt="alt text" /></p>
 
-<p>提交之后，这个合约的：https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617#code</p>
+<p>提交之后，这个合约的：<a href="https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617#code">sepolia.etherscan</a></p>
 
 <p>这里contract有一个confirm的标识，绿色勾勾。
-<img src="image-8.png" alt="alt text" /></p>
+<img src="../../../../img/2024/image-8.png" alt="alt text" /></p>
 
 <p>访问合约的只读函数时，<code class="language-plaintext highlighter-rouge">无需消耗Gas，也无需连接钱包</code>，直接切换到“Read”面板，即可看到只读函数的返回值。</p>
 
 <p>最后一个voted，输入地址，query。</p>
 
-<p><img src="image-9.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/image-9.png" alt="alt text" /></p>
 
 <h2 id="4-写入合约">4. 写入合约</h2>
 
 <p>当我们要写入合约时，就必须提交一个签名的交易，并消耗一定的Gas。我们在Etherscan的合约页选择“Write”，会出现一个“Connect to Web3”的链接。</p>
 
-<p><img src="image-11.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/image-11.png" alt="alt text" /></p>
 
 <p>然后查看交易链接：
-https://sepolia.etherscan.io/tx/0xac44e04612170a163b29cd42d8a1ff69ebdcfa964a5c5c8478f7d00ef2702b90</p>
+<a href="https://sepolia.etherscan.io/tx/0xac44e04612170a163b29cd42d8a1ff69ebdcfa964a5c5c8478f7d00ef2702b90">sepolia.etherscan</a></p>
 
 <p>然后查看，这个地方的值就被修改为1.</p>
 
-<p><img src="image-10.png" alt="alt text" /></p>
+<p><img src="../../../../img/2024/image-10.png" alt="alt text" /></p>
 
 <h1 id="read-more">read more</h1>
 <ul>
