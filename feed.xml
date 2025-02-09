@@ -5,9 +5,150 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 17 Oct 2024 06:12:57 +0000</pubDate>
-    <lastBuildDate>Thu, 17 Oct 2024 06:12:57 +0000</lastBuildDate>
+    <pubDate>Sun, 09 Feb 2025 14:39:59 +0000</pubDate>
+    <lastBuildDate>Sun, 09 Feb 2025 14:39:59 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Foundry 工具初步探讨 - Forge</title>
+        <description>&lt;h1 id=&quot;whats--foundry&quot;&gt;what’s  Foundry&lt;/h1&gt;
+
+&lt;p&gt;Foundry 是用 Rust 编写的用于以太坊应用程序开发的快速、可移植和模块化工具包。&lt;/p&gt;
+
+&lt;p&gt;来自官网的介绍&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Foundry consists of:
+
+Forge: Build, test, fuzz, debug and deploy Solidity contracts, like Hardhat, Brownie, Ape.
+Cast: A Swiss Army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
+Anvil: Fast local Ethereum development node, akin to Hardhat Network, Tenderly.
+Chisel: Fast, utilitarian, and verbose Solidity REPL.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;反正就是对英语 dapp 测试基本上就用这个了，性能，功能，非常的灵活和强大。&lt;/p&gt;
+
+&lt;h1 id=&quot;开始-1&quot;&gt;开始 1&lt;/h1&gt;
+
+&lt;p&gt;安装下&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -L https://foundry.paradigm.xyz | bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;，提示网络错误，可以添加环境变量即可。&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export https_proxy=http://127.0.0.1:7897 http_proxy=http://127.0.0.1:7897 all_proxy=socks5://127.0.0.1:7897
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;执行下 source， 就可以找到foundryup ，然后执行&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;foundryup&lt;/code&gt;就可以安装了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../../../img/2025/install_1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;安装完成。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../../../img/2025/install_done.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;forge-用法&quot;&gt;Forge 用法&lt;/h1&gt;
+
+&lt;p&gt;Forge 是里面的一个工具之一。&lt;/p&gt;
+
+&lt;p&gt;Forge：构建、测试、模糊、调试和部署 Solidity 合约，如 Hardhat、Brownie 和 Ape。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forge init&lt;/code&gt;即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;forge.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在当前目录可以看到一个文件,
+里面的 foundry.toml 是 Forge 项目中的配置文件。在 foundry.toml 中使用 solc 配置编译器版本和优化次数：&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[profile.default]
+src = &apos;src&apos;
+out = &apos;out&apos;
+libs = [&apos;lib&apos;]
+
+solc = &quot;0.8.x&quot; 
+optimizer = true
+optimizer_runs = 200 
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;然后编译，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forge build&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;build.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;执行所有的测试。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forge test&lt;/code&gt;
+&lt;img src=&quot;test.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;和 gtest 和 ctest 有点类似，支持过滤条件来执行 test cases.&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-write-a-case&quot;&gt;how to write a case&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://book.getfoundry.sh/forge/writing-tests&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;for example .&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pragma solidity 0.8.10;
+
+import {Test} from &quot;forge-std/Test.sol&quot;;
+
+contract ContractBTest is Test {
+    uint256 testNumber;
+
+    function setUp() public {
+        testNumber = 42;
+    }
+
+    function test_NumberIs42() public {
+        assertEq(testNumber, 42);
+    }
+
+    /// forge-config: default.allow_internal_expect_revert = true
+    function testRevert_Subtract43() public {
+        vm.expectRevert();
+        testNumber -= 43;
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这个 setup 是每个 case 之前都是需要执行的， 这个和其他测试框架类似&lt;/p&gt;
+
+&lt;p&gt;test case 的名字必须用 test 开头，比如这里的&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_NumberIs42&lt;/code&gt;, 和 pytest 框架类似。&lt;/p&gt;
+
+&lt;p&gt;这里主要顶部有一个 import ，这个就是将使用 Forge Std 的 Test 合约中的函数。该合约本身就是 DSTest 的超集。DSTest 提供基本的日志和断言功能。所以需要导入这个基础的测试集。&lt;/p&gt;
+
+&lt;p&gt;assertEq 这个很好理解， 和其他断言超不多。&lt;/p&gt;
+
+&lt;p&gt;第二个 test case，有点专业知识了理解。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;testRevert_Subtract43&lt;/code&gt; 这个就是很少的一个名字，就是需要：测试用例期望合约操作会回滚。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;vm.expectRevert();
+vm 是 Foundry 提供的特殊对象，用于模拟以太坊虚拟机（EVM）的行为.
+expectRevert() 是一个断言，表示接下来的操作应该会导致回滚.
+测试的结果：如果接下来的操作没有回滚，这个测试将会失败。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这里为什么会失败？
+由于在 setUp() 函数中 testNumber 被初始化为 42，减去 43 会导致下溢（underflow），这在 Solidity 0.8.x 版本中会触发回滚。&lt;/p&gt;
+
+&lt;p&gt;典型的边界条件测试之一。&lt;/p&gt;
+
+&lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
+
+&lt;p&gt;https://github.com/foundry-rs/foundry
+https://book.getfoundry.sh/&lt;/p&gt;
+</description>
+        <pubDate>Sun, 09 Feb 2025 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2025/02/09/Foundry-tools/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2025/02/09/Foundry-tools/</guid>
+        
+        <category>web3</category>
+        
+        <category>dapp</category>
+        
+        <category>Foundry</category>
+        
+        
+      </item>
     
       <item>
         <title>智能合约 学习记录 1</title>
@@ -903,96 +1044,6 @@ ClangBuiltin&amp;lt;”__builtin_stack_restore”&amp;gt; 表示这个固有函�
         <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/05/24/llvm-learning-define-intrinsics-2/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2024/05/24/llvm-learning-define-intrinsics-2/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 学习记录：编译器之美 - 后端基础：20~22</title>
-        <description>&lt;p&gt;学习内容来自极客时间的付费课程，我是针对性的学习，直接进入后端的学习，从 20 讲开始，前端的词法解析，直接跳过。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://time.geekbang.org/column/intro/100034101&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;```graph TD&lt;/p&gt;
-
-&lt;p&gt;A[前端] –&amp;gt; B{词法分析}
-B –&amp;gt; C{语法分析}
-C –&amp;gt; D{语义分析}
-D –&amp;gt; E{生成中间代码}
-E –&amp;gt; F{优化}
-F –&amp;gt; G{生成目标代码}
-G –&amp;gt; H[后端]&lt;/p&gt;
-
-&lt;p&gt;```&lt;/p&gt;
-
-&lt;p&gt;你是不是觉得汇编很难？&lt;/p&gt;
-
-&lt;p&gt;不瞒你说，我一开始也觉得汇编好高级呀，看不懂呀，太难了。&lt;/p&gt;
-
-&lt;p&gt;这个是什么鬼语法。其他汇编比高级语言简单，没有复杂的类型，没有多的语法结构。通常就是把数据拷贝到寄存器，处理一下，再保存回内存。&lt;/p&gt;
-
-&lt;p&gt;只是我们见到的，都是高级语言，都是处理过的，辨识度高。&lt;/p&gt;
-
-&lt;p&gt;为了降低后端工作量，提高软件复用度，就需要引入中间代码（Intermediate Representation，IR）的机制，它是独立于具体硬件的一种代码格式。各个语言的前端可以先翻译成 IR，然后再从 IR 翻译成不同硬件架构的汇编代码。如果有 n 个前端语言，m 个后端架构，本来需要做 m*n 个翻译程序，现在只需要 m+n 个了。这就大大降低了总体的工作量。&lt;/p&gt;
-
-&lt;p&gt;像 Rust 就充分利用了 LLVM，GCC 的各种语言，如 C、C++、Object C 等，也是充分共享了后端技术。&lt;/p&gt;
-
-&lt;p&gt;不得不说 rust 的开源社区建设太好了。&lt;/p&gt;
-
-&lt;h2 id=&quot;代码分析和优化&quot;&gt;代码分析和优化&lt;/h2&gt;
-
-&lt;p&gt;依赖于机器的优化，则是依赖于硬件的特征。现代的计算机硬件设计了很多特性，以便提供更高的处理能力，比如并行计算能力，多层次内存结构（使用多个级别的高速缓存）等等。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;编译器要能够充分利用硬件提供的性能&lt;/code&gt;，比如：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;寄存器优化。对于频繁访问的变量，最好放在寄存器中，并且尽量最大限度地利用寄存器，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不让其中一些空着&lt;/code&gt;，有不少算法是解决这个问题的，教材上一般提到的是染色算法；&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;充分利用高速缓存。高速缓存的访问速度可以比内存快几十倍上百倍，所以我们要尽量&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;利用高速缓存&lt;/code&gt;。比如，某段代码操作的数据，在内存里尽量放在一起，这样 CPU 读入数据时，会一起都放到高速缓存中，不用一遍一遍地重新到内存取。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;并行性。现代计算机都有多个内核，可以&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;并行计算&lt;/code&gt;。我们的编译器要尽可能把充分利用多个内核的计算能力。这在编译技术中是一个专门的领域。比如 NVIDIA 的 cuda&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;流水线。CPU 在处理不同的指令的时候，需要等待的时间周期是不一样的，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;在等待某些指令做完的过程中其实还可以执行其他指令&lt;/code&gt;。就比如在星巴克买咖啡，交了钱就可以去等了，收银员可以先去处理下一个顾客，而不是要等到前一个顾客拿到咖啡才开始处理下一个顾客。涉及到 data hazard&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;指令选择。有的时候，CPU 完成一个功能，有多个指令可供选择。而针对某个特定的需求，采用 A 指令可能比 B 指令效率高百倍。比如 X86 架构的 CPU 提供 SIMD 功能，也就是一条指令可以处理多条数据，而不是像传统指令那样一条指令只能处理一条数据。在内存计算领域，SIMD 也可以大大提升性能，我们在第 30 讲的应用篇，会针对 SIMD 做一个实验。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;其他优化。比如可以针对专用的 AI 芯片和 GPU 做优化，提供 AI 计算能力，等等。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;刚接触编译技术的时候，可能会把视线停留在前端技术上，以为&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;能做 Lexer、Parser 就是懂编译了&lt;/code&gt;。实际上，词法分析和语法分析比较成熟，有成熟的工具来支撑。相对来说，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;后端的工作量更大，挑战更多，研究的热点也更多&lt;/code&gt;。比如，人工智能领域又出现了一些专用的 AI 芯片和指令集，就需要去适配。&lt;/p&gt;
-
-&lt;h2 id=&quot;程序运行的环境&quot;&gt;程序运行的环境&lt;/h2&gt;
-
-&lt;p&gt;下面这一段是我直接 copy 过来的，我还没有消化掉。后面慢慢看。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../../../img/2024/compiler-register.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;一般来讲，代码区是在最低的地址区域，然后是静态数据区，然后是堆。而栈传统上是从高地址向低地址延伸，栈的最顶部有一块区域，用来保存环境变量。&lt;/p&gt;
-
-&lt;p&gt;代码区（也叫文本段）存放编译完成以后的机器码。这个内存区域是只读的，不会再修改，但也不绝对。现代语言的运行时已经越来越动态化，除了保存机器码，还可以存放中间代码，并且还可以在运行时把中间代码编译成机器码，写入代码区。&lt;/p&gt;
-
-&lt;p&gt;静态数据区保存程序中全局的变量和常量。它的地址在编译期就是确定的，在生成的代码里直接使用这个地址就可以访问它们，它们的生存期是从程序启动一直到程序结束。它又可以细分为 Data 和 BSS 两个段。Data 段中的变量是在编译期就初始化好的，直接从程序装在进内存。BSS 段中是那些没有声明初始化值的变量，都会被初始化成 0。&lt;/p&gt;
-
-&lt;p&gt;堆适合管理生存期较长的一些数据，这些数据在退出作用域以后也不会消失。比如，我们在某个方法里创建了一个对象并返回，并希望代表这个对象的数据在退出函数后仍然可以访问。&lt;/p&gt;
-
-&lt;p&gt;而栈适合保存生存期比较短的数据，比如函数和方法里的本地变量。它们在进入某个作用域的时候申请内存，退出这个作用域的时候就可以释放掉&lt;/p&gt;
-
-&lt;p&gt;关于优化，可以看这个里面的一些思路：我目前还没有看。https://www.agner.org/optimize/&lt;/p&gt;
-</description>
-        <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/05/24/llvm-learning-basic-1/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/24/llvm-learning-basic-1/</guid>
         
         <category>llvm</category>
         
