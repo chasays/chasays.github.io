@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 09 Feb 2025 14:39:59 +0000</pubDate>
-    <lastBuildDate>Sun, 09 Feb 2025 14:39:59 +0000</lastBuildDate>
+    <pubDate>Mon, 10 Feb 2025 13:16:38 +0000</pubDate>
+    <lastBuildDate>Mon, 10 Feb 2025 13:16:38 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -52,7 +52,7 @@ Chisel: Fast, utilitarian, and verbose Solidity REPL.
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forge init&lt;/code&gt;即可。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;forge.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2025/forge.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;在当前目录可以看到一个文件,
 里面的 foundry.toml 是 Forge 项目中的配置文件。在 foundry.toml 中使用 solc 配置编译器版本和优化次数：&lt;/p&gt;
@@ -70,10 +70,10 @@ optimizer_runs = 200
 
 &lt;p&gt;然后编译，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forge build&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;build.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../../../img/2025/build.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;执行所有的测试。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;forge test&lt;/code&gt;
-&lt;img src=&quot;test.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;../../../../img/2025/test.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;和 gtest 和 ctest 有点类似，支持过滤条件来执行 test cases.&lt;/p&gt;
 
