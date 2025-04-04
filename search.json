@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "树莓派 4B 搭建 OpenWrt 热点 设置",
+      "subtitle" : "",
+      "tags"     : "raspberry pi, openwrt",
+      "url"      : "/2025/04/04/Raspberry-pi-openwrt-ap-setup/",
+      "date"     : "2025-04-04 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "Foundry 工具初步探讨 - Forge",
       "subtitle" : "",
       "tags"     : "web3, dapp, Foundry",

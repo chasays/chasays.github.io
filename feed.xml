@@ -5,9 +5,99 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 04 Apr 2025 02:04:37 +0000</pubDate>
-    <lastBuildDate>Fri, 04 Apr 2025 02:04:37 +0000</lastBuildDate>
+    <pubDate>Fri, 04 Apr 2025 02:26:35 +0000</pubDate>
+    <lastBuildDate>Fri, 04 Apr 2025 02:26:35 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>树莓派 4B 搭建 OpenWrt 热点 设置</title>
+        <description>&lt;p&gt;这一篇文章是关于树莓派 4B 搭建 OpenWrt 热点的设置，主要是为了在树莓派上搭建一个热点，方便在没有网线的情况下连接到互联网。&lt;/p&gt;
+
+&lt;p&gt;也是为了自己后面再来看的时候，可以设置点，如何设置。&lt;/p&gt;
+
+&lt;h1 id=&quot;准备工作&quot;&gt;准备工作&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;硬件准备
+首先是买一个免驱动的wifi网卡，拼多多不到20块钱一个。
+树莓派4B，内存卡-8G&lt;/li&gt;
+  &lt;li&gt;刷机
+开始下载固件，这里由于树莓派的网卡是BCM的，就下载这个对应的版本就可以
+下载suningGG的固件，我第一次没有解压刷机成功，第二次解压了刷机也是ok的
+下载树莓派的刷包软件&lt;/li&gt;
+  &lt;li&gt;刷完之后，启动
+连接wifi Openwrt
+登录192.168.1.1 不用输入密码&lt;/li&gt;
+  &lt;li&gt;配置作为一个客户端，类似ap接入点
+LAN口是转发出来的，最后的成品
+WWAN口是扫描添加一个网口的&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;主要教程-step-by-step&quot;&gt;主要教程 step by step&lt;/h2&gt;
+&lt;p&gt;主要参考的教程是这个：&lt;/p&gt;
+
+&lt;p&gt;https://v2fy.com/p/2021-02-06-pi3-1612603909000/&lt;/p&gt;
+
+&lt;p&gt;不知道后面还可以访问？
+下面是这个教程的关键步骤。&lt;/p&gt;
+
+&lt;p&gt;找刷机镜像
+找到一个仓库 https://github.com/SuLingGG/OpenWrt-Rpi ，里面有树莓派全系设备的OpenWrt刷机镜像&lt;/p&gt;
+
+&lt;p&gt;将镜像刷入SD卡
+刷镜像软件下载地址: https://frp.v2fy.com/balenaEtcher/&lt;/p&gt;
+
+&lt;p&gt;将SD卡插入树莓派，给树莓派通电开机
+树莓派开机后20秒左右，使用电脑查看周围的Wifi，将会看到一个名为OpenWrt的Wifi网络，电脑可以直接加入OpenWrt网络（无需密码）&lt;/p&gt;
+
+&lt;p&gt;登录树莓派路由器后台
+打开浏览器，输入 http://192.168.1.1 进入路由器后台&lt;/p&gt;
+
+&lt;p&gt;输入默认用户名，root 和 password&lt;/p&gt;
+
+&lt;p&gt;配置Wan口
+路由器也分入口和出口， 入口为Wan 口， 出口为Lan口， 上一步我们已经通过Wifi接入后台，说明Lank口已经没问题了， 而Wan口需要我们自己配置。&lt;/p&gt;
+
+&lt;p&gt;如果我们将网线插入树莓派，则是和传统路由类似， 使用有线式Wan口。&lt;/p&gt;
+
+&lt;p&gt;而我这次来个不一样的，将闲置的USB免驱无线网卡插入树莓派，做一个无线式Wan口。&lt;/p&gt;
+
+&lt;h1 id=&quot;下次修改接入点-wifi-热点&quot;&gt;下次修改接入点 wifi 热点&lt;/h1&gt;
+
+&lt;p&gt;刷机好了 ，设置好自己的
+先扫描 wifi，添加到这个口
+&lt;img src=&quot;../../../../img/2025/openwrt_1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后关联起来即可
+&lt;img src=&quot;../../../../img/2025/openwrt_2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;额外外接的网卡作为wan口，驱动成功后，在后台WAN口外接网卡可以直接扫描周围wifi，输入密码，接入互联网
+https://v2fy.com/p/2021-07-04-openwrt-4b-1625383754000/comment-page-1/#comment-80842&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这个教程全面：
+把树莓派作为主路由、旁路由、AP热点-客户端
+https://blog.csdn.net/qq_42523645/article/details/133755333&lt;/p&gt;
+
+&lt;p&gt;可以借鉴下面这个教程里面的配图， 接入点ap的设置
+https://zhuanlan.zhihu.com/p/451788328&lt;/p&gt;
+
+&lt;p&gt;树莓派3b搭建openwrt科学上网， 用的sulingGG固件
+https://tanweime.com/2023/05/03/%E6%A0%91%E8%8E%93%E6%B4%BE3b%E6%90%AD%E5%BB%BAopenwrt%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/&lt;/p&gt;
+</description>
+        <pubDate>Fri, 04 Apr 2025 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2025/04/04/Raspberry-pi-openwrt-ap-setup/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2025/04/04/Raspberry-pi-openwrt-ap-setup/</guid>
+        
+        <category>raspberry pi</category>
+        
+        <category>openwrt</category>
+        
+        
+      </item>
     
       <item>
         <title>Foundry 工具初步探讨 - Forge</title>
@@ -982,72 +1072,6 @@ You can use llc’s -stop-after option with existing or new LLVM assembly tests 
         <category>编译器</category>
         
         <category>调试</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 学习记录：如何添加一个 builtin 函数 - 2</title>
-        <description>&lt;p&gt;需要主要有一个地方。&lt;/p&gt;
-
-&lt;p&gt;如果是 intrinsic*.td 里面使用了，ClangBuiltin&amp;lt;&amp;gt;, 那么就不需要再 CGBuiltin.cpp 里面添加枚举了。&lt;/p&gt;
-
-&lt;h2 id=&quot;先来看一组定义的差别&quot;&gt;先来看一组定义的差别&lt;/h2&gt;
-
-&lt;p&gt;定义 1&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_stackrestore&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DefaultAttrsIntrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llvm_anyptr_ty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;ClangBuiltin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;__builtin_stack_restore&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;定义 2&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_stackrestore&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DefaultAttrsIntrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llvm_anyptr_ty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;这两个定义的主要区别在于是否将 LLVM 固有函数与 Clang builtin 函数关联。这确实是一个关键差别，影响到 Clang 如何处理 builtin 函数以及它们在 LLVM IR 中的表示。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClangBuiltin&amp;lt;&quot;__builtin_stack_restore&quot;&amp;gt;&lt;/code&gt; 表示这个固有函数在 Clang 中对应于 builtin 函数 __builtin_stack_restore。这意味着，当你在 C/C++ 代码中使用 __builtin_stack_restore 时，Clang 会将其转换为 LLVM IR 中的 llvm.stackrestore builtin 函数调用。&lt;/p&gt;
-
-&lt;h2 id=&quot;没看懂举个例子&quot;&gt;没看懂，举个例子？&lt;/h2&gt;
-
-&lt;p&gt;比如在 intrinsic.td 里面定义了&lt;/p&gt;
-
-&lt;p&gt;https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/IR/Intrinsics.td&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int_stackrestore&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DefaultAttrsIntrinsic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llvm_anyptr_ty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;ClangBuiltin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;__builtin_stack_restore&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;其中&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClangBuiltin&amp;lt;&quot;__builtin_stack_restore&quot;&amp;gt;;&lt;/code&gt;
-Clang 内建函数关联：
-ClangBuiltin&amp;lt;”__builtin_stack_restore”&amp;gt; 表示这个固有函数在 Clang 中对应于内建函数 __builtin_stack_restore。即，当你在 C/C++ 代码中使用 __builtin_stack_restore 时，Clang 会将它转换为 LLVM IR 中的 llvm.stackrestore 固有函数调用。&lt;/p&gt;
-
-&lt;p&gt;有了这个，就不需要在 CGbuiltin.cpp 里面添加枚举了，添加了也不会走到枚举这里的。&lt;/p&gt;
-
-&lt;p&gt;再来看看 ClangBuiltin&amp;lt;&amp;gt; 这个定义说的啥？&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;/// ClangBuiltin - If this intrinsic exactly corresponds to a Clang builtin, this&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;/// specifies the name of the builtin.  This provides automatic CBE and CFE&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;/// support.&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClangBuiltin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ClangBuiltinName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;意思就是 ClangBuiltin 如果此内在 intrinsic 函数能完全对应于 Clang builtin 函数，则此指定 builtin 的名称，会自动支持 clang 前后端。&lt;/p&gt;
-
-&lt;p&gt;还没看懂？别开玩笑了，我的零基础的都能看懂~&lt;/p&gt;
-
-&lt;p&gt;还有一个问题，估计你和我一样，好奇，如果是 2 边都添加了，会怎么样？&lt;/p&gt;
-
-&lt;p&gt;我试了，如过 intrinsic.td 里面添加了，又在 CGBuiltin.cpp 里面添加了。CGBuiltin.cpp 这个里面是不会生效的。&lt;/p&gt;
-</description>
-        <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/05/24/llvm-learning-define-intrinsics-2/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/24/llvm-learning-define-intrinsics-2/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
         
         
       </item>
