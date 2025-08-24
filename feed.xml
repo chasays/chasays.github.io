@@ -5,9 +5,67 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 04 Apr 2025 02:26:35 +0000</pubDate>
-    <lastBuildDate>Fri, 04 Apr 2025 02:26:35 +0000</lastBuildDate>
+    <pubDate>Sun, 24 Aug 2025 13:34:20 +0000</pubDate>
+    <lastBuildDate>Sun, 24 Aug 2025 13:34:20 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>是 web3 游戏管理员骗局，还是 游戏项目？</title>
+        <description>&lt;p&gt;TL;DR
+推特上有人邀请我做游戏社区管理员 → 给了激活码让我下载一款所谓的游戏 → Windows / macOS 都无法运行 → 网站和白皮书看似正规，但账号粉丝大多是机器人 → 运行后发现有加密脚本在本地生成文件 → 怀疑是骗局或恶意软件。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;事情是这样的，前几天，我在推特上收到了一个私信，对方问我有没有兴趣做游戏社区的管理员。起初我并没有兴趣，就拒绝了。但后来他又说可以“先试试”，随后让我和一个自称是 HR 的人联系，并给了我一个 类似激活码。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/gu3ZFu.jpg&quot; alt=&quot;invitedMe.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;根据他的指引，我用这个激活码在他们的网站上下载了一款所谓的游戏客户端。我分别在 Windows 和 macOS 上都试过，这个游戏都无法正常运行。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/yMZ8Gs.jpg&quot; alt=&quot;activateCode.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;奇怪的是：&lt;/p&gt;
+
+&lt;p&gt;他们的网站和白皮书 做得很完整、很精致，看上去不像是随便拼凑的骗局页面。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/QiWzPo.jpg&quot; alt=&quot;website.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;给我发私信的那个人，Discord 账号是 2018 年注册的，不是那种刚建的小号。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/kcHLnN.jpg&quot; alt=&quot;discord.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是，我发现他们的推特账号有大量的 机器人粉丝，明显是批量注册刷出来的。给我发私信的人账号情况也类似。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/OKKFru.jpg&quot; alt=&quot;twitter.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我继续研究了一下。运行这个软件后，我发现它会执行一些 加密脚本，最后在本地生成文件。我不确定这是不是病毒或恶意软件，但至少看起来有风险。脚本都是混淆加密的～&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/QiWzPo.jpg&quot; alt=&quot;script.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这让我很困惑：&lt;/p&gt;
+
+&lt;p&gt;我是不是遇到了一个 包装得很像真的骗局？&lt;/p&gt;
+
+&lt;p&gt;如果真是骗子，为什么要花这么多精力做一个看起来很完善的网站、白皮书和社区？&lt;/p&gt;
+
+&lt;p&gt;还是说，他们的真正目的就是通过这个客户端来投放恶意程序？&lt;/p&gt;
+
+&lt;p&gt;如果有人有沙盒环境，可以尝试运行一下这个客户端，看看会不会触发一些可疑的行为。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/virus.zip&quot; alt=&quot;maybe virus.zip&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我也想听听大家的看法：这到底是一次web3 game尝试失败，还是一个伪装成游戏项目的骗局？&lt;/p&gt;
+</description>
+        <pubDate>Sun, 24 Aug 2025 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2025/08/24/adventureverse-web3-game/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2025/08/24/adventureverse-web3-game/</guid>
+        
+        <category>adventureverse</category>
+        
+        <category>web3</category>
+        
+        
+      </item>
     
       <item>
         <title>树莓派 4B 搭建 OpenWrt 热点 设置</title>
@@ -976,96 +1034,6 @@ https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang
         <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
-        
-        <category>调试</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 学习记录：调试技巧 2 </title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;这里直接推荐一个 https://blog.csdn.net/zhongyunde/article/details/109013865&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;工具的选项&quot;&gt;工具的选项&lt;/h1&gt;
-
-&lt;p&gt;传递编译选项给 clang -cc1：-Xclang
--cc1 选项：实际的编译命令
-传递编译选项给 llvm 编译：-mllvm
-打印 token：-Xclang -dump-tokens
-打印 AST： -Xclang -ast-dump
-打印 llvm IR：-S -emit-llvm
-打印汇编：-S
-打印 pass 列表： -mllvm -debug-pass=Structure
-打印 clang driver：-###
-在 pass 执行完打印 IR：-mllvm -print-after-all；llc 也可以 -print-after-all, or stop-before=xx, stop-after=xx
-DAGToDAG Debug 日志：-mllvm -debug&lt;/p&gt;
-
-&lt;p&gt;选项-verify-each 能够使能每个 pass 后的验证&lt;/p&gt;
-
-&lt;p&gt;打印模块信息： -print-module-scope，由于默认 print-after-all 仅在模块信息发生变化时才重新打印，导致过程中的 IR 内容不能直接用于 pass 的输入，因此配合此选项可以避免额外适配&lt;/p&gt;
-
-&lt;p&gt;获取指定函数的 lr 文件：-mllvm -opt-bisect-limit=-1 -S -emit-llvm -filter-print-funcs=poo&lt;/p&gt;
-
-&lt;p&gt;邮件 Which optimization pass deals with heap values 标题中提到选项-mllvm -print-changed 可以显示变化&lt;/p&gt;
-
-&lt;p&gt;使用选项-mllvm –print-changed=quiet -mllvm –print-module-scope 查看状态变化，参考 Why is llvm.loop.unroll.disable appended for -O1 -emit-llvm - #2 by aeubanks - IR &amp;amp; Optimizations - LLVM Discussion Forums&lt;/p&gt;
-
-&lt;h1 id=&quot;裁剪-case&quot;&gt;裁剪 case&lt;/h1&gt;
-
-&lt;p&gt;a) 用例裁剪：llvm 提供 llvm-reduce 及使用示例&lt;/p&gt;
-
-&lt;p&gt;~/test/issue2485/err » cat test1.sh                                                           &lt;br /&gt;
-#!/bin/bash
-opt  $1 -instcombine -S 2&amp;gt;&amp;amp;1 | grep SafeReplacementConstant # 匹配返回 0 是感兴趣
-————————————————————
-~/test/issue2485/err » llvm-reduce –test=test1.sh test-2485.ll
-如果是 lto 优化，则需要使用-Wl,-plugin-opt=save-temps 保留中间文件，生成的&lt;em&gt;.opt.bc 使用 llvm-dis 转换为&lt;/em&gt;.ll 文件，后续裁剪方法同上&lt;/p&gt;
-
-&lt;p&gt;llvm-dis a.out.0.4.opt.bc – 生成 a.out.0.4.opt.ll&lt;/p&gt;
-
-&lt;p&gt;opt  -instcombine  a.out.0.4.opt.ll&lt;/p&gt;
-
-&lt;p&gt;b) 源码裁剪：llvm 后端中的 llvm-reduce 只能对非后端的 IR 进行裁剪，无法对后端的 IR 进行裁剪。因此可以先使用 C-Reduce 对 C 源码裁剪，间接的进行简化，使用方法类似 llvm-reduce&lt;/p&gt;
-
-&lt;p&gt;MIR 相关的调试补充介绍&lt;/p&gt;
-
-&lt;p&gt;MIR 的调试参考 Machine IR (MIR) Format Reference Manual — LLVM 13 documentation&lt;/p&gt;
-
-&lt;p&gt;You can use the MIR format for testing in two different ways:&lt;/p&gt;
-
-&lt;p&gt;You can write MIR tests that invoke a single code generation pass using the -run-pass option in llc.
-You can use llc’s -stop-after option with existing or new LLVM assembly tests and check the MIR output of a specific code generation pass.&lt;/p&gt;
-
-&lt;p&gt;参考 CodeGen/AMDGPU/fold-reload-into-m0.mir，可以使用 -start-before=greedy -stop-after=virtregmap 指定开始和结束要执行的 pass, 也就是并不需要都重头开始执行，示例：&lt;/p&gt;
-
-&lt;p&gt;llc -O3 reduced.ll -stop-before=virtregmap -o - &amp;amp;&amp;gt; machine-scheduler1.mir&lt;/p&gt;
-
-&lt;p&gt;llc -O3 reduced.ll -simplify-mir -o - -print-after-all 也可以打印 mir&lt;/p&gt;
-
-&lt;p&gt;注意： -o - 是关键，和 llc -O3 reduced.ll -stop-before=virtregmap -debug-only=machine-scheduler 得到的内容存在差异&lt;/p&gt;
-
-&lt;p&gt;学习 mllvm -opt-bisect-limit 用法：Using -opt-bisect-limit to debug optimization errors — LLVM 15.0.0git documentation&lt;/p&gt;
-
-&lt;p&gt;cgdb 类似 emacs + gdb 功能，可以实时查看代码执行位置，参考 https://blog.csdn.net/yzhang6_10/article/details/83626226&lt;/p&gt;
-
-&lt;p&gt;IRbuilder 或者 MachineIRBuilder 是为了建新的语句的一个接口类，可以使用&lt;/p&gt;
-
-&lt;p&gt;p Builder.GetInsertBlock()-&amp;gt;dump() 打印当前 basicblock 的信息&lt;/p&gt;
-
-&lt;h1 id=&quot;3常用-debug-api查看过程状态&quot;&gt;3、常用 debug API，查看过程状态&lt;/h1&gt;
-
-&lt;p&gt;p L.getHeader()-&amp;gt;getParent()-&amp;gt;dump()  查看循环体的内容&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/05/28/llvm-learning-debug-2/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/28/llvm-learning-debug-2/</guid>
         
         <category>llvm</category>
         
