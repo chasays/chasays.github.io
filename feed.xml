@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 24 Aug 2025 13:34:20 +0000</pubDate>
-    <lastBuildDate>Sun, 24 Aug 2025 13:34:20 +0000</lastBuildDate>
+    <pubDate>Sun, 24 Aug 2025 13:47:11 +0000</pubDate>
+    <lastBuildDate>Sun, 24 Aug 2025 13:47:11 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -52,7 +52,7 @@
 
 &lt;p&gt;如果有人有沙盒环境，可以尝试运行一下这个客户端，看看会不会触发一些可疑的行为。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/virus.zip&quot; alt=&quot;maybe virus.zip&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/virus.zip&lt;/p&gt;
 
 &lt;p&gt;我也想听听大家的看法：这到底是一次web3 game尝试失败，还是一个伪装成游戏项目的骗局？&lt;/p&gt;
 </description>
