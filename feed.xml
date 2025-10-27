@@ -5,16 +5,17 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 27 Oct 2025 07:05:22 +0000</pubDate>
-    <lastBuildDate>Mon, 27 Oct 2025 07:05:22 +0000</lastBuildDate>
+    <pubDate>Mon, 27 Oct 2025 14:09:58 +0000</pubDate>
+    <lastBuildDate>Mon, 27 Oct 2025 14:09:58 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
-        <title>Llvm19 Trouble Shoting</title>
+        <title>定位一个llvm19 升级带来的性能问题</title>
         <description>&lt;p&gt;问题： 在bitsandbytes里面，从llvm12升级到llvm19之后，部分性能下降。
 matmul和double_quant，部分case性能下降6%~13%。
-matmul的最后一个下降，13%
-image.png&lt;/p&gt;
+matmul的最后一个下降，13%&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/yyRQa6_aJ6KAt.png&quot;&gt;问题&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;思路是： 先复现这个问题，可以H列QA测试的结果保持一致。性能确实有回退。
 先用内部工具，分析是哪一个kernel的占比耗时比较高。&lt;/p&gt;
@@ -25,23 +26,23 @@ image.png&lt;/p&gt;
 
 &lt;p&gt;通过AI，直接生成一个python脚本，来分析这个json文件，大文件，记得用ijson，不是json。&lt;/p&gt;
 
-&lt;p&gt;image.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/bYBsF6_Z9m52d.jpg&quot; alt=&quot;bYBsF6_Z9m52d&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;得到的数据，然后按照cycle的降序排序。
 这个方法内部同事把这个定义为找hot kernel。
-image.png
+&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/OVj49M_WfgZQn.jpg&quot; alt=&quot;OVj49M_WfgZQn&quot; /&gt;
 可以看到这个回退的结果，里面其中一个kernel占比llvm12和19都是87%左右，挺大的，在看具体icycle值对比，也是回退和实际一致。&lt;/p&gt;
 
 &lt;p&gt;问题找到了，可以下结论了。就是这个kernel 主要导致了性能回退的原因。&lt;/p&gt;
 
 &lt;p&gt;那就开始深入分析kernel了，通过c++filt，可以看到这个kernel具体的名称，参数是什么？&lt;/p&gt;
 
-&lt;p&gt;找到kernel name之后，在对应的测试集，或者是模型里面，找到对应的device函数名称。
-image.png&lt;/p&gt;
+&lt;p&gt;找到kernel name之后，在对应的测试集，或者是模型里面，找到对应的device函数名称。&lt;/p&gt;
 
 &lt;p&gt;通过rg，或者grep 。找到这个函数在哪里。&lt;/p&gt;
 
-&lt;p&gt;找到之后，https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/csrc/kernels.cu:1766&lt;/p&gt;
+&lt;p&gt;找到之后，
+https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/csrc/kernels.cu:1766&lt;/p&gt;
 
 &lt;p&gt;开源的工具，在1766行。&lt;/p&gt;
 
@@ -53,7 +54,7 @@ https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/csrc/ops.cu：
 &lt;p&gt;先make的时候 verbose=1，打印出编译命令，然后修改这个cu文件，只保留这么一个实例化, 这样就搞了一个mini-case来复现问题。&lt;/p&gt;
 
 &lt;p&gt;然后对比汇编。
-image.png&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/fzgScS_UegfHX.jpg&quot; alt=&quot;fzgScS_UegfHX&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以看到llvm12的bb块多了很多，llvm19少了很多。&lt;/p&gt;
 
@@ -66,17 +67,17 @@ image.png&lt;/p&gt;
 &lt;p&gt;用AI写一个python脚本，分析下这个只包含这个函数的bb块，变化情况。&lt;/p&gt;
 
 &lt;p&gt;初步找到是inline一个pass导致的，
-image.png&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/9aRmZ8_6CxjMy.jpg&quot; alt=&quot;9aRmZ8_6CxjMy&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这个就是不优化的，地方，说明是从其他子函数带过来的bb块。需要从子函数来分析。&lt;/p&gt;
 
 &lt;p&gt;统计下print-after-inline后的bb情况变化， 可以看到llvm19是很高的。&lt;/p&gt;
 
-&lt;p&gt;e55481ee16b2602f6f2b1d3fb34abfb1.png&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/KMg0Ih_hDlUVj.jpg&quot; alt=&quot;KMg0Ih_hDlUVj&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;方向对了。
 那在看print-after-all， 就看这个bb块什么时候减少了。
-image.png&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/UdNu21_E20wQ0.jpg&quot; alt=&quot;UdNu21_E20wQ0&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以看到前面都是73个bb块，后面就变成了17个， 就是这个simpfyCFG pass导致的，通过查看passBuilder pipeline这个pass。
 找到对应的代码，主要上下的pass需要对应上，然后直接注释这个代码。&lt;/p&gt;
@@ -92,6 +93,10 @@ image.png&lt;/p&gt;
         <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2025/10/27/llvm19-trouble-shoting/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2025/10/27/llvm19-trouble-shoting/</guid>
+        
+        <category>llvm</category>
+        
+        <category>性能</category>
         
         
       </item>

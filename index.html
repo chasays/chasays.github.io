@@ -301,25 +301,30 @@
 <div class="post-preview">
     <a href="/2025/10/27/llvm19-trouble-shoting/">
         <h2 class="post-title">
-            Llvm19 Trouble Shoting
+            定位一个llvm19 升级带来的性能问题
         </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
         
         <div class="post-content-preview">
             
                 问题： 在bitsandbytes里面，从llvm12升级到llvm19之后，部分性能下降。
 matmul和double_quant，部分case性能下降6%~13%。
 matmul的最后一个下降，13%
-image.png
+
+问题
 
 思路是： 先复现这个问题，可以H列QA测试的结果保持一致。性能确实有回退。
 先用内部工具，分析是哪一个kernel的占比耗时比较高。
 
-这个工具可以参考cuda pr...
+这个工具可以参考cuda profiler...
             
         </div>
     </a>
     <p class="post-meta">
-        Posted by 察说花园 on October 27, 2025
+        Posted by 叉叉敌 on October 27, 2025
     </p>
 </div>
 <hr>
@@ -633,10 +638,10 @@ windoows， 不管是多大的项目，只要debug，几秒就可以调到断点
                     title="Newsletter"
                     rel="94">Newsletter</a>
         
-                <a data-sort="0298" 
+                <a data-sort="0297" 
                     href="/archive/?tag=llvm"
                     title="llvm"
-                    rel="13">llvm</a>
+                    rel="14">llvm</a>
         
                 <a data-sort="0301" 
                     href="/archive/?tag=%E7%BC%96%E8%AF%91%E5%99%A8"
