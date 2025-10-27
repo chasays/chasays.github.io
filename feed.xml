@@ -5,9 +5,96 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 24 Aug 2025 13:47:11 +0000</pubDate>
-    <lastBuildDate>Sun, 24 Aug 2025 13:47:11 +0000</lastBuildDate>
+    <pubDate>Mon, 27 Oct 2025 07:05:22 +0000</pubDate>
+    <lastBuildDate>Mon, 27 Oct 2025 07:05:22 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Llvm19 Trouble Shoting</title>
+        <description>&lt;p&gt;问题： 在bitsandbytes里面，从llvm12升级到llvm19之后，部分性能下降。
+matmul和double_quant，部分case性能下降6%~13%。
+matmul的最后一个下降，13%
+image.png&lt;/p&gt;
+
+&lt;p&gt;思路是： 先复现这个问题，可以H列QA测试的结果保持一致。性能确实有回退。
+先用内部工具，分析是哪一个kernel的占比耗时比较高。&lt;/p&gt;
+
+&lt;p&gt;这个工具可以参考cuda profiler之类的工具，可以统计到每一个kernel执行的cycle值。&lt;/p&gt;
+
+&lt;p&gt;同一个名称的 mangled 名称是一样的，mangled是带了参数的，所以不怕有不同参数的kernel 函数了。&lt;/p&gt;
+
+&lt;p&gt;通过AI，直接生成一个python脚本，来分析这个json文件，大文件，记得用ijson，不是json。&lt;/p&gt;
+
+&lt;p&gt;image.png&lt;/p&gt;
+
+&lt;p&gt;得到的数据，然后按照cycle的降序排序。
+这个方法内部同事把这个定义为找hot kernel。
+image.png
+可以看到这个回退的结果，里面其中一个kernel占比llvm12和19都是87%左右，挺大的，在看具体icycle值对比，也是回退和实际一致。&lt;/p&gt;
+
+&lt;p&gt;问题找到了，可以下结论了。就是这个kernel 主要导致了性能回退的原因。&lt;/p&gt;
+
+&lt;p&gt;那就开始深入分析kernel了，通过c++filt，可以看到这个kernel具体的名称，参数是什么？&lt;/p&gt;
+
+&lt;p&gt;找到kernel name之后，在对应的测试集，或者是模型里面，找到对应的device函数名称。
+image.png&lt;/p&gt;
+
+&lt;p&gt;通过rg，或者grep 。找到这个函数在哪里。&lt;/p&gt;
+
+&lt;p&gt;找到之后，https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/csrc/kernels.cu:1766&lt;/p&gt;
+
+&lt;p&gt;开源的工具，在1766行。&lt;/p&gt;
+
+&lt;p&gt;是一个模板，看他实例化的地方，
+https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/csrc/ops.cu： 446行的地方，有2个是实例化，但是参数对的上的之后一个。&lt;/p&gt;
+
+&lt;p&gt;这个就好办了。&lt;/p&gt;
+
+&lt;p&gt;先make的时候 verbose=1，打印出编译命令，然后修改这个cu文件，只保留这么一个实例化, 这样就搞了一个mini-case来复现问题。&lt;/p&gt;
+
+&lt;p&gt;然后对比汇编。
+image.png&lt;/p&gt;
+
+&lt;p&gt;可以看到llvm12的bb块多了很多，llvm19少了很多。&lt;/p&gt;
+
+&lt;p&gt;可能的原因就是bb块多了之后，走到一个有endk的bb块，直接就跳出了。所以性能好。&lt;/p&gt;
+
+&lt;p&gt;那就分析这个bb块是怎么来的，llvm19的bb块是怎么被优化没的。&lt;/p&gt;
+
+&lt;p&gt;首先，通过-print-after-all, -filter-function-print， 找到只包含这个kernel的情况，获取到IR文件。&lt;/p&gt;
+
+&lt;p&gt;用AI写一个python脚本，分析下这个只包含这个函数的bb块，变化情况。&lt;/p&gt;
+
+&lt;p&gt;初步找到是inline一个pass导致的，
+image.png&lt;/p&gt;
+
+&lt;p&gt;这个就是不优化的，地方，说明是从其他子函数带过来的bb块。需要从子函数来分析。&lt;/p&gt;
+
+&lt;p&gt;统计下print-after-inline后的bb情况变化， 可以看到llvm19是很高的。&lt;/p&gt;
+
+&lt;p&gt;e55481ee16b2602f6f2b1d3fb34abfb1.png&lt;/p&gt;
+
+&lt;p&gt;方向对了。
+那在看print-after-all， 就看这个bb块什么时候减少了。
+image.png&lt;/p&gt;
+
+&lt;p&gt;可以看到前面都是73个bb块，后面就变成了17个， 就是这个simpfyCFG pass导致的，通过查看passBuilder pipeline这个pass。
+找到对应的代码，主要上下的pass需要对应上，然后直接注释这个代码。&lt;/p&gt;
+
+&lt;p&gt;先看看汇编有变化没？有了&lt;/p&gt;
+
+&lt;p&gt;然后注释代码，看看性能怎么样？ 正常了。&lt;/p&gt;
+
+&lt;p&gt;那就开始添加一个编译选项，专门控制这个地方，提供给bitsandbytes来使用。&lt;/p&gt;
+
+&lt;p&gt;ok，梳理代码，提交，合并到dev，等待验证结果。&lt;/p&gt;
+</description>
+        <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2025/10/27/llvm19-trouble-shoting/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2025/10/27/llvm19-trouble-shoting/</guid>
+        
+        
+      </item>
     
       <item>
         <title>是 web3 游戏管理员骗局，还是 游戏项目？</title>
@@ -947,99 +1034,6 @@ Cursor的出现，标志着编程方式正在发生一场革命。通过自动�
         <category>编辑器</category>
         
         <category>cursor</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 学习记录：调试技巧</title>
-        <description>&lt;p&gt;调试的时候有几个技巧，分享和记录下，方便自己后面可以熟练的用到。&lt;/p&gt;
-
-&lt;h2 id=&quot;看所有的编译命令但是不执行&quot;&gt;看所有的编译命令，但是不执行&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-###&lt;/code&gt;，这个就是 clang 的第一个参数。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://clang.llvm.org/docs/CommandGuide/clang.html&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;用 clang 编译的时候，会从打印（但不运行）为此编译运行的命令。&lt;/p&gt;
-
-&lt;p&gt;然后打印出出错的命令，然后一步一步的执行，就知道是哪里的问题了。&lt;/p&gt;
-
-&lt;p&gt;比如：优化或者是定位哪一步的编译时间过长，是词法解析，还是编译器后端，还是 lld 导致的，用这个方法分别执行每一步的命令，然后统计下，就知道是哪里耗费的时间长。&lt;/p&gt;
-
-&lt;h2 id=&quot;llvm_debug-用法&quot;&gt;llvm_debug 用法&lt;/h2&gt;
-
-&lt;p&gt;将对应的实例以字符串的形式输入到 errs() 流中，但是类似这种调试信息，我们通常并不想在正式发布的时候打印，而且有时候 Pass 的代码一多，就会造成打印的信息过多，干扰我们调试。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://zhqli.com/post/1667466024&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;借助 LLVM 的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_DEBUG&lt;/code&gt; 对调试信息进行分类，使用之前需要导入对应的头文件并定义 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DEBUG_TYPE&lt;/code&gt;, 如下所示&lt;/p&gt;
-
-&lt;p&gt;在 llvm 代码里面可以看到 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_DEBUG()&lt;/code&gt;的用法，这个用法是什么喃？&lt;/p&gt;
-
-&lt;p&gt;用的时候需要在 cpp 顶部定义各一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#incldue DEBUG_TYPE &quot;pass_name&quot;&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;举个例子&quot;&gt;举个例子&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://github.com/llvm/llvm-project/blob/main/llvm/lib/Target/AMDGPU/AMDGPUCallLowering.cpp&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;AMDGPU 的 calllowering 里面。&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define DEBUG_TYPE &quot;amdgpu-call-lowering&quot;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;定义一个 debug_type 的，后面是 pass 的名字。如何使用，
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_DEBUG(dbgs())&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Make sure that they can fit on the caller&apos;s stack.&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SIMachineFunctionInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FuncInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SIMachineFunctionInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;OutInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getStackSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FuncInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getBytesInStackArgArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;LLVM_DEBUG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dbgs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;... Cannot fit call operands on caller&apos;s stack.&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;这样 debug 的时候，只需要跟上这个 pass 的名字，就只打印出这个 pass 的相关的 log 信息了。定位就方便多了。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;opt xxx  --debug-only=amdgpu-call-lowering &lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;统计运行时间&quot;&gt;统计运行时间&lt;/h2&gt;
-
-&lt;p&gt;上面提到如何用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;###&lt;/code&gt;来查看命令，那么还有如何通过执行直接获取每一个的执行时间？&lt;/p&gt;
-
-&lt;p&gt;可以用这个命令通过 opt &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-time-trace&lt;/code&gt; 选项告诉 opt 导出所有由 TimeTraceaScope 收集的信息，并将 trace 文件保存到 -time-trace-file 指定的 json 文件中，这个 json 文件怎么查看呢？可以在 chrome 地址栏输入 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chrome://tracing&lt;/code&gt;, 然后打开这个 json 文件即可可视化查看，是不是有点惊喜？&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../../../img/2024/2024-5-28-tracing.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;点击图片中第三个图标，就可以放大和缩小这个图片了，能看到具体是哪一个出了问题。&lt;/p&gt;
-
-&lt;p&gt;chrome 的 trace 查看功能实际上是集成了项目 perfetto, 这个项目可以在线使用，地址是 https://ui.perfetto.dev/.&lt;/p&gt;
-
-&lt;p&gt;那么 clang 里面用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-ftime-trace&lt;/code&gt; 也是可以用的`。&lt;/p&gt;
-
-&lt;p&gt;方便么？do you get it?&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;顺便推荐一本书，就是短时间内学习有用的 LLVM 技能，并使您能够快速构建原型和项目。编程语言爱好者还会发现本书对于在 LLVM 的帮助下构建新的编程语言很有用。
-https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Libraries&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;还有大佬翻译为中文了，https://github.com/xiaoweiChen/LLVM-Techniques-Tips-and-Best-Practies&lt;/p&gt;
-</description>
-        <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/28/llvm-learning-debug/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
-        
-        <category>调试</category>
         
         
       </item>
