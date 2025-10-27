@@ -8,11 +8,19 @@
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享">
-    <meta name="keywords"  content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
+    <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@troubleisfff">
+    <meta name="twitter:title" content="LLVM Data hazard 数据冲突 - 察说花园 | Newsletter">
+    <meta name="twitter:description" content="察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享">
+    <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
     <meta property="og:title" content="LLVM Data hazard 数据冲突 - 察说花园 | Newsletter">
+    <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="article">
     <meta property="og:description" content="先来一个例子：
@@ -26,9 +34,8 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
 比如客户 B 先进行了取款，但他的钱还没有进入账户，此时如果客户 B 进行取款，他会取出的钱比实际余额少（如果取出的钱多了，记得退回去，不然是违法的哦），这就像后续指令读取了旧的数据一样。
 
 为了解决这个问题，银行...">
-    
-    <meta property="article:published_time" content="2023-04-26T00:00:00Z">
-    
+    <meta property="article:published_time" content="2023-04-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-04-26T00:00:00+00:00">
     
     <meta property="article:author" content="叉叉敌">
     
@@ -60,7 +67,8 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"></noscript>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -69,6 +77,36 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+        <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "name": "LLVM Data hazard 数据冲突",
+      "description": "察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享",
+      "url": "https://blog.chiphub.top/2023/04/26/LLVM-data-hazard/",
+      "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "察说花园",
+        "url": "https://blog.chiphub.top",
+        "image": "https://blog.chiphub.top/img/avatar-xxd.jpg"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "察说花园",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://blog.chiphub.top/img/avatar-xxd.jpg"
+        }
+      }
+      ,
+      "datePublished": "2023-04-26T00:00:00+00:00",
+      "dateModified": "2023-04-26T00:00:00+00:00"
+      
+    }
+    </script>
 
     <!-- ga & ba script hoook -->
     <script></script>
@@ -80,18 +118,18 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
 
     <!-- Navigation -->
 
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert" role="navigation">
     
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle">
+                <button type="button" class="navbar-toggle" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">察说花园</a>
+                <a class="navbar-brand" href="/" aria-label="Home">察说花园</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -99,20 +137,20 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
                 <div class="navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="/" aria-label="Home">Home</a>
                         </li>
                         
                         
                         
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/about/" aria-label="About">About</a>
                         </li>
                         
                         
                         
                         <li>
-                            <a href="/archive/">Archive</a>
+                            <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
                         
                         
@@ -195,8 +233,8 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
                         
                         
                         <li class="search-icon">
-                            <a href="javascript:void(0)">
-                               SEARCH <i class="fa fa-search"></i>
+                            <a href="javascript:void(0)" aria-label="Search">
+                               SEARCH <i class="fa fa-search" aria-hidden="true"></i>
                             </a>
                         </li>
                     </ul>
@@ -258,21 +296,29 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
             if (e.target.className == 'icon-bar') return;
             __HuxNav__.close();
         })
+
+        // Close navbar when an anchor link is clicked
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.closest('.navbar-collapse')) {
+                __HuxNav__.close();
+            }
+        });
     </script>
     <!-- Search -->
-<div class="search-page">
+<div class="search-page" role="search">
   <div class="search-icon-close-container">
-    <span class="search-icon-close">
-      <i class="fa fa-chevron-down"></i>
+    <span class="search-icon-close" aria-label="Close search">
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
     </span>
   </div>
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form></form>
-        <input type="text" id="search-input" placeholder="$ grep...">
+        <form role="search">
+          <label for="search-input" class="sr-only">Search</label>
+          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
         </form>
-        <div id="search-results" class="mini-post-list"></div>
+        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
       </div>
     </div>
   </div>
@@ -280,7 +326,7 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/https://source.unsplash.com/random/1600x400/?tech" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 
@@ -289,7 +335,7 @@ A 给 B 转账，A 负责存款，B 负责取款。比如:
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('https://source.unsplash.com/random/1600x400/?tech');
+        background-image: url('img/home-bg.jpg');
         background: ;
     }
 
@@ -870,7 +916,7 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
 
   
   <li>
-    <a href="/feed.xml">
+    <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -880,7 +926,7 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
   
   
   <li>
-    <a href="https://twitter.com/troubleisfff">
+    <a href="https://twitter.com/troubleisfff" title="Twitter">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -890,7 +936,7 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
   
   
   <li>
-    <a target="_blank" href="https://www.zhihu.com/people/rikxiao">
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao" title="知乎">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa  fa-stack-1x fa-inverse">知</i>
@@ -900,7 +946,7 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
   
   
   <li>
-    <a target="_blank" href="http://weibo.com/333255512">
+    <a target="_blank" href="http://weibo.com/333255512" title="微博">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
@@ -910,7 +956,7 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
   
   
   <li>
-    <a target="_blank" href="https://blog.csdn.net/weixin_42514606">
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606" title="CSDN">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
@@ -920,7 +966,7 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
   
   
   <li>
-    <a target="_blank" href="https://github.com/chasays">
+    <a target="_blank" href="https://github.com/chasays" title="GitHub">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -928,6 +974,9 @@ and <span class="nv">$12</span>,<span class="nv">$2</span>,<span class="nv">$5</
     </a>
   </li>
   
+  
+  
+  <!-- Share buttons -->
   
 </ul>
 

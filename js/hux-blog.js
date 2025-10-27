@@ -81,4 +81,30 @@ jQuery(document).ready(function($) {
                 }
             });
     }
+    
+    // Add smooth scrolling to all links
+    $("a[href^='#']").on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function(){
+                window.location.hash = hash;
+            });
+        }
+    });
+    
+    // Add fade-in animation to post previews
+    $('.post-preview').each(function(i) {
+        $(this).delay(i * 100).animate({opacity: 1}, 300);
+    });
+    
+    // Add fade-in animation to mini post previews
+    $('.mini-post-list .post-preview').each(function(i) {
+        var $this = $(this);
+        setTimeout(function() {
+            $this.addClass('visible');
+        }, i * 100);
+    });
 });
