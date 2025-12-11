@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "定位一个llvm19 关于控制流的性能分析",
+      "subtitle" : "",
+      "tags"     : "llvm, 性能, 控制流",
+      "url"      : "/2025/12/10/llvm-structurize-optimizate/",
+      "date"     : "2025-12-10 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "定位一个llvm19 升级带来的性能问题",
       "subtitle" : "",
       "tags"     : "llvm, 性能",
