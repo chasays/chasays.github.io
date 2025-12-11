@@ -356,11 +356,11 @@
             
                 问题： autoDock 从llvm12编译器升级到llvm19之后，某个场景性能下降25%。
 
-通过定位，用cuda的profiler，可以找到是这个kernel 导致的性能下降。
-https://github.com/ccsb-scripps/AutoDock-GPU/blob/develop/cuda/kernel_ad.cu
+可以学习下llvm编译器后端的数据控制流分析。
 
-__global__ void
-__launch_bou...
+在将 AutoDock-GPU 项目的编译器工具链从 LLVM 12 升级至 LLVM 19 后，我们在特定测试场景（7cpa）下观察到了约 25% 的性能下降。
+
+通过 CUDA Profiler 初步定位，性能瓶颈锁定在核心 Kernel：g...
             
         </div>
     </a>

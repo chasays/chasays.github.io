@@ -386,8 +386,13 @@
 
 				<p>问题： autoDock 从llvm12编译器升级到llvm19之后，某个场景性能下降25%。</p>
 
-<p>通过定位，用cuda的profiler，可以找到是这个kernel 导致的性能下降。
-https://github.com/ccsb-scripps/AutoDock-GPU/blob/develop/cuda/kernel_ad.cu</p>
+<p>可以学习下llvm编译器后端的数据控制流分析。</p>
+
+<p>在将 AutoDock-GPU 项目的编译器工具链从 LLVM 12 升级至 LLVM 19 后，我们在特定测试场景（7cpa）下观察到了约 25% 的性能下降。</p>
+
+<p>通过 CUDA Profiler 初步定位，性能瓶颈锁定在核心 Kernel：gpu_gradient_minAD_kernel。</p>
+
+<p>https://github.com/ccsb-scripps/AutoDock-GPU/blob/develop/cuda/kernel_ad.cu</p>
 
 <pre><code class="language-cu">__global__ void
 __launch_bounds__(NUM_OF_THREADS_PER_BLOCK, 1024 / NUM_OF_THREADS_PER_BLOCK)
@@ -399,13 +404,120 @@ gpu_gradient_minAD_kernel(
 gpu_gradient_minAD_kernel&lt;&lt;&lt;blocks, threads&gt;&gt;&gt;(pMem_conformations_next, pMem_energies_next);
 </code></pre>
 
-<p>打印出调用的 blocks 和threads， 值非常大，blocks大概是150000， threads是256.</p>
+<p>该 Kernel 的执行配置规模庞大（Blocks=150,000, Threads = 256）。
+通过反汇编（SASS）对比发现，性能下降的直接原因是寄存器压力剧增：</p>
 
-<p>通过把这个文件编译为汇编，查看文件内容，发现 vector reg的数量比llvm12多了很多。
-llvm12是 96个 vector reg。
-llvm19 是161个vector reg。</p>
+<p>LLVM 12: 使用 96 个 Vector Registers -&gt; 理论 Warp 并发度（Occupancy）约为 5 个 Warps/SM。
+LLVM 19: 使用 161 个 Vector Registers -&gt; 理论 Warp 并发度降至约 3 个 Warps/SM。</p>
 
-<p>寄存器过多，会导致warp的并行度下降，我熟悉的</p>
+<p>Warp 并发度的显著下降导致 GPU 无法有效掩盖内存访问延迟，从而引发性能崩塌。</p>
+
+<p>寄存器过多，会导致warp的并行度下降，96最大warp大概是5个，取决于硬件。</p>
+
+<p>161 并行度大概是 3个warp。</p>
+
+<p>是寄存器没有合并导致的，就是使用过了。</p>
+
+<p>首先思路是unroll展开， 或者结构化之类的问题。</p>
+
+<p>分析 LLVM 19 生成的 MIR（Machine IR），我们发现大量的寄存器溢出（Spill）迹象，表现为 256 位超大寄存器（Super-register）之间的频繁拷贝，且未能被后端消除。</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>15920B	  renamable $mtreg_32bit_44 = MOV_B32 0, implicit $xmsk
+15952B	  renamable $mtreg_32bit_51 = COPY renamable $mtreg_32bit_44
+16032B	  renamable $mtreg_256bits_52 = COPY renamable $mtreg_256bits_44
+16048B	  renamable $mtreg_256bits_60 = COPY renamable $mtreg_256bits_44
+16064B	  renamable $mtreg_256bits_68 = COPY renamable $mtreg_256bits_44
+16080B	  renamable $mtreg_256bits_76 = COPY renamable $mtreg_256bits_44
+16096B	  renamable $mtreg_256bits_84 = COPY renamable $mtreg_256bits_44
+16112B	  renamable $mtreg_256bits_92 = COPY renamable $mtreg_256bits_44
+16128B	  renamable $mtreg_256bits_100 = COPY renamable $mtreg_256bits_44
+</code></pre></div></div>
+<p>这里出现了大量的256位的copy 到另外一个256，由于硬件架构是64位， 这里没有消除掉，后面还需要把256的转化为4个64 寄存器来存储。</p>
+
+<p>这些冗余的copy操作， 是phi节点消除产生的，这个问下AI， 在后端的pass， register coalescer pass中消除，但是这里没有被消除。</p>
+
+<p>这里需要llvm debug版本，其实release + assertion的版本，打印不了，  debug的版本可以 看到 register coalescer的debug 信息。</p>
+
+<p>编译的时候，<code class="language-plaintext highlighter-rouge">--print-after=register-coalescer -mllvm -debug-only=regalloc -mllvm -filter-print-funcs=mangled_name (_Z25gpu_gradient_minAD_kernel_PfS_) </code>加上这个参数，可以获取 register coaclescer之后的mir 文件。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+32320B	bb.141._Z37__macapriv_triangle_radian_reduce_f32fPif.exit.i.i728:
+	; predecessors: %bb.140, %bb.394
+	  successors: %bb.145(0x40000000), %bb.142(0x40000000); %bb.145(50.00%), %bb.142(50.00%)
+32384B	  %2115:mtr_32 = contract MUL_F32 0, %7055:mtr_32, 0, %7055:mtr_32, 0, implicit $xmsk, implicit $mode
+32400B	  %5712:mtr_32 = AND_B32 1, %7048:mtr_32, implicit $xmsk
+32416B	  %2117:str_64 = CMP_EQ_U32 %5712:mtr_32, 1, implicit $xmsk
+32432B	  %2118:str_64 = SAND_B64 $xmsk, %2117:str_64, implicit-def dead $smsk
+32448B	  $cmsk = COPY %2118:str_64
+32464B	  BRA_CMSKS %bb.145, implicit killed $cmsk
+
+32480B	bb.142:
+	; predecessors: %bb.141
+	  successors: %bb.143(0x80000000); %bb.143(100.00%)
+
+32496B	  %7057:str_64 = SMOV_B64 -1
+32512B	  %7055:mtr_32 = IMPLICIT_DEF
+
+32544B	bb.143.Flow1943:
+	; predecessors: %bb.145, %bb.142
+	  successors: %bb.144(0x40000000), %bb.146(0x40000000); %bb.144(50.00%), %bb.146(50.00%)
+32592B	  %2131:mtr_32 = CSEL_B32 1, 0, %7057:str_64, implicit $xmsk
+32608B	  %5773:ssr_64_xt_xprvt = CMP_LG_U32 %2131:mtr_32, 1, implicit $xmsk
+32624B	  $cmsk = SAND_B64 $xmsk, %5773:ssr_64_xt_xprvt, implicit-def dead $smsk
+32656B	  BRA_CMSKS %bb.146, implicit killed $cmsk
+32672B	  BRA %bb.144
+
+32688B	bb.144.if.then.i4.i.i739:
+	; predecessors: %bb.143
+	  successors: %bb.146(0x80000000); %bb.146(100.00%)
+
+32704B	  %2138:mtr_32 = MOV_B32 -1162475539, implicit $xmsk
+32720B	  %2136:mtr_32 = contract FMKA_F32 %2115:mtr_32, float 0x3EF9758000000000, %2138:mtr_32, implicit $xmsk, implicit $mode
+32736B	  %2139:mtr_32 = contract FMAK_F32 %2136:mtr_32, %2115:mtr_32, float 0x3FA5555760000000, implicit $xmsk, implicit $mode
+32752B	  %2141:mtr_32 = contract FMAK_F32 %2139:mtr_32, %2115:mtr_32, float 0xBFDFFFFFE0000000, implicit $xmsk, implicit $mode
+32768B	  %7055:mtr_32 = contract FMAK_F32 %2141:mtr_32, %2115:mtr_32, float 1.000000e+00, implicit $xmsk, implicit $mode
+32800B	  BRA %bb.146
+
+32816B	bb.145.if.else.i7.i.i733: //
+	; predecessors: %bb.141
+	  successors: %bb.143(0x80000000); %bb.143(100.00%)
+
+32832B	  %2123:mtr_32 = MOV_B32 1007191524, implicit $xmsk
+32848B	  %2121:mtr_32 = contract FMKA_F32 %2115:mtr_32, float 0xBF29A82A60000000, %2123:mtr_32, implicit $xmsk, implicit $mode
+32864B	  %2124:mtr_32 = contract FMAK_F32 %2121:mtr_32, %2115:mtr_32, float 0xBFC5555500000000, implicit $xmsk, implicit $mode
+32880B	  %2126:mtr_32 = contract FMAK_F32 %2115:mtr_32, %7055:mtr_32, float 0.000000e+00, implicit $xmsk, implicit $mode
+32912B	  %7055:mtr_32 = contract FMAC_F32 0, %2124:mtr_32, 0, %2126:mtr_32, %7055:mtr_32(tied-def 0), 0, implicit $xmsk, implicit $mode
+32928B	  %7057:str_64 = SMOV_B64 0
+32976B	  BRA %bb.143&gt;
+</code></pre></div></div>
+
+<p>简单的分析下，这一段代码的CFG 控制流。</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>141 - 145 - 143 - 144 
+</code></pre></div></div>
+
+<p>在上述 CFG 片段中：</p>
+
+<ul>
+  <li>
+    <p>路径分析：从 bb.142 进入 bb.143 时，变量 %7057 被固定赋值为 -1。</p>
+  </li>
+  <li>
+    <p>死代码逻辑：在 bb.143 中，CSEL_B32 指令会根据 %7057 的值进行选择。由于 %7057 来自 bb.142 时是常数，导致后续的比较和跳转逻辑在特定路径下是确定的。具体来说，$cmsk 计算结果为 0，BRA_CMSKS 条件不成立，控制流必然流向 bb.144。</p>
+  </li>
+  <li>
+    <p>支配关系：实际上，bb.145 和 bb.144 在逻辑上应当属于同一个支配节点关系。当前的 CFG 结构引入了 bb.142 -&gt; bb.143 这种路径，似乎是为了处理某种分支，但实际上构成了不必要的复杂性。</p>
+  </li>
+</ul>
+
+<p>搜索下，发现这样的CFG，在这个pass之后，有好几处这样的代码。</p>
+
+<p>开启后端选项 -mllvm -structurizecfg-skip-uniform-regions=true，寄存器数量减少到。这样看来，对uniform的分支做结构化似乎没有必要，反而因为提高了cfg的复杂度，导致后续优化效果的降低。</p>
+
+<p>应用该选项后，gpu_gradient_minAD_kernel 的寄存器使用量从 161 骤降至 114。虽然尚未完全达到 LLVM 12 的 96 个，但已经大幅缓解了寄存器压力，Warp 并发度得到显著回升，整体性能接近 LLVM 12 的水平。</p>
+
+<p>在 GPU 编译器后端开发中，控制流图的复杂度直接关联着数据流的复杂度（寄存器分配）。对于 SIMT 架构，区分 Uniform 和 Divergent 控制流并进行差异化处理，是提升性能的关键优化点。</p>
+
+<p>怎么样？ 就酱~</p>
+
 
 
                 <hr style="visibility: hidden;">
