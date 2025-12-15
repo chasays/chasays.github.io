@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 11 Dec 2025 08:58:53 +0000</pubDate>
-    <lastBuildDate>Thu, 11 Dec 2025 08:58:53 +0000</lastBuildDate>
+    <pubDate>Mon, 15 Dec 2025 12:00:09 +0000</pubDate>
+    <lastBuildDate>Mon, 15 Dec 2025 12:00:09 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -155,6 +155,79 @@ LLVM 19: 使用 161 个 Vector Registers -&amp;gt; 理论 Warp 并发度降至�
         <category>性能</category>
         
         <category>控制流</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>特斯拉数据记录</title>
+        <description>&lt;h1 id=&quot;teslamate-是什么&quot;&gt;teslamate 是什么？&lt;/h1&gt;
+
+&lt;p&gt;TeslaMate 是一个给特斯拉车主用的 开源数据记录和可视化系统。
+可以把它理解成：给你的特斯拉装了一个安静又勤奋的数据管家 📊🚗&lt;/p&gt;
+
+&lt;p&gt;它主要做三件事：&lt;/p&gt;
+
+&lt;p&gt;1️⃣ 自动记录车辆数据&lt;/p&gt;
+
+&lt;p&gt;只要你把 TeslaMate 跑起来，它会通过 特斯拉官方 API，持续记录：&lt;/p&gt;
+
+&lt;p&gt;行驶轨迹、里程&lt;/p&gt;
+
+&lt;p&gt;电耗、充电记录&lt;/p&gt;
+
+&lt;p&gt;电池衰减情况&lt;/p&gt;
+
+&lt;p&gt;停车时间、地点&lt;/p&gt;
+
+&lt;p&gt;速度、功率等&lt;/p&gt;
+
+&lt;p&gt;全程自动，不需要你点来点去。&lt;/p&gt;
+
+&lt;p&gt;反正比手机上记录的要详细，特别喜欢那种 trip 的功能。&lt;/p&gt;
+
+&lt;h1 id=&quot;部署到树莓派-4b&quot;&gt;部署到树莓派 4B&lt;/h1&gt;
+
+&lt;p&gt;参考官方的 guide 吧， 比我的还详细，也会随之更新。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;https://docs.teslamate.org/docs/installation/docker/&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;解析域名-添加之后如何绑定域名&quot;&gt;解析域名， 添加之后如何绑定域名？&lt;/h1&gt;
+
+&lt;p&gt;（我们国内家宽是不提供公网 IP 的， 就需要 tunnel这样的工具， 把家庭的内网暴露到外网。 记得做好密码设置访问之类的）&lt;/p&gt;
+
+&lt;p&gt;用的是免费的 cloudflare的 dns。tunnel。&lt;/p&gt;
+
+&lt;p&gt;而可以过国内的 https://www.kooldns.cn/。 不过有额度和贷款限制。&lt;/p&gt;
+
+&lt;p&gt;看板里面： cloudflare Tunnels 里面。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/IFzBbQ_2uNzpK.png&quot; alt=&quot;tunnel&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;具体的教程网上搜下，我更新了教程，有时候 CF 那边更新了，不一定是最新，而且可能失效。所以最好是搜索下最新的教程，然后 follow it～&lt;/p&gt;
+
+&lt;p&gt;大致思路是： 安装 cf cli 到本地， 然后创建一个 tunnel， 有一个 json 文件生成。按照官方的文档，需要创建一个 dns 记录到 CF。就可以了。&lt;/p&gt;
+
+&lt;h1 id=&quot;如何备份和迁移&quot;&gt;如何备份和迁移？&lt;/h1&gt;
+
+&lt;p&gt;机器 A：正在跑 TeslaMate（4 个容器）
+机器 B：全新 Ubuntu 20 机器 B，什么都没有&lt;/p&gt;
+
+&lt;p&gt;我直接的文档 chatgpt ： 
+https://chatgpt.com/share/693ff68a-7dd4-8012-8078-8c1d889d7ed9&lt;/p&gt;
+
+&lt;p&gt;这里可以看到大概的能耗：138wh/km. 
+&lt;img src=&quot;https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/ITLDyg_BomyL3.png&quot; alt=&quot;effect&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;你的能耗大概是多少喃？&lt;/p&gt;
+</description>
+        <pubDate>Fri, 05 Dec 2025 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2025/12/05/teslamate-record/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2025/12/05/teslamate-record/</guid>
+        
+        <category>teslamate</category>
         
         
       </item>
@@ -854,133 +927,6 @@ https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617&
         <category>编译器</category>
         
         <category>后端</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test</title>
-        <description>&lt;p&gt;学习内容来自网络课程，这个基本上是针对有点经验的 llvm 开发者，前面的就是过一遍。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Libraries&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;https://books.google.com.tw/books?id=g_wqEAAAQBAJ&amp;amp;printsec=copyright&amp;amp;redir_esc=y#v=onepage&amp;amp;q&amp;amp;f=false&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;1-构建技巧&quot;&gt;1. 构建技巧&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;用 ninja 构建&lt;/li&gt;
-  &lt;li&gt;指定 lld 或者是 gold 的链接器&lt;/li&gt;
-  &lt;li&gt;用特定的 cmake 参数来构建&lt;/li&gt;
-  &lt;li&gt;构建不同的类型；debug，release，RelWithDebInfo&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这个我试了，RelWithDebInfo 又慢又大
- release，又快又小，如果不 debug 的话，用这个不错；
- debug 编译慢，空间占用的也非常的大。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;构建指定的目标 target， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-DLLVM_TARGETS_TO_BUILD=&quot;X86;AMDGPU&quot; …&lt;/code&gt; ,有针对性的编译，速度会快很多；&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;构建动态库： &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-DBUILD_SHARED_LIBS=ON&lt;/code&gt; 链接静态库通常比链接动态库花费更多的时间&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;使用 gn 来编译，我没有成功；&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM 的 GN 支持位于 llvm/utils/gn 文件夹中。&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;2-llvm-里面-cmake-用法&quot;&gt;2. llvm 里面 Cmake 用法&lt;/h2&gt;
-
-&lt;p&gt;lib 是 LLVM 框架的基本构建块。&lt;/p&gt;
-
-&lt;h3 id=&quot;cmake-添加新的库&quot;&gt;CMake 添加新的库&lt;/h3&gt;
-
-&lt;p&gt;不要用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_library&lt;/code&gt;，要用&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_llvm_component_library&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;# In an in-tree CMakeLists.txt file…
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyLLVMPass&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SHARED&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;MyPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Do&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LLVM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;为什么不要用这个？主要就是慢，而且不好扩展和控制。&lt;/p&gt;
-
-&lt;h3 id=&quot;llvm-更喜欢使用全局-cmake-参数-即-build_shared_libs-来控制所有的组件库是静态构建还是动态构建使用内置指令很难做到这一点的&quot;&gt;LLVM 更喜欢使用全局 CMake 参数 (即 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BUILD_SHARED_LIBS&lt;/code&gt;) 来控制所有的组件库是静态构建还是动态构建。使用内置指令很难做到这一点的&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;LLVM 更喜欢使用一个&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;全局的 CMake&lt;/code&gt; 参数来控制一些编译标志&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;# In a CMakeLists.txt
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_llvm_component_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVMFancyOpt&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;FancyOpt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;这里，LLVMFancyOpt 是库名，FancyOpt.cpp 是源文件。&lt;/p&gt;
-
-&lt;p&gt;注意下面 2 个用法是一样的：&lt;/p&gt;
-
-&lt;p&gt;写到一个里面&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;add_llvm_component_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVMFancyOpt&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;FancyOpt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;LINK_COMPONENTS&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Analysis&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ScalarOpts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;分开写，先 link 组件：&lt;/p&gt;
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVM_LINK_COMPONENTS&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Analysis&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ScalarOpts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;add_llvm_component_library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LLVMFancyOpt&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;FancyOpt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;cmake-函数添加可执行文件和工具&quot;&gt;CMake 函数添加可执行文件和工具&lt;/h3&gt;
-
-&lt;p&gt;可以使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_llvm_executable&lt;/code&gt; 或 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_llvm_tool&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;add_llvm_tool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myLittleTool&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;MyLittleTool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;还有一个全局的 CMake 变量 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LLVM_BUILD_TOOLS&lt;/code&gt;，用来启用/禁用 LLVM 工具。&lt;/p&gt;
-
-&lt;h3 id=&quot;cmake-函数添加-pass-插件&quot;&gt;CMake 函数添加 Pass 插件&lt;/h3&gt;
-
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;add_llvm_pass_plugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyPass&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;HelloWorldPass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cpp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;LINK_COMPONENTS、LINK_LIBS 和 DEPENDS 参数也可以在这里使用，其用法和功能与 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add_llvm_component_library&lt;/code&gt; 相同。&lt;/p&gt;
-
-&lt;h2 id=&quot;3-lit-测试&quot;&gt;3. lit 测试&lt;/h2&gt;
-
-&lt;p&gt;LIT 是一个测试基础设施，最初是为运行 LLVM 的回归测试而开发的。主要配合 Filecheck 来用。&lt;/p&gt;
-
-&lt;p&gt;书里面，没有提到的，我这里补充一个，就是最好用 llvm-lit 工具，而不是 lit（python 的 lib）。&lt;/p&gt;
-
-&lt;p&gt;如果还有就是可以自动更新 lit 测试的检查点；工具位于&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;llvm/util/update_xxxx.py&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;用法&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python update_xxx.py under_test_file.xx&lt;/code&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 31 May 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/05/31/llvm-learning-best_practice-1/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/05/31/llvm-learning-best_practice-1/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
-        
-        <category>测试</category>
         
         
       </item>

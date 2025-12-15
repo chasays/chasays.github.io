@@ -9,6 +9,14 @@
     } ,
   
     {
+      "title"    : "特斯拉数据记录",
+      "subtitle" : "",
+      "tags"     : "teslamate",
+      "url"      : "/2025/12/05/teslamate-record/",
+      "date"     : "2025-12-05 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "定位一个llvm19 升级带来的性能问题",
       "subtitle" : "",
       "tags"     : "llvm, 性能",
@@ -233,9 +241,9 @@
     } ,
   
     {
-      "title"    : "Now Is Good",
-      "subtitle" : "",
-      "tags"     : "",
+      "title"    : "89 -  活在当下",
+      "subtitle" : "要意识到你的全部人生，都理应要为你的创作提供养分，为它服务",
+      "tags"     : "Newsletter",
       "url"      : "/2023/05/13/now-is-good/",
       "date"     : "2023-05-13 00:00:00 +0000"
     } ,
@@ -2361,9 +2369,9 @@
     } ,
   
     {
-      "title"    : "How To Interview Answer",
-      "subtitle" : "",
-      "tags"     : "",
+      "title"    : "如何做好面试3",
+      "subtitle" : "面试",
+      "tags"     : "面试, 准备",
       "url"      : "/2020/03/03/how-to-interview-answer/",
       "date"     : "2020-03-03 00:00:00 +0000"
     } ,
@@ -2377,9 +2385,9 @@
     } ,
   
     {
-      "title"    : "How To Interview",
-      "subtitle" : "",
-      "tags"     : "",
+      "title"    : "如何做好面试",
+      "subtitle" : "面试",
+      "tags"     : "面试, 准备",
       "url"      : "/2020/03/02/how-to-interview/",
       "date"     : "2020-03-02 00:00:00 +0000"
     } ,
