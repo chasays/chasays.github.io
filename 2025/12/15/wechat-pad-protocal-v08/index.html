@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
+    <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享">
+    <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
+    <meta name="theme-color" content="">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@troubleisfff">
+    <meta name="twitter:title" content="分析一个 wechat Pad v08 协议的的 dll 文件 - 察说花园 | Newsletter">
+    <meta name="twitter:description" content="察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享">
+    <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="分析一个 wechat Pad v08 协议的的 dll 文件 - 察说花园 | Newsletter">
+    <meta property="og:locale" content="zh_CN">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="网上有部分编译产物，
+
+  https://github.com/G5t4r/WeProtocol
+
+
+">
+    <meta property="article:published_time" content="2025-12-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-15T00:00:00+00:00">
+    
+    <meta property="article:author" content="叉叉敌">
+    
+    
+    <meta property="article:tag" content="v08">
+    
+    
+    <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
+    <meta property="og:url" content="https://blog.chiphub.top/2025/12/15/wechat-pad-protocal-v08/">
+    <meta property="og:site_name" content="察说花园 | Newsletter">
+    
+    <title>分析一个 wechat Pad v08 协议的的 dll 文件 - 察说花园 | Newsletter</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://blog.chiphub.top/2025/12/15/wechat-pad-protocal-v08/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"></noscript>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+        <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "name": "分析一个 wechat Pad v08 协议的的 dll 文件",
+      "description": "察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享",
+      "url": "https://blog.chiphub.top/2025/12/15/wechat-pad-protocal-v08/",
+      "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "察说花园",
+        "url": "https://blog.chiphub.top",
+        "image": "https://blog.chiphub.top/img/avatar-xxd.jpg"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "察说花园",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://blog.chiphub.top/img/avatar-xxd.jpg"
+        }
+      }
+      ,
+      "datePublished": "2025-12-15T00:00:00+00:00",
+      "dateModified": "2025-12-15T00:00:00+00:00"
+      
+    }
+    </script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert" role="navigation">
+    
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" aria-label="Home">察说花园</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/" aria-label="Home">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/" aria-label="About">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/" aria-label="Archive">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)" aria-label="Search">
+                               SEARCH <i class="fa fa-search" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+
+        // Close navbar when an anchor link is clicked
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.closest('.navbar-collapse')) {
+                __HuxNav__.close();
+            }
+        });
+    </script>
+    <!-- Search -->
+<div class="search-page" role="search">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close" aria-label="Close search">
+      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form role="search">
+          <label for="search-input" class="sr-only">Search</label>
+          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        </form>
+        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header style-text" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=v08" title="v08">v08</a>
+                        
+                    </div>
+                    <h1>分析一个 wechat Pad v08 协议的的 dll 文件</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by 叉叉敌 on December 15, 2025</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>网上有部分编译产物，</p>
+<blockquote>
+  <p>https://github.com/G5t4r/WeProtocol</p>
+</blockquote>
+
+<p>源代码写了， 只能执行在 linux 和 windows 机器上。</p>
+
+<p>根据提供的 v08.go 和 dynlib/linux.go 代码，我们已经知道了这个库的接口定义，这为分析提供了极大的便利。以下是尝试系统的分析和破解/还原路径</p>
+
+<p>对于 clientsdk/v08/v08.go</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">vip08</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c">// ... 读取 lib/key 并 base64 解码 ...</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="kt">string</span><span class="p">(</span><span class="n">decodedMessage</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>这个 Go 函数只是打印了解码后的 key，并没有把它传给 lib.Call。这暗示了两种可能：</p>
+
+<p>libv08.so 自己会在内部读取文件系统上的 lib/key 文件（静态分析时找 fopen）。</p>
+
+<p>或者，这个 Key 根本不重要，只是个幌子，核心算法不需要 key。</p>
+
+<p>Rqtx 函数： 它只接受一个 md5 字符串。这很可能是一个生成校验 token 的函数。你可以尝试对同一个 MD5 多次调用，看返回值是否固定。</p>
+
+<p>EncodeString / EncodeUInt64： 这些函数带有 constant 和 timestamp。</p>
+
+<p>Constant: 可能是版本号或者 magic number（魔法数）。</p>
+
+<p>Timestamp: 时间戳。这通常用于防止重放攻击。</p>
+
+<p>用 Hopper 反编译文件 v08.dll， 可以 CFG 图。</p>
+
+<p><img src="https://raw.githubusercontent.com/chasays/mdPicGo/master/uPic/G36R9b_A8dmLb.png" alt="function" /></p>
+
+<p>08 库主要包含三个核心导出函数：</p>
+
+<ul>
+  <li>
+    <p>encode_int64: 用于加密数字（如 uin）。</p>
+  </li>
+  <li>
+    <p>encode_cstr: 用于加密字符串（如设备信息）。</p>
+  </li>
+  <li>
+    <p>rqtx: 核心逻辑被虚拟化混淆（VMProtect / OLLVM），代码中可以看到大量的 switch 跳转和 0x180003e70 这种解释器入口，无法直接通过反编译还原源码。</p>
+  </li>
+</ul>
+
+<p>但是，encode_int64 和 encode_cstr 的逻辑是清晰的。</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">v08</span>
+
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s">"encoding/binary"</span>
+	<span class="s">"math/bits"</span>
+<span class="p">)</span>
+
+<span class="c">// Helper functions for Rotation</span>
+<span class="k">func</span> <span class="n">ROL32</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">uint32</span> <span class="p">{</span> <span class="k">return</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft32</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">}</span>
+<span class="k">func</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">uint32</span> <span class="p">{</span> <span class="k">return</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft32</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="kt">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">}</span>
+
+<span class="c">// 8-bit Rotation wrappers (simulating AL register rotation)</span>
+<span class="k">func</span> <span class="n">ROL8</span><span class="p">(</span><span class="n">x</span> <span class="kt">uint8</span><span class="p">,</span> <span class="n">n</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">uint8</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">&lt;&lt;</span><span class="n">n</span> <span class="o">|</span> <span class="n">x</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="m">8</span><span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="p">}</span> <span class="c">// Simplified, assumes n &lt; 8 usually</span>
+<span class="k">func</span> <span class="n">ROR8</span><span class="p">(</span><span class="n">x</span> <span class="kt">uint8</span><span class="p">,</span> <span class="n">n</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">uint8</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">n</span> <span class="o">|</span> <span class="n">x</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="m">8</span><span class="o">-</span><span class="n">n</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="c">// EncodeUInt64 对应 DLL 中的 encode_int64</span>
+<span class="c">// 逻辑来源：v08.dll.m 中的 encode_int64 函数</span>
+<span class="k">func</span> <span class="n">EncodeUInt64</span><span class="p">(</span><span class="n">val</span> <span class="kt">uint64</span><span class="p">,</span> <span class="n">constant</span> <span class="kt">uint32</span><span class="p">,</span> <span class="n">timestamp</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">uint64</span> <span class="p">{</span>
+	<span class="n">low</span> <span class="o">:=</span> <span class="kt">uint32</span><span class="p">(</span><span class="n">val</span> <span class="o">&amp;</span> <span class="m">0xFFFFFFFF</span><span class="p">)</span>
+	<span class="n">high</span> <span class="o">:=</span> <span class="kt">uint32</span><span class="p">(</span><span class="n">val</span> <span class="o">&gt;&gt;</span> <span class="m">32</span><span class="p">)</span>
+
+	<span class="c">// Part 1: 处理低 32 位</span>
+	<span class="c">// 汇编逻辑：ROR(low, 31) ^ timestamp ^ constant -&gt; ROR(res, 31)</span>
+	<span class="n">low</span> <span class="o">=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="m">31</span><span class="p">)</span>
+	<span class="n">low</span> <span class="o">^=</span> <span class="n">timestamp</span> <span class="o">^</span> <span class="n">constant</span>
+	<span class="n">low</span> <span class="o">=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="m">31</span><span class="p">)</span>
+
+	<span class="c">// Part 2: 处理高 32 位</span>
+	<span class="c">// 汇编逻辑：ROR(high, 30) ^ (ROR(timestamp, 1) ^ ROR(constant, 31)) -&gt; ROR(res, 30)</span>
+	<span class="n">high</span> <span class="o">=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="m">30</span><span class="p">)</span>
+	<span class="n">mask</span> <span class="o">:=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span> <span class="o">^</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="m">31</span><span class="p">)</span>
+	<span class="n">high</span> <span class="o">^=</span> <span class="n">mask</span>
+	<span class="n">high</span> <span class="o">=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="m">30</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="kt">uint64</span><span class="p">(</span><span class="n">low</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="kt">uint64</span><span class="p">(</span><span class="n">high</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="m">32</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// EncodeString 对应 DLL 中的 encode_cstr</span>
+<span class="c">// 逻辑来源：sub_1800017e0 (4字节块处理) 和 sub_180001870 (尾部字节处理)</span>
+<span class="k">func</span> <span class="n">EncodeString</span><span class="p">(</span><span class="n">input</span> <span class="kt">string</span><span class="p">,</span> <span class="n">constant</span> <span class="kt">uint32</span><span class="p">,</span> <span class="n">timestamp</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="n">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+	<span class="n">length</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+	
+	<span class="c">// 处理 4 字节块 (Block Loop)</span>
+	<span class="n">blockLen</span> <span class="o">:=</span> <span class="n">length</span> <span class="o">/</span> <span class="m">4</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">blockLen</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">offset</span> <span class="o">:=</span> <span class="n">i</span> <span class="o">*</span> <span class="m">4</span>
+		<span class="n">val</span> <span class="o">:=</span> <span class="n">binary</span><span class="o">.</span><span class="n">LittleEndian</span><span class="o">.</span><span class="n">Uint32</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="o">:</span><span class="p">])</span>
+		
+		<span class="n">idx</span> <span class="o">:=</span> <span class="kt">uint32</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c">// 对应汇编中的 rcx 计数器</span>
+		
+		<span class="c">// Key 生成: ROL(constant, i) ^ ROR(timestamp, i)</span>
+		<span class="n">key</span> <span class="o">:=</span> <span class="n">ROL32</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span> <span class="o">^</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+		
+		<span class="c">// Value 变换: (val &gt;&gt; (31+i)) | (val &lt;&lt; (1+i))</span>
+		<span class="c">// 注意：位移量在 x86 下是对 32 取模的</span>
+		<span class="c">// 31+i 相当于 -1+i,  1+i 就是 1+i</span>
+		<span class="c">// 这实际上是一个变长循环左移 ROL(val, i+1)</span>
+		<span class="n">shift</span> <span class="o">:=</span> <span class="kt">int</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+		<span class="n">valTransformed</span> <span class="o">:=</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft32</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+		
+		<span class="c">// 异或混淆</span>
+		<span class="n">res</span> <span class="o">:=</span> <span class="n">valTransformed</span> <span class="o">^</span> <span class="n">key</span>
+		
+		<span class="c">// 结果逆变换: (res &gt;&gt; (31+i)) | (res &lt;&lt; (1+i))</span>
+		<span class="c">// 同样也是 ROL(res, i+1)</span>
+		<span class="n">final</span> <span class="o">:=</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft32</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+		
+		<span class="n">binary</span><span class="o">.</span><span class="n">LittleEndian</span><span class="o">.</span><span class="n">PutUint32</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="o">:</span><span class="p">],</span> <span class="n">final</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c">// 处理剩余字节 (Tail Loop)</span>
+	<span class="n">tailStart</span> <span class="o">:=</span> <span class="n">blockLen</span> <span class="o">*</span> <span class="m">4</span>
+	<span class="n">tailLen</span> <span class="o">:=</span> <span class="n">length</span> <span class="o">%</span> <span class="m">4</span>
+	<span class="k">if</span> <span class="n">tailLen</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">tailLen</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span> <span class="p">{</span>
+			<span class="n">pos</span> <span class="o">:=</span> <span class="n">tailStart</span> <span class="o">+</span> <span class="n">j</span>
+			<span class="n">b</span> <span class="o">:=</span> <span class="n">data</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+			
+			<span class="c">// 计数器 j</span>
+			<span class="n">shift</span> <span class="o">:=</span> <span class="n">j</span> <span class="o">+</span> <span class="m">1</span> <span class="c">// 对应汇编中的 rbx = r10 + 1</span>
+			
+			<span class="c">// 字节级变换:</span>
+			<span class="c">// 1. ROL8(b, j+1)</span>
+			<span class="c">// 2. XOR key (key 也是基于常量的字节级变换)</span>
+			<span class="c">// 3. ROR8(res, j+1)</span>
+			
+			<span class="c">// Key byte calculation derived from:</span>
+			<span class="c">// r11 = ((rbp &amp; 0xff) &gt;&gt; r10 | ...) -&gt; ROR8(timestamp_byte, j)</span>
+			<span class="c">// r9  = ... ^ (rsi &gt;&gt; ...) -&gt; XOR ROR8(constant_byte, j)</span>
+			<span class="n">tsByte</span> <span class="o">:=</span> <span class="kt">uint8</span><span class="p">(</span><span class="n">timestamp</span> <span class="o">&amp;</span> <span class="m">0xFF</span><span class="p">)</span>
+			<span class="n">constByte</span> <span class="o">:=</span> <span class="kt">uint8</span><span class="p">(</span><span class="n">constant</span> <span class="o">&amp;</span> <span class="m">0xFF</span><span class="p">)</span>
+			
+			<span class="n">keyByte</span> <span class="o">:=</span> <span class="kt">byte</span><span class="p">(</span><span class="n">ROR8</span><span class="p">(</span><span class="n">tsByte</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">^</span> <span class="n">ROR8</span><span class="p">(</span><span class="n">constByte</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+			
+			<span class="c">// 变换过程</span>
+			<span class="n">bRot</span> <span class="o">:=</span> <span class="kt">byte</span><span class="p">(</span><span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft8</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">shift</span><span class="p">))</span> <span class="c">// ROL</span>
+			<span class="n">bXor</span> <span class="o">:=</span> <span class="n">bRot</span> <span class="o">^</span> <span class="n">keyByte</span>
+			<span class="n">bFinal</span> <span class="o">:=</span> <span class="kt">byte</span><span class="p">(</span><span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft8</span><span class="p">(</span><span class="n">bXor</span><span class="p">,</span> <span class="o">-</span><span class="n">shift</span><span class="p">))</span> <span class="c">// ROR</span>
+			
+			<span class="n">data</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">bFinal</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="kt">string</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>rqtx 函数的分析.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">rqtx</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg0</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c">// ...</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">int8_t</span> <span class="o">*</span><span class="p">)</span><span class="n">byte_18000b478</span> <span class="o">==</span> <span class="m">0x0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sub_180002ce0</span><span class="p">(</span><span class="o">...</span><span class="p">);</span> <span class="c">// 初始化复杂结构</span>
+    <span class="p">}</span>
+    <span class="c">// ...</span>
+    <span class="n">sub_180003e70</span><span class="p">(</span><span class="n">rdi</span><span class="p">,</span> <span class="n">rdx</span> <span class="o">+</span> <span class="m">0x8</span><span class="p">,</span> <span class="m">0x80400</span><span class="p">,</span> <span class="o">...</span><span class="p">);</span> <span class="c">// 进入虚拟机解释器</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>这里有一个子函数</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kt">int</span> <span class="n">sub_180002ce0</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arg1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arg2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arg3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arg4</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arg5</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arg6</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">r9</span> <span class="o">=</span> <span class="n">arg3</span><span class="p">;</span>
+    <span class="n">r8</span> <span class="o">=</span> <span class="n">arg2</span><span class="p">;</span>
+    <span class="n">var_8</span> <span class="o">=</span> <span class="n">rbx</span><span class="p">;</span>
+    <span class="n">var_16</span> <span class="o">=</span> <span class="n">rsi</span><span class="p">;</span>
+    <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">rbp</span><span class="p">;</span>
+    <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">16</span><span class="p">]</span> <span class="o">=</span> <span class="n">r14</span><span class="p">;</span>
+    <span class="n">saved_fp</span> <span class="o">=</span> <span class="n">r15</span><span class="p">;</span>
+    <span class="n">rsp</span> <span class="o">=</span> <span class="n">rsp</span> <span class="o">-</span> <span class="m">0x98</span><span class="p">;</span>
+    <span class="n">var_8</span> <span class="o">=</span> <span class="o">*</span><span class="n">qword_18000b018</span> <span class="o">^</span> <span class="n">rsp</span><span class="p">;</span>
+    <span class="n">var_30</span> <span class="o">=</span> <span class="m">0xf</span><span class="p">;</span>
+    <span class="n">var_48</span> <span class="o">=</span> <span class="m">0x7461642e78747172</span><span class="p">;</span>
+    <span class="n">rax</span> <span class="o">=</span> <span class="n">sub_180003c20</span><span class="p">(</span><span class="o">&amp;</span><span class="n">var_28</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">var_48</span><span class="p">,</span> <span class="n">r8</span><span class="p">,</span> <span class="n">r9</span><span class="p">,</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">152</span><span class="p">],</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">144</span><span class="p">],</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">136</span><span class="p">],</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">128</span><span class="p">]);</span>
+    <span class="n">rax</span> <span class="o">=</span> <span class="n">sub_180003480</span><span class="p">(</span><span class="o">&amp;</span><span class="n">var_60</span><span class="p">,</span> <span class="n">rax</span><span class="p">,</span> <span class="n">r8</span><span class="p">,</span> <span class="n">r9</span><span class="p">,</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">152</span><span class="p">],</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">144</span><span class="p">],</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="m">136</span><span class="p">]);</span>
+    <span class="n">rdx</span> <span class="o">=</span> <span class="n">var_10</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rdx</span> <span class="o">&lt;</span> <span class="m">0x10</span><span class="p">)</span> <span class="k">goto</span> <span class="n">loc_180002d87</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>其中<code class="language-plaintext highlighter-rouge">0x7461642e78747172</code> 是little end 编码， 解码之后的数据就是： “rqtx.dat”</p>
+
+<p>底层的 C++ 代码（v08.dll/libv08.so）在初始化 rqtx 算法时，显式加载了名为 rqtx.dat 的文件。</p>
+
+<p>那 v08.dll 是加壳的。</p>
+
+<p>不回了，只有把读取的输入，传到VM 之前的值拿到，然后返回的值拿到。</p>
+
+<p>我用 AI 给的解释是这样的。</p>
+
+<p>写一个 pesudo 实现 v08 .</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">package</span> <span class="n">v08</span>
+
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s">"encoding/binary"</span>
+	<span class="s">"math/bits"</span>
+<span class="p">)</span>
+
+<span class="c">// ---------------- Helper Functions ----------------</span>
+
+<span class="k">func</span> <span class="n">ROL32</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">uint32</span> <span class="p">{</span> <span class="k">return</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft32</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">}</span>
+<span class="k">func</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">uint32</span> <span class="p">{</span> <span class="k">return</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft32</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="kt">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">}</span>
+<span class="k">func</span> <span class="n">ROL8</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="kt">uint8</span><span class="p">)</span> <span class="kt">uint8</span>    <span class="p">{</span> <span class="k">return</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft8</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">}</span>
+<span class="k">func</span> <span class="n">ROR8</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="kt">uint8</span><span class="p">)</span> <span class="kt">uint8</span>    <span class="p">{</span> <span class="k">return</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft8</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="kt">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="p">}</span>
+
+<span class="c">// ---------------- Core Implementation ----------------</span>
+
+<span class="c">// EncodeUInt64 对应 libv08.so 中的 encode_int64</span>
+<span class="c">// 逻辑：基于 ROR 和 XOR 的可逆混淆</span>
+<span class="k">func</span> <span class="n">EncodeUInt64Impl</span><span class="p">(</span><span class="n">val</span> <span class="kt">uint64</span><span class="p">,</span> <span class="n">constant</span> <span class="kt">uint32</span><span class="p">,</span> <span class="n">timestamp</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">uint64</span> <span class="p">{</span>
+	<span class="n">low</span> <span class="o">:=</span> <span class="kt">uint32</span><span class="p">(</span><span class="n">val</span> <span class="o">&amp;</span> <span class="m">0xFFFFFFFF</span><span class="p">)</span>
+	<span class="n">high</span> <span class="o">:=</span> <span class="kt">uint32</span><span class="p">(</span><span class="n">val</span> <span class="o">&gt;&gt;</span> <span class="m">32</span><span class="p">)</span>
+
+	<span class="c">// 处理低 32 位</span>
+	<span class="n">low</span> <span class="o">=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="m">31</span><span class="p">)</span>
+	<span class="n">low</span> <span class="o">^=</span> <span class="n">timestamp</span> <span class="o">^</span> <span class="n">constant</span>
+	<span class="n">low</span> <span class="o">=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="m">31</span><span class="p">)</span>
+
+	<span class="c">// 处理高 32 位</span>
+	<span class="n">high</span> <span class="o">=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="m">30</span><span class="p">)</span>
+	<span class="n">mask</span> <span class="o">:=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span> <span class="o">^</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="m">31</span><span class="p">)</span>
+	<span class="n">high</span> <span class="o">^=</span> <span class="n">mask</span>
+	<span class="n">high</span> <span class="o">=</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="m">30</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="kt">uint64</span><span class="p">(</span><span class="n">low</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="kt">uint64</span><span class="p">(</span><span class="n">high</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="m">32</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// EncodeString 对应 libv08.so 中的 encode_cstr</span>
+<span class="c">// 逻辑：基于变长循环左移 (ROL) 和 异或 (XOR) 的混淆</span>
+<span class="k">func</span> <span class="n">EncodeStringImpl</span><span class="p">(</span><span class="n">input</span> <span class="kt">string</span><span class="p">,</span> <span class="n">constant</span> <span class="kt">uint32</span><span class="p">,</span> <span class="n">timestamp</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="n">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+	<span class="n">length</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+	<span class="c">// 1. 处理 4 字节块 (Block Loop)</span>
+	<span class="n">blockLen</span> <span class="o">:=</span> <span class="n">length</span> <span class="o">/</span> <span class="m">4</span>
+	<span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">blockLen</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="n">offset</span> <span class="o">:=</span> <span class="n">i</span> <span class="o">*</span> <span class="m">4</span>
+		<span class="n">val</span> <span class="o">:=</span> <span class="n">binary</span><span class="o">.</span><span class="n">LittleEndian</span><span class="o">.</span><span class="n">Uint32</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="o">:</span><span class="p">])</span>
+		<span class="n">idx</span> <span class="o">:=</span> <span class="kt">uint32</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+		<span class="c">// 生成混淆 Key</span>
+		<span class="n">key</span> <span class="o">:=</span> <span class="n">ROL32</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span> <span class="o">^</span> <span class="n">ROR32</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+		<span class="c">// 变换 Value: 变长循环左移</span>
+		<span class="n">shift</span> <span class="o">:=</span> <span class="kt">int</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+		<span class="n">valTransformed</span> <span class="o">:=</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft32</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+
+		<span class="c">// 异或混淆</span>
+		<span class="n">res</span> <span class="o">:=</span> <span class="n">valTransformed</span> <span class="o">^</span> <span class="n">key</span>
+
+		<span class="c">// 结果再次变换</span>
+		<span class="n">final</span> <span class="o">:=</span> <span class="n">bits</span><span class="o">.</span><span class="n">RotateLeft32</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+
+		<span class="n">binary</span><span class="o">.</span><span class="n">LittleEndian</span><span class="o">.</span><span class="n">PutUint32</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="o">:</span><span class="p">],</span> <span class="n">final</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c">// 2. 处理剩余字节 (Tail Loop)</span>
+	<span class="n">tailStart</span> <span class="o">:=</span> <span class="n">blockLen</span> <span class="o">*</span> <span class="m">4</span>
+	<span class="n">tailLen</span> <span class="o">:=</span> <span class="n">length</span> <span class="o">%</span> <span class="m">4</span>
+	<span class="k">if</span> <span class="n">tailLen</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">tailLen</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span> <span class="p">{</span>
+			<span class="n">pos</span> <span class="o">:=</span> <span class="n">tailStart</span> <span class="o">+</span> <span class="n">j</span>
+			<span class="n">b</span> <span class="o">:=</span> <span class="n">data</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+			
+			<span class="c">// 计数器 j (对应汇编中的 rbx = r10 + 1)</span>
+			<span class="n">shift</span> <span class="o">:=</span> <span class="n">j</span> <span class="o">+</span> <span class="m">1</span>
+			
+			<span class="c">// 计算 Key Byte</span>
+			<span class="n">tsByte</span> <span class="o">:=</span> <span class="kt">uint8</span><span class="p">(</span><span class="n">timestamp</span> <span class="o">&amp;</span> <span class="m">0xFF</span><span class="p">)</span>
+			<span class="n">constByte</span> <span class="o">:=</span> <span class="kt">uint8</span><span class="p">(</span><span class="n">constant</span> <span class="o">&amp;</span> <span class="m">0xFF</span><span class="p">)</span>
+			<span class="n">keyByte</span> <span class="o">:=</span> <span class="n">ROR8</span><span class="p">(</span><span class="n">tsByte</span><span class="p">,</span> <span class="kt">uint8</span><span class="p">(</span><span class="n">j</span><span class="p">))</span> <span class="o">^</span> <span class="n">ROR8</span><span class="p">(</span><span class="n">constByte</span><span class="p">,</span> <span class="kt">uint8</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+
+			<span class="c">// 字节级变换</span>
+			<span class="n">bRot</span> <span class="o">:=</span> <span class="n">ROL8</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="kt">uint8</span><span class="p">(</span><span class="n">shift</span><span class="p">))</span>
+			<span class="n">bXor</span> <span class="o">:=</span> <span class="n">bRot</span> <span class="o">^</span> <span class="n">keyByte</span>
+			<span class="n">bFinal</span> <span class="o">:=</span> <span class="n">ROL8</span><span class="p">(</span><span class="n">bXor</span><span class="p">,</span> <span class="kt">uint8</span><span class="p">(</span><span class="m">8</span><span class="o">-</span><span class="n">shift</span><span class="p">))</span> <span class="c">// ROR = ROL(8-n)</span>
+
+			<span class="n">data</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">bFinal</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="kt">string</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>在 macOS 上加一个加载 dll 的。</p>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">v08</span>
+
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s">"bytes"</span>
+	<span class="s">"debug/elf"</span>
+	<span class="s">"encoding/binary"</span>
+	<span class="s">"fmt"</span>
+	<span class="s">"io/ioutil"</span>
+	<span class="s">"os"</span>
+
+	<span class="n">uc</span> <span class="s">"github.com/unicorn-engine/unicorn/bindings/go/unicorn"</span>
+<span class="p">)</span>
+
+<span class="c">// 模拟器上下文</span>
+<span class="k">type</span> <span class="n">WxEmulator</span> <span class="k">struct</span> <span class="p">{</span>
+	<span class="n">mu</span>      <span class="n">uc</span><span class="o">.</span><span class="n">Unicorn</span>
+	<span class="n">base</span>    <span class="kt">uint64</span>
+	<span class="n">heapPtr</span> <span class="kt">uint64</span>
+	<span class="n">stack</span>   <span class="kt">uint64</span>
+<span class="p">}</span>
+
+<span class="k">const</span> <span class="p">(</span>
+	<span class="n">StackSize</span>  <span class="o">=</span> <span class="m">2</span> <span class="o">*</span> <span class="m">1024</span> <span class="o">*</span> <span class="m">1024</span> <span class="c">// 2MB Stack</span>
+	<span class="n">HeapSize</span>   <span class="o">=</span> <span class="m">8</span> <span class="o">*</span> <span class="m">1024</span> <span class="o">*</span> <span class="m">1024</span> <span class="c">// 8MB Heap</span>
+	<span class="n">BaseAddr</span>   <span class="o">=</span> <span class="m">0x40000000</span>      <span class="c">// 模拟加载基址</span>
+	<span class="n">RqtxDatFd</span>  <span class="o">=</span> <span class="m">100</span>             <span class="c">// 伪造的文件句柄 ID</span>
+<span class="p">)</span>
+
+<span class="k">var</span> <span class="n">rqtxContent</span> <span class="p">[]</span><span class="kt">byte</span> <span class="c">// 缓存 rqtx.dat 内容</span>
+
+<span class="c">// 初始化模拟器</span>
+<span class="k">func</span> <span class="n">NewWxEmulator</span><span class="p">(</span><span class="n">libPath</span> <span class="kt">string</span><span class="p">,</span> <span class="n">datPath</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="n">WxEmulator</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c">// 1. 读取 rqtx.dat</span>
+	<span class="k">var</span> <span class="n">err</span> <span class="kt">error</span>
+	<span class="k">if</span> <span class="n">rqtxContent</span> <span class="o">==</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">rqtxContent</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">ReadFile</span><span class="p">(</span><span class="n">datPath</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="no">nil</span><span class="p">,</span> <span class="n">fmt</span><span class="o">.</span><span class="n">Errorf</span><span class="p">(</span><span class="s">"failed to read rqtx.dat: %v"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="c">// 2. 初始化 Unicorn (x86_64)</span>
+	<span class="n">mu</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">uc</span><span class="o">.</span><span class="n">NewUnicorn</span><span class="p">(</span><span class="n">uc</span><span class="o">.</span><span class="n">ARCH_X86</span><span class="p">,</span> <span class="n">uc</span><span class="o">.</span><span class="n">MODE_64</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="no">nil</span><span class="p">,</span> <span class="n">err</span>
+	<span class="p">}</span>
+
+	<span class="n">emu</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">WxEmulator</span><span class="p">{</span><span class="n">mu</span><span class="o">:</span> <span class="n">mu</span><span class="p">,</span> <span class="n">base</span><span class="o">:</span> <span class="n">BaseAddr</span><span class="p">}</span>
+
+	<span class="c">// 3. 加载 ELF 文件到内存</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">emu</span><span class="o">.</span><span class="n">loadELF</span><span class="p">(</span><span class="n">libPath</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="no">nil</span><span class="p">,</span> <span class="n">err</span>
+	<span class="p">}</span>
+
+	<span class="c">// 4. 分配栈和堆</span>
+	<span class="n">emu</span><span class="o">.</span><span class="n">stack</span> <span class="o">=</span> <span class="m">0x70000000</span>
+	<span class="n">mu</span><span class="o">.</span><span class="n">MemMap</span><span class="p">(</span><span class="n">emu</span><span class="o">.</span><span class="n">stack</span><span class="p">,</span> <span class="n">StackSize</span><span class="p">)</span>
+	<span class="n">mu</span><span class="o">.</span><span class="n">RegWrite</span><span class="p">(</span><span class="n">uc</span><span class="o">.</span><span class="n">X86_REG_RSP</span><span class="p">,</span> <span class="n">emu</span><span class="o">.</span><span class="n">stack</span><span class="o">+</span><span class="n">StackSize</span><span class="o">-</span><span class="m">8</span><span class="p">)</span>
+
+	<span class="n">emu</span><span class="o">.</span><span class="n">heapPtr</span> <span class="o">=</span> <span class="m">0x80000000</span>
+	<span class="n">mu</span><span class="o">.</span><span class="n">MemMap</span><span class="p">(</span><span class="n">emu</span><span class="o">.</span><span class="n">heapPtr</span><span class="p">,</span> <span class="n">HeapSize</span><span class="p">)</span>
+
+	<span class="c">// 5. Hook 系统调用和外部函数</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">emu</span><span class="o">.</span><span class="n">setupHooks</span><span class="p">();</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="no">nil</span><span class="p">,</span> <span class="n">err</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="n">emu</span><span class="p">,</span> <span class="no">nil</span>
+<span class="p">}</span>
+
+<span class="c">// 简单的 ELF 加载器</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="o">*</span><span class="n">WxEmulator</span><span class="p">)</span> <span class="n">loadELF</span><span class="p">(</span><span class="n">path</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="n">f</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">elf</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">err</span>
+	<span class="p">}</span>
+	<span class="k">defer</span> <span class="n">f</span><span class="o">.</span><span class="n">Close</span><span class="p">()</span>
+
+	<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">prog</span> <span class="o">:=</span> <span class="k">range</span> <span class="n">f</span><span class="o">.</span><span class="n">Progs</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="n">prog</span><span class="o">.</span><span class="n">Type</span> <span class="o">==</span> <span class="n">elf</span><span class="o">.</span><span class="n">PT_LOAD</span> <span class="p">{</span>
+			<span class="c">// 对齐内存页 (4KB)</span>
+			<span class="n">vaddr</span> <span class="o">:=</span> <span class="n">prog</span><span class="o">.</span><span class="n">Vaddr</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">base</span>
+			<span class="n">memSize</span> <span class="o">:=</span> <span class="p">(</span><span class="n">prog</span><span class="o">.</span><span class="n">Memsz</span> <span class="o">+</span> <span class="m">4095</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">^</span><span class="kt">uint64</span><span class="p">(</span><span class="m">4095</span><span class="p">)</span>
+			
+			<span class="c">// 映射内存</span>
+			<span class="c">// 注意：这里简单给所有段 RWX 权限，实际应根据 prog.Flags 设置</span>
+			<span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">MemMap</span><span class="p">(</span><span class="n">vaddr</span><span class="p">,</span> <span class="n">memSize</span><span class="p">)</span>
+
+			<span class="c">// 读取段内容</span>
+			<span class="n">data</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">ReadAll</span><span class="p">(</span><span class="n">prog</span><span class="o">.</span><span class="n">Open</span><span class="p">())</span>
+			<span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">MemWrite</span><span class="p">(</span><span class="n">vaddr</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="no">nil</span>
+<span class="p">}</span>
+
+<span class="c">// 设置 Hooks</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="o">*</span><span class="n">WxEmulator</span><span class="p">)</span> <span class="n">setupHooks</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="c">// Hook 内存读取/写入错误，便于调试</span>
+	<span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">HookAdd</span><span class="p">(</span><span class="n">uc</span><span class="o">.</span><span class="n">HOOK_MEM_UNMAPPED</span><span class="p">,</span> <span class="k">func</span><span class="p">(</span><span class="n">mu</span> <span class="n">uc</span><span class="o">.</span><span class="n">Unicorn</span><span class="p">,</span> <span class="n">access</span> <span class="kt">int</span><span class="p">,</span> <span class="n">addr</span> <span class="kt">uint64</span><span class="p">,</span> <span class="n">size</span> <span class="kt">int</span><span class="p">,</span> <span class="n">value</span> <span class="kt">int64</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+		<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"[Unicorn] Memory Exception: addr=0x%x, size=%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+		<span class="k">return</span> <span class="no">false</span> <span class="c">// 停止执行</span>
+	<span class="p">},</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+
+	<span class="c">// Hook 外部函数调用 (这里使用简单的 HLT 指令或其他方式来拦截 PLT 条目是比较复杂的)</span>
+	<span class="c">// 在此示例中，我们假设主要拦截文件 IO，我们 Hook 整个代码段的中断指令或特定地址</span>
+	<span class="c">// *注意*: 在真实工程中，你需要解析 GOT/PLT 表来精准 Hook fopen/fread 等 libc 函数。</span>
+	<span class="c">// 为简化演示，这里只演示原理。你需要找到 libv08.so 中调用 fopen 的地址进行 Hook。</span>
+	
+	<span class="c">// 这里演示如何处理 rqtx.dat 的逻辑：</span>
+	<span class="c">// 实际代码中 v08 会调用 fopen("rqtx.dat", "rb")。</span>
+	<span class="c">// 你需要反编译 libv08.so 找到 fopen 的 PLT 地址，或者在 Unicorn 中注册一个中断处理函数。</span>
+	
+	<span class="k">return</span> <span class="no">nil</span>
+<span class="p">}</span>
+
+<span class="c">// 模拟文件系统操作 (伪代码，需要你根据实际 PLT 地址 Hook)</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="o">*</span><span class="n">WxEmulator</span><span class="p">)</span> <span class="n">HookFopen</span><span class="p">(</span><span class="n">filenamePtr</span> <span class="kt">uint64</span><span class="p">,</span> <span class="n">modePtr</span> <span class="kt">uint64</span><span class="p">)</span> <span class="kt">uint64</span> <span class="p">{</span>
+	<span class="n">filename</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">e</span><span class="o">.</span><span class="n">readString</span><span class="p">(</span><span class="n">filenamePtr</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s">"rqtx.dat"</span> <span class="p">{</span>
+		<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"[Unicorn] fopen rqtx.dat intercepted"</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">RqtxDatFd</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="m">0</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="o">*</span><span class="n">WxEmulator</span><span class="p">)</span> <span class="n">HookFread</span><span class="p">(</span><span class="n">ptr</span> <span class="kt">uint64</span><span class="p">,</span> <span class="n">size</span> <span class="kt">uint64</span><span class="p">,</span> <span class="n">nmemb</span> <span class="kt">uint64</span><span class="p">,</span> <span class="n">stream</span> <span class="kt">uint64</span><span class="p">)</span> <span class="kt">uint64</span> <span class="p">{</span>
+	<span class="k">if</span> <span class="n">stream</span> <span class="o">==</span> <span class="n">RqtxDatFd</span> <span class="p">{</span>
+		<span class="n">bytesToRead</span> <span class="o">:=</span> <span class="n">size</span> <span class="o">*</span> <span class="n">nmemb</span>
+		<span class="k">if</span> <span class="n">bytesToRead</span> <span class="o">&gt;</span> <span class="kt">uint64</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rqtxContent</span><span class="p">))</span> <span class="p">{</span>
+			<span class="n">bytesToRead</span> <span class="o">=</span> <span class="kt">uint64</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rqtxContent</span><span class="p">))</span>
+		<span class="p">}</span>
+		<span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">MemWrite</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">rqtxContent</span><span class="p">[</span><span class="o">:</span><span class="n">bytesToRead</span><span class="p">])</span>
+		<span class="k">return</span> <span class="n">bytesToRead</span> <span class="o">/</span> <span class="n">size</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="m">0</span>
+<span class="p">}</span>
+
+<span class="c">// 调用 rqtx 函数</span>
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="o">*</span><span class="n">WxEmulator</span><span class="p">)</span> <span class="n">CallRqtx</span><span class="p">(</span><span class="n">md5</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">uint32</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c">// 1. 查找 rqtx 函数地址 (你需要用 `nm` 或 `readelf` 找到它的偏移量)</span>
+	<span class="c">// 假设 rqtx 偏移量是 0x1234 (请替换为实际值)</span>
+	<span class="n">rqtxOffset</span> <span class="o">:=</span> <span class="kt">uint64</span><span class="p">(</span><span class="m">0x1234</span><span class="p">)</span> 
+	<span class="n">entry</span> <span class="o">:=</span> <span class="n">e</span><span class="o">.</span><span class="n">base</span> <span class="o">+</span> <span class="n">rqtxOffset</span>
+
+	<span class="c">// 2. 准备参数</span>
+	<span class="c">// rqtx(char* md5_str)</span>
+	<span class="c">// 将字符串写入堆内存</span>
+	<span class="n">strAddr</span> <span class="o">:=</span> <span class="n">e</span><span class="o">.</span><span class="n">heapPtr</span>
+	<span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">MemWrite</span><span class="p">(</span><span class="n">strAddr</span><span class="p">,</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">(</span><span class="n">md5</span><span class="o">+</span><span class="s">"</span><span class="se">\x00</span><span class="s">"</span><span class="p">))</span>
+	
+	<span class="c">// 设置参数寄存器 (Linux x64: RDI, RSI, RDX...)</span>
+	<span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">RegWrite</span><span class="p">(</span><span class="n">uc</span><span class="o">.</span><span class="n">X86_REG_RDI</span><span class="p">,</span> <span class="n">strAddr</span><span class="p">)</span>
+
+	<span class="c">// 3. 开始执行</span>
+	<span class="c">// 注意：需要设置结束地址，或者在函数返回指令(RET)处停止</span>
+	<span class="c">// 简单的做法是模拟直到 RET</span>
+	<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">Start</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">entry</span><span class="o">+</span><span class="m">0x1000</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span> <span class="c">// 这里的结束地址只是示例</span>
+		<span class="k">return</span> <span class="m">0</span><span class="p">,</span> <span class="n">err</span>
+	<span class="p">}</span>
+
+	<span class="c">// 4. 读取返回值 (RAX)</span>
+	<span class="n">ret</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">RegRead</span><span class="p">(</span><span class="n">uc</span><span class="o">.</span><span class="n">X86_REG_RAX</span><span class="p">)</span>
+	<span class="k">return</span> <span class="kt">uint32</span><span class="p">(</span><span class="n">ret</span><span class="p">),</span> <span class="no">nil</span>
+<span class="p">}</span>
+
+<span class="k">func</span> <span class="p">(</span><span class="n">e</span> <span class="o">*</span><span class="n">WxEmulator</span><span class="p">)</span> <span class="n">readString</span><span class="p">(</span><span class="n">addr</span> <span class="kt">uint64</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+	<span class="k">var</span> <span class="n">ret</span> <span class="p">[]</span><span class="kt">byte</span>
+	<span class="n">buf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+	<span class="k">for</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">e</span><span class="o">.</span><span class="n">mu</span><span class="o">.</span><span class="n">MemRead</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="s">""</span><span class="p">,</span> <span class="n">err</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="n">buf</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="o">==</span> <span class="m">0</span> <span class="p">{</span>
+			<span class="k">break</span>
+		<span class="p">}</span>
+		<span class="n">ret</span> <span class="o">=</span> <span class="nb">append</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">buf</span><span class="p">[</span><span class="m">0</span><span class="p">])</span>
+		<span class="n">addr</span><span class="o">++</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="kt">string</span><span class="p">(</span><span class="n">ret</span><span class="p">),</span> <span class="no">nil</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>修改  修改 clientsdk/v08/v08.go，将原来的 CGO 逻辑替换为我们的混合实现。</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">v08</span>
+
+<span class="k">import</span> <span class="p">(</span>
+	<span class="s">"fmt"</span>
+	<span class="s">"sync"</span>
+	<span class="c">// "wechatdll/clientsdk/dynlib" // 删除这个引用</span>
+<span class="p">)</span>
+
+<span class="c">// 全局模拟器实例</span>
+<span class="k">var</span> <span class="p">(</span>
+	<span class="n">emulator</span> <span class="o">*</span><span class="n">WxEmulator</span>
+	<span class="n">initOnce</span> <span class="n">sync</span><span class="o">.</span><span class="n">Once</span>
+<span class="p">)</span>
+
+<span class="k">func</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c">// 初始化不再加载 dll，而是准备模拟器或纯算法环境</span>
+	<span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="s">"v08 init: Running in Pure Go / Unicorn Mode"</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// EncodeString - 使用纯 Go 实现</span>
+<span class="k">func</span> <span class="n">EncodeString</span><span class="p">(</span><span class="n">input</span> <span class="kt">string</span><span class="p">,</span> <span class="n">constant</span> <span class="kt">uint32</span><span class="p">,</span> <span class="n">timestamp</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="c">// 引用 v08_impl.go 中的实现</span>
+	<span class="k">return</span> <span class="n">EncodeStringImpl</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">constant</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// EncodeUInt64 - 使用纯 Go 实现</span>
+<span class="k">func</span> <span class="n">EncodeUInt64</span><span class="p">(</span><span class="n">input</span> <span class="kt">uint64</span><span class="p">,</span> <span class="n">constant</span> <span class="kt">uint32</span><span class="p">,</span> <span class="n">timestamp</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">uint64</span> <span class="p">{</span>
+    <span class="c">// 引用 v08_impl.go 中的实现</span>
+	<span class="k">return</span> <span class="n">EncodeUInt64Impl</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">constant</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// Rqtx - 使用 Unicorn 模拟 (或者你也可以选择在这里保留 Docker 调用的逻辑)</span>
+<span class="k">func</span> <span class="n">Rqtx</span><span class="p">(</span><span class="n">md5</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">uint32</span> <span class="p">{</span>
+	<span class="n">initOnce</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="k">func</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">var</span> <span class="n">err</span> <span class="kt">error</span>
+		<span class="c">// 确保 libv08.so 和 rqtx.dat 在工作目录</span>
+		<span class="n">emulator</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">NewWxEmulator</span><span class="p">(</span><span class="s">"./lib/libv08.so"</span><span class="p">,</span> <span class="s">"./rqtx.dat"</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+			<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Error initializing Unicorn emulator: %v</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+			<span class="c">// 这里可以降级处理，比如 panic 或者返回 0</span>
+		<span class="p">}</span>
+	<span class="p">})</span>
+
+	<span class="k">if</span> <span class="n">emulator</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+		<span class="n">ret</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">emulator</span><span class="o">.</span><span class="n">CallRqtx</span><span class="p">(</span><span class="n">md5</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+			<span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Error executing rqtx: %v</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+			<span class="k">return</span> <span class="m">0</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="n">ret</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="m">0</span>
+<span class="p">}</span>
+
+<span class="c">// 兼容旧代码的占位符</span>
+<span class="k">func</span> <span class="n">Si</span><span class="p">(</span><span class="n">config</span> <span class="kt">string</span><span class="p">,</span> <span class="n">data</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="s">""</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>试试？ 效果如何？</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2025/12/10/llvm-structurize-optimizate/" data-toggle="tooltip" data-placement="top" title="定位一个llvm19 关于控制流的性能分析">
+                        Previous<br>
+                        <span>定位一个llvm19 关于控制流的性能分析</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+                <!-- utteranc 评论框 start -->
+                
+<script src="https://utteranc.es/client.js"
+        repo="chasays/mdPicGo"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- utteranc 评论框 start -->
+<div id="utteranc-wrapper" class="utterances"></div>
+<!-- utteranc 评论框 end -->
+
+                <!-- utteranc 评论框 end -->
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0305" 
+                    href="/archive/?tag=%E5%9F%BA%E7%A1%80"
+                    title="基础"
+                    rel="9">基础</a>
+        
+                <a data-sort="0219" 
+                    href="/archive/?tag=Newsletter"
+                    title="Newsletter"
+                    rel="95">Newsletter</a>
+        
+                <a data-sort="0299" 
+                    href="/archive/?tag=llvm"
+                    title="llvm"
+                    rel="15">llvm</a>
+        
+                <a data-sort="0304" 
+                    href="/archive/?tag=%E7%BC%96%E8%AF%91%E5%99%A8"
+                    title="编译器"
+                    rel="10">编译器</a>
+        
+                <a data-sort="0304" 
+                    href="/archive/?tag=python"
+                    title="python"
+                    rel="10">python</a>
+        
+                <a data-sort="0305" 
+                    href="/archive/?tag=%E6%B5%8B%E8%AF%95"
+                    title="测试"
+                    rel="9">测试</a>
+        
+                <a data-sort="0305" 
+                    href="/archive/?tag=LLVM"
+                    title="LLVM"
+                    rel="9">LLVM</a>
+        
+                <a data-sort="0306" 
+                    href="/archive/?tag=%E5%B9%B3%E5%81%87%E5%90%8D"
+                    title="平假名"
+                    rel="8">平假名</a>
+        
+                <a data-sort="0306" 
+                    href="/archive/?tag=%E6%97%A5%E8%AF%AD"
+                    title="日语"
+                    rel="8">日语</a>
+        
+                <a data-sort="0306" 
+                    href="/archive/?tag=%E7%89%87%E5%81%87%E5%90%8D"
+                    title="片假名"
+                    rel="8">片假名</a>
+        
+                <a data-sort="0307" 
+                    href="/archive/?tag=%E6%80%BB%E7%BB%93"
+                    title="总结"
+                    rel="7">总结</a>
+        
+                <a data-sort="0307" 
+                    href="/archive/?tag=cuda"
+                    title="cuda"
+                    rel="7">cuda</a>
+        
+                <a data-sort="0308" 
+                    href="/archive/?tag=TensorFlow"
+                    title="TensorFlow"
+                    rel="6">TensorFlow</a>
+        
+                <a data-sort="0309" 
+                    href="/archive/?tag=%E5%A4%A7%E6%95%B0%E6%8D%AE"
+                    title="大数据"
+                    rel="5">大数据</a>
+        
+                <a data-sort="0309" 
+                    href="/archive/?tag=%E9%9D%A2%E8%AF%95"
+                    title="面试"
+                    rel="5">面试</a>
+        
+                <a data-sort="0309" 
+                    href="/archive/?tag=compiler"
+                    title="compiler"
+                    rel="5">compiler</a>
+        
+                <a data-sort="0310" 
+                    href="/archive/?tag=%E5%B7%A5%E5%85%B7"
+                    title="工具"
+                    rel="4">工具</a>
+        
+                <a data-sort="0310" 
+                    href="/archive/?tag=%E6%8A%95%E8%B5%84"
+                    title="投资"
+                    rel="4">投资</a>
+        
+                <a data-sort="0310" 
+                    href="/archive/?tag=git"
+                    title="git"
+                    rel="4">git</a>
+        
+                <a data-sort="0310" 
+                    href="/archive/?tag=github"
+                    title="github"
+                    rel="4">github</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=%E4%B9%A6%E5%8D%95"
+                    title="书单"
+                    rel="3">书单</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=%E5%86%99%E4%BD%9C"
+                    title="写作"
+                    rel="3">写作</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=%E5%90%8E%E7%AB%AF"
+                    title="后端"
+                    rel="3">后端</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=%E6%8F%90%E5%8D%87"
+                    title="提升"
+                    rel="3">提升</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=%E8%8B%B1%E8%AF%AD"
+                    title="英语"
+                    rel="3">英语</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=%E9%80%BB%E8%BE%91"
+                    title="逻辑"
+                    rel="3">逻辑</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=Maven"
+                    title="Maven"
+                    rel="3">Maven</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=docker"
+                    title="docker"
+                    rel="3">docker</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=gRPC"
+                    title="gRPC"
+                    rel="3">gRPC</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=gcc"
+                    title="gcc"
+                    rel="3">gcc</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=optimization"
+                    title="optimization"
+                    rel="3">optimization</a>
+        
+                <a data-sort="0311" 
+                    href="/archive/?tag=redis"
+                    title="redis"
+                    rel="3">redis</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E4%BF%9D%E9%99%A9"
+                    title="保险"
+                    rel="2">保险</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E5%87%86%E5%A4%87"
+                    title="准备"
+                    rel="2">准备</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E5%A2%9E%E9%95%BF"
+                    title="增长"
+                    rel="2">增长</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E6%80%A7%E8%83%BD"
+                    title="性能"
+                    rel="2">性能</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E6%8A%80%E6%9C%AF"
+                    title="技术"
+                    rel="2">技术</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F"
+                    title="智能计算系统"
+                    rel="2">智能计算系统</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E7%AE%80%E5%8E%86"
+                    title="简历"
+                    rel="2">简历</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E7%AE%97%E6%B3%95"
+                    title="算法"
+                    rel="2">算法</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E7%BA%BF%E7%A8%8B"
+                    title="线程"
+                    rel="2">线程</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA"
+                    title="计算机"
+                    rel="2">计算机</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E8%AF%BB%E4%B9%A6"
+                    title="读书"
+                    rel="2">读书</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E8%B0%83%E8%AF%95"
+                    title="调试"
+                    rel="2">调试</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E8%BF%9B%E9%98%B6"
+                    title="进阶"
+                    rel="2">进阶</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E9%80%9A%E4%BF%A1"
+                    title="通信"
+                    rel="2">通信</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=%E9%9F%B3%E9%A2%91"
+                    title="音频"
+                    rel="2">音频</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=debug"
+                    title="debug"
+                    rel="2">debug</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=grep"
+                    title="grep"
+                    rel="2">grep</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=linux"
+                    title="linux"
+                    rel="2">linux</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=vscode"
+                    title="vscode"
+                    rel="2">vscode</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=web3"
+                    title="web3"
+                    rel="2">web3</a>
+        
+                <a data-sort="0312" 
+                    href="/archive/?tag=webrtc"
+                    title="webrtc"
+                    rel="2">webrtc</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>Read More</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://github.com/chasays/newsletter-list">newsletter 清单</a></li>
+  
+  <li><a href="https://hckrnews.com/">Hacker News</a></li>
+  
+  <li><a href="https://github.com/ruanyf/weekly">科技爱好者周刊</a></li>
+  
+  <li><a href="https://xie.infoq.cn/tag/201">infoQ 读书笔记</a></li>
+  
+  <li><a href="https://www.cnblogs.com/ievjai/">博客园</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center" style="display: none;">
+
+
+  
+  <li>
+    <a href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a href="https://twitter.com/troubleisfff" title="Twitter">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/rikxiao" title="知乎">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="http://weibo.com/333255512" title="微博">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://blog.csdn.net/weixin_42514606" title="CSDN">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook1 fa-stack-1x fa-inverse">C</i>
+      </span>
+    </a>
+  </li>
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/chasays" title="GitHub">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+  
+  <!-- Share buttons -->
+  
+</ul>
+
+
+                <p class="copyright text-muted">
+                    Copyright &copy; 察说花园 2025
+                    <br>
+                    Powered by <a href="http://chasays.github.io">HUX_Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=chasays&repo=chasays.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-139007016-2';
+    var _gaDomain = 'blog.chiphub.top';
+
+    // Originial
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
