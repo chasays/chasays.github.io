@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page26/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page26/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,299 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2020/08/27/Tensorflow-basic/">
-        <h2 class="post-title">
-            TensorFlow 基础
-        </h2>
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-08-27">2020.08.27</time>
+        <span class="post-card-tag">TensorFlow</span>
+      </div>
+      <h3><a href="/2020/08/27/Tensorflow-basic/">TensorFlow 基础</a></h3>
+      <p class="post-card-subtitle">从简单的开始来</p>
+      <p class="post-card-excerpt">基本单位 张量 tensor 是TensorFlow的基本单位，这两天就是数学里面的一个速度啊，没有，一位侍者二位数得，还有就是标量。 random_float = tf.random.uniform(shape=()) zero_vector = tf.zeros(shape=(2)) A ...</p>
+      <a class="post-card-link" href="/2020/08/27/Tensorflow-basic/" aria-label="阅读：TensorFlow 基础">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-08-23">2020.08.23</time>
         
-        <h3 class="post-subtitle">
-            从简单的开始来
-        </h3>
+      </div>
+      <h3><a href="/2020/08/23/Get-and-Post/">Get And Post</a></h3>
+      
+      <p class="post-card-excerpt">浏览器的get和post有什么区别？第1个从他们字面意思去理解这些，就是从网页上获取一个数据。然后这个获取数据是对服务器不会产生副作用的，术语就是数学上的 幂等即多次操作不产生影响（比如任何数乘1或者乘0，多次乘之后，都不会变化），那样多次操作也不会去产生副作用。那post那这个就是一个单词就...</p>
+      <a class="post-card-link" href="/2020/08/23/Get-and-Post/" aria-label="阅读：Get And Post">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-08-16">2020.08.16</time>
+        <span class="post-card-tag">算法</span>
+      </div>
+      <h3><a href="/2020/08/16/algorithm-array/">算法-数组</a></h3>
+      <p class="post-card-subtitle">数组、链表</p>
+      <p class="post-card-excerpt">什么是数组？ 我估计你心中已经有了答案。不过，我还是想用专业的话来给你做下解释。数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据。 第一是线性表（Linear List）。顾名思义，线性表就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和...</p>
+      <a class="post-card-link" href="/2020/08/16/algorithm-array/" aria-label="阅读：算法-数组">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-08-16">2020.08.16</time>
         
-        <div class="post-content-preview">
-            
-                基本单位
-张量 tensor 是TensorFlow的基本单位，这两天就是数学里面的一个速度啊，没有，一位侍者二位数得，还有就是标量。
-random_float = tf.random.uniform(shape=())
-zero_vector = tf.zeros(shape=(2))
-
-A = tf.constant([[1., 2.], [3., 4.]])
-B = tf.consta...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 27, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/08/23/Get-and-Post/">
-        <h2 class="post-title">
-            Get And Post
-        </h2>
+      </div>
+      <h3><a href="/2020/08/16/MacOS-catch-data-Charles/">Macos Catch Data Charles</a></h3>
+      
+      <p class="post-card-excerpt">抓包工具有wireshark， tcpdump， 还有就是Charles。 今天分享的是最后一个Charles。抓包分2个， 一个是移动端的，一个是macOS自带的应用。 安装Charles https://www.charlesproxy.com/latest-release/downloa...</p>
+      <a class="post-card-link" href="/2020/08/16/MacOS-catch-data-Charles/" aria-label="阅读：Macos Catch Data Charles">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-07-21">2020.07.21</time>
         
-        <div class="post-content-preview">
-            
-                浏览器的get和post有什么区别？第1个从他们字面意思去理解这些，就是从网页上获取一个数据。然后这个获取数据是对服务器不会产生副作用的，术语就是数学上的 幂等即多次操作不产生影响（比如任何数乘1或者乘0，多次乘之后，都不会变化），那样多次操作也不会去产生副作用。那post那这个就是一个单词就是邮寄的意思，相当于是要本地的数据传到服务器，那这个操作就会对服务器的数据更新或者创建，就会造成一个...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on August 23, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/08/16/algorithm-array/">
-        <h2 class="post-title">
-            算法-数组
-        </h2>
+      </div>
+      <h3><a href="/2020/07/21/awesome-2-Windows-tools/">Awesome 2 Windows Tools</a></h3>
+      
+      <p class="post-card-excerpt">PowerToys 第一个是windows上的一个开源工具，它集成了非常多的实用工具。有桌面布局、文件预览、图片缩放等。 Microsoft PowerToys 是一组免费的系统工具软件，由微软为Windows操作系统上的高级用户设计。这些程序为了使生产力达到最高，加入或变更了一些功能，或加入...</p>
+      <a class="post-card-link" href="/2020/07/21/awesome-2-Windows-tools/" aria-label="阅读：Awesome 2 Windows Tools">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-07-19">2020.07.19</time>
         
-        <h3 class="post-subtitle">
-            数组、链表
-        </h3>
+      </div>
+      <h3><a href="/2020/07/19/study-game/">Study Game</a></h3>
+      
+      <p class="post-card-excerpt">layout: post title: “博弈基础学习” subtitle: ‘生活中用起来’ author: “叉叉敌” header-style: text tags: 博弈 生活 个体理性与集体理性相冲突,还是相一致,取决于 制度安排(游戏规则)。 解决个体理性与集体理性之间的冲突不是靠...</p>
+      <a class="post-card-link" href="/2020/07/19/study-game/" aria-label="阅读：Study Game">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-07-12">2020.07.12</time>
+        <span class="post-card-tag">git</span>
+      </div>
+      <h3><a href="/2020/07/12/git-commit-multi-lines/">Git commit 多行提交</a></h3>
+      <p class="post-card-subtitle">一行就搞定</p>
+      <p class="post-card-excerpt">前段时间和同事远程弄一个东西的时候，要提交git信息的时候，发现我这边输入不了ESC这个键，有可能这个远程程序和终端的esc 键冲突了。输入提交信息的时候，只能使用-m，但是这个问题，我在输入多行的时候，发现我是输入不了的，后来我在查阅相关文档之后，这个m是可以实现输入多行这个需求的。 在 g...</p>
+      <a class="post-card-link" href="/2020/07/12/git-commit-multi-lines/" aria-label="阅读：Git commit 多行提交">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-07-04">2020.07.04</time>
+        <span class="post-card-tag">运气</span>
+      </div>
+      <h3><a href="/2020/07/04/how-to-rich-without-luck/">不靠运气如何富有</a></h3>
+      <p class="post-card-subtitle">看到一篇好看的网文</p>
+      <p class="post-card-excerpt">如何不靠运气变得富有 原文链接： https://github.com/taosue/how-to-get-rich-without-getting-lucky/ 如果感兴趣可以自己去读一下原文，我这里看了部分之后，颜色加深的就是自己的一些感悟。 追求财富，而不是金钱或地位 不必把时间浪费在一...</p>
+      <a class="post-card-link" href="/2020/07/04/how-to-rich-without-luck/" aria-label="阅读：不靠运气如何富有">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-06-30">2020.06.30</time>
         
-        <div class="post-content-preview">
-            
-                什么是数组？
-
-我估计你心中已经有了答案。不过，我还是想用专业的话来给你做下解释。数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据。
-
-第一是线性表（Linear List）。顾名思义，线性表就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。其实除了数组，链表、队列、栈等也是线性表结构。
-
-而与它相对立的概念是非线性表，比如...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 16, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/08/16/MacOS-catch-data-Charles/">
-        <h2 class="post-title">
-            Macos Catch Data Charles
-        </h2>
+      </div>
+      <h3><a href="/2020/06/30/python-different__init__and__new__/">Python Different__init__and__new__</a></h3>
+      
+      <p class="post-card-excerpt">前面2天看到，对于python类里面有一个常用的内置函数。再对 init 展开学习下。 init 方法是什么？ 使用Python写过面向对象的代码的同学，可能对 init 方法已经非常熟悉了，init 方法通常用在初始化一个类实例的时候。例如： class Foo: def __init__(...</p>
+      <a class="post-card-link" href="/2020/06/30/python-different__init__and__new__/" aria-label="阅读：Python Different__init__and__new__">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-06-21">2020.06.21</time>
         
-        <div class="post-content-preview">
-            
-                抓包工具有wireshark， tcpdump， 还有就是Charles。
-
-今天分享的是最后一个Charles。抓包分2个， 一个是移动端的，一个是macOS自带的应用。
-
-安装Charles
-https://www.charlesproxy.com/latest-release/download.do
-这里有官方最新的包， 不过启动后有提示。也有符合社会主义特殊的软件
-
-# 替换 包里面...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on August 16, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/07/21/awesome-2-Windows-tools/">
-        <h2 class="post-title">
-            Awesome 2 Windows Tools
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-PowerToys
-第一个是windows上的一个开源工具，它集成了非常多的实用工具。有桌面布局、文件预览、图片缩放等。
+      </div>
+      <h3><a href="/2020/06/21/summary-TFUG-share-meeting/">Summary Tfug Share Meeting</a></h3>
+      
+      <p class="post-card-excerpt">layout: post title: “TensorFlow 6月活动” subtitle: ‘好东西比较多’ author: “叉叉敌” header-style: text tags: TensorFlow 强化学习 这次成都和大连联合举办的分享会圆满结束，首先感谢我们来自尼泊尔的GDE...</p>
+      <a class="post-card-link" href="/2020/06/21/summary-TFUG-share-meeting/" aria-label="阅读：Summary Tfug Share Meeting">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
 
 
-  Microsoft PowerToys 是一组免费的系统工具软件，由微软为Windows操作系统上的高级用户设计。这些程序为了使生产力达到最高，加入或变更了一些功能，或加入更多自定义选项。PowerToys可用于Windows 95、Windows XP和Win...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on July 21, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/07/19/study-game/">
-        <h2 class="post-title">
-            Study Game
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-layout: post
-title: “博弈基础学习”
-subtitle: ‘生活中用起来’
-author: “叉叉敌”
-header-style: text
-tags:
-
-  博弈
+<nav class="editorial-pager" aria-label="文章分页">
   
-    生活
-    个体理性与集体理性相冲突,还是相一致,取决于
-制度安排(游戏规则)。
-解决个体理性与集体理性之间的冲突不是靠否定个
-体理性,而是靠修改制度(游戏规则),从而在满
-足个体理性的基...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on July 19, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/07/12/git-commit-multi-lines/">
-        <h2 class="post-title">
-            Git commit 多行提交
-        </h2>
-        
-        <h3 class="post-subtitle">
-            一行就搞定
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                前段时间和同事远程弄一个东西的时候，要提交git信息的时候，发现我这边输入不了ESC这个键，有可能这个远程程序和终端的esc 键冲突了。输入提交信息的时候，只能使用-m，但是这个问题，我在输入多行的时候，发现我是输入不了的，后来我在查阅相关文档之后，这个m是可以实现输入多行这个需求的。
-
-在 git  里面，可以直接跟上 -m 的参数可以实现提交信息。
-
-git commit -m "thi...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on July 12, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/07/04/how-to-rich-without-luck/">
-        <h2 class="post-title">
-            不靠运气如何富有
-        </h2>
-        
-        <h3 class="post-subtitle">
-            看到一篇好看的网文
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                如何不靠运气变得富有
-
-
-  原文链接： https://github.com/taosue/how-to-get-rich-without-getting-lucky/
-
-
-如果感兴趣可以自己去读一下原文，我这里看了部分之后，颜色加深的就是自己的一些感悟。
-
-追求财富，而不是金钱或地位
-不必把时间浪费在一份没有灵魂，你不喜欢的工作上。
-
-为世界创造更多
-如果有人还在工作，那么他们是在用工作...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by xx on July 4, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/06/30/python-different__init__and__new__/">
-        <h2 class="post-title">
-            Python Different__init__and__new__
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-前面2天看到，对于python类里面有一个常用的内置函数。再对 init 展开学习下。
-init 方法是什么？
-使用Python写过面向对象的代码的同学，可能对 init 方法已经非常熟悉了，init 方法通常用在初始化一个类实例的时候。例如：
-
-
-class Foo:
-    def __init__(self, name, age):
-        self.name = name
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on June 30, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/06/21/summary-TFUG-share-meeting/">
-        <h2 class="post-title">
-            Summary Tfug Share Meeting
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-layout: post
-title: “TensorFlow 6月活动”
-subtitle: ‘好东西比较多’
-author: “叉叉敌”
-header-style: text
-tags:
-
-  TensorFlow
+  <a href="/page25">← 较新文章</a>
   
-    强化学习
+  <span>第 26 / 32 页</span>
   
-
-
-这次成都和大连联合举办的分享会圆满结束，首先感谢我们来自尼泊尔的GDE Kshitiz Rimal的强化学习分享。同时也感谢大连和成都同...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on June 21, 2020
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page25">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page27">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+  <a href="/page27">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -651,7 +509,7 @@ tags:
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -937,10 +795,11 @@ tags:
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -957,7 +816,7 @@ tags:
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1024,6 +883,7 @@ tags:
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1063,7 +923,7 @@ tags:
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1143,17 +1003,17 @@ tags:
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1294,63 +1154,6 @@ tags:
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

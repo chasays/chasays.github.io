@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page28/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page28/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,287 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2020/04/28/resume-just-do-procrastination/">
-        <h2 class="post-title">
-            Resume Just Do Procrastination
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                拖延症
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-拖延症，今天讲一下，我之前看了拖延症这个问题怎么去解决？首先考虑一下这个事情你做了之后对你有没有真正的意义，不要被别人或者是利益所驱动才去做，要以结果为导向，这个结果是真正你想要的结果，才去做。这是第一个方面就是针对结果是不是你想要的，然后再继续往下走。
-
-既然是拖延，那肯定是我们人的本能就是懒惰的，那我们怎样去克服这一块人的本性？首先是自己的身体动起来，比如说今天你要写一篇文章...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 28, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/27/Will-cause-damage-to-your-computer-macos/">
-        <h2 class="post-title">
-            Will Cause Damage To Your Computer Macos
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                提示
-macOS系统是出了名的安全性是很高的，最近我在升级到最新版本的系统之后10.15, 现在运行uPic软件程序的时候提示。
-”upic将对您的电脑造成伤害。 您应该将它移到废纸篓。
-
-下面就是讲一些解决方法。
-
-解决方法
-
-
-  用下面命令行手动签名方式
-```
-codesign –force –deep –sign - /Applications/uPic.app
-
-
-```
-
-
-
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 27, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/22/removely-connect-Ubuntu16.4-desktop/">
-        <h2 class="post-title">
-            Removely Connect Ubuntu16.4 Desktop
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-  远程连接 Ubuntu16.4 桌面
-
-
-对于这个场景不是很多, 毕竟Linux天生的优势就是CLI, 但是有些软件是需要用户界面的软件才去操作，比如说Android studio, 就需要这样的东西。因此就需要远程桌面, 对于 GUI 的软件使用就变得非常重要了。
-
-在网上搜了很多教程，都没有一个完整的教程，要么使用的就是不能联通，要么有些教程就是凌凌散散的。所以强心提笔总结一下是如...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 22, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/22/improve-english-listening/">
-        <h2 class="post-title">
-            Improve English Listening
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-  学习英语听力部分。
-
-
-第一听什么内容
-主要是听一些脱口秀，还有一些Coach Shane, Lisa美语，Rechels English。这些资源在B站上都有，第一个脱口秀资源，看一个崔娃的脱口秀，第2个科技圈了就是叫daily English，lisa美语就是专门纠正发音的。还有一个就是美剧，像生活大爆炸摩登时代。都是一个不错的学习资源。
-
-Coach Shane
-
-
-Lisa美语...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 22, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/21/how-to-handle-zero-width-string/">
-        <h2 class="post-title">
-            How To Handle Zero Width String
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-  网址里面有个特殊字符%E2%80%8B
-
-
-所见不一定是所得. 
-今天终于活久见, 看上去是一样的, 但是实际就是不一样还差一个字符。
-那看见下面一个图片，下面一个图片，嗯是返回的一串字符串，我要判断它们相等，肉眼看上去是完全相等的，但是实际上，它们是不相等的，所以在判断相等的时候始终返回嗯 False 。
-
-看上去是2001603，url编码是2%E2%80%8B001603/ 。...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 21, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/20/high-effective-build-video-losslesscut/">
-        <h2 class="post-title">
-            High Effective Build Video Losslesscut
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                上一篇文章简单介绍了 FFmpeg 的使用，是基于命令行的使用，不过对于一些计算机小白来说，稍微可能有一些困难，所以方法总是比问题多。
-
-推荐一个图形化的操作软件 -  LosslessCut
-
-  https://github.com/mifi/lossless-cut
-
-
-目标是成为最终的跨平台 ffmpeg 图形用户界面，可以对视频、音频、字幕和其他相关媒体文件进行极其快速和无损耗的操...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 20, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/17/FFmepg-handle-videos/">
-        <h2 class="post-title">
-            Ffmepg Handle Videos
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-推荐操作超级简单的视频剪辑器
-
-FFmpeg 是一个跨平台的多媒体处理框架，能够编码、转码、多路复用、流媒体等操作，支持的格式从上古到至今，基本上还没有不支持的视频格式。
-
-下载地址：
-
-  https://www.ffmpeg.org/download.html
-
-
-Macos安装方法也可以用，brew install ffmpeg，安装好了验证一下。输入 ffmpeg
-
-输入 man ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 17, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/16/think-about-benefit/">
-        <h2 class="post-title">
-            Think About Benefit
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-背景
-今天讲一个利益关系的复盘，背景是这样的。在我们公司产品线上有自己的开发，有自己的测试，然后我们在内部测试完之后会发布到外面的系统质量团队测试，测试出问题之后还会提一些问题单，然后再打回来，到我们的内部的开发人员去修复这个问题。
-
-
-
-导致外部的测试员就测一些问题，在一些问题单里面没有描述清楚。因此我们内部的开发人员去修复这个问题就变得非常的慢，还去沟通，以及没有足够的日志信息去分析这...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 16, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/02/docker-brings-some-benefits/">
-        <h2 class="post-title">
-            Docker Brings Some Benefits
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-什么是 Docker
-
-在容器中而不是在虚拟机中运行应用程序在 IT 界越来越流行。 这项技术被认为是软件工业近代史上增长最快的技术之一。 它的核心是 Docker，一个允许用户在容器中轻松打包、分发和管理应用程序的平台。 换句话说，它是一个开源项目，可以自动化在软件容器中部署应用程序。
-
-通过使用容器和容器，Docker 实际上使得创建、部署和运行应用程序变得更加容易，容器允许开发人员将...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 2, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/04/01/linux-common-command-echo/">
-        <h2 class="post-title">
-            Linux Common Command Echo
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                echo 命令是 Linux 中最基本和最常用的命令之一。 传递给 echo 的参数被打印到标准输出中。
-
-echo 通常用于 shell 脚本中，用于显示消息或输出其他命令的结果。
-
-echo 命令
-echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 shell 内置程序。 它的行为在不同的 shell 中略有不同。
-
-还有一个独立的/usr/bin/...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 1, 2020
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page27">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-28">2020.04.28</time>
+        
+      </div>
+      <h3><a href="/2020/04/28/resume-just-do-procrastination/">Resume Just Do Procrastination</a></h3>
+      
+      <p class="post-card-excerpt">拖延症 拖延症，今天讲一下，我之前看了拖延症这个问题怎么去解决？首先考虑一下这个事情你做了之后对你有没有真正的意义，不要被别人或者是利益所驱动才去做，要以结果为导向，这个结果是真正你想要的结果，才去做。这是第一个方面就是针对结果是不是你想要的，然后再继续往下走。 既然是拖延，那肯定是我们人的本...</p>
+      <a class="post-card-link" href="/2020/04/28/resume-just-do-procrastination/" aria-label="阅读：Resume Just Do Procrastination">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-27">2020.04.27</time>
+        
+      </div>
+      <h3><a href="/2020/04/27/Will-cause-damage-to-your-computer-macos/">Will Cause Damage To Your Computer Macos</a></h3>
+      
+      <p class="post-card-excerpt">提示 macOS系统是出了名的安全性是很高的，最近我在升级到最新版本的系统之后10.15, 现在运行uPic软件程序的时候提示。 ”upic将对您的电脑造成伤害。 您应该将它移到废纸篓。 下面就是讲一些解决方法。 解决方法 用下面命令行手动签名方式 ``` codesign –force –d...</p>
+      <a class="post-card-link" href="/2020/04/27/Will-cause-damage-to-your-computer-macos/" aria-label="阅读：Will Cause Damage To Your Computer Macos">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page29">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-22">2020.04.22</time>
+        
+      </div>
+      <h3><a href="/2020/04/22/removely-connect-Ubuntu16.4-desktop/">Removely Connect Ubuntu16.4 Desktop</a></h3>
+      
+      <p class="post-card-excerpt">远程连接 Ubuntu16.4 桌面 对于这个场景不是很多, 毕竟Linux天生的优势就是CLI, 但是有些软件是需要用户界面的软件才去操作，比如说Android studio, 就需要这样的东西。因此就需要远程桌面, 对于 GUI 的软件使用就变得非常重要了。 在网上搜了很多教程，都没有一个...</p>
+      <a class="post-card-link" href="/2020/04/22/removely-connect-Ubuntu16.4-desktop/" aria-label="阅读：Removely Connect Ubuntu16.4 Desktop">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-22">2020.04.22</time>
+        
+      </div>
+      <h3><a href="/2020/04/22/improve-english-listening/">Improve English Listening</a></h3>
+      
+      <p class="post-card-excerpt">学习英语听力部分。 第一听什么内容 主要是听一些脱口秀，还有一些Coach Shane, Lisa美语，Rechels English。这些资源在B站上都有，第一个脱口秀资源，看一个崔娃的脱口秀，第2个科技圈了就是叫daily English，lisa美语就是专门纠正发音的。还有一个就是美剧，...</p>
+      <a class="post-card-link" href="/2020/04/22/improve-english-listening/" aria-label="阅读：Improve English Listening">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-21">2020.04.21</time>
+        
+      </div>
+      <h3><a href="/2020/04/21/how-to-handle-zero-width-string/">How To Handle Zero Width String</a></h3>
+      
+      <p class="post-card-excerpt">网址里面有个特殊字符%E2%80%8B 所见不一定是所得. 今天终于活久见, 看上去是一样的, 但是实际就是不一样还差一个字符。 那看见下面一个图片，下面一个图片，嗯是返回的一串字符串，我要判断它们相等，肉眼看上去是完全相等的，但是实际上，它们是不相等的，所以在判断相等的时候始终返回嗯 Fal...</p>
+      <a class="post-card-link" href="/2020/04/21/how-to-handle-zero-width-string/" aria-label="阅读：How To Handle Zero Width String">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-20">2020.04.20</time>
+        
+      </div>
+      <h3><a href="/2020/04/20/high-effective-build-video-losslesscut/">High Effective Build Video Losslesscut</a></h3>
+      
+      <p class="post-card-excerpt">上一篇文章简单介绍了 FFmpeg 的使用，是基于命令行的使用，不过对于一些计算机小白来说，稍微可能有一些困难，所以方法总是比问题多。 推荐一个图形化的操作软件 - LosslessCut https://github.com/mifi/lossless-cut 目标是成为最终的跨平台 ffm...</p>
+      <a class="post-card-link" href="/2020/04/20/high-effective-build-video-losslesscut/" aria-label="阅读：High Effective Build Video Losslesscut">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-17">2020.04.17</time>
+        
+      </div>
+      <h3><a href="/2020/04/17/FFmepg-handle-videos/">Ffmepg Handle Videos</a></h3>
+      
+      <p class="post-card-excerpt">推荐操作超级简单的视频剪辑器 FFmpeg 是一个跨平台的多媒体处理框架，能够编码、转码、多路复用、流媒体等操作，支持的格式从上古到至今，基本上还没有不支持的视频格式。 下载地址： https://www.ffmpeg.org/download.html Macos安装方法也可以用，brew ...</p>
+      <a class="post-card-link" href="/2020/04/17/FFmepg-handle-videos/" aria-label="阅读：Ffmepg Handle Videos">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-16">2020.04.16</time>
+        
+      </div>
+      <h3><a href="/2020/04/16/think-about-benefit/">Think About Benefit</a></h3>
+      
+      <p class="post-card-excerpt">背景 今天讲一个利益关系的复盘，背景是这样的。在我们公司产品线上有自己的开发，有自己的测试，然后我们在内部测试完之后会发布到外面的系统质量团队测试，测试出问题之后还会提一些问题单，然后再打回来，到我们的内部的开发人员去修复这个问题。 导致外部的测试员就测一些问题，在一些问题单里面没有描述清楚。...</p>
+      <a class="post-card-link" href="/2020/04/16/think-about-benefit/" aria-label="阅读：Think About Benefit">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-02">2020.04.02</time>
+        
+      </div>
+      <h3><a href="/2020/04/02/docker-brings-some-benefits/">Docker Brings Some Benefits</a></h3>
+      
+      <p class="post-card-excerpt">什么是 Docker 在容器中而不是在虚拟机中运行应用程序在 IT 界越来越流行。 这项技术被认为是软件工业近代史上增长最快的技术之一。 它的核心是 Docker，一个允许用户在容器中轻松打包、分发和管理应用程序的平台。 换句话说，它是一个开源项目，可以自动化在软件容器中部署应用程序。 通过使...</p>
+      <a class="post-card-link" href="/2020/04/02/docker-brings-some-benefits/" aria-label="阅读：Docker Brings Some Benefits">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-04-01">2020.04.01</time>
+        
+      </div>
+      <h3><a href="/2020/04/01/linux-common-command-echo/">Linux Common Command Echo</a></h3>
+      
+      <p class="post-card-excerpt">echo 命令是 Linux 中最基本和最常用的命令之一。 传递给 echo 的参数被打印到标准输出中。 echo 通常用于 shell 脚本中，用于显示消息或输出其他命令的结果。 echo 命令 echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 she...</p>
+      <a class="post-card-link" href="/2020/04/01/linux-common-command-echo/" aria-label="阅读：Linux Common Command Echo">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page27">← 较新文章</a>
+  
+  <span>第 28 / 32 页</span>
+  
+  <a href="/page29">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -639,7 +509,7 @@ echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 s
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -925,10 +795,11 @@ echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 s
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -945,7 +816,7 @@ echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 s
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1012,6 +883,7 @@ echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 s
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1051,7 +923,7 @@ echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 s
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1131,17 +1003,17 @@ echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 s
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1282,63 +1154,6 @@ echo 是 Bash 和其他大多数流行的 shell，如 Zsh 和 Ksh 中的一个 s
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

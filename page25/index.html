@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page25/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page25/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,323 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2020/09/21/software-testing/">
-        <h2 class="post-title">
-            软件测试-52讲
-        </h2>
-        
-        <h3 class="post-subtitle">
-            基础还不过关
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                课程连接：
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-  https://time.geekbang.org/column/intro/103
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-
-开篇
-从知识体系上看，你需要有比开发人员更全面的计算机基础知识，还需要了解互联网的基础架构、安全攻击、软件性能、用户体验和常见缺陷等知识。
-
-“如何把手工测试步骤用自动化脚本实现”变成了“如何构建低维护成本，可以灵活组装的自动化脚本”
-
-基础
-
-登录界面
-但是作为测试工程师，你的目标是...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 21, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/19/automation-framework-in-cloud/">
-        <h2 class="post-title">
-            云测试自动化框架
-        </h2>
-        
-        <h3 class="post-subtitle">
-            传统QA到测开要过渡
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                环境部署，以及使用的问题， 有没有想过直接在用云创建一个自动化测试框架，动态的分配资源？
-可以利用利用 OpenStack，Ubuntu，KVM等开源项目构造了云计算软件测试平台。
-
-
-云计算软件测试平台是一个复杂的软件、硬件和服务的综合体，不同的云测试平台设计和实现的重点也不相同。
-
-
-需求
-
-
-  可移植性高
--要支持多操作系统， 本地和云都可以运行
-  易于扩展和维护
-
-
-老的测试环境...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 19, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/18/Python-builtin-function/">
-        <h2 class="post-title">
-            Python内建函数
-        </h2>
-        
-        <h3 class="post-subtitle">
-            学下下内建函数，事半功倍
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                是计算一个数的商和余数的时候，发现基础的内建函数还没有掌握，今天空了来补一下。以下的列子均是在Python3里面支持的。
-
-那就从第一个开始求余数和商开始吧。
-
-数字有关
-
-数字计算
-
-
-  divmod
-python divmod() 函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a // b, a % b)。
-
-
-
-
-
-  abs
-提到数字计算还有用的最多的， abs，比...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 18, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/12/bash-and-shell/">
-        <h2 class="post-title">
-            Bash和sh的区别
-        </h2>
-        
-        <h3 class="post-subtitle">
-            sh比较常用
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                sh
-
-Shell命令语言 是 POSIX 标准描述的一种编程语言。它有许多的实现（ksh88，dash，…）。bash也可以视为的实现sh
-
-
-因为 sh 是规范，所以它/bin/sh是到大多数POSIX系统上实际实现的符号链接（或硬链接）。
-bash
-bash 开始时是sh兼容的实现（尽管它比POSIX标准早了几年），但是随着时间的流逝，它获得了许多扩展。这些扩展中的许多扩展名可能会更改...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 12, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/12/Python-communication-between-threadings/">
-        <h2 class="post-title">
-            Python线程间如何通信
-        </h2>
-        
-        <h3 class="post-subtitle">
-            多线程是个复杂的问题
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                我对于线程这部分知识比较薄弱，并发是一个复杂的问题，在测试过程中很少用到这个知识点。
-由于全局解释器锁 （GIL），CPU 绑定任务不适合 Python 线程。Python 中的并行计算应在多个进程（而不是线程）中完成。
-
-实例：
-工作线程从队列中获取目录名称， 然后递归查找其中的所有文件并返回结果
-import os, time
-import threading, Queue
-
-class...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 12, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/10/what-happen-while-entering-address-in-broswer/">
-        <h2 class="post-title">
-             浏览器输一个网址发生了什么
-        </h2>
-        
-        <h3 class="post-subtitle">
-            从DNS到浏览器渲染
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                正文
-转自：https://www.cnblogs.com/chenshengkai/p/13626669.html
-
-总结一下：
-在浏览器输一个网址时候发生什么？共有7部
-第1步不是从本地dns中去读取地址，如果没有他的地址就从他的域名服务器去取IP, 他没如果有的话就去上一级，直到根域名，反正就是要找到IP为止。
-第2步。与服务端建立TCP IP连接。是客户端发送一个请求。三次握手，我有...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 网文 on September 10, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/08/31/Photography-photo/">
-        <h2 class="post-title">
-            Photography Photo
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                iPhone
-
-  自2007年以来，iPhone摄影大赛™（IPPAWARDS）是第一届也是历时最长的iPhone摄影大赛。自第一部iPhone启发，激动并吸引了全球用户以来，IPPAWARDS一直在庆祝iPhone用户的创造力。从那以后，IPPAWARDS每年从来自全球140多个国家的iPhone摄影师提交的数千张图像中选择最佳照片。评审委员会成员分几步选出优胜者，并颁发年度摄影师和类别...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on August 31, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/08/31/Charles-catch-data/">
-        <h2 class="post-title">
-            Charles Catch Data
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                1. 安装Charles
-https://www.charlesproxy.com/download/
-
-官网linux macos windows都有。
-
-
-2. 配置网络和其他
-
-https://www.jianshu.com/p/9822e3f28f0a
-我就不冷炒饭了， 这里有很多详细的教程。
-
-主要是2步
-
-  配置本地的网络代理为对应的IP和端口
-  配置证书和添加域名
-
-
-有2...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on August 31, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/08/29/study-product-thought/">
-        <h2 class="post-title">
-            学习产品思维
-        </h2>
-        
-        <h3 class="post-subtitle">
-            产品思维
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                如何快速的验证产品创意？
-
-  收集信息的重要性，然后不管事，上下左右中骨外。古今中外。一个行业个产业链，都要去了解。左右的话就是几精品，古今的话就是之前有的产品和现在的产品以及未来的中外的话就是对比，比如说亚马逊对标阿里巴巴有本对滴滴。
-
-
-2。 高效的手机号获取信息，这一个就是和之前我分享过一个问题就是从读书里面去获取，还有一个就是听别人的一些分享讲座，一些总结，一件事一定是需要一些专家...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 29, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/08/27/how-to-find-youself-interest/">
-        <h2 class="post-title">
-            How To Find Youself Interest
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                如何找到自己的兴趣方向，自己的特长所在。
-
-首先说一下自己的结论。通过3~5年的时间，找到自己的一个所在领域的一个擅长的方向。
-首先第1步是第1个计划，第1个你感兴趣的方向，就是在你认为是你将来或是现在所擅长的一个领域，定个方向，然后在这个方向去努力，努力之后呢，定个计划，有期望的一个目标，在1一年左右的时间，能达到你这个期望还是超了还是偏差了，还挣多少？如果你听到这句话，你觉得你能达到这个...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on August 27, 2020
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page24">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-21">2020.09.21</time>
+        <span class="post-card-tag">测试</span>
+      </div>
+      <h3><a href="/2020/09/21/software-testing/">软件测试-52讲</a></h3>
+      <p class="post-card-subtitle">基础还不过关</p>
+      <p class="post-card-excerpt">课程连接： https://time.geekbang.org/column/intro/103 开篇 从知识体系上看，你需要有比开发人员更全面的计算机基础知识，还需要了解互联网的基础架构、安全攻击、软件性能、用户体验和常见缺陷等知识。 “如何把手工测试步骤用自动化脚本实现”变成了“如何构建低...</p>
+      <a class="post-card-link" href="/2020/09/21/software-testing/" aria-label="阅读：软件测试-52讲">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-19">2020.09.19</time>
+        <span class="post-card-tag">云测试</span>
+      </div>
+      <h3><a href="/2020/09/19/automation-framework-in-cloud/">云测试自动化框架</a></h3>
+      <p class="post-card-subtitle">传统QA到测开要过渡</p>
+      <p class="post-card-excerpt">环境部署，以及使用的问题， 有没有想过直接在用云创建一个自动化测试框架，动态的分配资源？ 可以利用利用 OpenStack，Ubuntu，KVM等开源项目构造了云计算软件测试平台。 云计算软件测试平台是一个复杂的软件、硬件和服务的综合体，不同的云测试平台设计和实现的重点也不相同。 需求 可移植...</p>
+      <a class="post-card-link" href="/2020/09/19/automation-framework-in-cloud/" aria-label="阅读：云测试自动化框架">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page26">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-18">2020.09.18</time>
+        <span class="post-card-tag">python</span>
+      </div>
+      <h3><a href="/2020/09/18/Python-builtin-function/">Python内建函数</a></h3>
+      <p class="post-card-subtitle">学下下内建函数，事半功倍</p>
+      <p class="post-card-excerpt">是计算一个数的商和余数的时候，发现基础的内建函数还没有掌握，今天空了来补一下。以下的列子均是在Python3里面支持的。 那就从第一个开始求余数和商开始吧。 数字有关 数字计算 divmod python divmod() 函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a //...</p>
+      <a class="post-card-link" href="/2020/09/18/Python-builtin-function/" aria-label="阅读：Python内建函数">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-12">2020.09.12</time>
+        <span class="post-card-tag">python</span>
+      </div>
+      <h3><a href="/2020/09/12/bash-and-shell/">Bash和sh的区别</a></h3>
+      <p class="post-card-subtitle">sh比较常用</p>
+      <p class="post-card-excerpt">sh Shell命令语言 是 POSIX 标准描述的一种编程语言。它有许多的实现（ksh88，dash，…）。bash也可以视为的实现sh 因为 sh 是规范，所以它/bin/sh是到大多数POSIX系统上实际实现的符号链接（或硬链接）。 bash bash 开始时是sh兼容的实现（尽管它比P...</p>
+      <a class="post-card-link" href="/2020/09/12/bash-and-shell/" aria-label="阅读：Bash和sh的区别">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-12">2020.09.12</time>
+        <span class="post-card-tag">python</span>
+      </div>
+      <h3><a href="/2020/09/12/Python-communication-between-threadings/">Python线程间如何通信</a></h3>
+      <p class="post-card-subtitle">多线程是个复杂的问题</p>
+      <p class="post-card-excerpt">我对于线程这部分知识比较薄弱，并发是一个复杂的问题，在测试过程中很少用到这个知识点。 由于全局解释器锁 （GIL），CPU 绑定任务不适合 Python 线程。Python 中的并行计算应在多个进程（而不是线程）中完成。 实例： 工作线程从队列中获取目录名称， 然后递归查找其中的所有文件并返回...</p>
+      <a class="post-card-link" href="/2020/09/12/Python-communication-between-threadings/" aria-label="阅读：Python线程间如何通信">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-10">2020.09.10</time>
+        <span class="post-card-tag">面试</span>
+      </div>
+      <h3><a href="/2020/09/10/what-happen-while-entering-address-in-broswer/"> 浏览器输一个网址发生了什么</a></h3>
+      <p class="post-card-subtitle">从DNS到浏览器渲染</p>
+      <p class="post-card-excerpt">正文 转自：https://www.cnblogs.com/chenshengkai/p/13626669.html 总结一下： 在浏览器输一个网址时候发生什么？共有7部 第1步不是从本地dns中去读取地址，如果没有他的地址就从他的域名服务器去取IP, 他没如果有的话就去上一级，直到根域名，反...</p>
+      <a class="post-card-link" href="/2020/09/10/what-happen-while-entering-address-in-broswer/" aria-label="阅读： 浏览器输一个网址发生了什么">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-08-31">2020.08.31</time>
+        
+      </div>
+      <h3><a href="/2020/08/31/Photography-photo/">Photography Photo</a></h3>
+      
+      <p class="post-card-excerpt">iPhone 自2007年以来，iPhone摄影大赛™（IPPAWARDS）是第一届也是历时最长的iPhone摄影大赛。自第一部iPhone启发，激动并吸引了全球用户以来，IPPAWARDS一直在庆祝iPhone用户的创造力。从那以后，IPPAWARDS每年从来自全球140多个国家的iPhon...</p>
+      <a class="post-card-link" href="/2020/08/31/Photography-photo/" aria-label="阅读：Photography Photo">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-08-31">2020.08.31</time>
+        
+      </div>
+      <h3><a href="/2020/08/31/Charles-catch-data/">Charles Catch Data</a></h3>
+      
+      <p class="post-card-excerpt">1. 安装Charles https://www.charlesproxy.com/download/ 官网linux macos windows都有。 2. 配置网络和其他 https://www.jianshu.com/p/9822e3f28f0a 我就不冷炒饭了， 这里有很多详细的教程。...</p>
+      <a class="post-card-link" href="/2020/08/31/Charles-catch-data/" aria-label="阅读：Charles Catch Data">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-08-29">2020.08.29</time>
+        <span class="post-card-tag">产品</span>
+      </div>
+      <h3><a href="/2020/08/29/study-product-thought/">学习产品思维</a></h3>
+      <p class="post-card-subtitle">产品思维</p>
+      <p class="post-card-excerpt">如何快速的验证产品创意？ 收集信息的重要性，然后不管事，上下左右中骨外。古今中外。一个行业个产业链，都要去了解。左右的话就是几精品，古今的话就是之前有的产品和现在的产品以及未来的中外的话就是对比，比如说亚马逊对标阿里巴巴有本对滴滴。 2。 高效的手机号获取信息，这一个就是和之前我分享过一个问题...</p>
+      <a class="post-card-link" href="/2020/08/29/study-product-thought/" aria-label="阅读：学习产品思维">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-08-27">2020.08.27</time>
+        
+      </div>
+      <h3><a href="/2020/08/27/how-to-find-youself-interest/">How To Find Youself Interest</a></h3>
+      
+      <p class="post-card-excerpt">如何找到自己的兴趣方向，自己的特长所在。 首先说一下自己的结论。通过3~5年的时间，找到自己的一个所在领域的一个擅长的方向。 首先第1步是第1个计划，第1个你感兴趣的方向，就是在你认为是你将来或是现在所擅长的一个领域，定个方向，然后在这个方向去努力，努力之后呢，定个计划，有期望的一个目标，在1...</p>
+      <a class="post-card-link" href="/2020/08/27/how-to-find-youself-interest/" aria-label="阅读：How To Find Youself Interest">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page24">← 较新文章</a>
+  
+  <span>第 25 / 32 页</span>
+  
+  <a href="/page26">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -675,7 +509,7 @@ https://www.jianshu.com/p/9822e3f28f0a
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -961,10 +795,11 @@ https://www.jianshu.com/p/9822e3f28f0a
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -981,7 +816,7 @@ https://www.jianshu.com/p/9822e3f28f0a
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1048,6 +883,7 @@ https://www.jianshu.com/p/9822e3f28f0a
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1087,7 +923,7 @@ https://www.jianshu.com/p/9822e3f28f0a
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1167,17 +1003,17 @@ https://www.jianshu.com/p/9822e3f28f0a
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1318,63 +1154,6 @@ https://www.jianshu.com/p/9822e3f28f0a
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

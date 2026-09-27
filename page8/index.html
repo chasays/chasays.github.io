@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page8/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page8/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,314 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2022/11/12/uncertain/">
-        <h2 class="post-title">
-            63 - 不确定性
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-
-“准备的终极形式不是为特定的情景做计划，而是一种能够应对不确定性的心态。”
-
-尽管现在有天气预报，我们还是不能 100% 的笃定明天的天气是雨天、阴天，还是晴天。生活亦是如此，在这样的经济情况下，全球互联网巨头们都纷纷开始裁员，亦或是冻结招聘岗位，不知道明天是否会被裁员，失业。
-
-但是唯一确定的就是「不确定」。
-
-我想大部分所在的公司，都是希望自己的公司变得更好，这样公...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 12, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/11/05/copy-and-paste/">
-        <h2 class="post-title">
-            62 - 复制粘贴
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-周末差点被自己的无知给毒死了。
-
-在卫生间的洗漱台，我先用84消毒液撒了一遍之后，发现没有变化，有一些水垢还是不能轻松的清除。我就想上次用的洁厕液效果还不错，就又顺便就撒了一点，几秒之后，眼睛不能睁开，非常的刺鼻，心想这个洁厕液效果是真的好 ……
-
-后来气味传到了客厅，媳妇说：“你在干吗呀”，我说在洗厕所，听了说了一遍之后，媳妇才说不能混用，会生成有毒气体氯气。
-
-后来查询...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 5, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/10/29/experience/">
-        <h2 class="post-title">
-            61 - 经验
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-曾经有个好朋友给我说，为什么足球有这么多的人喜欢。我当时也很迷，能说出的理由估计就那么几种，历史原因、身边都人都喜欢，耳濡目染，商业的成功等等。
-
-2 支强劲的队伍，你始终不知道下一刻谁会进球，没有终点哨声响起的时候，结局也都不知道是什么，这正是这个运动所在的惊喜。
-
-电子游戏也是如此，最近Dota 世界邀请赛正在如火如荼的进行着，上周末进行的一场 BO3 比赛相当的精...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 29, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/10/22/current-best-choice/">
-        <h2 class="post-title">
-            60 - 当前最优选择
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-本周参加公司的一次圆桌，我也是第1次参加线下的圆桌，没什么准备，所以说收获不是很多。我觉得以后要参加这样的技术类圆桌，提前了解好话题是什么？主要分享的内容点是什么？这样好自己有个准备，做充分的提问和分享。
-
-同时也发现自己还有一个不好的习惯，就是在介绍自己的时候总是不太自信（我一个二本面对一个博士，确实难免有些不自信），介绍几句话带过，大概几十秒到一分钟就介绍完，这发现是自...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 22, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/10/15/advanced/">
-        <h2 class="post-title">
-            59 - 兴趣+赚钱
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-我写这份newsletter也是强迫自己了解一些互联网相关的知识，能不能从这里面找到自己的擅长的地方，然后用自己擅长的事情去赚钱去谋生。
-
-如果一个人他把自己的兴趣爱好、喜欢的东西，同时又是自己擅长，坚持能做下去的，基本上这个事情想失败都难。在自己的兴趣爱好上面能赚到钱，那真的是不容易了。
-
-最近一直在想我在做什么？我想做什么？有没有我喜欢、有成长、还能挣到钱的事？
-
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 15, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/10/07/play-game/">
-        <h2 class="post-title">
-            58 - 游戏
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-国庆长假已经过去了，今天都快上班近5天了。假期期间我主要的娱乐活动就是看电影、打游戏。
-
-不得不说游戏真的是把及时反馈做得好，让你持续不断的投入，多巴胺不停的分泌，不过身体有点吃不消，玩几把之后能明显感觉到眼睛干涩，酸痛。玩手机的姿势也是不知不觉在半个小时左右，基本上保持一个姿势。
-
-还发现要戒掉游戏也有一个比较好的方法，关掉声音，体验上要折半。
-
-电影没有啥好推荐的，大部...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 7, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/10/01/feedback/">
-        <h2 class="post-title">
-            57 - 反馈
-        </h2>
-        
-        <h3 class="post-subtitle">
-            内有芯片交流群
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-本来这个国庆长假7天，基本上都计划的七七八八了。因为之前成都静态管控了将近一个月，20天左右，还说准备在国庆去哪里，小孩被寄宿到外地去上学，这次当地的疫情也回不来了，现在我一个人在家，老婆孩子都没在身边。
-
-最大的就是吃饭是个问题，因为一个人煮饭，不好控制量，煮太多就怕有剩余，煮太少不够吃，吃不爽。只有叫外卖，我都不知道吃什么外卖了，最恐怖的是这才刚开始，关于一个人的生活，...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 1, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/27/yara-fuzzing-tool/">
-        <h2 class="post-title">
-            Fuzz工具 - yara
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                YARA是一个工具，旨在（但不限于）帮助恶意软件研究人员识别和分类恶意软件样本。通过YARA，你可以根据文本或二进制模式创建恶意软件特征（或任何你想描述的）的描述。每个描述，又称规则，由一组字符串和一个布尔表达式组成，决定其逻辑。
-
-有史以来第一次，在 YARA 3.0中，您可以扩展其特性以表达更复杂和精细的条件。YARA 3.0通过使用模块来实现这一点，您可以使用这些模块来定义数据结构和函...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 27, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/24/record-myself/">
-        <h2 class="post-title">
-            56 - 记录自己
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-前几天听刘旸教主（脱口秀演员）提到，说我们还是要去多记录自己，分享自己，心中自己的一个想法。谈到他自己已经录了300多期的播客，但是有些东西真会忘掉。
-
-不过别人要了解你的时候，通过这些播客，可以了解到你是什么样子的，同时也是不是志同道合的人。
-
-我觉得一些输出就是这样的，影响别人，交到志同道合的人，同时在公开场合发表一些言论，一定是代表自己的客观真实的自己–真诚。
-
-也要...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 24, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/22/llvm-lit/">
-        <h2 class="post-title">
-            LLVM工具 - LLVM lit
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                main build_parameters
-
-lit.cl_arguments, -&gt; 获取用户传进来的arguments，比如-vv，-j等
-
-其中重要的就是test_paths ，就是我们要测试的目标目录
-
-create_params 
-配置系统默认的lit.cfg配置，比如clang/test/lit.cfg.py
-
-lit_config
-刚刚上面的几个都是获取的为了生成这个li...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 22, 2022
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page7">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-11-12">2022.11.12</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/11/12/uncertain/">63 - 不确定性</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ “准备的终极形式不是为特定的情景做计划，而是一种能够应对不确定性的心态。” 尽管现在有天气预报，我们还是不能 100% 的笃定明天的天气是雨天、阴天，还是晴天。生活亦是如此，在这样的经济情况下，全球互联网巨头们都纷纷开始裁员，亦或是冻结招聘岗位，不知道明天是否会被裁员，失业。 ...</p>
+      <a class="post-card-link" href="/2022/11/12/uncertain/" aria-label="阅读：63 - 不确定性">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-11-05">2022.11.05</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/11/05/copy-and-paste/">62 - 复制粘贴</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 周末差点被自己的无知给毒死了。 在卫生间的洗漱台，我先用84消毒液撒了一遍之后，发现没有变化，有一些水垢还是不能轻松的清除。我就想上次用的洁厕液效果还不错，就又顺便就撒了一点，几秒之后，眼睛不能睁开，非常的刺鼻，心想这个洁厕液效果是真的好 …… 后来气味传到了客厅，媳妇说：“你...</p>
+      <a class="post-card-link" href="/2022/11/05/copy-and-paste/" aria-label="阅读：62 - 复制粘贴">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page9">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-10-29">2022.10.29</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/10/29/experience/">61 - 经验</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 曾经有个好朋友给我说，为什么足球有这么多的人喜欢。我当时也很迷，能说出的理由估计就那么几种，历史原因、身边都人都喜欢，耳濡目染，商业的成功等等。 2 支强劲的队伍，你始终不知道下一刻谁会进球，没有终点哨声响起的时候，结局也都不知道是什么，这正是这个运动所在的惊喜。 电子游戏也是...</p>
+      <a class="post-card-link" href="/2022/10/29/experience/" aria-label="阅读：61 - 经验">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-10-22">2022.10.22</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/10/22/current-best-choice/">60 - 当前最优选择</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 本周参加公司的一次圆桌，我也是第1次参加线下的圆桌，没什么准备，所以说收获不是很多。我觉得以后要参加这样的技术类圆桌，提前了解好话题是什么？主要分享的内容点是什么？这样好自己有个准备，做充分的提问和分享。 同时也发现自己还有一个不好的习惯，就是在介绍自己的时候总是不太自信（我一...</p>
+      <a class="post-card-link" href="/2022/10/22/current-best-choice/" aria-label="阅读：60 - 当前最优选择">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-10-15">2022.10.15</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/10/15/advanced/">59 - 兴趣+赚钱</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 我写这份newsletter也是强迫自己了解一些互联网相关的知识，能不能从这里面找到自己的擅长的地方，然后用自己擅长的事情去赚钱去谋生。 如果一个人他把自己的兴趣爱好、喜欢的东西，同时又是自己擅长，坚持能做下去的，基本上这个事情想失败都难。在自己的兴趣爱好上面能赚到钱，那真的是...</p>
+      <a class="post-card-link" href="/2022/10/15/advanced/" aria-label="阅读：59 - 兴趣+赚钱">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-10-07">2022.10.07</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/10/07/play-game/">58 - 游戏</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 国庆长假已经过去了，今天都快上班近5天了。假期期间我主要的娱乐活动就是看电影、打游戏。 不得不说游戏真的是把及时反馈做得好，让你持续不断的投入，多巴胺不停的分泌，不过身体有点吃不消，玩几把之后能明显感觉到眼睛干涩，酸痛。玩手机的姿势也是不知不觉在半个小时左右，基本上保持一个姿势...</p>
+      <a class="post-card-link" href="/2022/10/07/play-game/" aria-label="阅读：58 - 游戏">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-10-01">2022.10.01</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/10/01/feedback/">57 - 反馈</a></h3>
+      <p class="post-card-subtitle">内有芯片交流群</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 本来这个国庆长假7天，基本上都计划的七七八八了。因为之前成都静态管控了将近一个月，20天左右，还说准备在国庆去哪里，小孩被寄宿到外地去上学，这次当地的疫情也回不来了，现在我一个人在家，老婆孩子都没在身边。 最大的就是吃饭是个问题，因为一个人煮饭，不好控制量，煮太多就怕有剩余，煮...</p>
+      <a class="post-card-link" href="/2022/10/01/feedback/" aria-label="阅读：57 - 反馈">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-27">2022.09.27</time>
+        <span class="post-card-tag">yara</span>
+      </div>
+      <h3><a href="/2022/09/27/yara-fuzzing-tool/">Fuzz工具 - yara</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">YARA是一个工具，旨在（但不限于）帮助恶意软件研究人员识别和分类恶意软件样本。通过YARA，你可以根据文本或二进制模式创建恶意软件特征（或任何你想描述的）的描述。每个描述，又称规则，由一组字符串和一个布尔表达式组成，决定其逻辑。 有史以来第一次，在 YARA 3.0中，您可以扩展其特性以表达...</p>
+      <a class="post-card-link" href="/2022/09/27/yara-fuzzing-tool/" aria-label="阅读：Fuzz工具 - yara">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-24">2022.09.24</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/09/24/record-myself/">56 - 记录自己</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 前几天听刘旸教主（脱口秀演员）提到，说我们还是要去多记录自己，分享自己，心中自己的一个想法。谈到他自己已经录了300多期的播客，但是有些东西真会忘掉。 不过别人要了解你的时候，通过这些播客，可以了解到你是什么样子的，同时也是不是志同道合的人。 我觉得一些输出就是这样的，影响别人...</p>
+      <a class="post-card-link" href="/2022/09/24/record-myself/" aria-label="阅读：56 - 记录自己">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-22">2022.09.22</time>
+        <span class="post-card-tag">LLVM</span>
+      </div>
+      <h3><a href="/2022/09/22/llvm-lit/">LLVM工具 - LLVM lit</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">main build_parameters lit.cl_arguments, -&gt; 获取用户传进来的arguments，比如-vv，-j等 其中重要的就是test_paths ，就是我们要测试的目标目录 create_params 配置系统默认的lit.cfg配置，比如clang/te...</p>
+      <a class="post-card-link" href="/2022/09/22/llvm-lit/" aria-label="阅读：LLVM工具 - LLVM lit">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page7">← 较新文章</a>
+  
+  <span>第 8 / 32 页</span>
+  
+  <a href="/page9">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -666,7 +509,7 @@ lit_config
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -952,10 +795,11 @@ lit_config
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -972,7 +816,7 @@ lit_config
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1039,6 +883,7 @@ lit_config
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1078,7 +923,7 @@ lit_config
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1158,17 +1003,17 @@ lit_config
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1309,63 +1154,6 @@ lit_config
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

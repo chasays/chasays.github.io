@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page2/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page2/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,332 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2024/06/01/llvm-learning-end/">
-        <h2 class="post-title">
-            LLVM 快速入门 - 后端
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                如何快速的入门 llvm 后端？
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-IDE工具
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-推荐一个工具clion：这个没有社区版的， 用付费的就可以， 其他的我不知道。
-
-有个trace功能，1个函数调用路径，然后右键查看源码可以跳转到源码里面去。
-
-操作系统
-
-windoows， 不管是多大的项目，只要debug，几秒就可以调到断点的地方。
-
-我用的m1电脑，编译慢，调试而慢，应该是对于debug没有优化，windwos是 de...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 1, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/06/01/llvm-learning-best_practice-2/">
-        <h2 class="post-title">
-            LLVM 学习记录：编译器最佳实践 - 后端
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                学习内容来自网络课程，这个基本上是针对有点经验的 llvm 开发者，前面的就是过一遍。
-
-
-  https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Libraries
-
-
-
-  https://books.google.com.tw/books?id=g...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 1, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/05/31/llvm-learning-best_practice-1/">
-        <h2 class="post-title">
-            LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                学习内容来自网络课程，这个基本上是针对有点经验的 llvm 开发者，前面的就是过一遍。
-
-
-  https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Libraries
-
-
-
-  https://books.google.com.tw/books?id=g...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 31, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/05/28/talk-cursor-in-programmer-view/">
-        <h2 class="post-title">
-            一个程序员视角下，谈谈 Cursor 自动编码工具
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                想象一下，一个不懂编程的小白站在电脑前，面对着一堆凌乱的代码和复杂的设计需求，手足无措。突然，他看到了桌上那台小巧而神秘的设备——Cursor自动编码工具。它似乎能读懂他的每一个想法，并自动将其转换成可运行的程序。这不仅仅是一个虚构的故事，而是科技行业正在发生的真实转变。简述AI辅助编程工具在科技行业的重要性和发展背景。
-
-下面就来介绍下Cursor软件，包括其开发背景、核心功能及其对行业的...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 28, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/05/28/llvm-learning-debug/">
-        <h2 class="post-title">
-            LLVM 学习记录：调试技巧
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                调试的时候有几个技巧，分享和记录下，方便自己后面可以熟练的用到。
-
-看所有的编译命令，但是不执行
-
--###，这个就是 clang 的第一个参数。
+  <div class="post-card-list">
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-06-01">2024.06.01</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/06/01/llvm-learning-end/">LLVM 快速入门 - 后端</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">如何快速的入门 llvm 后端？ IDE工具 推荐一个工具clion：这个没有社区版的， 用付费的就可以， 其他的我不知道。 有个trace功能，1个函数调用路径，然后右键查看源码可以跳转到源码里面去。 操作系统 windoows， 不管是多大的项目，只要debug，几秒就可以调到断点的地方。...</p>
+      <a class="post-card-link" href="/2024/06/01/llvm-learning-end/" aria-label="阅读：LLVM 快速入门 - 后端">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-06-01">2024.06.01</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/06/01/llvm-learning-best_practice-2/">LLVM 学习记录：编译器最佳实践 - 后端</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习内容来自网络课程，这个基本上是针对有点经验的 llvm 开发者，前面的就是过一遍。 https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Librari...</p>
+      <a class="post-card-link" href="/2024/06/01/llvm-learning-best_practice-2/" aria-label="阅读：LLVM 学习记录：编译器最佳实践 - 后端">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-05-31">2024.05.31</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/05/31/llvm-learning-best_practice-1/">LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习内容来自网络课程，这个基本上是针对有点经验的 llvm 开发者，前面的就是过一遍。 https://github.com/PacktPublishing/LLVM-Techniques-Tips-and-Best-Practices-Clang-and-Middle-End-Librari...</p>
+      <a class="post-card-link" href="/2024/05/31/llvm-learning-best_practice-1/" aria-label="阅读：LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-05-28">2024.05.28</time>
+        <span class="post-card-tag">编辑器</span>
+      </div>
+      <h3><a href="/2024/05/28/talk-cursor-in-programmer-view/">一个程序员视角下，谈谈 Cursor 自动编码工具</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">想象一下，一个不懂编程的小白站在电脑前，面对着一堆凌乱的代码和复杂的设计需求，手足无措。突然，他看到了桌上那台小巧而神秘的设备——Cursor自动编码工具。它似乎能读懂他的每一个想法，并自动将其转换成可运行的程序。这不仅仅是一个虚构的故事，而是科技行业正在发生的真实转变。简述AI辅助编程工具在...</p>
+      <a class="post-card-link" href="/2024/05/28/talk-cursor-in-programmer-view/" aria-label="阅读：一个程序员视角下，谈谈 Cursor 自动编码工具">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-05-28">2024.05.28</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/05/28/llvm-learning-debug/">LLVM 学习记录：调试技巧</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">调试的时候有几个技巧，分享和记录下，方便自己后面可以熟练的用到。 看所有的编译命令，但是不执行 -###，这个就是 clang 的第一个参数。 https://clang.llvm.org/docs/CommandGuide/clang.html 用 clang 编译的时候，会从打印（但不运行...</p>
+      <a class="post-card-link" href="/2024/05/28/llvm-learning-debug/" aria-label="阅读：LLVM 学习记录：调试技巧">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-05-28">2024.05.28</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/05/28/llvm-learning-debug-2/">LLVM 学习记录：调试技巧 2 </a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">这里直接推荐一个 https://blog.csdn.net/zhongyunde/article/details/109013865 工具的选项 传递编译选项给 clang -cc1：-Xclang -cc1 选项：实际的编译命令 传递编译选项给 llvm 编译：-mllvm 打印 toke...</p>
+      <a class="post-card-link" href="/2024/05/28/llvm-learning-debug-2/" aria-label="阅读：LLVM 学习记录：调试技巧 2 ">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-05-24">2024.05.24</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/05/24/llvm-learning-define-intrinsics-2/">LLVM 学习记录：如何添加一个 builtin 函数 - 2</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">需要主要有一个地方。 如果是 intrinsic*.td 里面使用了，ClangBuiltin&lt;&gt;, 那么就不需要再 CGBuiltin.cpp 里面添加枚举了。 先来看一组定义的差别 定义 1 def int_stackrestore : DefaultAttrsIntrinsi...</p>
+      <a class="post-card-link" href="/2024/05/24/llvm-learning-define-intrinsics-2/" aria-label="阅读：LLVM 学习记录：如何添加一个 builtin 函数 - 2">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-05-24">2024.05.24</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/05/24/llvm-learning-basic-1/">LLVM 学习记录：编译器之美 - 后端基础：20~22</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习内容来自极客时间的付费课程，我是针对性的学习，直接进入后端的学习，从 20 讲开始，前端的词法解析，直接跳过。 https://time.geekbang.org/column/intro/100034101 ```graph TD A[前端] –&gt; B{词法分析} B –&gt; ...</p>
+      <a class="post-card-link" href="/2024/05/24/llvm-learning-basic-1/" aria-label="阅读：LLVM 学习记录：编译器之美 - 后端基础：20~22">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-05-23">2024.05.23</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/05/23/llvm-td-syntax-def-defm-defvar/">LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">前面学习了如何添加一个 intrinsic 函数的过程，发现有涉及到 td table gen 语言的格式，这个需要注意。 有几个关键字，def，defm，defvar 的区别？ 这个内容非常的简单，使用的时候注意下即可。官方文档把这个称为 record，翻译过来是记录？anyway，随便是什...</p>
+      <a class="post-card-link" href="/2024/05/23/llvm-td-syntax-def-defm-defvar/" aria-label="阅读：LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-05-21">2024.05.21</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/05/21/llvm-learning-define-intrinsics-1/">LLVM 学习记录：如何添加一个 builtin 函数</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习过程，求勘误，多谢指出~ 今天学习如何在后端添加一个 builtin 和对应的指令 mapping 起来？ 整个过程预览： 源代码调用：在高级语言的源代码中使用特定于 AMDGPU 的内置函数，例如就这么写 __builtin_amdgcn_sin(x)。 LLVM IR 生成：Clang...</p>
+      <a class="post-card-link" href="/2024/05/21/llvm-learning-define-intrinsics-1/" aria-label="阅读：LLVM 学习记录：如何添加一个 builtin 函数">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
 
 
-  https://clang.llvm.org/docs/CommandGuide/clang.html
-
-
-用 clang 编译的时候，会从打印（但不运行）为此编译运行的命令。
-
-然后打印出出错的命令，然后一步一步的执行，就知道是哪里的问...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 28, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/05/28/llvm-learning-debug-2/">
-        <h2 class="post-title">
-            LLVM 学习记录：调试技巧 2 
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  这里直接推荐一个 https://blog.csdn.net/zhongyunde/article/details/109013865
-
-
-工具的选项
-
-传递编译选项给 clang -cc1：-Xclang
--cc1 选项：实际的编译命令
-传递编译选项给 llvm 编译：-mllvm
-打印 token：-Xclang -dump-tokens
-打印 AST： -Xclang -ast-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 28, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/05/24/llvm-learning-define-intrinsics-2/">
-        <h2 class="post-title">
-            LLVM 学习记录：如何添加一个 builtin 函数 - 2
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                需要主要有一个地方。
-
-如果是 intrinsic*.td 里面使用了，ClangBuiltin&lt;&gt;, 那么就不需要再 CGBuiltin.cpp 里面添加枚举了。
-
-先来看一组定义的差别
-
-定义 1
-
-def int_stackrestore  : DefaultAttrsIntrinsic&lt;[], [llvm_anyptr_ty]&gt;,
-              ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 24, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/05/24/llvm-learning-basic-1/">
-        <h2 class="post-title">
-            LLVM 学习记录：编译器之美 - 后端基础：20~22
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                学习内容来自极客时间的付费课程，我是针对性的学习，直接进入后端的学习，从 20 讲开始，前端的词法解析，直接跳过。
-
-
-  https://time.geekbang.org/column/intro/100034101
-
-
-```graph TD
-
-A[前端] –&gt; B{词法分析}
-B –&gt; C{语法分析}
-C –&gt; D{语义分析}
-D –&gt; E{生成中间代码}
-E...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 24, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/05/23/llvm-td-syntax-def-defm-defvar/">
-        <h2 class="post-title">
-            LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                前面学习了如何添加一个 intrinsic 函数的过程，发现有涉及到 td table gen 语言的格式，这个需要注意。
-
-有几个关键字，def，defm，defvar 的区别？
-
-这个内容非常的简单，使用的时候注意下即可。官方文档把这个称为 record，翻译过来是记录？anyway，随便是什么，记住就是一个标识符吧。
-
-首先了解下什么 single class，和 multiclass...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 23, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/05/21/llvm-learning-define-intrinsics-1/">
-        <h2 class="post-title">
-            LLVM 学习记录：如何添加一个 builtin 函数
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习过程，求勘误，多谢指出~
-
-
-今天学习如何在后端添加一个 builtin 和对应的指令 mapping 起来？
-
-整个过程预览：
-
-
+<nav class="editorial-pager" aria-label="文章分页">
   
-    源代码调用：在高级语言的源代码中使用特定于 AMDGPU 的内置函数，例如就这么写 __builtin_amdgcn_sin(x)。
+  <a href="/">← 较新文章</a>
   
+  <span>第 2 / 32 页</span>
   
-    LLVM IR 生成：Clang 编译器在编译过程中将这些内置函数调用转换为 LL...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 21, 2024
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page3">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+  <a href="/page3">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -684,7 +509,7 @@ E...
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -970,10 +795,11 @@ E...
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -990,7 +816,7 @@ E...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1057,6 +883,7 @@ E...
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1096,7 +923,7 @@ E...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1176,17 +1003,17 @@ E...
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1327,63 +1154,6 @@ E...
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

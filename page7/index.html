@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page7/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page7/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,373 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2023/01/21/new-year/">
-        <h2 class="post-title">
-            73 -  新年快乐
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-图片来自 Deepai 生成
-
-祝大家新年快乐。
-
-希望大家在这个长假里面多多休息，因为我觉得我需要的。
-
-
-  text
-
-
-如果您喜欢这份 Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-文章推荐
-
-
-  了解 UUID、ULID 和字符串表示
-
-
-UUID 看起来像这样 ff78ae6b-7176-46e9-8...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 21, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/01/14/nerver-ending/">
-        <h2 class="post-title">
-            72 -  永无止境
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-图片来自 Deepai 生成
-
-看到一篇文章，囤积信息的坏习惯，作者像大多数程序员一样，浏览 hacknews、reddit 或 twitter（国内的浏览知乎、csdn、博客园），文章以技术为重点，主要还囤积信息，看到有些留言说，在浏览器打开接近 1000 个 tabs。
-
-事实上，我不确定大多数人都会这样做，我只是希望我不是唯一的一个，我曾经就是这样。
-
-这个应该就...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 14, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/01/07/live-on/">
-        <h2 class="post-title">
-            71 -  活下去
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-图片来自 Deepai 生成
-
-做自己喜欢的事情，按照自己的节奏前进，
-做用户喜欢的产品，保证开支低于收入。
-
-最近在看一本书「黑客与画家」，这本书加入到自己的书架（微信读书）已经很久了，偶尔翻一翻，每次看都有不同的收获。
-
-公司一切行为的目的都是盈利，从而生存下去。创造财富是大多数公司盈利的手段。公司的业务高度专业化，掩盖了它们都是在创造财富的这种相似性。
-
-互联网大...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 7, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/12/31/strange-summary-2022/">
-        <h2 class="post-title">
-            70 - 2022 奇怪的总结
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-图片来自Deepai生成
-
-2022年学会的新技能
-
-一说到新技能，我第一想到的就是和工作相关的技术。其实除了工作相关的，我觉得我更想提的是对后面路更有意义的技能，就是对自己负责。
-比如看到别人说每个东西，或者某个产品非常值，在自己亲自用之前，或者购买之前，一定要花点时间去了解。
-
-一定要去认真看这个东西到底是不是想要的。成年人要对自己负责。大部分人应该和我一样，看到其...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 31, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/12/24/best-idea/">
-        <h2 class="post-title">
-            69 - 最好的想法
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-新冠之后到底能不能洗澡喃？
-
-我找遍了国内外的资料，最后的结论就是可以洗。昨天晚上我亲声实践一下，没有什么大问题，挺舒服的。
-
-实际在官媒上已经说了，可以洗澡的。
-
-  https://mp.weixin.qq.com/s/cD6WfalYshXXf1wS9BaHzw
-
-
-
-
-狼来的故事，基本上人人都有所耳闻。有时候透支了过多的信用，大家就不太相信你了，这很正常。
-
-“几乎...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 24, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/12/17/kids-bag/">
-        <h2 class="post-title">
-            68 - 小学生的书包
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-  关于小学生的书包，你有什么推荐的么？
-
-
-作为小学生，有一个好的书包可以帮助他们在学校中更轻松地携带所有必要的物品。当选择书包时，应该考虑一些因素，包括大小、重量、容量、功能和舒适度。
-
-建议选择较大的书包，这样可以容纳更多的物品，并且也更有利于放置笔记本电脑或平板电脑。书包的重量也应该比较轻，以减轻学生的肩膀和背部压力。书包的容量应足够容纳学生携带的所有物品，包括课...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 17, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/12/10/COVID-19/">
-        <h2 class="post-title">
-            67 - 疫情
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-目前大部分地区的防疫都开始放开了，就那我们办公园区来说，在周二的时候，就拆除了扫码、围栏的设备，只需要测量提问即可。
-
-
-
-虽然说感染了和感冒类似，还是对身体不舒服，尽量用药来减轻症状。对于放开还是有必要准备一点药物，我前几天买了一些常见的发烧和流鼻涕的感冒药：头孢、感康、布洛芬。
-
-如果还是比较恐慌的，自己可以看一些科普的文章。顺便推荐下无码科技的小程序「就诊问问」
-
-
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 10, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/12/03/imagenation/">
-        <h2 class="post-title">
-            66 - 想象力
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-本来这篇文章是上周就要发出的，推迟到现在。
-
-目前用的是 Obsidian 完成写作，有好的文章和观点及时记录到以日期命名的 md 文件里面，在 mac、iPhone、PC之间用iCloud同步数据，本周的问题就是不知道啥原因，PC的iCloud始终不能和其他设备同步数据，至今都没有解决，我是手动复制过来的信息。
-
-如果你知道有更好的方法，可以推荐给我么？谢谢~
-
-最近...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 3, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/11/26/unsleep/">
-        <h2 class="post-title">
-            65 - 装睡
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-
-  昆明，大巴车
-  新疆，火灾
-  郑州，富士康
-
-
-…………
-
-你永远无法叫醒一个装睡的人。
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-文章推荐
-
-
-  长线投资：有知有行
-
-
-有知有行，帮大家在这个越来越不确定的世界里，放下焦虑，把更多的时间和精力留给工作、生活、家人和自己。
-
-
-  A...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 26, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/11/19/thinking/">
-        <h2 class="post-title">
-            64 - 思考
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-老父亲原来的手机是iPhone 6S，这个手机屏幕太小了，就这琢磨这给他老人家换一部屏幕大一点的手机，秉持开源节流的原则，就想买一个二手便宜的。
-
-最近就在网上找了一个二手的大屏iPhone，对于平台来说，有咸鱼、京东的拍拍、转转、本地的二手平台，我推荐的是京东的「拍拍严选」，这个是京东自营的，如果是自己部门，那就得爱惜羽毛了。售后、机型的质量都有保障，也有一个致命的缺...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 19, 2022
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page6">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-01-21">2023.01.21</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/01/21/new-year/">73 -  新年快乐</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 图片来自 Deepai 生成 祝大家新年快乐。 希望大家在这个长假里面多多休息，因为我觉得我需要的。 text 如果您喜欢这份 Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 文章推荐 了解 UUID、ULID 和字符串表示 ...</p>
+      <a class="post-card-link" href="/2023/01/21/new-year/" aria-label="阅读：73 -  新年快乐">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-01-14">2023.01.14</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/01/14/nerver-ending/">72 -  永无止境</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 图片来自 Deepai 生成 看到一篇文章，囤积信息的坏习惯，作者像大多数程序员一样，浏览 hacknews、reddit 或 twitter（国内的浏览知乎、csdn、博客园），文章以技术为重点，主要还囤积信息，看到有些留言说，在浏览器打开接近 1000 个 tabs。 事实...</p>
+      <a class="post-card-link" href="/2023/01/14/nerver-ending/" aria-label="阅读：72 -  永无止境">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page8">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-01-07">2023.01.07</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/01/07/live-on/">71 -  活下去</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 图片来自 Deepai 生成 做自己喜欢的事情，按照自己的节奏前进， 做用户喜欢的产品，保证开支低于收入。 最近在看一本书「黑客与画家」，这本书加入到自己的书架（微信读书）已经很久了，偶尔翻一翻，每次看都有不同的收获。 公司一切行为的目的都是盈利，从而生存下去。创造财富是大多数...</p>
+      <a class="post-card-link" href="/2023/01/07/live-on/" aria-label="阅读：71 -  活下去">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-12-31">2022.12.31</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/12/31/strange-summary-2022/">70 - 2022 奇怪的总结</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 图片来自Deepai生成 2022年学会的新技能 一说到新技能，我第一想到的就是和工作相关的技术。其实除了工作相关的，我觉得我更想提的是对后面路更有意义的技能，就是对自己负责。 比如看到别人说每个东西，或者某个产品非常值，在自己亲自用之前，或者购买之前，一定要花点时间去了解。 ...</p>
+      <a class="post-card-link" href="/2022/12/31/strange-summary-2022/" aria-label="阅读：70 - 2022 奇怪的总结">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-12-24">2022.12.24</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/12/24/best-idea/">69 - 最好的想法</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 新冠之后到底能不能洗澡喃？ 我找遍了国内外的资料，最后的结论就是可以洗。昨天晚上我亲声实践一下，没有什么大问题，挺舒服的。 实际在官媒上已经说了，可以洗澡的。 https://mp.weixin.qq.com/s/cD6WfalYshXXf1wS9BaHzw 狼来的故事，基本上...</p>
+      <a class="post-card-link" href="/2022/12/24/best-idea/" aria-label="阅读：69 - 最好的想法">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-12-17">2022.12.17</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/12/17/kids-bag/">68 - 小学生的书包</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 关于小学生的书包，你有什么推荐的么？ 作为小学生，有一个好的书包可以帮助他们在学校中更轻松地携带所有必要的物品。当选择书包时，应该考虑一些因素，包括大小、重量、容量、功能和舒适度。 建议选择较大的书包，这样可以容纳更多的物品，并且也更有利于放置笔记本电脑或平板电脑。书包的重量也...</p>
+      <a class="post-card-link" href="/2022/12/17/kids-bag/" aria-label="阅读：68 - 小学生的书包">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-12-10">2022.12.10</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/12/10/COVID-19/">67 - 疫情</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 目前大部分地区的防疫都开始放开了，就那我们办公园区来说，在周二的时候，就拆除了扫码、围栏的设备，只需要测量提问即可。 虽然说感染了和感冒类似，还是对身体不舒服，尽量用药来减轻症状。对于放开还是有必要准备一点药物，我前几天买了一些常见的发烧和流鼻涕的感冒药：头孢、感康、布洛芬。 ...</p>
+      <a class="post-card-link" href="/2022/12/10/COVID-19/" aria-label="阅读：67 - 疫情">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-12-03">2022.12.03</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/12/03/imagenation/">66 - 想象力</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 本来这篇文章是上周就要发出的，推迟到现在。 目前用的是 Obsidian 完成写作，有好的文章和观点及时记录到以日期命名的 md 文件里面，在 mac、iPhone、PC之间用iCloud同步数据，本周的问题就是不知道啥原因，PC的iCloud始终不能和其他设备同步数据，至今都...</p>
+      <a class="post-card-link" href="/2022/12/03/imagenation/" aria-label="阅读：66 - 想象力">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-11-26">2022.11.26</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/11/26/unsleep/">65 - 装睡</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 昆明，大巴车 新疆，火灾 郑州，富士康 ………… 你永远无法叫醒一个装睡的人。 如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 文章推荐 长线投资：有知有行 有知有行，帮大家在这个越来越不确定的世界里，放下焦虑，...</p>
+      <a class="post-card-link" href="/2022/11/26/unsleep/" aria-label="阅读：65 - 装睡">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-11-19">2022.11.19</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/11/19/thinking/">64 - 思考</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 老父亲原来的手机是iPhone 6S，这个手机屏幕太小了，就这琢磨这给他老人家换一部屏幕大一点的手机，秉持开源节流的原则，就想买一个二手便宜的。 最近就在网上找了一个二手的大屏iPhone，对于平台来说，有咸鱼、京东的拍拍、转转、本地的二手平台，我推荐的是京东的「拍拍严选」，这...</p>
+      <a class="post-card-link" href="/2022/11/19/thinking/" aria-label="阅读：64 - 思考">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page6">← 较新文章</a>
+  
+  <span>第 7 / 32 页</span>
+  
+  <a href="/page8">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -725,7 +509,7 @@ UUID 看起来像这样 ff78ae6b-7176-46e9-8...
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -1011,10 +795,11 @@ UUID 看起来像这样 ff78ae6b-7176-46e9-8...
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -1031,7 +816,7 @@ UUID 看起来像这样 ff78ae6b-7176-46e9-8...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1098,6 +883,7 @@ UUID 看起来像这样 ff78ae6b-7176-46e9-8...
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1137,7 +923,7 @@ UUID 看起来像这样 ff78ae6b-7176-46e9-8...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1217,17 +1003,17 @@ UUID 看起来像这样 ff78ae6b-7176-46e9-8...
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1368,63 +1154,6 @@ UUID 看起来像这样 ff78ae6b-7176-46e9-8...
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page14/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page14/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,337 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2022/04/18/gihub-action-build-blog/">
-        <h2 class="post-title">
-            用 Github Action 构建自己的 Jekyll 博客
-        </h2>
-        
-        <h3 class="post-subtitle">
-            github actions 工具太好了
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                思路
-
-对自己的提交的md文档，通过github action编译为静态文件，然后push到username.github.io仓库。从而可以浏览自己的博客。
-
-
-  创建一个仓库，比如名字为A-repo，用来管理自己的md文件
-  上传自己的Jekyll 网站文件，可以参考这个创建的文章；,如果不会的可以参考fastpage来生成也非常的方便。
-  创建github actions来自动运...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 18, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/04/16/how-to-plan/">
-        <h2 class="post-title">
-            33 - 如何计划
-        </h2>
-        
-        <h3 class="post-subtitle">
-            计划固然重要，行动更为重要
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-成都天气转凉，今天晚上只有12°，光说一个数字，估计大部分人没有什么概念，就是12°可以穿薄款羽绒服了。
-
-成都不只是一个来了就不想走的城市，还是一个天气多变的城市，如果你是外地人，来成都游玩，类似春天或者秋天，多准备几件厚衣服 ~
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-计...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 16, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/04/09/time-as-a-friend/">
-        <h2 class="post-title">
-            32 - 时间就是朋友
-        </h2>
-        
-        <h3 class="post-subtitle">
-            接受自己的本性
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-上海确实疫情非常的严重，但是致死率官方报道的至少还是零，这个0给了我们很多信心，坚持下去一定会成功的。
-
-对于在上海的同事们来说，定闹钟抢购是家常便饭了。有个同事在隔离在酒店，每天有饭菜送上门，不用担心没有吃的问题，反而还是因祸得福。
-
-顺便祝大家有菜吃，有了菜吃，才能更好的防御疫情。
-
-加油，上海！
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 9, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/04/02/what-your-expectation/">
-        <h2 class="post-title">
-            31 - 你的期望是什么
-        </h2>
-        
-        <h3 class="post-subtitle">
-            有希望是好事
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-节前时刻，成都突然发现有2例本土确诊病例，大家假期出行一定要做好防护，尽量不要出行或者到高风险地区，保命要紧~
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-
-
-你对这个行业的期望是什么
-
-我是从互联网进入到芯片行业，有人问我”你是怎么进入这个行业的，你心态是什么样的”。
-
-其实我...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 2, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/03/26/long-term/">
-        <h2 class="post-title">
-            30 - 加班到底好不好？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            不一定是好事
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-疫情反复，奥密克戎毒株流行的危害依然严重，大家出行一定要做好防护。
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-长久之计
-
-在欢迎新员工会上，大家都介绍过去的经历，大部分人都提到了，目前的节奏非常的轻松，没有那么卷。
-
-我记得有2个同事，包括我自己，是来自互联网。互联网的情况，大...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 26, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/03/21/result-oriented/">
-        <h2 class="post-title">
-            29 - 差点把客服骂一顿
-        </h2>
-        
-        <h3 class="post-subtitle">
-            以结果为导向
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-成都天气急剧下降，温度环比降了15°左右，赶紧把外套找出来穿起。
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-怎么个活法
-
-最近又看了一个非常有意义的话题，世界上已经有1000多亿人死去了，目前留在世界上的还有60亿人，相当于6%的人还活在这世界上，有94%的人已经去世了。
-
-那...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 21, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/03/14/chip-road/">
-        <h2 class="post-title">
-            选择比努力重要
-        </h2>
-        
-        <h3 class="post-subtitle">
-            感谢这一路支持和帮助的人
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  不可以读，只是简单的记录。
-
-
-选择比努力重要，我先说一下努力我家是农村的，父母当然也是农民，每天就是日出而作日落而归你说他们不努力吗？他们努力他不仅努力，而且还非常的节约，但到头来也没存上什么钱，因为这个努力大环境下，大家都很努力，你没有太多的选择，只是靠天，才有好的收成，如果没有的天气这样就没有好的收成。
-
-你觉得努力重要吗？相比下来，我觉得选择更重要，选一个好的行业好的岗位好的赛...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 14, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/03/12/love-letter/">
-        <h2 class="post-title">
-            28 - 你收到情书么？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            这世界没有什么坏人，只有好人、笨蛋和病人
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-给你分享下，成都这个时候的春天。成都处于盆地，一般在冬日基本上很难见到太阳，但是春天到了，天空特别的晴朗，特别是最近几周。郊区到处可见黄色菜籽花，市区道路两旁红色的海棠，红叶李开满了”满天星”，随处可见的嫩绿色。心情也愉快，欢迎来成都赏春。
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 12, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/03/05/tell-story/">
-        <h2 class="post-title">
-            27 - 讲故事
-        </h2>
-        
-        <h3 class="post-subtitle">
-            一上来就说教，恐怕没人愿意看
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-讲好故事
-
-最近自己发现一个小技巧，如何写好讲好故事。这个技巧可用到自己的创作里面，让自己的创作更有趣味。
-
-看我的文章，我不希望自己像个人生导师样，在这里教各位做人，怎么学习，如何赚钱。希望看完之后有点自己的收获。希望你看到某个故事，某...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 5, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/03/05/download-singleFile/">
-        <h2 class="post-title">
-            推荐一个工具 - SingleFile
-        </h2>
-        
-        <h3 class="post-subtitle">
-            下载一个网页，保存到一个页面
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  https://github.com/gildas-lormeau/SingleFile
-
-
-我们经常保存一个网页的时候，要么只有文字信息，图片、样式、布局有可能没有保存下来。
-
-导致发给别人的时候，对方看到的信息和自己的了解的到的完全不一样。
-
-下载有网友制作一款工具，非常的方便，只需要点一下，就可以下载到一个文件里面，兼容市面上的大部分浏览器，甚至有些都没有见过的浏览器，不可为不强...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 5, 2022
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page13">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-04-18">2022.04.18</time>
+        <span class="post-card-tag">github</span>
+      </div>
+      <h3><a href="/2022/04/18/gihub-action-build-blog/">用 Github Action 构建自己的 Jekyll 博客</a></h3>
+      <p class="post-card-subtitle">github actions 工具太好了</p>
+      <p class="post-card-excerpt">思路 对自己的提交的md文档，通过github action编译为静态文件，然后push到username.github.io仓库。从而可以浏览自己的博客。 创建一个仓库，比如名字为A-repo，用来管理自己的md文件 上传自己的Jekyll 网站文件，可以参考这个创建的文章；,如果不会的可以...</p>
+      <a class="post-card-link" href="/2022/04/18/gihub-action-build-blog/" aria-label="阅读：用 Github Action 构建自己的 Jekyll 博客">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-04-16">2022.04.16</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/04/16/how-to-plan/">33 - 如何计划</a></h3>
+      <p class="post-card-subtitle">计划固然重要，行动更为重要</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 成都天气转凉，今天晚上只有12°，光说一个数字，估计大部分人没有什么概念，就是12°可以穿薄款羽绒服了。 成都不只是一个来了就不想走的城市，还是一个天气多变的城市，如果你是外地人，来成都游玩，类似春天或者秋天，多准备几件厚衣服 ~ 如果您喜欢这份Newsletter，请转发给您...</p>
+      <a class="post-card-link" href="/2022/04/16/how-to-plan/" aria-label="阅读：33 - 如何计划">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page15">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-04-09">2022.04.09</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/04/09/time-as-a-friend/">32 - 时间就是朋友</a></h3>
+      <p class="post-card-subtitle">接受自己的本性</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 上海确实疫情非常的严重，但是致死率官方报道的至少还是零，这个0给了我们很多信心，坚持下去一定会成功的。 对于在上海的同事们来说，定闹钟抢购是家常便饭了。有个同事在隔离在酒店，每天有饭菜送上门，不用担心没有吃的问题，反而还是因祸得福。 顺便祝大家有菜吃，有了菜吃，才能更好的防御疫...</p>
+      <a class="post-card-link" href="/2022/04/09/time-as-a-friend/" aria-label="阅读：32 - 时间就是朋友">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-04-02">2022.04.02</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/04/02/what-your-expectation/">31 - 你的期望是什么</a></h3>
+      <p class="post-card-subtitle">有希望是好事</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 节前时刻，成都突然发现有2例本土确诊病例，大家假期出行一定要做好防护，尽量不要出行或者到高风险地区，保命要紧~ 如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 你对这个行业的期望是什么 我是从互...</p>
+      <a class="post-card-link" href="/2022/04/02/what-your-expectation/" aria-label="阅读：31 - 你的期望是什么">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-03-26">2022.03.26</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/03/26/long-term/">30 - 加班到底好不好？</a></h3>
+      <p class="post-card-subtitle">不一定是好事</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 疫情反复，奥密克戎毒株流行的危害依然严重，大家出行一定要做好防护。 如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 长久之计 在欢迎新员工会上，大家都介绍过去的经历，大部分人都提到了，目前的节奏...</p>
+      <a class="post-card-link" href="/2022/03/26/long-term/" aria-label="阅读：30 - 加班到底好不好？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-03-21">2022.03.21</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/03/21/result-oriented/">29 - 差点把客服骂一顿</a></h3>
+      <p class="post-card-subtitle">以结果为导向</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 成都天气急剧下降，温度环比降了15°左右，赶紧把外套找出来穿起。 如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 怎么个活法 最近又看了一个非常有意义的话题，世界上已经有1000多亿人死去了，目...</p>
+      <a class="post-card-link" href="/2022/03/21/result-oriented/" aria-label="阅读：29 - 差点把客服骂一顿">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-03-14">2022.03.14</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/03/14/chip-road/">选择比努力重要</a></h3>
+      <p class="post-card-subtitle">感谢这一路支持和帮助的人</p>
+      <p class="post-card-excerpt">不可以读，只是简单的记录。 选择比努力重要，我先说一下努力我家是农村的，父母当然也是农民，每天就是日出而作日落而归你说他们不努力吗？他们努力他不仅努力，而且还非常的节约，但到头来也没存上什么钱，因为这个努力大环境下，大家都很努力，你没有太多的选择，只是靠天，才有好的收成，如果没有的天气这样就没...</p>
+      <a class="post-card-link" href="/2022/03/14/chip-road/" aria-label="阅读：选择比努力重要">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-03-12">2022.03.12</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/03/12/love-letter/">28 - 你收到情书么？</a></h3>
+      <p class="post-card-subtitle">这世界没有什么坏人，只有好人、笨蛋和病人</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 给你分享下，成都这个时候的春天。成都处于盆地，一般在冬日基本上很难见到太阳，但是春天到了，天空特别的晴朗，特别是最近几周。郊区到处可见黄色菜籽花，市区道路两旁红色的海棠，红叶李开满了”满天星”，随处可见的嫩绿色。心情也愉快，欢迎来成都赏春。 如果您喜欢这份Newsletter，...</p>
+      <a class="post-card-link" href="/2022/03/12/love-letter/" aria-label="阅读：28 - 你收到情书么？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-03-05">2022.03.05</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/03/05/tell-story/">27 - 讲故事</a></h3>
+      <p class="post-card-subtitle">一上来就说教，恐怕没人愿意看</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 如果您喜欢这份Newsletter，请转发给您朋友，点这里免费订阅按钮，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 讲好故事 最近自己发现一个小技巧，如何写好讲好故事。这个技巧可用到自己的创作里面，让自己的创作更有趣味。 看我的文章，我不希望自己像个人生导师样，...</p>
+      <a class="post-card-link" href="/2022/03/05/tell-story/" aria-label="阅读：27 - 讲故事">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-03-05">2022.03.05</time>
+        <span class="post-card-tag">工具</span>
+      </div>
+      <h3><a href="/2022/03/05/download-singleFile/">推荐一个工具 - SingleFile</a></h3>
+      <p class="post-card-subtitle">下载一个网页，保存到一个页面</p>
+      <p class="post-card-excerpt">https://github.com/gildas-lormeau/SingleFile 我们经常保存一个网页的时候，要么只有文字信息，图片、样式、布局有可能没有保存下来。 导致发给别人的时候，对方看到的信息和自己的了解的到的完全不一样。 下载有网友制作一款工具，非常的方便，只需要点一下，就可...</p>
+      <a class="post-card-link" href="/2022/03/05/download-singleFile/" aria-label="阅读：推荐一个工具 - SingleFile">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page13">← 较新文章</a>
+  
+  <span>第 14 / 32 页</span>
+  
+  <a href="/page15">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -689,7 +509,7 @@
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -975,10 +795,11 @@
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -995,7 +816,7 @@
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1062,6 +883,7 @@
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1101,7 +923,7 @@
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1181,17 +1003,17 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1332,63 +1154,6 @@
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

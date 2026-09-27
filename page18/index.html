@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page18/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page18/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,439 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2021/10/15/Newsletter-interview/">
-        <h2 class="post-title">
-            07 - 年轻人，如何能成长更快
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-
-  如何轻松的写一份 Newsletter
-
-
-互联网上的信息成指数级的增长，目前来看大部分，乃至90%都是重复的内容。如何在这些重复的信息中找到自己想要的，而且有用信息，降低信息噪音就非常的关键。
-
-Newsletter 就是让志同道合的人，把信息在他们之间传递，减少噪音。
-
-
-  十年创业者，万字长文分享我是怎么招人的
-
-
-本文主要讲了如何找到一个合适的人，人才分不同的等级，根据不...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 15, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/10/provide-valuable-thing/">
-        <h2 class="post-title">
-            06 - 提供有价值的事情
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                订阅者减少了
-
-最近发现我的订阅者在减少，而且减少比以往快很多。
-
-根本原因就是我最近就是在公众号去记录自己去学习日语这个过程。我是想的把一个学习到的东西，然后用费曼学习方法把它表达出来，然后加深自己的记忆。
-
-没想到大家对日语这么反感。
-
-难怪会有人说，英语的文献数量就好比一碗水，那么中文相关文献大概就是里面一勺水，而日语只有一滴水，可见日语是非常少的。
-
-对我的关注者来说大部分是通过爬虫...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 10, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/10/learn-japanese-08/">
-        <h2 class="post-title">
-            日语学习 - 08 ま行
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
-
-
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-ま(ma)行 - (まみむめも)
-
-
-
-ま - ma - 妈
-
-妈呀，捅破天啦!
-
-解释： 妈是发音，捅的有一个偏旁形似片假名，天被捅破了，形似平假名。
-
-还有一个好记的「马夫下令」。
-
-
-み - mi - 眯
-
-丘比特  ,眯着眼睛射出了三支箭.
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 10, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/10/learn-japanese-07/">
-        <h2 class="post-title">
-            日语学习 - 07 行
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
-
-
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-は(ha)行 - (はひふへほ)
-
-
-
-は - ha - 哈
-
-哈，还打口水仗，很八婆耶。
-
-解释： 哈是发音，仗形似平假名，八形似片假名。
-
-
-
-ひ- hi - 嘿
-
-袋子里掏出了匕首，嘿!扎过去了!
-
-解释： 这个比较好记，没有太大的难度。袋子形...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 10, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/09/learn-japanese-06/">
-        <h2 class="post-title">
-            日语学习 - 06 は行
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
-
-
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-は(ha)行 - (はひふへほ)
-
-
-
-は - ha - 哈
-
-哈，还打口水仗，很八婆耶。
-
-解释： 哈是发音，仗形似平假名，八形似片假名。
-
-
-
-ひ- hi - 嘿
-
-袋子里掏出了匕首，嘿!扎过去了!
-
-解释： 这个比较好记，没有太大的难度。袋子形...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 9, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/08/learn-japanese-05/">
-        <h2 class="post-title">
-            日语学习 - 05 な行
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
-
-
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-な(na)行 - (なにぬねの)
-
-
-
-な - na - 拿
-
-な： 交完卷子，只拿十分!
-
-解释： 交是形似片假名，十是片假名，拿是发音。
-
-
-
-に- ni - 粗
-
-に： 仁者爱 (er) 人孔仲尼。
-
-
-  孔子，子仲尼。孔子思想的核心是仁和礼...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 8, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/07/learn-japanese-04/">
-        <h2 class="post-title">
-            日语学习 - 04 た行
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
-
-
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-た(ta)行 - (たちつてと)
-
-
-
-た - ta - 塌
-
-第一个 た：十二点还有夕阳，天塌了吧。
-
-解释：平假名的形似十二，片假名形似夕阳的夕，读音是塌。
-
-
-
-ち - chi - 吸
-
-ち： 饼干出炉，跑着来吃!
-
-解释： 平假名有点类似一个...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 7, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/06/learn-japanese-03/">
-        <h2 class="post-title">
-            日语学习 - 03 さ行
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
-
-
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-さ(撒)行 - (さしすせそ)
-
-
-
-さ - sa - 洒
-
-第一个 さ：跪在了草地上，傻(sa)不傻(sa) 啊。
-
-解释：平假名类似一个人跪在草地上，无缘无故跪在哪里干嘛，傻呗。
-
-
-
-し - shi - 吸
-
-し： 用吸管吸出了三点水。
-
-解释...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 6, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/05/learn-japanese-02/">
-        <h2 class="post-title">
-            日语学习 - 02 か行
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
-
-
-通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。
-
-か(卡)行 - (かきくけこ)
-
-
-
-か - ka - 卡
-
-第一个 か：车卡住了!加一点力!
-
-解释：加和力字分别是平和片假名的写法，卡是发音。
-
-
-
-き - ki - key
-
-き： 给琵琶调一下key。
-
-解释： 平和片假名外形类似琵琶，对于乐...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 5, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/05/learn-japanese-01/">
-        <h2 class="post-title">
-            日语学习 - 01 五十音
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。
-
-
-日语有五十音，最基本的三种符号：平假名、片假名、罗马音。
-
-
-  
-    平假名就是小写，主要用来标注发音等，还有就是构成单词。
-  
-  
-    片假名就是大写，主要用来书写外来语，以及一些特殊的动植物。
-  
-  
-    罗马音就是用来在键盘上打字用。
-  
-
-
-通过超级想象力来记住平假名和片假名的写法，以及...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 5, 2021
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page17">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-15">2021.10.15</time>
+        <span class="post-card-tag">面试</span>
+      </div>
+      <h3><a href="/2021/10/15/Newsletter-interview/">07 - 年轻人，如何能成长更快</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">如何轻松的写一份 Newsletter 互联网上的信息成指数级的增长，目前来看大部分，乃至90%都是重复的内容。如何在这些重复的信息中找到自己想要的，而且有用信息，降低信息噪音就非常的关键。 Newsletter 就是让志同道合的人，把信息在他们之间传递，减少噪音。 十年创业者，万字长文分享我...</p>
+      <a class="post-card-link" href="/2021/10/15/Newsletter-interview/" aria-label="阅读：07 - 年轻人，如何能成长更快">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-10">2021.10.10</time>
+        <span class="post-card-tag">利他</span>
+      </div>
+      <h3><a href="/2021/10/10/provide-valuable-thing/">06 - 提供有价值的事情</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">订阅者减少了 最近发现我的订阅者在减少，而且减少比以往快很多。 根本原因就是我最近就是在公众号去记录自己去学习日语这个过程。我是想的把一个学习到的东西，然后用费曼学习方法把它表达出来，然后加深自己的记忆。 没想到大家对日语这么反感。 难怪会有人说，英语的文献数量就好比一碗水，那么中文相关文献大...</p>
+      <a class="post-card-link" href="/2021/10/10/provide-valuable-thing/" aria-label="阅读：06 - 提供有价值的事情">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page19">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-10">2021.10.10</time>
+        <span class="post-card-tag">日语</span>
+      </div>
+      <h3><a href="/2021/10/10/learn-japanese-08/">日语学习 - 08 ま行</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。 通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。 ま(ma)行 - (まみむめも) ま - ma - 妈 妈呀，捅破天啦! 解释： 妈是发音，捅的有一个偏旁形似片假名，天被捅破了，形似平假名。 还有一个好记的「马...</p>
+      <a class="post-card-link" href="/2021/10/10/learn-japanese-08/" aria-label="阅读：日语学习 - 08 ま行">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-10">2021.10.10</time>
+        <span class="post-card-tag">日语</span>
+      </div>
+      <h3><a href="/2021/10/10/learn-japanese-07/">日语学习 - 07 行</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。 通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。 は(ha)行 - (はひふへほ) は - ha - 哈 哈，还打口水仗，很八婆耶。 解释： 哈是发音，仗形似平假名，八形似片假名。 ひ- hi - 嘿 袋子里掏出...</p>
+      <a class="post-card-link" href="/2021/10/10/learn-japanese-07/" aria-label="阅读：日语学习 - 07 行">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-09">2021.10.09</time>
+        <span class="post-card-tag">日语</span>
+      </div>
+      <h3><a href="/2021/10/09/learn-japanese-06/">日语学习 - 06 は行</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。 通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。 は(ha)行 - (はひふへほ) は - ha - 哈 哈，还打口水仗，很八婆耶。 解释： 哈是发音，仗形似平假名，八形似片假名。 ひ- hi - 嘿 袋子里掏出...</p>
+      <a class="post-card-link" href="/2021/10/09/learn-japanese-06/" aria-label="阅读：日语学习 - 06 は行">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-08">2021.10.08</time>
+        <span class="post-card-tag">日语</span>
+      </div>
+      <h3><a href="/2021/10/08/learn-japanese-05/">日语学习 - 05 な行</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。 通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。 な(na)行 - (なにぬねの) な - na - 拿 な： 交完卷子，只拿十分! 解释： 交是形似片假名，十是片假名，拿是发音。 に- ni - 粗 に： 仁者...</p>
+      <a class="post-card-link" href="/2021/10/08/learn-japanese-05/" aria-label="阅读：日语学习 - 05 な行">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-07">2021.10.07</time>
+        <span class="post-card-tag">日语</span>
+      </div>
+      <h3><a href="/2021/10/07/learn-japanese-04/">日语学习 - 04 た行</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。 通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。 た(ta)行 - (たちつてと) た - ta - 塌 第一个 た：十二点还有夕阳，天塌了吧。 解释：平假名的形似十二，片假名形似夕阳的夕，读音是塌。 ち - c...</p>
+      <a class="post-card-link" href="/2021/10/07/learn-japanese-04/" aria-label="阅读：日语学习 - 04 た行">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-06">2021.10.06</time>
+        <span class="post-card-tag">日语</span>
+      </div>
+      <h3><a href="/2021/10/06/learn-japanese-03/">日语学习 - 03 さ行</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。 通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。 さ(撒)行 - (さしすせそ) さ - sa - 洒 第一个 さ：跪在了草地上，傻(sa)不傻(sa) 啊。 解释：平假名类似一个人跪在草地上，无缘无故跪在哪里干...</p>
+      <a class="post-card-link" href="/2021/10/06/learn-japanese-03/" aria-label="阅读：日语学习 - 03 さ行">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-05">2021.10.05</time>
+        <span class="post-card-tag">日语</span>
+      </div>
+      <h3><a href="/2021/10/05/learn-japanese-02/">日语学习 - 02 か行</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。 通过超级想象力来记住平假名和片假名的写法，从外形来巧记，以及发音。 か(卡)行 - (かきくけこ) か - ka - 卡 第一个 か：车卡住了!加一点力! 解释：加和力字分别是平和片假名的写法，卡是发音。 き - ki - key...</p>
+      <a class="post-card-link" href="/2021/10/05/learn-japanese-02/" aria-label="阅读：日语学习 - 02 か行">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-05">2021.10.05</time>
+        <span class="post-card-tag">日语</span>
+      </div>
+      <h3><a href="/2021/10/05/learn-japanese-01/">日语学习 - 01 五十音</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">学习的资料是来自明王道的教材，要记住五十音，真的要脑洞超级大。 日语有五十音，最基本的三种符号：平假名、片假名、罗马音。 平假名就是小写，主要用来标注发音等，还有就是构成单词。 片假名就是大写，主要用来书写外来语，以及一些特殊的动植物。 罗马音就是用来在键盘上打字用。 通过超级想象力来记住平假...</p>
+      <a class="post-card-link" href="/2021/10/05/learn-japanese-01/" aria-label="阅读：日语学习 - 01 五十音">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page17">← 较新文章</a>
+  
+  <span>第 18 / 32 页</span>
+  
+  <a href="/page19">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -791,7 +509,7 @@ Newsletter 就是让志同道合的人，把信息在他们之间传递，减少
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -1077,10 +795,11 @@ Newsletter 就是让志同道合的人，把信息在他们之间传递，减少
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -1097,7 +816,7 @@ Newsletter 就是让志同道合的人，把信息在他们之间传递，减少
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1164,6 +883,7 @@ Newsletter 就是让志同道合的人，把信息在他们之间传递，减少
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1203,7 +923,7 @@ Newsletter 就是让志同道合的人，把信息在他们之间传递，减少
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1283,17 +1003,17 @@ Newsletter 就是让志同道合的人，把信息在他们之间传递，减少
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1434,63 +1154,6 @@ Newsletter 就是让志同道合的人，把信息在他们之间传递，减少
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

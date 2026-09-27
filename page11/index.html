@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page11/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page11/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,356 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2022/06/11/life-is-important/">
-        <h2 class="post-title">
-            41 - 保命重要
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-我发现有个奇怪的现象，订阅人数不是很多，才3位数，但是阅读量有时候4k+，难道是是转发阅读量很大？
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-在此感谢大家的转发和帮助。
-
-本周的 newsletter 轻松一点，内容相对就少一点。主要是自己也想偷个懒，今天去陪孩子去参加了学校的足球比赛，被晒得像个红苹果一样。
-
-足球这个运动，不是根据人数来决定的，比如这种很无知的问题：我们14亿人口，居然选不出11个人来踢足球。...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 11, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/08/llvm-c-compiler-static-analyzer/">
-        <h2 class="post-title">
-            LLVM LibFuzzer介绍和实践 -2
-        </h2>
-        
-        <h3 class="post-subtitle">
-            浅谈
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                Read more
-
-https://gist.github.com/MattPD/00573ee14bf85ccac6bed3c0678ddbef#program-analysis-resources
-
-https://github.com/MattPD/cpplinks/blob/master/analysis.static.md
-
-https://blog.regehr.org/arc...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 8, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/07/llvm-fuzz-2/">
-        <h2 class="post-title">
-            浅谈 LLVM LibFuzzer 介绍和实践
-        </h2>
-        
-        <h3 class="post-subtitle">
-            技多不压身
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                浅谈 LLVM LibFuzzer 介绍和实践
-
-目录
-
-
-  什么是 Fuzzing Testing
-  LLVm libFuzzer
-  环境准备
-  编译LLVM内建Fuzzer
-  提高 Fuzzer 效率
-  Hello World Fuzzer
-  总结
-
-
-
-
-
-  导读：通过本文我们可以知道什么是 Fuzzer、LibFuzzer，如何编译LLVM-Fuzzer，以及快速写一...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 7, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/07/llvm-fuzz-2/">
-        <h2 class="post-title">
-            Llvm Fuzz 2
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-
-2022-06-07-llvm-fuzz-2.md
-
-
-
-
-
-
-
-
-
-
-
-  
-浅谈 LLVM LibFuzzer 介绍和实践
-目录
-
-什么是 Fuzzing Testing
-LLVm libFuzzer
-环境准备
-编译LLVM内建Fuzzer
-提高 Fuzzer 效率
-Hello World Fuzzer
-总结
-
-
-
-导读：通过本文我们可以知道什么是 Fuzzer...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on June 7, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/04/what-is-friend/">
-        <h2 class="post-title">
-            40 - 朋友多好，还是少好？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            2022-06-04
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                如果您喜欢这份Newsletter，请转发给您朋友，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-本周话题
-
-朋友，别看我平时像个逗比一样，其实我是很内向的。
-
-我的朋友很少，我个人感觉不超过一桌人，一年吃饭的话就更少了，不超过10次。
-
-我老婆经常说我没什么朋友，确实我身边朋友比较少，然后能约出来一起吃饭的，那就更少了。
-
-我是这么看待的，如果你要维持这个朋友关系，那可能要...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 4, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/02/run-cuda-with-free-cloud/">
-        <h2 class="post-title">
-            用谷歌云服务器免费跑 cuda 代码
-        </h2>
-        
-        <h3 class="post-subtitle">
-            免费
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                什么是 CUDA？
-
-CUDA 是 Nvidia 为并行计算平台和应用程序编程接口创建的一个模型。CUDA 是 NVIDIA 的并行计算架构，通过利用 GPU 的能力，可以大幅度提高计算性能。
-
-CUDA 代码不会在 AMD CPU 或者 Intel HD Graphics 上运行，除非你的机器里有 NVIDIA 的硬件。在 Colab 上，你可以利用 NVIDIA 的 GPU，以及一个预装...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 2, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/01/llvm-fuzz/">
-        <h2 class="post-title">
-            LLVM LibFuzzer介绍和实践
-        </h2>
-        
-        <h3 class="post-subtitle">
-            浅谈
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                Fuzzing 是一种软件测试方法，将格式不正确的数据作为输入传递给程序，并查看其是否存在不正确的行为。今天 fuzzing 是发现软件安全问题的最有效的方法之一。2014年第一个覆盖引导模糊器Fuzzy Lop。这开创了现代市场上的模糊解决方案和技术。
-
-什么是LibFuzzer
-
-
-  LibFuzzer is in-process, coverage-guided, evolution...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 1, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/30/wsl-install-error-0x80072f7d/">
-        <h2 class="post-title">
-            安装WSL错误0x80072f7d，解决办法
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                现象
-
-wsl2安装ubuntu的时候，提示错误0x80072f7d
-
-C:\Windows\system32&gt;wsl --install
-Installing: Windows Subsystem for Linux
-Windows Subsystem for Linux has been installed.
-Downloading: WSL Kernel
-A error was ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 30, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/30/config-linux-forward-history-search/">
-        <h2 class="post-title">
-            Linux 配置 xx search history
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                这个是为我自己记录配置的，因为我换了环境之后，总是忘记怎么配置.
-
-喜欢linux、unix的终端，非常的方便.
-
-但是快速的的找到某一个历史命令，有很多种途径，有没有更快速的方法喃
-
-
-  
+  <div class="post-card-list">
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-11">2022.06.11</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/06/11/life-is-important/">41 - 保命重要</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 我发现有个奇怪的现象，订阅人数不是很多，才3位数，但是阅读量有时候4k+，难道是是转发阅读量很大？ 在此感谢大家的转发和帮助。 本周的 newsletter 轻松一点，内容相对就少一点。主要是自己也想偷个懒，今天去陪孩子去参加了学校的足球比赛，被晒得像个红苹果一样。 足球这个运...</p>
+      <a class="post-card-link" href="/2022/06/11/life-is-important/" aria-label="阅读：41 - 保命重要">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-08">2022.06.08</time>
+        <span class="post-card-tag">LLVM</span>
+      </div>
+      <h3><a href="/2022/06/08/llvm-c-compiler-static-analyzer/">LLVM LibFuzzer介绍和实践 -2</a></h3>
+      <p class="post-card-subtitle">浅谈</p>
+      <p class="post-card-excerpt">Read more https://gist.github.com/MattPD/00573ee14bf85ccac6bed3c0678ddbef#program-analysis-resources https://github.com/MattPD/cpplinks/blob/master...</p>
+      <a class="post-card-link" href="/2022/06/08/llvm-c-compiler-static-analyzer/" aria-label="阅读：LLVM LibFuzzer介绍和实践 -2">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-07">2022.06.07</time>
+        <span class="post-card-tag">LLVM</span>
+      </div>
+      <h3><a href="/2022/06/07/llvm-fuzz-2/">浅谈 LLVM LibFuzzer 介绍和实践</a></h3>
+      <p class="post-card-subtitle">技多不压身</p>
+      <p class="post-card-excerpt">浅谈 LLVM LibFuzzer 介绍和实践 目录 什么是 Fuzzing Testing LLVm libFuzzer 环境准备 编译LLVM内建Fuzzer 提高 Fuzzer 效率 Hello World Fuzzer 总结 导读：通过本文我们可以知道什么是 Fuzzer、LibFuz...</p>
+      <a class="post-card-link" href="/2022/06/07/llvm-fuzz-2/" aria-label="阅读：浅谈 LLVM LibFuzzer 介绍和实践">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-07">2022.06.07</time>
+        
+      </div>
+      <h3><a href="/2022/06/07/llvm-fuzz-2/">Llvm Fuzz 2</a></h3>
       
+      <p class="post-card-excerpt">2022-06-07-llvm-fuzz-2.md 浅谈 LLVM LibFuzzer 介绍和实践 目录 什么是 Fuzzing Testing LLVm libFuzzer 环境准备 编译LLVM内建Fuzzer 提高 Fuzzer 效率 Hello World Fuzzer 总结 导读：通...</p>
+      <a class="post-card-link" href="/2022/06/07/llvm-fuzz-2/" aria-label="阅读：Llvm Fuzz 2">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-04">2022.06.04</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/06/04/what-is-friend/">40 - 朋友多好，还是少好？</a></h3>
+      <p class="post-card-subtitle">2022-06-04</p>
+      <p class="post-card-excerpt">如果您喜欢这份Newsletter，请转发给您朋友，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 本周话题 朋友，别看我平时像个逗比一样，其实我是很内向的。 我的朋友很少，我个人感觉不超过一桌人，一年吃饭的话就更少了，不超过10次。 我老婆经常说我没什么朋友，确实我身边朋友比较少...</p>
+      <a class="post-card-link" href="/2022/06/04/what-is-friend/" aria-label="阅读：40 - 朋友多好，还是少好？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-02">2022.06.02</time>
+        <span class="post-card-tag">cuda</span>
+      </div>
+      <h3><a href="/2022/06/02/run-cuda-with-free-cloud/">用谷歌云服务器免费跑 cuda 代码</a></h3>
+      <p class="post-card-subtitle">免费</p>
+      <p class="post-card-excerpt">什么是 CUDA？ CUDA 是 Nvidia 为并行计算平台和应用程序编程接口创建的一个模型。CUDA 是 NVIDIA 的并行计算架构，通过利用 GPU 的能力，可以大幅度提高计算性能。 CUDA 代码不会在 AMD CPU 或者 Intel HD Graphics 上运行，除非你的机器里...</p>
+      <a class="post-card-link" href="/2022/06/02/run-cuda-with-free-cloud/" aria-label="阅读：用谷歌云服务器免费跑 cuda 代码">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-01">2022.06.01</time>
+        <span class="post-card-tag">LLVM</span>
+      </div>
+      <h3><a href="/2022/06/01/llvm-fuzz/">LLVM LibFuzzer介绍和实践</a></h3>
+      <p class="post-card-subtitle">浅谈</p>
+      <p class="post-card-excerpt">Fuzzing 是一种软件测试方法，将格式不正确的数据作为输入传递给程序，并查看其是否存在不正确的行为。今天 fuzzing 是发现软件安全问题的最有效的方法之一。2014年第一个覆盖引导模糊器Fuzzy Lop。这开创了现代市场上的模糊解决方案和技术。 什么是LibFuzzer LibFuz...</p>
+      <a class="post-card-link" href="/2022/06/01/llvm-fuzz/" aria-label="阅读：LLVM LibFuzzer介绍和实践">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-30">2022.05.30</time>
+        <span class="post-card-tag">wsl</span>
+      </div>
+      <h3><a href="/2022/05/30/wsl-install-error-0x80072f7d/">安装WSL错误0x80072f7d，解决办法</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">现象 wsl2安装ubuntu的时候，提示错误0x80072f7d C:\Windows\system32&gt;wsl --install Installing: Windows Subsystem for Linux Windows Subsystem for Linux has been...</p>
+      <a class="post-card-link" href="/2022/05/30/wsl-install-error-0x80072f7d/" aria-label="阅读：安装WSL错误0x80072f7d，解决办法">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-30">2022.05.30</time>
+        <span class="post-card-tag">linux</span>
+      </div>
+      <h3><a href="/2022/05/30/config-linux-forward-history-search/">Linux 配置 xx search history</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">这个是为我自己记录配置的，因为我换了环境之后，总是忘记怎么配置. 喜欢linux、unix的终端，非常的方便. 但是快速的的找到某一个历史命令，有很多种途径，有没有更快速的方法喃 history grep xxx 这个太慢了 ctrl+r 输入之前输入过的命令，会有提示 输入之前命令的前半部分...</p>
+      <a class="post-card-link" href="/2022/05/30/config-linux-forward-history-search/" aria-label="阅读：Linux 配置 xx search history">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-28">2022.05.28</time>
         
-          history
-          grep xxx 这个太慢了
-        
+      </div>
+      <h3><a href="/2022/05/28/keep-health/">Keep Health</a></h3>
       
+      <p class="post-card-excerpt">layout: post title: “39 - 保持健康” subtitle: ‘2022-05-20’ author: “叉叉敌” header-style: text tags: Newsletter 朋友，您好 ~ 我经常不知道如何写newsletter的开头，有时候就写最近的天气，...</p>
+      <a class="post-card-link" href="/2022/05/28/keep-health/" aria-label="阅读：Keep Health">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
   
-  ctrl+r 输入之...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 30, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/28/keep-health/">
-        <h2 class="post-title">
-            Keep Health
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-layout: post
-title: “39 - 保持健康”
-subtitle: ‘2022-05-20’ 
-author: “叉叉敌”
-header-style: text
-tags:
-
+  <a href="/page10">← 较新文章</a>
   
-    Newsletter
+  <span>第 11 / 32 页</span>
   
-
-
-朋友，您好 ~
-
-我经常不知道如何写newsletter的开头，有时候就写最近的天气，或者最近的热点。
-
-你没看错，都是最近相关的。但是有个问题，我们大...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on May 28, 2022
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page10">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page12">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+  <a href="/page12">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -708,7 +509,7 @@ tags:
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -994,10 +795,11 @@ tags:
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -1014,7 +816,7 @@ tags:
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1081,6 +883,7 @@ tags:
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1120,7 +923,7 @@ tags:
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1200,17 +1003,17 @@ tags:
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1351,63 +1154,6 @@ tags:
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

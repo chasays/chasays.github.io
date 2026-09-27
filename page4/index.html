@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page4/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page4/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,362 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2023/05/20/personal-advantage/">
-        <h2 class="post-title">
-            90 -  找到个人优势
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-  人生不是只能追求深度，还可以追求的广度。
-
-
-我们时常提到要做一个既有广度的人，也要做一个有深度的人，这样的人才在职场才有竞争力。
-
-我们先来看看什么是 T 型人才。
-
-
-  什么是 T 型人才？这种人才具有广博的知识面和专业的技能。他们既具有跨领域的广泛知识和视野，也有某一个专业领域的深入精通与技能。
-  
-    广博的知识面。在不同领域都有一定的了解和知识，具有...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 20, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/05/13/course-design/">
-        <h2 class="post-title">
-            课程设计
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                #
-
-超级智能时代到来 
-每个人都要 学会的 AI 工具
-
-模块化教学 小白即学即用
-
-课程价值
-
-
-  
-    零基础能学，并能轻松上手 0
-这门课主要从零开始，来讲普及人工智能的 知识，并且通过具体实操的方式，让大家快 速了解掌握人工智能技术
-  
-  
-    从理论到实操，覆盖多场景 
-无论你是普通人或者上班族，还是创业者老 板，不论你从事什么行业，该课程都将为提 供极高价值的知识...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 13, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/05/13/now-is-good/">
-        <h2 class="post-title">
-            89 -  活在当下
-        </h2>
-        
-        <h3 class="post-subtitle">
-            要意识到你的全部人生，都理应要为你的创作提供养分，为它服务
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-15 年前的今天，那时的我正好在高三，准备着人生中的第一场抉择——高考，殊不知，那是在最无知的时候需要做重要的人生决定。
-
-清楚的记得我们的教室在一楼，午休之后，试图放松一下午休后懒散的神经，一般都需要唱歌，不记得当时是什么歌曲了。大家正在唱歌的时候，突然，地面开始摇晃，一开始还以为是错觉，但摇晃越来越大，很快就无法站稳。
-
-清楚的记得，我们的教室就在一楼。午休过后，同学们...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 13, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/05/06/focus/">
-        <h2 class="post-title">
-            88 -  聚焦
-        </h2>
-        
-        <h3 class="post-subtitle">
-            要学会聚焦，但聚焦不是一味执着于一件事
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-我们小学的时候，大概学过这这样一篇文章
-
-
-  小猫钓鱼：在树林旁边，有一条小河，河里有许多鱼在水里游来游去。一天早上，猫妈妈带着小猫到小河边去钓鱼。他们刚刚坐下，一只蜻蜓飞来了，蜻蜓真好玩，飞来飞去像架小飞机。小猫看了真喜欢，放下钓鱼竿，就去捉蜻蜓…………
-
-
-小猫是一个典型的“三心二意”的猫。我们身边也有这样的人吧，我时常也是这样的，经常同时着手三四件事，但最终很难...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 6, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/04/29/be-kid-forever/">
-        <h2 class="post-title">
-            87 -  在父母眼里，我永远是那个需要照顾的孩子
-        </h2>
-        
-        <h3 class="post-subtitle">
-            学会闭嘴？
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-  如果是没有规律的事情，就需要解题思路和方法。
-
-
-
-
-我们总是听到说，「人总是会低估自己」，但是有时候也会听到「人总是高估自己」，我就在想，这不是矛盾的么？
-
-后来网上看了一些资料，是不同的环境、条件下会有不同的意识。
-
-低估自己
-
-
-  面对新环境或新任务时。因为不熟悉，人会感到无措和缺乏自信，低估自己的应对能力。
-  过于自我批判时。人总是看到自己的缺点和错误，而...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 29, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/04/27/new-ipo/">
-        <h2 class="post-title">
-            （番外）港股打新，简单粗暴分析，值得买么？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            看一个参数就可以了
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  理财有风险，投资需谨慎。
-
-
-今天不讨论：
-
-
-  港股打新一年能赚多少
-  港股打新需要市值吗
-  港股打新需要多少资金
-  申购港股需要什么条件
-  港股打新规则
-  港股如何打新申购
-
-
-今天重点要解决的问题是，对于一个上班族，没有太多的时间看数据，同时又不好找到专业的数据，来抄作业。
-
-如何赚点零花钱，同时又简单粗暴，比如对于 A 股的可转债基本上是闭眼操作，这种属于捡钱的，那...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 27, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/04/26/LLVM-data-hazard/">
-        <h2 class="post-title">
-            LLVM Data hazard 数据冲突
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                先来一个例子：
-
-A 给 B 转账，A 负责存款，B 负责取款。比如:
-
-  客户 A 去银行 ATM 机前转账给 B
-  客户 B 随后也来使用 ATM 机取 A 给他转账
-
-
-比如客户 B 先进行了取款，但他的钱还没有进入账户，此时如果客户 B 进行取款，他会取出的钱比实际余额少（如果取出的钱多了，记得退回去，不然是违法的哦），这就像后续指令读取了旧的数据一样。
-
-为了解决这个问题，银行...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 26, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/04/21/will-AI-repleace-programmer/">
-        <h2 class="post-title">
-            86 -  AI 会取代程序员么
-        </h2>
-        
-        <h3 class="post-subtitle">
-            和产品经理撕逼，怕 AI 还是不行吧
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-如果是看结论的话，直接拖到文末，看总结即可。
-
-当谈到 AI 会不会取代程序员这个话题时，人们往往会想到一些令人不安的想法。但是，我们需要理智地看待这个问题，并且认识到 AI 会取代哪些岗位以及程序员是否真的会被直接取代。
-
-首先，我们需要了解什么是 ChatGPT。老读者应该知道是什么了，还是顺便说一下。
-
-ChatGPT 是一种基于 GPT 架构的对话生成模型。它可...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 21, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/04/15/what-feel-work-with-ai/">
-        <h2 class="post-title">
-            85 - 用 AI 一起工作的感觉 
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-在文章的开头，有个小小请求，就是如果你是经常阅读我的文章，你会发现、觉得我有什么优点和特长？，可以私信回复我，如果我觉得这个优点也同时被我认可，而且没在现在的列表里面，我发一个小红包给你，支付宝口令，或者微信红包。
-
-主要目的是找出自己现有的资源、喜欢做的事情、擅长的技能，然后长期做下去~，期待您的回复。
-
-好，正文开始，上周去团建了，今天才回来。
-
-还记得我第一次接触...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 15, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/04/14/preprocessor-directives-c-programming/">
-        <h2 class="post-title">
-            预处理器指令--C 编程
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                更多阅读
-
-
-  详细图解哈夫曼 Huffman 编码树
-
-
-
-  github 博客
-
-  微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。
-
-
-
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 14, 2023
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page3">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-05-20">2023.05.20</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/05/20/personal-advantage/">90 -  找到个人优势</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 人生不是只能追求深度，还可以追求的广度。 我们时常提到要做一个既有广度的人，也要做一个有深度的人，这样的人才在职场才有竞争力。 我们先来看看什么是 T 型人才。 什么是 T 型人才？这种人才具有广博的知识面和专业的技能。他们既具有跨领域的广泛知识和视野，也有某一个专业领域的深入...</p>
+      <a class="post-card-link" href="/2023/05/20/personal-advantage/" aria-label="阅读：90 -  找到个人优势">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-05-13">2023.05.13</time>
+        
+      </div>
+      <h3><a href="/2023/05/13/course-design/">课程设计</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt"># 超级智能时代到来 每个人都要 学会的 AI 工具 模块化教学 小白即学即用 课程价值 零基础能学，并能轻松上手 0 这门课主要从零开始，来讲普及人工智能的 知识，并且通过具体实操的方式，让大家快 速了解掌握人工智能技术 从理论到实操，覆盖多场景 无论你是普通人或者上班族，还是创业者老 板，...</p>
+      <a class="post-card-link" href="/2023/05/13/course-design/" aria-label="阅读：课程设计">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page5">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-05-13">2023.05.13</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/05/13/now-is-good/">89 -  活在当下</a></h3>
+      <p class="post-card-subtitle">要意识到你的全部人生，都理应要为你的创作提供养分，为它服务</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 15 年前的今天，那时的我正好在高三，准备着人生中的第一场抉择——高考，殊不知，那是在最无知的时候需要做重要的人生决定。 清楚的记得我们的教室在一楼，午休之后，试图放松一下午休后懒散的神经，一般都需要唱歌，不记得当时是什么歌曲了。大家正在唱歌的时候，突然，地面开始摇晃，一开始还...</p>
+      <a class="post-card-link" href="/2023/05/13/now-is-good/" aria-label="阅读：89 -  活在当下">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-05-06">2023.05.06</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/05/06/focus/">88 -  聚焦</a></h3>
+      <p class="post-card-subtitle">要学会聚焦，但聚焦不是一味执着于一件事</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 我们小学的时候，大概学过这这样一篇文章 小猫钓鱼：在树林旁边，有一条小河，河里有许多鱼在水里游来游去。一天早上，猫妈妈带着小猫到小河边去钓鱼。他们刚刚坐下，一只蜻蜓飞来了，蜻蜓真好玩，飞来飞去像架小飞机。小猫看了真喜欢，放下钓鱼竿，就去捉蜻蜓………… 小猫是一个典型的“三心二意...</p>
+      <a class="post-card-link" href="/2023/05/06/focus/" aria-label="阅读：88 -  聚焦">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-29">2023.04.29</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/04/29/be-kid-forever/">87 -  在父母眼里，我永远是那个需要照顾的孩子</a></h3>
+      <p class="post-card-subtitle">学会闭嘴？</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 如果是没有规律的事情，就需要解题思路和方法。 我们总是听到说，「人总是会低估自己」，但是有时候也会听到「人总是高估自己」，我就在想，这不是矛盾的么？ 后来网上看了一些资料，是不同的环境、条件下会有不同的意识。 低估自己 面对新环境或新任务时。因为不熟悉，人会感到无措和缺乏自信，...</p>
+      <a class="post-card-link" href="/2023/04/29/be-kid-forever/" aria-label="阅读：87 -  在父母眼里，我永远是那个需要照顾的孩子">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-27">2023.04.27</time>
+        <span class="post-card-tag">港股</span>
+      </div>
+      <h3><a href="/2023/04/27/new-ipo/">（番外）港股打新，简单粗暴分析，值得买么？</a></h3>
+      <p class="post-card-subtitle">看一个参数就可以了</p>
+      <p class="post-card-excerpt">理财有风险，投资需谨慎。 今天不讨论： 港股打新一年能赚多少 港股打新需要市值吗 港股打新需要多少资金 申购港股需要什么条件 港股打新规则 港股如何打新申购 今天重点要解决的问题是，对于一个上班族，没有太多的时间看数据，同时又不好找到专业的数据，来抄作业。 如何赚点零花钱，同时又简单粗暴，比如...</p>
+      <a class="post-card-link" href="/2023/04/27/new-ipo/" aria-label="阅读：（番外）港股打新，简单粗暴分析，值得买么？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-26">2023.04.26</time>
+        <span class="post-card-tag">data hazard</span>
+      </div>
+      <h3><a href="/2023/04/26/LLVM-data-hazard/">LLVM Data hazard 数据冲突</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">先来一个例子： A 给 B 转账，A 负责存款，B 负责取款。比如: 客户 A 去银行 ATM 机前转账给 B 客户 B 随后也来使用 ATM 机取 A 给他转账 比如客户 B 先进行了取款，但他的钱还没有进入账户，此时如果客户 B 进行取款，他会取出的钱比实际余额少（如果取出的钱多了，记得退...</p>
+      <a class="post-card-link" href="/2023/04/26/LLVM-data-hazard/" aria-label="阅读：LLVM Data hazard 数据冲突">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-21">2023.04.21</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/04/21/will-AI-repleace-programmer/">86 -  AI 会取代程序员么</a></h3>
+      <p class="post-card-subtitle">和产品经理撕逼，怕 AI 还是不行吧</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 如果是看结论的话，直接拖到文末，看总结即可。 当谈到 AI 会不会取代程序员这个话题时，人们往往会想到一些令人不安的想法。但是，我们需要理智地看待这个问题，并且认识到 AI 会取代哪些岗位以及程序员是否真的会被直接取代。 首先，我们需要了解什么是 ChatGPT。老读者应该知道...</p>
+      <a class="post-card-link" href="/2023/04/21/will-AI-repleace-programmer/" aria-label="阅读：86 -  AI 会取代程序员么">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-15">2023.04.15</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/04/15/what-feel-work-with-ai/">85 - 用 AI 一起工作的感觉 </a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 在文章的开头，有个小小请求，就是如果你是经常阅读我的文章，你会发现、觉得我有什么优点和特长？，可以私信回复我，如果我觉得这个优点也同时被我认可，而且没在现在的列表里面，我发一个小红包给你，支付宝口令，或者微信红包。 主要目的是找出自己现有的资源、喜欢做的事情、擅长的技能，然后长...</p>
+      <a class="post-card-link" href="/2023/04/15/what-feel-work-with-ai/" aria-label="阅读：85 - 用 AI 一起工作的感觉 ">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-14">2023.04.14</time>
+        <span class="post-card-tag">preprocessor</span>
+      </div>
+      <h3><a href="/2023/04/14/preprocessor-directives-c-programming/">预处理器指令--C 编程</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">更多阅读 详细图解哈夫曼 Huffman 编码树 github 博客 微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+      <a class="post-card-link" href="/2023/04/14/preprocessor-directives-c-programming/" aria-label="阅读：预处理器指令--C 编程">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page3">← 较新文章</a>
+  
+  <span>第 4 / 32 页</span>
+  
+  <a href="/page5">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -714,7 +509,7 @@ ChatGPT 是一种基于 GPT 架构的对话生成模型。它可...
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -1000,10 +795,11 @@ ChatGPT 是一种基于 GPT 架构的对话生成模型。它可...
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -1020,7 +816,7 @@ ChatGPT 是一种基于 GPT 架构的对话生成模型。它可...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1087,6 +883,7 @@ ChatGPT 是一种基于 GPT 架构的对话生成模型。它可...
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1126,7 +923,7 @@ ChatGPT 是一种基于 GPT 架构的对话生成模型。它可...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1206,17 +1003,17 @@ ChatGPT 是一种基于 GPT 架构的对话生成模型。它可...
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1357,63 +1154,6 @@ ChatGPT 是一种基于 GPT 架构的对话生成模型。它可...
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

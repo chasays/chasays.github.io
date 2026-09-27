@@ -5,8 +5,8 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 27 Sep 2026 13:39:55 +0000</pubDate>
-    <lastBuildDate>Sun, 27 Sep 2026 13:39:55 +0000</lastBuildDate>
+    <pubDate>Sun, 27 Sep 2026 14:46:25 +0000</pubDate>
+    <lastBuildDate>Sun, 27 Sep 2026 14:46:25 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -426,8 +426,8 @@
 &lt;p&gt;文中数字来自三轮本地实验的保存记录，可查看&lt;a href=&quot;/assets/data/2026/chrome-fingerprint-experiment.json&quot;&gt;脱敏后的实验汇总数据&lt;/a&gt;。第三轮分析器包含14项针对性测试，覆盖分段握手解析、长度计算、GREASE、未知扩展、版本绑定与缺失证据处理。本文没有据此宣称已经验证完整浏览器等价或真实站点通过率。&lt;/p&gt;
 </description>
         <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2026/09/27/chrome-150-153-browser-fingerprint-test/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2026/09/27/chrome-150-153-browser-fingerprint-test/</guid>
+      <link>https://blog.chiphub.top/2026/09/27/chrome-150-153-browser-fingerprint-test/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2026/09/27/chrome-150-153-browser-fingerprint-test/</guid>
         
         <category>技术</category>
         
@@ -992,8 +992,8 @@
 &lt;p&gt;试试？ 效果如何？&lt;/p&gt;
 </description>
         <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2025/12/15/wechat-pad-protocal-v08/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2025/12/15/wechat-pad-protocal-v08/</guid>
+      <link>https://blog.chiphub.top/2025/12/15/wechat-pad-protocal-v08/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2025/12/15/wechat-pad-protocal-v08/</guid>
         
         <category>学习</category>
         
@@ -1138,8 +1138,8 @@ LLVM 19: 使用 161 个 Vector Registers -&amp;gt; 理论 Warp 并发度降至�
 
 </description>
         <pubDate>Wed, 10 Dec 2025 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2025/12/10/llvm-structurize-optimizate/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2025/12/10/llvm-structurize-optimizate/</guid>
+      <link>https://blog.chiphub.top/2025/12/10/llvm-structurize-optimizate/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2025/12/10/llvm-structurize-optimizate/</guid>
         
         <category>llvm</category>
         
@@ -1215,8 +1215,8 @@ https://chatgpt.com/share/693ff68a-7dd4-8012-8078-8c1d889d7ed9&lt;/p&gt;
 &lt;p&gt;你的能耗大概是多少喃？&lt;/p&gt;
 </description>
         <pubDate>Fri, 05 Dec 2025 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2025/12/05/teslamate-record/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2025/12/05/teslamate-record/</guid>
+      <link>https://blog.chiphub.top/2025/12/05/teslamate-record/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2025/12/05/teslamate-record/</guid>
         
         <category>teslamate</category>
         
@@ -1305,8 +1305,8 @@ https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/csrc/ops.cu：
 &lt;p&gt;ok，梳理代码，提交，合并到dev，等待验证结果。&lt;/p&gt;
 </description>
         <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2025/10/27/llvm19-trouble-shoting/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2025/10/27/llvm19-trouble-shoting/</guid>
+      <link>https://blog.chiphub.top/2025/10/27/llvm19-trouble-shoting/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2025/10/27/llvm19-trouble-shoting/</guid>
         
         <category>llvm</category>
         
@@ -1363,8 +1363,8 @@ https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/csrc/ops.cu：
 &lt;p&gt;我也想听听大家的看法：这到底是一次web3 game尝试失败，还是一个伪装成游戏项目的骗局？&lt;/p&gt;
 </description>
         <pubDate>Sun, 24 Aug 2025 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2025/08/24/adventureverse-web3-game/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2025/08/24/adventureverse-web3-game/</guid>
+      <link>https://blog.chiphub.top/2025/08/24/adventureverse-web3-game/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2025/08/24/adventureverse-web3-game/</guid>
         
         <category>adventureverse</category>
         
@@ -1453,8 +1453,8 @@ https://zhuanlan.zhihu.com/p/451788328&lt;/p&gt;
 https://tanweime.com/2023/05/03/%E6%A0%91%E8%8E%93%E6%B4%BE3b%E6%90%AD%E5%BB%BAopenwrt%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/&lt;/p&gt;
 </description>
         <pubDate>Fri, 04 Apr 2025 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2025/04/04/Raspberry-pi-openwrt-ap-setup/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2025/04/04/Raspberry-pi-openwrt-ap-setup/</guid>
+      <link>https://blog.chiphub.top/2025/04/04/Raspberry-pi-openwrt-ap-setup/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2025/04/04/Raspberry-pi-openwrt-ap-setup/</guid>
         
         <category>raspberry pi</category>
         
@@ -1592,8 +1592,8 @@ expectRevert() 是一个断言，表示接下来的操作应该会导致回滚.
 https://book.getfoundry.sh/&lt;/p&gt;
 </description>
         <pubDate>Sun, 09 Feb 2025 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2025/02/09/Foundry-tools/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2025/02/09/Foundry-tools/</guid>
+      <link>https://blog.chiphub.top/2025/02/09/Foundry-tools/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2025/02/09/Foundry-tools/</guid>
         
         <category>web3</category>
         
@@ -1777,8 +1777,8 @@ https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617&
 &lt;/ul&gt;
 </description>
         <pubDate>Wed, 11 Sep 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/09/11/smart-contract-guide/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/09/11/smart-contract-guide/</guid>
+      <link>https://blog.chiphub.top/2024/09/11/smart-contract-guide/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2024/09/11/smart-contract-guide/</guid>
         
         <category>智能合约</category>
         
@@ -1825,8 +1825,8 @@ https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617&
 
 </description>
         <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/06/13/simt-warp/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/06/13/simt-warp/</guid>
+      <link>https://blog.chiphub.top/2024/06/13/simt-warp/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2024/06/13/simt-warp/</guid>
         
         <category>llvm</category>
         

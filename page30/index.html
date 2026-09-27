@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page30/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page30/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,314 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2020/03/18/linux-common-command-ls/">
-        <h2 class="post-title">
-            Linux Common Command Ls
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                ls 命令是任何 Linux 用户都应该知道的基本命令之一。 它用于列出有关文件系统中的文件和目录的信息。 ls 实用程序是安装在所有 Linux 发行版上的 Linux/Linux/Linux GNU核心工具组包的一部分。
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-在本教程中，我们将通过实际例子和最常见的 ls 选项的详细说明，向您展示如何使用 ls 命令。
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-如何使用ls Command 命令
-
-ls 命令的语法如下:
-ls ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on March 18, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/17/linux-common-command-cd/">
-        <h2 class="post-title">
-            Linux Common Command Cd
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-在 linux 中，cd 命令被称为修改目录命令，用来修改当前的工作目录。
-
-帮助
-用 man 命令可以看到其帮助信息。我本地是macOS看到是下面这个，只是提示了是内建builtin命令。
-
-
-cd 是一个 shell 内置的，它的行为可能因 shell 而略有不同。 它使用 shell 环境变量来确定执行所需的信息。
-
-这个是centos系统看到的man信息。
-
-
-语法
-
-命令的语法如...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on March 17, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/16/postion-harman-international-JOB/">
-        <h2 class="post-title">
-            Postion Harman International Job
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-Sr. Android Middleware SW Engineer
-
-  3年以上嵌入式Android开发经验。
-  熟悉C++、Java、UML及设计模式。
-  了解Android Framework开发及设计。
-  熟悉MQTT、HTTP/HTTPS等协议，有相关开发经验，熟悉OKHttp原理更佳。
-  熟悉Git/Stash等相关工具。
-  良好的沟通能力。
-  英语口语能够与国外...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on March 16, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/16/linux-common-command-mv/">
-        <h2 class="post-title">
-            Linux 命令 mv
-        </h2>
-        
-        <h3 class="post-subtitle">
-            重命名文件
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                移动文件和目录是您在 Linux 系统上经常需要执行的最基本的任务之一。
-
-mv 命令(简称 move)用于将文件和目录从一个位置重命名并移动到另一个位置。 命令的语法如下:
-
-mv [OPTIONS] SOURCE DESTINATION
-
-
-Source 可以是一个或多个文件或目录，DESTINATION 只能是是单个文件或目录。
-
-
-  当多个文件或目录作为SOURCE, the 、D...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 16, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/15/linux-common-command-grep/">
-        <h2 class="post-title">
-            Linux 命令 grep
-        </h2>
-        
-        <h3 class="post-subtitle">
-            筛选查看
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                grep 命令代表“全局正则表达式 print” ，它是 Linux 中最强大和最常用的命令之一。
-
-
-grep 在一个或多个输入文件中搜索与给定模式匹配的行，并将每个匹配行写入标准输出。 如果没有指定文件，grep 将从标准输入读取，这通常是另一个命令的输出。
-
-在本文中，我们将通过实例和对最常见的 GNU grep 选项的详细说明，向您展示如何使用 grep 命令。
-
-
-grep  命令...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 15, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/14/how-to-analyse-linux-log/">
-        <h2 class="post-title">
-            译 分析Linux日志
-        </h2>
-        
-        <h3 class="post-subtitle">
-            灵活运用命令
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                翻译的一篇文章， 重要是从Linux日志中日趋攻击自己统计。
-
-  https://dev.to/pluralsight/analyzing-the-attacks-on-my-website-30jf
-
-
-最近，我在我的博客上做了一次安全审计，决定深入研究一下我的安全日志 jeremymorgan.com。 通过一些 Linux 命令行功夫，一些 Golang，和谷歌表格，我能够得到一个非...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 14, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/09/macOS-awesome-app-menumeters/">
-        <h2 class="post-title">
-            macos 流量监控软件
-        </h2>
-        
-        <h3 class="post-subtitle">
-            小而美
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/
-
-
-如果是喜欢，直接去作者的网站下载。也可以在本网站DL
-https://github.com/chasays/chasays.github.io/blob/master/_posts/attachment/MenuMeters.prefPane.zip
-
-下载之后是这...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 9, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/08/how-to-fast-download-github-attachment/">
-        <h2 class="post-title">
-            快速下载github仓库
-        </h2>
-        
-        <h3 class="post-subtitle">
-            分分钟
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                前段时间薅羊毛的时候，多的几千的，少的也有一千多。先要有资格，但是在访问的时候速度非常的慢。
-
-
-  2019-2-4 那一周，你的 GitHub 账号拥有至少 15 个关注者（一般是因为你做了优秀的开源项目，别人才会关注你）。
-https://handshake.org/
-
-
-问题
-有没有办法直接从Github下载过来喃，由于目前的网速基本上都是很快100M起步。我在家马上测试了下自己的网...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 8, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/03/how-to-interview-answer/">
-        <h2 class="post-title">
-            如何做好面试3
-        </h2>
-        
-        <h3 class="post-subtitle">
-            面试
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                最近自己也要面试了， 准备一下。
-
-我是谁
-
-简单，主要是一到两句可以说清楚的。 姓名主要干什么
-
-  首先，非常荣幸公司能给我这个面试机会，简历里有很多关于我的介绍，但是，我觉得这几点是我特别想要表达的。简单介绍下我自己，我叫xxx，2012年毕业，毕业后一直从事软件测试工作，在8年的时间里面换过2份工作，上一份工作是做xx测试，目前在aaa从事xxx测试开发工作。
-
-
-为什么能胜任这个工...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 3, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/03/02/reading-book-paste-sucuss/">
-        <h2 class="post-title">
-            2020 书单3
-        </h2>
-        
-        <h3 class="post-subtitle">
-            书单
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                读书 3
-在每一个成功人士的身上你都会发现，他们也有自己的榜样人物。他们使用“复制”成功的技巧，被称为对卓越的模仿——一个来自体育运动领域的概念。
-你至少需要一名教练或导师。
-只追随那些比你成功的人。
-￼那些没有亲身经历过的人没有权利给你建议、你也绝对没有理由去听从他们的建议
-￼如果你周围都是成功人士，想要成功更容易
-￼只向那些你想成为的人进行咨询
-你需要一个专家环境，一群你能够紧紧跟随的人...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 2, 2020
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page29">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-18">2020.03.18</time>
+        
+      </div>
+      <h3><a href="/2020/03/18/linux-common-command-ls/">Linux Common Command Ls</a></h3>
+      
+      <p class="post-card-excerpt">ls 命令是任何 Linux 用户都应该知道的基本命令之一。 它用于列出有关文件系统中的文件和目录的信息。 ls 实用程序是安装在所有 Linux 发行版上的 Linux/Linux/Linux GNU核心工具组包的一部分。 在本教程中，我们将通过实际例子和最常见的 ls 选项的详细说明，向您...</p>
+      <a class="post-card-link" href="/2020/03/18/linux-common-command-ls/" aria-label="阅读：Linux Common Command Ls">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-17">2020.03.17</time>
+        
+      </div>
+      <h3><a href="/2020/03/17/linux-common-command-cd/">Linux Common Command Cd</a></h3>
+      
+      <p class="post-card-excerpt">在 linux 中，cd 命令被称为修改目录命令，用来修改当前的工作目录。 帮助 用 man 命令可以看到其帮助信息。我本地是macOS看到是下面这个，只是提示了是内建builtin命令。 cd 是一个 shell 内置的，它的行为可能因 shell 而略有不同。 它使用 shell 环境变量...</p>
+      <a class="post-card-link" href="/2020/03/17/linux-common-command-cd/" aria-label="阅读：Linux Common Command Cd">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page31">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-16">2020.03.16</time>
+        
+      </div>
+      <h3><a href="/2020/03/16/postion-harman-international-JOB/">Postion Harman International Job</a></h3>
+      
+      <p class="post-card-excerpt">Sr. Android Middleware SW Engineer 3年以上嵌入式Android开发经验。 熟悉C++、Java、UML及设计模式。 了解Android Framework开发及设计。 熟悉MQTT、HTTP/HTTPS等协议，有相关开发经验，熟悉OKHttp原理更佳。 熟悉...</p>
+      <a class="post-card-link" href="/2020/03/16/postion-harman-international-JOB/" aria-label="阅读：Postion Harman International Job">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-16">2020.03.16</time>
+        <span class="post-card-tag">grep</span>
+      </div>
+      <h3><a href="/2020/03/16/linux-common-command-mv/">Linux 命令 mv</a></h3>
+      <p class="post-card-subtitle">重命名文件</p>
+      <p class="post-card-excerpt">移动文件和目录是您在 Linux 系统上经常需要执行的最基本的任务之一。 mv 命令(简称 move)用于将文件和目录从一个位置重命名并移动到另一个位置。 命令的语法如下: mv [OPTIONS] SOURCE DESTINATION Source 可以是一个或多个文件或目录，DESTINA...</p>
+      <a class="post-card-link" href="/2020/03/16/linux-common-command-mv/" aria-label="阅读：Linux 命令 mv">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-15">2020.03.15</time>
+        <span class="post-card-tag">grep</span>
+      </div>
+      <h3><a href="/2020/03/15/linux-common-command-grep/">Linux 命令 grep</a></h3>
+      <p class="post-card-subtitle">筛选查看</p>
+      <p class="post-card-excerpt">grep 命令代表“全局正则表达式 print” ，它是 Linux 中最强大和最常用的命令之一。 grep 在一个或多个输入文件中搜索与给定模式匹配的行，并将每个匹配行写入标准输出。 如果没有指定文件，grep 将从标准输入读取，这通常是另一个命令的输出。 在本文中，我们将通过实例和对最常见...</p>
+      <a class="post-card-link" href="/2020/03/15/linux-common-command-grep/" aria-label="阅读：Linux 命令 grep">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-14">2020.03.14</time>
+        <span class="post-card-tag">Linux</span>
+      </div>
+      <h3><a href="/2020/03/14/how-to-analyse-linux-log/">译 分析Linux日志</a></h3>
+      <p class="post-card-subtitle">灵活运用命令</p>
+      <p class="post-card-excerpt">翻译的一篇文章， 重要是从Linux日志中日趋攻击自己统计。 https://dev.to/pluralsight/analyzing-the-attacks-on-my-website-30jf 最近，我在我的博客上做了一次安全审计，决定深入研究一下我的安全日志 jeremymorgan.c...</p>
+      <a class="post-card-link" href="/2020/03/14/how-to-analyse-linux-log/" aria-label="阅读：译 分析Linux日志">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-09">2020.03.09</time>
+        <span class="post-card-tag">流量监控</span>
+      </div>
+      <h3><a href="/2020/03/09/macOS-awesome-app-menumeters/">macos 流量监控软件</a></h3>
+      <p class="post-card-subtitle">小而美</p>
+      <p class="post-card-excerpt">https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/ 如果是喜欢，直接去作者的网站下载。也可以在本网站DL https://github.com/chasays/chasays.github.io/blob/master/_pos...</p>
+      <a class="post-card-link" href="/2020/03/09/macOS-awesome-app-menumeters/" aria-label="阅读：macos 流量监控软件">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-08">2020.03.08</time>
+        <span class="post-card-tag">github</span>
+      </div>
+      <h3><a href="/2020/03/08/how-to-fast-download-github-attachment/">快速下载github仓库</a></h3>
+      <p class="post-card-subtitle">分分钟</p>
+      <p class="post-card-excerpt">前段时间薅羊毛的时候，多的几千的，少的也有一千多。先要有资格，但是在访问的时候速度非常的慢。 2019-2-4 那一周，你的 GitHub 账号拥有至少 15 个关注者（一般是因为你做了优秀的开源项目，别人才会关注你）。 https://handshake.org/ 问题 有没有办法直接从Gi...</p>
+      <a class="post-card-link" href="/2020/03/08/how-to-fast-download-github-attachment/" aria-label="阅读：快速下载github仓库">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-03">2020.03.03</time>
+        <span class="post-card-tag">面试</span>
+      </div>
+      <h3><a href="/2020/03/03/how-to-interview-answer/">如何做好面试3</a></h3>
+      <p class="post-card-subtitle">面试</p>
+      <p class="post-card-excerpt">最近自己也要面试了， 准备一下。 我是谁 简单，主要是一到两句可以说清楚的。 姓名主要干什么 首先，非常荣幸公司能给我这个面试机会，简历里有很多关于我的介绍，但是，我觉得这几点是我特别想要表达的。简单介绍下我自己，我叫xxx，2012年毕业，毕业后一直从事软件测试工作，在8年的时间里面换过2份...</p>
+      <a class="post-card-link" href="/2020/03/03/how-to-interview-answer/" aria-label="阅读：如何做好面试3">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-03-02">2020.03.02</time>
+        <span class="post-card-tag">书单</span>
+      </div>
+      <h3><a href="/2020/03/02/reading-book-paste-sucuss/">2020 书单3</a></h3>
+      <p class="post-card-subtitle">书单</p>
+      <p class="post-card-excerpt">读书 3 在每一个成功人士的身上你都会发现，他们也有自己的榜样人物。他们使用“复制”成功的技巧，被称为对卓越的模仿——一个来自体育运动领域的概念。 你至少需要一名教练或导师。 只追随那些比你成功的人。 ￼那些没有亲身经历过的人没有权利给你建议、你也绝对没有理由去听从他们的建议 ￼如果你周围都是...</p>
+      <a class="post-card-link" href="/2020/03/02/reading-book-paste-sucuss/" aria-label="阅读：2020 书单3">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page29">← 较新文章</a>
+  
+  <span>第 30 / 32 页</span>
+  
+  <a href="/page31">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -666,7 +509,7 @@ https://handshake.org/
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -952,10 +795,11 @@ https://handshake.org/
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -972,7 +816,7 @@ https://handshake.org/
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1039,6 +883,7 @@ https://handshake.org/
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1078,7 +923,7 @@ https://handshake.org/
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1158,17 +1003,17 @@ https://handshake.org/
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1309,63 +1154,6 @@ https://handshake.org/
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

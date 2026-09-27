@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page20/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page20/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,337 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2021/03/12/how-to-deal-with-youself/">
-        <h2 class="post-title">
-            该学习了
-        </h2>
-        
-        <h3 class="post-subtitle">
-            搞起来呗
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                一个朋友暗示我该更新文章了，发现有那么一段时间没有更新了。
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-看了年初的定下Flag，默默的吸了口气。默念道：该死为什么对自己这么狠。
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-说说我最近在干吗？最近已经很久很久…没更新过技术类的文章了，因为技术文章之前我也讲过，在手机上看，如果你不去实际的操作，也没什么效果，可能就相当于跑马观花。留下的可能只是一个单词的拼写而已。
-
-干错我就不写了，或者有读者要求，亦或我那天想通了，我也看情况糊...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 12, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/28/GrowingIO-think/">
-        <h2 class="post-title">
-            好好的实践一下商业增长
-        </h2>
-        
-        <h3 class="post-subtitle">
-            学习下增长知识
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                最近公司有一个增长大会，那组织了不同部门10个小伙伴去参与，这是一个增长赛，而且增长和商业是我一直想学习的一个东西，那借这个机会去好好的学习和实践。说实话，我作为队长，我自己从来没有做过增长，更没有增长的经验，而且我们在下个月中旬的时候要提出自己的一个增长方案去路演，压力非常的大。就是逼自己去输出在自己不熟悉的领域去做学习和提高。真的非常非常的难，并不是有天赋和热爱就能成功的，还需要能非常忍...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 28, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/27/GrowingIO-basic/">
-        <h2 class="post-title">
-            商业增长也是不错的基础课程
-        </h2>
-        
-        <h3 class="post-subtitle">
-            学习下增长知识
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                学习笔记： 极客时间 - 从O开始做增长：从0到1的增长实战方法论 https://time.geekbang.org/column/intro/165
-
-学习，真的不是一件容易的事情。
-开篇
-
-我想要分享给你的是一套可以成功复制的增长思路和实践技巧。
-
-增长小白如何“弯道超车”
-
-“最终为用户，简单却有效”。满足用户的核心需求，最终赢得了大量用户。
-
-1、刚开始做容易陷入把需求复杂化，输出...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 27, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/26/referral-mosi-cn/">
-        <h2 class="post-title">
-            成都摩斯智联内推
-        </h2>
-        
-        <h3 class="post-subtitle">
-            好工作不好找，但是机会来了就把握住
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                成都摩斯智联 所有岗位均可直推
-摩斯智联于 2019 年 4 月成立，落户四川成都天府新区，在拥有丰富“才智”资源的科学城，为员工打造了一流的办公环境。作为一汽-大众旗下独立运作的汽车软件科技公司，摩斯智联致力于构建以智能网联为基础的数字化生态，提供产品、研发、运营的端到端服务，助力一汽-大众向移动出行服务转型。
-
-欢迎【了解我们】http://www.mosi-tech.cn/#/
-
-职位...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 26, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/21/learn-english-shopping-scenario/">
-        <h2 class="post-title">
-            Shopping 购物常用的英语词汇
-        </h2>
-        
-        <h3 class="post-subtitle">
-            cash back,coupon,limited-time offer, special offer, steal, worth
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                Coupon
-：优惠券
-
-The coupon is not valid if detached.
-
-Tear off this coupon and use it to get 25p off your next jar of coffee.
-
-Offer
-
-特价
-Special offer - complete set for only ￡5.99.
-
-You can enjoy a s...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 21, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/18/learn-tensorflow-basic-4/">
-        <h2 class="post-title">
-            TensorFlow 基础学习 - 4
-        </h2>
-        
-        <h3 class="post-subtitle">
-            对一个真实项目的训练，重点是调参
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-准备数据
-
-!wget --no-check-certificate \
-    https://storage.googleapis.com/laurencemoroney-blog.appspot.com/horse-or-human.zip \
-    -O /tmp/horse-or-human.zip
-
-
-
-
-该目录下又分别包含horses和humans子目录。
-
-简而言之：训...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/18/learn-tensorflow-basic-2/">
-        <h2 class="post-title">
-            TensorFlow 基础学习 - 2
-        </h2>
-        
-        <h3 class="post-subtitle">
-            物品图片如何训练
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                让我们来看这样一个场景，让计算机识别不同的服装用品（有提包、鞋子、裤子等10类物品）。我们将用包含10种不同类型的物品图片的数据集来训练一个神经元网络，实现分类。
-
-数据导入
-
-首先通过tf.keras的API可以直接获得Fashion MNIST数据集。
-
-在mnist对象上调用load_data方法会得到两个元组，各自包含两个列表。这些列表存储了服装用品的训练与测试图像数据及标签值。
-
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/18/learn-tensorflow-basic-1/">
-        <h2 class="post-title">
-            TensorFlow 基础学习 - 1
-        </h2>
-        
-        <h3 class="post-subtitle">
-            y=2x-1，如何训练
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                学习目的
-
-了解机器学习的一些基础功能，一些基础用法，然后在我们的实际工作中创造出更多的火花。
-
-
-
-环境准备
-
-环境话有很多，我在学习的这个慕课的实验室、谷歌实验室。还有腾讯实验室都可以用来做，也非常方便，本地环境搭建也是非常的方便，但是在训练数据多的时候，那就非常的慢。
-
-这些实验室提供强大的算力，最主要的还是免费。
-
-
-  https://ot.icourse163.org/#/lab...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/18/learn-tensorflow-3-CNN/">
-        <h2 class="post-title">
-            TensorFlow 基础学习 - 3
-        </h2>
-        
-        <h3 class="post-subtitle">
-            图片不是规则的怎么办
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                卷积神经网络
-
-抓住它的核心思路，即通过卷积操作缩小了图像的内容，将模型注意力集中在图像特定的、明显的特征上。
-
-max pooling - 增强特征，减少数据
-
-
-实现
-
-在下面的代码中模型在训练数据上的精度可能上升到93%左右，在验证数据上可能上升到91%。
-
-这是朝着正确方向取得的显著进步!
-
-试着运行更多的epochs–比如20个epochs，然后观察结果! 虽然结果可能看起来非常好...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/12/how-to-install-altStore/">
-        <h2 class="post-title">
-            可能提到Cydia的东西
-        </h2>
-        
-        <h3 class="post-subtitle">
-            如何安装altstore
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-
-  开始邮件的管理插件功能
-
-
-
-
-默认情况下是关闭的。
-试了很多方法都不是很有用。主要的是需要在里面创建一个Bundles的目录。然后把插件解压后copy进去重启mail。
-Quit the Mail application.
-Go to the Finder
-Hold the Option key and click on the Go menu
-Choose Library
-Na...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 12, 2021
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page19">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-03-12">2021.03.12</time>
+        <span class="post-card-tag">读书</span>
+      </div>
+      <h3><a href="/2021/03/12/how-to-deal-with-youself/">该学习了</a></h3>
+      <p class="post-card-subtitle">搞起来呗</p>
+      <p class="post-card-excerpt">一个朋友暗示我该更新文章了，发现有那么一段时间没有更新了。 看了年初的定下Flag，默默的吸了口气。默念道：该死为什么对自己这么狠。 说说我最近在干吗？最近已经很久很久…没更新过技术类的文章了，因为技术文章之前我也讲过，在手机上看，如果你不去实际的操作，也没什么效果，可能就相当于跑马观花。留下...</p>
+      <a class="post-card-link" href="/2021/03/12/how-to-deal-with-youself/" aria-label="阅读：该学习了">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-28">2021.02.28</time>
+        <span class="post-card-tag">增长</span>
+      </div>
+      <h3><a href="/2021/02/28/GrowingIO-think/">好好的实践一下商业增长</a></h3>
+      <p class="post-card-subtitle">学习下增长知识</p>
+      <p class="post-card-excerpt">最近公司有一个增长大会，那组织了不同部门10个小伙伴去参与，这是一个增长赛，而且增长和商业是我一直想学习的一个东西，那借这个机会去好好的学习和实践。说实话，我作为队长，我自己从来没有做过增长，更没有增长的经验，而且我们在下个月中旬的时候要提出自己的一个增长方案去路演，压力非常的大。就是逼自己去...</p>
+      <a class="post-card-link" href="/2021/02/28/GrowingIO-think/" aria-label="阅读：好好的实践一下商业增长">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page21">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-27">2021.02.27</time>
+        <span class="post-card-tag">增长</span>
+      </div>
+      <h3><a href="/2021/02/27/GrowingIO-basic/">商业增长也是不错的基础课程</a></h3>
+      <p class="post-card-subtitle">学习下增长知识</p>
+      <p class="post-card-excerpt">学习笔记： 极客时间 - 从O开始做增长：从0到1的增长实战方法论 https://time.geekbang.org/column/intro/165 学习，真的不是一件容易的事情。 开篇 我想要分享给你的是一套可以成功复制的增长思路和实践技巧。 增长小白如何“弯道超车” “最终为用户，简单...</p>
+      <a class="post-card-link" href="/2021/02/27/GrowingIO-basic/" aria-label="阅读：商业增长也是不错的基础课程">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-26">2021.02.26</time>
+        <span class="post-card-tag">内推</span>
+      </div>
+      <h3><a href="/2021/02/26/referral-mosi-cn/">成都摩斯智联内推</a></h3>
+      <p class="post-card-subtitle">好工作不好找，但是机会来了就把握住</p>
+      <p class="post-card-excerpt">成都摩斯智联 所有岗位均可直推 摩斯智联于 2019 年 4 月成立，落户四川成都天府新区，在拥有丰富“才智”资源的科学城，为员工打造了一流的办公环境。作为一汽-大众旗下独立运作的汽车软件科技公司，摩斯智联致力于构建以智能网联为基础的数字化生态，提供产品、研发、运营的端到端服务，助力一汽-大众...</p>
+      <a class="post-card-link" href="/2021/02/26/referral-mosi-cn/" aria-label="阅读：成都摩斯智联内推">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-21">2021.02.21</time>
+        <span class="post-card-tag">英语</span>
+      </div>
+      <h3><a href="/2021/02/21/learn-english-shopping-scenario/">Shopping 购物常用的英语词汇</a></h3>
+      <p class="post-card-subtitle">cash back,coupon,limited-time offer, special offer, steal, worth</p>
+      <p class="post-card-excerpt">Coupon ：优惠券 The coupon is not valid if detached. Tear off this coupon and use it to get 25p off your next jar of coffee. Offer 特价 Special offer - c...</p>
+      <a class="post-card-link" href="/2021/02/21/learn-english-shopping-scenario/" aria-label="阅读：Shopping 购物常用的英语词汇">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-18">2021.02.18</time>
+        <span class="post-card-tag">TensorFlow</span>
+      </div>
+      <h3><a href="/2021/02/18/learn-tensorflow-basic-4/">TensorFlow 基础学习 - 4</a></h3>
+      <p class="post-card-subtitle">对一个真实项目的训练，重点是调参</p>
+      <p class="post-card-excerpt">准备数据 !wget --no-check-certificate \ https://storage.googleapis.com/laurencemoroney-blog.appspot.com/horse-or-human.zip \ -O /tmp/horse-or-human.zip...</p>
+      <a class="post-card-link" href="/2021/02/18/learn-tensorflow-basic-4/" aria-label="阅读：TensorFlow 基础学习 - 4">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-18">2021.02.18</time>
+        <span class="post-card-tag">TensorFlow</span>
+      </div>
+      <h3><a href="/2021/02/18/learn-tensorflow-basic-2/">TensorFlow 基础学习 - 2</a></h3>
+      <p class="post-card-subtitle">物品图片如何训练</p>
+      <p class="post-card-excerpt">让我们来看这样一个场景，让计算机识别不同的服装用品（有提包、鞋子、裤子等10类物品）。我们将用包含10种不同类型的物品图片的数据集来训练一个神经元网络，实现分类。 数据导入 首先通过tf.keras的API可以直接获得Fashion MNIST数据集。 在mnist对象上调用load_data...</p>
+      <a class="post-card-link" href="/2021/02/18/learn-tensorflow-basic-2/" aria-label="阅读：TensorFlow 基础学习 - 2">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-18">2021.02.18</time>
+        <span class="post-card-tag">TensorFlow</span>
+      </div>
+      <h3><a href="/2021/02/18/learn-tensorflow-basic-1/">TensorFlow 基础学习 - 1</a></h3>
+      <p class="post-card-subtitle">y=2x-1，如何训练</p>
+      <p class="post-card-excerpt">学习目的 了解机器学习的一些基础功能，一些基础用法，然后在我们的实际工作中创造出更多的火花。 环境准备 环境话有很多，我在学习的这个慕课的实验室、谷歌实验室。还有腾讯实验室都可以用来做，也非常方便，本地环境搭建也是非常的方便，但是在训练数据多的时候，那就非常的慢。 这些实验室提供强大的算力，最...</p>
+      <a class="post-card-link" href="/2021/02/18/learn-tensorflow-basic-1/" aria-label="阅读：TensorFlow 基础学习 - 1">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-18">2021.02.18</time>
+        <span class="post-card-tag">TensorFlow</span>
+      </div>
+      <h3><a href="/2021/02/18/learn-tensorflow-3-CNN/">TensorFlow 基础学习 - 3</a></h3>
+      <p class="post-card-subtitle">图片不是规则的怎么办</p>
+      <p class="post-card-excerpt">卷积神经网络 抓住它的核心思路，即通过卷积操作缩小了图像的内容，将模型注意力集中在图像特定的、明显的特征上。 max pooling - 增强特征，减少数据 实现 在下面的代码中模型在训练数据上的精度可能上升到93%左右，在验证数据上可能上升到91%。 这是朝着正确方向取得的显著进步! 试着运...</p>
+      <a class="post-card-link" href="/2021/02/18/learn-tensorflow-3-CNN/" aria-label="阅读：TensorFlow 基础学习 - 3">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-12">2021.02.12</time>
+        <span class="post-card-tag">altStore</span>
+      </div>
+      <h3><a href="/2021/02/12/how-to-install-altStore/">可能提到Cydia的东西</a></h3>
+      <p class="post-card-subtitle">如何安装altstore</p>
+      <p class="post-card-excerpt">开始邮件的管理插件功能 默认情况下是关闭的。 试了很多方法都不是很有用。主要的是需要在里面创建一个Bundles的目录。然后把插件解压后copy进去重启mail。 Quit the Mail application. Go to the Finder Hold the Option key a...</p>
+      <a class="post-card-link" href="/2021/02/12/how-to-install-altStore/" aria-label="阅读：可能提到Cydia的东西">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page19">← 较新文章</a>
+  
+  <span>第 20 / 32 页</span>
+  
+  <a href="/page21">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -689,7 +509,7 @@ Na...
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -975,10 +795,11 @@ Na...
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -995,7 +816,7 @@ Na...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1062,6 +883,7 @@ Na...
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1101,7 +923,7 @@ Na...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1181,17 +1003,17 @@ Na...
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1332,63 +1154,6 @@ Na...
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

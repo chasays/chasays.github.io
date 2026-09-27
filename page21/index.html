@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page21/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page21/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,320 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2021/02/10/resolved-question-is-mainly/">
-        <h2 class="post-title">
-            解决问题为主
-        </h2>
-        
-        <h3 class="post-subtitle">
-            总结
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                福利
-我自己发现，我公众号下面的广告。因为这个是腾讯自己根据用户偏好去推送的广告，这个广告并不是我自己设定的，还有文中的一些广告我一直没开。
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-
-我今天发现我在公众号广告这块赚了几百块，那几百块对我说，也没有太多钱。但是影响用户的一个阅读体验，从今天开始，我关闭广告文中和文末的广告。如果后面可能我再开的话，有可能我真的是需要这部分钱，或者是其他的原因吧，目前先把这个广告关掉。说不定后面哪天...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 10, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/09/wechat-red-packet/">
-        <h2 class="post-title">
-            非认证用户如何定制自己的视频号
-        </h2>
-        
-        <h3 class="post-subtitle">
-            总结
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  非认证用户，拉到最下面「点击链接」可以打开如何定制自己的红包封面。
-
-
-
-
-
-  
-    注册一个视频号
-并发布一条视频，集赞10个，这个硬性要求。
-
-  
-  
-    然后打开文末左下角的连接。跳转过去，然后点击下面这个图片。如果没有看到这个图片，说明没有资格。
-  
-
-
-
-
-
-  准备资料
-上传红包封面定制信息，包括素材图、封面简称、品牌logo、封面故事素材以及相关证明材料。...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 9, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/02/05/time-how-flies/">
-        <h2 class="post-title">
-            已经过去2周了，你感觉怎么样？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            总结
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                时间过得非常快，我已经去新公司已经有一个多月了，在这一个月多的时间里面，我觉得时间过得非常的慢，对我来说每天都是煎熬。不是身边的同事对我不好，不是公司不行，不是我所做的东西我不感兴趣。其实恰恰相反，这三个方面都很Nice了。反而是我自己心里有一个坎过不去，这有可能就是走出舒适圈的感觉。
-
-
-
-就其原因，我想还是因为自己选择了一个不同的赛道，对于自己来说非常的困难，如何去坚持。我原本以为我自己...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 5, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/01/17/feeling-output-input/">
-        <h2 class="post-title">
-            已经过去2周了，你感觉怎么样？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            总结
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                2021年已经过去两周了，在网上看了，大家对20201年头两周，其实和之前也是一样的，没什么改变。一切都是老样子的，一切都是和往年一样的。
-
-
-
-看了和菜头的文章，里面提到了，有一句非常好的地方就是，
-
-  没有任何一种道理说，每年只要新年一到，一切就可以翻篇，大家可以重新来过。这是地球，这是生活，不是个游戏，可以随时按下重新开始键。
-
-
-新年，并不是一切一翻篇就完了，然后就重新开始。它并不...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 17, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/01/09/first-internet-job-impression/">
-        <h2 class="post-title">
-            互联网上班一个礼拜总结
-        </h2>
-        
-        <h3 class="post-subtitle">
-            多总结
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                初尝互联网
-谈一谈最近去互联网公司目前的一个感受。
-
-
-
-首先是舒适度，在之前我是在一家外企做的传统行业的一个东西，因为基本上就是965这种情况，没有说加班，所以说是非常轻松的。然后突然去互联网公司，每天晚上加到9:00，还有就是回来的通勤路程非常远，来回将近三个小时，然后上一家公司和互联网相比，不管是从舒适度和幸福度上来看，那前者都是非常好的。
-
-目前我们组在做是站外广告投放这一块。有产品...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 9, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/01/01/Impressions-stormzhang-living-stream/">
-        <h2 class="post-title">
-            观后感 - stormzhang 跨年直播
-        </h2>
-        
-        <h3 class="post-subtitle">
-            从工作，个人成长，生活，未来期望
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                首先感谢 stormzhang 的一个跨年分享，以及连麦中禅叔、冯大的经验一些分享。
-
-昨晚看 stormzhang 跨年直播，从晚上9:00开始，持续到凌晨1点50左右，然后将近5个小时的一个直播，到因为中途耳机没电了，然后我洗漱之后就去睡觉了。今年不再是陪跑，然后中了一个奖，这个奖虽然金额不是很高，希望是一个幸运的开头。
-然后从四个方面对自己的一个感悟和体会分享下。
-
-第一个方面主要是对...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 1, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/12/28/2020-end-year-summary/">
-        <h2 class="post-title">
-            2020年终总结
-        </h2>
-        
-        <h3 class="post-subtitle">
-            从工作，个人成长，生活，未来期望
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-哦，不对下面才是正文。
-
-2012年没有几天就要到2021。借此机会，在这里做一个简单的总结。对过去的自己的工作、生活、以及个人成长的一个梳理。
-
-工作
-
-在工作上的话，公司在组织架构重组，然后在这个情况下自己有了一个机遇，然后带领一个小团队。比较幸运的是领导给了我非常多的一些自由度，就是可以用自己的想法，去建设自己的团队和项目管理。主要是从业务目标导向、以及协作，还有就是目标统一出发，...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 28, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/12/14/improve-english/">
-        <h2 class="post-title">
-            提高英语 - 口语和思维
-        </h2>
-        
-        <h3 class="post-subtitle">
-            只要你肯坚持，才会体会到放弃的快乐
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-学习英语的过程这个阶段第1个是摆脱中文的思想，有中文的思想的话，主要是对一个东西你不要去翻译成中文。有个画面给你说，而且他也不可能会想到是苹果的apple，也想再生一个，苹果的本来是什么样子的，它外观是什么样子的，那可能是一个有青色的有红色的，种在树上的。那个apple直接说apple，你就知道它是什么样子的，不要再任思维在学习中，然后先有英文再有中文，这样去反推然后是直接有这个英语单词...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 14, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/12/13/Docker-install-nginx-and-tomcat/">
-        <h2 class="post-title">
-            Docker 安装nginx和tomcat
-        </h2>
-        
-        <h3 class="post-subtitle">
-            只要你肯坚持，才会体会到放弃的快乐
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                前一篇文章已经介绍过如何安装和使用 Docker。今天来实际操作下，安装tomcat和nginx。
-
-拉取第一個docker鏡像
-
-docker pull hello-world 拉取一个镜像
-
-
-可以配置国内的一些镜像源，这样速度快多了。
-https://hub-mirror.c.163.com
-https://docker.mirrors.ustc.edu.cn
-
-docker imag...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 13, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/12/12/maven-manual/">
-        <h2 class="post-title">
-            maven手册
-        </h2>
-        
-        <h3 class="post-subtitle">
-            只要你肯坚持，才会体会到放弃的快乐
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-maven
-
-容器的话，主要是docker，对应系统都是Linux；系统的容器是tomcat+nginx，另外数据用到的主要是MySQL、redis、clickhouse、bdp等，开发语言主要是Java、Python、大数据SQL
-
-
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 12, 2020
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page20">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-10">2021.02.10</time>
+        <span class="post-card-tag">总结</span>
+      </div>
+      <h3><a href="/2021/02/10/resolved-question-is-mainly/">解决问题为主</a></h3>
+      <p class="post-card-subtitle">总结</p>
+      <p class="post-card-excerpt">福利 我自己发现，我公众号下面的广告。因为这个是腾讯自己根据用户偏好去推送的广告，这个广告并不是我自己设定的，还有文中的一些广告我一直没开。 我今天发现我在公众号广告这块赚了几百块，那几百块对我说，也没有太多钱。但是影响用户的一个阅读体验，从今天开始，我关闭广告文中和文末的广告。如果后面可能我...</p>
+      <a class="post-card-link" href="/2021/02/10/resolved-question-is-mainly/" aria-label="阅读：解决问题为主">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-09">2021.02.09</time>
+        <span class="post-card-tag">总结</span>
+      </div>
+      <h3><a href="/2021/02/09/wechat-red-packet/">非认证用户如何定制自己的视频号</a></h3>
+      <p class="post-card-subtitle">总结</p>
+      <p class="post-card-excerpt">非认证用户，拉到最下面「点击链接」可以打开如何定制自己的红包封面。 注册一个视频号 并发布一条视频，集赞10个，这个硬性要求。 然后打开文末左下角的连接。跳转过去，然后点击下面这个图片。如果没有看到这个图片，说明没有资格。 准备资料 上传红包封面定制信息，包括素材图、封面简称、品牌logo、封...</p>
+      <a class="post-card-link" href="/2021/02/09/wechat-red-packet/" aria-label="阅读：非认证用户如何定制自己的视频号">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page22">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-02-05">2021.02.05</time>
+        <span class="post-card-tag">总结</span>
+      </div>
+      <h3><a href="/2021/02/05/time-how-flies/">已经过去2周了，你感觉怎么样？</a></h3>
+      <p class="post-card-subtitle">总结</p>
+      <p class="post-card-excerpt">时间过得非常快，我已经去新公司已经有一个多月了，在这一个月多的时间里面，我觉得时间过得非常的慢，对我来说每天都是煎熬。不是身边的同事对我不好，不是公司不行，不是我所做的东西我不感兴趣。其实恰恰相反，这三个方面都很Nice了。反而是我自己心里有一个坎过不去，这有可能就是走出舒适圈的感觉。 就其原...</p>
+      <a class="post-card-link" href="/2021/02/05/time-how-flies/" aria-label="阅读：已经过去2周了，你感觉怎么样？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-01-17">2021.01.17</time>
+        <span class="post-card-tag">总结</span>
+      </div>
+      <h3><a href="/2021/01/17/feeling-output-input/">已经过去2周了，你感觉怎么样？</a></h3>
+      <p class="post-card-subtitle">总结</p>
+      <p class="post-card-excerpt">2021年已经过去两周了，在网上看了，大家对20201年头两周，其实和之前也是一样的，没什么改变。一切都是老样子的，一切都是和往年一样的。 看了和菜头的文章，里面提到了，有一句非常好的地方就是， 没有任何一种道理说，每年只要新年一到，一切就可以翻篇，大家可以重新来过。这是地球，这是生活，不是个...</p>
+      <a class="post-card-link" href="/2021/01/17/feeling-output-input/" aria-label="阅读：已经过去2周了，你感觉怎么样？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-01-09">2021.01.09</time>
+        <span class="post-card-tag">总结</span>
+      </div>
+      <h3><a href="/2021/01/09/first-internet-job-impression/">互联网上班一个礼拜总结</a></h3>
+      <p class="post-card-subtitle">多总结</p>
+      <p class="post-card-excerpt">初尝互联网 谈一谈最近去互联网公司目前的一个感受。 首先是舒适度，在之前我是在一家外企做的传统行业的一个东西，因为基本上就是965这种情况，没有说加班，所以说是非常轻松的。然后突然去互联网公司，每天晚上加到9:00，还有就是回来的通勤路程非常远，来回将近三个小时，然后上一家公司和互联网相比，不...</p>
+      <a class="post-card-link" href="/2021/01/09/first-internet-job-impression/" aria-label="阅读：互联网上班一个礼拜总结">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-01-01">2021.01.01</time>
+        <span class="post-card-tag">分享</span>
+      </div>
+      <h3><a href="/2021/01/01/Impressions-stormzhang-living-stream/">观后感 - stormzhang 跨年直播</a></h3>
+      <p class="post-card-subtitle">从工作，个人成长，生活，未来期望</p>
+      <p class="post-card-excerpt">首先感谢 stormzhang 的一个跨年分享，以及连麦中禅叔、冯大的经验一些分享。 昨晚看 stormzhang 跨年直播，从晚上9:00开始，持续到凌晨1点50左右，然后将近5个小时的一个直播，到因为中途耳机没电了，然后我洗漱之后就去睡觉了。今年不再是陪跑，然后中了一个奖，这个奖虽然金额不...</p>
+      <a class="post-card-link" href="/2021/01/01/Impressions-stormzhang-living-stream/" aria-label="阅读：观后感 - stormzhang 跨年直播">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-12-28">2020.12.28</time>
+        <span class="post-card-tag">总结</span>
+      </div>
+      <h3><a href="/2020/12/28/2020-end-year-summary/">2020年终总结</a></h3>
+      <p class="post-card-subtitle">从工作，个人成长，生活，未来期望</p>
+      <p class="post-card-excerpt">哦，不对下面才是正文。 2012年没有几天就要到2021。借此机会，在这里做一个简单的总结。对过去的自己的工作、生活、以及个人成长的一个梳理。 工作 在工作上的话，公司在组织架构重组，然后在这个情况下自己有了一个机遇，然后带领一个小团队。比较幸运的是领导给了我非常多的一些自由度，就是可以用自己...</p>
+      <a class="post-card-link" href="/2020/12/28/2020-end-year-summary/" aria-label="阅读：2020年终总结">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-12-14">2020.12.14</time>
+        <span class="post-card-tag">英语</span>
+      </div>
+      <h3><a href="/2020/12/14/improve-english/">提高英语 - 口语和思维</a></h3>
+      <p class="post-card-subtitle">只要你肯坚持，才会体会到放弃的快乐</p>
+      <p class="post-card-excerpt">学习英语的过程这个阶段第1个是摆脱中文的思想，有中文的思想的话，主要是对一个东西你不要去翻译成中文。有个画面给你说，而且他也不可能会想到是苹果的apple，也想再生一个，苹果的本来是什么样子的，它外观是什么样子的，那可能是一个有青色的有红色的，种在树上的。那个apple直接说apple，你就知...</p>
+      <a class="post-card-link" href="/2020/12/14/improve-english/" aria-label="阅读：提高英语 - 口语和思维">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-12-13">2020.12.13</time>
+        <span class="post-card-tag">nginx</span>
+      </div>
+      <h3><a href="/2020/12/13/Docker-install-nginx-and-tomcat/">Docker 安装nginx和tomcat</a></h3>
+      <p class="post-card-subtitle">只要你肯坚持，才会体会到放弃的快乐</p>
+      <p class="post-card-excerpt">前一篇文章已经介绍过如何安装和使用 Docker。今天来实际操作下，安装tomcat和nginx。 拉取第一個docker鏡像 docker pull hello-world 拉取一个镜像 可以配置国内的一些镜像源，这样速度快多了。 https://hub-mirror.c.163.com h...</p>
+      <a class="post-card-link" href="/2020/12/13/Docker-install-nginx-and-tomcat/" aria-label="阅读：Docker 安装nginx和tomcat">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-12-12">2020.12.12</time>
+        <span class="post-card-tag">Maven</span>
+      </div>
+      <h3><a href="/2020/12/12/maven-manual/">maven手册</a></h3>
+      <p class="post-card-subtitle">只要你肯坚持，才会体会到放弃的快乐</p>
+      <p class="post-card-excerpt">maven 容器的话，主要是docker，对应系统都是Linux；系统的容器是tomcat+nginx，另外数据用到的主要是MySQL、redis、clickhouse、bdp等，开发语言主要是Java、Python、大数据SQL</p>
+      <a class="post-card-link" href="/2020/12/12/maven-manual/" aria-label="阅读：maven手册">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page20">← 较新文章</a>
+  
+  <span>第 21 / 32 页</span>
+  
+  <a href="/page22">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -672,7 +509,7 @@ maven
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -958,10 +795,11 @@ maven
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -978,7 +816,7 @@ maven
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1045,6 +883,7 @@ maven
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1084,7 +923,7 @@ maven
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1164,17 +1003,17 @@ maven
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1315,63 +1154,6 @@ maven
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page13/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page13/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,324 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2022/05/07/35-old-year-for-programmer/">
-        <h2 class="post-title">
-            36 - 35岁，程序员在做什么
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-今天下班之后，回老家了，走的比较匆忙，忘了带自己的电脑，用的是公司的电脑。 公司的电脑上好多软件没有安装，有些许的不方便~
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-我之前在互联网工作，由于互联网的性质，大家都知道，除了 996，还有比较有名气的就是「内卷」。
-
-当然也有好处，就是资本趋利，互联...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 7, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/06/git-pull-cherrypick-fetch/">
-        <h2 class="post-title">
-            Git 常用命令 pull、cherry-pick、fetch 有什么区别？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            掌握了就非常的方便
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                Cherry-pick
-
-使用场景：假设您正在与一组开发人员一起开发一个中型到大型的项目。由另一个团队成员提出的一些更改，您希望将其中的一些更改应用于您的主项目，而不是全部。因为管理几个 Git 分支之间的更改可能成为一项复杂的任务，您不希望将整个分支合并到另一个分支中。你只需要选择一个或两个特定的commit。从其他分支中挑选一些变更到您的主项目分支中，这被称为“cherry-pick”。...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 6, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/06/cgsx/">
-        <h2 class="post-title">
-            2022 5月重疾推荐
-        </h2>
-        
-        <h3 class="post-subtitle">
-            给生活多一分安稳
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                线上
-
-  重疾：以达尔文6号为单次重疾主推，慧馨安2022作为少儿重疾主推。中荷超越1号作为非标人群推荐，人保i无忧作为大品牌大保司重疾补充
-  储蓄：增额以长城司马台作为推荐，养老年金以金盈年年为主推，太平e养添年为大保司品牌产品推荐
-  定寿医疗及其他短险：大麦2022及定海柱2号作为定寿主推，e享护-医享无忧维持独家销售作为百万医疗主推，小蜜蜂2号超越版作为综合意外险主推，小医仙2号...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 6, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/05/picgo-picbed-config/">
-        <h2 class="post-title">
-            PicGo 图床工具配置 Github 等
-        </h2>
-        
-        <h3 class="post-subtitle">
-            免费图床
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                场景
-
-
-  
-    程序员写博客、文章等，然后发现图上传和管理都不是特别的方便，还有就是服务器保存图片就很繁琐，建议使用PicGo、uPic等工具，支持把图片传到github、gitee、微信小程序云等机器
-  
-  
-    最近使用gitee的时候发现，上传失败了，又换到了github上.
-  
-
-
-用https://cdn.jsdelivr.net/gh/user/repo来替代官...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 5, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/04/assembly-basic-instruction/">
-        <h2 class="post-title">
-            汇编基础指令 
-        </h2>
-        
-        <h3 class="post-subtitle">
-            SHL、ADD等
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                汇编
-
-
-
-在计算机程序设计中，汇编语言，是任何一种低级语言语言中的指令和结构中的机器代码指令之间有很强的对应关系。汇编语言通常每个指令有一个语句，但是通常也支持常量、注释、汇编程序指令、象内存位置、寄存器和宏的符号标签。
-
-比如and 运算
-             Operand1: 	0101
-             Operand2: 	0011
------------------...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 4, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/03/squash-2-commit-to-1/">
-        <h2 class="post-title">
-            git 2 个 commit 压缩为一个 commit
-        </h2>
-        
-        <h3 class="post-subtitle">
-            rebase特别有用
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                问题
-在使用 Git 作为版本控制的时候，我们可能会由于各种各样的原因提交了许多临时的 commit(git add -m “xx”, 不是追加的–amend)，而这些 commit 拼接起来才是完整的任务。那么我们为了避免太多的 commit 而造成版本控制的混乱，通常我们推荐将这些 commit 合并成一个。
-
-这个情况下用rebase就可以登场了.
-
-Rebase
-
-Rebase 是在...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 3, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/02/LLVM-intrinsic_introduce/">
-        <h2 class="post-title">
-            LLVM intrinsic 介绍
-        </h2>
-        
-        <h3 class="post-subtitle">
-            LLVM基础
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                什么是 LLVM intrinsic
-
-LLVM 支持“intrinsic function”的概念。这些函数具有众所周知的名称和语义，并且需要遵循某些限制。总的来说，这些 intrinsic 代表 LLVM 语言的扩展机制，在添加到语言(或者位码读取器/写入器、解析器等)时不需要更改 LLVM 中的所有转换。
-
-Intrinsic函数是编译器内建的函数，由编译器提供，类似于内联函数。但与内...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 2, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/04/30/compare-with-others/">
-        <h2 class="post-title">
-            Compare With Others
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-layout: post
-title: “35 - 和别人比较”
-subtitle: ‘痛苦就是来源于此’ 
-author: “叉叉敌”
-header-style: text
-tags:
-
-  
-    Newsletter
-  
-
-
-朋友，您好 ~
-
-长假开始了，你准备好了么？
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on April 30, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/04/23/how-to-talk-story/">
-        <h2 class="post-title">
-            34 - 讲故事
-        </h2>
-        
-        <h3 class="post-subtitle">
-            讲故事的说道理是容易接受的
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-今天是五一前的一个周末，由于明天要继续上班，所以只有一天的时间短暂休息下。
-
-
-
-我记得早些年的时候，五一长假四7天，后来由于春节、国庆太多假期了，调整了下，五一法定的只有一天假期了。那么实际五一只有1天的法定假期，但是要调休集中到一起休息5天喃？
-
-我想大部分人应该也知道了，就是为了促进消费，促进旅游，这不就是拉动内循环和经济么？
-
-不过疫情猖獗的情况下，还是在省内找到小...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 23, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/04/20/LLVM-introduce/">
-        <h2 class="post-title">
-            LLVM 介绍
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-
-
-
-
-
-
-https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
-
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 20, 2022
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page12">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-07">2022.05.07</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/05/07/35-old-year-for-programmer/">36 - 35岁，程序员在做什么</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 今天下班之后，回老家了，走的比较匆忙，忘了带自己的电脑，用的是公司的电脑。 公司的电脑上好多软件没有安装，有些许的不方便~ 如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 我之前在互联网工作，由于互联网的性质，大...</p>
+      <a class="post-card-link" href="/2022/05/07/35-old-year-for-programmer/" aria-label="阅读：36 - 35岁，程序员在做什么">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-06">2022.05.06</time>
+        <span class="post-card-tag">git</span>
+      </div>
+      <h3><a href="/2022/05/06/git-pull-cherrypick-fetch/">Git 常用命令 pull、cherry-pick、fetch 有什么区别？</a></h3>
+      <p class="post-card-subtitle">掌握了就非常的方便</p>
+      <p class="post-card-excerpt">Cherry-pick 使用场景：假设您正在与一组开发人员一起开发一个中型到大型的项目。由另一个团队成员提出的一些更改，您希望将其中的一些更改应用于您的主项目，而不是全部。因为管理几个 Git 分支之间的更改可能成为一项复杂的任务，您不希望将整个分支合并到另一个分支中。你只需要选择一个或两个特...</p>
+      <a class="post-card-link" href="/2022/05/06/git-pull-cherrypick-fetch/" aria-label="阅读：Git 常用命令 pull、cherry-pick、fetch 有什么区别？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page14">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-06">2022.05.06</time>
+        <span class="post-card-tag">保险</span>
+      </div>
+      <h3><a href="/2022/05/06/cgsx/">2022 5月重疾推荐</a></h3>
+      <p class="post-card-subtitle">给生活多一分安稳</p>
+      <p class="post-card-excerpt">线上 重疾：以达尔文6号为单次重疾主推，慧馨安2022作为少儿重疾主推。中荷超越1号作为非标人群推荐，人保i无忧作为大品牌大保司重疾补充 储蓄：增额以长城司马台作为推荐，养老年金以金盈年年为主推，太平e养添年为大保司品牌产品推荐 定寿医疗及其他短险：大麦2022及定海柱2号作为定寿主推，e享护...</p>
+      <a class="post-card-link" href="/2022/05/06/cgsx/" aria-label="阅读：2022 5月重疾推荐">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-05">2022.05.05</time>
+        <span class="post-card-tag">github</span>
+      </div>
+      <h3><a href="/2022/05/05/picgo-picbed-config/">PicGo 图床工具配置 Github 等</a></h3>
+      <p class="post-card-subtitle">免费图床</p>
+      <p class="post-card-excerpt">场景 程序员写博客、文章等，然后发现图上传和管理都不是特别的方便，还有就是服务器保存图片就很繁琐，建议使用PicGo、uPic等工具，支持把图片传到github、gitee、微信小程序云等机器 最近使用gitee的时候发现，上传失败了，又换到了github上. 用https://cdn.jsd...</p>
+      <a class="post-card-link" href="/2022/05/05/picgo-picbed-config/" aria-label="阅读：PicGo 图床工具配置 Github 等">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-04">2022.05.04</time>
+        <span class="post-card-tag">LLVM</span>
+      </div>
+      <h3><a href="/2022/05/04/assembly-basic-instruction/">汇编基础指令 </a></h3>
+      <p class="post-card-subtitle">SHL、ADD等</p>
+      <p class="post-card-excerpt">汇编 在计算机程序设计中，汇编语言，是任何一种低级语言语言中的指令和结构中的机器代码指令之间有很强的对应关系。汇编语言通常每个指令有一个语句，但是通常也支持常量、注释、汇编程序指令、象内存位置、寄存器和宏的符号标签。 比如and 运算 Operand1: 0101 Operand2: 0011...</p>
+      <a class="post-card-link" href="/2022/05/04/assembly-basic-instruction/" aria-label="阅读：汇编基础指令 ">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-03">2022.05.03</time>
+        <span class="post-card-tag">git</span>
+      </div>
+      <h3><a href="/2022/05/03/squash-2-commit-to-1/">git 2 个 commit 压缩为一个 commit</a></h3>
+      <p class="post-card-subtitle">rebase特别有用</p>
+      <p class="post-card-excerpt">问题 在使用 Git 作为版本控制的时候，我们可能会由于各种各样的原因提交了许多临时的 commit(git add -m “xx”, 不是追加的–amend)，而这些 commit 拼接起来才是完整的任务。那么我们为了避免太多的 commit 而造成版本控制的混乱，通常我们推荐将这些 com...</p>
+      <a class="post-card-link" href="/2022/05/03/squash-2-commit-to-1/" aria-label="阅读：git 2 个 commit 压缩为一个 commit">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-02">2022.05.02</time>
+        <span class="post-card-tag">LLVM</span>
+      </div>
+      <h3><a href="/2022/05/02/LLVM-intrinsic_introduce/">LLVM intrinsic 介绍</a></h3>
+      <p class="post-card-subtitle">LLVM基础</p>
+      <p class="post-card-excerpt">什么是 LLVM intrinsic LLVM 支持“intrinsic function”的概念。这些函数具有众所周知的名称和语义，并且需要遵循某些限制。总的来说，这些 intrinsic 代表 LLVM 语言的扩展机制，在添加到语言(或者位码读取器/写入器、解析器等)时不需要更改 LLVM...</p>
+      <a class="post-card-link" href="/2022/05/02/LLVM-intrinsic_introduce/" aria-label="阅读：LLVM intrinsic 介绍">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-04-30">2022.04.30</time>
+        
+      </div>
+      <h3><a href="/2022/04/30/compare-with-others/">Compare With Others</a></h3>
+      
+      <p class="post-card-excerpt">layout: post title: “35 - 和别人比较” subtitle: ‘痛苦就是来源于此’ author: “叉叉敌” header-style: text tags: Newsletter 朋友，您好 ~ 长假开始了，你准备好了么？ 如果您喜欢这份Newsletter，请转发...</p>
+      <a class="post-card-link" href="/2022/04/30/compare-with-others/" aria-label="阅读：Compare With Others">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-04-23">2022.04.23</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/04/23/how-to-talk-story/">34 - 讲故事</a></h3>
+      <p class="post-card-subtitle">讲故事的说道理是容易接受的</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 今天是五一前的一个周末，由于明天要继续上班，所以只有一天的时间短暂休息下。 我记得早些年的时候，五一长假四7天，后来由于春节、国庆太多假期了，调整了下，五一法定的只有一天假期了。那么实际五一只有1天的法定假期，但是要调休集中到一起休息5天喃？ 我想大部分人应该也知道了，就是为了...</p>
+      <a class="post-card-link" href="/2022/04/23/how-to-talk-story/" aria-label="阅读：34 - 讲故事">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-04-20">2022.04.20</time>
+        <span class="post-card-tag">LLVM</span>
+      </div>
+      <h3><a href="/2022/04/20/LLVM-introduce/">LLVM 介绍</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf</p>
+      <a class="post-card-link" href="/2022/04/20/LLVM-introduce/" aria-label="阅读：LLVM 介绍">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page12">← 较新文章</a>
+  
+  <span>第 13 / 32 页</span>
+  
+  <a href="/page14">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -676,7 +509,7 @@ https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -962,10 +795,11 @@ https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -982,7 +816,7 @@ https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1049,6 +883,7 @@ https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1088,7 +923,7 @@ https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1168,17 +1003,17 @@ https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1319,63 +1154,6 @@ https://llvm.org/devmtg/2019-04/slides/Tutorial-Bridgers-LLVM_IR_tutorial.pdf
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

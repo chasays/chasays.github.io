@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page22/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page22/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,353 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2020/12/12/CM100-5-study-note/">
-        <h2 class="post-title">
-            学习笔记 CM100-5:越学越焦虑，越学越空虚，如何选择学习资料
-        </h2>
-        
-        <h3 class="post-subtitle">
-            只要你肯坚持，才会体会到放弃的快乐
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  https://www.bilibili.com/video/BV1Gp4y1r7Z8
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-12-12">2020.12.12</time>
+        <span class="post-card-tag">Maven</span>
+      </div>
+      <h3><a href="/2020/12/12/CM100-5-study-note/">学习笔记 CM100-5:越学越焦虑，越学越空虚，如何选择学习资料</a></h3>
+      <p class="post-card-subtitle">只要你肯坚持，才会体会到放弃的快乐</p>
+      <p class="post-card-excerpt">https://www.bilibili.com/video/BV1Gp4y1r7Z8 陷进1碎片化学习 公众号、短视频(震惊、XX别再这么说 养鱼视、9元做课 陷阱2 过渡学习 教材,找大纲(比如招聘需求)。 网来组织各种的材料,设定“刹车时刻”。形成知识树。分层式学习逆免过 度学习。 裂变...</p>
+      <a class="post-card-link" href="/2020/12/12/CM100-5-study-note/" aria-label="阅读：学习笔记 CM100-5:越学越焦虑，越学越空虚，如何选择学习资料">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-12-03">2020.12.03</time>
+        <span class="post-card-tag">测试</span>
+      </div>
+      <h3><a href="/2020/12/03/how-to-test-complex-logical/">如何测试复杂的逻辑</a></h3>
+      <p class="post-card-subtitle">只要你肯坚持，才会体会到放弃的快乐</p>
+      <p class="post-card-excerpt">业务的规则和验证占据了客户提供的需求的很大一部分。当我们观察这些需求是如何通过业务分析师或客户来表达和传达给整个项目团队的时候，我们就会知道大多数这样的业务规则和逻辑是以一个逻辑程序流程图来表达的。 复杂需求的逻辑程序流程图由许多分支、节点和决策框组成。希望测试人员能够覆盖所有这些分支，触及这...</p>
+      <a class="post-card-link" href="/2020/12/03/how-to-test-complex-logical/" aria-label="阅读：如何测试复杂的逻辑">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-12-01">2020.12.01</time>
+        <span class="post-card-tag">MQ</span>
+      </div>
+      <h3><a href="/2020/12/01/middle-ware/">消息中间件-MQ</a></h3>
+      <p class="post-card-subtitle">只要你肯坚持，才会体会到放弃的快乐</p>
+      <p class="post-card-excerpt">中间件是什么 中间件是计算机软件，它为操作系统以外的软件应用程序提供服务。它可以被描述为“软件粘合剂”。 中间件使软件开发人员更容易实现通信和输入/输出，因此他们可以专注于应用程序的特定用途。作为解决如何将新的应用程序与旧的遗留系统联系起来的问题的一种方法，它在20世纪80年代获得了普及，尽管...</p>
+      <a class="post-card-link" href="/2020/12/01/middle-ware/" aria-label="阅读：消息中间件-MQ">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-12-01">2020.12.01</time>
+        <span class="post-card-tag">docker</span>
+      </div>
+      <h3><a href="/2020/12/01/Docker-software-developer/">Docker - 软件开发</a></h3>
+      <p class="post-card-subtitle">Docker Guide</p>
+      <p class="post-card-excerpt">什么是docker Docker 是一个帮助在隔离环境中运行应用程序的工具。 https://www.docker.com/ 总是需要确保应用程序能够在独立的环境中运行，以便应用程序能够按预期的方式在不同的机器/服务器上运行。这对于能够在本地机器上开发应用程序并让它们按预期的方式在部署的环境中...</p>
+      <a class="post-card-link" href="/2020/12/01/Docker-software-developer/" aria-label="阅读：Docker - 软件开发">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-11-30">2020.11.30</time>
+        <span class="post-card-tag">go</span>
+      </div>
+      <h3><a href="/2020/11/30/go-basic/">学习go基础</a></h3>
+      <p class="post-card-subtitle">未来迟早得学</p>
+      <p class="post-card-excerpt">安装 https://golang.google.cn/dl/ 测试安装成功go version， 查看当前安装的版本 (base) ➜ Golang go version go version go1.15.6 darwin/amd64 Hello World vi hello.go创建一个...</p>
+      <a class="post-card-link" href="/2020/11/30/go-basic/" aria-label="阅读：学习go基础">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-11-29">2020.11.29</time>
+        <span class="post-card-tag">知乎</span>
+      </div>
+      <h3><a href="/2020/11/29/zhihu-goods/">知乎好物</a></h3>
+      <p class="post-card-subtitle">刻意练习</p>
+      <p class="post-card-excerpt">曾经有位风险投资家说，投资项目要么在左上角（高价低频行业），要么在右下角（低价高频行业），不要去碰左下角（低价低频行业）。 理由很简单：如果一个行业的交易行为是“低价低频”，怎么赚大钱呢？ 利用大数据进行选品 佣金 commission 佣金比例 commission_ratio 30天评论 ...</p>
+      <a class="post-card-link" href="/2020/11/29/zhihu-goods/" aria-label="阅读：知乎好物">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-11-29">2020.11.29</time>
+        <span class="post-card-tag">Elasticsearch</span>
+      </div>
+      <h3><a href="/2020/11/29/big-data-search-Elasticsearch-basic/">全文搜索引擎 Elasticsearch 入门教程</a></h3>
+      <p class="post-card-subtitle">大数据必备</p>
+      <p class="post-card-excerpt">全文搜索是什么 全文搜索引擎就是通过从互联网上提取的各个网站的信息（以网页文字为主）而建立的数据库中，检索与用户查询条件匹配的相关记录，然后按一定的排列顺序将结果返回给用户。 ES是一个基于 Lucene 库的搜索引擎。它提供了一个分布式的、支持多租户的全文搜索引擎，该引擎具有 HTTP we...</p>
+      <a class="post-card-link" href="/2020/11/29/big-data-search-Elasticsearch-basic/" aria-label="阅读：全文搜索引擎 Elasticsearch 入门教程">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-11-22">2020.11.22</time>
+        <span class="post-card-tag">学习</span>
+      </div>
+      <h3><a href="/2020/11/22/how-to-be-a-guru/">逻辑思维183 怎样成为一个高手</a></h3>
+      <p class="post-card-subtitle">刻意练习</p>
+      <p class="post-card-excerpt">怎样成为一个高手分4部分，第1部分是什么是练习，第2部分是怎么去练习？第3部分是那些过程中需要什么，第4部分就是怎样构建的自己的一个认知。 https://m.igetget.com/share/course/article?id=dA5eO3NDrGk8KP50mV2oxp9MRBzQPy ...</p>
+      <a class="post-card-link" href="/2020/11/22/how-to-be-a-guru/" aria-label="阅读：逻辑思维183 怎样成为一个高手">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-11-19">2020.11.19</time>
+        <span class="post-card-tag">python</span>
+      </div>
+      <h3><a href="/2020/11/19/python-awesome-debugger/">Python调试神器</a></h3>
+      <p class="post-card-subtitle">比log和print好用，还省心</p>
+      <p class="post-card-excerpt">今天就来一小点知识。首先是一个python的库，还有一个是自己最近遇到的一件小事。 Pysnooper slogan就是 不要再使用打印机进行调试。 https://github.com/cool-RR/PySnooper Python 代码不能按预期运行时，或者想检查程序是否正确运行时，可以...</p>
+      <a class="post-card-link" href="/2020/11/19/python-awesome-debugger/" aria-label="阅读：Python调试神器">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-11-18">2020.11.18</time>
+        <span class="post-card-tag">redis</span>
+      </div>
+      <h3><a href="/2020/11/18/redis-basic-3/">学习 Redis - 3. 进阶</a></h3>
+      <p class="post-card-subtitle">只要你肯坚持，才会体会到放弃的快乐</p>
+      <p class="post-card-excerpt">Redis 数据备份与恢复 备份 127.0.0.1:6379&gt; SAVE OK 备份还有一个在后台执行bgsave 127.0.0.1:6379&gt; BGSAVE Background saving started 该命令将在 redis 安装目录中创建dump.rdb文件。 安装...</p>
+      <a class="post-card-link" href="/2020/11/18/redis-basic-3/" aria-label="阅读：学习 Redis - 3. 进阶">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
 
 
-陷进1碎片化学习 公众号、短视频(震惊、XX别再这么说 养鱼视、9元做课
-
-陷阱2 过渡学习
-
-教材,找大纲(比如招聘需求)。 网来组织各种的材料,设定“刹车时刻”。形成知识树。分层式学习逆免过 度学习。
-
-裂变招生
-
-鱼塘流量课程  贩卖焦虑
-
-共享开源库
-
-提示自己的技术
-
-提示影响力
-
-
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 12, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/12/03/how-to-test-complex-logical/">
-        <h2 class="post-title">
-            如何测试复杂的逻辑
-        </h2>
-        
-        <h3 class="post-subtitle">
-            只要你肯坚持，才会体会到放弃的快乐
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                业务的规则和验证占据了客户提供的需求的很大一部分。当我们观察这些需求是如何通过业务分析师或客户来表达和传达给整个项目团队的时候，我们就会知道大多数这样的业务规则和逻辑是以一个逻辑程序流程图来表达的。
-
-复杂需求的逻辑程序流程图由许多分支、节点和决策框组成。希望测试人员能够覆盖所有这些分支，触及这样一个复杂逻辑树的每一个角落。面对过如此复杂的业务流程，并尝试过许多测试用例/测试场景准备技术，以...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 3, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/12/01/middle-ware/">
-        <h2 class="post-title">
-            消息中间件-MQ
-        </h2>
-        
-        <h3 class="post-subtitle">
-            只要你肯坚持，才会体会到放弃的快乐
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                中间件是什么
-
-中间件是计算机软件，它为操作系统以外的软件应用程序提供服务。它可以被描述为“软件粘合剂”。
-
-中间件使软件开发人员更容易实现通信和输入/输出，因此他们可以专注于应用程序的特定用途。作为解决如何将新的应用程序与旧的遗留系统联系起来的问题的一种方法，它在20世纪80年代获得了普及，尽管这个术语自1968年以来就一直在使用。
-
-该术语最常用于支持分布式应用程序中数据通信和管理的软件...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 1, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/12/01/Docker-software-developer/">
-        <h2 class="post-title">
-            Docker - 软件开发
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Docker Guide
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                什么是docker
-Docker 是一个帮助在隔离环境中运行应用程序的工具。
-
-  https://www.docker.com/
-
-
-
-
-总是需要确保应用程序能够在独立的环境中运行，以便应用程序能够按预期的方式在不同的机器/服务器上运行。这对于能够在本地机器上开发应用程序并让它们按预期的方式在部署的环境中运行非常重要。对于开发人员来说，能够在任何计算机上按预期运行应用程序以快速启动和运行并...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 1, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/11/30/go-basic/">
-        <h2 class="post-title">
-            学习go基础
-        </h2>
-        
-        <h3 class="post-subtitle">
-            未来迟早得学
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                安装
-
-https://golang.google.cn/dl/
-
-测试安装成功go version， 查看当前安装的版本
-(base) ➜  Golang go version
-go version go1.15.6 darwin/amd64
-
-
-Hello World
-vi hello.go创建一个后缀为go的文件， 内容如下
-
-package main  //包名 
-
-import "...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 30, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/11/29/zhihu-goods/">
-        <h2 class="post-title">
-            知乎好物
-        </h2>
-        
-        <h3 class="post-subtitle">
-            刻意练习
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-曾经有位风险投资家说，投资项目要么在左上角（高价低频行业），要么在右下角（低价高频行业），不要去碰左下角（低价低频行业）。 理由很简单：如果一个行业的交易行为是“低价低频”，怎么赚大钱呢？
-
-
-
-利用大数据进行选品
-
-
-  佣金 commission
-  佣金比例 commission_ratio
-  30天评论 comm_30day3
-
-
-通过这三个值，我们就能找到大量高佣且销量不错的...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 29, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/11/29/big-data-search-Elasticsearch-basic/">
-        <h2 class="post-title">
-            全文搜索引擎 Elasticsearch 入门教程
-        </h2>
-        
-        <h3 class="post-subtitle">
-            大数据必备
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                全文搜索是什么
-
-
-  全文搜索引擎就是通过从互联网上提取的各个网站的信息（以网页文字为主）而建立的数据库中，检索与用户查询条件匹配的相关记录，然后按一定的排列顺序将结果返回给用户。
-
-
-ES是一个基于 Lucene 库的搜索引擎。它提供了一个分布式的、支持多租户的全文搜索引擎，该引擎具有 HTTP web 界面和无模式的 JSON 文档。是用 Java 开发的。遵循开放核心业务模式，部分软...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 29, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/11/22/how-to-be-a-guru/">
-        <h2 class="post-title">
-            逻辑思维183 怎样成为一个高手
-        </h2>
-        
-        <h3 class="post-subtitle">
-            刻意练习
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                怎样成为一个高手分4部分，第1部分是什么是练习，第2部分是怎么去练习？第3部分是那些过程中需要什么，第4部分就是怎样构建的自己的一个认知。
-
-  https://m.igetget.com/share/course/article?id=dA5eO3NDrGk8KP50mV2oxp9MRBzQPy
-
-
-
-什么是练习
-针对性重复练习， 这就是练习的本质。持续做你不会做的事情。
-
-先从第1部分说...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 22, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/11/19/python-awesome-debugger/">
-        <h2 class="post-title">
-            Python调试神器
-        </h2>
-        
-        <h3 class="post-subtitle">
-            比log和print好用，还省心
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                今天就来一小点知识。首先是一个python的库，还有一个是自己最近遇到的一件小事。
-
-Pysnooper
-
-slogan就是 不要再使用打印机进行调试。
-
-  https://github.com/cool-RR/PySnooper
-
-
-
+<nav class="editorial-pager" aria-label="文章分页">
   
-    Python 代码不能按预期运行时，或者想检查程序是否正确运行时，可以使用带有断点和监视器的成熟的调试器。但是在某些情况下，不能马上设置一个...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 19, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/11/18/redis-basic-3/">
-        <h2 class="post-title">
-            学习 Redis - 3. 进阶
-        </h2>
-        
-        <h3 class="post-subtitle">
-            只要你肯坚持，才会体会到放弃的快乐
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-
-
-Redis 数据备份与恢复
-
-备份
-127.0.0.1:6379&gt; SAVE
-OK
-
-
-备份还有一个在后台执行bgsave
-
-127.0.0.1:6379&gt; BGSAVE
-Background saving started
-
-
-该命令将在 redis 安装目录中创建dump.rdb文件。
-
-安装目录可以用 config get dir获取到
-
-127.0.0.1:6379...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 18, 2020
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page21">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page23">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+  <a href="/page21">← 较新文章</a>
+  
+  <span>第 22 / 32 页</span>
+  
+  <a href="/page23">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -705,7 +509,7 @@ Background saving started
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -991,10 +795,11 @@ Background saving started
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -1011,7 +816,7 @@ Background saving started
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1078,6 +883,7 @@ Background saving started
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1117,7 +923,7 @@ Background saving started
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1197,17 +1003,17 @@ Background saving started
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1348,63 +1154,6 @@ Background saving started
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

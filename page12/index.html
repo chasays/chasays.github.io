@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page12/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page12/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,314 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2022/05/21/small-behavior/">
-        <h2 class="post-title">
-            38 - 小习惯
-        </h2>
-        
-        <h3 class="post-subtitle">
-            特别容易做到
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-今天是520，我想是一个美好的日子，祝大家节日快乐~
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-今天老婆大人的胆囊炎犯了，还在急诊室输液喃，我就趁这个时间更新一篇来自医院的 Newsletter， 今天的内容就将就看一些呀 ~
-
-最近看的技术书籍比较多，所以个人成长之类的书就比较少了。输入的知识少了...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 21, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/19/LLVM-GPU-Compiler/">
-        <h2 class="post-title">
-            LLVM 测试
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                LLVM 测试基础设施包含三大类测试: 单元测试、回归测试和整个程序。单元测试和回归测试分别包含在 LLVM 存储在 LLVM/unittest 和 LLVM/test 之下，并且应该始终通过，一般情况作为checkin，即它们应该在每次提交之前运行。
-
-单元测试是使用 Google Test 和 Google Mock 编写的，位于 llvm/unittest 目录中。在一般情况下，单元测...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 19, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/19/CUDA-beginner-guider/">
-        <h2 class="post-title">
-            CUDA 入门教程
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                可以用 CUDA 创建大规模并行处理机应用程序的方法之一。它允许您使用强大的 c++ 编程语言来开发高性能算法，这些算法由运行在 GPU 上的数千个并行线程加速。
-
-许多开发人员已经通过这种方式加速了他们计算和带宽需求量巨大的应用程序，包括支持深度学习这一人工智能革命的库和框架。
-
-需要有NV显卡的电脑，环境准备，我用的thinkpad，装的windows，在wsl下面安装cuda，参考官方...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 19, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/17/external-project/">
-        <h2 class="post-title">
-            LLVM 外部项目 2
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                最近在github上发现一个不错的翻译文档，关于llvm的，虽然文档是2014.08年，但是对于用来了解llvm也是足够了.
-
-对于英文文档，可以下载这里.
-
-关于 Clang
-
-Clang不仅将C和C++转换为LLVM IR，而且能够监督整个编译过程，作为一个灵活的编译器驱动器，努力与GCC兼容共处。
-
-
-
-Clang看作一个前端编译器，而不是一个编译器驱动器，它负责将C和C++程序翻译为...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 17, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/17/LLVM-install-and-compiler/">
-        <h2 class="post-title">
-            LLVM 安装和编译 1
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                LLVM基础设施适用于若干 Unix 系统（GNU/Linux，FreeBSD ，Mac OS）和 Windows 系统。我们一步一步地说明如何让LLVM在这些系统上工作。某些系统可获得LLVM和Clang的预编译安装包，但是也可以从源代码编译得到它们。
-
-获取LLVM预编译安装包有两种通常的方法；你可以从官方网站获取二进制文件，也可以从第三方获取GNU/Linux发布的安装包和Window...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 17, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/17/LLVM-IR-transform/">
-        <h2 class="post-title">
-            LLVM IR转换
-        </h2>
-        
-        <h3 class="post-subtitle">
-            强大的现代编译器设计
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                什么是 LLVM  IR
-
-
-  ⽆限制的单分配寄存器机器指令集
-  强类型
-  三种常⻅表⽰形式：
-1， ⼈类可读的 LLVM 程序集（.ll ⽂件） 
-2， 密集的 bitcode ⼆进制表⽰（.bc ⽂件） 
-3,  C++ 类
-
-
-SSA
-
-Static Single Assignment, 我理解的是单一静态赋值，寄存器可能只分配一次.
-
-与之对应的就是多赋值，下面就是一个变量a，...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 17, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/14/what-is-product/">
-        <h2 class="post-title">
-            37 - 产品是什么
-        </h2>
-        
-        <h3 class="post-subtitle">
-            产品需要有交易和商品的属性，才有可能变为商业
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-成都的天气确实有点异常，前几天都快 30+ 度了，短裤、短袖都搞起了，从昨天开始突然降温，真的是满减活动不落伍，随时搞起来 ~
-
-
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-
-
-改变
-
-有人说减肥、运动、锻炼是非常愉悦的，我想大部分人是感受不到的这份愉快的。
-
-我自己也经常跑步，跑步的时候，特别是开...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 14, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/12/gdb-user-guide/">
-        <h2 class="post-title">
-            使用 GDB 进行调试
-        </h2>
-        
-        <h3 class="post-subtitle">
-            习惯了比GUI的还爽
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                经常我们使用的vscode、pycharm等等ide，都带有断点设置，参数检查等，但是GDB就没有这些，那我们能不能通过设置，把gdb用起来更简单喃？
-比如，如果你知道这些的话，可以跳过了.
-
-  gdb 脚本配合–batch
-  gdb .gdbinit  文件
-
-
-使用 GDB 进行调试
-
-在过去的几年里，我大部分时间都在用 Python 工作，而且我非常喜欢用 Python 进行调试。...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 12, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/11/tencent-cloud-subdomain-config-githubpages/">
-        <h2 class="post-title">
-            腾讯云配置二级域名到Github pages，并用 cloudflare 加速
-        </h2>
-        
-        <h3 class="post-subtitle">
-            这样访问速度还不错
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                背景
-
-为什么要使用独立的域名，第一个，首先是独立的域名可以使用提高自己的权重以及引用，那能使提高自己网站的流量；第2个是自己注册了一个域名，然后没有使用二级域域名，这个时候开通，那使用起来也非常方便，而且还是免费的。
-
-本人也是第一次走完整个流程，github pages当然一直有使用，创建也很简单，并且网上教程也比较多；然后是关于自定义域名的问题，自己以前使用过国外的免费域名，然后是直接...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 11, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/05/11/dokcer-copy-files/">
-        <h2 class="post-title">
-            向 Docker 容器复制文件和从 Docker 容器复制文件
-        </h2>
-        
-        <h3 class="post-subtitle">
-            ‘太方便了'
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                在处理 Docker 项目时，可能需要在 Docker 容器和本地计算机之间复制文件。
-
-Docker 为我们提供了非常有用的复制命令，使我们能够无缝地从 Docker 容器和本地机器复制文件。在本文中，我们将使用实例讨论如何使用 docker cp 命令。除了用到cp命令外， 还有一个docker exec常见的命令.
-
-下面是已经有启动docker镜像的情况下，docker镜像的名字为t...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on May 11, 2022
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page11">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-21">2022.05.21</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/05/21/small-behavior/">38 - 小习惯</a></h3>
+      <p class="post-card-subtitle">特别容易做到</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 今天是520，我想是一个美好的日子，祝大家节日快乐~ 如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 今天老婆大人的胆囊炎犯了，还在急诊室输液喃，我就趁这个时间更新一篇来自医院的 Newsletter， 今天的内...</p>
+      <a class="post-card-link" href="/2022/05/21/small-behavior/" aria-label="阅读：38 - 小习惯">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-19">2022.05.19</time>
+        <span class="post-card-tag">cuda</span>
+      </div>
+      <h3><a href="/2022/05/19/LLVM-GPU-Compiler/">LLVM 测试</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">LLVM 测试基础设施包含三大类测试: 单元测试、回归测试和整个程序。单元测试和回归测试分别包含在 LLVM 存储在 LLVM/unittest 和 LLVM/test 之下，并且应该始终通过，一般情况作为checkin，即它们应该在每次提交之前运行。 单元测试是使用 Google Test ...</p>
+      <a class="post-card-link" href="/2022/05/19/LLVM-GPU-Compiler/" aria-label="阅读：LLVM 测试">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page13">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-19">2022.05.19</time>
+        <span class="post-card-tag">cuda</span>
+      </div>
+      <h3><a href="/2022/05/19/CUDA-beginner-guider/">CUDA 入门教程</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">可以用 CUDA 创建大规模并行处理机应用程序的方法之一。它允许您使用强大的 c++ 编程语言来开发高性能算法，这些算法由运行在 GPU 上的数千个并行线程加速。 许多开发人员已经通过这种方式加速了他们计算和带宽需求量巨大的应用程序，包括支持深度学习这一人工智能革命的库和框架。 需要有NV显卡...</p>
+      <a class="post-card-link" href="/2022/05/19/CUDA-beginner-guider/" aria-label="阅读：CUDA 入门教程">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-17">2022.05.17</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2022/05/17/external-project/">LLVM 外部项目 2</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">最近在github上发现一个不错的翻译文档，关于llvm的，虽然文档是2014.08年，但是对于用来了解llvm也是足够了. 对于英文文档，可以下载这里. 关于 Clang Clang不仅将C和C++转换为LLVM IR，而且能够监督整个编译过程，作为一个灵活的编译器驱动器，努力与GCC兼容共...</p>
+      <a class="post-card-link" href="/2022/05/17/external-project/" aria-label="阅读：LLVM 外部项目 2">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-17">2022.05.17</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2022/05/17/LLVM-install-and-compiler/">LLVM 安装和编译 1</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">LLVM基础设施适用于若干 Unix 系统（GNU/Linux，FreeBSD ，Mac OS）和 Windows 系统。我们一步一步地说明如何让LLVM在这些系统上工作。某些系统可获得LLVM和Clang的预编译安装包，但是也可以从源代码编译得到它们。 获取LLVM预编译安装包有两种通常的方...</p>
+      <a class="post-card-link" href="/2022/05/17/LLVM-install-and-compiler/" aria-label="阅读：LLVM 安装和编译 1">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-17">2022.05.17</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2022/05/17/LLVM-IR-transform/">LLVM IR转换</a></h3>
+      <p class="post-card-subtitle">强大的现代编译器设计</p>
+      <p class="post-card-excerpt">什么是 LLVM IR ⽆限制的单分配寄存器机器指令集 强类型 三种常⻅表⽰形式： 1， ⼈类可读的 LLVM 程序集（.ll ⽂件） 2， 密集的 bitcode ⼆进制表⽰（.bc ⽂件） 3, C++ 类 SSA Static Single Assignment, 我理解的是单一静态赋值...</p>
+      <a class="post-card-link" href="/2022/05/17/LLVM-IR-transform/" aria-label="阅读：LLVM IR转换">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-14">2022.05.14</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/05/14/what-is-product/">37 - 产品是什么</a></h3>
+      <p class="post-card-subtitle">产品需要有交易和商品的属性，才有可能变为商业</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 成都的天气确实有点异常，前几天都快 30+ 度了，短裤、短袖都搞起了，从昨天开始突然降温，真的是满减活动不落伍，随时搞起来 ~ 如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 改变 有人说减肥、运动、锻炼是非常愉...</p>
+      <a class="post-card-link" href="/2022/05/14/what-is-product/" aria-label="阅读：37 - 产品是什么">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-12">2022.05.12</time>
+        <span class="post-card-tag">gdb</span>
+      </div>
+      <h3><a href="/2022/05/12/gdb-user-guide/">使用 GDB 进行调试</a></h3>
+      <p class="post-card-subtitle">习惯了比GUI的还爽</p>
+      <p class="post-card-excerpt">经常我们使用的vscode、pycharm等等ide，都带有断点设置，参数检查等，但是GDB就没有这些，那我们能不能通过设置，把gdb用起来更简单喃？ 比如，如果你知道这些的话，可以跳过了. gdb 脚本配合–batch gdb .gdbinit 文件 使用 GDB 进行调试 在过去的几年里，...</p>
+      <a class="post-card-link" href="/2022/05/12/gdb-user-guide/" aria-label="阅读：使用 GDB 进行调试">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-11">2022.05.11</time>
+        <span class="post-card-tag">github</span>
+      </div>
+      <h3><a href="/2022/05/11/tencent-cloud-subdomain-config-githubpages/">腾讯云配置二级域名到Github pages，并用 cloudflare 加速</a></h3>
+      <p class="post-card-subtitle">这样访问速度还不错</p>
+      <p class="post-card-excerpt">背景 为什么要使用独立的域名，第一个，首先是独立的域名可以使用提高自己的权重以及引用，那能使提高自己网站的流量；第2个是自己注册了一个域名，然后没有使用二级域域名，这个时候开通，那使用起来也非常方便，而且还是免费的。 本人也是第一次走完整个流程，github pages当然一直有使用，创建也很...</p>
+      <a class="post-card-link" href="/2022/05/11/tencent-cloud-subdomain-config-githubpages/" aria-label="阅读：腾讯云配置二级域名到Github pages，并用 cloudflare 加速">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-05-11">2022.05.11</time>
+        <span class="post-card-tag">docker</span>
+      </div>
+      <h3><a href="/2022/05/11/dokcer-copy-files/">向 Docker 容器复制文件和从 Docker 容器复制文件</a></h3>
+      <p class="post-card-subtitle">‘太方便了'</p>
+      <p class="post-card-excerpt">在处理 Docker 项目时，可能需要在 Docker 容器和本地计算机之间复制文件。 Docker 为我们提供了非常有用的复制命令，使我们能够无缝地从 Docker 容器和本地机器复制文件。在本文中，我们将使用实例讨论如何使用 docker cp 命令。除了用到cp命令外， 还有一个dock...</p>
+      <a class="post-card-link" href="/2022/05/11/dokcer-copy-files/" aria-label="阅读：向 Docker 容器复制文件和从 Docker 容器复制文件">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page11">← 较新文章</a>
+  
+  <span>第 12 / 32 页</span>
+  
+  <a href="/page13">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -666,7 +509,7 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -952,10 +795,11 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -972,7 +816,7 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1039,6 +883,7 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1078,7 +923,7 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1158,17 +1003,17 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1309,63 +1154,6 @@ Docker 为我们提供了非常有用的复制命令，使我们能够无缝地�
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

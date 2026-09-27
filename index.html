@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,330 +349,147 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2026/09/27/chrome-150-153-browser-fingerprint-test/">
-        <h2 class="post-title">
-            从 Chrome 150 到 153：一次 Python、Go 与真实浏览器的指纹实测
-        </h2>
-        
-        <h3 class="post-subtitle">
-            从指纹摘要到 ClientHello 原始字节的三轮对照
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                这次调研从一段看起来很合理的判断开始，大意是：
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-  两个客户端虽然都声明模拟 Chrome 150，但实际网络指纹可能不同。Go 的静态 profile 通常不如 curl_cffi 接近真实 Chrome，因此可能更容易被识别。上线前，最好比较一下 JA3 和 Akamai 指纹。
-
-
-这段话包含一个值得重视的风险，也夹带了一个尚未证明的结论。
-
-版本名称相同，不保证网络行为相同。 但...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on September 27, 2026
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2025/12/15/wechat-pad-protocal-v08/">
-        <h2 class="post-title">
-            分析一个 wechat Pad v08 协议的的 dll 文件
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                网上有部分编译产物，
-
-  https://github.com/G5t4r/WeProtocol
-
-
-源代码写了， 只能执行在 linux 和 windows 机器上。
-
-根据提供的 v08.go 和 dynlib/linux.go 代码，我们已经知道了这个库的接口定义，这为分析提供了极大的便利。以下是尝试系统的分析和破解/还原路径
-
-对于 clientsdk/v08/v08.go
-
-fu...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 15, 2025
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2025/12/10/llvm-structurize-optimizate/">
-        <h2 class="post-title">
-            定位一个llvm19 关于控制流的性能分析
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                问题： autoDock 从llvm12编译器升级到llvm19之后，某个场景性能下降25%。
-
-可以学习下llvm编译器后端的数据控制流分析。
-
-在将 AutoDock-GPU 项目的编译器工具链从 LLVM 12 升级至 LLVM 19 后，我们在特定测试场景（7cpa）下观察到了约 25% 的性能下降。
-
-通过 CUDA Profiler 初步定位，性能瓶颈锁定在核心 Kernel：g...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 10, 2025
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2025/12/05/teslamate-record/">
-        <h2 class="post-title">
-            特斯拉数据记录
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                teslamate 是什么？
-
-TeslaMate 是一个给特斯拉车主用的 开源数据记录和可视化系统。
-可以把它理解成：给你的特斯拉装了一个安静又勤奋的数据管家 📊🚗
-
-它主要做三件事：
-
-1️⃣ 自动记录车辆数据
-
-只要你把 TeslaMate 跑起来，它会通过 特斯拉官方 API，持续记录：
-
-行驶轨迹、里程
-
-电耗、充电记录
-
-电池衰减情况
-
-停车时间、地点
-
-速度、功率等
-
-全程自动...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 5, 2025
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2025/10/27/llvm19-trouble-shoting/">
-        <h2 class="post-title">
-            定位一个llvm19 升级带来的性能问题
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                问题： 在bitsandbytes里面，从llvm12升级到llvm19之后，部分性能下降。
-matmul和double_quant，部分case性能下降6%~13%。
-matmul的最后一个下降，13%
-
-问题
-
-思路是： 先复现这个问题，可以H列QA测试的结果保持一致。性能确实有回退。
-先用内部工具，分析是哪一个kernel的占比耗时比较高。
-
-这个工具可以参考cuda profiler...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 27, 2025
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2025/08/24/adventureverse-web3-game/">
-        <h2 class="post-title">
-            是 web3 游戏管理员骗局，还是 游戏项目？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                TL;DR
-推特上有人邀请我做游戏社区管理员 → 给了激活码让我下载一款所谓的游戏 → Windows / macOS 都无法运行 → 网站和白皮书看似正规，但账号粉丝大多是机器人 → 运行后发现有加密脚本在本地生成文件 → 怀疑是骗局或恶意软件。
-
-
-
-事情是这样的，前几天，我在推特上收到了一个私信，对方问我有没有兴趣做游戏社区的管理员。起初我并没有兴趣，就拒绝了。但后来他又说可以“先试试...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 24, 2025
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2025/04/04/Raspberry-pi-openwrt-ap-setup/">
-        <h2 class="post-title">
-            树莓派 4B 搭建 OpenWrt 热点 设置
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                这一篇文章是关于树莓派 4B 搭建 OpenWrt 热点的设置，主要是为了在树莓派上搭建一个热点，方便在没有网线的情况下连接到互联网。
-
-也是为了自己后面再来看的时候，可以设置点，如何设置。
-
-准备工作
-
-
-  硬件准备
-首先是买一个免驱动的wifi网卡，拼多多不到20块钱一个。
-树莓派4B，内存卡-8G
-  刷机
-开始下载固件，这里由于树莓派的网卡是BCM的，就下载这个对应的版本就可以
-下...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 4, 2025
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2025/02/09/Foundry-tools/">
-        <h2 class="post-title">
-            Foundry 工具初步探讨 - Forge
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                what’s  Foundry
-
-Foundry 是用 Rust 编写的用于以太坊应用程序开发的快速、可移植和模块化工具包。
-
-来自官网的介绍
-
-Foundry consists of:
-
-Forge: Build, test, fuzz, debug and deploy Solidity contracts, like Hardhat, Brownie, Ape.
-Cast: A Swi...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 9, 2025
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/09/11/smart-contract-guide/">
-        <h2 class="post-title">
-            智能合约 学习记录 1
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                初识 智能合约
-
-各位区块链世界的冒险者们，今天我们来聊聊一个既神奇又有点”笨笨”的东西——智能合约。想象一下，如果自动售货机突然学会了编程，还能自动执行各种复杂的任务，那会是什么样子？没错，这就是智能合约的魔力所在！
-
-首先，让我们来认识一下这个神奇的发明。智能合约是以太坊的一大创新，本质上就是运行在区块链上的程序。它就像是一个被严格管教的乖孩子，永远按照预设的规则行事，不会耍小聪明，也不...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 11, 2024
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2024/06/13/simt-warp/">
-        <h2 class="post-title">
-            LLVM 学习记录：编译器最佳实践 - 后端
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                SIMT 是什么意思？
-
-Single Instruction Multiple Threads” (SIMT) 单指令多线程。
-
-在纯 SIMD 中，一条指令以完全相同的方式作用于所有数据。
-在 SIMT 中，这一限制有所放松：可以激活或停用选定的线程，以便仅在活动线程上处理指令和数据，而在非活动线程上本地数据保持不变。
-
-因此，SIMT 可以适应分支，尽管效率不高。给定以 if (条件)...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 13, 2024
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2026-09-27">2026.09.27</time>
+        <span class="post-card-tag">技术</span>
+      </div>
+      <h3><a href="/2026/09/27/chrome-150-153-browser-fingerprint-test/">从 Chrome 150 到 153：一次 Python、Go 与真实浏览器的指纹实测</a></h3>
+      <p class="post-card-subtitle">从指纹摘要到 ClientHello 原始字节的三轮对照</p>
+      <p class="post-card-excerpt">这次调研从一段看起来很合理的判断开始，大意是： 两个客户端虽然都声明模拟 Chrome 150，但实际网络指纹可能不同。Go 的静态 profile 通常不如 curl_cffi 接近真实 Chrome，因此可能更容易被识别。上线前，最好比较一下 JA3 和 Akamai 指纹。 这段话包含一...</p>
+      <a class="post-card-link" href="/2026/09/27/chrome-150-153-browser-fingerprint-test/" aria-label="阅读：从 Chrome 150 到 153：一次 Python、Go 与真实浏览器的指纹实测">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page2">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2025-12-15">2025.12.15</time>
+        <span class="post-card-tag">学习</span>
+      </div>
+      <h3><a href="/2025/12/15/wechat-pad-protocal-v08/">分析一个 wechat Pad v08 协议的的 dll 文件</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">网上有部分编译产物， https://github.com/G5t4r/WeProtocol 源代码写了， 只能执行在 linux 和 windows 机器上。 根据提供的 v08.go 和 dynlib/linux.go 代码，我们已经知道了这个库的接口定义，这为分析提供了极大的便利。以下是...</p>
+      <a class="post-card-link" href="/2025/12/15/wechat-pad-protocal-v08/" aria-label="阅读：分析一个 wechat Pad v08 协议的的 dll 文件">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2025-12-10">2025.12.10</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2025/12/10/llvm-structurize-optimizate/">定位一个llvm19 关于控制流的性能分析</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">问题： autoDock 从llvm12编译器升级到llvm19之后，某个场景性能下降25%。 可以学习下llvm编译器后端的数据控制流分析。 在将 AutoDock-GPU 项目的编译器工具链从 LLVM 12 升级至 LLVM 19 后，我们在特定测试场景（7cpa）下观察到了约 25% ...</p>
+      <a class="post-card-link" href="/2025/12/10/llvm-structurize-optimizate/" aria-label="阅读：定位一个llvm19 关于控制流的性能分析">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2025-12-05">2025.12.05</time>
+        <span class="post-card-tag">teslamate</span>
+      </div>
+      <h3><a href="/2025/12/05/teslamate-record/">特斯拉数据记录</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">teslamate 是什么？ TeslaMate 是一个给特斯拉车主用的 开源数据记录和可视化系统。 可以把它理解成：给你的特斯拉装了一个安静又勤奋的数据管家 📊🚗 它主要做三件事： 1️⃣ 自动记录车辆数据 只要你把 TeslaMate 跑起来，它会通过 特斯拉官方 API，持续记录： 行驶...</p>
+      <a class="post-card-link" href="/2025/12/05/teslamate-record/" aria-label="阅读：特斯拉数据记录">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2025-10-27">2025.10.27</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2025/10/27/llvm19-trouble-shoting/">定位一个llvm19 升级带来的性能问题</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">问题： 在bitsandbytes里面，从llvm12升级到llvm19之后，部分性能下降。 matmul和double_quant，部分case性能下降6%~13%。 matmul的最后一个下降，13% 问题 思路是： 先复现这个问题，可以H列QA测试的结果保持一致。性能确实有回退。 先用内...</p>
+      <a class="post-card-link" href="/2025/10/27/llvm19-trouble-shoting/" aria-label="阅读：定位一个llvm19 升级带来的性能问题">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2025-08-24">2025.08.24</time>
+        <span class="post-card-tag">adventureverse</span>
+      </div>
+      <h3><a href="/2025/08/24/adventureverse-web3-game/">是 web3 游戏管理员骗局，还是 游戏项目？</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">TL;DR 推特上有人邀请我做游戏社区管理员 → 给了激活码让我下载一款所谓的游戏 → Windows / macOS 都无法运行 → 网站和白皮书看似正规，但账号粉丝大多是机器人 → 运行后发现有加密脚本在本地生成文件 → 怀疑是骗局或恶意软件。 事情是这样的，前几天，我在推特上收到了一个私...</p>
+      <a class="post-card-link" href="/2025/08/24/adventureverse-web3-game/" aria-label="阅读：是 web3 游戏管理员骗局，还是 游戏项目？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2025-04-04">2025.04.04</time>
+        <span class="post-card-tag">raspberry pi</span>
+      </div>
+      <h3><a href="/2025/04/04/Raspberry-pi-openwrt-ap-setup/">树莓派 4B 搭建 OpenWrt 热点 设置</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">这一篇文章是关于树莓派 4B 搭建 OpenWrt 热点的设置，主要是为了在树莓派上搭建一个热点，方便在没有网线的情况下连接到互联网。 也是为了自己后面再来看的时候，可以设置点，如何设置。 准备工作 硬件准备 首先是买一个免驱动的wifi网卡，拼多多不到20块钱一个。 树莓派4B，内存卡-8G...</p>
+      <a class="post-card-link" href="/2025/04/04/Raspberry-pi-openwrt-ap-setup/" aria-label="阅读：树莓派 4B 搭建 OpenWrt 热点 设置">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2025-02-09">2025.02.09</time>
+        <span class="post-card-tag">web3</span>
+      </div>
+      <h3><a href="/2025/02/09/Foundry-tools/">Foundry 工具初步探讨 - Forge</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">what’s Foundry Foundry 是用 Rust 编写的用于以太坊应用程序开发的快速、可移植和模块化工具包。 来自官网的介绍 Foundry consists of: Forge: Build, test, fuzz, debug and deploy Solidity contr...</p>
+      <a class="post-card-link" href="/2025/02/09/Foundry-tools/" aria-label="阅读：Foundry 工具初步探讨 - Forge">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-09-11">2024.09.11</time>
+        <span class="post-card-tag">智能合约</span>
+      </div>
+      <h3><a href="/2024/09/11/smart-contract-guide/">智能合约 学习记录 1</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">初识 智能合约 各位区块链世界的冒险者们，今天我们来聊聊一个既神奇又有点”笨笨”的东西——智能合约。想象一下，如果自动售货机突然学会了编程，还能自动执行各种复杂的任务，那会是什么样子？没错，这就是智能合约的魔力所在！ 首先，让我们来认识一下这个神奇的发明。智能合约是以太坊的一大创新，本质上就是...</p>
+      <a class="post-card-link" href="/2024/09/11/smart-contract-guide/" aria-label="阅读：智能合约 学习记录 1">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2024-06-13">2024.06.13</time>
+        <span class="post-card-tag">llvm</span>
+      </div>
+      <h3><a href="/2024/06/13/simt-warp/">LLVM 学习记录：编译器最佳实践 - 后端</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">SIMT 是什么意思？ Single Instruction Multiple Threads” (SIMT) 单指令多线程。 在纯 SIMD 中，一条指令以完全相同的方式作用于所有数据。 在 SIMT 中，这一限制有所放松：可以激活或停用选定的线程，以便仅在活动线程上处理指令和数据，而在非活...</p>
+      <a class="post-card-link" href="/2024/06/13/simt-warp/" aria-label="阅读：LLVM 学习记录：编译器最佳实践 - 后端">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  <span></span>
+  <span>第 1 / 32 页</span>
+  
+  <a href="/page2">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -682,7 +507,7 @@ Single Instruction Multiple Threads” (SIMT) 单指令多线程。
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -968,10 +793,11 @@ Single Instruction Multiple Threads” (SIMT) 单指令多线程。
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -988,7 +814,7 @@ Single Instruction Multiple Threads” (SIMT) 单指令多线程。
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1055,6 +881,7 @@ Single Instruction Multiple Threads” (SIMT) 单指令多线程。
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1094,7 +921,7 @@ Single Instruction Multiple Threads” (SIMT) 单指令多线程。
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1174,17 +1001,17 @@ Single Instruction Multiple Threads” (SIMT) 单指令多线程。
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1325,63 +1152,6 @@ Single Instruction Multiple Threads” (SIMT) 单指令多线程。
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

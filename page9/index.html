@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page9/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page9/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,337 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2022/09/17/nvidia-new-arrival/">
-        <h2 class="post-title">
-            55 - 保持更新
-        </h2>
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-17">2022.09.17</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/09/17/nvidia-new-arrival/">55 - 保持更新</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 文章推荐 特斯拉Semi Truck进入中国的三大猜想 近日，特斯拉官网更新了Semi Truck的外观图片。与此同时，特斯拉首席执行官埃隆·马斯克也公开宣称，首款...</p>
+      <a class="post-card-link" href="/2022/09/17/nvidia-new-arrival/" aria-label="阅读：55 - 保持更新">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-16">2022.09.16</time>
+        <span class="post-card-tag">cuda</span>
+      </div>
+      <h3><a href="/2022/09/16/cuda-load-store-2/">CUDA 基础 - 04 访存- share、const</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。 之前写了一篇关于cuda的kernel函数调用相关的知识，以及一个hello world入手学习语法等。知道了GPU架构,如何写一个cuda程序,今天继续深入学习cuda的内存相关知识。 回顾下，前面学习了的内存类型...</p>
+      <a class="post-card-link" href="/2022/09/16/cuda-load-store-2/" aria-label="阅读：CUDA 基础 - 04 访存- share、const">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-13">2022.09.13</time>
+        <span class="post-card-tag">cuda</span>
+      </div>
+      <h3><a href="/2022/09/13/cuda-load-store/">CUDA 基础 - 03 访存- register、global、local</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。 之前写了一篇关于cuda的kernel函数调用相关的知识，以及一个hello world入手学习语法等。知道了GPU架构,如何写一个cuda程序,今天继续深入学习cuda的内存相关知识。 内存分类 大致可以分为:Re...</p>
+      <a class="post-card-link" href="/2022/09/13/cuda-load-store/" aria-label="阅读：CUDA 基础 - 03 访存- register、global、local">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-10">2022.09.10</time>
         
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
+      </div>
+      <h3><a href="/2022/09/10/mid-autumn/">Mid Autumn</a></h3>
+      
+      <p class="post-card-excerpt">layout: post title: “54 - 节日快乐” subtitle: ‘’ author: “叉叉敌” header-style: text tags: Newsletter 朋友，您好 ~ 圆魄上寒空，皆言四海同。 安知千里外，不有雨兼风？ 同一片月光之下，你此时此刻在做什么喃...</p>
+      <a class="post-card-link" href="/2022/09/10/mid-autumn/" aria-label="阅读：Mid Autumn">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-07">2022.09.07</time>
+        <span class="post-card-tag">cuda</span>
+      </div>
+      <h3><a href="/2022/09/07/cuda-helloworld/">CUDA 基础 02 - helloworld</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。 之前写了一篇关于cuda的kernel函数调用相关的知识，今天再来从一个hello world入手学习。 cuda kernel定义 普通函数和CUDA程序的区别。 void CPUFunction() { prin...</p>
+      <a class="post-card-link" href="/2022/09/07/cuda-helloworld/" aria-label="阅读：CUDA 基础 02 - helloworld">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-06">2022.09.06</time>
+        <span class="post-card-tag">cuda</span>
+      </div>
+      <h3><a href="/2022/09/06/cuda-basic/">CUDA 基础 01 - 概念</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。 warp/sm/index/grid等。 CPU VS GPU GPU最重要的一点是可以并行的实现数据处理。 这一点在数据量大、运算复杂度不高的条件下极为适用。可以简单地把一块GPU想象成一个超多核的CPU运算部件。...</p>
+      <a class="post-card-link" href="/2022/09/06/cuda-basic/" aria-label="阅读：CUDA 基础 01 - 概念">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-09-03">2022.09.03</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/09/03/no-ad/">53 - no AD</a></h3>
+      <p class="post-card-subtitle">没有广告</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 今天把公众号底部的广告关闭了，因为底部的广告看上去不是很好，它是根据你个人在网上的identity来推送的，比如说你在同一个局域网，然后这个局域网里面有其他人去访问了，带给这个网络标签就会有多种标签，它推送的可能不是你喜欢的内容，也不是你想看的内容。广告目前根本是没什么收入的，...</p>
+      <a class="post-card-link" href="/2022/09/03/no-ad/" aria-label="阅读：53 - no AD">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-08-27">2022.08.27</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/08/27/life-is-given-by-air-conditioner/">52 -  热</a></h3>
+      <p class="post-card-subtitle">命都是空调给的</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 截至8月15日，四川省共有10市启动了市级抗旱应急响应。 川渝地区最近干旱太严重了，据说是 100 年难遇的干旱天气，成都的地理位置，导致久不下雨，就热得不行。我们已经开始居家办公 2 个礼拜了。 到目前为止(08.28)在成都这边，户外温度 35°左右，不是那么热了。下了好几...</p>
+      <a class="post-card-link" href="/2022/08/27/life-is-given-by-air-conditioner/" aria-label="阅读：52 -  热">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-08-21">2022.08.21</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/08/21/bad-code/">51 -  不要只担心代码</a></h3>
+      <p class="post-card-subtitle">数据结构更重要</p>
+      <p class="post-card-excerpt">朋友，您好 ~ Linux的创造者Linus Torvalds说。 Bad programmers worry about the code. Good programmers worry about data structures and their relationships. 程序员更关...</p>
+      <a class="post-card-link" href="/2022/08/21/bad-code/" aria-label="阅读：51 -  不要只担心代码">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-08-14">2022.08.14</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/08/14/normal/">50 -  成不了是常态</a></h3>
+      <p class="post-card-subtitle">不成就继续</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 最近听的一篇播客，吴老师从失败中总结的三大经验 该努力就一定竭尽全力 心态稳定 风控放在首位 我觉得是做一件事情，不成是大概率的情况。没有成我们就不做了吗，不是。我们接着做，所以说创业它是有风险的，也有门槛，不是任何人轻轻松松就能创业成功，不是一件事情轻轻松松就能做成。 失败了...</p>
+      <a class="post-card-link" href="/2022/08/14/normal/" aria-label="阅读：50 -  成不了是常态">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
 
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
 
-文章推荐
-
-
-  特斯拉Semi Truck进入中国的三大猜想
-
-
-
-近日，特斯拉官网更新了Semi Truck的外观图片。与此同时，特斯拉首席执行官埃隆·马斯克也公开宣称，首款电动卡车Semi长续驶里程版将于年底正式交付。如果特斯拉Semi Truck入华，...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 17, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/16/cuda-load-store-2/">
-        <h2 class="post-title">
-            CUDA 基础 - 04 访存- share、const
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。
-
-之前写了一篇关于cuda的kernel函数调用相关的知识，以及一个hello world入手学习语法等。知道了GPU架构,如何写一个cuda程序,今天继续深入学习cuda的内存相关知识。
-
-回顾下，前面学习了的内存类型：三种内存，寄存器，全局、局部内存。寄存器可用于本地存储数据，避免重复内存操作。全局内存是主存空...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 16, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/13/cuda-load-store/">
-        <h2 class="post-title">
-            CUDA 基础 - 03 访存- register、global、local
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。
-
-之前写了一篇关于cuda的kernel函数调用相关的知识，以及一个hello world入手学习语法等。知道了GPU架构,如何写一个cuda程序,今天继续深入学习cuda的内存相关知识。
-
-内存分类
-
-大致可以分为:Registers、global 、shared 、constant、local， 那就开始学习吧...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 13, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/10/mid-autumn/">
-        <h2 class="post-title">
-            Mid Autumn
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-layout: post
-title: “54 - 节日快乐”
-subtitle: ‘’ 
-author: “叉叉敌”
-header-style: text
-tags:
-
+<nav class="editorial-pager" aria-label="文章分页">
   
-    Newsletter
+  <a href="/page8">← 较新文章</a>
   
-
-
-朋友，您好 ~
-
-圆魄上寒空，皆言四海同。
-安知千里外，不有雨兼风？
-
-同一片月光之下，你此时此刻在做什么喃？
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on September 10, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/07/cuda-helloworld/">
-        <h2 class="post-title">
-            CUDA 基础 02 - helloworld
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。
-
-之前写了一篇关于cuda的kernel函数调用相关的知识，今天再来从一个hello world入手学习。
-
-cuda kernel定义
-
-普通函数和CUDA程序的区别。
-
-
-void CPUFunction()
-{
-  printf("This function is defined to run on the ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 7, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/06/cuda-basic/">
-        <h2 class="post-title">
-            CUDA 基础 01 - 概念
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                最近在GPU编译器测试方面遇到一些瓶颈，准备学习下cuda 相关的基础知识。
-
-warp/sm/index/grid等。
-
-CPU  VS GPU
-
-
-  GPU最重要的一点是可以并行的实现数据处理。
-
-
-这一点在数据量大、运算复杂度不高的条件下极为适用。可以简单地把一块GPU想象成一个超多核的CPU运算部件。这些CPU有自己的寄存器，还有供数据交换用的共享内存、缓存，同时周围还有取指部件和...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 6, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/09/03/no-ad/">
-        <h2 class="post-title">
-            53 - no AD
-        </h2>
-        
-        <h3 class="post-subtitle">
-            没有广告
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-今天把公众号底部的广告关闭了，因为底部的广告看上去不是很好，它是根据你个人在网上的identity来推送的，比如说你在同一个局域网，然后这个局域网里面有其他人去访问了，带给这个网络标签就会有多种标签，它推送的可能不是你喜欢的内容，也不是你想看的内容。广告目前根本是没什么收入的，一个月就几十块，摊手~。
-
-
-  目前内容载体是视频，要赚钱的还是要走视频内容，比文字更容易些...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 3, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/08/27/life-is-given-by-air-conditioner/">
-        <h2 class="post-title">
-            52 -  热
-        </h2>
-        
-        <h3 class="post-subtitle">
-            命都是空调给的
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-  截至8月15日，四川省共有10市启动了市级抗旱应急响应。
-
-
-川渝地区最近干旱太严重了，据说是 100 年难遇的干旱天气，成都的地理位置，导致久不下雨，就热得不行。我们已经开始居家办公 2 个礼拜了。
-
-到目前为止(08.28)在成都这边，户外温度 35°左右，不是那么热了。下了好几场不大不小的雨，已经缓解了旱情。
-
-这场高温极端天气让我们切切实实地感受到了环境变化对...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 27, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/08/21/bad-code/">
-        <h2 class="post-title">
-            51 -  不要只担心代码
-        </h2>
-        
-        <h3 class="post-subtitle">
-            数据结构更重要
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-Linux的创造者Linus Torvalds说。
-
-
-  Bad programmers worry about the code. Good programmers worry about data structures and their relationships.
-
-
-程序员更关心数据结构和代码的关系，而不是单纯的代码，比如for很多种表达方式，哪一种很重要么？不...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 21, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/08/14/normal/">
-        <h2 class="post-title">
-            50 -  成不了是常态
-        </h2>
-        
-        <h3 class="post-subtitle">
-            不成就继续
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-最近听的一篇播客，吴老师从失败中总结的三大经验
-
-  该努力就一定竭尽全力
-  心态稳定
-  风控放在首位
-
-
-我觉得是做一件事情，不成是大概率的情况。没有成我们就不做了吗，不是。我们接着做，所以说创业它是有风险的，也有门槛，不是任何人轻轻松松就能创业成功，不是一件事情轻轻松松就能做成。
-
-失败了之后没有成，我们要调整自己的心态，继续走，继续向前。同时要做好总结和复盘，哪些...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 14, 2022
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page8">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page10">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+  <span>第 9 / 32 页</span>
+  
+  <a href="/page10">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -689,7 +509,7 @@ Linux的创造者Linus Torvalds说。
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -975,10 +795,11 @@ Linux的创造者Linus Torvalds说。
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -995,7 +816,7 @@ Linux的创造者Linus Torvalds说。
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1062,6 +883,7 @@ Linux的创造者Linus Torvalds说。
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1101,7 +923,7 @@ Linux的创造者Linus Torvalds说。
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1181,17 +1003,17 @@ Linux的创造者Linus Torvalds说。
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1332,63 +1154,6 @@ Linux的创造者Linus Torvalds说。
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

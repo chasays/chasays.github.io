@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page24/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page24/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,354 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2020/10/12/challenge-disadvantage/">
-        <h2 class="post-title">
-            正视自己的不足
-        </h2>
-        
-        <h3 class="post-subtitle">
-            更大的挑战
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                Audio
-PESQ
-NR 无参考
-FR 全参考
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-Video
-POLQA PS 像素
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-  
-    PSNR（峰值信噪比）：用得最多，但是其值不能很好地反映人眼主观感受。一般取值范围：20-40.值越大，视频质量越好。
-  
-  
-    SSIM（结构相似性）：计算稍复杂，其值可以较好地反映人眼主观感受。一般取值范围：0-1.值越大，视频质量越好。
-  
-
-
-ECNR
-布局 混响
-延时...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 12, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/10/07/Python-List-complement/">
-        <h2 class="post-title">
-            Python list 实现
-        </h2>
-        
-        <h3 class="post-subtitle">
-            看看底层是怎么实现的
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                List 对象的C结构
-CPython 中的列表对象由以下 C 结构表示。ob_item是指向列表元素的指针列表。分配的是内存中分配的插槽数。
-typedef struct {
-    PyObject_VAR_HEAD
-    PyObject **ob_item;
-    Py_ssize_t allocated;
-} PyListObject;
-
-
-初始化list
-比如初始化一个空的数...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 7, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/10/02/audio-and-vedio-quality-evaluation/">
-        <h2 class="post-title">
-            音频质量评估-2
-        </h2>
-        
-        <h3 class="post-subtitle">
-            音频质量评估
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                音频质量评估-1：之前主要学习了音视频的编码和解码原理，和测试音频质量的方法。接下来继续学习下当前 短视频 领域的 视频质量测试方法。
-
-算法了解
-
-
-  可以参考python的 scikit-image这个库。里面有很很多算法。
-
-
-
-  PSNR
-
-
-用于表示信号的最大可能功率与影响信号表示的保真度的腐蚀噪声功率之间的比率。由于许多信号具有非常宽的动态范围，PSNR通常以对数分贝刻度表示...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 2, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/10/01/Python-sorted/">
-        <h2 class="post-title">
-            Python 算法 排序 
-        </h2>
-        
-        <h3 class="post-subtitle">
-            快排和堆
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                我们常见的冒泡排序，冒泡排序而已有2种优化思路，就是排过序中，比下一个的还小，就退出本次循环，进入下一次循环， 还有一种优化，因为是冒泡，每次冒泡后，最后（几个）数的都是排过序的。因此每次比较只与前面没有排序的比较。
-def bubble(li):
-    if not isinstance(li, list):
-        raise ValueError("please enter ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 1, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/25/macOS-mysql8-reset-password/">
-        <h2 class="post-title">
-            macOS Mysql8 重置用户密码
-        </h2>
-        
-        <h3 class="post-subtitle">
-            配置Maven，Java，Spring
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                Mysql 8+ 修改密码好多命令都不太对。看了官方文档终于奏效了。
-
-版本：
-mysql -V
-mysql  Ver 8.0.17 for macos10.14 on x86_64 (MySQL Community Server - GPL)
-
-
-登录提示：
-mysql -uuser -p
-Enter password:
-ERROR 1045 (28000): Access denied ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 25, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/25/how-to-muck-data-in-mini-program-wechat/">
-        <h2 class="post-title">
-            如何用浏览器或者微信小程序开发Mock数据
-        </h2>
-        
-        <h3 class="post-subtitle">
-            微信小程序mock数据
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                获取原始数据
-点开IDE的调试窗口，然后和chrome一样，点开network，可以看到request。如果是数据太少，就自己可以生成一个手动写一个JSON格式的结果。
-
-
-
-设置mock
-获取到数据之后，就可以模拟了，
-
-首先点击mock， 然后点击Mock右边有一个+ plus符号。
-对应填写API接口类型，有request等还有可以mock支付相关的信息。
-接着就是参数，url，后面的...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 25, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/25/Vscode-bring-up-Java-Spring-project/">
-        <h2 class="post-title">
-            Vscode 安装Java Spring项目
-        </h2>
-        
-        <h3 class="post-subtitle">
-            配置Maven，Java，Spring
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                记一次二次开发Spring项目的，用vscode配置环境过程。因为vscode是用json文件保存的配置。好多都过时了。强行提笔记录一下
-
-安装组件
-一个java， 一个spring boot
-
-
-
-
-安装Maven和Java
-java这个简单
-
-  https://java.com/zh_CN/download/help/mac_install.xml
-
-
-maven
-配置环境变量，如果是...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 25, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/24/Python-advanced/">
-        <h2 class="post-title">
-            Python进阶
-        </h2>
-        
-        <h3 class="post-subtitle">
-            向高手学习学习
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                课程连接：
-
-  https://time.geekbang.org/column/intro/176
-
-
-开篇
-
-  从工程角度掌握Python高阶用法；
-  独立开发Python项目的能力；
-  硅谷一线工程师的独家经验分享；
-  完整的Python学习路径。
-
-
-基础
-
-IDE
-Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成本重现结果。
-
-元组和列表
-列表是动态的，长...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 24, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/23/audio-quality-evaluation-1/">
-        <h2 class="post-title">
-            音频质量评估-1
-        </h2>
-        
-        <h3 class="post-subtitle">
-            音频质量测试和评估
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                原理
-音频的原理
-
-把模拟信号转变成 数字信号，前者是连续的，后者离散的。因此有DAC和ADC。
-需要关注的三个指标，这三个指标决定音频的质量
-
-  
-    比特率：表示经过编码（压缩）后的音频数据每秒钟需要用多少个比特来表示，单位常为kbps。 这个数字越大音频质量越好，但是数据文件就越大。
-  
-  
-    响度和强度：声音的主观属性响度表示的是一个声音听来有多响的程度。响度主要随声...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 23, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2020/09/21/think-about-software-testing/">
-        <h2 class="post-title">
-            干了8年测试了
-        </h2>
-        
-        <h3 class="post-subtitle">
-            基础还不过关
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                对知识点不会筛选，盲目买书看视频，资料堆积如山，什么都不管先学了再说;
-目前基本上都在极客时间上面学习，主要便宜。找到自己感兴趣就学，这个自己要改正。
-有学习有摄影产品。性能测试，安全测试。开始的策略就是想把自己的一个广度打开，然后再慢慢的深入下去。我想的是找一个方向，自己真真正正的深入进去。
-
-指望把一本书啃透、一套视频看完，多敲敲写一些就能搞定
-看一本书，看一个视频就是像小学生一样要把整...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on September 21, 2020
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page23">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-10-12">2020.10.12</time>
+        <span class="post-card-tag">不足</span>
+      </div>
+      <h3><a href="/2020/10/12/challenge-disadvantage/">正视自己的不足</a></h3>
+      <p class="post-card-subtitle">更大的挑战</p>
+      <p class="post-card-excerpt">Audio PESQ NR 无参考 FR 全参考 Video POLQA PS 像素 PSNR（峰值信噪比）：用得最多，但是其值不能很好地反映人眼主观感受。一般取值范围：20-40.值越大，视频质量越好。 SSIM（结构相似性）：计算稍复杂，其值可以较好地反映人眼主观感受。一般取值范围：0-1...</p>
+      <a class="post-card-link" href="/2020/10/12/challenge-disadvantage/" aria-label="阅读：正视自己的不足">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-10-07">2020.10.07</time>
+        <span class="post-card-tag">python</span>
+      </div>
+      <h3><a href="/2020/10/07/Python-List-complement/">Python list 实现</a></h3>
+      <p class="post-card-subtitle">看看底层是怎么实现的</p>
+      <p class="post-card-excerpt">List 对象的C结构 CPython 中的列表对象由以下 C 结构表示。ob_item是指向列表元素的指针列表。分配的是内存中分配的插槽数。 typedef struct { PyObject_VAR_HEAD PyObject **ob_item; Py_ssize_t allocated...</p>
+      <a class="post-card-link" href="/2020/10/07/Python-List-complement/" aria-label="阅读：Python list 实现">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page25">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-10-02">2020.10.02</time>
+        <span class="post-card-tag">视频</span>
+      </div>
+      <h3><a href="/2020/10/02/audio-and-vedio-quality-evaluation/">音频质量评估-2</a></h3>
+      <p class="post-card-subtitle">音频质量评估</p>
+      <p class="post-card-excerpt">音频质量评估-1：之前主要学习了音视频的编码和解码原理，和测试音频质量的方法。接下来继续学习下当前 短视频 领域的 视频质量测试方法。 算法了解 可以参考python的 scikit-image这个库。里面有很很多算法。 PSNR 用于表示信号的最大可能功率与影响信号表示的保真度的腐蚀噪声功率...</p>
+      <a class="post-card-link" href="/2020/10/02/audio-and-vedio-quality-evaluation/" aria-label="阅读：音频质量评估-2">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-10-01">2020.10.01</time>
+        <span class="post-card-tag">算法</span>
+      </div>
+      <h3><a href="/2020/10/01/Python-sorted/">Python 算法 排序 </a></h3>
+      <p class="post-card-subtitle">快排和堆</p>
+      <p class="post-card-excerpt">我们常见的冒泡排序，冒泡排序而已有2种优化思路，就是排过序中，比下一个的还小，就退出本次循环，进入下一次循环， 还有一种优化，因为是冒泡，每次冒泡后，最后（几个）数的都是排过序的。因此每次比较只与前面没有排序的比较。 def bubble(li): if not isinstance(li, ...</p>
+      <a class="post-card-link" href="/2020/10/01/Python-sorted/" aria-label="阅读：Python 算法 排序 ">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-25">2020.09.25</time>
+        <span class="post-card-tag">vscode</span>
+      </div>
+      <h3><a href="/2020/09/25/macOS-mysql8-reset-password/">macOS Mysql8 重置用户密码</a></h3>
+      <p class="post-card-subtitle">配置Maven，Java，Spring</p>
+      <p class="post-card-excerpt">Mysql 8+ 修改密码好多命令都不太对。看了官方文档终于奏效了。 版本： mysql -V mysql Ver 8.0.17 for macos10.14 on x86_64 (MySQL Community Server - GPL) 登录提示： mysql -uuser -p Ente...</p>
+      <a class="post-card-link" href="/2020/09/25/macOS-mysql8-reset-password/" aria-label="阅读：macOS Mysql8 重置用户密码">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-25">2020.09.25</time>
+        <span class="post-card-tag">微信小程序</span>
+      </div>
+      <h3><a href="/2020/09/25/how-to-muck-data-in-mini-program-wechat/">如何用浏览器或者微信小程序开发Mock数据</a></h3>
+      <p class="post-card-subtitle">微信小程序mock数据</p>
+      <p class="post-card-excerpt">获取原始数据 点开IDE的调试窗口，然后和chrome一样，点开network，可以看到request。如果是数据太少，就自己可以生成一个手动写一个JSON格式的结果。 设置mock 获取到数据之后，就可以模拟了， 首先点击mock， 然后点击Mock右边有一个+ plus符号。 对应填写AP...</p>
+      <a class="post-card-link" href="/2020/09/25/how-to-muck-data-in-mini-program-wechat/" aria-label="阅读：如何用浏览器或者微信小程序开发Mock数据">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-25">2020.09.25</time>
+        <span class="post-card-tag">vscode</span>
+      </div>
+      <h3><a href="/2020/09/25/Vscode-bring-up-Java-Spring-project/">Vscode 安装Java Spring项目</a></h3>
+      <p class="post-card-subtitle">配置Maven，Java，Spring</p>
+      <p class="post-card-excerpt">记一次二次开发Spring项目的，用vscode配置环境过程。因为vscode是用json文件保存的配置。好多都过时了。强行提笔记录一下 安装组件 一个java， 一个spring boot 安装Maven和Java java这个简单 https://java.com/zh_CN/downlo...</p>
+      <a class="post-card-link" href="/2020/09/25/Vscode-bring-up-Java-Spring-project/" aria-label="阅读：Vscode 安装Java Spring项目">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-24">2020.09.24</time>
+        <span class="post-card-tag">Python</span>
+      </div>
+      <h3><a href="/2020/09/24/Python-advanced/">Python进阶</a></h3>
+      <p class="post-card-subtitle">向高手学习学习</p>
+      <p class="post-card-excerpt">课程连接： https://time.geekbang.org/column/intro/176 开篇 从工程角度掌握Python高阶用法； 独立开发Python项目的能力； 硅谷一线工程师的独家经验分享； 完整的Python学习路径。 基础 IDE Jupyter 的三大特点：整合所有的资源...</p>
+      <a class="post-card-link" href="/2020/09/24/Python-advanced/" aria-label="阅读：Python进阶">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-23">2020.09.23</time>
+        <span class="post-card-tag">音频</span>
+      </div>
+      <h3><a href="/2020/09/23/audio-quality-evaluation-1/">音频质量评估-1</a></h3>
+      <p class="post-card-subtitle">音频质量测试和评估</p>
+      <p class="post-card-excerpt">原理 音频的原理 把模拟信号转变成 数字信号，前者是连续的，后者离散的。因此有DAC和ADC。 需要关注的三个指标，这三个指标决定音频的质量 比特率：表示经过编码（压缩）后的音频数据每秒钟需要用多少个比特来表示，单位常为kbps。 这个数字越大音频质量越好，但是数据文件就越大。 响度和强度：声...</p>
+      <a class="post-card-link" href="/2020/09/23/audio-quality-evaluation-1/" aria-label="阅读：音频质量评估-1">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2020-09-21">2020.09.21</time>
+        <span class="post-card-tag">测试</span>
+      </div>
+      <h3><a href="/2020/09/21/think-about-software-testing/">干了8年测试了</a></h3>
+      <p class="post-card-subtitle">基础还不过关</p>
+      <p class="post-card-excerpt">对知识点不会筛选，盲目买书看视频，资料堆积如山，什么都不管先学了再说; 目前基本上都在极客时间上面学习，主要便宜。找到自己感兴趣就学，这个自己要改正。 有学习有摄影产品。性能测试，安全测试。开始的策略就是想把自己的一个广度打开，然后再慢慢的深入下去。我想的是找一个方向，自己真真正正的深入进去。...</p>
+      <a class="post-card-link" href="/2020/09/21/think-about-software-testing/" aria-label="阅读：干了8年测试了">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page23">← 较新文章</a>
+  
+  <span>第 24 / 32 页</span>
+  
+  <a href="/page25">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -706,7 +509,7 @@ Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -992,10 +795,11 @@ Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -1012,7 +816,7 @@ Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1079,6 +883,7 @@ Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1118,7 +923,7 @@ Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1198,17 +1003,17 @@ Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1349,63 +1154,6 @@ Jupyter 的三大特点：整合所有的资源、交互性编程体验和零成
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

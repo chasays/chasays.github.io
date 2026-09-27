@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page16/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page16/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,320 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2022/01/15/golden-sentence/">
-        <h2 class="post-title">
-            20 - 金句和鸡汤的差别
-        </h2>
-        
-        <h3 class="post-subtitle">
-            似乎也没有什么差别
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-今天聊一下鸡汤和金句的什么区别。
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-相信这两个词语大家都不陌生，对于早期的我来说，我个人觉得金句和鸡汤就是一个意思，没有太大的区别。
-
-比如常见的失败乃成功之母。解释一下大意，也有可能是我为了凑字数，就是在做成一件事情之前，可能会失败很多次。
-
-展开来讲一讲，如果我们知道这件事情会失败，我们就不去做么？答案很明显，只有自己亲自去做了，才知道这件事情会不会成功。没有做之前都是空想。
-
-在空...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 15, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/01/07/live-for-youself/">
-        <h2 class="post-title">
-            19 - 为自己而活
-        </h2>
-        
-        <h3 class="post-subtitle">
-            从购买自己不需要的东西开始
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-今天来谈谈自己的消费观。
-
-我是一个来自农村的孩子，当时整个村子都是靠天吃饭。风调雨顺的时候，收成就会好一点；如果遇到天干旱、或者梅雨季节，就会特别糟糕。
-
-干旱这个比较好理解，农作物生长都需要水分，但是梅雨季节是怎么会影响收成喃？收回家的农作物一般会晾晒，比如稻谷、玉米，如果遇到天气不好，根本晾晒不了，会导致发霉，发霉后有毒会丢弃掉，我记忆中有一年就是这样，让并不富裕的家雪上加霜。
-
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 7, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/01/01/co-operation/">
-        <h2 class="post-title">
-            18 - 巨头之间的合作
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                2022 年第一篇，开篇祝大家新年快乐。
-
-不知不觉就到了新年的第一天，大家都在发布自己年终总结，我并没有急着出输出自己的总结，个人看来，复盘和总结不一定是这个时候来写，但是一定要写。
-
-只有总结和复盘，才会进步。
-
-
-
-本周早些时候，在 Waymo 的官网可以看到发出和我国的吉利车企合作的公告。
-
-Waymo 源于 Google 于 2009 年开启的一项自动驾驶汽车计划，之后于 2016...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 1, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/12/25/x-xmas-invest-known/">
-        <h2 class="post-title">
-            17 - 学习一门终身有益的知识
-        </h2>
-        
-        <h3 class="post-subtitle">
-            买入 亏死 没事
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                Merry X-mas 2021, everybody!
-
-
-
-理财这个技能，只要我们自己稍微学习一点知识，就会超越 80% 的人，而且对我们来说终身有益，任何时候开始学习都不迟。
-
-我最早接触的理财产品就是支付宝余额宝，在2013年的时候，当时支付宝的收益率还是比较可观，大概在6%+。可以对比下这个数据，当时银行的定期利率大概在3%+左右，这个数据可以在中国银行官网查询到。
-
-如果是存10...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 25, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/12/21/humor/">
-        <h2 class="post-title">
-            饭局聊天还有冷场的？要不试试这个该死的幽默
-        </h2>
-        
-        <h3 class="post-subtitle">
-            今天你吃了么
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-我是在写作的过程中，发现一个问题，如果是干瘪瘪阐述道理，去解决、回答这个问题，没有幽默细胞在里面，看起来非常的无趣。
-
-不过干也干的道理，不然怎么叫干货喃？
-
-我也是偶然看了诺贝尔文学奖获得者莫言的文章，非常的有趣，推荐看一下「会唱歌的墙」，体现了作者拿锅都装不下的才华，我语文不好，有个成语叫什么来着。
-
-我最近看了大佬的另外一本书-「蛙」，里面有一段是写和他 60 多岁老婆的那些夫妻之...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 21, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/12/20/engineer-resume/">
-        <h2 class="post-title">
-            如何让自己的简历不石沉大海
-        </h2>
-        
-        <h3 class="post-subtitle">
-            似乎也没有什么技巧
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-在不久，自己更新过关于简历如何撰写，但是还是有一些没有说太明白的地方，今天再来补充一下，毕竟又快到了招聘的季节。
-
-简历通俗一点就是，简短的描述自己过往的工作经历。
-
-这里的重点就是2个，第一个是简短，要简单明要，自己的写的简历不是给自己看的，是被HR和面试我们的人看的，所以不要像论文一样，长篇大论。面试官准备看的简历不止我们一个人的简历，一个好的岗位，有 1000 个人申请，都是很正常...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 20, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/12/18/location-hisroty/">
-        <h2 class="post-title">
-            16 - 根据 IP 地址找到对应的小区
-        </h2>
-        
-        <h3 class="post-subtitle">
-            遵纪守法
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-就在本周，大家都知道 Apache Jog4j 的 0-day 漏洞，导致大批量的使用 Java 的工程都需要做临时紧急的修复。
-
-这里就不对 Log4Shell 漏洞展开聊了，我比较好奇的是，在我们完成上线后，第二天就收到大量的 xss 注入。
-
-一开始我以为是安全部门在做常规的安全测试，但是也没有收到过邮件通知，就有了下面的事情了。
-
-我首先从 Nginx 日志里面获取到用户的 IP...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/12/12/learn-coding-web/">
-        <h2 class="post-title">
-            儿童编程网站集合
-        </h2>
-        
-        <h3 class="post-subtitle">
-            scratch不错哟
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                在HN上看到有个大学的教授，试着教使用Swift Playway和Python进行编码。但是作者的问题是我只教硕士和博士生，而不知道如何教孩子编码。他女儿喜欢其中的一些东西，但很快意识到，他自己无法让自己的教学以任何方式来教她。这对她来说太抽象了，也很无聊。
-
-与此同时，我看到有些非常不错的软件和网址整理了下发给大家，比如我家现在就在完 Scratch，如果你家里有小孩，准备学习编程，说不定...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 12, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/12/11/vinyl-records/">
-        <h2 class="post-title">
-            15 - 关于黑胶唱片的事儿
-        </h2>
-        
-        <h3 class="post-subtitle">
-            同事的黑胶5000一张
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-今天来聊聊上世纪的产物 - 黑胶，也在上世纪 70 年代达到巅峰，每年的销量 5亿张，占据音乐市场的 66%，然后慢慢的没落。
-
-然而，近年来，有些奇怪的事情发生了: 黑胶唱片已经小规模地卷土重来，感觉大家对实物资产更渴望。下面的一篇腾讯新闻的报道，重点字眼我标识出来。
-
-
-
-
-  https://xw.qq.com/amphtml/20211210A0DDAE00
-近年来，“黑胶热潮”...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 11, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/12/04/reading-is-important/">
-        <h2 class="post-title">
-            14 - 做一个长期主义者
-        </h2>
-        
-        <h3 class="post-subtitle">
-            利他就是利己
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-各位订阅者好，本周有事回了老家，上面图片就是我刚刚拍的，四川的盆地能有这样的天气，就是奢望。最近开始健身，有点用力过度，特别是近 2 天，手臂和胸都酸疼得想吐。加上这样的天气，就想好好的享受当下。
-
-别！电脑都开了，来都来了。就开始了本周的 Newsletter。
-
-做短视频日更了一段时间后，发现增长太慢了，就看一些方法，如何引流。
-
-短视频，第一眼就要吸睛，比如美女、挑起欲望的文字、标...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on December 4, 2021
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page15">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-01-15">2022.01.15</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/01/15/golden-sentence/">20 - 金句和鸡汤的差别</a></h3>
+      <p class="post-card-subtitle">似乎也没有什么差别</p>
+      <p class="post-card-excerpt">今天聊一下鸡汤和金句的什么区别。 相信这两个词语大家都不陌生，对于早期的我来说，我个人觉得金句和鸡汤就是一个意思，没有太大的区别。 比如常见的失败乃成功之母。解释一下大意，也有可能是我为了凑字数，就是在做成一件事情之前，可能会失败很多次。 展开来讲一讲，如果我们知道这件事情会失败，我们就不去做...</p>
+      <a class="post-card-link" href="/2022/01/15/golden-sentence/" aria-label="阅读：20 - 金句和鸡汤的差别">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-01-07">2022.01.07</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/01/07/live-for-youself/">19 - 为自己而活</a></h3>
+      <p class="post-card-subtitle">从购买自己不需要的东西开始</p>
+      <p class="post-card-excerpt">今天来谈谈自己的消费观。 我是一个来自农村的孩子，当时整个村子都是靠天吃饭。风调雨顺的时候，收成就会好一点；如果遇到天干旱、或者梅雨季节，就会特别糟糕。 干旱这个比较好理解，农作物生长都需要水分，但是梅雨季节是怎么会影响收成喃？收回家的农作物一般会晾晒，比如稻谷、玉米，如果遇到天气不好，根本晾...</p>
+      <a class="post-card-link" href="/2022/01/07/live-for-youself/" aria-label="阅读：19 - 为自己而活">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page17">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-01-01">2022.01.01</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/01/01/co-operation/">18 - 巨头之间的合作</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">2022 年第一篇，开篇祝大家新年快乐。 不知不觉就到了新年的第一天，大家都在发布自己年终总结，我并没有急着出输出自己的总结，个人看来，复盘和总结不一定是这个时候来写，但是一定要写。 只有总结和复盘，才会进步。 本周早些时候，在 Waymo 的官网可以看到发出和我国的吉利车企合作的公告。 Wa...</p>
+      <a class="post-card-link" href="/2022/01/01/co-operation/" aria-label="阅读：18 - 巨头之间的合作">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-12-25">2021.12.25</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2021/12/25/x-xmas-invest-known/">17 - 学习一门终身有益的知识</a></h3>
+      <p class="post-card-subtitle">买入 亏死 没事</p>
+      <p class="post-card-excerpt">Merry X-mas 2021, everybody! 理财这个技能，只要我们自己稍微学习一点知识，就会超越 80% 的人，而且对我们来说终身有益，任何时候开始学习都不迟。 我最早接触的理财产品就是支付宝余额宝，在2013年的时候，当时支付宝的收益率还是比较可观，大概在6%+。可以对比下这个...</p>
+      <a class="post-card-link" href="/2021/12/25/x-xmas-invest-known/" aria-label="阅读：17 - 学习一门终身有益的知识">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-12-21">2021.12.21</time>
+        <span class="post-card-tag">幽默</span>
+      </div>
+      <h3><a href="/2021/12/21/humor/">饭局聊天还有冷场的？要不试试这个该死的幽默</a></h3>
+      <p class="post-card-subtitle">今天你吃了么</p>
+      <p class="post-card-excerpt">我是在写作的过程中，发现一个问题，如果是干瘪瘪阐述道理，去解决、回答这个问题，没有幽默细胞在里面，看起来非常的无趣。 不过干也干的道理，不然怎么叫干货喃？ 我也是偶然看了诺贝尔文学奖获得者莫言的文章，非常的有趣，推荐看一下「会唱歌的墙」，体现了作者拿锅都装不下的才华，我语文不好，有个成语叫什么...</p>
+      <a class="post-card-link" href="/2021/12/21/humor/" aria-label="阅读：饭局聊天还有冷场的？要不试试这个该死的幽默">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-12-20">2021.12.20</time>
+        <span class="post-card-tag">简历</span>
+      </div>
+      <h3><a href="/2021/12/20/engineer-resume/">如何让自己的简历不石沉大海</a></h3>
+      <p class="post-card-subtitle">似乎也没有什么技巧</p>
+      <p class="post-card-excerpt">在不久，自己更新过关于简历如何撰写，但是还是有一些没有说太明白的地方，今天再来补充一下，毕竟又快到了招聘的季节。 简历通俗一点就是，简短的描述自己过往的工作经历。 这里的重点就是2个，第一个是简短，要简单明要，自己的写的简历不是给自己看的，是被HR和面试我们的人看的，所以不要像论文一样，长篇大...</p>
+      <a class="post-card-link" href="/2021/12/20/engineer-resume/" aria-label="阅读：如何让自己的简历不石沉大海">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-12-18">2021.12.18</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2021/12/18/location-hisroty/">16 - 根据 IP 地址找到对应的小区</a></h3>
+      <p class="post-card-subtitle">遵纪守法</p>
+      <p class="post-card-excerpt">就在本周，大家都知道 Apache Jog4j 的 0-day 漏洞，导致大批量的使用 Java 的工程都需要做临时紧急的修复。 这里就不对 Log4Shell 漏洞展开聊了，我比较好奇的是，在我们完成上线后，第二天就收到大量的 xss 注入。 一开始我以为是安全部门在做常规的安全测试，但是也...</p>
+      <a class="post-card-link" href="/2021/12/18/location-hisroty/" aria-label="阅读：16 - 根据 IP 地址找到对应的小区">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-12-12">2021.12.12</time>
+        <span class="post-card-tag">编程</span>
+      </div>
+      <h3><a href="/2021/12/12/learn-coding-web/">儿童编程网站集合</a></h3>
+      <p class="post-card-subtitle">scratch不错哟</p>
+      <p class="post-card-excerpt">在HN上看到有个大学的教授，试着教使用Swift Playway和Python进行编码。但是作者的问题是我只教硕士和博士生，而不知道如何教孩子编码。他女儿喜欢其中的一些东西，但很快意识到，他自己无法让自己的教学以任何方式来教她。这对她来说太抽象了，也很无聊。 与此同时，我看到有些非常不错的软件...</p>
+      <a class="post-card-link" href="/2021/12/12/learn-coding-web/" aria-label="阅读：儿童编程网站集合">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-12-11">2021.12.11</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2021/12/11/vinyl-records/">15 - 关于黑胶唱片的事儿</a></h3>
+      <p class="post-card-subtitle">同事的黑胶5000一张</p>
+      <p class="post-card-excerpt">今天来聊聊上世纪的产物 - 黑胶，也在上世纪 70 年代达到巅峰，每年的销量 5亿张，占据音乐市场的 66%，然后慢慢的没落。 然而，近年来，有些奇怪的事情发生了: 黑胶唱片已经小规模地卷土重来，感觉大家对实物资产更渴望。下面的一篇腾讯新闻的报道，重点字眼我标识出来。 https://xw.q...</p>
+      <a class="post-card-link" href="/2021/12/11/vinyl-records/" aria-label="阅读：15 - 关于黑胶唱片的事儿">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-12-04">2021.12.04</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2021/12/04/reading-is-important/">14 - 做一个长期主义者</a></h3>
+      <p class="post-card-subtitle">利他就是利己</p>
+      <p class="post-card-excerpt">各位订阅者好，本周有事回了老家，上面图片就是我刚刚拍的，四川的盆地能有这样的天气，就是奢望。最近开始健身，有点用力过度，特别是近 2 天，手臂和胸都酸疼得想吐。加上这样的天气，就想好好的享受当下。 别！电脑都开了，来都来了。就开始了本周的 Newsletter。 做短视频日更了一段时间后，发现...</p>
+      <a class="post-card-link" href="/2021/12/04/reading-is-important/" aria-label="阅读：14 - 做一个长期主义者">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page15">← 较新文章</a>
+  
+  <span>第 16 / 32 页</span>
+  
+  <a href="/page17">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -672,7 +509,7 @@ Waymo 源于 Google 于 2009 年开启的一项自动驾驶汽车计划，之后
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -958,10 +795,11 @@ Waymo 源于 Google 于 2009 年开启的一项自动驾驶汽车计划，之后
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -978,7 +816,7 @@ Waymo 源于 Google 于 2009 年开启的一项自动驾驶汽车计划，之后
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1045,6 +883,7 @@ Waymo 源于 Google 于 2009 年开启的一项自动驾驶汽车计划，之后
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1084,7 +923,7 @@ Waymo 源于 Google 于 2009 年开启的一项自动驾驶汽车计划，之后
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1164,17 +1003,17 @@ Waymo 源于 Google 于 2009 年开启的一项自动驾驶汽车计划，之后
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1315,63 +1154,6 @@ Waymo 源于 Google 于 2009 年开启的一项自动驾驶汽车计划，之后
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

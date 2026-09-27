@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page5/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page5/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,319 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2023/04/08/make-money-method/">
-        <h2 class="post-title">
-            84 -  赚钱的方式
-        </h2>
-        
-        <h3 class="post-subtitle">
-            间接和直接
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-08">2023.04.08</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/04/08/make-money-method/">84 -  赚钱的方式</a></h3>
+      <p class="post-card-subtitle">间接和直接</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 上个周末和一个朋友聚了一下，我们聊了聊近况。 在聊天的过程中，我们谈到了目前最热门的话题——ChatGPT。他正好手上有一个与 ChatGPT 有关的副业项目，非常不错。在如此热火朝天、竞争激烈的市场环境下，他找到了一个很好的入口，希望能早点面世。 我也一直在关注这个行业，努力...</p>
+      <a class="post-card-link" href="/2023/04/08/make-money-method/" aria-label="阅读：84 -  赚钱的方式">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-06">2023.04.06</time>
+        <span class="post-card-tag">algorithm</span>
+      </div>
+      <h3><a href="/2023/04/06/huffman-coding/">哈夫曼编码</a></h3>
+      <p class="post-card-subtitle">提供了一种高效、明确的编码</p>
+      <p class="post-card-excerpt">哈夫曼编码是一种在无损信息的情况下压缩数据的有效方法。在计算机科学中，信息被编码为比特：1 和 0。位串编码的信息告诉计算机要执行哪些指令。视频游戏、照片、电影等等在计算机中被编码为比特串。计算机每秒执行数十亿条指令，而一个视频游戏可能是数十亿比特的数据。不难看出，为什么高效和不含糊的信息编码...</p>
+      <a class="post-card-link" href="/2023/04/06/huffman-coding/" aria-label="阅读：哈夫曼编码">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-04-01">2023.04.01</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/04/01/Stay-curious/">83 -  保持好奇</a></h3>
+      <p class="post-card-subtitle">不断探索新的技术和工具，为未来的发展打下坚实的基础</p>
+      <p class="post-card-excerpt">朋友，您好 ~ AIGC 现在可谓是大红大紫，尤其是 chatgpt4 和 midjourney，你怎么看待它们呢？ 我自己的心态经历了从期待到焦虑，再到憧憬的过程。 首先，让自己来谈谈我对这些技术工具的第一印象。当它们第一次出现时，我以为它们只是普通的技术工具，没有太多特别之处，所以我对它们...</p>
+      <a class="post-card-link" href="/2023/04/01/Stay-curious/" aria-label="阅读：83 -  保持好奇">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-30">2023.03.30</time>
+        <span class="post-card-tag">compiler</span>
+      </div>
+      <h3><a href="/2023/03/30/how-to-debug-llvm-code-2/">如何调试我们 LLVM 的代码 - 进阶</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">前面简单介绍了如何从一个 bc 文件里面提炼出一个精简的 ll 文件，只包含报错的函数。 如果看到的不正确的行为是由于一个优化 pass，一个非常方便的 LLVM 选项是-opt-bisect-limit，它采用一个整数表示要运行的最高 pass 的索引值。所取 pass 的索引值在不同的运行...</p>
+      <a class="post-card-link" href="/2023/03/30/how-to-debug-llvm-code-2/" aria-label="阅读：如何调试我们 LLVM 的代码 - 进阶">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-25">2023.03.25</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/03/25/Forward-Position/">82 -  知行合一</a></h3>
+      <p class="post-card-subtitle">顺便带来德州扑克的经验</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 多听听播客、多出去走走，旅游，会带给你不同领域的知识。 「生财有术」一个谈钱不伤感情的社群，目前的 418 会员日来了，我有 2 点建议。 利用信息差赚钱，等到大众知道这个消息的时候，这个行业就是红海，不是蓝海了，就很少有机会来赚钱了 执行力，这个是钞能力路上不可获取的一个能力...</p>
+      <a class="post-card-link" href="/2023/03/25/Forward-Position/" aria-label="阅读：82 -  知行合一">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-18">2023.03.18</time>
+        <span class="post-card-tag">compiler</span>
+      </div>
+      <h3><a href="/2023/03/18/how-to-debug-llvm-code/">如何调试我们 LLVM 的代码 - 入门</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">开篇 LLVM 是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做 LLVM 都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。 比如在开发一个 llvm 的 pass，或者一个 feature，在编译的过程中 crash 了，怎么去定位和修复的喃？ 注意...</p>
+      <a class="post-card-link" href="/2023/03/18/how-to-debug-llvm-code/" aria-label="阅读：如何调试我们 LLVM 的代码 - 入门">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-18">2023.03.18</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/03/18/GPT4-release/">81 -  GPT4 来了</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 如果有一天你发现自己被一台电脑取代了怎么办？别担心，这不是科幻小说里的情节，而是可能很快就会发生在我们身边的现实。因为 GPT4 已经出现了！ GPT4 是什么？简单地说，它就是一个能写出任何东西的超级机器人。不管你想要什么样子、什么风格、什么内容、什么语言、什么格式、什么长度...</p>
+      <a class="post-card-link" href="/2023/03/18/GPT4-release/" aria-label="阅读：81 -  GPT4 来了">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-17">2023.03.17</time>
+        <span class="post-card-tag">chatgpt</span>
+      </div>
+      <h3><a href="/2023/03/17/chatgpt-promt-words/">如何通过 chatgpt，获取高质量的回答</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">开篇 任务：对模型生成内容的清晰、简洁的陈述。 说明：模型生成文本时应遵循的指令。 角色：模型在生成文本时应承担的角色。 更多阅读 《如何向 ChatGPT 提问并获得高质量的答案》 github 博客 微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。</p>
+      <a class="post-card-link" href="/2023/03/17/chatgpt-promt-words/" aria-label="阅读：如何通过 chatgpt，获取高质量的回答">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-15">2023.03.15</time>
+        <span class="post-card-tag">gcc</span>
+      </div>
+      <h3><a href="/2023/03/15/compiler-const-folding/">编译器优化 3 - 常量折叠和传播</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">前面了解了 lto、thinlto、以及 inline 优化、死代码优化等。今天继续学习下常量折叠优化， 常量折叠和常量传播 常量折叠和常量传播有什么不同？它们似乎都做了同样的事情，而不是将常量保存到堆栈中或计算完整的算术表达式，而是简单地将其替换为可以在编译时获得的结果。两者之间有什么不同？...</p>
+      <a class="post-card-link" href="/2023/03/15/compiler-const-folding/" aria-label="阅读：编译器优化 3 - 常量折叠和传播">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-13">2023.03.13</time>
+        <span class="post-card-tag">gcc</span>
+      </div>
+      <h3><a href="/2023/03/13/compiler-thinlto/">编译器优化 2 - ThinLTO</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">什么是编译器优化 保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进。 编译器优化（Compiler optimization）是指在编译器将源代码转化为可执行代码的过程中，通过对程序的分析和优化，使得生成的目标代码在执行速度、占用内存等方面都能够达到更好的效果。 具体来说，编译...</p>
+      <a class="post-card-link" href="/2023/03/13/compiler-thinlto/" aria-label="阅读：编译器优化 2 - ThinLTO">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
 
 
-
-上个周末和一个朋友聚了一下，我们聊了聊近况。
-
-在聊天的过程中，我们谈到了目前最热门的话题——ChatGPT。他正好手上有一个与 ChatGPT 有关的副业项目，非常不错。在如此热火朝天、竞争激烈的市场环境下，他找到了一个很好的入口，希望能早点面世。
-
-我也一直在关注这个行业，努力寻找自己能够做出贡献的领域。我看了很多资料，但如果没有深思熟虑和沉淀，那这些资料就只是单纯...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 8, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/04/06/huffman-coding/">
-        <h2 class="post-title">
-            哈夫曼编码
-        </h2>
-        
-        <h3 class="post-subtitle">
-            提供了一种高效、明确的编码
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                哈夫曼编码是一种在无损信息的情况下压缩数据的有效方法。在计算机科学中，信息被编码为比特：1 和 0。位串编码的信息告诉计算机要执行哪些指令。视频游戏、照片、电影等等在计算机中被编码为比特串。计算机每秒执行数十亿条指令，而一个视频游戏可能是数十亿比特的数据。不难看出，为什么高效和不含糊的信息编码是计算机科学中一个令人感兴趣的话题。
-
-哈夫曼编码通过分析某些符号在信息中出现的频率，提供了一种高效...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 6, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/04/01/Stay-curious/">
-        <h2 class="post-title">
-            83 -  保持好奇
-        </h2>
-        
-        <h3 class="post-subtitle">
-            不断探索新的技术和工具，为未来的发展打下坚实的基础
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-AIGC 现在可谓是大红大紫，尤其是 chatgpt4 和 midjourney，你怎么看待它们呢？
-
-我自己的心态经历了从期待到焦虑，再到憧憬的过程。
-
-
+<nav class="editorial-pager" aria-label="文章分页">
   
-    首先，让自己来谈谈我对这些技术工具的第一印象。当它们第一次出现时，我以为它们只是普通的技术工具，没有太多特别之处，所以我对它们并没有太多期待。但是，随着我慢慢地接触和使用它们，我发现它们真的非常强大，...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on April 1, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/03/30/how-to-debug-llvm-code-2/">
-        <h2 class="post-title">
-            如何调试我们 LLVM 的代码 - 进阶
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                前面简单介绍了如何从一个 bc 文件里面提炼出一个精简的 ll 文件，只包含报错的函数。
-
-如果看到的不正确的行为是由于一个优化 pass，一个非常方便的 LLVM 选项是-opt-bisect-limit，它采用一个整数表示要运行的最高 pass 的索引值。所取 pass 的索引值在不同的运行中是稳定的；通过将其与根据结果程序自动划分搜索空间的软件相结合，可以快速确定错误的通道。当指定了-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 30, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/03/25/Forward-Position/">
-        <h2 class="post-title">
-            82 -  知行合一
-        </h2>
-        
-        <h3 class="post-subtitle">
-            顺便带来德州扑克的经验
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-  多听听播客、多出去走走，旅游，会带给你不同领域的知识。
-
-
-「生财有术」一个谈钱不伤感情的社群，目前的 418 会员日来了，我有 2 点建议。
-
-  利用信息差赚钱，等到大众知道这个消息的时候，这个行业就是红海，不是蓝海了，就很少有机会来赚钱了
-  执行力，这个是钞能力路上不可获取的一个能力；也是大部分人缺少这个能力的。如果你的执行力不强，我还是劝退你，毕竟现在的肉价...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 25, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/03/18/how-to-debug-llvm-code/">
-        <h2 class="post-title">
-            如何调试我们 LLVM 的代码 - 入门
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                开篇
-
-LLVM 是一个独立的大项目，可能需要有自己的调试文档，我似乎没有找到这样的文档，估计做 LLVM 都是的大佬或者是骨灰级的人物，不需要文档吧，注释就在代码中。
-
-比如在开发一个 llvm 的 pass，或者一个 feature，在编译的过程中 crash 了，怎么去定位和修复的喃？
-
-
-
-注意官方编译器禁用了 LLVM 断言，这意味着 LLVM 断言失败可能会显示为编译器崩溃（不是...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 18, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/03/18/GPT4-release/">
-        <h2 class="post-title">
-            81 -  GPT4 来了
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-如果有一天你发现自己被一台电脑取代了怎么办？别担心，这不是科幻小说里的情节，而是可能很快就会发生在我们身边的现实。因为 GPT4 已经出现了！
-
-GPT4  是什么？简单地说，它就是一个能写出任何东西的超级机器人。不管你想要什么样子、什么风格、什么内容、什么语言、什么格式、什么长度、甚至什么字体都可以满足你。
-
-听起来很神奇吧？但是也很可怕！因为它不光能写出东西，还能写得比...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 18, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/03/17/chatgpt-promt-words/">
-        <h2 class="post-title">
-            如何通过 chatgpt，获取高质量的回答
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                开篇
-
-任务：对模型生成内容的清晰、简洁的陈述。
-
-说明：模型生成文本时应遵循的指令。
-
-角色：模型在生成文本时应承担的角色。
-
-更多阅读
-
-
-  《如何向 ChatGPT 提问并获得高质量的答案》
-
-
-
-  github 博客
-
-  微信公众号：cdtfug，欢迎关注一起吹牛逼，也可以加微信号「xiaorik」朋友圈围观。
-
-
-
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 17, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/03/15/compiler-const-folding/">
-        <h2 class="post-title">
-            编译器优化 3 - 常量折叠和传播
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                前面了解了 lto、thinlto、以及 inline 优化、死代码优化等。今天继续学习下常量折叠优化，
-
-常量折叠和常量传播
-
-常量折叠和常量传播有什么不同？它们似乎都做了同样的事情，而不是将常量保存到堆栈中或计算完整的算术表达式，而是简单地将其替换为可以在编译时获得的结果。两者之间有什么不同？
-
-区别在于，常量传播不是将一个变量保存到堆栈中，因为我们知道它是一个常量，可以简单地将它插入到...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 15, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/03/13/compiler-thinlto/">
-        <h2 class="post-title">
-            编译器优化 2 - ThinLTO
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                什么是编译器优化
-
-保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进。
-
-编译器优化（Compiler optimization）是指在编译器将源代码转化为可执行代码的过程中，通过对程序的分析和优化，使得生成的目标代码在执行速度、占用内存等方面都能够达到更好的效果。
-
-具体来说，编译器优化可以通过减少代码的重复计算、减少缓存未命中的情况以及减少不必要的寄存器使用等方式提高程序...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 13, 2023
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page4">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page6">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+  <a href="/page4">← 较新文章</a>
+  
+  <span>第 5 / 32 页</span>
+  
+  <a href="/page6">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -671,7 +509,7 @@ GPT4  是什么？简单地说，它就是一个能写出任何东西的超级�
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -957,10 +795,11 @@ GPT4  是什么？简单地说，它就是一个能写出任何东西的超级�
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -977,7 +816,7 @@ GPT4  是什么？简单地说，它就是一个能写出任何东西的超级�
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1044,6 +883,7 @@ GPT4  是什么？简单地说，它就是一个能写出任何东西的超级�
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1083,7 +923,7 @@ GPT4  是什么？简单地说，它就是一个能写出任何东西的超级�
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1163,17 +1003,17 @@ GPT4  是什么？简单地说，它就是一个能写出任何东西的超级�
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1314,63 +1154,6 @@ GPT4  是什么？简单地说，它就是一个能写出任何东西的超级�
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

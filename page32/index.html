@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page32/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page32/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,158 +349,92 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2019/03/07/english-pronunciation-rule-4/">
-        <h2 class="post-title">
-            English Pronunciation Rule 4
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                连读 4
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-  元+辅+元=浊化
- 辅:p t k
-
-
-元+辅+元:如果一个清辅音处于两个元音之间就要浊化
-water daughter letter writer better party
-meter matter meeting eating getting photo later
--ity: city ability possibility creativity responsibi...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on March 7, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/03/05/english-pronunciation-rule-3/">
-        <h2 class="post-title">
-            English Pronunciation Rule 3
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                连读 3
- ## 爆破音+辅音:以爆破音结尾的单词+以辅音音标开头的单词,就要失爆
-basketball
-football blackboard notebook
-laptop
-lately
-badly
-proud
-
-loudl
-friendl
-midnight
-goodbye
-
-## 爆破音+辅音:以爆破音结尾的单词+以辅音音标开头的单词,就要失爆
-
-  Sit down!
-  i don...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on March 5, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/03/04/english-pronunciation-rule-2/">
-        <h2 class="post-title">
-            English Pronunciation Rule 2
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                元音+元普的连读：
-如果前一一个单词是以/u：/， /u/， /i：/， /i/音结尾，而后一个单词是以元音开头，那么需要加入/w/和/j/两个音
-
-  Can you do/w/it ？
-  Just do it.
-  Go away
-  Don’t go out at night.
-  What are you doing？
-  Where are you going？
-  How ab...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on March 4, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/03/03/english-pronunciation-rule-1/">
-        <h2 class="post-title">
-            English Pronunciation Rule 1
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                辅+元：以辅音音标结尾的单词+以元音音标开头的单词，这两个音标连读。
-
-
-  Good afternoon ！ My name is Linda.
-  What’s this in English？ It's a jacket.
-  What time is it？ It’s five o‘clock.
-  How do you spell it ？
-  one of us
-  one ho...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on March 3, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/01/01/build-free-Blog/">
-        <h2 class="post-title">
-            Build Free Blog
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                写博客的主要两个原因
-
-第一是对自己在学习一个东西之后一个总结，方便以后去回顾，对自己有积累。
-在这个过程中，有一个费曼学习法，他讲的就是要自己懂了之后，然后分享给别人，分享给别人的同时不光是把知识传授给别人，还是对自己的一个提升。
-
-
-  费曼学习法的灵感源于诺贝尔物理奖获得者理查德•费曼（Richard Feynman），运用费曼技巧,你只需花上20分钟就能深入理解知识点,而且记忆深刻,...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on January 1, 2019
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page31">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2019-03-07">2019.03.07</time>
+        
+      </div>
+      <h3><a href="/2019/03/07/english-pronunciation-rule-4/">English Pronunciation Rule 4</a></h3>
+      
+      <p class="post-card-excerpt">连读 4 元+辅+元=浊化 辅:p t k 元+辅+元:如果一个清辅音处于两个元音之间就要浊化 water daughter letter writer better party meter matter meeting eating getting photo later -ity: cit...</p>
+      <a class="post-card-link" href="/2019/03/07/english-pronunciation-rule-4/" aria-label="阅读：English Pronunciation Rule 4">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2019-03-05">2019.03.05</time>
+        
+      </div>
+      <h3><a href="/2019/03/05/english-pronunciation-rule-3/">English Pronunciation Rule 3</a></h3>
+      
+      <p class="post-card-excerpt">连读 3 ## 爆破音+辅音:以爆破音结尾的单词+以辅音音标开头的单词,就要失爆 basketball football blackboard notebook laptop lately badly proud loudl friendl midnight goodbye ## 爆破音+辅音...</p>
+      <a class="post-card-link" href="/2019/03/05/english-pronunciation-rule-3/" aria-label="阅读：English Pronunciation Rule 3">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2019-03-04">2019.03.04</time>
+        
+      </div>
+      <h3><a href="/2019/03/04/english-pronunciation-rule-2/">English Pronunciation Rule 2</a></h3>
+      
+      <p class="post-card-excerpt">元音+元普的连读： 如果前一一个单词是以/u：/， /u/， /i：/， /i/音结尾，而后一个单词是以元音开头，那么需要加入/w/和/j/两个音 Can you do/w/it ？ Just do it. Go away Don’t go out at night. What are you...</p>
+      <a class="post-card-link" href="/2019/03/04/english-pronunciation-rule-2/" aria-label="阅读：English Pronunciation Rule 2">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2019-03-03">2019.03.03</time>
+        
+      </div>
+      <h3><a href="/2019/03/03/english-pronunciation-rule-1/">English Pronunciation Rule 1</a></h3>
+      
+      <p class="post-card-excerpt">辅+元：以辅音音标结尾的单词+以元音音标开头的单词，这两个音标连读。 Good afternoon ！ My name is Linda. What’s this in English？ It's a jacket. What time is it？ It’s five o‘clock. Ho...</p>
+      <a class="post-card-link" href="/2019/03/03/english-pronunciation-rule-1/" aria-label="阅读：English Pronunciation Rule 1">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2019-01-01">2019.01.01</time>
+        
+      </div>
+      <h3><a href="/2019/01/01/build-free-Blog/">Build Free Blog</a></h3>
+      
+      <p class="post-card-excerpt">写博客的主要两个原因 第一是对自己在学习一个东西之后一个总结，方便以后去回顾，对自己有积累。 在这个过程中，有一个费曼学习法，他讲的就是要自己懂了之后，然后分享给别人，分享给别人的同时不光是把知识传授给别人，还是对自己的一个提升。 费曼学习法的灵感源于诺贝尔物理奖获得者理查德•费曼（Richa...</p>
+      <a class="post-card-link" href="/2019/01/01/build-free-Blog/" aria-label="阅读：Build Free Blog">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page31">← 较新文章</a>
+  
+  <span>第 32 / 32 页</span>
+  <span></span>
+</nav>
 
 
     		</div>
@@ -510,7 +452,7 @@ goodbye
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -796,10 +738,11 @@ goodbye
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -816,7 +759,7 @@ goodbye
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -883,6 +826,7 @@ goodbye
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -922,7 +866,7 @@ goodbye
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1002,17 +946,17 @@ goodbye
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1153,63 +1097,6 @@ goodbye
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

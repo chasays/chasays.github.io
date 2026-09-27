@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -211,6 +212,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)" aria-label="Search">
                                SEARCH <i class="fa fa-search" aria-hidden="true"></i>
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- 
 Credits: this page shamelessly borrowed a lot from:
@@ -329,6 +336,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -1857,7 +1865,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				<span class="fa listing-seperator">
 					<span class="tag-text">2026</span>
 				</span><div class="post-preview item" data-tags="%E6%8A%80%E6%9C%AF,TLS,%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8C%87%E7%BA%B9,Python,Go">
-				    <a href="/2026/09/27/chrome-150-153-browser-fingerprint-test/">
+              <a href="/2026/09/27/chrome-150-153-browser-fingerprint-test/">
 				        <h2 class="post-title">
                             从 Chrome 150 到 153：一次 Python、Go 与真实浏览器的指纹实测
 				        </h2>
@@ -1872,7 +1880,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				<span class="fa listing-seperator">
 					<span class="tag-text">2025</span>
 				</span><div class="post-preview item" data-tags="%E5%AD%A6%E4%B9%A0">
-				    <a href="/2025/12/15/wechat-pad-protocal-v08/">
+              <a href="/2025/12/15/wechat-pad-protocal-v08/">
 				        <h2 class="post-title">
                             分析一个 wechat Pad v08 协议的的 dll 文件
 				        </h2>
@@ -1884,7 +1892,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E6%80%A7%E8%83%BD,%E6%8E%A7%E5%88%B6%E6%B5%81">
-				    <a href="/2025/12/10/llvm-structurize-optimizate/">
+              <a href="/2025/12/10/llvm-structurize-optimizate/">
 				        <h2 class="post-title">
                             定位一个llvm19 关于控制流的性能分析
 				        </h2>
@@ -1896,7 +1904,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="teslamate">
-				    <a href="/2025/12/05/teslamate-record/">
+              <a href="/2025/12/05/teslamate-record/">
 				        <h2 class="post-title">
                             特斯拉数据记录
 				        </h2>
@@ -1908,7 +1916,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E6%80%A7%E8%83%BD">
-				    <a href="/2025/10/27/llvm19-trouble-shoting/">
+              <a href="/2025/10/27/llvm19-trouble-shoting/">
 				        <h2 class="post-title">
                             定位一个llvm19 升级带来的性能问题
 				        </h2>
@@ -1920,7 +1928,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="adventureverse,web3">
-				    <a href="/2025/08/24/adventureverse-web3-game/">
+              <a href="/2025/08/24/adventureverse-web3-game/">
 				        <h2 class="post-title">
                             是 web3 游戏管理员骗局，还是 游戏项目？
 				        </h2>
@@ -1932,7 +1940,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="raspberry+pi,openwrt">
-				    <a href="/2025/04/04/Raspberry-pi-openwrt-ap-setup/">
+              <a href="/2025/04/04/Raspberry-pi-openwrt-ap-setup/">
 				        <h2 class="post-title">
                             树莓派 4B 搭建 OpenWrt 热点 设置
 				        </h2>
@@ -1944,7 +1952,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="web3,dapp,Foundry">
-				    <a href="/2025/02/09/Foundry-tools/">
+              <a href="/2025/02/09/Foundry-tools/">
 				        <h2 class="post-title">
                             Foundry 工具初步探讨 - Forge
 				        </h2>
@@ -1959,7 +1967,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				<span class="fa listing-seperator">
 					<span class="tag-text">2024</span>
 				</span><div class="post-preview item" data-tags="%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6">
-				    <a href="/2024/09/11/smart-contract-guide/">
+              <a href="/2024/09/11/smart-contract-guide/">
 				        <h2 class="post-title">
                             智能合约 学习记录 1
 				        </h2>
@@ -1971,7 +1979,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8,%E5%90%8E%E7%AB%AF">
-				    <a href="/2024/06/13/simt-warp/">
+              <a href="/2024/06/13/simt-warp/">
 				        <h2 class="post-title">
                             LLVM 学习记录：编译器最佳实践 - 后端
 				        </h2>
@@ -1983,7 +1991,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8,%E5%90%8E%E7%AB%AF">
-				    <a href="/2024/06/01/llvm-learning-best_practice-2/">
+              <a href="/2024/06/01/llvm-learning-best_practice-2/">
 				        <h2 class="post-title">
                             LLVM 学习记录：编译器最佳实践 - 后端
 				        </h2>
@@ -1995,7 +2003,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8,%E5%90%8E%E7%AB%AF">
-				    <a href="/2024/06/01/llvm-learning-end/">
+              <a href="/2024/06/01/llvm-learning-end/">
 				        <h2 class="post-title">
                             LLVM 快速入门 - 后端
 				        </h2>
@@ -2007,7 +2015,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8,%E6%B5%8B%E8%AF%95">
-				    <a href="/2024/05/31/llvm-learning-best_practice-1/">
+              <a href="/2024/05/31/llvm-learning-best_practice-1/">
 				        <h2 class="post-title">
                             LLVM 学习记录：编译器最佳实践 - 构建，Cmake 和 test
 				        </h2>
@@ -2019,7 +2027,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8,%E8%B0%83%E8%AF%95">
-				    <a href="/2024/05/28/llvm-learning-debug-2/">
+              <a href="/2024/05/28/llvm-learning-debug-2/">
 				        <h2 class="post-title">
                             LLVM 学习记录：调试技巧 2 
 				        </h2>
@@ -2031,7 +2039,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8,%E8%B0%83%E8%AF%95">
-				    <a href="/2024/05/28/llvm-learning-debug/">
+              <a href="/2024/05/28/llvm-learning-debug/">
 				        <h2 class="post-title">
                             LLVM 学习记录：调试技巧
 				        </h2>
@@ -2043,7 +2051,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E7%BC%96%E8%BE%91%E5%99%A8,cursor">
-				    <a href="/2024/05/28/talk-cursor-in-programmer-view/">
+              <a href="/2024/05/28/talk-cursor-in-programmer-view/">
 				        <h2 class="post-title">
                             一个程序员视角下，谈谈 Cursor 自动编码工具
 				        </h2>
@@ -2055,7 +2063,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8">
-				    <a href="/2024/05/24/llvm-learning-basic-1/">
+              <a href="/2024/05/24/llvm-learning-basic-1/">
 				        <h2 class="post-title">
                             LLVM 学习记录：编译器之美 - 后端基础：20~22
 				        </h2>
@@ -2067,7 +2075,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8">
-				    <a href="/2024/05/24/llvm-learning-define-intrinsics-2/">
+              <a href="/2024/05/24/llvm-learning-define-intrinsics-2/">
 				        <h2 class="post-title">
                             LLVM 学习记录：如何添加一个 builtin 函数 - 2
 				        </h2>
@@ -2079,7 +2087,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8">
-				    <a href="/2024/05/23/llvm-td-syntax-def-defm-defvar/">
+              <a href="/2024/05/23/llvm-td-syntax-def-defm-defvar/">
 				        <h2 class="post-title">
                             LLVM 学习记录：TD 里面的 def、defm、defvar 有什么区别
 				        </h2>
@@ -2091,7 +2099,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm,%E7%BC%96%E8%AF%91%E5%99%A8">
-				    <a href="/2024/05/21/llvm-learning-define-intrinsics-1/">
+              <a href="/2024/05/21/llvm-learning-define-intrinsics-1/">
 				        <h2 class="post-title">
                             LLVM 学习记录：如何添加一个 builtin 函数
 				        </h2>
@@ -2106,7 +2114,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				<span class="fa listing-seperator">
 					<span class="tag-text">2023</span>
 				</span><div class="post-preview item" data-tags="SHOC,benchmark">
-				    <a href="/2023/08/11/how-compiler-shoc/">
+              <a href="/2023/08/11/how-compiler-shoc/">
 				        <h2 class="post-title">
                             如何编译 SHOC（可扩展的异构计算基准套件）
 				        </h2>
@@ -2118,7 +2126,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/07/15/yunnan-travel-note/">
+              <a href="/2023/07/15/yunnan-travel-note/">
 				        <h2 class="post-title">
                             98 -  云南游记
 				        </h2>
@@ -2130,7 +2138,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/07/09/do-certainly-thing/">
+              <a href="/2023/07/09/do-certainly-thing/">
 				        <h2 class="post-title">
                             97 -  做确定的事情，长期有益
 				        </h2>
@@ -2142,7 +2150,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/07/02/resolve-problem/">
+              <a href="/2023/07/02/resolve-problem/">
 				        <h2 class="post-title">
                             96 - 解决问题为导向 
 				        </h2>
@@ -2154,7 +2162,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/06/24/for-life/">
+              <a href="/2023/06/24/for-life/">
 				        <h2 class="post-title">
                             95 -  为生活托底
 				        </h2>
@@ -2166,7 +2174,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/06/17/make-money-by-sideline/">
+              <a href="/2023/06/17/make-money-by-sideline/">
 				        <h2 class="post-title">
                             94 -  出苦力搞副业赚钱
 				        </h2>
@@ -2178,7 +2186,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/06/10/not-preset/">
+              <a href="/2023/06/10/not-preset/">
 				        <h2 class="post-title">
                             93 -  不要预设
 				        </h2>
@@ -2190,7 +2198,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/06/03/want-to-sth/">
+              <a href="/2023/06/03/want-to-sth/">
 				        <h2 class="post-title">
                             92 -  想要某个东西？
 				        </h2>
@@ -2202,7 +2210,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/05/27/life-with-original-life/">
+              <a href="/2023/05/27/life-with-original-life/">
 				        <h2 class="post-title">
                             91 -  努力过好一个平凡人
 				        </h2>
@@ -2214,7 +2222,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/05/27/side-%E4%B9%90%E5%B1%B1%E6%B8%B8%E8%AE%B0/">
+              <a href="/2023/05/27/side-%E4%B9%90%E5%B1%B1%E6%B8%B8%E8%AE%B0/">
 				        <h2 class="post-title">
                             （番外）乐山游记
 				        </h2>
@@ -2226,7 +2234,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/05/20/personal-advantage/">
+              <a href="/2023/05/20/personal-advantage/">
 				        <h2 class="post-title">
                             90 -  找到个人优势
 				        </h2>
@@ -2238,7 +2246,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/05/13/now-is-good/">
+              <a href="/2023/05/13/now-is-good/">
 				        <h2 class="post-title">
                             89 -  活在当下
 				        </h2>
@@ -2250,7 +2258,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2023/05/13/course-design/">
+              <a href="/2023/05/13/course-design/">
 				        <h2 class="post-title">
                             课程设计
 				        </h2>
@@ -2262,7 +2270,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/05/06/focus/">
+              <a href="/2023/05/06/focus/">
 				        <h2 class="post-title">
                             88 -  聚焦
 				        </h2>
@@ -2274,7 +2282,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/04/29/be-kid-forever/">
+              <a href="/2023/04/29/be-kid-forever/">
 				        <h2 class="post-title">
                             87 -  在父母眼里，我永远是那个需要照顾的孩子
 				        </h2>
@@ -2286,7 +2294,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B8%AF%E8%82%A1">
-				    <a href="/2023/04/27/new-ipo/">
+              <a href="/2023/04/27/new-ipo/">
 				        <h2 class="post-title">
                             （番外）港股打新，简单粗暴分析，值得买么？
 				        </h2>
@@ -2298,7 +2306,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="data+hazard">
-				    <a href="/2023/04/26/LLVM-data-hazard/">
+              <a href="/2023/04/26/LLVM-data-hazard/">
 				        <h2 class="post-title">
                             LLVM Data hazard 数据冲突
 				        </h2>
@@ -2310,7 +2318,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/04/21/will-AI-repleace-programmer/">
+              <a href="/2023/04/21/will-AI-repleace-programmer/">
 				        <h2 class="post-title">
                             86 -  AI 会取代程序员么
 				        </h2>
@@ -2322,7 +2330,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/04/15/what-feel-work-with-ai/">
+              <a href="/2023/04/15/what-feel-work-with-ai/">
 				        <h2 class="post-title">
                             85 - 用 AI 一起工作的感觉 
 				        </h2>
@@ -2334,7 +2342,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="preprocessor">
-				    <a href="/2023/04/14/preprocessor-directives-c-programming/">
+              <a href="/2023/04/14/preprocessor-directives-c-programming/">
 				        <h2 class="post-title">
                             预处理器指令--C 编程
 				        </h2>
@@ -2346,7 +2354,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/04/08/make-money-method/">
+              <a href="/2023/04/08/make-money-method/">
 				        <h2 class="post-title">
                             84 -  赚钱的方式
 				        </h2>
@@ -2358,7 +2366,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="algorithm,huffman">
-				    <a href="/2023/04/06/huffman-coding/">
+              <a href="/2023/04/06/huffman-coding/">
 				        <h2 class="post-title">
                             哈夫曼编码
 				        </h2>
@@ -2370,7 +2378,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/04/01/Stay-curious/">
+              <a href="/2023/04/01/Stay-curious/">
 				        <h2 class="post-title">
                             83 -  保持好奇
 				        </h2>
@@ -2382,7 +2390,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="compiler,LLVM,debug">
-				    <a href="/2023/03/30/how-to-debug-llvm-code-2/">
+              <a href="/2023/03/30/how-to-debug-llvm-code-2/">
 				        <h2 class="post-title">
                             如何调试我们 LLVM 的代码 - 进阶
 				        </h2>
@@ -2394,7 +2402,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/03/25/Forward-Position/">
+              <a href="/2023/03/25/Forward-Position/">
 				        <h2 class="post-title">
                             82 -  知行合一
 				        </h2>
@@ -2406,7 +2414,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/03/18/GPT4-release/">
+              <a href="/2023/03/18/GPT4-release/">
 				        <h2 class="post-title">
                             81 -  GPT4 来了
 				        </h2>
@@ -2418,7 +2426,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="compiler,LLVM,debug">
-				    <a href="/2023/03/18/how-to-debug-llvm-code/">
+              <a href="/2023/03/18/how-to-debug-llvm-code/">
 				        <h2 class="post-title">
                             如何调试我们 LLVM 的代码 - 入门
 				        </h2>
@@ -2430,7 +2438,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="chatgpt,promt">
-				    <a href="/2023/03/17/chatgpt-promt-words/">
+              <a href="/2023/03/17/chatgpt-promt-words/">
 				        <h2 class="post-title">
                             如何通过 chatgpt，获取高质量的回答
 				        </h2>
@@ -2442,7 +2450,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="gcc,compiler,constant,optimization">
-				    <a href="/2023/03/15/compiler-const-folding/">
+              <a href="/2023/03/15/compiler-const-folding/">
 				        <h2 class="post-title">
                             编译器优化 3 - 常量折叠和传播
 				        </h2>
@@ -2454,7 +2462,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="gcc,compiler,optimization">
-				    <a href="/2023/03/13/compiler-thinlto/">
+              <a href="/2023/03/13/compiler-thinlto/">
 				        <h2 class="post-title">
                             编译器优化 2 - ThinLTO
 				        </h2>
@@ -2466,7 +2474,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/03/11/Survival-of-the-fittest/">
+              <a href="/2023/03/11/Survival-of-the-fittest/">
 				        <h2 class="post-title">
                             80 - 适者生存
 				        </h2>
@@ -2478,7 +2486,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/03/04/quick-skill/">
+              <a href="/2023/03/04/quick-skill/">
 				        <h2 class="post-title">
                             79 -  技能速成
 				        </h2>
@@ -2490,7 +2498,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/02/25/make-more-money/">
+              <a href="/2023/02/25/make-more-money/">
 				        <h2 class="post-title">
                             78 -  继续搞钱
 				        </h2>
@@ -2502,7 +2510,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/02/18/relationship/">
+              <a href="/2023/02/18/relationship/">
 				        <h2 class="post-title">
                             77 - 亲情
 				        </h2>
@@ -2514,7 +2522,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="flask,bt">
-				    <a href="/2023/02/16/deploy-flask-with-bt/">
+              <a href="/2023/02/16/deploy-flask-with-bt/">
 				        <h2 class="post-title">
                             用宝塔部署 flask 应用
 				        </h2>
@@ -2526,7 +2534,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="gcc,compiler,optimization">
-				    <a href="/2023/02/16/learn-gcc-compiler-optimzation/">
+              <a href="/2023/02/16/learn-gcc-compiler-optimzation/">
 				        <h2 class="post-title">
                             编译优化流程 1
 				        </h2>
@@ -2538,7 +2546,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/02/11/interest-stength/">
+              <a href="/2023/02/11/interest-stength/">
 				        <h2 class="post-title">
                             76 -  兴趣和特长
 				        </h2>
@@ -2550,7 +2558,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/02/09/extra-story/">
+              <a href="/2023/02/09/extra-story/">
 				        <h2 class="post-title">
                             75 - 番外篇 找到自己的兴趣
 				        </h2>
@@ -2562,7 +2570,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/02/04/no-hurry-no-busy/">
+              <a href="/2023/02/04/no-hurry-no-busy/">
 				        <h2 class="post-title">
                             75 -  不慌不忙
 				        </h2>
@@ -2574,7 +2582,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/01/28/better-lift/">
+              <a href="/2023/01/28/better-lift/">
 				        <h2 class="post-title">
                             74 -  好好生活
 				        </h2>
@@ -2586,7 +2594,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/01/21/new-year/">
+              <a href="/2023/01/21/new-year/">
 				        <h2 class="post-title">
                             73 -  新年快乐
 				        </h2>
@@ -2598,7 +2606,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/01/14/nerver-ending/">
+              <a href="/2023/01/14/nerver-ending/">
 				        <h2 class="post-title">
                             72 -  永无止境
 				        </h2>
@@ -2610,7 +2618,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2023/01/07/live-on/">
+              <a href="/2023/01/07/live-on/">
 				        <h2 class="post-title">
                             71 -  活下去
 				        </h2>
@@ -2625,7 +2633,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				<span class="fa listing-seperator">
 					<span class="tag-text">2022</span>
 				</span><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/12/31/strange-summary-2022/">
+              <a href="/2022/12/31/strange-summary-2022/">
 				        <h2 class="post-title">
                             70 - 2022 奇怪的总结
 				        </h2>
@@ -2637,7 +2645,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/12/24/best-idea/">
+              <a href="/2022/12/24/best-idea/">
 				        <h2 class="post-title">
                             69 - 最好的想法
 				        </h2>
@@ -2649,7 +2657,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/12/17/kids-bag/">
+              <a href="/2022/12/17/kids-bag/">
 				        <h2 class="post-title">
                             68 - 小学生的书包
 				        </h2>
@@ -2661,7 +2669,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/12/10/COVID-19/">
+              <a href="/2022/12/10/COVID-19/">
 				        <h2 class="post-title">
                             67 - 疫情
 				        </h2>
@@ -2673,7 +2681,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/12/03/imagenation/">
+              <a href="/2022/12/03/imagenation/">
 				        <h2 class="post-title">
                             66 - 想象力
 				        </h2>
@@ -2685,7 +2693,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/11/26/unsleep/">
+              <a href="/2022/11/26/unsleep/">
 				        <h2 class="post-title">
                             65 - 装睡
 				        </h2>
@@ -2697,7 +2705,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/11/19/thinking/">
+              <a href="/2022/11/19/thinking/">
 				        <h2 class="post-title">
                             64 - 思考
 				        </h2>
@@ -2709,7 +2717,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/11/12/uncertain/">
+              <a href="/2022/11/12/uncertain/">
 				        <h2 class="post-title">
                             63 - 不确定性
 				        </h2>
@@ -2721,7 +2729,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/11/05/copy-and-paste/">
+              <a href="/2022/11/05/copy-and-paste/">
 				        <h2 class="post-title">
                             62 - 复制粘贴
 				        </h2>
@@ -2733,7 +2741,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/10/29/experience/">
+              <a href="/2022/10/29/experience/">
 				        <h2 class="post-title">
                             61 - 经验
 				        </h2>
@@ -2745,7 +2753,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/10/22/current-best-choice/">
+              <a href="/2022/10/22/current-best-choice/">
 				        <h2 class="post-title">
                             60 - 当前最优选择
 				        </h2>
@@ -2757,7 +2765,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/10/15/advanced/">
+              <a href="/2022/10/15/advanced/">
 				        <h2 class="post-title">
                             59 - 兴趣+赚钱
 				        </h2>
@@ -2769,7 +2777,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/10/07/play-game/">
+              <a href="/2022/10/07/play-game/">
 				        <h2 class="post-title">
                             58 - 游戏
 				        </h2>
@@ -2781,7 +2789,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/10/01/feedback/">
+              <a href="/2022/10/01/feedback/">
 				        <h2 class="post-title">
                             57 - 反馈
 				        </h2>
@@ -2793,7 +2801,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="yara">
-				    <a href="/2022/09/27/yara-fuzzing-tool/">
+              <a href="/2022/09/27/yara-fuzzing-tool/">
 				        <h2 class="post-title">
                             Fuzz工具 - yara
 				        </h2>
@@ -2805,7 +2813,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/09/24/record-myself/">
+              <a href="/2022/09/24/record-myself/">
 				        <h2 class="post-title">
                             56 - 记录自己
 				        </h2>
@@ -2817,7 +2825,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="LLVM">
-				    <a href="/2022/09/22/llvm-lit/">
+              <a href="/2022/09/22/llvm-lit/">
 				        <h2 class="post-title">
                             LLVM工具 - LLVM lit
 				        </h2>
@@ -2829,7 +2837,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/09/17/nvidia-new-arrival/">
+              <a href="/2022/09/17/nvidia-new-arrival/">
 				        <h2 class="post-title">
                             55 - 保持更新
 				        </h2>
@@ -2841,7 +2849,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="cuda">
-				    <a href="/2022/09/16/cuda-load-store-2/">
+              <a href="/2022/09/16/cuda-load-store-2/">
 				        <h2 class="post-title">
                             CUDA 基础 - 04 访存- share、const
 				        </h2>
@@ -2853,7 +2861,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="cuda">
-				    <a href="/2022/09/13/cuda-load-store/">
+              <a href="/2022/09/13/cuda-load-store/">
 				        <h2 class="post-title">
                             CUDA 基础 - 03 访存- register、global、local
 				        </h2>
@@ -2865,7 +2873,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2022/09/10/mid-autumn/">
+              <a href="/2022/09/10/mid-autumn/">
 				        <h2 class="post-title">
                             Mid Autumn
 				        </h2>
@@ -2873,7 +2881,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="cuda">
-				    <a href="/2022/09/07/cuda-helloworld/">
+              <a href="/2022/09/07/cuda-helloworld/">
 				        <h2 class="post-title">
                             CUDA 基础 02 - helloworld
 				        </h2>
@@ -2885,7 +2893,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="cuda">
-				    <a href="/2022/09/06/cuda-basic/">
+              <a href="/2022/09/06/cuda-basic/">
 				        <h2 class="post-title">
                             CUDA 基础 01 - 概念
 				        </h2>
@@ -2897,7 +2905,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/09/03/no-ad/">
+              <a href="/2022/09/03/no-ad/">
 				        <h2 class="post-title">
                             53 - no AD
 				        </h2>
@@ -2909,7 +2917,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/08/27/life-is-given-by-air-conditioner/">
+              <a href="/2022/08/27/life-is-given-by-air-conditioner/">
 				        <h2 class="post-title">
                             52 -  热
 				        </h2>
@@ -2921,7 +2929,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/08/21/bad-code/">
+              <a href="/2022/08/21/bad-code/">
 				        <h2 class="post-title">
                             51 -  不要只担心代码
 				        </h2>
@@ -2933,7 +2941,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/08/14/normal/">
+              <a href="/2022/08/14/normal/">
 				        <h2 class="post-title">
                             50 -  成不了是常态
 				        </h2>
@@ -2945,7 +2953,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/08/06/focus/">
+              <a href="/2022/08/06/focus/">
 				        <h2 class="post-title">
                             49 -  聚焦
 				        </h2>
@@ -2957,7 +2965,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="asm">
-				    <a href="/2022/08/04/inline-asm-syntax/">
+              <a href="/2022/08/04/inline-asm-syntax/">
 				        <h2 class="post-title">
                             在C++里面使用内联汇编语法
 				        </h2>
@@ -2969,7 +2977,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/07/30/worth-to-do/">
+              <a href="/2022/07/30/worth-to-do/">
 				        <h2 class="post-title">
                             48 -  值得去做
 				        </h2>
@@ -2981,7 +2989,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/07/21/passion/">
+              <a href="/2022/07/21/passion/">
 				        <h2 class="post-title">
                             47 - 激情
 				        </h2>
@@ -2993,7 +3001,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/07/15/demand/">
+              <a href="/2022/07/15/demand/">
 				        <h2 class="post-title">
                             46 - 刚需
 				        </h2>
@@ -3005,7 +3013,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/07/09/song-is-popular/">
+              <a href="/2022/07/09/song-is-popular/">
 				        <h2 class="post-title">
                             45 - 流行歌曲
 				        </h2>
@@ -3017,7 +3025,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/07/02/keep-good-health/">
+              <a href="/2022/07/02/keep-good-health/">
 				        <h2 class="post-title">
                             44 - 经痛喝热水有用么？
 				        </h2>
@@ -3029,7 +3037,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2022/06/25/do-you-like-k-pop/">
+              <a href="/2022/06/25/do-you-like-k-pop/">
 				        <h2 class="post-title">
                             Do You Like K Pop
 				        </h2>
@@ -3037,7 +3045,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/06/17/improve-youself/">
+              <a href="/2022/06/17/improve-youself/">
 				        <h2 class="post-title">
                             42 - 侪：知道这个字，念什么吗
 				        </h2>
@@ -3049,7 +3057,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E8%AE%A1%E7%AE%97%E6%9C%BA">
-				    <a href="/2022/06/16/compiler_high-low/">
+              <a href="/2022/06/16/compiler_high-low/">
 				        <h2 class="post-title">
                             高位和低位
 				        </h2>
@@ -3061,7 +3069,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/06/11/life-is-important/">
+              <a href="/2022/06/11/life-is-important/">
 				        <h2 class="post-title">
                             41 - 保命重要
 				        </h2>
@@ -3073,7 +3081,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="LLVM">
-				    <a href="/2022/06/08/llvm-c-compiler-static-analyzer/">
+              <a href="/2022/06/08/llvm-c-compiler-static-analyzer/">
 				        <h2 class="post-title">
                             LLVM LibFuzzer介绍和实践 -2
 				        </h2>
@@ -3085,7 +3093,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2022/06/07/llvm-fuzz-2/">
+              <a href="/2022/06/07/llvm-fuzz-2/">
 				        <h2 class="post-title">
                             Llvm Fuzz 2
 				        </h2>
@@ -3093,7 +3101,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="LLVM">
-				    <a href="/2022/06/07/llvm-fuzz-2/">
+              <a href="/2022/06/07/llvm-fuzz-2/">
 				        <h2 class="post-title">
                             浅谈 LLVM LibFuzzer 介绍和实践
 				        </h2>
@@ -3105,7 +3113,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/06/04/what-is-friend/">
+              <a href="/2022/06/04/what-is-friend/">
 				        <h2 class="post-title">
                             40 - 朋友多好，还是少好？
 				        </h2>
@@ -3117,7 +3125,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="cuda">
-				    <a href="/2022/06/02/run-cuda-with-free-cloud/">
+              <a href="/2022/06/02/run-cuda-with-free-cloud/">
 				        <h2 class="post-title">
                             用谷歌云服务器免费跑 cuda 代码
 				        </h2>
@@ -3129,7 +3137,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="LLVM,Fuzz">
-				    <a href="/2022/06/01/llvm-fuzz/">
+              <a href="/2022/06/01/llvm-fuzz/">
 				        <h2 class="post-title">
                             LLVM LibFuzzer介绍和实践
 				        </h2>
@@ -3141,7 +3149,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="linux">
-				    <a href="/2022/05/30/config-linux-forward-history-search/">
+              <a href="/2022/05/30/config-linux-forward-history-search/">
 				        <h2 class="post-title">
                             Linux 配置 xx search history
 				        </h2>
@@ -3153,7 +3161,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="wsl">
-				    <a href="/2022/05/30/wsl-install-error-0x80072f7d/">
+              <a href="/2022/05/30/wsl-install-error-0x80072f7d/">
 				        <h2 class="post-title">
                             安装WSL错误0x80072f7d，解决办法
 				        </h2>
@@ -3165,7 +3173,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2022/05/28/keep-health/">
+              <a href="/2022/05/28/keep-health/">
 				        <h2 class="post-title">
                             Keep Health
 				        </h2>
@@ -3173,7 +3181,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/05/21/small-behavior/">
+              <a href="/2022/05/21/small-behavior/">
 				        <h2 class="post-title">
                             38 - 小习惯
 				        </h2>
@@ -3185,7 +3193,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="cuda">
-				    <a href="/2022/05/19/CUDA-beginner-guider/">
+              <a href="/2022/05/19/CUDA-beginner-guider/">
 				        <h2 class="post-title">
                             CUDA 入门教程
 				        </h2>
@@ -3197,7 +3205,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="cuda">
-				    <a href="/2022/05/19/LLVM-GPU-Compiler/">
+              <a href="/2022/05/19/LLVM-GPU-Compiler/">
 				        <h2 class="post-title">
                             LLVM 测试
 				        </h2>
@@ -3209,7 +3217,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm">
-				    <a href="/2022/05/17/LLVM-IR-transform/">
+              <a href="/2022/05/17/LLVM-IR-transform/">
 				        <h2 class="post-title">
                             LLVM IR转换
 				        </h2>
@@ -3221,7 +3229,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm">
-				    <a href="/2022/05/17/LLVM-install-and-compiler/">
+              <a href="/2022/05/17/LLVM-install-and-compiler/">
 				        <h2 class="post-title">
                             LLVM 安装和编译 1
 				        </h2>
@@ -3233,7 +3241,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="llvm">
-				    <a href="/2022/05/17/external-project/">
+              <a href="/2022/05/17/external-project/">
 				        <h2 class="post-title">
                             LLVM 外部项目 2
 				        </h2>
@@ -3245,7 +3253,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/05/14/what-is-product/">
+              <a href="/2022/05/14/what-is-product/">
 				        <h2 class="post-title">
                             37 - 产品是什么
 				        </h2>
@@ -3257,7 +3265,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="gdb">
-				    <a href="/2022/05/12/gdb-user-guide/">
+              <a href="/2022/05/12/gdb-user-guide/">
 				        <h2 class="post-title">
                             使用 GDB 进行调试
 				        </h2>
@@ -3269,7 +3277,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="docker">
-				    <a href="/2022/05/11/dokcer-copy-files/">
+              <a href="/2022/05/11/dokcer-copy-files/">
 				        <h2 class="post-title">
                             向 Docker 容器复制文件和从 Docker 容器复制文件
 				        </h2>
@@ -3281,7 +3289,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="github,cloudflare">
-				    <a href="/2022/05/11/tencent-cloud-subdomain-config-githubpages/">
+              <a href="/2022/05/11/tencent-cloud-subdomain-config-githubpages/">
 				        <h2 class="post-title">
                             腾讯云配置二级域名到Github pages，并用 cloudflare 加速
 				        </h2>
@@ -3293,7 +3301,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/05/07/35-old-year-for-programmer/">
+              <a href="/2022/05/07/35-old-year-for-programmer/">
 				        <h2 class="post-title">
                             36 - 35岁，程序员在做什么
 				        </h2>
@@ -3305,7 +3313,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E4%BF%9D%E9%99%A9">
-				    <a href="/2022/05/06/cgsx/">
+              <a href="/2022/05/06/cgsx/">
 				        <h2 class="post-title">
                             2022 5月重疾推荐
 				        </h2>
@@ -3317,7 +3325,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="git">
-				    <a href="/2022/05/06/git-pull-cherrypick-fetch/">
+              <a href="/2022/05/06/git-pull-cherrypick-fetch/">
 				        <h2 class="post-title">
                             Git 常用命令 pull、cherry-pick、fetch 有什么区别？
 				        </h2>
@@ -3329,7 +3337,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="github">
-				    <a href="/2022/05/05/picgo-picbed-config/">
+              <a href="/2022/05/05/picgo-picbed-config/">
 				        <h2 class="post-title">
                             PicGo 图床工具配置 Github 等
 				        </h2>
@@ -3341,7 +3349,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="LLVM">
-				    <a href="/2022/05/04/assembly-basic-instruction/">
+              <a href="/2022/05/04/assembly-basic-instruction/">
 				        <h2 class="post-title">
                             汇编基础指令 
 				        </h2>
@@ -3353,7 +3361,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="git">
-				    <a href="/2022/05/03/squash-2-commit-to-1/">
+              <a href="/2022/05/03/squash-2-commit-to-1/">
 				        <h2 class="post-title">
                             git 2 个 commit 压缩为一个 commit
 				        </h2>
@@ -3365,7 +3373,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="LLVM">
-				    <a href="/2022/05/02/LLVM-intrinsic_introduce/">
+              <a href="/2022/05/02/LLVM-intrinsic_introduce/">
 				        <h2 class="post-title">
                             LLVM intrinsic 介绍
 				        </h2>
@@ -3377,7 +3385,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2022/04/30/compare-with-others/">
+              <a href="/2022/04/30/compare-with-others/">
 				        <h2 class="post-title">
                             Compare With Others
 				        </h2>
@@ -3385,7 +3393,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/04/23/how-to-talk-story/">
+              <a href="/2022/04/23/how-to-talk-story/">
 				        <h2 class="post-title">
                             34 - 讲故事
 				        </h2>
@@ -3397,7 +3405,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="LLVM">
-				    <a href="/2022/04/20/LLVM-introduce/">
+              <a href="/2022/04/20/LLVM-introduce/">
 				        <h2 class="post-title">
                             LLVM 介绍
 				        </h2>
@@ -3409,7 +3417,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="github">
-				    <a href="/2022/04/18/gihub-action-build-blog/">
+              <a href="/2022/04/18/gihub-action-build-blog/">
 				        <h2 class="post-title">
                             用 Github Action 构建自己的 Jekyll 博客
 				        </h2>
@@ -3421,7 +3429,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/04/16/how-to-plan/">
+              <a href="/2022/04/16/how-to-plan/">
 				        <h2 class="post-title">
                             33 - 如何计划
 				        </h2>
@@ -3433,7 +3441,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/04/09/time-as-a-friend/">
+              <a href="/2022/04/09/time-as-a-friend/">
 				        <h2 class="post-title">
                             32 - 时间就是朋友
 				        </h2>
@@ -3445,7 +3453,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/04/02/what-your-expectation/">
+              <a href="/2022/04/02/what-your-expectation/">
 				        <h2 class="post-title">
                             31 - 你的期望是什么
 				        </h2>
@@ -3457,7 +3465,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/03/26/long-term/">
+              <a href="/2022/03/26/long-term/">
 				        <h2 class="post-title">
                             30 - 加班到底好不好？
 				        </h2>
@@ -3469,7 +3477,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/03/21/result-oriented/">
+              <a href="/2022/03/21/result-oriented/">
 				        <h2 class="post-title">
                             29 - 差点把客服骂一顿
 				        </h2>
@@ -3481,7 +3489,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/03/14/chip-road/">
+              <a href="/2022/03/14/chip-road/">
 				        <h2 class="post-title">
                             选择比努力重要
 				        </h2>
@@ -3493,7 +3501,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/03/12/love-letter/">
+              <a href="/2022/03/12/love-letter/">
 				        <h2 class="post-title">
                             28 - 你收到情书么？
 				        </h2>
@@ -3505,7 +3513,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%B7%A5%E5%85%B7">
-				    <a href="/2022/03/05/download-singleFile/">
+              <a href="/2022/03/05/download-singleFile/">
 				        <h2 class="post-title">
                             推荐一个工具 - SingleFile
 				        </h2>
@@ -3517,7 +3525,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/03/05/tell-story/">
+              <a href="/2022/03/05/tell-story/">
 				        <h2 class="post-title">
                             27 - 讲故事
 				        </h2>
@@ -3529,7 +3537,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/02/26/Purpose-of-fitness/">
+              <a href="/2022/02/26/Purpose-of-fitness/">
 				        <h2 class="post-title">
                             26 - 健身的目的
 				        </h2>
@@ -3541,7 +3549,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/02/19/Relationship-between-mother-and-wife/">
+              <a href="/2022/02/19/Relationship-between-mother-and-wife/">
 				        <h2 class="post-title">
                             25 - 如何道歉
 				        </h2>
@@ -3553,7 +3561,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/02/12/responsibility-and-return/">
+              <a href="/2022/02/12/responsibility-and-return/">
 				        <h2 class="post-title">
                             24 - 责任和回报
 				        </h2>
@@ -3565,7 +3573,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E8%8B%B1%E8%AF%AD">
-				    <a href="/2022/02/08/learn-english/">
+              <a href="/2022/02/08/learn-english/">
 				        <h2 class="post-title">
                             用英语思维来学习英语
 				        </h2>
@@ -3577,7 +3585,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F">
-				    <a href="/2022/02/07/aics-1/">
+              <a href="/2022/02/07/aics-1/">
 				        <h2 class="post-title">
                             智能计算系统第二章神经网络基础
 				        </h2>
@@ -3589,7 +3597,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%99%BA%E8%83%BD%E8%AE%A1%E7%AE%97%E7%B3%BB%E7%BB%9F">
-				    <a href="/2022/02/07/aics-2/">
+              <a href="/2022/02/07/aics-2/">
 				        <h2 class="post-title">
                             智能计算系统第三章图像处理的卷积神经网络
 				        </h2>
@@ -3601,7 +3609,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/02/05/communication-is-game/">
+              <a href="/2022/02/05/communication-is-game/">
 				        <h2 class="post-title">
                             23 - 为什么沟通是一场无限游戏
 				        </h2>
@@ -3613,7 +3621,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/01/29/thinking-in-shower/">
+              <a href="/2022/01/29/thinking-in-shower/">
 				        <h2 class="post-title">
                             22 - 如何成为你想成为的人
 				        </h2>
@@ -3625,7 +3633,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/01/27/10-years/">
+              <a href="/2022/01/27/10-years/">
 				        <h2 class="post-title">
                             回顾 10 年职业生涯，重新启航
 				        </h2>
@@ -3637,7 +3645,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter">
-				    <a href="/2022/01/22/question-worth-spending-the-time-reflect/">
+              <a href="/2022/01/22/question-worth-spending-the-time-reflect/">
 				        <h2 class="post-title">
                             21 - 值得花时间去思考的 10 个问题
 				        </h2>
@@ -3649,7 +3657,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter,%E9%87%91%E5%8F%A5">
-				    <a href="/2022/01/15/golden-sentence/">
+              <a href="/2022/01/15/golden-sentence/">
 				        <h2 class="post-title">
                             20 - 金句和鸡汤的差别
 				        </h2>
@@ -3661,7 +3669,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter,%E8%99%9A%E8%8D%A3">
-				    <a href="/2022/01/07/live-for-youself/">
+              <a href="/2022/01/07/live-for-youself/">
 				        <h2 class="post-title">
                             19 - 为自己而活
 				        </h2>
@@ -3673,7 +3681,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter,%E7%94%B5%E5%8A%A8%E8%BD%A6">
-				    <a href="/2022/01/01/co-operation/">
+              <a href="/2022/01/01/co-operation/">
 				        <h2 class="post-title">
                             18 - 巨头之间的合作
 				        </h2>
@@ -3688,7 +3696,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				<span class="fa listing-seperator">
 					<span class="tag-text">2021</span>
 				</span><div class="post-preview item" data-tags="Newsletter,%E7%90%86%E8%B4%A2">
-				    <a href="/2021/12/25/x-xmas-invest-known/">
+              <a href="/2021/12/25/x-xmas-invest-known/">
 				        <h2 class="post-title">
                             17 - 学习一门终身有益的知识
 				        </h2>
@@ -3700,7 +3708,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%B9%BD%E9%BB%98">
-				    <a href="/2021/12/21/humor/">
+              <a href="/2021/12/21/humor/">
 				        <h2 class="post-title">
                             饭局聊天还有冷场的？要不试试这个该死的幽默
 				        </h2>
@@ -3712,7 +3720,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E7%AE%80%E5%8E%86">
-				    <a href="/2021/12/20/engineer-resume/">
+              <a href="/2021/12/20/engineer-resume/">
 				        <h2 class="post-title">
                             如何让自己的简历不石沉大海
 				        </h2>
@@ -3724,7 +3732,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter,%E5%AE%9A%E4%BD%8D">
-				    <a href="/2021/12/18/location-hisroty/">
+              <a href="/2021/12/18/location-hisroty/">
 				        <h2 class="post-title">
                             16 - 根据 IP 地址找到对应的小区
 				        </h2>
@@ -3736,7 +3744,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E7%BC%96%E7%A8%8B">
-				    <a href="/2021/12/12/learn-coding-web/">
+              <a href="/2021/12/12/learn-coding-web/">
 				        <h2 class="post-title">
                             儿童编程网站集合
 				        </h2>
@@ -3748,7 +3756,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter,%E9%BB%91%E8%83%B6">
-				    <a href="/2021/12/11/vinyl-records/">
+              <a href="/2021/12/11/vinyl-records/">
 				        <h2 class="post-title">
                             15 - 关于黑胶唱片的事儿
 				        </h2>
@@ -3760,7 +3768,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter,%E9%95%BF%E6%9C%9F">
-				    <a href="/2021/12/04/reading-is-important/">
+              <a href="/2021/12/04/reading-is-important/">
 				        <h2 class="post-title">
                             14 - 做一个长期主义者
 				        </h2>
@@ -3772,7 +3780,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter,%E8%BF%87%E5%BA%A6">
-				    <a href="/2021/11/27/overengineering/">
+              <a href="/2021/11/27/overengineering/">
 				        <h2 class="post-title">
                             13 - 过度工程
 				        </h2>
@@ -3784,7 +3792,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Newsletter,%E6%80%9D%E8%80%83">
-				    <a href="/2021/11/20/self-thinking/">
+              <a href="/2021/11/20/self-thinking/">
 				        <h2 class="post-title">
                             12 - 当前做的这些，真的有意义么？
 				        </h2>
@@ -3796,7 +3804,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python,%E6%8A%80%E6%9C%AF">
-				    <a href="/2021/11/13/pomodoro_technique/">
+              <a href="/2021/11/13/pomodoro_technique/">
 				        <h2 class="post-title">
                             11 - 番茄工作法能提高效率？
 				        </h2>
@@ -3808,7 +3816,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python">
-				    <a href="/2021/11/13/python-style-rule/">
+              <a href="/2021/11/13/python-style-rule/">
 				        <h2 class="post-title">
                             Python 风格规范
 				        </h2>
@@ -3820,7 +3828,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python,typer">
-				    <a href="/2021/11/08/build-clis-in-one-line-code-by-python/">
+              <a href="/2021/11/08/build-clis-in-one-line-code-by-python/">
 				        <h2 class="post-title">
                             构建 Python CLI参数，还在用 argparse ?
 				        </h2>
@@ -3832,7 +3840,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%80%BB%E7%BB%93">
-				    <a href="/2021/11/07/summary/">
+              <a href="/2021/11/07/summary/">
 				        <h2 class="post-title">
                             一次线下大会总结
 				        </h2>
@@ -3844,7 +3852,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%96%87%E6%A1%A3,%E6%8A%80%E6%9C%AF">
-				    <a href="/2021/11/06/tech-docs/">
+              <a href="/2021/11/06/tech-docs/">
 				        <h2 class="post-title">
                             10 - 互联网公司如何沉淀技术文档
 				        </h2>
@@ -3856,7 +3864,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%8A%95%E8%B5%84">
-				    <a href="/2021/10/30/invest/">
+              <a href="/2021/10/30/invest/">
 				        <h2 class="post-title">
                             09 - 投资约定
 				        </h2>
@@ -3868,7 +3876,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B2%9F%E9%80%9A,%E5%86%99%E4%BD%9C,Newsletter">
-				    <a href="/2021/10/23/communication-writing/">
+              <a href="/2021/10/23/communication-writing/">
 				        <h2 class="post-title">
                             08 - 职场需要什么技能
 				        </h2>
@@ -3880,7 +3888,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Dota">
-				    <a href="/2021/10/18/dota_2/">
+              <a href="/2021/10/18/dota_2/">
 				        <h2 class="post-title">
                             为什么不 BAN 猛犸
 				        </h2>
@@ -3892,7 +3900,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E9%9D%A2%E8%AF%95,%E6%8A%95%E8%B5%84,Newsletter">
-				    <a href="/2021/10/15/Newsletter-interview/">
+              <a href="/2021/10/15/Newsletter-interview/">
 				        <h2 class="post-title">
                             07 - 年轻人，如何能成长更快
 				        </h2>
@@ -3904,7 +3912,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%97%A5%E8%AF%AD,%E7%89%87%E5%81%87%E5%90%8D,%E5%B9%B3%E5%81%87%E5%90%8D">
-				    <a href="/2021/10/10/learn-japanese-07/">
+              <a href="/2021/10/10/learn-japanese-07/">
 				        <h2 class="post-title">
                             日语学习 - 07 行
 				        </h2>
@@ -3916,7 +3924,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%97%A5%E8%AF%AD,%E7%89%87%E5%81%87%E5%90%8D,%E5%B9%B3%E5%81%87%E5%90%8D">
-				    <a href="/2021/10/10/learn-japanese-08/">
+              <a href="/2021/10/10/learn-japanese-08/">
 				        <h2 class="post-title">
                             日语学习 - 08 ま行
 				        </h2>
@@ -3928,7 +3936,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%88%A9%E4%BB%96,Newsletter">
-				    <a href="/2021/10/10/provide-valuable-thing/">
+              <a href="/2021/10/10/provide-valuable-thing/">
 				        <h2 class="post-title">
                             06 - 提供有价值的事情
 				        </h2>
@@ -3940,7 +3948,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%97%A5%E8%AF%AD,%E7%89%87%E5%81%87%E5%90%8D,%E5%B9%B3%E5%81%87%E5%90%8D">
-				    <a href="/2021/10/09/learn-japanese-06/">
+              <a href="/2021/10/09/learn-japanese-06/">
 				        <h2 class="post-title">
                             日语学习 - 06 は行
 				        </h2>
@@ -3952,7 +3960,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%97%A5%E8%AF%AD,%E7%89%87%E5%81%87%E5%90%8D,%E5%B9%B3%E5%81%87%E5%90%8D">
-				    <a href="/2021/10/08/learn-japanese-05/">
+              <a href="/2021/10/08/learn-japanese-05/">
 				        <h2 class="post-title">
                             日语学习 - 05 な行
 				        </h2>
@@ -3964,7 +3972,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%97%A5%E8%AF%AD,%E7%89%87%E5%81%87%E5%90%8D,%E5%B9%B3%E5%81%87%E5%90%8D">
-				    <a href="/2021/10/07/learn-japanese-04/">
+              <a href="/2021/10/07/learn-japanese-04/">
 				        <h2 class="post-title">
                             日语学习 - 04 た行
 				        </h2>
@@ -3976,7 +3984,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%97%A5%E8%AF%AD,%E7%89%87%E5%81%87%E5%90%8D,%E5%B9%B3%E5%81%87%E5%90%8D">
-				    <a href="/2021/10/06/learn-japanese-03/">
+              <a href="/2021/10/06/learn-japanese-03/">
 				        <h2 class="post-title">
                             日语学习 - 03 さ行
 				        </h2>
@@ -3988,7 +3996,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%97%A5%E8%AF%AD,%E7%89%87%E5%81%87%E5%90%8D,%E5%B9%B3%E5%81%87%E5%90%8D">
-				    <a href="/2021/10/05/learn-japanese-01/">
+              <a href="/2021/10/05/learn-japanese-01/">
 				        <h2 class="post-title">
                             日语学习 - 01 五十音
 				        </h2>
@@ -4000,7 +4008,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%97%A5%E8%AF%AD,%E7%89%87%E5%81%87%E5%90%8D,%E5%B9%B3%E5%81%87%E5%90%8D">
-				    <a href="/2021/10/05/learn-japanese-02/">
+              <a href="/2021/10/05/learn-japanese-02/">
 				        <h2 class="post-title">
                             日语学习 - 02 か行
 				        </h2>
@@ -4012,7 +4020,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%BF%AB%E4%B9%90,%E7%94%B5%E5%BD%B1,Newsletter">
-				    <a href="/2021/10/03/hunt-for-happiness/">
+              <a href="/2021/10/03/hunt-for-happiness/">
 				        <h2 class="post-title">
                             05 - 寻找快乐
 				        </h2>
@@ -4024,7 +4032,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%86%99%E4%BD%9C,%E5%9D%9A%E6%8C%81,%E6%8A%95%E8%B5%84,%E8%AF%BB%E4%B9%A6,Newsletter">
-				    <a href="/2021/09/25/writing-reading/">
+              <a href="/2021/09/25/writing-reading/">
 				        <h2 class="post-title">
                             04 - 坚持一件小事
 				        </h2>
@@ -4036,7 +4044,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%8A%95%E8%B5%84,%E8%87%AA%E5%BE%8B,%E6%B6%88%E8%B4%B9,Newsletter">
-				    <a href="/2021/09/19/invest-yourself/">
+              <a href="/2021/09/19/invest-yourself/">
 				        <h2 class="post-title">
                             03 - 投资自己
 				        </h2>
@@ -4048,7 +4056,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%8E%A5%E5%8F%97%E8%87%AA%E5%B7%B1,%E5%86%99%E4%BD%9C,Newsletter">
-				    <a href="/2021/09/12/accept-yourself/">
+              <a href="/2021/09/12/accept-yourself/">
 				        <h2 class="post-title">
                             02 - 接受自己和多写作
 				        </h2>
@@ -4060,7 +4068,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%81%8F%E8%A7%81,%E4%BA%A4%E6%B5%81,Newsletter">
-				    <a href="/2021/09/03/prejudice/">
+              <a href="/2021/09/03/prejudice/">
 				        <h2 class="post-title">
                             01 - 走出偏见
 				        </h2>
@@ -4072,7 +4080,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87,%E8%87%AA%E5%8A%A8%E5%8C%96,%E6%B5%8B%E8%AF%95">
-				    <a href="/2021/08/31/how-to-improve-your-work/">
+              <a href="/2021/08/31/how-to-improve-your-work/">
 				        <h2 class="post-title">
                             做好做工作任何一个可以改进的地方
 				        </h2>
@@ -4084,7 +4092,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%AF%94%E8%BE%83,%E5%AD%97%E7%AC%A6%E4%B8%B2,python,ASCII%E7%A0%81">
-				    <a href="/2021/08/25/string-comparison-in-less-than-greater-than/">
+              <a href="/2021/08/25/string-comparison-in-less-than-greater-than/">
 				        <h2 class="post-title">
                             在Python里面字符串比较大小
 				        </h2>
@@ -4096,7 +4104,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E9%9D%A2%E8%AF%95,%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81">
-				    <a href="/2021/08/15/how-to-interview/">
+              <a href="/2021/08/15/how-to-interview/">
 				        <h2 class="post-title">
                             如何面试别人
 				        </h2>
@@ -4108,7 +4116,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E4%BF%9D%E9%99%A9,%E6%84%8F%E5%A4%96%E9%99%A9,%E5%AF%BF%E9%99%A9">
-				    <a href="/2021/07/28/Accident-Insurance/">
+              <a href="/2021/07/28/Accident-Insurance/">
 				        <h2 class="post-title">
                             如何选择意外险
 				        </h2>
@@ -4120,7 +4128,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E7%AE%A1%E7%90%86%E5%9B%A2%E9%98%9F">
-				    <a href="/2021/06/29/manage-team-with-tech/">
+              <a href="/2021/06/29/manage-team-with-tech/">
 				        <h2 class="post-title">
                             用技术管理团队
 				        </h2>
@@ -4132,7 +4140,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E8%AF%BB%E4%B9%A6">
-				    <a href="/2021/03/12/how-to-deal-with-youself/">
+              <a href="/2021/03/12/how-to-deal-with-youself/">
 				        <h2 class="post-title">
                             该学习了
 				        </h2>
@@ -4144,7 +4152,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%A2%9E%E9%95%BF">
-				    <a href="/2021/02/28/GrowingIO-think/">
+              <a href="/2021/02/28/GrowingIO-think/">
 				        <h2 class="post-title">
                             好好的实践一下商业增长
 				        </h2>
@@ -4156,7 +4164,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%A2%9E%E9%95%BF">
-				    <a href="/2021/02/27/GrowingIO-basic/">
+              <a href="/2021/02/27/GrowingIO-basic/">
 				        <h2 class="post-title">
                             商业增长也是不错的基础课程
 				        </h2>
@@ -4168,7 +4176,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%86%85%E6%8E%A8">
-				    <a href="/2021/02/26/referral-mosi-cn/">
+              <a href="/2021/02/26/referral-mosi-cn/">
 				        <h2 class="post-title">
                             成都摩斯智联内推
 				        </h2>
@@ -4180,7 +4188,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E8%8B%B1%E8%AF%AD">
-				    <a href="/2021/02/21/learn-english-shopping-scenario/">
+              <a href="/2021/02/21/learn-english-shopping-scenario/">
 				        <h2 class="post-title">
                             Shopping 购物常用的英语词汇
 				        </h2>
@@ -4192,7 +4200,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="TensorFlow,CNN">
-				    <a href="/2021/02/18/learn-tensorflow-3-CNN/">
+              <a href="/2021/02/18/learn-tensorflow-3-CNN/">
 				        <h2 class="post-title">
                             TensorFlow 基础学习 - 3
 				        </h2>
@@ -4204,7 +4212,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="TensorFlow">
-				    <a href="/2021/02/18/learn-tensorflow-basic-1/">
+              <a href="/2021/02/18/learn-tensorflow-basic-1/">
 				        <h2 class="post-title">
                             TensorFlow 基础学习 - 1
 				        </h2>
@@ -4216,7 +4224,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="TensorFlow">
-				    <a href="/2021/02/18/learn-tensorflow-basic-2/">
+              <a href="/2021/02/18/learn-tensorflow-basic-2/">
 				        <h2 class="post-title">
                             TensorFlow 基础学习 - 2
 				        </h2>
@@ -4228,7 +4236,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="TensorFlow,%E8%B0%83%E5%8F%82">
-				    <a href="/2021/02/18/learn-tensorflow-basic-4/">
+              <a href="/2021/02/18/learn-tensorflow-basic-4/">
 				        <h2 class="post-title">
                             TensorFlow 基础学习 - 4
 				        </h2>
@@ -4240,7 +4248,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="altStore">
-				    <a href="/2021/02/12/how-to-install-altStore/">
+              <a href="/2021/02/12/how-to-install-altStore/">
 				        <h2 class="post-title">
                             可能提到Cydia的东西
 				        </h2>
@@ -4252,7 +4260,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%80%BB%E7%BB%93">
-				    <a href="/2021/02/10/resolved-question-is-mainly/">
+              <a href="/2021/02/10/resolved-question-is-mainly/">
 				        <h2 class="post-title">
                             解决问题为主
 				        </h2>
@@ -4264,7 +4272,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%80%BB%E7%BB%93">
-				    <a href="/2021/02/09/wechat-red-packet/">
+              <a href="/2021/02/09/wechat-red-packet/">
 				        <h2 class="post-title">
                             非认证用户如何定制自己的视频号
 				        </h2>
@@ -4276,7 +4284,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%80%BB%E7%BB%93">
-				    <a href="/2021/02/05/time-how-flies/">
+              <a href="/2021/02/05/time-how-flies/">
 				        <h2 class="post-title">
                             已经过去2周了，你感觉怎么样？
 				        </h2>
@@ -4288,7 +4296,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%80%BB%E7%BB%93">
-				    <a href="/2021/01/17/feeling-output-input/">
+              <a href="/2021/01/17/feeling-output-input/">
 				        <h2 class="post-title">
                             已经过去2周了，你感觉怎么样？
 				        </h2>
@@ -4300,7 +4308,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%80%BB%E7%BB%93">
-				    <a href="/2021/01/09/first-internet-job-impression/">
+              <a href="/2021/01/09/first-internet-job-impression/">
 				        <h2 class="post-title">
                             互联网上班一个礼拜总结
 				        </h2>
@@ -4312,7 +4320,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%88%86%E4%BA%AB">
-				    <a href="/2021/01/01/Impressions-stormzhang-living-stream/">
+              <a href="/2021/01/01/Impressions-stormzhang-living-stream/">
 				        <h2 class="post-title">
                             观后感 - stormzhang 跨年直播
 				        </h2>
@@ -4327,7 +4335,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				<span class="fa listing-seperator">
 					<span class="tag-text">2020</span>
 				</span><div class="post-preview item" data-tags="%E6%80%BB%E7%BB%93">
-				    <a href="/2020/12/28/2020-end-year-summary/">
+              <a href="/2020/12/28/2020-end-year-summary/">
 				        <h2 class="post-title">
                             2020年终总结
 				        </h2>
@@ -4339,7 +4347,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E8%8B%B1%E8%AF%AD,%E5%8F%A3%E8%AF%AD,%E6%80%9D%E7%BB%B4">
-				    <a href="/2020/12/14/improve-english/">
+              <a href="/2020/12/14/improve-english/">
 				        <h2 class="post-title">
                             提高英语 - 口语和思维
 				        </h2>
@@ -4351,7 +4359,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="nginx,tomcat,docker">
-				    <a href="/2020/12/13/Docker-install-nginx-and-tomcat/">
+              <a href="/2020/12/13/Docker-install-nginx-and-tomcat/">
 				        <h2 class="post-title">
                             Docker 安装nginx和tomcat
 				        </h2>
@@ -4363,7 +4371,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Maven,%E9%80%BB%E8%BE%91">
-				    <a href="/2020/12/12/CM100-5-study-note/">
+              <a href="/2020/12/12/CM100-5-study-note/">
 				        <h2 class="post-title">
                             学习笔记 CM100-5:越学越焦虑，越学越空虚，如何选择学习资料
 				        </h2>
@@ -4375,7 +4383,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Maven,%E9%80%BB%E8%BE%91">
-				    <a href="/2020/12/12/maven-manual/">
+              <a href="/2020/12/12/maven-manual/">
 				        <h2 class="post-title">
                             maven手册
 				        </h2>
@@ -4387,7 +4395,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B5%8B%E8%AF%95,%E9%80%BB%E8%BE%91">
-				    <a href="/2020/12/03/how-to-test-complex-logical/">
+              <a href="/2020/12/03/how-to-test-complex-logical/">
 				        <h2 class="post-title">
                             如何测试复杂的逻辑
 				        </h2>
@@ -4399,7 +4407,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="docker">
-				    <a href="/2020/12/01/Docker-software-developer/">
+              <a href="/2020/12/01/Docker-software-developer/">
 				        <h2 class="post-title">
                             Docker - 软件开发
 				        </h2>
@@ -4411,7 +4419,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="MQ,%E4%B8%AD%E9%97%B4%E4%BB%B6">
-				    <a href="/2020/12/01/middle-ware/">
+              <a href="/2020/12/01/middle-ware/">
 				        <h2 class="post-title">
                             消息中间件-MQ
 				        </h2>
@@ -4423,7 +4431,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="go,%E5%9F%BA%E7%A1%80">
-				    <a href="/2020/11/30/go-basic/">
+              <a href="/2020/11/30/go-basic/">
 				        <h2 class="post-title">
                             学习go基础
 				        </h2>
@@ -4435,7 +4443,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Elasticsearch,%E5%A4%A7%E6%95%B0%E6%8D%AE">
-				    <a href="/2020/11/29/big-data-search-Elasticsearch-basic/">
+              <a href="/2020/11/29/big-data-search-Elasticsearch-basic/">
 				        <h2 class="post-title">
                             全文搜索引擎 Elasticsearch 入门教程
 				        </h2>
@@ -4447,7 +4455,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E7%9F%A5%E4%B9%8E,%E5%A5%BD%E7%89%A9">
-				    <a href="/2020/11/29/zhihu-goods/">
+              <a href="/2020/11/29/zhihu-goods/">
 				        <h2 class="post-title">
                             知乎好物
 				        </h2>
@@ -4459,7 +4467,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%AD%A6%E4%B9%A0,%E7%94%9F%E6%B4%BB">
-				    <a href="/2020/11/22/how-to-be-a-guru/">
+              <a href="/2020/11/22/how-to-be-a-guru/">
 				        <h2 class="post-title">
                             逻辑思维183 怎样成为一个高手
 				        </h2>
@@ -4471,7 +4479,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python,pysnooper">
-				    <a href="/2020/11/19/python-awesome-debugger/">
+              <a href="/2020/11/19/python-awesome-debugger/">
 				        <h2 class="post-title">
                             Python调试神器
 				        </h2>
@@ -4483,7 +4491,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="redis,%E5%A4%A7%E6%95%B0%E6%8D%AE">
-				    <a href="/2020/11/18/redis-basic-3/">
+              <a href="/2020/11/18/redis-basic-3/">
 				        <h2 class="post-title">
                             学习 Redis - 3. 进阶
 				        </h2>
@@ -4495,7 +4503,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="redis,%E5%A4%A7%E6%95%B0%E6%8D%AE">
-				    <a href="/2020/11/17/redis-basic-2/">
+              <a href="/2020/11/17/redis-basic-2/">
 				        <h2 class="post-title">
                             学习 Redis - 2. 场景操作
 				        </h2>
@@ -4507,7 +4515,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="redis,%E5%A4%A7%E6%95%B0%E6%8D%AE">
-				    <a href="/2020/11/16/redis-basic-1/">
+              <a href="/2020/11/16/redis-basic-1/">
 				        <h2 class="post-title">
                             「大数据学习」1. 数据库Redis基础命令
 				        </h2>
@@ -4519,7 +4527,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="K8s,gRPC">
-				    <a href="/2020/11/15/gRPC-K8s-API/">
+              <a href="/2020/11/15/gRPC-K8s-API/">
 				        <h2 class="post-title">
                             学习gRPC - 3.深入学习一个成熟的gRPC应用
 				        </h2>
@@ -4531,7 +4539,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B5%81,gRPC,protobuf">
-				    <a href="/2020/11/08/gRPC-build-stream-and-proto/">
+              <a href="/2020/11/08/gRPC-build-stream-and-proto/">
 				        <h2 class="post-title">
                             学习gRPC - 2.如何构建一个流和序列化
 				        </h2>
@@ -4543,7 +4551,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="gRPC">
-				    <a href="/2020/11/06/study-gRPC-principle/">
+              <a href="/2020/11/06/study-gRPC-principle/">
 				        <h2 class="post-title">
                             学习gRPC - 1.工作原理是什么
 				        </h2>
@@ -4555,7 +4563,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%95%B0%E6%8D%AE%E5%BA%93,MongoDB">
-				    <a href="/2020/10/20/MongoDB-basic/">
+              <a href="/2020/10/20/MongoDB-basic/">
 				        <h2 class="post-title">
                             MongoDB 入门学习
 				        </h2>
@@ -4567,7 +4575,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="git,format-patch,%E5%B7%A5%E5%85%B7,cherry-pick">
-				    <a href="/2020/10/19/git-format-patch-apply/">
+              <a href="/2020/10/19/git-format-patch-apply/">
 				        <h2 class="post-title">
                              A分支上的一个commit，merge到B分支
 				        </h2>
@@ -4579,7 +4587,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B5%8F%E8%A7%88%E5%99%A8,playwright,%E5%B7%A5%E5%85%B7">
-				    <a href="/2020/10/17/microsoft-automation-tool-playwright/">
+              <a href="/2020/10/17/microsoft-automation-tool-playwright/">
 				        <h2 class="post-title">
                             微软推出的浏览器自动化工具 playwright
 				        </h2>
@@ -4591,7 +4599,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95,%E5%B7%A5%E5%85%B7">
-				    <a href="/2020/10/17/visualition-apache-jmter/">
+              <a href="/2020/10/17/visualition-apache-jmter/">
 				        <h2 class="post-title">
                              可视化压力测试工具- apache jmter
 				        </h2>
@@ -4603,7 +4611,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B5%8B%E8%AF%95,%E5%A4%A7%E6%95%B0%E6%8D%AE">
-				    <a href="/2020/10/16/how-to-test-big-data/">
+              <a href="/2020/10/16/how-to-test-big-data/">
 				        <h2 class="post-title">
                             怎么测试大数据
 				        </h2>
@@ -4615,7 +4623,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E4%B8%8D%E8%B6%B3,%E6%8C%91%E6%88%98,%E9%9F%B3%E9%A2%91">
-				    <a href="/2020/10/12/challenge-disadvantage/">
+              <a href="/2020/10/12/challenge-disadvantage/">
 				        <h2 class="post-title">
                             正视自己的不足
 				        </h2>
@@ -4627,7 +4635,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python,list">
-				    <a href="/2020/10/07/Python-List-complement/">
+              <a href="/2020/10/07/Python-List-complement/">
 				        <h2 class="post-title">
                             Python list 实现
 				        </h2>
@@ -4639,7 +4647,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E8%A7%86%E9%A2%91,webrtc,PEVR,%E6%B5%8B%E8%AF%95">
-				    <a href="/2020/10/02/audio-and-vedio-quality-evaluation/">
+              <a href="/2020/10/02/audio-and-vedio-quality-evaluation/">
 				        <h2 class="post-title">
                             音频质量评估-2
 				        </h2>
@@ -4651,7 +4659,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E7%AE%97%E6%B3%95,%E6%8E%92%E5%BA%8F">
-				    <a href="/2020/10/01/Python-sorted/">
+              <a href="/2020/10/01/Python-sorted/">
 				        <h2 class="post-title">
                             Python 算法 排序 
 				        </h2>
@@ -4663,7 +4671,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="vscode,Maven,Spring">
-				    <a href="/2020/09/25/Vscode-bring-up-Java-Spring-project/">
+              <a href="/2020/09/25/Vscode-bring-up-Java-Spring-project/">
 				        <h2 class="post-title">
                             Vscode 安装Java Spring项目
 				        </h2>
@@ -4675,7 +4683,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F,mock%E6%95%B0%E6%8D%AE">
-				    <a href="/2020/09/25/how-to-muck-data-in-mini-program-wechat/">
+              <a href="/2020/09/25/how-to-muck-data-in-mini-program-wechat/">
 				        <h2 class="post-title">
                             如何用浏览器或者微信小程序开发Mock数据
 				        </h2>
@@ -4687,7 +4695,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="vscode,mysql">
-				    <a href="/2020/09/25/macOS-mysql8-reset-password/">
+              <a href="/2020/09/25/macOS-mysql8-reset-password/">
 				        <h2 class="post-title">
                             macOS Mysql8 重置用户密码
 				        </h2>
@@ -4699,7 +4707,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Python,%E8%BF%9B%E9%98%B6">
-				    <a href="/2020/09/24/Python-advanced/">
+              <a href="/2020/09/24/Python-advanced/">
 				        <h2 class="post-title">
                             Python进阶
 				        </h2>
@@ -4711,7 +4719,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E9%9F%B3%E9%A2%91,%E8%AF%84%E4%BC%B0,PESQ,%E6%B5%8B%E8%AF%95,%E5%8E%9F%E7%90%86,webrtc">
-				    <a href="/2020/09/23/audio-quality-evaluation-1/">
+              <a href="/2020/09/23/audio-quality-evaluation-1/">
 				        <h2 class="post-title">
                             音频质量评估-1
 				        </h2>
@@ -4723,7 +4731,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B5%8B%E8%AF%95,%E7%90%86%E8%AE%BA">
-				    <a href="/2020/09/21/software-testing/">
+              <a href="/2020/09/21/software-testing/">
 				        <h2 class="post-title">
                             软件测试-52讲
 				        </h2>
@@ -4735,7 +4743,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B5%8B%E8%AF%95,%E5%9F%BA%E7%A1%80">
-				    <a href="/2020/09/21/think-about-software-testing/">
+              <a href="/2020/09/21/think-about-software-testing/">
 				        <h2 class="post-title">
                             干了8年测试了
 				        </h2>
@@ -4747,7 +4755,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E4%BA%91%E6%B5%8B%E8%AF%95,%E8%87%AA%E5%8A%A8%E5%8C%96%E6%A1%86%E6%9E%B6">
-				    <a href="/2020/09/19/automation-framework-in-cloud/">
+              <a href="/2020/09/19/automation-framework-in-cloud/">
 				        <h2 class="post-title">
                             云测试自动化框架
 				        </h2>
@@ -4759,7 +4767,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python,%E5%86%85%E5%BB%BA%E5%87%BD%E6%95%B0,%E6%95%88%E7%8E%87,%E5%9F%BA%E7%A1%80">
-				    <a href="/2020/09/18/Python-builtin-function/">
+              <a href="/2020/09/18/Python-builtin-function/">
 				        <h2 class="post-title">
                             Python内建函数
 				        </h2>
@@ -4771,7 +4779,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python,%E7%BA%BF%E7%A8%8B,%E9%80%9A%E4%BF%A1">
-				    <a href="/2020/09/12/Python-communication-between-threadings/">
+              <a href="/2020/09/12/Python-communication-between-threadings/">
 				        <h2 class="post-title">
                             Python线程间如何通信
 				        </h2>
@@ -4783,7 +4791,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python,%E7%BA%BF%E7%A8%8B,%E9%80%9A%E4%BF%A1">
-				    <a href="/2020/09/12/bash-and-shell/">
+              <a href="/2020/09/12/bash-and-shell/">
 				        <h2 class="post-title">
                             Bash和sh的区别
 				        </h2>
@@ -4795,7 +4803,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E9%9D%A2%E8%AF%95,%E5%9F%BA%E7%A1%80,DNS,TCP,%E5%9F%BA%E7%A1%80">
-				    <a href="/2020/09/10/what-happen-while-entering-address-in-broswer/">
+              <a href="/2020/09/10/what-happen-while-entering-address-in-broswer/">
 				        <h2 class="post-title">
                              浏览器输一个网址发生了什么
 				        </h2>
@@ -4807,7 +4815,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/08/31/Charles-catch-data/">
+              <a href="/2020/08/31/Charles-catch-data/">
 				        <h2 class="post-title">
                             Charles Catch Data
 				        </h2>
@@ -4815,7 +4823,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/08/31/Photography-photo/">
+              <a href="/2020/08/31/Photography-photo/">
 				        <h2 class="post-title">
                             Photography Photo
 				        </h2>
@@ -4823,7 +4831,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E4%BA%A7%E5%93%81,%E5%B9%BF%E5%BA%A6">
-				    <a href="/2020/08/29/study-product-thought/">
+              <a href="/2020/08/29/study-product-thought/">
 				        <h2 class="post-title">
                             学习产品思维
 				        </h2>
@@ -4835,7 +4843,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="TensorFlow,%E5%9F%BA%E7%A1%80,%E6%B1%82%E5%AF%BC">
-				    <a href="/2020/08/27/Tensorflow-basic/">
+              <a href="/2020/08/27/Tensorflow-basic/">
 				        <h2 class="post-title">
                             TensorFlow 基础
 				        </h2>
@@ -4847,7 +4855,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/08/27/how-to-find-youself-interest/">
+              <a href="/2020/08/27/how-to-find-youself-interest/">
 				        <h2 class="post-title">
                             How To Find Youself Interest
 				        </h2>
@@ -4855,7 +4863,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/08/23/Get-and-Post/">
+              <a href="/2020/08/23/Get-and-Post/">
 				        <h2 class="post-title">
                             Get And Post
 				        </h2>
@@ -4863,7 +4871,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/08/16/MacOS-catch-data-Charles/">
+              <a href="/2020/08/16/MacOS-catch-data-Charles/">
 				        <h2 class="post-title">
                             Macos Catch Data Charles
 				        </h2>
@@ -4871,7 +4879,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E7%AE%97%E6%B3%95,%E6%95%B0%E7%BB%84,%E9%93%BE%E8%A1%A8">
-				    <a href="/2020/08/16/algorithm-array/">
+              <a href="/2020/08/16/algorithm-array/">
 				        <h2 class="post-title">
                             算法-数组
 				        </h2>
@@ -4883,7 +4891,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/07/21/awesome-2-Windows-tools/">
+              <a href="/2020/07/21/awesome-2-Windows-tools/">
 				        <h2 class="post-title">
                             Awesome 2 Windows Tools
 				        </h2>
@@ -4891,7 +4899,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/07/19/study-game/">
+              <a href="/2020/07/19/study-game/">
 				        <h2 class="post-title">
                             Study Game
 				        </h2>
@@ -4899,7 +4907,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="git,commit,%E5%9F%BA%E7%A1%80">
-				    <a href="/2020/07/12/git-commit-multi-lines/">
+              <a href="/2020/07/12/git-commit-multi-lines/">
 				        <h2 class="post-title">
                             Git commit 多行提交
 				        </h2>
@@ -4911,7 +4919,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E8%BF%90%E6%B0%94,%E5%AF%8C%E6%9C%89,%E8%BF%9B%E9%98%B6%E7%9A%84%E6%96%B9%E5%90%91">
-				    <a href="/2020/07/04/how-to-rich-without-luck/">
+              <a href="/2020/07/04/how-to-rich-without-luck/">
 				        <h2 class="post-title">
                             不靠运气如何富有
 				        </h2>
@@ -4923,7 +4931,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/06/30/python-different__init__and__new__/">
+              <a href="/2020/06/30/python-different__init__and__new__/">
 				        <h2 class="post-title">
                             Python Different__init__and__new__
 				        </h2>
@@ -4931,7 +4939,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/06/21/summary-TFUG-share-meeting/">
+              <a href="/2020/06/21/summary-TFUG-share-meeting/">
 				        <h2 class="post-title">
                             Summary Tfug Share Meeting
 				        </h2>
@@ -4939,7 +4947,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/06/09/Python-communicate/">
+              <a href="/2020/06/09/Python-communicate/">
 				        <h2 class="post-title">
                             Python Communicate
 				        </h2>
@@ -4947,7 +4955,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B5%8B%E8%AF%95,%E6%B5%8B%E5%BC%80,%E8%BF%9B%E9%98%B6">
-				    <a href="/2020/06/07/different-between-SDE-and-SDET/">
+              <a href="/2020/06/07/different-between-SDE-and-SDET/">
 				        <h2 class="post-title">
                             测开和测试的区别
 				        </h2>
@@ -4959,7 +4967,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="python,pygame,%E6%8E%A5%E5%8F%A3,%E5%8F%AF%E8%A7%86%E5%8C%96">
-				    <a href="/2020/06/07/in-Python-to-build-visualizer/">
+              <a href="/2020/06/07/in-Python-to-build-visualizer/">
 				        <h2 class="post-title">
                             Python 构建可视化排序
 				        </h2>
@@ -4971,7 +4979,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/06/04/TensorFlow-2.x-Best-Bet/">
+              <a href="/2020/06/04/TensorFlow-2.x-Best-Bet/">
 				        <h2 class="post-title">
                             Tensorflow 2.x Best Bet
 				        </h2>
@@ -4979,7 +4987,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="TensorFlow,%E5%AE%89%E8%A3%85,%E5%9F%BA%E7%A1%80">
-				    <a href="/2020/06/04/install-TensorFlow/">
+              <a href="/2020/06/04/install-TensorFlow/">
 				        <h2 class="post-title">
                             安装TensorFlow
 				        </h2>
@@ -4991,7 +4999,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/05/29/Chengdu-TFUG-activity/">
+              <a href="/2020/05/29/Chengdu-TFUG-activity/">
 				        <h2 class="post-title">
                             Chengdu Tfug Activity
 				        </h2>
@@ -4999,7 +5007,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/05/24/active-proior-knowledge-with-english/">
+              <a href="/2020/05/24/active-proior-knowledge-with-english/">
 				        <h2 class="post-title">
                             Active Proior Knowledge With English
 				        </h2>
@@ -5007,7 +5015,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/05/17/how-to-rich-without-luck/">
+              <a href="/2020/05/17/how-to-rich-without-luck/">
 				        <h2 class="post-title">
                             How To Rich Without Luck
 				        </h2>
@@ -5015,7 +5023,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/05/04/most-controversial-programming-opintion/">
+              <a href="/2020/05/04/most-controversial-programming-opintion/">
 				        <h2 class="post-title">
                             Most Controversial Programming Opintion
 				        </h2>
@@ -5023,7 +5031,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/05/03/Nginx-config/">
+              <a href="/2020/05/03/Nginx-config/">
 				        <h2 class="post-title">
                             Nginx Config
 				        </h2>
@@ -5031,7 +5039,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/28/resume-just-do-procrastination/">
+              <a href="/2020/04/28/resume-just-do-procrastination/">
 				        <h2 class="post-title">
                             Resume Just Do Procrastination
 				        </h2>
@@ -5039,7 +5047,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/27/Will-cause-damage-to-your-computer-macos/">
+              <a href="/2020/04/27/Will-cause-damage-to-your-computer-macos/">
 				        <h2 class="post-title">
                             Will Cause Damage To Your Computer Macos
 				        </h2>
@@ -5047,7 +5055,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/22/improve-english-listening/">
+              <a href="/2020/04/22/improve-english-listening/">
 				        <h2 class="post-title">
                             Improve English Listening
 				        </h2>
@@ -5055,7 +5063,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/22/removely-connect-Ubuntu16.4-desktop/">
+              <a href="/2020/04/22/removely-connect-Ubuntu16.4-desktop/">
 				        <h2 class="post-title">
                             Removely Connect Ubuntu16.4 Desktop
 				        </h2>
@@ -5063,7 +5071,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/21/how-to-handle-zero-width-string/">
+              <a href="/2020/04/21/how-to-handle-zero-width-string/">
 				        <h2 class="post-title">
                             How To Handle Zero Width String
 				        </h2>
@@ -5071,7 +5079,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/20/high-effective-build-video-losslesscut/">
+              <a href="/2020/04/20/high-effective-build-video-losslesscut/">
 				        <h2 class="post-title">
                             High Effective Build Video Losslesscut
 				        </h2>
@@ -5079,7 +5087,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/17/FFmepg-handle-videos/">
+              <a href="/2020/04/17/FFmepg-handle-videos/">
 				        <h2 class="post-title">
                             Ffmepg Handle Videos
 				        </h2>
@@ -5087,7 +5095,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/16/think-about-benefit/">
+              <a href="/2020/04/16/think-about-benefit/">
 				        <h2 class="post-title">
                             Think About Benefit
 				        </h2>
@@ -5095,7 +5103,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/02/docker-brings-some-benefits/">
+              <a href="/2020/04/02/docker-brings-some-benefits/">
 				        <h2 class="post-title">
                             Docker Brings Some Benefits
 				        </h2>
@@ -5103,7 +5111,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/04/01/linux-common-command-echo/">
+              <a href="/2020/04/01/linux-common-command-echo/">
 				        <h2 class="post-title">
                             Linux Common Command Echo
 				        </h2>
@@ -5111,7 +5119,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/31/linux-common-command-vi/">
+              <a href="/2020/03/31/linux-common-command-vi/">
 				        <h2 class="post-title">
                             Linux Common Command Vi
 				        </h2>
@@ -5119,7 +5127,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/30/macOS-config-Docker-V19-image/">
+              <a href="/2020/03/30/macOS-config-Docker-V19-image/">
 				        <h2 class="post-title">
                             Macos Config Docker V19 Image
 				        </h2>
@@ -5127,7 +5135,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/29/linux-common-command-unzip/">
+              <a href="/2020/03/29/linux-common-command-unzip/">
 				        <h2 class="post-title">
                             Linux Common Command Unzip
 				        </h2>
@@ -5135,7 +5143,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/29/linux-common-command-xargs/">
+              <a href="/2020/03/29/linux-common-command-xargs/">
 				        <h2 class="post-title">
                             Linux Common Command Xargs
 				        </h2>
@@ -5143,7 +5151,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/26/linux-common-command-sed/">
+              <a href="/2020/03/26/linux-common-command-sed/">
 				        <h2 class="post-title">
                             Linux Common Command Sed
 				        </h2>
@@ -5151,7 +5159,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/24/linux-common-command-curl/">
+              <a href="/2020/03/24/linux-common-command-curl/">
 				        <h2 class="post-title">
                             Linux Common Command Curl
 				        </h2>
@@ -5159,7 +5167,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/24/linux-common-command-rm/">
+              <a href="/2020/03/24/linux-common-command-rm/">
 				        <h2 class="post-title">
                             Linux Common Command Rm
 				        </h2>
@@ -5167,7 +5175,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/23/linux-common-command-ps/">
+              <a href="/2020/03/23/linux-common-command-ps/">
 				        <h2 class="post-title">
                             Linux Common Command Ps
 				        </h2>
@@ -5175,7 +5183,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/20/linux-common-command-append-text/">
+              <a href="/2020/03/20/linux-common-command-append-text/">
 				        <h2 class="post-title">
                             Linux Common Command Append Text
 				        </h2>
@@ -5183,7 +5191,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/19/Git-status-abnormal-chinese/">
+              <a href="/2020/03/19/Git-status-abnormal-chinese/">
 				        <h2 class="post-title">
                             Git Status Abnormal Chinese
 				        </h2>
@@ -5191,7 +5199,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/18/linux-common-command-ls/">
+              <a href="/2020/03/18/linux-common-command-ls/">
 				        <h2 class="post-title">
                             Linux Common Command Ls
 				        </h2>
@@ -5199,7 +5207,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/17/linux-common-command-cd/">
+              <a href="/2020/03/17/linux-common-command-cd/">
 				        <h2 class="post-title">
                             Linux Common Command Cd
 				        </h2>
@@ -5207,7 +5215,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="grep,mv">
-				    <a href="/2020/03/16/linux-common-command-mv/">
+              <a href="/2020/03/16/linux-common-command-mv/">
 				        <h2 class="post-title">
                             Linux 命令 mv
 				        </h2>
@@ -5219,7 +5227,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2020/03/16/postion-harman-international-JOB/">
+              <a href="/2020/03/16/postion-harman-international-JOB/">
 				        <h2 class="post-title">
                             Postion Harman International Job
 				        </h2>
@@ -5227,7 +5235,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="grep,linux">
-				    <a href="/2020/03/15/linux-common-command-grep/">
+              <a href="/2020/03/15/linux-common-command-grep/">
 				        <h2 class="post-title">
                             Linux 命令 grep
 				        </h2>
@@ -5239,7 +5247,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="Linux,%E6%97%A5%E5%BF%97,%E5%91%BD%E4%BB%A4">
-				    <a href="/2020/03/14/how-to-analyse-linux-log/">
+              <a href="/2020/03/14/how-to-analyse-linux-log/">
 				        <h2 class="post-title">
                             译 分析Linux日志
 				        </h2>
@@ -5251,7 +5259,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E6%B5%81%E9%87%8F%E7%9B%91%E6%8E%A7,macOS">
-				    <a href="/2020/03/09/macOS-awesome-app-menumeters/">
+              <a href="/2020/03/09/macOS-awesome-app-menumeters/">
 				        <h2 class="post-title">
                             macos 流量监控软件
 				        </h2>
@@ -5263,7 +5271,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="github,%E4%B8%8B%E8%BD%BD">
-				    <a href="/2020/03/08/how-to-fast-download-github-attachment/">
+              <a href="/2020/03/08/how-to-fast-download-github-attachment/">
 				        <h2 class="post-title">
                             快速下载github仓库
 				        </h2>
@@ -5275,7 +5283,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E9%9D%A2%E8%AF%95,%E5%87%86%E5%A4%87">
-				    <a href="/2020/03/03/how-to-interview-answer/">
+              <a href="/2020/03/03/how-to-interview-answer/">
 				        <h2 class="post-title">
                             如何做好面试3
 				        </h2>
@@ -5287,7 +5295,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E9%9D%A2%E8%AF%95,%E5%87%86%E5%A4%87">
-				    <a href="/2020/03/02/how-to-interview/">
+              <a href="/2020/03/02/how-to-interview/">
 				        <h2 class="post-title">
                             如何做好面试
 				        </h2>
@@ -5299,7 +5307,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E4%B9%A6%E5%8D%95,%E6%8F%90%E5%8D%87">
-				    <a href="/2020/03/02/reading-book-paste-sucuss/">
+              <a href="/2020/03/02/reading-book-paste-sucuss/">
 				        <h2 class="post-title">
                             2020 书单3
 				        </h2>
@@ -5311,7 +5319,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E7%AE%80%E5%8E%86,%E6%8B%9B%E5%B7%A5%E4%BD%9C">
-				    <a href="/2020/03/01/how-to-write-resume/">
+              <a href="/2020/03/01/how-to-write-resume/">
 				        <h2 class="post-title">
                             如何写好简历
 				        </h2>
@@ -5323,7 +5331,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E4%B9%A6%E5%8D%95,%E6%8F%90%E5%8D%87">
-				    <a href="/2020/02/22/book-list-how-to-do/">
+              <a href="/2020/02/22/book-list-how-to-do/">
 				        <h2 class="post-title">
                             2020 书单2
 				        </h2>
@@ -5335,7 +5343,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="%E4%B9%A6%E5%8D%95,%E6%8F%90%E5%8D%87">
-				    <a href="/2020/02/02/book-list-1/">
+              <a href="/2020/02/02/book-list-1/">
 				        <h2 class="post-title">
                             2020 书单1
 				        </h2>
@@ -5350,7 +5358,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				<span class="fa listing-seperator">
 					<span class="tag-text">2019</span>
 				</span><div class="post-preview item" data-tags="%E5%9F%BA%E7%A1%80,%E8%AE%A1%E7%AE%97%E6%9C%BA">
-				    <a href="/2019/09/29/testing-engineer-basic/">
+              <a href="/2019/09/29/testing-engineer-basic/">
 				        <h2 class="post-title">
                             从基础开始
 				        </h2>
@@ -5362,7 +5370,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/30/macOS-common-application-list/">
+              <a href="/2019/03/30/macOS-common-application-list/">
 				        <h2 class="post-title">
                             Macos Common Application List
 				        </h2>
@@ -5370,7 +5378,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/18/Chengdu-TFUG-2020-Spring/">
+              <a href="/2019/03/18/Chengdu-TFUG-2020-Spring/">
 				        <h2 class="post-title">
                             Chengdu Tfug 2020 Spring
 				        </h2>
@@ -5378,7 +5386,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/08/english-pronunciation-rule-6/">
+              <a href="/2019/03/08/english-pronunciation-rule-6/">
 				        <h2 class="post-title">
                             English Pronunciation Rule 6
 				        </h2>
@@ -5386,7 +5394,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/07/english-pronunciation-rule-4/">
+              <a href="/2019/03/07/english-pronunciation-rule-4/">
 				        <h2 class="post-title">
                             English Pronunciation Rule 4
 				        </h2>
@@ -5394,7 +5402,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/07/english-pronunciation-rule-5/">
+              <a href="/2019/03/07/english-pronunciation-rule-5/">
 				        <h2 class="post-title">
                             English Pronunciation Rule 5
 				        </h2>
@@ -5402,7 +5410,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/07/english-spoken/">
+              <a href="/2019/03/07/english-spoken/">
 				        <h2 class="post-title">
                             English Spoken
 				        </h2>
@@ -5410,7 +5418,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/05/english-pronunciation-rule-3/">
+              <a href="/2019/03/05/english-pronunciation-rule-3/">
 				        <h2 class="post-title">
                             English Pronunciation Rule 3
 				        </h2>
@@ -5418,7 +5426,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/04/english-pronunciation-rule-2/">
+              <a href="/2019/03/04/english-pronunciation-rule-2/">
 				        <h2 class="post-title">
                             English Pronunciation Rule 2
 				        </h2>
@@ -5426,7 +5434,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/03/03/english-pronunciation-rule-1/">
+              <a href="/2019/03/03/english-pronunciation-rule-1/">
 				        <h2 class="post-title">
                             English Pronunciation Rule 1
 				        </h2>
@@ -5434,7 +5442,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				    </a>
 					<hr>
 				</div><div class="post-preview item" data-tags="">
-				    <a href="/2019/01/01/build-free-Blog/">
+              <a href="/2019/01/01/build-free-Blog/">
 				        <h2 class="post-title">
                             Build Free Blog
 				        </h2>
@@ -5462,7 +5470,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -5542,17 +5550,17 @@ https://github.com/kitian616/jekyll-TeXt-theme
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -5603,7 +5611,7 @@ https://github.com/kitian616/jekyll-TeXt-theme
         $('#tag_cloud a').tagcloud();
     })
 </script>
-<script src='/js/archive.js '></script>
+<script src="/js/archive.js"></script>
 
 
 <!--fastClick.js -->
@@ -5705,63 +5713,6 @@ https://github.com/kitian616/jekyll-TeXt-theme
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page17/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page17/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,330 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2021/11/27/overengineering/">
-        <h2 class="post-title">
-            13 - 过度工程
-        </h2>
-        
-        <h3 class="post-subtitle">
-            一个好的工程师不好找，至少我不是
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
 
-周末愉快。
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
 
-本周在思考未来从事什么样工作的时候，首先考虑到的远程工作。
-
-由于当前通勤时间比较长，住在「乡」下，上班高峰这个没有办法避免，下班之后可以晚一点出发，与此同时每天通勤时间大概是 3 个小时左右。如果能把这部分时间用到其他事情上，再加上万小时定律，说不定可以有点意外喃。
-
-额外，就是成都最近新冠疫情有反复，导致我们分为 AB 班在家远程办公。不划水那是可不能的，只要把自己的时...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 27, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/11/20/self-thinking/">
-        <h2 class="post-title">
-            12 - 当前做的这些，真的有意义么？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            大力出奇迹
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-首先感谢新来童鞋的订阅，看来有必要对新用户，介绍下这个 Newsletter。
-
-关于更新周期和频率。截止到目前为止，已经更新了 11 期了，每周一期，从未断更过。大部分更新时间在周末，有可能遇到节假日，或许会延迟更新，比如最近一次延迟更新就是国庆长假，但是也会更新。
-
-第二个是有哪些内容，主要分为三部分：思考、工具资源分享、过去一周做了什么。这个也不是文章的固定结构，有时候会做些许的变...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 20, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/11/13/python-style-rule/">
-        <h2 class="post-title">
-            Python 风格规范
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-缩进
-用4个空格来缩进代码。
-
-绝对不要用tab, 也不要tab和空格混用. 对于行连接的情况, 你应该要么垂直对齐换行的元素, 或者使用4空格的悬挂式缩进(这时第一行不应该有参数):
-
-注释
-
-确保对模块, 函数, 方法和行内注释使用正确的风格
-
-
-
-标点符号,拼写和语法
-
-注意标点符号,拼写和语法
-
-注释应有适当的大写和标点,句子应该尽量完整.对于诸如在行尾上的较短注释,可以不那么正...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 13, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/11/13/pomodoro_technique/">
-        <h2 class="post-title">
-            11 - 番茄工作法能提高效率？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            建议试用下
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-番茄工作法，就是把工作时间分为每 25 分钟一个片，然后休息 5 分钟。在这个 25 分钟内完成一个任务，只需要完成，心无旁骛。然后就是中间的 5 分钟一个小时间段的休息。
-
-完成优先级高的任务，这样可以让自己在一天开始的时候就列出必须要完成的所有任务，并且排好优先级。
-
-使用时间久了，也教会自己设置任务的优先级。
-
-休息的时间，大家可能和我开始一样有误解。
-
-有这样的疑问，就是休息的时...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 13, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/11/08/build-clis-in-one-line-code-by-python/">
-        <h2 class="post-title">
-            构建 Python CLI参数，还在用 argparse ?
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-构建 CLI 参数 –name
-Python argparse 库可以方便我们添加命令行界面，但是有点复杂，代码有点多，且长。
-
-https://docs.python.org/3/library/argparse.html#module-argparse
-
-import argparse
-
-def greeting(name: str):
-    print(f'Hello {name...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 8, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/11/07/summary/">
-        <h2 class="post-title">
-            一次线下大会总结
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-找到自己的方向和链接
-
-参加这次参加线下大会，最主要的一个目的，就是张哥说的，要找到自己的方向，赚钱的方法是非常非常多的，还有就是要看你去执行自己，要结合自己身边的资源，自己自己的资源，自己自己的优势，找好自己方向。
-
-
-
-链接链接，每一位优秀的球友以及他们的资源和你的资源一起共享，然后达到一个最大化。
-
-
-
-新品牌 新渠道 新消费 新用户
-如何找到好的种子，好的方向。
-
-用户需求，为用...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 7, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/11/06/tech-docs/">
-        <h2 class="post-title">
-            10 - 互联网公司如何沉淀技术文档
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-毕业之后在一家台企上班，属于制造业，当时候内部没有什么文档管理网站，都是用比较古老的方式来管理。比如 ppt、word，或者 svn 来管理文档，这个缺点就是没有索引，不利于搜索，找一个东西只有全凭记忆，甚至是运气才能找到自己要的资料，更别说是更新文档。甚至有时候找到的文档里面的解决方案十分落后，不能解决当前的问题。
-
-后面进入互联网方面，比起上一家公司，文档沉淀方面是一个质的飞跃。也有...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on November 6, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/30/invest/">
-        <h2 class="post-title">
-            09 - 投资约定
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-整理了一份关于 Newsletter 清单，关于科技、互联网、工具、效率、思考、读书以及其他， 有个困惑就是没有联系上作者，都是自己的主观判断来分类的，分类因此不一定对。但是从订阅者来说，先订阅，如果后面发现推送的没有实际意义，或者自己不喜欢，取消订阅就可以了。
-
-https://github.com/chasays/newsletter-list
-
-同时大家有喜欢的 Newslette...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 30, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/23/communication-writing/">
-        <h2 class="post-title">
-            08 - 职场需要什么技能
-        </h2>
-        
-        <h3 class="post-subtitle">
-            沟通和写作特别重要
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-
-看了好多 newsletter，大多都有自己的大纲或者固定的内容。我自己恰好也想了 3 秒钟，定一个大纲，后面在慢慢的迭代。分为 4 部分。
-
-第 1 和 2 部分，主要写自己最近一周自己的感悟和比较有趣的文章，自己的一个体会，题材范围不限。第 3 部分，主要是工具，对当前或者未来，有可能用到的，同时自己圈子的人比较感兴趣的一款或者多款工具。最后一部分也是近期在看的或者即将要看的书、电影...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 23, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2021/10/18/dota_2/">
-        <h2 class="post-title">
-            为什么不 BAN 猛犸
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                昨晚看 TI10 比赛到凌晨 1 点过，在赛点，来自俄罗斯的Team Spirit猛犸选手，先后掏出了跳刀和BKB，就知道完了，直接关机睡觉去。
-
-所以就有了今天的「为什么不 ban 猛犸」的热点。
-
-Dota2 是由早期的一款多人在线对战竞技游戏(MOBA) Dota 演变而来，如今看到的 MOBA 类游戏，比较知名的有王者荣耀、英雄联盟、Dota2 等。
-
-
-
-TI (The Inter...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on October 18, 2021
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page16">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-11-27">2021.11.27</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2021/11/27/overengineering/">13 - 过度工程</a></h3>
+      <p class="post-card-subtitle">一个好的工程师不好找，至少我不是</p>
+      <p class="post-card-excerpt">周末愉快。 本周在思考未来从事什么样工作的时候，首先考虑到的远程工作。 由于当前通勤时间比较长，住在「乡」下，上班高峰这个没有办法避免，下班之后可以晚一点出发，与此同时每天通勤时间大概是 3 个小时左右。如果能把这部分时间用到其他事情上，再加上万小时定律，说不定可以有点意外喃。 额外，就是成都...</p>
+      <a class="post-card-link" href="/2021/11/27/overengineering/" aria-label="阅读：13 - 过度工程">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-11-20">2021.11.20</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2021/11/20/self-thinking/">12 - 当前做的这些，真的有意义么？</a></h3>
+      <p class="post-card-subtitle">大力出奇迹</p>
+      <p class="post-card-excerpt">首先感谢新来童鞋的订阅，看来有必要对新用户，介绍下这个 Newsletter。 关于更新周期和频率。截止到目前为止，已经更新了 11 期了，每周一期，从未断更过。大部分更新时间在周末，有可能遇到节假日，或许会延迟更新，比如最近一次延迟更新就是国庆长假，但是也会更新。 第二个是有哪些内容，主要分...</p>
+      <a class="post-card-link" href="/2021/11/20/self-thinking/" aria-label="阅读：12 - 当前做的这些，真的有意义么？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page18">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-11-13">2021.11.13</time>
+        <span class="post-card-tag">python</span>
+      </div>
+      <h3><a href="/2021/11/13/python-style-rule/">Python 风格规范</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">缩进 用4个空格来缩进代码。 绝对不要用tab, 也不要tab和空格混用. 对于行连接的情况, 你应该要么垂直对齐换行的元素, 或者使用4空格的悬挂式缩进(这时第一行不应该有参数): 注释 确保对模块, 函数, 方法和行内注释使用正确的风格 标点符号,拼写和语法 注意标点符号,拼写和语法 注释...</p>
+      <a class="post-card-link" href="/2021/11/13/python-style-rule/" aria-label="阅读：Python 风格规范">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-11-13">2021.11.13</time>
+        <span class="post-card-tag">python</span>
+      </div>
+      <h3><a href="/2021/11/13/pomodoro_technique/">11 - 番茄工作法能提高效率？</a></h3>
+      <p class="post-card-subtitle">建议试用下</p>
+      <p class="post-card-excerpt">番茄工作法，就是把工作时间分为每 25 分钟一个片，然后休息 5 分钟。在这个 25 分钟内完成一个任务，只需要完成，心无旁骛。然后就是中间的 5 分钟一个小时间段的休息。 完成优先级高的任务，这样可以让自己在一天开始的时候就列出必须要完成的所有任务，并且排好优先级。 使用时间久了，也教会自己...</p>
+      <a class="post-card-link" href="/2021/11/13/pomodoro_technique/" aria-label="阅读：11 - 番茄工作法能提高效率？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-11-08">2021.11.08</time>
+        <span class="post-card-tag">python</span>
+      </div>
+      <h3><a href="/2021/11/08/build-clis-in-one-line-code-by-python/">构建 Python CLI参数，还在用 argparse ?</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">构建 CLI 参数 –name Python argparse 库可以方便我们添加命令行界面，但是有点复杂，代码有点多，且长。 https://docs.python.org/3/library/argparse.html#module-argparse import argparse def...</p>
+      <a class="post-card-link" href="/2021/11/08/build-clis-in-one-line-code-by-python/" aria-label="阅读：构建 Python CLI参数，还在用 argparse ?">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-11-07">2021.11.07</time>
+        <span class="post-card-tag">总结</span>
+      </div>
+      <h3><a href="/2021/11/07/summary/">一次线下大会总结</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">找到自己的方向和链接 参加这次参加线下大会，最主要的一个目的，就是张哥说的，要找到自己的方向，赚钱的方法是非常非常多的，还有就是要看你去执行自己，要结合自己身边的资源，自己自己的资源，自己自己的优势，找好自己方向。 链接链接，每一位优秀的球友以及他们的资源和你的资源一起共享，然后达到一个最大化...</p>
+      <a class="post-card-link" href="/2021/11/07/summary/" aria-label="阅读：一次线下大会总结">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-11-06">2021.11.06</time>
+        <span class="post-card-tag">文档</span>
+      </div>
+      <h3><a href="/2021/11/06/tech-docs/">10 - 互联网公司如何沉淀技术文档</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">毕业之后在一家台企上班，属于制造业，当时候内部没有什么文档管理网站，都是用比较古老的方式来管理。比如 ppt、word，或者 svn 来管理文档，这个缺点就是没有索引，不利于搜索，找一个东西只有全凭记忆，甚至是运气才能找到自己要的资料，更别说是更新文档。甚至有时候找到的文档里面的解决方案十分落...</p>
+      <a class="post-card-link" href="/2021/11/06/tech-docs/" aria-label="阅读：10 - 互联网公司如何沉淀技术文档">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-30">2021.10.30</time>
+        <span class="post-card-tag">投资</span>
+      </div>
+      <h3><a href="/2021/10/30/invest/">09 - 投资约定</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">整理了一份关于 Newsletter 清单，关于科技、互联网、工具、效率、思考、读书以及其他， 有个困惑就是没有联系上作者，都是自己的主观判断来分类的，分类因此不一定对。但是从订阅者来说，先订阅，如果后面发现推送的没有实际意义，或者自己不喜欢，取消订阅就可以了。 https://github....</p>
+      <a class="post-card-link" href="/2021/10/30/invest/" aria-label="阅读：09 - 投资约定">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-23">2021.10.23</time>
+        <span class="post-card-tag">沟通</span>
+      </div>
+      <h3><a href="/2021/10/23/communication-writing/">08 - 职场需要什么技能</a></h3>
+      <p class="post-card-subtitle">沟通和写作特别重要</p>
+      <p class="post-card-excerpt">看了好多 newsletter，大多都有自己的大纲或者固定的内容。我自己恰好也想了 3 秒钟，定一个大纲，后面在慢慢的迭代。分为 4 部分。 第 1 和 2 部分，主要写自己最近一周自己的感悟和比较有趣的文章，自己的一个体会，题材范围不限。第 3 部分，主要是工具，对当前或者未来，有可能用到的...</p>
+      <a class="post-card-link" href="/2021/10/23/communication-writing/" aria-label="阅读：08 - 职场需要什么技能">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2021-10-18">2021.10.18</time>
+        <span class="post-card-tag">Dota</span>
+      </div>
+      <h3><a href="/2021/10/18/dota_2/">为什么不 BAN 猛犸</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">昨晚看 TI10 比赛到凌晨 1 点过，在赛点，来自俄罗斯的Team Spirit猛犸选手，先后掏出了跳刀和BKB，就知道完了，直接关机睡觉去。 所以就有了今天的「为什么不 ban 猛犸」的热点。 Dota2 是由早期的一款多人在线对战竞技游戏(MOBA) Dota 演变而来，如今看到的 MO...</p>
+      <a class="post-card-link" href="/2021/10/18/dota_2/" aria-label="阅读：为什么不 BAN 猛犸">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page16">← 较新文章</a>
+  
+  <span>第 17 / 32 页</span>
+  
+  <a href="/page18">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -682,7 +509,7 @@ TI (The Inter...
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -968,10 +795,11 @@ TI (The Inter...
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -988,7 +816,7 @@ TI (The Inter...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1055,6 +883,7 @@ TI (The Inter...
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1094,7 +923,7 @@ TI (The Inter...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1174,17 +1003,17 @@ TI (The Inter...
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1325,63 +1154,6 @@ TI (The Inter...
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

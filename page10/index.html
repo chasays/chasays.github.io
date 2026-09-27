@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page10/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page10/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,343 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2022/08/06/focus/">
-        <h2 class="post-title">
-            49 -  聚焦
-        </h2>
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-08-06">2022.08.06</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/08/06/focus/">49 -  聚焦</a></h3>
+      <p class="post-card-subtitle">不要为了爱发电</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 有没有和我一样，想把公众号做好，视频号做好，抖音做好，小红书做好，只要在这个领域看到有自己能做的就上。 我是一个普通人，我相信大部分人都是和我一样，都是普通的人，没有那么多精力去把所有的事情都做好，因此你要在这里面找出你最擅长的领域，然后在这个领域里面去做你擅长的，这个叫降维打...</p>
+      <a class="post-card-link" href="/2022/08/06/focus/" aria-label="阅读：49 -  聚焦">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-08-04">2022.08.04</time>
+        <span class="post-card-tag">asm</span>
+      </div>
+      <h3><a href="/2022/08/04/inline-asm-syntax/">在C++里面使用内联汇编语法</a></h3>
+      <p class="post-card-subtitle">非常的简单</p>
+      <p class="post-card-excerpt">学习过程中的总结，有什么不对的地方望指出，谢谢~ Asm 语句允许直接在 C 代码中包含汇编指令。特别是对于代码的性能，或者访问 C 程序不易获得的汇编指令，这可以帮助我们最大限度地提高时间时间. 来看看下面的C代码，汇编语法一般情况下，第一个操作数是dst，就是下面我们看到的%1，是输出，%...</p>
+      <a class="post-card-link" href="/2022/08/04/inline-asm-syntax/" aria-label="阅读：在C++里面使用内联汇编语法">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-07-30">2022.07.30</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/07/30/worth-to-do/">48 -  值得去做</a></h3>
+      <p class="post-card-subtitle">2022-07-30</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 看到订阅可乐周报，和我一起进步的作者 happyxiao 发了一个推特，说自己在写文章的时候，很想写完之后去润化一下自己的文章，包括文章变得更幽默等等，但是在写完newsletter之后，发现自己已经精疲力尽了，那很难再去抽出时间去修改自己的一些错别字之类的小问题。 在错别字方...</p>
+      <a class="post-card-link" href="/2022/07/30/worth-to-do/" aria-label="阅读：48 -  值得去做">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-07-21">2022.07.21</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/07/21/passion/">47 - 激情</a></h3>
+      <p class="post-card-subtitle">2022-07- 21</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 文章推荐 全面开放后的美国疫情现状 除个别国家外，所有国家都放弃了公共强制干预措施，这意味着规避风险、保护自己的责任落到了每个人自己头上，谁的健康谁负责。 我们并不...</p>
+      <a class="post-card-link" href="/2022/07/21/passion/" aria-label="阅读：47 - 激情">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-07-15">2022.07.15</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/07/15/demand/">46 - 刚需</a></h3>
+      <p class="post-card-subtitle">这个方法不错，可以很好的判断自己是否需要这个东西</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 2元现金和一瓶矿水你会选什么？ 两元钱的现金和一瓶矿泉水，如果是在沙漠里，你会选什么？我想大部分人会选择矿泉水。如果只是在现实生活中，比如在你身边城市里面，那大部分人可能会选择两元的现金。 这个是我最近看到的一篇文章，意思就是说你在有钱的时候选择买什么东西的时候，最好考虑一下这...</p>
+      <a class="post-card-link" href="/2022/07/15/demand/" aria-label="阅读：46 - 刚需">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-07-09">2022.07.09</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/07/09/song-is-popular/">45 - 流行歌曲</a></h3>
+      <p class="post-card-subtitle">谁说站在光里的才算英雄</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 采访了49个自由职业者，发现这跟我想的也太不一样了 其实我在换当下工作之前，是考虑从事远程工作的，搬到云南，或者是沿海的地方。我为什么这么痴迷赤道附近的城市，或者是找一个比较温和和舒适的城市？ 主要是个人的皮肤，冬天冷的时候，皮肤就会瘙痒，特别难受。我是一个怕冷不怕热。 之前调...</p>
+      <a class="post-card-link" href="/2022/07/09/song-is-popular/" aria-label="阅读：45 - 流行歌曲">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-07-02">2022.07.02</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/07/02/keep-good-health/">44 - 经痛喝热水有用么？</a></h3>
+      <p class="post-card-subtitle">多花一些时间，做一些对自己有用的事情上</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。 高考志愿，谁的志愿 年轻人可以向年长者咨询，年长者也可以提供视野，经验和教训上的分享，可以给与一定的建议，警示和引导。但是！尊重年轻人的兴趣和热爱，不要越俎代庖，更...</p>
+      <a class="post-card-link" href="/2022/07/02/keep-good-health/" aria-label="阅读：44 - 经痛喝热水有用么？">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-25">2022.06.25</time>
         
-        <h3 class="post-subtitle">
-            不要为了爱发电
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
+      </div>
+      <h3><a href="/2022/06/25/do-you-like-k-pop/">Do You Like K Pop</a></h3>
+      
+      <p class="post-card-excerpt">layout: post title: “43 - 换一种轻快的方式” subtitle: ‘K-pop歌曲，你喜欢吗’ author: “叉叉敌” header-style: text tags: Newsletter 朋友，您好 ~ 这一期的 newsletter 换一种方式，用简短的推荐...</p>
+      <a class="post-card-link" href="/2022/06/25/do-you-like-k-pop/" aria-label="阅读：Do You Like K Pop">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-17">2022.06.17</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2022/06/17/improve-youself/">42 - 侪：知道这个字，念什么吗</a></h3>
+      <p class="post-card-subtitle">是人，就注定会有嫉妒</p>
+      <p class="post-card-excerpt">朋友，您好 ~ 今天的newsletter，延迟了一天，周五下班就走了，去乡下办点事，走得急，忘了带充电器，其实是以为家里的给手机充电的Type-C充电器，也能给笔记本充电，实际上没用，囧~ 如果您喜欢这份Newsletter，请转发给您朋友，这是对我最大的帮助，继续进步，继续给大家带来有价值...</p>
+      <a class="post-card-link" href="/2022/06/17/improve-youself/" aria-label="阅读：42 - 侪：知道这个字，念什么吗">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2022-06-16">2022.06.16</time>
+        <span class="post-card-tag">计算机</span>
+      </div>
+      <h3><a href="/2022/06/16/compiler_high-low/">高位和低位</a></h3>
+      <p class="post-card-subtitle">高位和低位</p>
+      <p class="post-card-excerpt">学习过程中的总结，有什么不对的地方望指出，谢谢~ 为什么会有高位和低位 比如：一个1位数，一个数字占一位，1位数就占1位，2位数就占2位；那么个1位数相加，6+7=13， 结果就是一个2位数，就需要2个位来存储，（大端模式下）高于1位的就是高，剩余的就是低位， 这里的1是高位，3是低位. 这里...</p>
+      <a class="post-card-link" href="/2022/06/16/compiler_high-low/" aria-label="阅读：高位和低位">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
 
 
-
-有没有和我一样，想把公众号做好，视频号做好，抖音做好，小红书做好，只要在这个领域看到有自己能做的就上。
-
-我是一个普通人，我相信大部分人都是和我一样，都是普通的人，没有那么多精力去把所有的事情都做好，因此你要在这里面找出你最擅长的领域，然后在这个领域里面去做你擅长的，这个叫降维打击。
-
-如果你在别人擅长的领域去做你不擅长的事情，那成功的道路就没那么简单了。
-
-我的小红书...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 6, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/08/04/inline-asm-syntax/">
-        <h2 class="post-title">
-            在C++里面使用内联汇编语法
-        </h2>
-        
-        <h3 class="post-subtitle">
-            非常的简单
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习过程中的总结，有什么不对的地方望指出，谢谢~
-
-
-Asm 语句允许直接在 C 代码中包含汇编指令。特别是对于代码的性能，或者访问 C 程序不易获得的汇编指令，这可以帮助我们最大限度地提高时间时间.
-
-来看看下面的C代码，汇编语法一般情况下，第一个操作数是dst，就是下面我们看到的%1，是输出，%0是输入，也是source.
-
-下面代码的意思就是：把src拷贝给dst，然后给dst加...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on August 4, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/07/30/worth-to-do/">
-        <h2 class="post-title">
-            48 -  值得去做
-        </h2>
-        
-        <h3 class="post-subtitle">
-            2022-07-30
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-看到订阅可乐周报，和我一起进步的作者 happyxiao 发了一个推特，说自己在写文章的时候，很想写完之后去润化一下自己的文章，包括文章变得更幽默等等，但是在写完newsletter之后，发现自己已经精疲力尽了，那很难再去抽出时间去修改自己的一些错别字之类的小问题。
-
-在错别字方面大佬都是如此，更别说我这种小人物了……
-
-我在这方面是发出文章的，第一时间我先去浏览文章，包括...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on July 30, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/07/21/passion/">
-        <h2 class="post-title">
-            47 - 激情
-        </h2>
-        
-        <h3 class="post-subtitle">
-            2022-07- 21
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-文章推荐
-
-
-  全面开放后的美国疫情现状
-
-
-
-
-除个别国家外，所有国家都放弃了公共强制干预措施，这意味着规避风险、保护自己的责任落到了每个人自己头上，谁的健康谁负责。
-
-我们并不知道附近的人是否感染或者携带病毒，但是，我们还是可以做一些事来降低风险，保护高...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on July 21, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/07/15/demand/">
-        <h2 class="post-title">
-            46 - 刚需
-        </h2>
-        
-        <h3 class="post-subtitle">
-            这个方法不错，可以很好的判断自己是否需要这个东西
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-2元现金和一瓶矿水你会选什么？
-
-两元钱的现金和一瓶矿泉水，如果是在沙漠里，你会选什么？我想大部分人会选择矿泉水。如果只是在现实生活中，比如在你身边城市里面，那大部分人可能会选择两元的现金。
-
-这个是我最近看到的一篇文章，意思就是说你在有钱的时候选择买什么东西的时候，最好考虑一下这个场，如果这个场景你更愿意选择现金的话，说明你对这个东西不是刚需没有那么的急切的需要，建议就可...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on July 15, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/07/09/song-is-popular/">
-        <h2 class="post-title">
-            45 - 流行歌曲
-        </h2>
-        
-        <h3 class="post-subtitle">
-            谁说站在光里的才算英雄
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-  采访了49个自由职业者，发现这跟我想的也太不一样了
-
-
-其实我在换当下工作之前，是考虑从事远程工作的，搬到云南，或者是沿海的地方。我为什么这么痴迷赤道附近的城市，或者是找一个比较温和和舒适的城市？
-
-主要是个人的皮肤，冬天冷的时候，皮肤就会瘙痒，特别难受。我是一个怕冷不怕热。
-
-之前调研的远程工作，大部分是加密货币，或者是海外的公司，这部分公司大部分是互联网前端(我在...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on July 9, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/07/02/keep-good-health/">
-        <h2 class="post-title">
-            44 - 经痛喝热水有用么？
-        </h2>
-        
-        <h3 class="post-subtitle">
-            多花一些时间，做一些对自己有用的事情上
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-如果您喜欢这份Newsletter，请转发给您朋友，，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-
-  高考志愿，谁的志愿
-
-
-
-  年轻人可以向年长者咨询，年长者也可以提供视野，经验和教训上的分享，可以给与一定的建议，警示和引导。但是！尊重年轻人的兴趣和热爱，不要越俎代庖，更不要自以为自己就一定知道什么是对的。还有，以“我这样都是为了你好”剥夺年轻人的选...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on July 2, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/25/do-you-like-k-pop/">
-        <h2 class="post-title">
-            Do You Like K Pop
-        </h2>
-        
-        <div class="post-content-preview">
-            
-                
-
-layout: post
-title: “43 - 换一种轻快的方式”
-subtitle: ‘K-pop歌曲，你喜欢吗’ 
-author: “叉叉敌”
-header-style: text
-tags:
-
+<nav class="editorial-pager" aria-label="文章分页">
   
-    Newsletter
+  <a href="/page9">← 较新文章</a>
   
-
-
-朋友，您好 ~
-
-这一期的 newsletter 换一种方式，用简短的推荐文章和资源的方式
-
-
-  英语单词为什么拼写这么难
-
-
-英语单词，...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 察说花园 on June 25, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/17/improve-youself/">
-        <h2 class="post-title">
-            42 - 侪：知道这个字，念什么吗
-        </h2>
-        
-        <h3 class="post-subtitle">
-            是人，就注定会有嫉妒
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-今天的newsletter，延迟了一天，周五下班就走了，去乡下办点事，走得急，忘了带充电器，其实是以为家里的给手机充电的Type-C充电器，也能给笔记本充电，实际上没用，囧~
-
-如果您喜欢这份Newsletter，请转发给您朋友，这是对我最大的帮助，继续进步，继续给大家带来有价值的分享。
-
-同侪
-
-我看这个字，第一眼以为是tongqi，其实不是。
-
-
-  拼音是tóng c...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 17, 2022
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2022/06/16/compiler_high-low/">
-        <h2 class="post-title">
-            高位和低位
-        </h2>
-        
-        <h3 class="post-subtitle">
-            高位和低位
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                
-  学习过程中的总结，有什么不对的地方望指出，谢谢~
-
-
-为什么会有高位和低位
-
-比如：一个1位数，一个数字占一位，1位数就占1位，2位数就占2位；那么个1位数相加，6+7=13， 结果就是一个2位数，就需要2个位来存储，（大端模式下）高于1位的就是高，剩余的就是低位， 这里的1是高位，3是低位. 这里的位不是bit的意思.
-
-
-  Little-Endian就是低位字节排放在内存的低地址...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on June 16, 2022
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/page9">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page11">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
+  <span>第 10 / 32 页</span>
+  
+  <a href="/page11">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -695,7 +509,7 @@ tags:
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -981,10 +795,11 @@ tags:
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -1001,7 +816,7 @@ tags:
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1068,6 +883,7 @@ tags:
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1107,7 +923,7 @@ tags:
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1187,17 +1003,17 @@ tags:
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1338,63 +1154,6 @@ tags:
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="UKgIUSpl1nSKFuxVf23cpAnhy1DVTIVWnIVTRNB7yTg" />
     <meta name="baidu-site-verification" content="code-fOJqSAKqzh" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content="不浮躁、不轻浮。">
+    <meta name="description" content="记录技术探索与日常思考。">
     <meta name="keywords" content="察说花园，newsletter, 互联网，TensorFlow, 车载，安卓，音视频，存储，小程序，编译器，技术资讯，科技创新">
     <meta name="theme-color" content="">
     
@@ -15,7 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@troubleisfff">
     <meta name="twitter:title" content="察说花园 | Newsletter">
-    <meta name="twitter:description" content="不浮躁、不轻浮。">
+    <meta name="twitter:description" content="记录技术探索与日常思考。">
     <meta name="twitter:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     
     <!-- Open Graph -->
@@ -23,7 +23,7 @@
     <meta property="og:locale" content="zh_CN">
     
     <meta property="og:type" content="website">
-    <meta property="og:description" content="不浮躁、不轻浮。">
+    <meta property="og:description" content="记录技术探索与日常思考。">
     
     <meta property="og:image" content="https://blog.chiphub.top/img/avatar-xxd.jpg">
     <meta property="og:url" content="https://blog.chiphub.top/page6/">
@@ -45,6 +45,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/css/editorial.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -66,7 +67,7 @@
       "@context": "http://schema.org",
       "@type": "WebPage",
       "name": "察说花园",
-      "description": "不浮躁、不轻浮。",
+      "description": "记录技术探索与日常思考。",
       "url": "https://blog.chiphub.top/page6/",
       "image": "https://blog.chiphub.top/img/avatar-xxd.jpg",
       "author": {
@@ -93,7 +94,7 @@
 
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="page-home">
 
     <!-- Navigation -->
 
@@ -131,6 +132,8 @@
                         <li>
                             <a href="/archive/" aria-label="Archive">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -283,25 +286,29 @@
             }
         });
     </script>
+
     <!-- Search -->
-<div class="search-page" role="search">
-  <div class="search-icon-close-container">
-    <span class="search-icon-close" aria-label="Close search">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
-    </span>
-  </div>
+<div class="search-page" role="dialog" aria-modal="true" aria-label="搜索文章" aria-hidden="true">
   <div class="search-main container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <form role="search">
-          <label for="search-input" class="sr-only">Search</label>
-          <input type="text" id="search-input" placeholder="$ grep..." aria-label="Search input">
+        <div class="search-header">
+          <div><p class="eyebrow">EXPLORE THE JOURNAL</p><h2>搜索文章</h2></div>
+          <button class="search-icon-close" type="button" aria-label="关闭搜索">×</button>
+        </div>
+        <form role="search" id="site-search-form">
+          <label for="search-input" class="sr-only">搜索标题、摘要或标签</label>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input type="search" id="search-input" placeholder="搜索标题、摘要或标签…" autocomplete="off">
         </form>
-        <div id="search-results" class="mini-post-list" aria-live="polite"></div>
+        <p id="search-status" class="search-status" role="status" aria-live="polite">输入关键词，查找你感兴趣的文章。</p>
+        <div id="search-results" class="search-result-list"></div>
+        <p class="search-shortcut">按 Esc 关闭 · 按 ⌘ / Ctrl + K 打开</p>
       </div>
     </div>
   </div>
 </div>
+
 
     <!-- Page Header -->
 
@@ -319,12 +326,13 @@
         <div class="site-heading">
         
           <h1>察说花园</h1>
-          <span class="subheading">不浮躁、不轻浮。</span>
+          <span class="subheading">记录技术探索与日常思考。</span>
         </div>
       </div>
     </div>
   </div>
 </header>
+
 
 
 <!-- Main Content -->
@@ -341,344 +349,149 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2023/03/11/Survival-of-the-fittest/">
-        <h2 class="post-title">
-            80 - 适者生存
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-今天看到冯大的一篇文章，我是这么看腾讯 T13 技术大佬被裁这事儿的，一个腾讯 T13 技术大佬被裁事件。
-
-技术专家在公司工作很多年而被裁，换了谁心里头都不舒服。对于当事人总结的被裁原因，往往又不是真正的原因，这就是所谓的当局者迷。
-
-作者给出了几个职场建议，包括低头干活，抬头看路，改变自己适应环境，以及让个人和公司相忘于江湖。
-
-最近恰好听播客，接触到了一本书「高效能人...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 11, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/03/04/quick-skill/">
-        <h2 class="post-title">
-            79 -  技能速成
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-去年成都由于疫情，还有就是高温的原因，work from home，在家办公的日子就是舒服，不用考虑通勤时间，起床就可以开电脑，然后再去洗漱……
-
-慢慢的觉得在家办公特别爽，主要是我现在每天的通勤时间在 1 个小时。之前出门比较晚，出门就开始堵车，一天通勤时间在 2~3 个小时。用这个时间来做点自己喜欢的事情，应该是不错的。
-
-很久以前，关注过远程工作的时候，顺便推荐一个远...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on March 4, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/02/25/make-more-money/">
-        <h2 class="post-title">
-            78 -  继续搞钱
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-我有一个小习惯，就是每次用了不管是多少钱，都会记录一下。
-
-之前记账只记录金额，没有具体的花销事项，导致时间一长就可能忘记。现在几张都会记录具体每一笔的用途是什么，买了什么。
-
-在开始阅读之前，大家先思考下，记账的好处是什么？
-
-我自己记账的时间，我看了下快有 5 年了。发现去年的支出比前年支出上浮了 10%，不知道是不是物价上涨的原因。去年全年支出 143,824 元，不...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 25, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/02/18/relationship/">
-        <h2 class="post-title">
-            77 - 亲情
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-最近《狂飙》已经更新完了，我开始刷剧了，每天 5 集左右，1.5~2 倍速度观看，观感上没有什么问题，一个礼拜就可以看完。
-
-对于本周的主题，我一开始也不知道写什么，要不就写一个我对亲情的认知。
-
-亲情，是有血缘关系的人之间存在的特殊感情。不管对方怎样也会爱对方，无论贫穷或富有，无论健康或疾病，你愿意嫁给……
-
-稍等，在这个充满诱惑和危机的世界里，亲情有时也会被利益、欺...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 18, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/02/16/learn-gcc-compiler-optimzation/">
-        <h2 class="post-title">
-            编译优化流程 1
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                开篇
-
-由于自己对编译器比较感兴趣，开始准备学习一些编译器相关的知识，目前学习路径是编译器原理、gcc 编译器优化、cuda 编程基础、（重点是掌握编译流程，执行流程、优化流程）。
-
-由于没有相关的人的指点，是自己在网上找的学习资料，如果有不对的，请多多留言，谢谢~
-
-小插曲
-
-我开始在网上搜了下，关于这个博主的博客，真的解释了什么是从入门到放弃，从这一篇文章GCC 学习笔记（一）–编译流程...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 16, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/02/16/deploy-flask-with-bt/">
-        <h2 class="post-title">
-            用宝塔部署 flask 应用
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                安装宝塔
-
-这个是最新的地址：https://www.bt.cn/bbs/thread-19376-1-1.html。
-
-ubuntu 的安装脚本是：wget -O install.sh https://download.bt.cn/install/install-ubuntu_6.0.sh &amp;&amp; sudo bash install.sh 12f2c1d72
-
-其他系统的安装...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 16, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/02/11/interest-stength/">
-        <h2 class="post-title">
-            76 -  兴趣和特长
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-如果把自己的兴趣爱好和事业结合起来？这个是多么美好的一份工作呀。
-
-你是这样的？或者你身边有这样的朋友么？
-
-早几年，有爱的人、有喜欢的工作，没有担心过这个问题，但是随着时间的推移，发现工作这个参数，不受自己控制，老板可以改变、市场行情可以改变……
-
-找到一个自己喜欢的工作，而且可以变成金钱，那想想就有多么美好。
-
-我最近用 chatGPT 来回答这个问题，提供了许多的问题...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 11, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/02/09/extra-story/">
-        <h2 class="post-title">
-            75 - 番外篇 找到自己的兴趣
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好，由于最近比较惆怅，就多了这一次的番外篇 ~
-
-如果把自己的兴趣爱好和事业结合起来？这个是多么美好的一份工作呀。
-
-你是这样的？或者你身边有这样的朋友么？
-
-早几年，有爱的人、有喜欢的工作，没有担心过这个问题，但是随着时间的推移，发现工作这个参数，不受自己控制，老板可以改变、市场行情可以改变……
-
-找到一个自己喜欢的工作，而且可以变成金钱，那想想就有多么美好。
-
-我最近用 chat...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 9, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/02/04/no-hurry-no-busy/">
-        <h2 class="post-title">
-            75 -  不慌不忙
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-图片由 Deepai 自动生成
-
-周末晚上睡不着，打开 Spotify，点击播放我标记喜欢歌曲：
-
-
-  慌慌张张 匆匆忙忙
-为何生活总是这样
-难道说 我的理想 
-就是这样度 过一生的时光
-
-  不卑不亢 不慌不忙
-也许生活应该这样
-难道说 60 岁以后再去寻找
-我想要的自由
-
-
-没错，就是郝云的活着。歌词朴实无华，人人都能看懂，但是却听了有种无名的伤感。
-
-……
-
-E...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on February 4, 2023
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2023/01/28/better-lift/">
-        <h2 class="post-title">
-            74 -  好好生活
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            
-                朋友，您好 ~
-
-
-
-图片来自 Deepai 生成
-
-人的最大痛苦根源来自和他人比较。
-
-过年了，3 年的疫情终于结束了，大家又可以愉快地相聚在一起。每次看到身边亲朋好友开豪车，赚大钱，我就心生嫉妒，如果要是这样和他们比的话，我估计活不到今天。
-
-有一句鸡汤，不知道该讲不该讲。
-
-永远不因别人才貌双全、财运亨通而去嫉妒，一次次的去清理这些杂念，把嫉妒转化为深深地赞美和祝福，心念转化的瞬间，那...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 叉叉敌 on January 28, 2023
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
+    			<section class="home-intro" aria-label="博客介绍">
+  <p class="eyebrow">NOTES · IDEAS · ENGINEERING</p>
+  <h2>在好奇与实践之间，<br>持续记录。</h2>
+  <p>关于编程、技术与生活的独立笔记。挑一篇感兴趣的文章，从这里开始阅读。</p>
+  <button class="home-search-button search-open-button" type="button" aria-label="搜索文章">
+    <i class="fa fa-search" aria-hidden="true"></i> 搜索文章 <span>⌘ K</span>
+  </button>
+</section>
+
+<section class="home-posts" aria-labelledby="latest-posts-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">THE JOURNAL</p>
+      <h2 id="latest-posts-title">最新文章</h2>
+    </div>
+    <a href="/archive/">浏览全部 <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="post-card-list">
     
-    <li class="previous">
-        <a href="/page5">&larr; Newer Posts</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-11">2023.03.11</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/03/11/Survival-of-the-fittest/">80 - 适者生存</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 今天看到冯大的一篇文章，我是这么看腾讯 T13 技术大佬被裁这事儿的，一个腾讯 T13 技术大佬被裁事件。 技术专家在公司工作很多年而被裁，换了谁心里头都不舒服。对于当事人总结的被裁原因，往往又不是真正的原因，这就是所谓的当局者迷。 作者给出了几个职场建议，包括低头干活，抬头看...</p>
+      <a class="post-card-link" href="/2023/03/11/Survival-of-the-fittest/" aria-label="阅读：80 - 适者生存">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-03-04">2023.03.04</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/03/04/quick-skill/">79 -  技能速成</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 去年成都由于疫情，还有就是高温的原因，work from home，在家办公的日子就是舒服，不用考虑通勤时间，起床就可以开电脑，然后再去洗漱…… 慢慢的觉得在家办公特别爽，主要是我现在每天的通勤时间在 1 个小时。之前出门比较晚，出门就开始堵车，一天通勤时间在 2~3 个小时。...</p>
+      <a class="post-card-link" href="/2023/03/04/quick-skill/" aria-label="阅读：79 -  技能速成">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-    <li class="next">
-        <a href="/page7">Older Posts &rarr;</a>
-    </li>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-02-25">2023.02.25</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/02/25/make-more-money/">78 -  继续搞钱</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 我有一个小习惯，就是每次用了不管是多少钱，都会记录一下。 之前记账只记录金额，没有具体的花销事项，导致时间一长就可能忘记。现在几张都会记录具体每一笔的用途是什么，买了什么。 在开始阅读之前，大家先思考下，记账的好处是什么？ 我自己记账的时间，我看了下快有 5 年了。发现去年的支...</p>
+      <a class="post-card-link" href="/2023/02/25/make-more-money/" aria-label="阅读：78 -  继续搞钱">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
     
-</ul>
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-02-18">2023.02.18</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/02/18/relationship/">77 - 亲情</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 最近《狂飙》已经更新完了，我开始刷剧了，每天 5 集左右，1.5~2 倍速度观看，观感上没有什么问题，一个礼拜就可以看完。 对于本周的主题，我一开始也不知道写什么，要不就写一个我对亲情的认知。 亲情，是有血缘关系的人之间存在的特殊感情。不管对方怎样也会爱对方，无论贫穷或富有，无...</p>
+      <a class="post-card-link" href="/2023/02/18/relationship/" aria-label="阅读：77 - 亲情">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-02-16">2023.02.16</time>
+        <span class="post-card-tag">gcc</span>
+      </div>
+      <h3><a href="/2023/02/16/learn-gcc-compiler-optimzation/">编译优化流程 1</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">开篇 由于自己对编译器比较感兴趣，开始准备学习一些编译器相关的知识，目前学习路径是编译器原理、gcc 编译器优化、cuda 编程基础、（重点是掌握编译流程，执行流程、优化流程）。 由于没有相关的人的指点，是自己在网上找的学习资料，如果有不对的，请多多留言，谢谢~ 小插曲 我开始在网上搜了下，关...</p>
+      <a class="post-card-link" href="/2023/02/16/learn-gcc-compiler-optimzation/" aria-label="阅读：编译优化流程 1">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-02-16">2023.02.16</time>
+        <span class="post-card-tag">flask</span>
+      </div>
+      <h3><a href="/2023/02/16/deploy-flask-with-bt/">用宝塔部署 flask 应用</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">安装宝塔 这个是最新的地址：https://www.bt.cn/bbs/thread-19376-1-1.html。 ubuntu 的安装脚本是：wget -O install.sh https://download.bt.cn/install/install-ubuntu_6.0.sh &a...</p>
+      <a class="post-card-link" href="/2023/02/16/deploy-flask-with-bt/" aria-label="阅读：用宝塔部署 flask 应用">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-02-11">2023.02.11</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/02/11/interest-stength/">76 -  兴趣和特长</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 如果把自己的兴趣爱好和事业结合起来？这个是多么美好的一份工作呀。 你是这样的？或者你身边有这样的朋友么？ 早几年，有爱的人、有喜欢的工作，没有担心过这个问题，但是随着时间的推移，发现工作这个参数，不受自己控制，老板可以改变、市场行情可以改变…… 找到一个自己喜欢的工作，而且可以...</p>
+      <a class="post-card-link" href="/2023/02/11/interest-stength/" aria-label="阅读：76 -  兴趣和特长">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-02-09">2023.02.09</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/02/09/extra-story/">75 - 番外篇 找到自己的兴趣</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好，由于最近比较惆怅，就多了这一次的番外篇 ~ 如果把自己的兴趣爱好和事业结合起来？这个是多么美好的一份工作呀。 你是这样的？或者你身边有这样的朋友么？ 早几年，有爱的人、有喜欢的工作，没有担心过这个问题，但是随着时间的推移，发现工作这个参数，不受自己控制，老板可以改变、市场行情可以改...</p>
+      <a class="post-card-link" href="/2023/02/09/extra-story/" aria-label="阅读：75 - 番外篇 找到自己的兴趣">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-02-04">2023.02.04</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/02/04/no-hurry-no-busy/">75 -  不慌不忙</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 图片由 Deepai 自动生成 周末晚上睡不着，打开 Spotify，点击播放我标记喜欢歌曲： 慌慌张张 匆匆忙忙 为何生活总是这样 难道说 我的理想 就是这样度 过一生的时光 不卑不亢 不慌不忙 也许生活应该这样 难道说 60 岁以后再去寻找 我想要的自由 没错，就是郝云的活...</p>
+      <a class="post-card-link" href="/2023/02/04/no-hurry-no-busy/" aria-label="阅读：75 -  不慌不忙">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+    <article class="post-card">
+      <div class="post-card-meta">
+        <time datetime="2023-01-28">2023.01.28</time>
+        <span class="post-card-tag">Newsletter</span>
+      </div>
+      <h3><a href="/2023/01/28/better-lift/">74 -  好好生活</a></h3>
+      <p class="post-card-subtitle"></p>
+      <p class="post-card-excerpt">朋友，您好 ~ 图片来自 Deepai 生成 人的最大痛苦根源来自和他人比较。 过年了，3 年的疫情终于结束了，大家又可以愉快地相聚在一起。每次看到身边亲朋好友开豪车，赚大钱，我就心生嫉妒，如果要是这样和他们比的话，我估计活不到今天。 有一句鸡汤，不知道该讲不该讲。 永远不因别人才貌双全、财运...</p>
+      <a class="post-card-link" href="/2023/01/28/better-lift/" aria-label="阅读：74 -  好好生活">阅读全文 <span aria-hidden="true">→</span></a>
+    </article>
+    
+  </div>
+</section>
+
+
+<nav class="editorial-pager" aria-label="文章分页">
+  
+  <a href="/page5">← 较新文章</a>
+  
+  <span>第 6 / 32 页</span>
+  
+  <a href="/page7">更早文章 →</a>
+  
+</nav>
 
 
     		</div>
@@ -696,7 +509,7 @@ E...
 
 <section>
     
-    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+<h5><a href="/archive/">FEATURED TAGS</a></h5>
     <div class="tags">
         
         
@@ -982,10 +795,11 @@ E...
 </section>
 
 
+
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
   <hr>
-  <h5><a href="/about/">ABOUT ME</a></h5>
+<h5><a href="/about/">ABOUT ME</a></h5>
   <div class="short-about">
     
     <img src="/img/avatar-xxd.jpg" />
@@ -1002,7 +816,7 @@ E...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1069,6 +883,7 @@ E...
   </div>
 </section>
 
+
                 <!-- Friends Blog -->
                 
 <hr>
@@ -1108,7 +923,7 @@ E...
 
   
   <li>
-    <a href="/feed.xml" title="RSS">
+                <a href="/feed.xml" title="RSS">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -1188,17 +1003,17 @@ E...
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/js/hux-blog.min.js"></script>
 
-<!-- Simple Jekyll Search -->
-<script src="/js/simple-jekyll-search.min.js"></script>
+<!-- Static site search -->
+<script src="/js/editorial-search.js" defer></script>
 
 <!-- Service Worker -->
 
@@ -1339,63 +1154,6 @@ E...
 <!-- Multi-Lingual -->
 
 
-<!-- Simple Jekyll Search -->
-<script>
-    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
-    function htmlDecode(input) {
-        var e = document.createElement('textarea');
-        e.innerHTML = input;
-        // handle case of empty input
-        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-    }
-
-    SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('search-results'),
-        json: '/search.json',
-        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
-        noResultsText: 'No results',
-        limit: 50,
-        fuzzy: false,
-        // a hack to get escaped subtitle unescaped. for some reason, 
-        // post.subtitle w/o escape filter nuke entire search.
-        templateMiddleware: function (prop, value, template) {
-            if (prop === 'subtitle' || prop === 'title') {
-                if (value.indexOf("code")) {
-                    return htmlDecode(value);
-                } else {
-                    return value;
-                }
-            }
-        }
-    });
-
-    $(document).ready(function () {
-        var $searchPage = $('.search-page');
-        var $searchOpen = $('.search-icon');
-        var $searchClose = $('.search-icon-close');
-        var $searchInput = $('#search-input');
-        var $body = $('body');
-
-        $searchOpen.on('click', function (e) {
-            e.preventDefault();
-            $searchPage.toggleClass('search-active');
-            var prevClasses = $body.attr('class') || '';
-            setTimeout(function () {
-                $body.addClass('no-scroll');
-            }, 400)
-
-            if ($searchPage.hasClass('search-active')) {
-                $searchClose.on('click', function (e) {
-                    e.preventDefault();
-                    $searchPage.removeClass('search-active');
-                    $body.attr('class', prevClasses);  // from closure 
-                });
-                $searchInput.focus();
-            }
-        });
-    });
-</script>
 
 
 <!-- Image to hack wechat -->
