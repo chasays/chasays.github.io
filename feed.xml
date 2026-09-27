@@ -5,9 +5,442 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 16 Dec 2025 12:59:22 +0000</pubDate>
-    <lastBuildDate>Tue, 16 Dec 2025 12:59:22 +0000</lastBuildDate>
+    <pubDate>Sun, 27 Sep 2026 13:39:55 +0000</pubDate>
+    <lastBuildDate>Sun, 27 Sep 2026 13:39:55 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>从 Chrome 150 到 153：一次 Python、Go 与真实浏览器的指纹实测</title>
+        <description>&lt;p&gt;这次调研从一段看起来很合理的判断开始，大意是：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;两个客户端虽然都声明模拟 Chrome 150，但实际网络指纹可能不同。Go 的静态 profile 通常不如 curl_cffi 接近真实 Chrome，因此可能更容易被识别。上线前，最好比较一下 JA3 和 Akamai 指纹。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这段话包含一个值得重视的风险，也夹带了一个尚未证明的结论。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;版本名称相同，不保证网络行为相同。&lt;/strong&gt; 但“Go 通常更差”是一个比较性判断，需要具体版本、配置和实测数据支撑。仅凭“Python”“Go”或“静态 profile”这几个标签，还不能得出结论。&lt;/p&gt;
+
+&lt;p&gt;于是，调研从查官方资料走向了实际测量：先比较 Chrome 150，再把真实浏览器升级到153，最后不再满足于指纹摘要，直接记录客户端发出的 ClientHello 字节。&lt;/p&gt;
+
+&lt;p&gt;结果比最初的判断更有意思。某些差异只需要调整配置就能消失；某些来自 profile 没跟上浏览器版本；还有一些，只有越过哈希摘要，检查字节行为才能看见。&lt;/p&gt;
+
+&lt;p&gt;本文记录的是 &lt;strong&gt;2026年9月27日、指定环境和依赖版本下的实验&lt;/strong&gt;。它不是语言排行榜，也没有测量任何具体网站的反自动化通过率。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;先弄清楚，我们究竟在比较什么&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;“浏览器指纹”这个词覆盖的范围很大。这次实验主要关注 TLS 和 HTTP/2，并没有试图用一个 HTTP 客户端模拟整个浏览器。&lt;/p&gt;
+
+&lt;p&gt;JA3 从 TLS ClientHello 中提取版本、密码套件、扩展列表、支持组等字段，再计算摘要。它只描述握手的一部分，不是完整 ClientHello，也不是 TCP 指纹。&lt;a href=&quot;https://github.com/salesforce/ja3#how-it-works&quot;&gt;JA3 原项目说明&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这里说的 Akamai 指纹，是常见的 &lt;strong&gt;HTTP/2 指纹格式&lt;/strong&gt;，主要包含初始 SETTINGS、WINDOW_UPDATE、PRIORITY 和伪头顺序。它不等于 Akamai 完整的风控规则。&lt;a href=&quot;https://curl-cffi.readthedocs.io/en/stable/impersonate/customize.html&quot;&gt;curl_cffi 指纹格式文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;JA4 则提供另一种 TLS 指纹表达，但同样不是浏览器版本号。后面的实验会看到：&lt;strong&gt;一个名为 Chrome 152 的 profile，也可能产生与真实 Chrome 153 相同的 JA4。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;还有一个容易误判的细节：Chrome 会随机排列 TLS 扩展顺序，而原始 JA3 对顺序敏感。因此，同一个 Chrome build 的不同连接，也可能产生不同 JA3。&lt;a href=&quot;https://groups.google.com/a/chromium.org/g/blink-dev/c/bYZK81WxYBo&quot;&gt;Chromium 的扩展随机排序说明&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这次同时比较了 JA3N：将扩展编号排序后计算的 JA3 变体。它能帮助区分“只是扩展排列变了”和“扩展集合本身变了”，但它依然只是选定字段的摘要。&lt;/p&gt;
+
+&lt;p&gt;curl_cffi 官方 FAQ 也明确提醒，JA3 和 Akamai 指纹并不全面，建议用实际网络包做更深入的对照。&lt;a href=&quot;https://curl-cffi.readthedocs.io/en/stable/impersonate/faq.html&quot;&gt;curl_cffi 官方 FAQ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这些资料支持“需要验证”的建议，却不能替代 Python 与 Go 的对照实验。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第一轮：同样模拟 Chrome 150，Go 真的更差吗？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;第一轮先把版本对齐：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;组别&lt;/th&gt;
+      &lt;th&gt;实际使用的版本或配置&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;真实浏览器&lt;/td&gt;
+      &lt;td&gt;Chrome for Testing 150.0.7871.124&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Python&lt;/td&gt;
+      &lt;td&gt;curl_cffi 0.16.3，chrome150&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go&lt;/td&gt;
+      &lt;td&gt;tls-client v1.16.0，Chrome_150&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go 对照组&lt;/td&gt;
+      &lt;td&gt;同一个 profile，分别关闭、开启扩展随机排序&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;真实浏览器使用可见窗口，通过 Playwright 驱动。这里“真实”指运行实际 Chrome 二进制，并不意味着它与手工启动的日常浏览器在所有方面完全相同。&lt;/p&gt;
+
+&lt;p&gt;每组建立10次新连接。Chrome 和 Go 每次启动新进程，Python 每次创建新 Session，避免反复观察同一条复用连接。各组访问同一检测端点，使用同一个本机代理入口，并交错执行。&lt;/p&gt;
+
+&lt;p&gt;这一轮还统一了普通请求头，让比较更集中在网络实现上。&lt;/p&gt;
+
+&lt;p&gt;结果如下：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;组别&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;10次连接产生的 JA3 种类&lt;/th&gt;
+      &lt;th&gt;JA3N、JA4、Akamai&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;真实 Chrome 150&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;10&lt;/td&gt;
+      &lt;td&gt;基准&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Python curl_cffi&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;10&lt;/td&gt;
+      &lt;td&gt;全部与基准一致&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go，固定扩展排序&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
+      &lt;td&gt;全部与基准一致&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go，开启扩展随机排序&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;10&lt;/td&gt;
+      &lt;td&gt;全部与基准一致&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;最明显的差异，不是密码套件或 HTTP/2 SETTINGS，而是 &lt;strong&gt;Go 是否开启了扩展随机排序&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;在本次使用的 Chrome_150 profile 中，不开启该选项时，原始 JA3 始终不变；加入 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WithRandomTLSExtensionOrder()&lt;/code&gt; 后，它也表现为每次连接产生不同 JA3。&lt;/p&gt;
+
+&lt;p&gt;这不能证明双方在所有字节上等价，但已经足以修正最初的推断：&lt;strong&gt;固定 profile 不代表无法产生 Chrome 式的随机变化。具体配置，比实现语言更直接地影响这个结果。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;假如服务端确实观察多次连接的扩展排序，固定排序就提供了一个潜在的区分依据。但实验没有证据说明某个具体网站一定使用它，更没有测出拦截率。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第二轮：把真实 Chrome 换成153，差异出现了&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;接下来只升级真实浏览器基准，换成本机的 Chrome 153.0.8010.53。Python 和 Go 暂时保留原来的150配置，每组仍采样10次。&lt;/p&gt;
+
+&lt;p&gt;这是一轮刻意进行的跨版本对照，不应被描述成“双方都在模拟153”。&lt;/p&gt;
+
+&lt;p&gt;结果很清楚：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;对比项&lt;/th&gt;
+      &lt;th&gt;Python 的150配置&lt;/th&gt;
+      &lt;th&gt;Go 的150配置&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;JA3N&lt;/td&gt;
+      &lt;td&gt;与 Chrome 153 不同&lt;/td&gt;
+      &lt;td&gt;与 Chrome 153 不同&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;JA4&lt;/td&gt;
+      &lt;td&gt;与 Chrome 153 不同&lt;/td&gt;
+      &lt;td&gt;与 Chrome 153 不同&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Akamai HTTP/2 指纹&lt;/td&gt;
+      &lt;td&gt;仍然一致&lt;/td&gt;
+      &lt;td&gt;仍然一致&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;真实 Chrome 153 的扩展集合中，多出了编号 &lt;strong&gt;51764&lt;/strong&gt; 的扩展，后来结合&lt;a href=&quot;https://github.com/bogdanfinn/tls-client/blob/v1.16.0/profiles/internal_browser_profiles.go&quot;&gt;库中的 profile 定义&lt;/a&gt;确认它对应 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;trust_anchors&lt;/code&gt;。它的签名算法列表首位还包含 GREASE，而两个150配置都没有这个行为。&lt;/p&gt;
+
+&lt;p&gt;这里的 GREASE 是有意插入的保留值，用来避免协议实现对固定取值形成依赖，不是实际要协商使用的签名算法。&lt;/p&gt;
+
+&lt;p&gt;这一轮说明了两件事。&lt;/p&gt;
+
+&lt;p&gt;首先，&lt;strong&gt;改成153的 User-Agent，不会让底层150 profile 自动升级。&lt;/strong&gt; 当时为了控制头部变量，库请求沿用了153基准的普通头模板；TLS 结构却依然停留在150。这种做法适合演示“改头不改握手”的区别，不适合用来声称身份已经一致。&lt;/p&gt;
+
+&lt;p&gt;其次，HTTP/2 指纹没变，不代表 TLS 也没变。只检查 Akamai 摘要，就会漏掉本轮已经出现的结构差异。&lt;/p&gt;
+
+&lt;p&gt;不过，这仍然不能说明 Go 比 Python 差。它们用的都是150配置，而且以相同方式落后于新的浏览器基准。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;第三轮：先查库的能力，再检查实际发出的字节&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;真正有价值的比较，需要先回答：库到底支持什么？&lt;/p&gt;
+
+&lt;p&gt;这次没有只看文档里的默认别名，而是读取已安装 curl_cffi 的目标枚举，以及已编译 Go 客户端中的 profile 映射。检查结果是：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;curl_cffi 0.16.3 提供的最高桌面 Chrome 配置是150。&lt;/li&gt;
+  &lt;li&gt;tls-client v1.16.0 提供到152。&lt;/li&gt;
+  &lt;li&gt;这两个实际安装版本都没有命名为153的 preset。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;因此，第三轮使用 &lt;strong&gt;Python 150、Go 152，与真实 Chrome 153 比较&lt;/strong&gt;。这是对各库在本次环境中可用配置的比较，不是同版本、只替换编程语言的实验。&lt;/p&gt;
+
+&lt;p&gt;请求头也改成与 profile 绑定：Python 声明150，Go 声明152。不能独立传一个153的 UA，让报告看起来像三个153客户端。真实导航没有发送的高熵 Client Hint，也不编造完整版本号补进去。&lt;/p&gt;
+
+&lt;p&gt;随后，实验增加了一个本机 HTTP CONNECT 观察器。它不终止 TLS，不安装证书，不解密应用数据，只转发字节并记录客户端最初发出的 ClientHello。&lt;/p&gt;
+
+&lt;p&gt;这一步获得了两类不同的证据：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;指纹站返回的服务端观察结果。&lt;/li&gt;
+  &lt;li&gt;本机实际捕获的 ClientHello 和 TLS record 原始字节。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;对 Peet 的样本，两边的 client_random 和 JA3 必须相符，才接受为同一次握手的证据。这也避免误把浏览器额外建立的预连接当成测量请求。&lt;/p&gt;
+
+&lt;p&gt;真实 Chrome 的基准分别保存于 &lt;a href=&quot;https://tls.peet.ws/api/all&quot;&gt;tls.peet.ws&lt;/a&gt; 和 &lt;a href=&quot;https://tls.browserleaks.com/json&quot;&gt;BrowserLeaks TLS&lt;/a&gt;。主实验在同一端点上每组采集20份有效样本；另一端点对各库组补做一次独立交叉核对，没有把不同端点的数据混成一个分布。&lt;/p&gt;
+
+&lt;p&gt;正式采样共尝试82次，获得80份有效样本。Python 和 Go 乱序组各发生一次网络中断，错误保留在记录中，随后分别明确补采一次。网络错误没有被改写成“指纹检测失败”。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Go 152 的摘要和已检查结构，竟然能匹配 Chrome 153&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;第三轮的结果，与“Go 通常更不像 Chrome”的直觉并不一致。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;项目&lt;/th&gt;
+      &lt;th&gt;真实 Chrome 153&lt;/th&gt;
+      &lt;th&gt;Python 150&lt;/th&gt;
+      &lt;th&gt;Go 152＋乱序&lt;/th&gt;
+      &lt;th&gt;Go 152＋固定排序&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;有效样本数&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;原始 JA3 种类&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;20&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;JA4、JA3N&lt;/td&gt;
+      &lt;td&gt;基准&lt;/td&gt;
+      &lt;td&gt;不匹配&lt;/td&gt;
+      &lt;td&gt;匹配&lt;/td&gt;
+      &lt;td&gt;匹配&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Akamai HTTP/2&lt;/td&gt;
+      &lt;td&gt;基准&lt;/td&gt;
+      &lt;td&gt;匹配&lt;/td&gt;
+      &lt;td&gt;匹配&lt;/td&gt;
+      &lt;td&gt;匹配&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;trust_anchors&lt;/td&gt;
+      &lt;td&gt;存在&lt;/td&gt;
+      &lt;td&gt;未发送&lt;/td&gt;
+      &lt;td&gt;存在，ID集合匹配&lt;/td&gt;
+      &lt;td&gt;存在，ID集合匹配&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;签名算法 GREASE 行为&lt;/td&gt;
+      &lt;td&gt;存在且变化&lt;/td&gt;
+      &lt;td&gt;未出现&lt;/td&gt;
+      &lt;td&gt;存在且变化&lt;/td&gt;
+      &lt;td&gt;存在且变化&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;本次检查的结构与乱序&lt;/td&gt;
+      &lt;td&gt;基准&lt;/td&gt;
+      &lt;td&gt;未通过&lt;/td&gt;
+      &lt;td&gt;通过&lt;/td&gt;
+      &lt;td&gt;乱序项未通过&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;这里的“结构”包含扩展集合、去除 GREASE 后的密码套件和签名算法、支持组、密钥共享组及长度、ALPN、ALPS、证书压缩，以及 trust anchor ID 集合等已检查字段，不代表整个 TLS 状态机经过了完整验证。&lt;/p&gt;
+
+&lt;p&gt;一个重要的反例出现了：Go 的配置虽然名为152，实际 JA4 和 JA3N 却与这台153浏览器一致。&lt;/p&gt;
+
+&lt;p&gt;所以，不能预设“153必须有一个与152不同的 JA4 尾段”。&lt;strong&gt;版本名称要如实记录，协议行为要实际测量，两者不能互相替代。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Python 这一组则存在明确的结构缺口：它的150配置没有发送基准中的 trust_anchors，也没有相同的签名算法 GREASE 行为。注意，这不等于它没有 ML-DSA；本轮不匹配的是上述扩展和 GREASE 行为，不能把不同问题混在一起。&lt;/p&gt;
+
+&lt;p&gt;但如果实验到这里就结束，仍然会错过后面的发现。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ClientHello 的192字节差距，能解释清楚&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;记录原始字节后，就可以直接比较长度，而不是根据 JSON 内容猜测。&lt;/p&gt;
+
+&lt;p&gt;下面的 CH 长度指 &lt;strong&gt;4字节 handshake 头加 ClientHello body&lt;/strong&gt;，不包含外层 TLS record 头。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;组别&lt;/th&gt;
+      &lt;th&gt;本轮出现的 CH 长度，字节&lt;/th&gt;
+      &lt;th&gt;ECH 扩展长度，字节&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;真实 Chrome 153&lt;/td&gt;
+      &lt;td&gt;1914、1946、1978、2010&lt;/td&gt;
+      &lt;td&gt;186、218、250、282&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Python 150&lt;/td&gt;
+      &lt;td&gt;1722、1754、1786、1818&lt;/td&gt;
+      &lt;td&gt;186、218、250、282&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go 152＋乱序&lt;/td&gt;
+      &lt;td&gt;1914、1946、1978、2010&lt;/td&gt;
+      &lt;td&gt;186、218、250、282&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go 152＋固定排序&lt;/td&gt;
+      &lt;td&gt;1914、1946、1978、2010&lt;/td&gt;
+      &lt;td&gt;186、218、250、282&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;首先，真实 Chrome 自己就出现了多个长度，而且相邻取值相差32字节。&lt;strong&gt;“同一个 build 的 CH 应当几乎固定”“出现网格分布就不自然”，都不能直接当作验收规则。&lt;/strong&gt; 在本轮数据中，CH 的长度变化与 ECH 长度变化对应。&lt;/p&gt;
+
+&lt;p&gt;其次，把 ECH 长度扣除后，差距变得非常清晰：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Chrome 153 和 Go 152：CH 减 ECH 恒为1728字节。&lt;/li&gt;
+  &lt;li&gt;Python 150：CH 减 ECH 恒为1536字节。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;两者相差192字节，恰好可以由这次观察到的结构差异解释：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;trust_anchors 扩展头4字节＋payload 186字节＋签名算法 GREASE 2字节＝192字节。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这比“两个哈希不同”提供了更具体的信息：差异在哪里、占多少字节，以及为什么产生差异，都有对应的原始数据。&lt;/p&gt;
+
+&lt;p&gt;Go 与 Chrome 的长度取值相同，但频数并不完全相同。例如，20次采样中，Chrome 的1914字节出现6次，Go乱序组出现3次。&lt;/p&gt;
+
+&lt;p&gt;脚本对此给出的是小样本下的探索性告警，没有把它当成统计显著性结论，更没有据此推导网站一定能够识别。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;同一个扩展集合，仍然可以有不同的字节行为&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;更有意思的差异藏在 trust_anchors 内部。&lt;/p&gt;
+
+&lt;p&gt;Go 与真实 Chrome 发送的 anchor ID 集合相同，payload 长度也都是186字节。但在各20份样本中：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;组别&lt;/th&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;trust_anchors 中观察到的 ID 排列种类&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;真实 Chrome 153&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go 152＋乱序&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;20&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Go 152＋固定扩展排序&lt;/td&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;20&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;这不是前面讨论的“TLS 扩展列表顺序”，而是 &lt;strong&gt;一个扩展内部的 payload 排列&lt;/strong&gt;。因此，即使关闭 TLS 扩展乱序，Go 的 trust_anchors 内部排列仍可能变化。&lt;/p&gt;
+
+&lt;p&gt;它解释了为什么检查扩展集合、JA3N 或 JA4 还不够：外层扩展存在，内容集合也一致，内部排列行为仍可能不同。&lt;/p&gt;
+
+&lt;p&gt;这个现象值得继续研究，但现阶段只能准确地说：&lt;strong&gt;本轮观察到了排列多样性的差异。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;不能把 Chrome 仅出现2种排列写成该版本永远只有2种，也不能把 Go 出现20种直接写成“必然更容易被识别”。是否构成稳定、可利用的区分特征，还需要更大样本和更多环境验证。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;为什么报告曾经把 Go 和 Python 都写成“完整153未通过”？&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;这是实验报告本身需要修正的一点。&lt;/p&gt;
+
+&lt;p&gt;最初的总判定混合了两类问题：&lt;/p&gt;
+
+&lt;p&gt;一类是实际协议差异，例如缺少扩展、摘要不匹配、没有出现基准中的随机行为。&lt;/p&gt;
+
+&lt;p&gt;另一类是版本声明门槛：Go 使用152 profile，头也诚实声明152，因此没有满足“声明目标版本153”的要求。&lt;/p&gt;
+
+&lt;p&gt;如果把它们压缩成同一个“失败”，读者很容易误以为两个库都在协议质量上不合格。&lt;/p&gt;
+
+&lt;p&gt;实际上，本轮应该这样读：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Go 152＋乱序：&lt;/strong&gt; 摘要和已检查结构通过，字节行为有告警；没有足够证据声称它与153完整等价。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Python 150：&lt;/strong&gt; 与153基准存在直接可见的结构缺口，摘要和结构项未通过。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Go 152＋固定排序：&lt;/strong&gt; 摘要可以匹配，但扩展乱序行为不匹配，另有字节行为告警。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Go 的 profile 和头都声明152，并没有形成“头说153、配置说152”的内部矛盾。若接受经过验证的等价 preset，就不能仅凭名字里写着152，判定它质量不合格。&lt;/p&gt;
+
+&lt;p&gt;反过来，几个摘要相同，也不能作为把它直接重新命名为153的充分依据。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;这次实验真正改变了什么&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;回头看，最初那个“Python还是Go更靠谱”的问题，范围太大。&lt;/p&gt;
+
+&lt;p&gt;在 Chrome 150 的同版本实验中，两个库的主要摘要和已检查字段都能对齐。显著差异来自 Go 的扩展乱序选项。&lt;/p&gt;
+
+&lt;p&gt;当真实浏览器换成153、两个库仍停在150时，它们都出现结构差异。&lt;/p&gt;
+
+&lt;p&gt;当 Go 使用本次依赖中更高的152配置后，它在已测网络特征上又比 Python 的150配置更接近153。但这反映的是 &lt;strong&gt;具体版本和 profile 的能力&lt;/strong&gt;，不能上升为编程语言的优势。&lt;/p&gt;
+
+&lt;p&gt;对后续选型，更有帮助的问题是：&lt;/p&gt;
+
+&lt;p&gt;这个版本实际支持哪个 profile？它发出的 ClientHello 包含什么？请求头与声明是否一致？新连接、复用连接、会话恢复分别是什么行为？观察到的是稳定结构差异，还是正常随机变化？&lt;/p&gt;
+
+&lt;p&gt;本次仍有明确边界：测试运行在 macOS 和指定 Chrome build 上，经过同一个代理入口，但不能保证所有连接使用同一个出口；没有测 TCP SYN 或 JA4T，也没有覆盖 TLS 会话恢复、HTTP/3、JavaScript 指纹和真实业务站点。&lt;/p&gt;
+
+&lt;p&gt;保存下来的文件是 ClientHello 和 TLS records 二进制，并非 Wireshark pcap。测试没有访问 Ticketmaster 验证检测规则，所以不能从这些结果反推出它会拦截哪个客户端。&lt;/p&gt;
+
+&lt;p&gt;现在能支持的判断是：&lt;strong&gt;Go 默认排序可以成为差异，旧 profile 确实可能缺少新结构，摘要一致之后也仍有值得检查的字节行为。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;至于“Go通常比curl_cffi更容易被识别”，这次实验没有证明它。实验反而说明，值得比较的是实际发出的数据，而不是代码使用的语言。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;实验实现参考：&lt;a href=&quot;https://github.com/lexiforest/curl_cffi&quot;&gt;curl_cffi&lt;/a&gt;、&lt;a href=&quot;https://github.com/bogdanfinn/tls-client&quot;&gt;tls-client&lt;/a&gt;、&lt;a href=&quot;https://github.com/refraction-networking/utls&quot;&gt;uTLS&lt;/a&gt;、&lt;a href=&quot;https://playwright.dev/docs/browsers&quot;&gt;Playwright&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;文中数字来自三轮本地实验的保存记录，可查看&lt;a href=&quot;/assets/data/2026/chrome-fingerprint-experiment.json&quot;&gt;脱敏后的实验汇总数据&lt;/a&gt;。第三轮分析器包含14项针对性测试，覆盖分段握手解析、长度计算、GREASE、未知扩展、版本绑定与缺失证据处理。本文没有据此宣称已经验证完整浏览器等价或真实站点通过率。&lt;/p&gt;
+</description>
+        <pubDate>Sun, 27 Sep 2026 00:00:00 +0000</pubDate>
+        <link>https://blog.chiphub.top/2026/09/27/chrome-150-153-browser-fingerprint-test/</link>
+        <guid isPermaLink="true">https://blog.chiphub.top/2026/09/27/chrome-150-153-browser-fingerprint-test/</guid>
+        
+        <category>技术</category>
+        
+        <category>TLS</category>
+        
+        <category>浏览器指纹</category>
+        
+        <category>Python</category>
+        
+        <category>Go</category>
+        
+        
+      </item>
     
       <item>
         <title>分析一个 wechat Pad v08 协议的的 dll 文件</title>
@@ -1394,59 +1827,6 @@ https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617&
         <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
         <link>https://blog.chiphub.top/2024/06/13/simt-warp/</link>
         <guid isPermaLink="true">https://blog.chiphub.top/2024/06/13/simt-warp/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
-        
-        <category>后端</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 快速入门 - 后端</title>
-        <description>&lt;p&gt;如何快速的入门 llvm 后端？&lt;/p&gt;
-
-&lt;h2 id=&quot;ide工具&quot;&gt;IDE工具&lt;/h2&gt;
-
-&lt;p&gt;推荐一个工具clion：这个没有社区版的， 用付费的就可以， 其他的我不知道。&lt;/p&gt;
-
-&lt;p&gt;有个trace功能，1个函数调用路径，然后右键查看源码可以跳转到源码里面去。&lt;/p&gt;
-
-&lt;h2 id=&quot;操作系统&quot;&gt;操作系统&lt;/h2&gt;
-
-&lt;p&gt;windoows， 不管是多大的项目，只要debug，几秒就可以调到断点的地方。&lt;/p&gt;
-
-&lt;p&gt;我用的m1电脑，编译慢，调试而慢，应该是对于debug没有优化，windwos是 debug是优化过的。&lt;/p&gt;
-
-&lt;p&gt;有懂的大佬可以留言，我学习学习。&lt;/p&gt;
-
-&lt;h2 id=&quot;关于编译&quot;&gt;关于编译&lt;/h2&gt;
-
-&lt;p&gt;装一个 c cache， 编译成动态库， 可以缓存编译的文件， 速度会快很多。&lt;/p&gt;
-
-&lt;h2 id=&quot;关于寄存器的分配&quot;&gt;关于寄存器的分配&lt;/h2&gt;
-
-&lt;p&gt;llvm太复杂了，寄存器分配那个地方非常难搞。&lt;/p&gt;
-
-&lt;h2 id=&quot;学习后端pass&quot;&gt;学习后端pass&lt;/h2&gt;
-
-&lt;p&gt;debug的速度决定了理解这个项目的速度，先了解这个pass是干什么的。&lt;/p&gt;
-
-&lt;p&gt;首先，想如果是你你会怎么写，然后去代码里面找你脑中会怎么写的代码片段。&lt;/p&gt;
-
-&lt;p&gt;对于GPU编译器， 看amd的编译器，在里面乱写，就改其中的1-2行，看看预期效果怎么回事，多弄几遍这个就会了。&lt;/p&gt;
-
-&lt;h1 id=&quot;more&quot;&gt;more&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;https://www.jetbrains.com/clion/download/&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Sat, 01 Jun 2024 00:00:00 +0000</pubDate>
-        <link>https://blog.chiphub.top/2024/06/01/llvm-learning-end/</link>
-        <guid isPermaLink="true">https://blog.chiphub.top/2024/06/01/llvm-learning-end/</guid>
         
         <category>llvm</category>
         

@@ -1,0 +1,306 @@
+{
+  "title": "Chrome/Python/Go browser fingerprint experiment — sanitized evidence summary",
+  "measurement_date": "2026-09-27",
+  "scope": "Cold HTTP/2 connections through one proxy entry; no TCP SYN/JA4T, no resumption, no H3, no JavaScript fingerprints or target-site detection-rate testing",
+  "experiments": [
+    {
+      "id": "controlled-10",
+      "date": "2026-09-27T12:26:40.689506+00:00",
+      "chrome_version": "150.0.7871.124",
+      "curl_cffi": "0.16.3",
+      "tls_client": "v1.16.0",
+      "python_profile": "chrome150",
+      "go_profile": "Chrome_150",
+      "headless": false,
+      "groups": {
+        "go_static": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1516h2_8daaf6152771_806a8c22fdea"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 1
+        },
+        "chrome": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1516h2_8daaf6152771_806a8c22fdea"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 10
+        },
+        "python": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1516h2_8daaf6152771_806a8c22fdea"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 10
+        },
+        "go_random": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1516h2_8daaf6152771_806a8c22fdea"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 10
+        }
+      }
+    },
+    {
+      "id": "chrome153-profiles150",
+      "date": "2026-09-27T12:48:02.593501+00:00",
+      "chrome_version": "153.0.8010.53",
+      "curl_cffi": "0.16.3",
+      "tls_client": "v1.16.0",
+      "python_profile": "chrome150",
+      "go_profile": "Chrome_150",
+      "headless": false,
+      "groups": {
+        "go_static": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1516h2_8daaf6152771_806a8c22fdea"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 1
+        },
+        "chrome": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1517h2_8daaf6152771_cb7bf5808d99"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 10
+        },
+        "python": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1516h2_8daaf6152771_806a8c22fdea"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 10
+        },
+        "go_random": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1516h2_8daaf6152771_806a8c22fdea"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 10
+        }
+      }
+    },
+    {
+      "id": "layered-153-20",
+      "date": "2026-09-27T13:03:32.766029+00:00",
+      "chrome_version": "153.0.8010.53",
+      "curl_cffi": "0.16.3",
+      "tls_client": "v1.16.0",
+      "python_profile": "chrome150",
+      "go_profile": "chrome_152",
+      "headless": false,
+      "groups": {
+        "python": {
+          "attempts": 21,
+          "successes": 20,
+          "failures": 1,
+          "ja4_values": [
+            "t13d1516h2_8daaf6152771_806a8c22fdea"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 20,
+          "length_histograms": {
+            "client_hello_bytes": {
+              "1722": 4,
+              "1754": 5,
+              "1786": 4,
+              "1818": 7
+            },
+            "ech_bytes": {
+              "186": 4,
+              "218": 5,
+              "250": 4,
+              "282": 7
+            },
+            "padding_bytes": {
+              "0": 20
+            },
+            "trust_anchors_bytes": {
+              "0": 20
+            },
+            "ch_minus_ech_bytes": {
+              "1536": 20
+            }
+          },
+          "trust_anchor_order_count": 0
+        },
+        "go_random": {
+          "attempts": 21,
+          "successes": 20,
+          "failures": 1,
+          "ja4_values": [
+            "t13d1517h2_8daaf6152771_cb7bf5808d99"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 20,
+          "length_histograms": {
+            "client_hello_bytes": {
+              "1914": 3,
+              "1946": 3,
+              "1978": 8,
+              "2010": 6
+            },
+            "ech_bytes": {
+              "186": 3,
+              "218": 3,
+              "250": 8,
+              "282": 6
+            },
+            "padding_bytes": {
+              "0": 20
+            },
+            "trust_anchors_bytes": {
+              "186": 20
+            },
+            "ch_minus_ech_bytes": {
+              "1728": 20
+            }
+          },
+          "trust_anchor_order_count": 20
+        },
+        "chrome": {
+          "attempts": 20,
+          "successes": 20,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1517h2_8daaf6152771_cb7bf5808d99"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 20,
+          "length_histograms": {
+            "client_hello_bytes": {
+              "1914": 6,
+              "1946": 8,
+              "1978": 4,
+              "2010": 2
+            },
+            "ech_bytes": {
+              "186": 6,
+              "218": 8,
+              "250": 4,
+              "282": 2
+            },
+            "padding_bytes": {
+              "0": 20
+            },
+            "trust_anchors_bytes": {
+              "186": 20
+            },
+            "ch_minus_ech_bytes": {
+              "1728": 20
+            }
+          },
+          "trust_anchor_order_count": 2
+        },
+        "go_static": {
+          "attempts": 20,
+          "successes": 20,
+          "failures": 0,
+          "ja4_values": [
+            "t13d1517h2_8daaf6152771_cb7bf5808d99"
+          ],
+          "akamai_values": [
+            "1:65536;2:0;4:6291456;6:262144|15663105|0|m,a,s,p"
+          ],
+          "unique_ja3": 1,
+          "length_histograms": {
+            "client_hello_bytes": {
+              "1914": 4,
+              "1946": 6,
+              "1978": 4,
+              "2010": 6
+            },
+            "ech_bytes": {
+              "186": 4,
+              "218": 6,
+              "250": 4,
+              "282": 6
+            },
+            "padding_bytes": {
+              "0": 20
+            },
+            "trust_anchors_bytes": {
+              "186": 20
+            },
+            "ch_minus_ech_bytes": {
+              "1728": 20
+            }
+          },
+          "trust_anchor_order_count": 20
+        }
+      },
+      "layer_statuses": {
+        "python": {
+          "summary": "FAIL",
+          "structure": "FAIL",
+          "bytes": "WARN",
+          "application": "FAIL",
+          "application_failure_reason": "Declared profile generation differs from target; own headers/profile consistent"
+        },
+        "go_random": {
+          "summary": "PASS",
+          "structure": "PASS",
+          "bytes": "WARN",
+          "application": "FAIL",
+          "application_failure_reason": "Declared profile generation differs from target; own headers/profile consistent"
+        },
+        "go_static": {
+          "summary": "PASS",
+          "structure": "FAIL",
+          "bytes": "WARN",
+          "application": "FAIL",
+          "application_failure_reason": "Declared profile generation differs from target; own headers/profile consistent"
+        }
+      }
+    }
+  ]
+}

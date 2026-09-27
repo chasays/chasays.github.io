@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "从 Chrome 150 到 153：一次 Python、Go 与真实浏览器的指纹实测",
+      "subtitle" : "从指纹摘要到 ClientHello 原始字节的三轮对照",
+      "tags"     : "技术, TLS, 浏览器指纹, Python, Go",
+      "url"      : "/2026/09/27/chrome-150-153-browser-fingerprint-test/",
+      "date"     : "2026-09-27 00:00:00 +0000"
+    } ,
+  
+    {
       "title"    : "分析一个 wechat Pad v08 协议的的 dll 文件",
       "subtitle" : "",
       "tags"     : "学习",
