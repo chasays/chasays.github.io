@@ -5,9 +5,122 @@
     <description>察说花园是一个关于我个人的学习记录过程，五花八门，关于互联网、TensorFlow、车载、安卓、音视频、存储、小程序和编译器的资讯和技术分享</description>
     <link>https://blog.chiphub.top/</link>
     <atom:link href="https://blog.chiphub.top/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 27 Sep 2026 14:46:25 +0000</pubDate>
-    <lastBuildDate>Sun, 27 Sep 2026 14:46:25 +0000</lastBuildDate>
+    <pubDate>Mon, 28 Sep 2026 13:39:58 +0000</pubDate>
+    <lastBuildDate>Mon, 28 Sep 2026 13:39:58 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>从 reCAPTCHA v3 到 tmpt：求解环境与请求指纹的一致性</title>
+        <description>&lt;p&gt;阅读 &lt;a href=&quot;https://www.marcsnv.com/blogs/reverse-engineering-tmpt-captcha&quot;&gt;Reverse Engineering TMPT Token Generation&lt;/a&gt; 后，我把此前关于 v3 token、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmpt&lt;/code&gt; 和请求环境的一段讨论整理在这里。本文记录的是&lt;strong&gt;对当时实现的分析与后续改进建议&lt;/strong&gt;：没有为这篇文章修改代码，也没有运行程序。文中涉及项目现状的判断来自此前的代码梳理；Ticketmaster 如何使用风险信号及其权重，仍需实测确认。&lt;/p&gt;
+
+&lt;h2 id=&quot;先看结论&quot;&gt;先看结论&lt;/h2&gt;
+
+&lt;p&gt;v3 token 的求解环境与后续请求环境保持一致，是值得优先检查的方向。当前路径中，&lt;strong&gt;UA 均使用 Chrome 150&lt;/strong&gt;；默认代理配置下，求解与会话使用同一个代理账号。两处值得关注：启用独立验证码代理池后，Go 版的求解和换取步骤会走不同代理；而 Go 的换取步骤使用标准库 HTTP 客户端，其 TLS 表现与后续使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tls-client&lt;/code&gt; 的注册请求不同。Python 的换取步骤也使用普通 HTTP 客户端。&lt;/p&gt;
+
+&lt;p&gt;这说明存在环境不一致的风险，&lt;strong&gt;并不能据此断言一定会降分、换取失败，或 Ticketmaster 一定比对 JA4&lt;/strong&gt;。公开资料没有给出该站点的具体判定规则。&lt;/p&gt;
+
+&lt;h2 id=&quot;一次尝试中环境经过哪些地方&quot;&gt;一次尝试中，环境经过哪些地方&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;阶段&lt;/th&gt;
+      &lt;th&gt;主要工作&lt;/th&gt;
+      &lt;th&gt;UA&lt;/th&gt;
+      &lt;th&gt;出口 IP&lt;/th&gt;
+      &lt;th&gt;客户端/TLS&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;① 求解&lt;/td&gt;
+      &lt;td&gt;KagedCap 执行 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grecaptcha.enterprise.execute&lt;/code&gt;，获取 v3 Enterprise token 与 score&lt;/td&gt;
+      &lt;td&gt;传入的 Chrome 150&lt;/td&gt;
+      &lt;td&gt;传入的求解代理&lt;/td&gt;
+      &lt;td&gt;KagedCap 的浏览器环境&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;② 建立 EPS 会话&lt;/td&gt;
+      &lt;td&gt;请求 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/eps-mgr&lt;/code&gt;，获取 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eps_sid&lt;/code&gt; 与 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;epsfToken&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Chrome 150&lt;/td&gt;
+      &lt;td&gt;Go 默认走会话代理&lt;/td&gt;
+      &lt;td&gt;Go 标准库 HTTP 客户端&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;③ 换取 tmpt&lt;/td&gt;
+      &lt;td&gt;携带 v3 token、站点信息与 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eps_sid&lt;/code&gt; 请求 GEC 接口，接收 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmpt&lt;/code&gt; cookie&lt;/td&gt;
+      &lt;td&gt;Chrome 150&lt;/td&gt;
+      &lt;td&gt;Go 默认走会话代理&lt;/td&gt;
+      &lt;td&gt;同上&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;④ 使用&lt;/td&gt;
+      &lt;td&gt;注册及 identity 请求携带 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmpt&lt;/code&gt;、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eps_sid&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Chrome 150&lt;/td&gt;
+      &lt;td&gt;会话代理&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tls-client&lt;/code&gt; 的 Chrome 150 profile&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;在当前讨论的登录页路径中，v3 求解使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoginPage&lt;/code&gt; action；注册表单自身的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recaptchaToken&lt;/code&gt; 则使用另一把 sitekey，不能与换取 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmpt&lt;/code&gt; 的 sitekey 混为一谈。逆向文章给出的 GEC URL 形式是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/epsf/gec/v3/{epsfToken}/{action}&lt;/code&gt;，其中 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;epsfToken&lt;/code&gt; 来自 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/eps-mgr&lt;/code&gt;。上表用“GEC 接口”概括，是为了避免把它误写成省略该路径段的固定 URL。&lt;/p&gt;
+
+&lt;p&gt;逆向文章还指出，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eps_sid&lt;/code&gt; 将后续请求与最初的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/eps-mgr&lt;/code&gt; 交互关联起来。Google 的文档说明 reCAPTCHA token 有使用次数和时效限制，因此求解后应及时完成后续验证；失败后的重试也应重新获取 token。&lt;/p&gt;
+
+&lt;h2 id=&quot;默认代理与独立验证码代理池&quot;&gt;默认代理与独立验证码代理池&lt;/h2&gt;
+
+&lt;p&gt;默认没有配置 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;captcha_proxy_pool&lt;/code&gt; 时，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pool/proxy.go&lt;/code&gt; 中的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PlanAttempts&lt;/code&gt; 会将一次尝试的求解代理与会话代理设为同一个代理账号。此前使用的代理列表按行提供固定出口 IP；程序还会比较会话出口 IP 与 Sardine 报告的公网 IP。由此看，默认路径具备 IP 一致性的基础，但是否始终使用同一实际出口，仍以运行记录为准。&lt;/p&gt;
+
+&lt;p&gt;启用独立验证码代理池后，两种实现出现差异：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt;：v3 求解与 EPS/GEC 换取使用同一个求解代理。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Go&lt;/strong&gt;：求解使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;m.solverProxy&lt;/code&gt;，换取路径却把 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sessionBinding&lt;/code&gt; 传给 Doer，因此换取改走会话代理。这是此前代码梳理发现的代理选择问题，尚未在本文中复测。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;即使把 Go 的换取代理改成求解代理，之后在会话代理上使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmpt&lt;/code&gt;，仍可能跨出口 IP。因此，是否采用独立验证码池，需要连同&lt;strong&gt;求解、换取、使用&lt;/strong&gt;三个阶段一起考虑。&lt;/p&gt;
+
+&lt;h2 id=&quot;match-your-traffic-能确定什么&quot;&gt;“Match your traffic” 能确定什么&lt;/h2&gt;
+
+&lt;p&gt;KagedCap 文档强调传入的 UA 应与实际请求相符，并称缺失或不匹配的 UA 会影响 score。Google 的评估接口允许网站提交 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userAgent&lt;/code&gt;、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;userIpAddress&lt;/code&gt;，以及 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ja3&lt;/code&gt;、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ja4&lt;/code&gt; 等信号用于风险分析。这些资料支持检查 UA、IP 与 TLS 的一致性，但&lt;strong&gt;不能证明&lt;/strong&gt;某个站点一定采集全部字段，也不能推导出不一致时的具体扣分幅度。&lt;/p&gt;
+
+&lt;p&gt;所以，当前更稳妥的表述是：UA 一致已有代码路径支持；默认代理路径的 IP 一致性有设计保障；独立池路径与换取步骤的 TLS 差异值得排查。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmpt&lt;/code&gt; 是否因其中任何一项被拒绝，需用实际结果判断。&lt;/p&gt;
+
+&lt;h2 id=&quot;后续改进与验证顺序&quot;&gt;后续改进与验证顺序&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;先修正 Go 的代理选择&lt;/strong&gt;：启用独立池时，让换取路径明确使用与求解相同的代理；同时确认后续使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmpt&lt;/code&gt; 的出口是否符合预期。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;记录每次尝试的关键关联信息&lt;/strong&gt;：把 KagedCap 返回的 score、求解/换取/使用阶段的出口 IP、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmpt&lt;/code&gt; 来源和最终注册结果关联起来。可结合 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;providercalls.jsonl&lt;/code&gt; 中的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lease_identity&lt;/code&gt; 与 mint 记录分析。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;比较换取客户端&lt;/strong&gt;：评估让 Go 的 EPS/GEC 请求使用与后续请求一致的 Chrome profile、会话和 cookie 管理方式。Python 当前使用普通 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;httpx&lt;/code&gt;；两种实现都需要先测量实际指纹，再判断改动收益。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;评估 score 的使用方式&lt;/strong&gt;：先观察 score 与成功率的关系，再决定是否设置低分重试阈值。&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.7&lt;/code&gt; 只能作为待验证的例子，不能当作已证明有效的门槛。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;比较不同 tmpt 来源&lt;/strong&gt;：此前讨论认为 Dispur 的 iPhone 身份与当前 Chrome 150 请求环境不一致。若考虑 KagedCap 的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TicketmasterTmptTask&lt;/code&gt;，需先确认账号是否支持，并以实际结果比较。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;资料&quot;&gt;资料&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.marcsnv.com/blogs/reverse-engineering-tmpt-captcha&quot;&gt;Reverse Engineering TMPT Token Generation&lt;/a&gt;：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/eps-mgr&lt;/code&gt;、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;epsfToken&lt;/code&gt;、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;eps_sid&lt;/code&gt; 与 GEC 请求的逆向过程。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kagedcap.io/docs&quot;&gt;KagedCap 文档&lt;/a&gt;及 &lt;a href=&quot;https://github.com/KagedCap/kagedcap-sdk-node&quot;&gt;Node SDK&lt;/a&gt;：求解任务、UA 与 score 的说明。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.cloud.google.com/recaptcha/docs/interpret-assessment-website&quot;&gt;Google：解读 reCAPTCHA 评估&lt;/a&gt;、&lt;a href=&quot;https://cloud.google.com/recaptcha/docs/samples/recaptcha-enterprise-create-assessment&quot;&gt;创建评估示例&lt;/a&gt;及 &lt;a href=&quot;https://cloud.google.com/recaptcha/docs/allowlist-ip&quot;&gt;IP 白名单说明&lt;/a&gt;：token、请求环境与风险字段的官方背景。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mrcsnv/tmpt-python-generator&quot;&gt;mrcsnv/tmpt-python-generator&lt;/a&gt;：公开的 Python 实现参考。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+      <link>https://blog.chiphub.top/2026/09/28/tmpt-token-environment-consistency/</link>
+      <guid isPermaLink="true">https://blog.chiphub.top/2026/09/28/tmpt-token-environment-consistency/</guid>
+        
+        <category>技术</category>
+        
+        <category>reCAPTCHA</category>
+        
+        <category>TLS</category>
+        
+        <category>Go</category>
+        
+        <category>Python</category>
+        
+        
+      </item>
     
       <item>
         <title>从 Chrome 150 到 153：一次 Python、Go 与真实浏览器的指纹实测</title>
@@ -1781,58 +1894,6 @@ https://sepolia.etherscan.io/address/0xd139e60592f4d7fd7177edd9f4d49a9f67608617&
       <guid isPermaLink="true">https://blog.chiphub.top/2024/09/11/smart-contract-guide/</guid>
         
         <category>智能合约</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LLVM 学习记录：编译器最佳实践 - 后端</title>
-        <description>&lt;h1 id=&quot;simt-是什么意思&quot;&gt;SIMT 是什么意思？&lt;/h1&gt;
-
-&lt;p&gt;Single Instruction Multiple Threads” (SIMT) 单指令多线程。&lt;/p&gt;
-
-&lt;p&gt;在纯 SIMD 中，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;一条指令以完全相同的方式作用于所有数据&lt;/code&gt;。
-在 SIMT 中，这一限制有所放松：可以激活或停用选定的线程，以便仅在活动线程上&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;处理指令和数据，而在非活动线程上本地数据保持不变。&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;因此，SIMT 可以适应分支，尽管效率不高。给定以 if (条件) 开头的 if-else 构造，当运行 if 子句中的语句时，condition==true 的线程将处于活动状态，而当运行 else 中的语句时，condition==false 的线程将处于活动状态条款。结果应该是正确的，但非活动线程在等待活动子句中的语句完成时不会执行任何有用的工作。SIMT 内的分支如下图所示。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../../../img/2024/simd_if.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在 Volta 之前的 NVIDIA GPU 中，整个 if 子句（即语句 A 和 B）必须由相关线程执行，然后整个 else 子句（语句 X 和 Y）必须由相关线程执行其余线程，则所有线程在继续执行之前都必须同步（语句 Z）。Volta 更灵活的 SIMT 模型允许在中间点（例如 A 和 X 之后）同步共享数据。&lt;/p&gt;
-
-&lt;p&gt;这些不同的语句块在不同的线程里面，我们知道 GPU 都是并行运行的。那么这些线程都是执行的同一个命令，那结果怎么处理？&lt;/p&gt;
-
-&lt;h1 id=&quot;warp&quot;&gt;warp&lt;/h1&gt;
-
-&lt;p&gt;warp 是什么意思？&lt;/p&gt;
-
-&lt;p&gt;指的是编织者的梭子穿过的一组垂直线-warp，为了后面更形象的理解吧。顺便说一下横着的是 weft。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../../../img/2024/warp-1.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在编程技术里面，是这个意思：The term warp originates from weaving, the first parallel-thread technology.&lt;/p&gt;
-
-&lt;p&gt;在运行时，线程块被分为多个线程束以供 SIMT 执行。一个完整的 warp 由一组具有连续线程索引的 32 个线程组成。然后，warp 中的线程由一组 32 个 CUDA 核心一起处理。这类似于 CPU 上的向量化循环被分成固定大小的向量，然后由一组向量通道进行处理的方式。&lt;/p&gt;
-
-&lt;p&gt;将线程捆绑为 32 个线程束的原因很简单，在 NVIDIA 的硬件中，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CUDA 核心被分为固定的 32 个组&lt;/code&gt;。将大线程块分解成这种大小的块可以简化 SM 在其可用资源上调度整个线程块的任务。&lt;/p&gt;
-
-&lt;p&gt;这个图，大家应该看到很多很多次了吧。&lt;/p&gt;
-
-&lt;h1 id=&quot;read-more&quot;&gt;read more&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;https://cvw.cac.cornell.edu/gpu-architecture/gpu-characteristics/simt_warp&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Thu, 13 Jun 2024 00:00:00 +0000</pubDate>
-      <link>https://blog.chiphub.top/2024/06/13/simt-warp/</link>
-      <guid isPermaLink="true">https://blog.chiphub.top/2024/06/13/simt-warp/</guid>
-        
-        <category>llvm</category>
-        
-        <category>编译器</category>
-        
-        <category>后端</category>
         
         
       </item>

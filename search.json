@@ -1,6 +1,14 @@
 [
   
     {
+      "title": "从 reCAPTCHA v3 到 tmpt：求解环境与请求指纹的一致性",
+      "subtitle": "梳理代理、UA、TLS 与现有 Go/Python 路径的差异",
+      "tags": "技术, reCAPTCHA, TLS, Go, Python",
+      "url": "/2026/09/28/tmpt-token-environment-consistency/",
+      "date": "2026-09-28"
+    },
+  
+    {
       "title": "从 Chrome 150 到 153：一次 Python、Go 与真实浏览器的指纹实测",
       "subtitle": "从指纹摘要到 ClientHello 原始字节的三轮对照",
       "tags": "技术, TLS, 浏览器指纹, Python, Go",
